@@ -8,9 +8,12 @@ next_project_number: 91
 
 ### 90. Ensure bidirectional syncing for labels and folders for himalaya and Protonmail
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-02-13
+- **Research Completed**: 2026-02-13
 - **Language**: general
 - **Dependencies**: Task #89
+- **Research**: [research-001.md](090_himalaya_protonmail_bidirectional_sync/reports/research-001.md)
 
 **Description**: Ensure bidirectional syncing for labels and folders for himalaya and the logos (protonmail) email account in an analogous manner to the himalaya and gmail account detailed in task 89.
 

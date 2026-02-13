@@ -4,12 +4,21 @@
     {
       "project_number": 90,
       "project_name": "himalaya_protonmail_bidirectional_sync",
-      "status": "not_started",
+      "status": "researched",
       "language": "general",
       "created": "2026-02-13T22:37:30Z",
-      "last_updated": "2026-02-13T22:37:30Z",
+      "last_updated": "2026-02-13T22:47:13Z",
       "dependencies": [
         89
+      ],
+      "session_id": "sess_1771022484_1f55a5",
+      "researched": "2026-02-13T22:47:13Z",
+      "artifacts": [
+        {
+          "path": "specs/090_himalaya_protonmail_bidirectional_sync/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report on Protonmail folder/label sync with Himalaya including IMAP testing results, architecture comparison with Gmail, and recommended mbsyncrc configuration"
+        }
       ]
     },
     {
