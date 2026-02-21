@@ -4,18 +4,24 @@
     {
       "project_number": 92,
       "project_name": "sync_wezterm_directory_with_neovim_session",
-      "status": "researched",
+      "status": "planned",
       "language": "neovim",
       "created": "2026-02-21T23:24:52Z",
-      "last_updated": "2026-02-21T23:38:52Z",
-      "session_id": "sess_1771716908_9bd3b0",
+      "last_updated": "2026-02-21T23:42:56Z",
+      "session_id": "sess_1771717241_3e1d13",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/092_sync_wezterm_directory_with_neovim_session/reports/research-001.md",
           "summary": "Research report on WezTerm-Neovim directory sync: found existing OSC 7 implementation already handles tab titles and spawn directory inheritance"
+        },
+        {
+          "path": "specs/092_sync_wezterm_directory_with_neovim_session/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "4-phase verification and enhancement plan for WezTerm directory synchronization"
         }
-      ]
+      ],
+      "planned": "2026-02-21T23:42:56Z"
     },
     {
       "project_number": 91,
