@@ -525,6 +525,7 @@ return {
       { "<leader>mm", "<cmd>HimalayaToggle<CR>", desc = "toggle sidebar", icon = "󰊫" },
       { "<leader>ms", "<cmd>HimalayaSyncInbox<CR>", desc = "sync inbox", icon = "󰜉" },
       { "<leader>mS", "<cmd>HimalayaSyncFull<CR>", desc = "full sync", icon = "󰜉" },
+      { "<leader>mr", "<cmd>TermExec cmd='find ~/Mail/Logos -name .mbsyncstate -delete; find ~/Mail/Logos -name .uidvalidity -delete; rm -f /home/benjamin/Mail/.claude/output/email.md; mbsync logos'<CR><C-w>l", desc = "maildir resync", icon = "󰔟" },
       { "<leader>mt", "<cmd>HimalayaAutoSyncToggle<CR>", desc = "toggle auto-sync", icon = "󰑖" },
       { "<leader>mw", "<cmd>HimalayaWrite<CR>", desc = "write email", icon = "󰝒" },
       { "<leader>mW", "<cmd>HimalayaSetup<CR>", desc = "setup wizard", icon = "󰗀" },

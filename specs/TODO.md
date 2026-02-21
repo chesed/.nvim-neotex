@@ -8,8 +8,11 @@ next_project_number: 93
 
 ### 92. Sync Wezterm terminal directory with Neovim session root
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-02-21
+- **Research Completed**: 2026-02-21
 - **Language**: neovim
+- **Research**: [research-001.md](092_sync_wezterm_directory_with_neovim_session/reports/research-001.md)
 
 **Description**: Change Wezterm terminal working directory to match Neovim session root directory on startup. Wezterm config is at /home/benjamin/.dotfiles/config/wezterm.lua but solution should likely be Neovim-driven.
 
