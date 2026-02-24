@@ -39,8 +39,8 @@
       "status": "researched",
       "language": "neovim",
       "created": "2026-02-21T23:24:52Z",
-      "last_updated": "2026-02-24T15:47:52Z",
-      "session_id": "sess_1771947738_448701",
+      "last_updated": "2026-02-24T16:04:29Z",
+      "session_id": "sess_1771948496_514be0",
       "artifacts": [
         {
           "type": "research",
@@ -56,6 +56,11 @@
           "type": "research",
           "path": "specs/092_sync_wezterm_directory_with_neovim_session/reports/research-002.md",
           "summary": "Supplemental research on persisting directory changes in parent shell after Neovim exits, recommending the lastdir file + shell wrapper pattern"
+        },
+        {
+          "type": "research",
+          "path": "specs/092_sync_wezterm_directory_with_neovim_session/reports/research-003.md",
+          "summary": "Diagnostic investigation identifying Neovim OSC 7 emission as primary cause of WezTerm directory drift, with 5 options for fixing"
         }
       ],
       "planned": "2026-02-21T23:42:56Z"

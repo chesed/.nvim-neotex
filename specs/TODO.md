@@ -31,8 +31,10 @@ next_project_number: 94
 - **Planning Completed**: 2026-02-21
 - **Research Resumed**: 2026-02-24
 - **Research Re-Completed**: 2026-02-24
+- **Investigation Started**: 2026-02-24
+- **Investigation Completed**: 2026-02-24
 - **Language**: neovim
-- **Research**: [research-001.md](092_sync_wezterm_directory_with_neovim_session/reports/research-001.md), [research-002.md](092_sync_wezterm_directory_with_neovim_session/reports/research-002.md)
+- **Research**: [research-001.md](092_sync_wezterm_directory_with_neovim_session/reports/research-001.md), [research-002.md](092_sync_wezterm_directory_with_neovim_session/reports/research-002.md), [research-003.md](092_sync_wezterm_directory_with_neovim_session/reports/research-003.md)
 - **Plan**: [implementation-001.md](092_sync_wezterm_directory_with_neovim_session/plans/implementation-001.md)
 
 **Description**: Change Wezterm terminal working directory to match Neovim session root directory on startup. Wezterm config is at /home/benjamin/.dotfiles/config/wezterm.lua but solution should likely be Neovim-driven.
