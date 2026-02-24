@@ -4,10 +4,10 @@
     {
       "project_number": 95,
       "project_name": "remove_ineffective_changes_92_94",
-      "status": "implementing",
+      "status": "completed",
       "language": "general",
       "created": "2026-02-24T17:42:13Z",
-      "last_updated": "2026-02-24T18:07:02Z",
+      "last_updated": "2026-02-24T18:10:41Z",
       "session_id": "sess_1771956395_94126d",
       "artifacts": [
         {
@@ -19,10 +19,17 @@
           "path": "specs/095_remove_ineffective_changes_92_94/plans/implementation-001.md",
           "type": "plan",
           "summary": "2-phase plan to revert ineffective WezTerm directory changes across nvim and dotfiles repos"
+        },
+        {
+          "path": "specs/095_remove_ineffective_changes_92_94/summaries/implementation-summary-20260224.md",
+          "type": "summary",
+          "summary": "Reverted dotfiles changes: discarded config.fish OSC7 prompt hook, reverted wezterm.lua Leader+c callback. Note: nvim lua files unchanged (already identical between branches)."
         }
       ],
       "planned": "2026-02-24T17:57:40Z",
-      "started": "2026-02-24T18:07:02Z"
+      "started": "2026-02-24T18:07:02Z",
+      "completed": "2026-02-24T18:10:41Z",
+      "completion_summary": "Reverted ineffective WezTerm directory-fix changes: discarded uncommitted config.fish OSC7 prompt hook and reverted wezterm.lua Leader+c callback to original SpawnTab one-liner. Note: lua files in nvim repo were unchanged (already identical between master and wezterm_tab)."
     },
     {
       "project_number": 94,

@@ -1,7 +1,7 @@
 # Implementation Plan: Remove ineffective changes from tasks 92 and 94
 
 - **Task**: 95 - Remove ineffective changes from tasks 92 and 94
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 0.25 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md)
