@@ -1,7 +1,7 @@
 # Implementation Plan: Fix WezTerm New Tab Spawn Directory
 
 - **Task**: 94 - Fix WezTerm new tab spawn directory by overriding Leader+c keybinding
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 0.5 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md)
@@ -43,7 +43,7 @@ Research report research-001.md confirmed all required APIs are available in the
 
 ## Implementation Phases
 
-### Phase 1: Replace Leader+c Keybinding [NOT STARTED]
+### Phase 1: Replace Leader+c Keybinding [COMPLETED]
 
 **Goal:** Replace the static `SpawnTab("CurrentPaneDomain")` keybinding with a custom callback that reads the foreground process's actual CWD from `/proc`, bypassing stale OSC 7 metadata.
 
