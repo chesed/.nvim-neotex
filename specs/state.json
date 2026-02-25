@@ -4,13 +4,21 @@
     {
       "project_number": 96,
       "project_name": "add_question_tag_support_to_learn_command",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "effort": "3-4 hours",
       "created": "2026-02-25T12:00:00Z",
-      "last_updated": "2026-02-25T12:00:00Z",
+      "last_updated": "2026-02-25T16:51:43Z",
       "dependencies": [],
-      "artifacts": []
+      "artifacts": [
+        {
+          "path": "specs/096_add_question_tag_support_to_learn_command/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with 10 findings covering extraction patterns, research-task type design, topic grouping reuse, interactive flow additions, and 4 files requiring modification"
+        }
+      ],
+      "session_id": "sess_1772038119_369b7b",
+      "researched": "2026-02-25T16:51:43Z"
     },
     {
       "project_number": 87,

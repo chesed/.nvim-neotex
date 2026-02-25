@@ -8,9 +8,12 @@ next_project_number: 97
 
 ### 96. Add QUESTION: tag support to /learn command
 - **Effort**: 3-4 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-02-25
+- **Research Completed**: 2026-02-25
 - **Language**: meta
 - **Dependencies**: None
+- **Research**: [research-001.md](096_add_question_tag_support_to_learn_command/reports/research-001.md)
 
 **Description**: Expand the /learn command to recognize QUESTION: tags in source code comments. When found, create research tasks aimed at answering these questions. Group questions by topic when natural (shared terms, file section proximity), but keep tasks focused enough that all questions can be completely answered. Map QUESTION: tags to a new "research-task" type, following the same interactive selection pattern as TODO: tags (including optional topic grouping for multiple questions).
 
