@@ -6,6 +6,15 @@ next_project_number: 97
 
 ## Tasks
 
+### 97. Add typst clear-cache keymap under <leader>l
+- **Effort**: TBD
+- **Status**: [COMPLETED]
+- **Language**: neovim
+- **Dependencies**: None
+- **Research**: [research-001.md](097_add_typst_clear_cache_keymap/reports/research-001.md)
+
+**Description**: Add a `<leader>l` keymap that runs tinymist's clear-cache command (or equivalent typst cache invalidation). The mapping should appear in the which-key group alongside the other typst/tinymist mappings so it's discoverable. Context: stale tinymist preview cache causes old compiled output to persist even after source files are updated.
+
 ### 96. Add QUESTION: tag support to /learn command
 - **Effort**: 3-4 hours
 - **Status**: [COMPLETED]

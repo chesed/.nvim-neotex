@@ -1,6 +1,24 @@
 {
-  "next_project_number": 97,
+  "next_project_number": 98,
   "active_projects": [
+    {
+      "project_number": 97,
+      "project_name": "add_typst_clear_cache_keymap",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-02-26T05:30:00Z",
+      "last_updated": "2026-02-26T05:40:00Z",
+      "session_id": "sess_1772084164_b88843",
+      "completed": "2026-02-26T05:40:00Z",
+      "completion_summary": "Added <leader>lC keymap that stops the preview, restarts tinymist LSP to clear its cache, and notifies the user to reopen with <leader>lp.",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/097_add_typst_clear_cache_keymap/reports/research-001.md",
+          "summary": "Research report covering tinymist doClearCache LSP command, existing typst keymaps, and recommended implementation approach"
+        }
+      ]
+    },
     {
       "project_number": 96,
       "project_name": "add_question_tag_support_to_learn_command",

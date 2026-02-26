@@ -224,6 +224,12 @@ local function show_diagnostics()
   vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
 end
 
+local function tinymist_clear_cache()
+  pcall(vim.cmd, "TypstPreviewStop")
+  vim.cmd("LspRestart tinymist")
+  vim.notify("tinymist cache cleared (run <leader>lp to reopen)", vim.log.levels.INFO)
+end
+
 -- Register which-key bindings for Typst (uses <leader>l like LaTeX)
 -- NOTE: Sync features (forward/backward) only work with web preview (<leader>ll/<leader>lp)
 --       PDF viewer (<leader>lv) does not support sync (similar to LaTeX without SyncTeX)
@@ -231,6 +237,7 @@ local ok_wk, wk = pcall(require, "which-key")
 if ok_wk then
   wk.add({
     { "<leader>l", group = "typst", icon = "󰬛", buffer = 0 },
+    { "<leader>lC", tinymist_clear_cache, desc = "clear cache", icon = "󰃢", buffer = 0 },
     { "<leader>lc", typst_watch, desc = "compile (watch)", icon = "", buffer = 0 },
     { "<leader>le", show_diagnostics, desc = "errors", icon = "", buffer = 0 },
     { "<leader>lf", typst_format, desc = "format", icon = "", buffer = 0 },
