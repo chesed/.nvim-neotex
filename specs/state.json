@@ -4,11 +4,19 @@
     {
       "project_number": 99,
       "project_name": "review_agent_systems_core_extensions",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-01T20:06:21Z",
-      "last_updated": "2026-03-01T20:08:13Z",
-      "session_id": "sess_1772395672_2919c8"
+      "last_updated": "2026-03-01T20:13:50Z",
+      "session_id": "sess_1772395672_2919c8",
+      "researched": "2026-03-01T20:13:50Z",
+      "artifacts": [
+        {
+          "path": "specs/099_review_agent_systems_core_extensions/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive comparison of 3 .claude/ systems identifying 22 missing core features and proposing core+extensions architecture"
+        }
+      ]
     },
     {
       "project_number": 98,
