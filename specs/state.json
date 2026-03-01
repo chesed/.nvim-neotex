@@ -4,12 +4,12 @@
     {
       "project_number": 99,
       "project_name": "review_agent_systems_core_extensions",
-      "status": "planned",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-01T20:06:21Z",
-      "last_updated": "2026-03-01T21:27:27Z",
-      "session_id": "sess_1772400170_096738",
-      "researched": "2026-03-01T21:17:05Z",
+      "last_updated": "2026-03-01T21:56:57Z",
+      "session_id": "sess_1772401854_bf1761",
+      "researched": "2026-03-01T21:56:57Z",
       "artifacts": [
         {
           "path": "specs/099_review_agent_systems_core_extensions/reports/research-001.md",
@@ -35,6 +35,11 @@
           "path": "specs/099_review_agent_systems_core_extensions/plans/implementation-002.md",
           "type": "plan",
           "summary": "7-phase hybrid implementation plan for core + extensions architecture using native Claude Code plugins and file-copy supplementary integration"
+        },
+        {
+          "path": "specs/099_review_agent_systems_core_extensions/reports/research-004.md",
+          "type": "research",
+          "summary": "Comprehensive research report covering current picker architecture analysis, extension manifest schema, file merge strategies (6 types), state tracking format, practical core-vs-extension mapping, and 5-phase implementation plan"
         }
       ],
       "planned": "2026-03-01T21:27:27Z"
