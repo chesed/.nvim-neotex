@@ -1,10 +1,18 @@
 ---
-next_project_number: 97
+next_project_number: 99
 ---
 
 # TODO
 
 ## Tasks
+
+### 98. Remove deprecated index.md and consolidate context index to JSON
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Remove index.md from .claude/context/ and all references, given that index.json has been implemented. Verify removal won't break anything by ensuring the system uses index.json consistently. Also evaluate index.schema.json - determine if it should be removed or moved to context files to document the index.json schema pattern rather than being an active part of the system.
 
 ### 97. Add typst clear-cache keymap under <leader>l
 - **Effort**: TBD
