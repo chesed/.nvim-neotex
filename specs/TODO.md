@@ -19,7 +19,7 @@ next_project_number: 105
 
 ### 103. Compare .opencode agent systems against .claude North Star
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Status**: [RESEARCHING]
 - **Research Started**: 2026-03-02
 - **Research Completed**: 2026-03-02
 - **Language**: meta

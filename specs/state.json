@@ -20,11 +20,11 @@
     {
       "project_number": 103,
       "project_name": "compare_opencode_agent_systems_against_claude",
-      "status": "researched",
+      "status": "researching",
       "language": "meta",
       "created": "2026-03-02T17:57:51Z",
-      "last_updated": "2026-03-02T18:07:36Z",
-      "session_id": "sess_1772474368_3da282",
+      "last_updated": "2026-03-02T18:14:10Z",
+      "session_id": "sess_1772475231_4d7810",
       "researched": "2026-03-02T18:07:36Z",
       "artifacts": [
         {
@@ -40,8 +40,8 @@
       "status": "implementing",
       "language": "meta",
       "created": "2026-03-02T17:18:50Z",
-      "last_updated": "2026-03-02T18:04:47Z",
-      "session_id": "sess_1772473877_d85125",
+      "last_updated": "2026-03-02T18:14:38Z",
+      "session_id": "sess_1772475256_2a2074",
       "researched": "2026-03-02T17:42:12Z",
       "artifacts": [
         {
