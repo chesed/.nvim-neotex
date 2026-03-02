@@ -256,8 +256,12 @@ return {
       { "<leader>as", function() require("opencode").select() end, desc = "opencode select", icon = "󰒋" },
       { "<leader>ah", function() require("opencode").command("session.list") end, desc = "opencode history", icon = "󰆼" },
       -- { "<leader>ai", function() require("opencode").command("session.new") end, desc = "opencode init session", icon = "󰐕" },
-      -- { "<leader>ao", function() require("opencode").toggle() end, desc = "opencode toggle", icon = "󰚩" },
       -- { "<leader>ap", function() require("opencode").prompt("@this") end, desc = "opencode prompt", icon = "󰏪", mode = { "n", "v" } },
+
+      -- OpenCode group
+      { "<leader>ao", group = "opencode", icon = "󰘳" },
+      { "<leader>aoe", "<cmd>OpencodeExtensions<CR>", desc = "opencode extensions", icon = "󰏗" },
+      { "<leader>aot", function() require("opencode").toggle() end, desc = "opencode toggle", icon = "󰚩" },
 
       -- TTS toggle - project-specific only (DISABLED: 2025-12-09 - User preference)
       -- { "<leader>at", function()

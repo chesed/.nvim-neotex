@@ -1,7 +1,7 @@
 # Implementation Plan: Task #103
 
 - **Task**: 103 - Create parallel .opencode/extensions/ system with web/ extension
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 8-10 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md), [research-002.md](../reports/research-002.md)
@@ -82,7 +82,7 @@ Research-001 established that the `.claude` system is the most mature (284 files
 
 ---
 
-### Phase 2: Shared Lua Extension Base Module [IN PROGRESS]
+### Phase 2: Shared Lua Extension Base Module [COMPLETED]
 
 **Goal**: Create a shared, parameterized Lua module that both the claude and opencode extension systems can use, avoiding code duplication across the two systems.
 
@@ -113,7 +113,7 @@ Research-001 established that the `.claude` system is the most mature (284 files
 
 ---
 
-### Phase 3: Refactor Claude Extensions to Use Shared Base [NOT STARTED]
+### Phase 3: Refactor Claude Extensions to Use Shared Base [COMPLETED]
 
 **Goal**: Refactor the existing 6 claude extension Lua modules to delegate to the shared base, confirming no regressions in claude extension load/unload behavior.
 
@@ -147,7 +147,7 @@ Research-001 established that the `.claude` system is the most mature (284 files
 
 ---
 
-### Phase 4: OpenCode Extension Lua Modules and Telescope Picker [NOT STARTED]
+### Phase 4: OpenCode Extension Lua Modules and Telescope Picker [COMPLETED]
 
 **Goal**: Create the opencode extension Lua modules using the shared base, register the `OpencodeExtensions` vim command, create the Telescope picker, and wire up `<leader>ao` which-key bindings.
 
@@ -181,7 +181,7 @@ Research-001 established that the `.claude` system is the most mature (284 files
 
 ---
 
-### Phase 5: Port Claude Extensions to OpenCode Format [NOT STARTED]
+### Phase 5: Port Claude Extensions to OpenCode Format [COMPLETED]
 
 **Goal**: Create opencode-format versions of the 5 existing claude extensions (lean, latex, typst, z3, python) in `.opencode/extensions/`, adapting agent frontmatter to include opencode-specific fields (tools, permissions, temperature).
 

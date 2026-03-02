@@ -54,6 +54,11 @@ return {
   config = function()
     -- Plugin loaded successfully
     -- Run :checkhealth opencode manually to verify configuration
+
+    -- Register OpencodeExtensions command
+    vim.api.nvim_create_user_command("OpencodeExtensions", function()
+      require("neotex.plugins.ai.opencode.extensions.picker").show()
+    end, { desc = "Manage OpenCode extensions" })
   end,
   -- Disable default plugin keymaps at lazy.nvim level
   keys = {},
