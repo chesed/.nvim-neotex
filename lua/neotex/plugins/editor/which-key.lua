@@ -101,24 +101,24 @@ return {
       local dev_cli_path = nil
 
       -- Check current directory
-      if vim.fn.filereadable(current_dir .. "/Code/dev_cli.py") == 1 then
-        dev_cli_path = current_dir .. "/Code/dev_cli.py"
+      if vim.fn.filereadable(current_dir .. "/code/dev_cli.py") == 1 then
+        dev_cli_path = current_dir .. "/code/dev_cli.py"
       -- Check if we're in a worktree and look in parent
       elseif current_dir:match("-feature-") or current_dir:match("-bugfix-") or current_dir:match("-refactor-") then
         local parent = current_dir:match("(.*/[^/]+)%-[^/]+%-[^/]+$")
-        if parent and vim.fn.filereadable(parent .. "/Code/dev_cli.py") == 1 then
-          dev_cli_path = parent .. "/Code/dev_cli.py"
+        if parent and vim.fn.filereadable(parent .. "/code/dev_cli.py") == 1 then
+          dev_cli_path = parent .. "/code/dev_cli.py"
         end
       -- Fallback to known ModelChecker location
-      elseif vim.fn.filereadable("/home/benjamin/Documents/Philosophy/Projects/ModelChecker/Code/dev_cli.py") == 1 then
-        dev_cli_path = "/home/benjamin/Documents/Philosophy/Projects/ModelChecker/Code/dev_cli.py"
+      elseif vim.fn.filereadable("/home/benjamin/Documents/Philosophy/Projects/ModelChecker/code/dev_cli.py") == 1 then
+        dev_cli_path = "/home/benjamin/Documents/Philosophy/Projects/ModelChecker/code/dev_cli.py"
       end
 
       if dev_cli_path then
         local file = vim.fn.expand("%:p:r") .. ".py"
         vim.cmd(string.format("TermExec cmd='%s %s'", dev_cli_path, file))
       else
-        vim.notify("Could not find Code/dev_cli.py in project", vim.log.levels.ERROR)
+        vim.notify("Could not find code/dev_cli.py in project", vim.log.levels.ERROR)
       end
     end
 
