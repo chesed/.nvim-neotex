@@ -1,7 +1,7 @@
 # Implementation Plan: Task #103
 
 - **Task**: 103 - Create parallel .opencode/extensions/ system with web/ extension
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 8-10 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md), [research-002.md](../reports/research-002.md)
@@ -51,7 +51,7 @@ Research-001 established that the `.claude` system is the most mature (284 files
 
 ## Implementation Phases
 
-### Phase 1: Extension Directory Structure and Web Extension [NOT STARTED]
+### Phase 1: Extension Directory Structure and Web Extension [COMPLETED]
 
 **Goal**: Create the `.opencode/extensions/` directory with the `web/` extension as the first domain extension, including manifest, agents, and context files.
 
@@ -82,7 +82,7 @@ Research-001 established that the `.claude` system is the most mature (284 files
 
 ---
 
-### Phase 2: Shared Lua Extension Base Module [NOT STARTED]
+### Phase 2: Shared Lua Extension Base Module [IN PROGRESS]
 
 **Goal**: Create a shared, parameterized Lua module that both the claude and opencode extension systems can use, avoiding code duplication across the two systems.
 
