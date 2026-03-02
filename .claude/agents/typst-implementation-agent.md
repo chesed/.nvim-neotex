@@ -137,7 +137,12 @@ If all phases are `[COMPLETED]`: Task already done, return completed status.
 For each phase starting from resume point:
 
 **A. Mark Phase In Progress**
-Edit plan file: Change phase status to `[IN PROGRESS]`
+Edit plan file heading to show the phase is active.
+Use the Edit tool with:
+- old_string: `### Phase {P}: {Phase Name} [NOT STARTED]`
+- new_string: `### Phase {P}: {Phase Name} [IN PROGRESS]`
+
+Phase status lives ONLY in the heading. Do NOT add or edit a separate `**Status**:` line per phase.
 
 **B. Execute Typst Creation/Modification**
 
@@ -174,7 +179,12 @@ For each .typ file in the phase:
 - All planned sections/content present
 
 **D. Mark Phase Complete**
-Edit plan file: Change phase status to `[COMPLETED]`
+Edit plan file heading to show the phase is finished.
+Use the Edit tool with:
+- old_string: `### Phase {P}: {Phase Name} [IN PROGRESS]`
+- new_string: `### Phase {P}: {Phase Name} [COMPLETED]`
+
+Phase status lives ONLY in the heading. Do NOT add or edit a separate `**Status**:` line per phase.
 
 ### Stage 5: Run Final Compilation Verification
 
