@@ -8,12 +8,15 @@ next_project_number: 101
 
 ### 100. Fix extension picker preview showing "Unknown entry type"
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-01
 - **Research Completed**: 2026-03-01
+- **Planning Started**: 2026-03-01
+- **Planning Completed**: 2026-03-01
 - **Language**: neovim
 - **Dependencies**: None
 - **Research**: [research-001.md](100_fix_extension_picker_preview/reports/research-001.md)
+- **Plan**: [implementation-001.md](100_fix_extension_picker_preview/plans/implementation-001.md)
 
 **Description**: Fix the `<leader>ac` picker preview pane showing "Unknown entry type" when hovering over extension entries in the `[Extensions]` section. The preview should display detailed extension information from the manifest (name, version, description, provides, dependencies). Extension entries are correctly listed but the preview renderer doesn't handle the extension entry type.
 

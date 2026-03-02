@@ -4,19 +4,25 @@
     {
       "project_number": 100,
       "project_name": "fix_extension_picker_preview",
-      "status": "researched",
+      "status": "planned",
       "language": "neovim",
       "created": "2026-03-02T01:01:32Z",
-      "last_updated": "2026-03-02T01:06:31Z",
-      "session_id": "sess_1772413366_d05b5e",
+      "last_updated": "2026-03-02T01:12:26Z",
+      "session_id": "sess_1772413794_7980f2",
       "researched": "2026-03-02T01:06:31Z",
       "artifacts": [
         {
           "path": "specs/100_fix_extension_picker_preview/reports/research-001.md",
           "type": "research",
           "summary": "Research report identifying missing extension/agent/root_file preview handlers in previewer.lua dispatch logic"
+        },
+        {
+          "path": "specs/100_fix_extension_picker_preview/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "3-phase plan: add extension preview function, add agent/root_file previews, validate"
         }
-      ]
+      ],
+      "planned": "2026-03-02T01:12:26Z"
     },
     {
       "project_number": 99,
