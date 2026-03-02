@@ -1,7 +1,7 @@
 # Implementation Plan: Task #106
 
 - **Task**: 106 - Review dotfiles .claude/ agent system for NixOS to add nix/ extension
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 2-3 hours
 - **Dependencies**: Task #102, Task #105
 - **Research Inputs**: [research-001.md](../reports/research-001.md)
@@ -165,7 +165,7 @@ The research report (research-001.md) identified:
 
 ---
 
-### Phase 5: Rules and Context Files [IN PROGRESS]
+### Phase 5: Rules and Context Files [COMPLETED]
 
 **Goal**: Adapt the 1 rule file and 11 context files from dotfiles, removing project-specific content.
 
@@ -213,7 +213,7 @@ The research report (research-001.md) identified:
 
 ---
 
-### Phase 6: Verification and Consistency Check [NOT STARTED]
+### Phase 6: Verification and Consistency Check [COMPLETED]
 
 **Goal**: Verify the complete extension is internally consistent and follows established patterns.
 
