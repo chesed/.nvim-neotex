@@ -1,10 +1,18 @@
 ---
-next_project_number: 109
+next_project_number: 110
 ---
 
 # TODO
 
 ## Tasks
+
+### 109. Make agent system portable for new repos by separating generic and project-specific content
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Separate neovim-specific content from generic agent system to enable portability when copying .claude/ to new repos via <leader>ac "Load All Artifacts". Create agent-system.md (generic overview, copied to new repos) and keep project-overview.md (neovim-specific, not copied). Make .claude/CLAUDE.md generic to the core agent system while linking project-overview.md for project specifics, with a note suggesting users generate this project-specific file if it doesn't exist. Reference .claude/context/project/repo/update-project.md for guidance when project-overview.md does not exist. This reduces maintenance by dividing files into portable agent system components vs project-specific configuration.
 
 ### 108. Show active/current extensions with '*' indicator in <leader>ac picker
 - **Effort**: 0.5-1 hours
