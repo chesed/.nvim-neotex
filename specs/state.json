@@ -4,19 +4,25 @@
     {
       "project_number": 101,
       "project_name": "add_contents_to_language_extensions",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-02T01:39:57Z",
-      "last_updated": "2026-03-02T01:45:51Z",
-      "session_id": "sess_1772415637_0ff814",
+      "last_updated": "2026-03-02T06:06:49Z",
+      "session_id": "sess_1772431434_a82426",
       "researched": "2026-03-02T01:45:51Z",
       "artifacts": [
         {
           "path": "specs/101_add_contents_to_language_extensions/reports/research-001.md",
           "type": "research",
           "summary": "Research report with findings from 3 reference projects, file inventories for 5 extensions, and 6-phase implementation plan"
+        },
+        {
+          "path": "specs/101_add_contents_to_language_extensions/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "6-phase plan to populate lean, latex, z3, typst, and python extensions with agents, skills, rules, and context from ProofChecker, Logos/Theory, and ModelChecker"
         }
-      ]
+      ],
+      "planned": "2026-03-02T06:06:49Z"
     },
     {
       "project_number": 87,
