@@ -12,11 +12,19 @@
     {
       "project_number": 103,
       "project_name": "compare_opencode_agent_systems_against_claude",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-02T17:57:51Z",
-      "last_updated": "2026-03-02T18:00:12Z",
-      "session_id": "sess_1772474368_3da282"
+      "last_updated": "2026-03-02T18:07:36Z",
+      "session_id": "sess_1772474368_3da282",
+      "researched": "2026-03-02T18:07:36Z",
+      "artifacts": [
+        {
+          "path": "specs/103_compare_opencode_agent_systems_against_claude/reports/research-001.md",
+          "type": "research",
+          "summary": "Feature-by-feature comparison of three agent systems with component counts, domain coverage matrix, agent frontmatter analysis, and consolidation recommendations"
+        }
+      ]
     },
     {
       "project_number": 102,

@@ -16,10 +16,12 @@ next_project_number: 105
 
 ### 103. Compare .opencode agent systems against .claude North Star
 - **Effort**: TBD
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Research Started**: 2026-03-02
+- **Research Completed**: 2026-03-02
 - **Language**: meta
 - **Dependencies**: None
+- **Research**: [research-001.md](103_compare_opencode_agent_systems_against_claude/reports/research-001.md)
 
 **Description**: Compare the .opencode agent systems in /home/benjamin/Projects/Logos/Theory/.opencode/ and /home/benjamin/.config/nvim/.opencode/ to evaluate their capacities and determine which to prefer. Goal is to make these agent systems provide the same functionality as /home/benjamin/.config/nvim/.claude/, which serves as the North Star reference.
 
