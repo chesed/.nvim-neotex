@@ -4,18 +4,24 @@
     {
       "project_number": 108,
       "project_name": "extension_asterisk_indicator",
-      "status": "researched",
+      "status": "planned",
       "language": "neovim",
       "created": "2026-03-02T22:18:43Z",
-      "last_updated": "2026-03-02T22:24:11Z",
-      "session_id": "sess_1772490041_7c0475",
+      "last_updated": "2026-03-02T22:27:14Z",
+      "session_id": "sess_1772490300_5f9583",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/108_extension_asterisk_indicator/reports/research-001.md",
           "summary": "Research report analyzing the picker display system, extension status tracking, and recommended single-function implementation approach"
+        },
+        {
+          "path": "specs/108_extension_asterisk_indicator/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "1-phase implementation plan for adding asterisk prefix to active extensions in picker display"
         }
-      ]
+      ],
+      "planned": "2026-03-02T22:27:14Z"
     },
     {
       "project_number": 87,
