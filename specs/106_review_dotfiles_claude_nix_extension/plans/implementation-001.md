@@ -104,7 +104,7 @@ The research report (research-001.md) identified:
 
 ---
 
-### Phase 3: Agents [IN PROGRESS]
+### Phase 3: Agents [COMPLETED]
 
 **Goal**: Adapt the 2 Nix agents from dotfiles to extension format with updated context paths.
 
@@ -135,7 +135,7 @@ The research report (research-001.md) identified:
 
 ---
 
-### Phase 4: Skills [NOT STARTED]
+### Phase 4: Skills [COMPLETED]
 
 **Goal**: Adapt the 2 Nix skills from dotfiles to extension format.
 
@@ -165,7 +165,7 @@ The research report (research-001.md) identified:
 
 ---
 
-### Phase 5: Rules and Context Files [NOT STARTED]
+### Phase 5: Rules and Context Files [IN PROGRESS]
 
 **Goal**: Adapt the 1 rule file and 11 context files from dotfiles, removing project-specific content.
 

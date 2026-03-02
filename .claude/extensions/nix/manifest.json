@@ -1,0 +1,37 @@
+{
+  "name": "nix",
+  "version": "1.0.0",
+  "description": "NixOS and Home Manager configuration support with MCP-NixOS integration for package/option validation",
+  "language": "nix",
+  "dependencies": [],
+  "provides": {
+    "agents": ["nix-research-agent.md", "nix-implementation-agent.md"],
+    "skills": ["skill-nix-research", "skill-nix-implementation"],
+    "commands": [],
+    "rules": ["nix.md"],
+    "context": ["project/nix"],
+    "scripts": [],
+    "hooks": []
+  },
+  "merge_targets": {
+    "claudemd": {
+      "source": "EXTENSION.md",
+      "target": ".claude/CLAUDE.md",
+      "section_id": "extension_nix"
+    },
+    "settings": {
+      "source": "settings-fragment.json",
+      "target": ".claude/settings.local.json"
+    },
+    "index": {
+      "source": "index-entries.json",
+      "target": ".claude/context/index.json"
+    }
+  },
+  "mcp_servers": {
+    "mcp-nixos": {
+      "command": "uvx",
+      "args": ["mcp-nixos"]
+    }
+  }
+}
