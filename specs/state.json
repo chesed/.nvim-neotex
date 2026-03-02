@@ -4,11 +4,11 @@
     {
       "project_number": 100,
       "project_name": "fix_extension_picker_preview",
-      "status": "planned",
+      "status": "completed",
       "language": "neovim",
       "created": "2026-03-02T01:01:32Z",
-      "last_updated": "2026-03-02T01:12:26Z",
-      "session_id": "sess_1772413794_7980f2",
+      "last_updated": "2026-03-02T01:25:44Z",
+      "session_id": "sess_1772414495_18c1f3",
       "researched": "2026-03-02T01:06:31Z",
       "artifacts": [
         {
@@ -20,9 +20,17 @@
           "path": "specs/100_fix_extension_picker_preview/plans/implementation-001.md",
           "type": "plan",
           "summary": "3-phase plan: add extension preview function, add agent/root_file previews, validate"
+        },
+        {
+          "path": "specs/100_fix_extension_picker_preview/summaries/implementation-summary-20260301.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting all changes and verification results"
         }
       ],
-      "planned": "2026-03-02T01:12:26Z"
+      "planned": "2026-03-02T01:12:26Z",
+      "started": "2026-03-02T01:21:51Z",
+      "completed": "2026-03-02T01:25:44Z",
+      "completion_summary": "Fixed 'Unknown entry type' preview in the main artifact picker for extension, agent, and root_file entries by adding three preview functions to previewer.lua. Extension preview shows rich metadata including provides, MCP servers, and installed files. Agent and root_file previews display file contents with appropriate syntax highlighting."
     },
     {
       "project_number": 99,

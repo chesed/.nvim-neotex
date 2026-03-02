@@ -3,7 +3,7 @@
 - **Task**: 100 - fix_extension_picker_preview
 - **Date**: 2026-03-01
 - **Feature**: Fix "Unknown entry type" in main picker preview for extension, agent, and root_file entries
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Estimated Hours**: 1-2 hours
 - **Standards File**: /home/benjamin/.config/nvim/CLAUDE.md
 - **Research Reports**: [research-001.md](../reports/research-001.md)
@@ -46,7 +46,7 @@ The `<leader>ac` main artifact picker displays extension entries under the `[Ext
 
 ## Implementation Phases
 
-### Phase 1: Add extension preview function and dispatch [NOT STARTED]
+### Phase 1: Add extension preview function and dispatch [COMPLETED]
 
 **Goal**: Fix the primary reported bug -- extension entries showing "Unknown entry type" in the preview pane.
 
@@ -74,7 +74,7 @@ The `<leader>ac` main artifact picker displays extension entries under the `[Ext
 
 ---
 
-### Phase 2: Add agent and root_file preview functions and dispatch [NOT STARTED]
+### Phase 2: Add agent and root_file preview functions and dispatch [COMPLETED]
 
 **Goal**: Fix the remaining two "Unknown entry type" cases for agent and root_file entries.
 
@@ -101,7 +101,7 @@ The `<leader>ac` main artifact picker displays extension entries under the `[Ext
 
 ---
 
-### Phase 3: Validation and verification [NOT STARTED]
+### Phase 3: Validation and verification [COMPLETED]
 
 **Goal**: Verify the fix works end-to-end without regressions.
 

@@ -546,6 +546,205 @@ local function preview_command(self, entry)
   vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", "markdown")
 end
 
+--- Create preview for extension entries
+--- @param self table Telescope previewer state
+--- @param entry table Telescope entry
+local function preview_extension(self, entry)
+  local ext = entry.value
+  local lines = {
+    "# " .. ext.name .. " v" .. (ext.version or "unknown"),
+    "",
+    "**Status**: " .. (ext.status or "unknown"),
+    "**Language**: " .. (ext.language or "any"),
+    "",
+    "## Description",
+    ext.description or "No description",
+    "",
+  }
+
+  -- Try to get detailed info from extensions module
+  local ok, extensions = pcall(require, "neotex.plugins.ai.claude.extensions")
+  if ok then
+    local details = extensions.get_details(ext.name)
+
+    -- Provides section
+    if details and details.provides then
+      table.insert(lines, "## Provides")
+      for category, items in pairs(details.provides) do
+        if type(items) == "table" and #items > 0 then
+          table.insert(lines, "")
+          table.insert(lines, "### " .. category)
+          for _, item in ipairs(items) do
+            table.insert(lines, "- " .. item)
+          end
+        end
+      end
+    end
+
+    -- MCP Servers section
+    if details and details.mcp_servers then
+      table.insert(lines, "")
+      table.insert(lines, "## MCP Servers")
+      for name, config in pairs(details.mcp_servers) do
+        table.insert(lines, "- **" .. name .. "**: " .. config.command)
+      end
+    end
+
+    -- Installed files (if active)
+    if details and details.installed_files and #details.installed_files > 0 then
+      table.insert(lines, "")
+      table.insert(lines, "## Installed Files (" .. #details.installed_files .. ")")
+      for i, file in ipairs(details.installed_files) do
+        if i <= 10 then
+          table.insert(lines, "- " .. file)
+        end
+      end
+      if #details.installed_files > 10 then
+        table.insert(lines, "- ... and " .. (#details.installed_files - 10) .. " more")
+      end
+    end
+
+    -- Loaded at timestamp
+    if details and details.loaded_at then
+      table.insert(lines, "")
+      table.insert(lines, "**Loaded**: " .. details.loaded_at)
+    end
+  end
+
+  vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
+  vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", "markdown")
+end
+
+--- Create preview for agent entries
+--- @param self table Telescope previewer state
+--- @param entry table Telescope entry
+local function preview_agent(self, entry)
+  local agent = entry.value
+  local lines = {
+    "# Agent: " .. agent.name,
+    "",
+  }
+
+  if agent.description and agent.description ~= "" then
+    table.insert(lines, "**Description**: " .. agent.description)
+    table.insert(lines, "")
+  end
+
+  table.insert(lines, "---")
+  table.insert(lines, "")
+  table.insert(lines, "**File**: " .. (agent.filepath or "Unknown"))
+  table.insert(lines, "**Status**: " .. (agent.is_local and "[Local]" or "[Global]"))
+  table.insert(lines, "")
+
+  -- Try to read first lines of agent file for additional context
+  local filepath = agent.filepath
+  if filepath and vim.fn.filereadable(filepath) == 1 then
+    table.insert(lines, "---")
+    table.insert(lines, "")
+    table.insert(lines, "## Agent Definition")
+    table.insert(lines, "")
+
+    local success, file = pcall(io.open, filepath, "r")
+    if success and file then
+      local line_count = 0
+      for line in file:lines() do
+        table.insert(lines, line)
+        line_count = line_count + 1
+        if line_count >= MAX_PREVIEW_LINES then
+          break
+        end
+      end
+      file:close()
+
+      local total_lines = #vim.fn.readfile(filepath)
+      if total_lines > MAX_PREVIEW_LINES then
+        table.insert(lines, "")
+        table.insert(lines, "...")
+        table.insert(lines, string.format(
+          "[Preview truncated - showing first %d of %d lines]",
+          MAX_PREVIEW_LINES, total_lines
+        ))
+      end
+    end
+  end
+
+  vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
+  vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", "markdown")
+end
+
+--- Create preview for root_file entries
+--- @param self table Telescope previewer state
+--- @param entry table Telescope entry
+local function preview_root_file(self, entry)
+  local root_file = entry.value
+  local filepath = root_file.filepath
+
+  local lines = {
+    "# " .. root_file.name,
+    "",
+  }
+
+  if root_file.description and root_file.description ~= "" then
+    table.insert(lines, "**Description**: " .. root_file.description)
+    table.insert(lines, "")
+  end
+
+  table.insert(lines, "**Path**: " .. (filepath or "Unknown"))
+  table.insert(lines, "**Status**: " .. (root_file.is_local and "[Local]" or "[Global]"))
+  table.insert(lines, "")
+
+  -- Read and display file contents
+  if filepath and vim.fn.filereadable(filepath) == 1 then
+    table.insert(lines, "---")
+    table.insert(lines, "")
+
+    local success, file = pcall(io.open, filepath, "r")
+    if success and file then
+      local line_count = 0
+      for line in file:lines() do
+        table.insert(lines, line)
+        line_count = line_count + 1
+        if line_count >= MAX_PREVIEW_LINES then
+          break
+        end
+      end
+      file:close()
+
+      local total_lines = #vim.fn.readfile(filepath)
+      if total_lines > MAX_PREVIEW_LINES then
+        table.insert(lines, "")
+        table.insert(lines, "...")
+        table.insert(lines, string.format(
+          "[Preview truncated - showing first %d of %d lines]",
+          MAX_PREVIEW_LINES, total_lines
+        ))
+      end
+    else
+      table.insert(lines, "Failed to read file")
+    end
+  else
+    table.insert(lines, "---")
+    table.insert(lines, "")
+    table.insert(lines, "File not found or not readable")
+  end
+
+  -- Determine appropriate filetype for syntax highlighting
+  local ext = vim.fn.fnamemodify(filepath or "", ":e")
+  local filetype = "text"
+  if ext == "md" then
+    filetype = "markdown"
+  elseif ext == "json" then
+    filetype = "json"
+  elseif ext == "yaml" or ext == "yml" then
+    filetype = "yaml"
+  elseif ext == "lua" then
+    filetype = "lua"
+  end
+
+  vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
+  vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", filetype)
+end
+
 --- Create custom previewer for command documentation
 --- @return table Telescope previewer
 function M.create_command_previewer()
@@ -574,6 +773,12 @@ function M.create_command_previewer()
         preview_doc(self, entry)
       elseif entry.value.entry_type == "command" then
         preview_command(self, entry)
+      elseif entry.value.entry_type == "extension" then
+        preview_extension(self, entry)
+      elseif entry.value.entry_type == "agent" then
+        preview_agent(self, entry)
+      elseif entry.value.entry_type == "root_file" then
+        preview_root_file(self, entry)
       else
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, {"Unknown entry type"})
       end
