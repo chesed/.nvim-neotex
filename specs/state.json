@@ -4,10 +4,19 @@
     {
       "project_number": 107,
       "project_name": "port_tts_notification_hooks",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-02T20:37:33Z",
-      "last_updated": "2026-03-02T20:37:33Z"
+      "last_updated": "2026-03-02T20:45:00Z",
+      "session_id": "sess_1772483908_8cf548",
+      "researched": "2026-03-02T20:45:00Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/107_port_tts_notification_hooks/reports/research-001.md",
+          "summary": "Research report: TTS already present identically, extend triggers via Notification hook event, port documentation"
+        }
+      ]
     },
     {
       "project_number": 106,

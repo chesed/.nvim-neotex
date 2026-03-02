@@ -7,9 +7,12 @@ next_project_number: 108
 ## Tasks
 
 ### 107. Port TTS notification hooks from ProofChecker .claude system
-- **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Effort**: 0.5-1 hours
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-02
+- **Research Completed**: 2026-03-02
 - **Language**: meta
+- **Research**: [research-001.md](107_port_tts_notification_hooks/reports/research-001.md)
 
 **Description**: Port TTS functionality from /home/benjamin/Projects/ProofChecker/.claude/ to nvim/.claude/, extending triggers beyond task completion to include input-needed events (questions, user prompts). Update documentation in .claude/docs/ with all software dependencies.
 
