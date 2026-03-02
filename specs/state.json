@@ -20,17 +20,22 @@
     {
       "project_number": 103,
       "project_name": "compare_opencode_agent_systems_against_claude",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-02T17:57:51Z",
-      "last_updated": "2026-03-02T18:14:10Z",
+      "last_updated": "2026-03-02T18:18:51Z",
       "session_id": "sess_1772475231_4d7810",
-      "researched": "2026-03-02T18:07:36Z",
+      "researched": "2026-03-02T18:18:51Z",
       "artifacts": [
         {
           "path": "specs/103_compare_opencode_agent_systems_against_claude/reports/research-001.md",
           "type": "research",
           "summary": "Feature-by-feature comparison of three agent systems with component counts, domain coverage matrix, agent frontmatter analysis, and consolidation recommendations"
+        },
+        {
+          "path": "specs/103_compare_opencode_agent_systems_against_claude/reports/research-002.md",
+          "type": "research",
+          "summary": "Deep-dive into .claude/extensions/ architecture with roadmap for parallel .opencode/extensions/ system under <leader>ao"
         }
       ]
     },
