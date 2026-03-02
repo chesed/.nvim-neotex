@@ -1,10 +1,18 @@
 ---
-next_project_number: 101
+next_project_number: 102
 ---
 
 # TODO
 
 ## Tasks
+
+### 101. Add contents to lean, latex, z3, typst, and python extensions
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Add appropriate contents to language extensions (lean/, latex/, z3/, typst/, python/) by referencing configurations from: /home/benjamin/Projects/ProofChecker/.claude/ for lean (including math), /home/benjamin/Projects/Logos/Theory/.claude/ for typst and latex, and /home/benjamin/Projects/ModelChecker/.claude/ for z3 and python.
 
 ### 87. Investigate terminal directory change when opening neovim in wezterm
 - **Effort**: TBD

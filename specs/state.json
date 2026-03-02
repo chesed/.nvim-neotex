@@ -1,6 +1,14 @@
 {
-  "next_project_number": 101,
+  "next_project_number": 102,
   "active_projects": [
+    {
+      "project_number": 101,
+      "project_name": "add_contents_to_language_extensions",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-02T01:39:57Z",
+      "last_updated": "2026-03-02T01:39:57Z"
+    },
     {
       "project_number": 87,
       "project_name": "investigate_wezterm_terminal_directory_change",
