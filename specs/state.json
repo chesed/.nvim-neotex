@@ -1,6 +1,14 @@
 {
-  "next_project_number": 105,
+  "next_project_number": 106,
   "active_projects": [
+    {
+      "project_number": 105,
+      "project_name": "create_web_extension",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-02T19:26:39Z",
+      "last_updated": "2026-03-02T19:26:39Z"
+    },
     {
       "project_number": 104,
       "project_name": "fix_implement_phase_status_live_updates",

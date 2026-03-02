@@ -1,10 +1,18 @@
 ---
-next_project_number: 105
+next_project_number: 106
 ---
 
 # TODO
 
 ## Tasks
+
+### 105. Create web/ extension from Logos Website .claude configuration
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Create a .claude/extensions/web/ extension by carefully studying /home/benjamin/Projects/Logos/Website/.claude/ as the reference source. Follow the same pattern established in task 102 (populating lean, latex, typst, z3, python, formal extensions), adapting content to be project-agnostic. Include appropriate agents, skills, context files, rules, EXTENSION.md, and manifest.json.
 
 ### 104. Fix /implement phase status live updates
 - **Effort**: 3.5 hours
