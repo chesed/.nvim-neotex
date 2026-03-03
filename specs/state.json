@@ -4,11 +4,19 @@
     {
       "project_number": 113,
       "project_name": "review_proofchecker_opencode_virtues",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-03T00:10:48Z",
-      "last_updated": "2026-03-03T00:13:04Z",
-      "session_id": "sess_1772496780_lh8tfy"
+      "last_updated": "2026-03-03T00:18:27Z",
+      "session_id": "sess_1772496780_lh8tfy",
+      "researched": "2026-03-03T00:18:27Z",
+      "artifacts": [
+        {
+          "path": "specs/113_review_proofchecker_opencode_virtues/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive research report identifying 15 ProofChecker virtues prioritized into 3 tiers (Critical, High, Medium value). Key findings: ADRs, TESTING.md, validation scripts, and domain context as extensions would most benefit nvim system."
+        }
+      ]
     },
     {
       "project_number": 112,

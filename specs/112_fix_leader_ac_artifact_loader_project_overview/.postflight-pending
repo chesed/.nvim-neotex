@@ -1,9 +1,0 @@
-{
-  "session_id": "sess_1772496833_210bba",
-  "skill": "skill-planner",
-  "task_number": 112,
-  "operation": "plan",
-  "reason": "Postflight pending: status update, artifact linking, git commit",
-  "created": "2026-03-03T00:13:53Z",
-  "stop_hook_active": false
-}
