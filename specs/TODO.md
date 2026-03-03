@@ -35,13 +35,16 @@ next_project_number: 114
 **Description**: Load all artifacts in <leader>ac is still loading project-overview.md which it should skip. Also clarify whether both .claude/CLAUDE.md and root CLAUDE.md are needed, and which one should be preferred if only including one.
 
 ### 111. Systematically compare opencode agent systems to evaluate virtues and preference
-- **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Effort**: 5-7 hours
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-02
 - **Research Completed**: 2026-03-03
+- **Planning Started**: 2026-03-03
+- **Planning Completed**: 2026-03-03
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](111_compare_opencode_agent_systems/reports/research-001.md), [research-002.md](111_compare_opencode_agent_systems/reports/research-002.md)
+- **Plan**: [implementation-001.md](111_compare_opencode_agent_systems/plans/implementation-001.md)
 
 **Description**: Systematically compare the /home/benjamin/.config/nvim/.opencode/ and /home/benjamin/Projects/ProofChecker/.opencode/ agent systems in order to evaluate which has which virtues, and which I should prefer.
 

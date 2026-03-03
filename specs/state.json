@@ -57,11 +57,11 @@
     {
       "project_number": 111,
       "project_name": "compare_opencode_agent_systems",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-02T23:58:29Z",
-      "last_updated": "2026-03-03T00:45:00Z",
-      "session_id": "sess_1772497639_af44d1",
+      "last_updated": "2026-03-03T00:38:17Z",
+      "session_id": "sess_1772498088_92954c",
       "researched": "2026-03-03T00:45:00Z",
       "artifacts": [
         {
@@ -73,8 +73,14 @@
           "type": "research",
           "path": "specs/111_compare_opencode_agent_systems/reports/research-002.md",
           "summary": "Comprehensive comparison of Theory/.opencode/ against nvim/.opencode/ and nvim/.claude/, with detailed loss/gain analysis and 9-phase migration strategy for replacing nvim/.opencode/ with Theory/.opencode/ base while preserving neovim-specific elements and achieving .claude/ feature parity"
+        },
+        {
+          "path": "specs/111_compare_opencode_agent_systems/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "6-phase migration plan to replace nvim/.opencode/ with Theory/.opencode/ base, porting neovim-specific agents, skills, and domain context"
         }
-      ]
+      ],
+      "planned": "2026-03-03T00:38:17Z"
     },
     {
       "project_number": 110,
