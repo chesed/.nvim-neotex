@@ -1,0 +1,27 @@
+{
+  "name": "formal",
+  "version": "1.0.0",
+  "description": "Formal methods and logic support for verification tasks",
+  "language": "formal",
+  "dependencies": [],
+  "provides": {
+    "agents": ["formal-research-agent.md"],
+    "skills": ["skill-formal-research"],
+    "commands": [],
+    "rules": [],
+    "context": ["project/formal"],
+    "scripts": [],
+    "hooks": []
+  },
+  "merge_targets": {
+    "opencode_md": {
+      "source": "EXTENSION.md",
+      "target": ".opencode/OPENCODE.md",
+      "section_id": "extension_oc_formal"
+    },
+    "index": {
+      "source": "index-entries.json",
+      "target": ".opencode/context/index.json"
+    }
+  }
+}

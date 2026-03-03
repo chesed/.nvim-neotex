@@ -1,0 +1,27 @@
+{
+  "name": "lean",
+  "version": "1.0.0",
+  "description": "Lean 4 theorem prover support with proof assistance",
+  "language": "lean4",
+  "dependencies": [],
+  "provides": {
+    "agents": ["lean-research-agent.md", "lean-implementation-agent.md"],
+    "skills": ["skill-lean-research", "skill-lean-implementation"],
+    "commands": [],
+    "rules": ["lean4.md"],
+    "context": ["project/lean4"],
+    "scripts": [],
+    "hooks": []
+  },
+  "merge_targets": {
+    "opencode_md": {
+      "source": "EXTENSION.md",
+      "target": ".opencode/OPENCODE.md",
+      "section_id": "extension_oc_lean"
+    },
+    "index": {
+      "source": "index-entries.json",
+      "target": ".opencode/context/index.json"
+    }
+  }
+}
