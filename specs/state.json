@@ -4,10 +4,19 @@
     {
       "project_number": 116,
       "project_name": "verify_opencode_implement_extension_parity",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-03T02:34:37Z",
-      "last_updated": "2026-03-03T02:34:37Z"
+      "last_updated": "2026-03-03T02:40:48Z",
+      "session_id": "sess_1772505346_e37106",
+      "researched": "2026-03-03T02:40:48Z",
+      "artifacts": [
+        {
+          "path": "specs/116_verify_opencode_implement_extension_parity/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive parity analysis: ModelChecker copy mostly complete, formal/lean extensions incomplete (missing agents, skills, context), 7 .claude extensions have no .opencode equivalent (document-converter, latex, nix, python, typst, web, z3)"
+        }
+      ]
     },
     {
       "project_number": 115,
