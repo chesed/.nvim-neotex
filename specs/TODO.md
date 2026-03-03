@@ -1,10 +1,18 @@
 ---
-next_project_number: 116
+next_project_number: 117
 ---
 
 # TODO
 
 ## Tasks
+
+### 116. Verify ModelChecker .opencode/ directory and implement claude code extension feature parity
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Check the directory copied to /home/benjamin/Projects/ModelChecker/.opencode/ including the formal/ and lean/ extensions to ensure nothing is missing. Then investigate extensions in .claude/extensions/ to implement feature parity so that opencode has exactly the same extensions as claude code with a core agent system with similar capabilities.
 
 ### 115. Investigate <leader>ao Load All Artifacts shortcomings and achieve full feature parity with <leader>ac
 - **Effort**: TBD

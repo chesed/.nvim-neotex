@@ -1,6 +1,14 @@
 {
-  "next_project_number": 116,
+  "next_project_number": 117,
   "active_projects": [
+    {
+      "project_number": 116,
+      "project_name": "verify_opencode_implement_extension_parity",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-03T02:34:37Z",
+      "last_updated": "2026-03-03T02:34:37Z"
+    },
     {
       "project_number": 115,
       "project_name": "investigate_leader_ao_load_all_feature_parity",
