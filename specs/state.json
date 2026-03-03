@@ -4,11 +4,11 @@
     {
       "project_number": 120,
       "project_name": "fix_pretooluse_hook_picker_display",
-      "status": "researched",
+      "status": "planned",
       "language": "neovim",
       "created": "2026-03-03T21:03:14Z",
-      "last_updated": "2026-03-03T21:25:28Z",
-      "session_id": "sess_1772572825_acaaf9",
+      "last_updated": "2026-03-03T21:32:00Z",
+      "session_id": "sess_1772573319_85f194",
       "researched": "2026-03-03T21:25:28Z",
       "artifacts": [
         {
@@ -20,8 +20,14 @@
           "path": "specs/120_fix_pretooluse_hook_picker_display/reports/research-002.md",
           "type": "research",
           "summary": "Supplemental research on broader picker architecture for dynamic artifact management, analyzing all 13 picker sections for hardcoded vs dynamic entry sources"
+        },
+        {
+          "path": "specs/120_fix_pretooluse_hook_picker_display/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for inline hook detection, event locality tracking, previewer updates, and description consolidation"
         }
-      ]
+      ],
+      "planned": "2026-03-03T21:32:00Z"
     },
     {
       "project_number": 119,
