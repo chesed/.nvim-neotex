@@ -1,6 +1,14 @@
 {
-  "next_project_number": 117,
+  "next_project_number": 118,
   "active_projects": [
+    {
+      "project_number": 117,
+      "project_name": "study_core_artifacts_extension_overlap",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-03T06:13:38Z",
+      "last_updated": "2026-03-03T06:13:38Z"
+    },
     {
       "project_number": 116,
       "project_name": "verify_opencode_implement_extension_parity",

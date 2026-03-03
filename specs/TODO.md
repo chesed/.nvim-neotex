@@ -1,10 +1,18 @@
 ---
-next_project_number: 117
+next_project_number: 118
 ---
 
 # TODO
 
 ## Tasks
+
+### 117. Study core artifacts and extension overlap for Load All Artifacts
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Study the overlap between core artifacts loaded to /home/benjamin/Projects/ModelChecker/.opencode/ and the extensions. Ensure 'Load All Artifacts' only loads the core agent system, with extensions integrating separately. Before removing elements, verify no important content is lost and keep/integrate the best versions when eliminating redundancies.
 
 ### 116. Verify ModelChecker .opencode/ directory and implement claude code extension feature parity
 - **Effort**: TBD
