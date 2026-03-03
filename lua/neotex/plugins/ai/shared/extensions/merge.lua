@@ -184,7 +184,7 @@ end
 local function deep_merge(target, source, tracked)
   for key, value in pairs(source) do
     if type(value) == "table" then
-      if vim.tbl_isarray(value) then
+      if vim.isarray(value) then
         -- Array: append elements, track what we added
         if target[key] == nil then
           target[key] = {}
@@ -288,7 +288,7 @@ function M.unmerge_settings(target_path, tracked_entries)
           t[key] = nil
         elseif info.type == "appended" and info.items then
           -- Remove only appended items
-          if t[key] and vim.tbl_isarray(t[key]) then
+          if t[key] and vim.isarray(t[key]) then
             for _, item in ipairs(info.items) do
               for i = #t[key], 1, -1 do
                 if vim.deep_equal(t[key][i], item) then

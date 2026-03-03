@@ -1,0 +1,43 @@
+{
+  "name": "filetypes",
+  "version": "2.0.0",
+  "description": "File format conversion and manipulation for documents, spreadsheets, and presentations",
+  "language": null,
+  "dependencies": [],
+  "provides": {
+    "agents": [
+      "filetypes-router-agent.md",
+      "document-agent.md",
+      "spreadsheet-agent.md",
+      "presentation-agent.md"
+    ],
+    "skills": [
+      "skill-filetypes",
+      "skill-spreadsheet",
+      "skill-presentation"
+    ],
+    "commands": [
+      "convert.md",
+      "table.md",
+      "slides.md"
+    ],
+    "rules": [],
+    "context": [
+      "context/project/filetypes"
+    ],
+    "scripts": [],
+    "hooks": []
+  },
+  "merge_targets": {
+    "claudemd": {
+      "source": "EXTENSION.md",
+      "target": ".claude/CLAUDE.md",
+      "section_id": "extension_filetypes"
+    },
+    "index": {
+      "source": "index-entries.json",
+      "target": ".claude/context/index.json"
+    }
+  },
+  "mcp_servers": {}
+}

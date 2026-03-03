@@ -106,7 +106,7 @@ Skills are thin wrappers that validate inputs and delegate to agents. They:
 | skill-implementer | general-implementation-agent | General file implementation |
 | skill-neovim-implementation | neovim-implementation-agent | Neovim configuration implementation |
 
-**Note**: Additional skills (latex, typst, document-converter) are available via extensions in `.claude/extensions/`.
+**Note**: Additional skills (latex, typst, filetypes) are available via extensions in `.claude/extensions/`.
 
 ### Agents (Layer 3)
 

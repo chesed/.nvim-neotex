@@ -133,7 +133,7 @@ Standard actions: `create`, `complete research`, `create implementation plan`, `
 | skill-typst-implementation | typst-implementation-agent | Typst document implementation |
 | skill-typst-research | typst-research-agent | Typst documentation research |
 | skill-meta | meta-builder-agent | System building and task creation |
-| skill-document-converter | document-converter-agent | Document format conversion |
+| skill-filetypes | filetypes-router-agent | File format conversion and manipulation |
 | skill-status-sync | (direct execution) | Atomic status updates |
 | skill-refresh | (direct execution) | Process and file cleanup |
 | skill-git-workflow | (direct execution) | Scoped git commits for task operations |

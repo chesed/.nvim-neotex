@@ -8,8 +8,11 @@ next_project_number: 124
 
 ### 123. Fix non-atomic extension loading causing orphaned files
 - **Effort**: 2-4 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-03
+- **Research Completed**: 2026-03-03
 - **Language**: neovim
+- **Research**: [research-001.md](123_fix_nonatomic_extension_loading/reports/research-001.md)
 
 **Description**: The extension loading system in `lua/neotex/plugins/ai/shared/extensions/init.lua` has a non-atomic loading sequence that causes state corruption when load operations fail mid-execution.
 
@@ -50,16 +53,18 @@ If step 5 fails, steps 2-4 have already copied files to disk, but step 6 never e
 
 ### 122. Expand document-converter extension to filetypes extension
 - **Effort**: 10-14 hours
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-03
 - **Research Completed**: 2026-03-03
 - **Planning Started**: 2026-03-03
 - **Planning Completed**: 2026-03-03
 - **Implementation Started**: 2026-03-03
+- **Completed**: 2026-03-03
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](122_expand_document_converter_to_filetypes/reports/research-001.md), [research-002.md](122_expand_document_converter_to_filetypes/reports/research-002.md)
 - **Plan**: [implementation-002.md](122_expand_document_converter_to_filetypes/plans/implementation-002.md)
+- **Summary**: [implementation-summary-20260303.md](122_expand_document_converter_to_filetypes/summaries/implementation-summary-20260303.md)
 
 **Description**: Expand the document-converter extension (`~/.config/nvim/.opencode/extensions/document-converter/`) to be renamed `filetypes/` and include utilities for working with additional filetypes such as Excel and PowerPoint. Equip the agent system with agents, commands, skills, and context files for converting between and developing these filetypes.
 

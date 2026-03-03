@@ -79,7 +79,7 @@ Agents are located in `.claude/agents/{name}-agent.md`:
 └── meta-builder-agent.md
 ```
 
-**Note**: Additional agents (latex, typst, document-converter) are available via extensions in `.claude/extensions/`.
+**Note**: Additional agents (latex, typst, filetypes) are available via extensions in `.claude/extensions/`.
 
 ---
 
@@ -674,7 +674,7 @@ Research completed successfully. Found 5 patterns. See report at ...
 | `neovim-implementation-agent` | Neovim configuration implementation | skill-neovim-implementation |
 | `meta-builder-agent` | System building and task creation | skill-meta |
 
-**Note**: Additional agents (latex, typst, document-converter) are available via extensions in `.claude/extensions/`.
+**Note**: Additional agents (latex, typst, filetypes) are available via extensions in `.claude/extensions/`.
 
 ---
 

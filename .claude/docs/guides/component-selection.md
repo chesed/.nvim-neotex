@@ -271,7 +271,7 @@ Creates: Agent only (skill routes to it)
 | /todo | (direct execution) |
 | /meta | skill-meta |
 
-**Note**: Additional skills (latex, typst, document-converter) available via extensions.
+**Note**: Additional skills (latex, typst, filetypes) available via extensions.
 
 ### Skills (Core)
 
@@ -287,7 +287,7 @@ Creates: Agent only (skill routes to it)
 | skill-neovim-implementation | neovim-implementation-agent |
 | skill-meta | meta-builder-agent |
 
-**Note**: Additional skills (latex, typst, document-converter) available via extensions.
+**Note**: Additional skills (latex, typst, filetypes) available via extensions.
 
 ### Agents (Core)
 
@@ -300,7 +300,7 @@ Creates: Agent only (skill routes to it)
 | neovim-implementation-agent | Neovim configuration implementation |
 | meta-builder-agent | System building and task creation |
 
-**Note**: Additional agents (latex, typst, document-converter) available via extensions.
+**Note**: Additional agents (latex, typst, filetypes) available via extensions.
 
 ---
 

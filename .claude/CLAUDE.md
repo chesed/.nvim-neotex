@@ -137,7 +137,7 @@ Standard actions: `create`, `complete research`, `create implementation plan`, `
 
 **Model Enforcement**: Agents declare preferred models via `model:` frontmatter field. Research and planning agents use `opus` for superior reasoning. Implementation agents use default model. See `.claude/docs/reference/standards/agent-frontmatter-standard.md` for details.
 
-**Note**: Additional skills (latex, typst, document-converter) are available via extensions in `.claude/extensions/`.
+**Note**: Additional skills (latex, typst, filetypes) are available via extensions in `.claude/extensions/`.
 
 ## Rules References
 

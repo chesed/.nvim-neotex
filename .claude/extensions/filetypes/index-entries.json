@@ -1,0 +1,75 @@
+[
+  {
+    "path": ".claude/extensions/filetypes/context/project/filetypes/tools/tool-detection.md",
+    "description": "Shared tool detection patterns for all filetypes agents",
+    "line_count": 180,
+    "load_when": {
+      "agents": [
+        "filetypes-router-agent",
+        "document-agent",
+        "spreadsheet-agent",
+        "presentation-agent"
+      ],
+      "languages": [],
+      "commands": ["/convert", "/table", "/slides"]
+    }
+  },
+  {
+    "path": ".claude/extensions/filetypes/context/project/filetypes/tools/dependency-guide.md",
+    "description": "Platform-specific installation instructions for conversion tools",
+    "line_count": 120,
+    "load_when": {
+      "agents": [
+        "filetypes-router-agent",
+        "document-agent",
+        "spreadsheet-agent",
+        "presentation-agent"
+      ],
+      "languages": [],
+      "commands": ["/convert", "/table", "/slides"]
+    }
+  },
+  {
+    "path": ".claude/extensions/filetypes/context/project/filetypes/tools/mcp-integration.md",
+    "description": "MCP server integration patterns for format conversion",
+    "line_count": 80,
+    "load_when": {
+      "agents": [
+        "filetypes-router-agent",
+        "document-agent"
+      ],
+      "languages": [],
+      "commands": ["/convert"]
+    }
+  },
+  {
+    "path": ".claude/extensions/filetypes/context/project/filetypes/patterns/spreadsheet-tables.md",
+    "description": "Spreadsheet to LaTeX/Typst table conversion patterns",
+    "line_count": 150,
+    "load_when": {
+      "agents": ["spreadsheet-agent"],
+      "languages": [],
+      "commands": ["/table"]
+    }
+  },
+  {
+    "path": ".claude/extensions/filetypes/context/project/filetypes/patterns/presentation-slides.md",
+    "description": "Presentation extraction and slide generation patterns",
+    "line_count": 180,
+    "load_when": {
+      "agents": ["presentation-agent"],
+      "languages": [],
+      "commands": ["/slides"]
+    }
+  },
+  {
+    "path": ".claude/extensions/filetypes/context/project/filetypes/README.md",
+    "description": "Filetypes extension overview and navigation",
+    "line_count": 60,
+    "load_when": {
+      "agents": [],
+      "languages": [],
+      "commands": []
+    }
+  }
+]
