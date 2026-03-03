@@ -8,9 +8,11 @@ next_project_number: 118
 
 ### 117. Study core artifacts and extension overlap for Load All Artifacts
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-03
 - **Language**: meta
 - **Dependencies**: None
+- **Research**: [research-001.md](117_study_core_artifacts_extension_overlap/reports/research-001.md)
 
 **Description**: Study the overlap between core artifacts loaded to /home/benjamin/Projects/ModelChecker/.opencode/ and the extensions. Ensure 'Load All Artifacts' only loads the core agent system, with extensions integrating separately. Before removing elements, verify no important content is lost and keep/integrate the best versions when eliminating redundancies.
 

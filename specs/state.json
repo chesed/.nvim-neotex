@@ -4,10 +4,19 @@
     {
       "project_number": 117,
       "project_name": "study_core_artifacts_extension_overlap",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-03T06:13:38Z",
-      "last_updated": "2026-03-03T06:13:38Z"
+      "last_updated": "2026-03-03T18:19:24Z",
+      "session_id": "sess_1772518474_c6231f",
+      "researched": "2026-03-03T18:19:24Z",
+      "artifacts": [
+        {
+          "path": "specs/117_study_core_artifacts_extension_overlap/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive analysis of core .claude/ vs extensions overlap: neovim artifacts remain in core (21 files, intentional), parent CLAUDE.md has stale extension references, adding-domains.md guide contradicts extension system, no extension documentation exists"
+        }
+      ]
     },
     {
       "project_number": 116,
