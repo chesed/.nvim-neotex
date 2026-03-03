@@ -12,10 +12,18 @@ local helpers = require("neotex.plugins.ai.claude.commands.picker.utils.helpers"
 --- @param event_name string Hook event name
 --- @param indent_char string Tree character (├─ or └─)
 --- @param event_hooks table Array of hooks associated with this event
+--- @param is_event_local boolean|nil Whether the event itself is from local settings
 --- @return string Formatted display string
-local function format_hook_event(event_name, indent_char, event_hooks)
+local function format_hook_event(event_name, indent_char, event_hooks, is_event_local)
   local has_local_hook = false
-  if event_hooks then
+
+  -- First check event-level locality (handles inline hooks)
+  if is_event_local then
+    has_local_hook = true
+  end
+
+  -- Also check individual hooks for backward compatibility with .sh files
+  if not has_local_hook and event_hooks then
     for _, hook in ipairs(event_hooks) do
       if hook.is_local then
         has_local_hook = true
@@ -26,24 +34,18 @@ local function format_hook_event(event_name, indent_char, event_hooks)
 
   local prefix = has_local_hook and "*" or " "
 
-  local descriptions = {
-    Stop = "After command completion",
-    SessionStart = "When session begins",
-    SessionEnd = "When session ends",
-    SubagentStop = "After subagent completes",
-    Notification = "Permission/idle events",
-    PreToolUse = "Before tool execution",
-    PostToolUse = "After tool execution",
-    UserPromptSubmit = "When prompt submitted",
-    PreCompact = "Before context compaction",
-  }
+  local registry = require("neotex.plugins.ai.claude.commands.picker.artifacts.registry")
+  local description = ""
+  if registry.HOOK_EVENT_DESCRIPTIONS and registry.HOOK_EVENT_DESCRIPTIONS[event_name] then
+    description = registry.HOOK_EVENT_DESCRIPTIONS[event_name].short
+  end
 
   return string.format(
     "%s  %s %-37s %s",
     prefix,
     indent_char,
     event_name,
-    descriptions[event_name] or ""
+    description
   )
 end
 
@@ -499,6 +501,7 @@ function M.create_hooks_entries(structure, config)
   local entries = {}
   local hook_events = structure.hook_events or {}
   local hooks = structure.hooks or {}
+  local event_is_local_map = structure.event_is_local or {}
 
   if vim.tbl_count(hook_events) > 0 then
     local sorted_event_names = {}
@@ -523,12 +526,16 @@ function M.create_hooks_entries(structure, config)
       local is_first = (i == 1)
       local indent_char = helpers.get_tree_char(is_first)
 
+      -- Get event-level locality
+      local is_event_local = event_is_local_map[event_name]
+
       table.insert(entries, {
         name = event_name,
-        display = format_hook_event(event_name, indent_char, event_hooks),
+        display = format_hook_event(event_name, indent_char, event_hooks, is_event_local),
         is_primary = true,
         entry_type = "hook_event",
-        hooks = event_hooks
+        hooks = event_hooks,
+        is_event_local = is_event_local,
       })
     end
 

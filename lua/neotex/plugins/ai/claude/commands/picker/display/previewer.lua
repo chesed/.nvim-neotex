@@ -317,29 +317,30 @@ end
 --- @param self table Telescope previewer state
 --- @param entry table Telescope entry
 local function preview_hook_event(self, entry)
-  local event_descriptions = {
-    Stop = "Triggered after command completion",
-    SessionStart = "When Claude Code session begins",
-    SessionEnd = "When Claude Code session ends",
-    SubagentStop = "After subagent completes",
-    Notification = "Permission or idle notification events",
-    PreToolUse = "Before tool execution",
-    PostToolUse = "After tool execution",
-    UserPromptSubmit = "When user prompt submitted",
-    PreCompact = "Before context compaction",
-  }
+  local registry = require("neotex.plugins.ai.claude.commands.picker.artifacts.registry")
 
+  local long_desc = "Unknown event"
+  if registry.HOOK_EVENT_DESCRIPTIONS and registry.HOOK_EVENT_DESCRIPTIONS[entry.value.name] then
+    long_desc = registry.HOOK_EVENT_DESCRIPTIONS[entry.value.name].long
+  end
+
+  local hooks = entry.value.hooks or {}
   local lines = {
     "# Hook Event: " .. entry.value.name,
     "",
-    "**Description**: " .. (event_descriptions[entry.value.name] or "Unknown event"),
+    "**Description**: " .. long_desc,
     "",
-    "**Registered Hooks**: " .. #entry.value.hooks .. " hook(s)",
+    "**Registered Hooks**: " .. #hooks .. " hook(s)",
     "",
     "Hooks:",
   }
-  for _, hook in ipairs(entry.value.hooks) do
-    table.insert(lines, "- " .. hook.name .. " (" .. hook.filepath .. ")")
+  for _, hook in ipairs(hooks) do
+    if hook.is_inline then
+      -- Display inline command snippet instead of filepath
+      table.insert(lines, "- " .. hook.name .. " [Inline command]: " .. (hook.command or ""))
+    else
+      table.insert(lines, "- " .. hook.name .. " (" .. (hook.filepath or "") .. ")")
+    end
   end
 
   vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)

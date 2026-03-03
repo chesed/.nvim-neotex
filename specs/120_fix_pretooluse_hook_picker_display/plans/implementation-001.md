@@ -47,7 +47,7 @@ The `[Hook Events]` section of the Telescope picker fails to display the `*` (lo
 
 ## Implementation Phases
 
-### Phase 1: Extend parser.lua with inline hook detection and event locality [NOT STARTED]
+### Phase 1: Extend parser.lua with inline hook detection and event locality [COMPLETED]
 
 **Goal**: Make `build_hook_dependencies` recognize inline-command hooks and track whether each event comes from the local settings file.
 
@@ -71,7 +71,7 @@ The `[Hook Events]` section of the Telescope picker fails to display the `*` (lo
 
 ---
 
-### Phase 2: Update entries.lua to use event-level locality for the * marker [NOT STARTED]
+### Phase 2: Update entries.lua to use event-level locality for the * marker [COMPLETED]
 
 **Goal**: Make `format_hook_event` and `create_hooks_entries` use event-level locality data so inline hook events show the `*` prefix.
 
@@ -92,7 +92,7 @@ The `[Hook Events]` section of the Telescope picker fails to display the `*` (lo
 
 ---
 
-### Phase 3: Update previewer.lua to render inline hook details [NOT STARTED]
+### Phase 3: Update previewer.lua to render inline hook details [COMPLETED]
 
 **Goal**: Make `preview_hook_event` display useful information for inline hooks instead of showing "0 hook(s)".
 
@@ -113,7 +113,7 @@ The `[Hook Events]` section of the Telescope picker fails to display the `*` (lo
 
 ---
 
-### Phase 4: Consolidate hook event descriptions into registry.lua [NOT STARTED]
+### Phase 4: Consolidate hook event descriptions into registry.lua [COMPLETED]
 
 **Goal**: Eliminate the duplicate hook event description tables from entries.lua and previewer.lua by moving them into a single table in `registry.lua`.
 
@@ -138,7 +138,7 @@ The `[Hook Events]` section of the Telescope picker fails to display the `*` (lo
 
 ---
 
-### Phase 5: End-to-end testing and verification [NOT STARTED]
+### Phase 5: End-to-end testing and verification [COMPLETED]
 
 **Goal**: Validate the complete fix works end-to-end with no regressions.
 

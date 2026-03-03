@@ -328,33 +328,65 @@ function M.scan_hooks_directory(hooks_dir)
 end
 
 --- Build hook event → hooks dependency map
---- @param hooks table Hook data
+--- Detects both .sh file hooks and inline command hooks (bash -c '...')
+--- @param hooks table Hook data (will be mutated to add synthetic inline hooks)
 --- @param settings_path string Path to settings.local.json
---- @return table Map of event name → hooks triggered
-function M.build_hook_dependencies(hooks, settings_path)
+--- @param is_local_settings boolean Whether this is the local project's settings file
+--- @return table hook_events Map of event name → hook names triggered
+--- @return table event_is_local Map of event name → boolean (whether event comes from local settings)
+function M.build_hook_dependencies(hooks, settings_path, is_local_settings)
   local hook_events = {}
+  local event_is_local = {}
 
   if vim.fn.filereadable(settings_path) ~= 1 then
-    return hook_events
+    return hook_events, event_is_local
   end
 
   local settings_content = table.concat(vim.fn.readfile(settings_path), "\n")
   local ok, settings = pcall(vim.fn.json_decode, settings_content)
 
   if not ok or not settings or not settings.hooks then
-    return hook_events
+    return hook_events, event_is_local
   end
+
+  local inline_counter = 0
 
   for event_name, event_configs in pairs(settings.hooks) do
     hook_events[event_name] = {}
+    -- Track event-level locality
+    event_is_local[event_name] = is_local_settings or false
 
     for _, config in ipairs(event_configs) do
       if config.hooks then
         for _, hook_config in ipairs(config.hooks) do
           if hook_config.command then
+            -- Try to match .sh file reference
             local hook_name = hook_config.command:match("([^/%s]+%.sh)")
             if hook_name then
               table.insert(hook_events[event_name], hook_name)
+            else
+              -- Fallback: detect inline command (bash -c, sh -c, or direct command)
+              inline_counter = inline_counter + 1
+              local synthetic_name = string.format("[inline:%d]", inline_counter)
+
+              -- Truncate command for display (max 80 chars)
+              local command_display = hook_config.command
+              if #command_display > 80 then
+                command_display = command_display:sub(1, 77) .. "..."
+              end
+
+              -- Create synthetic hook entry for the inline command
+              local synthetic_hook = {
+                name = synthetic_name,
+                description = "Inline command hook",
+                filepath = settings_path,
+                is_local = is_local_settings or false,
+                events = { event_name },
+                is_inline = true,
+                command = command_display,
+              }
+              table.insert(hooks, synthetic_hook)
+              table.insert(hook_events[event_name], synthetic_name)
             end
           end
         end
@@ -362,18 +394,21 @@ function M.build_hook_dependencies(hooks, settings_path)
     end
   end
 
+  -- Update existing .sh hooks with their event associations
   for _, hook in ipairs(hooks) do
-    hook.events = {}
-    for event_name, hook_names in pairs(hook_events) do
-      for _, hook_name in ipairs(hook_names) do
-        if hook_name == hook.name then
-          table.insert(hook.events, event_name)
+    if not hook.is_inline then
+      hook.events = {}
+      for event_name, hook_names in pairs(hook_events) do
+        for _, hook_name in ipairs(hook_names) do
+          if hook_name == hook.name then
+            table.insert(hook.events, event_name)
+          end
         end
       end
     end
   end
 
-  return hook_events
+  return hook_events, event_is_local
 end
 
 --- Scan .claude/agents/ directory for agent definitions
@@ -704,17 +739,19 @@ function M.get_extended_structure(config)
   -- Get hooks (only if hooks_subdir is configured)
   local hooks = {}
   local hook_events = {}
+  local event_is_local = {}
   if hooks_subdir then
     local project_hooks_dir = project_dir .. "/" .. base_dir .. "/" .. hooks_subdir
     local global_hooks_dir = global_dir .. "/" .. base_dir .. "/" .. hooks_subdir
     hooks = parse_hooks_with_fallback(project_hooks_dir, global_hooks_dir)
 
-    -- Build hook dependencies
+    -- Build hook dependencies - check local settings first
     local settings_path = project_dir .. "/" .. base_dir .. "/" .. settings_file
-    if vim.fn.filereadable(settings_path) ~= 1 then
+    local is_local_settings = vim.fn.filereadable(settings_path) == 1
+    if not is_local_settings then
       settings_path = global_dir .. "/" .. base_dir .. "/" .. settings_file
     end
-    hook_events = M.build_hook_dependencies(hooks, settings_path)
+    hook_events, event_is_local = M.build_hook_dependencies(hooks, settings_path, is_local_settings)
   end
 
   -- Get skills
@@ -735,6 +772,7 @@ function M.get_extended_structure(config)
     dependent_commands = sorted_hierarchy.dependent_commands,
     hooks = hooks,
     hook_events = hook_events,
+    event_is_local = event_is_local,
     skills = skills,
     agents = agents,
     root_files = root_files,
