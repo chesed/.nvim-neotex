@@ -1,0 +1,28 @@
+{
+  "name": "typst",
+  "version": "1.0.0",
+  "description": "Typst document development with single-pass compilation",
+  "language": "typst",
+  "dependencies": [],
+  "provides": {
+    "agents": ["typst-research-agent.md", "typst-implementation-agent.md"],
+    "skills": ["skill-typst-research", "skill-typst-implementation"],
+    "commands": [],
+    "rules": [],
+    "context": ["project/typst"],
+    "scripts": [],
+    "hooks": []
+  },
+  "merge_targets": {
+    "opencode_md": {
+      "source": "EXTENSION.md",
+      "target": ".opencode/OPENCODE.md",
+      "section_id": "extension_oc_typst"
+    },
+    "index": {
+      "source": "index-entries.json",
+      "target": ".opencode/context/index.json"
+    }
+  },
+  "mcp_servers": {}
+}

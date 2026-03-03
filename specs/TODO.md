@@ -8,15 +8,18 @@ next_project_number: 117
 
 ### 116. Verify ModelChecker .opencode/ directory and implement claude code extension feature parity
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-03
 - **Research Completed**: 2026-03-03
 - **Planning Started**: 2026-03-03
 - **Planning Completed**: 2026-03-03
+- **Implementation Started**: 2026-03-03
+- **Implementation Completed**: 2026-03-03
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](116_verify_opencode_implement_extension_parity/reports/research-001.md), [research-002.md](116_verify_opencode_implement_extension_parity/reports/research-002.md)
 - **Plan**: [implementation-003.md](116_verify_opencode_implement_extension_parity/plans/implementation-003.md)
+- **Summary**: [implementation-summary-20260303.md](116_verify_opencode_implement_extension_parity/summaries/implementation-summary-20260303.md)
 
 **Description**: Check the directory copied to /home/benjamin/Projects/ModelChecker/.opencode/ including the formal/ and lean/ extensions to ensure nothing is missing. Then investigate extensions in .claude/extensions/ to implement feature parity so that opencode has exactly the same extensions as claude code with a core agent system with similar capabilities.
 

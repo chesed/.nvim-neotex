@@ -1,0 +1,28 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "Web development support with Astro, Tailwind CSS v4, TypeScript, and Cloudflare Pages",
+  "language": "web",
+  "dependencies": [],
+  "provides": {
+    "agents": ["web-implementation-agent.md", "web-research-agent.md"],
+    "skills": ["skill-web-implementation", "skill-web-research"],
+    "commands": [],
+    "rules": ["web-astro.md"],
+    "context": ["project/web"],
+    "scripts": [],
+    "hooks": []
+  },
+  "merge_targets": {
+    "opencode_md": {
+      "source": "EXTENSION.md",
+      "target": ".opencode/OPENCODE.md",
+      "section_id": "extension_oc_web"
+    },
+    "index": {
+      "source": "index-entries.json",
+      "target": ".opencode/context/index.json"
+    }
+  },
+  "mcp_servers": {}
+}
