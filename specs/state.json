@@ -4,11 +4,11 @@
     {
       "project_number": 117,
       "project_name": "study_core_artifacts_extension_overlap",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-03T06:13:38Z",
-      "last_updated": "2026-03-03T18:23:33Z",
-      "session_id": "sess_1772562026_692ffd",
+      "last_updated": "2026-03-03T18:35:26Z",
+      "session_id": "sess_1772562392_1fbf8b",
       "researched": "2026-03-03T18:19:24Z",
       "artifacts": [
         {
@@ -20,9 +20,18 @@
           "path": "specs/117_study_core_artifacts_extension_overlap/plans/implementation-001.md",
           "type": "plan",
           "summary": "3-phase plan addressing stale parent CLAUDE.md references, adding-domains.md rewrite for extensions, and new extension system documentation"
+        },
+        {
+          "path": "specs/117_study_core_artifacts_extension_overlap/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting cleanup of parent CLAUDE.md, rewritten adding-domains guide, and new extension system documentation"
         }
       ],
-      "planned": "2026-03-03T18:23:33Z"
+      "planned": "2026-03-03T18:23:33Z",
+      "started": "2026-03-03T18:26:53Z",
+      "completed": "2026-03-03T18:35:26Z",
+      "completion_summary": "Cleaned up stale extension references from parent CLAUDE.md, rewrote adding-domains.md to recommend extensions as the primary approach for new domains, and created comprehensive extension system documentation (architecture doc + creation guide). Also updated docs README with extension section.",
+      "claudemd_suggestions": "Modified .claude/docs/guides/adding-domains.md (rewrite), created .claude/docs/architecture/extension-system.md, created .claude/docs/guides/creating-extensions.md, updated .claude/docs/README.md"
     },
     {
       "project_number": 116,

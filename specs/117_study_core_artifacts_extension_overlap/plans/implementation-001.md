@@ -1,7 +1,7 @@
 # Implementation Plan: Task #117
 
 - **Task**: 117 - Study core .claude artifacts overlap with extensions and address recommendations
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 2-3 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md)
@@ -39,7 +39,7 @@ Integrated findings from `reports/research-001.md` (2026-03-03). The research id
 
 ## Implementation Phases
 
-### Phase 1: Clean up parent .config/CLAUDE.md stale references [NOT STARTED]
+### Phase 1: Clean up parent .config/CLAUDE.md stale references [COMPLETED]
 
 **Goal:** Remove stale latex/typst/document-converter references from the parent CLAUDE.md at `/home/benjamin/.config/.claude/CLAUDE.md`, aligning it with the child `.config/nvim/.claude/CLAUDE.md` which was properly updated in task 110.
 
@@ -61,7 +61,7 @@ Integrated findings from `reports/research-001.md` (2026-03-03). The research id
 
 ---
 
-### Phase 2: Rewrite adding-domains.md to recommend extensions [NOT STARTED]
+### Phase 2: Rewrite adding-domains.md to recommend extensions [COMPLETED]
 
 **Goal:** Update the domain addition guide to recommend the extension approach as the primary method for adding new domains, with the core approach reserved only for the repository's primary domain.
 
@@ -86,7 +86,7 @@ Integrated findings from `reports/research-001.md` (2026-03-03). The research id
 
 ---
 
-### Phase 3: Create extension system documentation [NOT STARTED]
+### Phase 3: Create extension system documentation [COMPLETED]
 
 **Goal:** Create dedicated documentation for the extension system architecture and a guide for creating extensions, filling the documentation gap identified in the research.
 

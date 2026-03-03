@@ -20,6 +20,8 @@ This directory contains the documentation for the `.claude/` agent system. The s
 │   ├── creating-commands.md    # How to create commands
 │   ├── creating-skills.md      # How to create skills
 │   ├── creating-agents.md      # How to create agents
+│   ├── adding-domains.md       # Add new domain support (extensions or core)
+│   ├── creating-extensions.md  # Create domain extensions
 │   ├── context-loading-best-practices.md # Context loading patterns
 │   └── permission-configuration.md # Permission setup
 ├── examples/                    # Integration examples
@@ -30,7 +32,8 @@ This directory contains the documentation for the `.claude/` agent system. The s
 │   ├── command-template.md     # Command template
 │   └── agent-template.md       # Agent template
 └── architecture/               # Architecture documentation
-    └── system-overview.md      # Three-layer architecture overview
+    ├── system-overview.md      # Three-layer architecture overview
+    └── extension-system.md     # Extension system architecture
 ```
 
 ---
@@ -54,6 +57,11 @@ The `.claude/` directory implements a three-layer architecture: Commands, Skills
 - [Creating Commands](guides/creating-commands.md) - Define new user-invocable operations
 - [Creating Skills](guides/creating-skills.md) - Implement specialized workflow skills using the thin wrapper pattern
 - [Creating Agents](guides/creating-agents.md) - Build execution agents for research and implementation
+
+### Domain Extensions
+- [Adding Domains](guides/adding-domains.md) - Choose between extension and core approach for new domains
+- [Creating Extensions](guides/creating-extensions.md) - Step-by-step guide to creating domain extensions
+- [Extension System Architecture](architecture/extension-system.md) - How the extension loader, merger, and state system work
 
 ### Advanced Topics
 - [Context Loading Best Practices](guides/context-loading-best-practices.md) - Lazy context loading patterns and strategies
