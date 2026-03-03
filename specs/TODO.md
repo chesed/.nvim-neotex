@@ -1,18 +1,61 @@
 ---
-next_project_number: 123
+next_project_number: 124
 ---
 
 # TODO
 
 ## Tasks
 
+### 123. Fix non-atomic extension loading causing orphaned files
+- **Effort**: 2-4 hours
+- **Status**: [NOT STARTED]
+- **Language**: neovim
+
+**Description**: The extension loading system in `lua/neotex/plugins/ai/shared/extensions/init.lua` has a non-atomic loading sequence that causes state corruption when load operations fail mid-execution.
+
+**Problem**: The current load sequence:
+1. Check for conflicts (line 176)
+2. Copy agents to `.claude/agents/` (line 210)
+3. Copy commands to `.claude/commands/` (line 227)
+4. Copy rules, skills, context, scripts (lines 234-252)
+5. Process merge targets (line 255) - **FAILURE POINT** (e.g., `vim.tbl_isarray` crash)
+6. Write `extensions.json` state file (line 258)
+
+If step 5 fails, steps 2-4 have already copied files to disk, but step 6 never executes. This leaves:
+- Extension files present in `.claude/` directories
+- No `extensions.json` state record (or no entry for the failed extension)
+- Extension appears "not loaded" but files exist
+
+**Evidence**: Multiple project directories (`Logos/Theory/.claude/`, `ProofChecker/.claude/`) have lean extension files (agents, skills, rules) but no `extensions.json`. Attempting to load the lean extension again shows "files would be overwritten" warning because files exist but state doesn't track them.
+
+**Impact**:
+- Confusing UX: "overwrite" warnings for extensions that appear uninstalled
+- State corruption: no way to unload properly (unload checks state, not files)
+- Manual cleanup required: users must delete orphaned files manually
+
+**Suggested Solutions** (research should evaluate trade-offs):
+
+1. **Early state marker**: Write a preliminary `extensions.json` entry with `status: "loading"` before copying files. On success, update to `status: "loaded"`. On restart, detect `"loading"` state and offer cleanup.
+
+2. **Atomic copy with rollback**: Copy files to a temp directory first, then move atomically. If merge fails, delete temp files. Only update state after successful move.
+
+3. **Recovery detection**: In `check_conflicts()`, also check if files exist but state says "not loaded". Offer to either clean up orphaned files or mark as loaded.
+
+4. **State-first with file tracking**: Write state entry with `files: []` array first, then append each file path as it's copied. On failure, use the array to clean up.
+
+**Files to modify**:
+- `lua/neotex/plugins/ai/shared/extensions/init.lua` - Main load function
+- `lua/neotex/plugins/ai/shared/extensions/loader.lua` - File copy operations
+- `lua/neotex/plugins/ai/shared/extensions/state.lua` - State management
+
 ### 122. Expand document-converter extension to filetypes extension
 - **Effort**: 10-14 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Research Started**: 2026-03-03
 - **Research Completed**: 2026-03-03
 - **Planning Started**: 2026-03-03
 - **Planning Completed**: 2026-03-03
+- **Implementation Started**: 2026-03-03
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](122_expand_document_converter_to_filetypes/reports/research-001.md), [research-002.md](122_expand_document_converter_to_filetypes/reports/research-002.md)

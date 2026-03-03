@@ -1,14 +1,22 @@
 {
-  "next_project_number": 123,
+  "next_project_number": 124,
   "active_projects": [
+    {
+      "project_number": 123,
+      "project_name": "fix_nonatomic_extension_loading",
+      "status": "not_started",
+      "language": "neovim",
+      "created": "2026-03-03T23:46:00Z",
+      "last_updated": "2026-03-03T23:46:00Z"
+    },
     {
       "project_number": 122,
       "project_name": "expand_document_converter_to_filetypes",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-03T22:38:06Z",
-      "last_updated": "2026-03-03T23:24:21Z",
-      "session_id": "sess_1772578706_6b2850",
+      "last_updated": "2026-03-03T23:30:05Z",
+      "session_id": "sess_1772580574_a8ab73",
       "researched": "2026-03-03T22:55:11Z",
       "artifacts": [
         {
@@ -27,7 +35,8 @@
           "summary": "Revised 5-phase plan with OpenCode parity, Option A tool detection in Phase 1, NixOS dependencies, and Future Work section"
         }
       ],
-      "planned": "2026-03-03T23:24:21Z"
+      "planned": "2026-03-03T23:24:21Z",
+      "started": "2026-03-03T23:30:05Z"
     },
     {
       "project_number": 121,
