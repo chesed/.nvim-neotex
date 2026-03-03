@@ -4,10 +4,10 @@
     {
       "project_number": 115,
       "project_name": "investigate_leader_ao_load_all_feature_parity",
-      "status": "implementing",
+      "status": "completed",
       "language": "neovim",
       "created": "2026-03-03T02:06:56Z",
-      "last_updated": "2026-03-03T02:26:42Z",
+      "last_updated": "2026-03-03T02:30:42Z",
       "session_id": "sess_1772504782_aa032c",
       "researched": "2026-03-03T02:17:09Z",
       "artifacts": [
@@ -20,10 +20,17 @@
           "path": "specs/115_investigate_leader_ao_load_all_feature_parity/plans/implementation-001.md",
           "type": "plan",
           "summary": "3-phase implementation plan to fix OpenCode Load All feature parity with Claude Load All"
+        },
+        {
+          "type": "summary",
+          "path": "specs/115_investigate_leader_ao_load_all_feature_parity/summaries/implementation-summary-20260302.md",
+          "summary": "Implementation summary with before/after artifact count comparison"
         }
       ],
       "planned": "2026-03-03T02:23:42Z",
-      "started": "2026-03-03T02:26:42Z"
+      "started": "2026-03-03T02:26:42Z",
+      "completed": "2026-03-03T02:30:42Z",
+      "completion_summary": "Fixed OpenCode <leader>ao Load All Artifacts to achieve full feature parity with Claude <leader>ac. OpenCode now syncs all 11 artifact categories (250+ files) instead of just 3 categories (~35 files). Key changes: agents path now uses config.agents_subdir, orchestrator.md included, and shared artifacts scanned unconditionally."
     },
     {
       "project_number": 114,

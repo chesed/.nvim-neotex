@@ -8,16 +8,18 @@ next_project_number: 116
 
 ### 115. Investigate <leader>ao Load All Artifacts shortcomings and achieve full feature parity with <leader>ac
 - **Effort**: TBD
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-03
 - **Research Completed**: 2026-03-03
 - **Planning Started**: 2026-03-03
 - **Planning Completed**: 2026-03-03
 - **Implementation Started**: 2026-03-03
+- **Implementation Completed**: 2026-03-03
 - **Language**: neovim
 - **Dependencies**: None
 - **Research**: [research-001.md](115_investigate_leader_ao_load_all_feature_parity/reports/research-001.md)
 - **Plan**: [implementation-001.md](115_investigate_leader_ao_load_all_feature_parity/plans/implementation-001.md)
+- **Summary**: [implementation-summary-20260302.md](115_investigate_leader_ao_load_all_feature_parity/summaries/implementation-summary-20260302.md)
 
 **Description**: The <leader>ao Load All Artifacts operation does not copy everything from ~/.config/nvim/.opencode/ as expected. Investigate what is missing compared to the <leader>ac Claude Code picker to achieve full feature parity between the two systems.
 
