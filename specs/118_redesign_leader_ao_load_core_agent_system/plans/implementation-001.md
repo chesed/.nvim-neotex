@@ -134,7 +134,7 @@ Research report 001 mapped the complete extension-owned inventory across 9 manif
 
 ---
 
-### Phase 4: Fix Previewer Hardcoded Paths and Config Threading [NOT STARTED]
+### Phase 4: Fix Previewer Hardcoded Paths and Config Threading [COMPLETED]
 
 - **Goal:** Fix the `preview_load_all()` and `preview_help()` functions to use `config.base_dir` instead of hardcoded `.claude`, and make the preview counts reflect core-only (filtered) artifacts.
 

@@ -14,10 +14,12 @@ local MAX_PREVIEW_LINES = 150
 --- @param project_dir string Project directory
 --- @param subdir string Subdirectory path
 --- @param extension string File extension pattern
+--- @param base_dir string|nil Base directory name (default: ".claude")
 --- @return table Array of file sync info
-local function scan_directory_for_sync(global_dir, project_dir, subdir, extension)
-  local global_path = global_dir .. "/.claude/" .. subdir
-  local local_path = project_dir .. "/.claude/" .. subdir
+local function scan_directory_for_sync(global_dir, project_dir, subdir, extension, base_dir)
+  base_dir = base_dir or ".claude"
+  local global_path = global_dir .. "/" .. base_dir .. "/" .. subdir
+  local local_path = project_dir .. "/" .. base_dir .. "/" .. subdir
   local global_files = vim.fn.glob(global_path .. "/" .. extension, false, true)
 
   local files = {}
@@ -113,9 +115,11 @@ end
 
 --- Create preview for help entry (keyboard shortcuts)
 --- @param self table Telescope previewer state
-local function preview_help(self)
+--- @param config table|nil Picker configuration with base_dir
+local function preview_help(self, config)
   local scan_mod = require("neotex.plugins.ai.claude.commands.picker.utils.scan")
   local global_dir = scan_mod.get_global_dir()
+  local base_dir = (config and config.base_dir) or ".claude"
 
   vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, {
     "Keyboard Shortcuts:",
@@ -158,8 +162,8 @@ local function preview_help(self)
     "  [Tests]        - Test suites",
     "",
     "Indicators:",
-    "  *       - Artifact defined locally in project (.claude/)",
-    "            Otherwise a global artifact from " .. global_dir .. "/.claude/",
+    "  *       - Artifact defined locally in project (" .. base_dir .. "/)",
+    "            Otherwise a global artifact from " .. global_dir .. "/" .. base_dir .. "/",
     "",
     "File Operations:",
     "  Ctrl-l/u/s  - Commands, Hooks, Skills, Templates, Lib, Docs",
@@ -176,25 +180,27 @@ local function preview_help(self)
   })
 end
 
---- Create preview for Load All entry
+--- Create preview for Load Core Agent System entry
 --- @param self table Telescope previewer state
-local function preview_load_all(self)
+--- @param config table|nil Picker configuration with base_dir
+local function preview_load_all(self, config)
   local project_dir = vim.fn.getcwd()
   local scan = require("neotex.plugins.ai.claude.commands.picker.utils.scan")
   local global_dir = scan.get_global_dir()
+  local base_dir = (config and config.base_dir) or ".claude"
 
-  local commands = scan_directory_for_sync(global_dir, project_dir, "commands", "*.md")
-  local hooks = scan_directory_for_sync(global_dir, project_dir, "hooks", "*.sh")
-  local skills = scan_directory_for_sync(global_dir, project_dir, "skills", "*.md")
-  local templates = scan_directory_for_sync(global_dir, project_dir, "templates", "*.yaml")
-  local lib_utils = scan_directory_for_sync(global_dir, project_dir, "lib", "*.sh")
-  local docs = scan_directory_for_sync(global_dir, project_dir, "docs", "*.md")
-  local scripts = scan_directory_for_sync(global_dir, project_dir, "scripts", "*.sh")
-  local tests = scan_directory_for_sync(global_dir, project_dir, "tests", "test_*.sh")
-  local rules = scan_directory_for_sync(global_dir, project_dir, "rules", "*.md")
-  local output = scan_directory_for_sync(global_dir, project_dir, "output", "*.md")
-  local systemd_service = scan_directory_for_sync(global_dir, project_dir, "systemd", "*.service")
-  local systemd_timer = scan_directory_for_sync(global_dir, project_dir, "systemd", "*.timer")
+  local commands = scan_directory_for_sync(global_dir, project_dir, "commands", "*.md", base_dir)
+  local hooks = scan_directory_for_sync(global_dir, project_dir, "hooks", "*.sh", base_dir)
+  local skills = scan_directory_for_sync(global_dir, project_dir, "skills", "*.md", base_dir)
+  local templates = scan_directory_for_sync(global_dir, project_dir, "templates", "*.yaml", base_dir)
+  local lib_utils = scan_directory_for_sync(global_dir, project_dir, "lib", "*.sh", base_dir)
+  local docs = scan_directory_for_sync(global_dir, project_dir, "docs", "*.md", base_dir)
+  local scripts = scan_directory_for_sync(global_dir, project_dir, "scripts", "*.sh", base_dir)
+  local tests = scan_directory_for_sync(global_dir, project_dir, "tests", "test_*.sh", base_dir)
+  local rules = scan_directory_for_sync(global_dir, project_dir, "rules", "*.md", base_dir)
+  local output = scan_directory_for_sync(global_dir, project_dir, "output", "*.md", base_dir)
+  local systemd_service = scan_directory_for_sync(global_dir, project_dir, "systemd", "*.service", base_dir)
+  local systemd_timer = scan_directory_for_sync(global_dir, project_dir, "systemd", "*.timer", base_dir)
   local systemd = {}
   for _, file in ipairs(systemd_service) do
     table.insert(systemd, file)
@@ -202,7 +208,7 @@ local function preview_load_all(self)
   for _, file in ipairs(systemd_timer) do
     table.insert(systemd, file)
   end
-  local settings = scan_directory_for_sync(global_dir, project_dir, "", "settings.json")
+  local settings = scan_directory_for_sync(global_dir, project_dir, "", "settings.json", base_dir)
 
   local cmd_copy, cmd_replace = count_actions(commands)
   local hook_copy, hook_replace = count_actions(hooks)
@@ -225,10 +231,10 @@ local function preview_load_all(self)
                         rule_replace + out_replace + sys_replace + set_replace
 
   local lines = {
-    "Load All Artifacts",
+    "Load Core Agent System",
     "",
-    "This action will sync all artifacts from " .. global_dir .. "/.claude/ to your",
-    "local project's .claude/ directory.",
+    "This action will sync core system artifacts from " .. global_dir .. "/" .. base_dir .. "/ to your",
+    "local project's " .. base_dir .. "/ directory (extensions excluded).",
     "",
   }
 
@@ -249,7 +255,8 @@ local function preview_load_all(self)
     table.insert(lines, "")
     table.insert(lines, string.format("**Total:** %d new, %d replace", total_copy, total_replace))
     table.insert(lines, "")
-    table.insert(lines, "**Note:** Local-only artifacts will not be affected.")
+    table.insert(lines, "**Note:** Extension-owned artifacts are excluded.")
+    table.insert(lines, "          Local-only artifacts will not be affected.")
     table.insert(lines, "          Execute permissions preserved for .sh files.")
   else
     table.insert(lines, "**All artifacts already in sync!**")
@@ -258,7 +265,7 @@ local function preview_load_all(self)
   table.insert(lines, "")
   table.insert(lines, "**Current Status:**")
   table.insert(lines, string.format("  Project directory: %s", project_dir))
-  table.insert(lines, "  Global directory:  " .. global_dir .. "/.claude/")
+  table.insert(lines, "  Global directory:  " .. global_dir .. "/" .. base_dir .. "/")
   table.insert(lines, "")
   table.insert(lines, "Press Enter to proceed with confirmation, or Escape to cancel.")
 
@@ -751,12 +758,15 @@ function M.create_command_previewer()
   return previewers.new_buffer_previewer({
     title = "Command Details",
     define_preview = function(self, entry, status)
+      -- Extract config from entry value for config-aware preview functions
+      local entry_config = entry.value.config
+
       if entry.value.is_heading then
         preview_heading(self, entry)
       elseif entry.value.is_help then
-        preview_help(self)
+        preview_help(self, entry_config)
       elseif entry.value.is_load_all then
-        preview_load_all(self)
+        preview_load_all(self, entry_config)
       elseif entry.value.entry_type == "skill" then
         preview_skill(self, entry)
       elseif entry.value.entry_type == "hook_event" then
