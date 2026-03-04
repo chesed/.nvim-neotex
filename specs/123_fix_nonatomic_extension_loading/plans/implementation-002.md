@@ -1,7 +1,7 @@
 # Implementation Plan: Fix Non-Atomic Extension Loading (Simplified)
 
 - **Task**: 123 - fix_nonatomic_extension_loading
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 1-2 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md), [research-002.md](../reports/research-002.md)
@@ -38,7 +38,7 @@ The simplified approach handles the documented failure mode (runtime error in `p
 
 ## Implementation
 
-### Phase 1: pcall Wrapping with Rollback [NOT STARTED]
+### Phase 1: pcall Wrapping with Rollback [COMPLETED]
 
 **Goal**: Wrap the file copy and merge sequence in pcall, rolling back on failure.
 
@@ -97,7 +97,7 @@ state_mod.write(project_dir, state, config)
 
 ---
 
-### Phase 2: Testing [NOT STARTED]
+### Phase 2: Testing [COMPLETED]
 
 **Goal**: Verify rollback behavior for key failure scenarios.
 

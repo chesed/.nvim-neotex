@@ -217,42 +217,54 @@ function M.create(config)
     -- Ensure base directory exists
     helpers.ensure_directory(target_dir)
 
-    -- Track all installed files and directories
+    -- Track all installed files, directories, and merged sections
+    -- Declared before pcall so rollback can access them
     local all_files = {}
     local all_dirs = {}
+    local merged_sections = {}
 
-    -- Copy agents
-    local files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "agents", ".md")
-    vim.list_extend(all_files, files)
-    vim.list_extend(all_dirs, dirs)
+    -- Wrap copy+merge in pcall for atomic rollback on failure
+    local load_ok, load_err = pcall(function()
+      -- Copy agents
+      local files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "agents", ".md")
+      vim.list_extend(all_files, files)
+      vim.list_extend(all_dirs, dirs)
 
-    -- Copy commands
-    files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "commands", ".md")
-    vim.list_extend(all_files, files)
-    vim.list_extend(all_dirs, dirs)
+      -- Copy commands
+      files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "commands", ".md")
+      vim.list_extend(all_files, files)
+      vim.list_extend(all_dirs, dirs)
 
-    -- Copy rules
-    files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "rules", ".md")
-    vim.list_extend(all_files, files)
-    vim.list_extend(all_dirs, dirs)
+      -- Copy rules
+      files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "rules", ".md")
+      vim.list_extend(all_files, files)
+      vim.list_extend(all_dirs, dirs)
 
-    -- Copy skills
-    files, dirs = loader_mod.copy_skill_dirs(ext_manifest, source_dir, target_dir)
-    vim.list_extend(all_files, files)
-    vim.list_extend(all_dirs, dirs)
+      -- Copy skills
+      files, dirs = loader_mod.copy_skill_dirs(ext_manifest, source_dir, target_dir)
+      vim.list_extend(all_files, files)
+      vim.list_extend(all_dirs, dirs)
 
-    -- Copy context
-    files, dirs = loader_mod.copy_context_dirs(ext_manifest, source_dir, target_dir)
-    vim.list_extend(all_files, files)
-    vim.list_extend(all_dirs, dirs)
+      -- Copy context
+      files, dirs = loader_mod.copy_context_dirs(ext_manifest, source_dir, target_dir)
+      vim.list_extend(all_files, files)
+      vim.list_extend(all_dirs, dirs)
 
-    -- Copy scripts
-    files, dirs = loader_mod.copy_scripts(ext_manifest, source_dir, target_dir)
-    vim.list_extend(all_files, files)
-    vim.list_extend(all_dirs, dirs)
+      -- Copy scripts
+      files, dirs = loader_mod.copy_scripts(ext_manifest, source_dir, target_dir)
+      vim.list_extend(all_files, files)
+      vim.list_extend(all_dirs, dirs)
 
-    -- Process merge targets
-    local merged_sections = process_merge_targets(ext_manifest, source_dir, project_dir, config)
+      -- Process merge targets
+      merged_sections = process_merge_targets(ext_manifest, source_dir, project_dir, config)
+    end)
+
+    -- Rollback on failure
+    if not load_ok then
+      loader_mod.remove_installed_files(all_files, all_dirs)
+      reverse_merge_targets(ext_manifest, merged_sections, project_dir, config)
+      return false, "Extension load failed: " .. tostring(load_err)
+    end
 
     -- Update state
     state = state_mod.mark_loaded(state, extension_name, ext_manifest, all_files, all_dirs, merged_sections)
