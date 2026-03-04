@@ -4,15 +4,20 @@
     {
       "project_number": 133,
       "project_name": "fix_planner_agent_not_following_plan_format_specification",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-04T19:11:50.964Z",
-      "last_updated": "2026-03-04T19:13:12.019Z",
+      "last_updated": "2026-03-04T19:15:01.821Z",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/OC_133_fix_planner_agent_not_following_plan_format_specification/reports/research-001.md",
           "summary": "Research report identifying that planner-agent.md template contradicts plan-format.md specification - root cause is template mismatch, not context loading failure"
+        },
+        {
+          "type": "plan",
+          "path": "specs/OC_133_fix_planner_agent_not_following_plan_format_specification/plans/implementation-001.md",
+          "summary": "4-phase plan to fix planner-agent.md templates and verification to align with plan-format.md specification"
         }
       ]
     },
