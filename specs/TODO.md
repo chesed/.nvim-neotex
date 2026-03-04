@@ -6,6 +6,16 @@ next_project_number: 129
 
 ## Tasks
 
+### OC_129. Fix plan format in implementation-001.md to follow plan-format.md standards
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Research**: [research-001.md](129_fix_plan_format_in_implementation_001_md/reports/research-001.md)
+- **Language**: meta
+
+**Description**: The plan file /home/benjamin/.config/nvim/specs/128_ensure_task_command_only_creates_tasks_and_never_implements_solutions_automatically/plans/implementation-001.md was created with incorrect format. It contains `**Status**: [STATUS]` metadata lines after each phase heading instead of the correct format from plan-format.md which requires status markers ONLY in the phase headings (e.g., `### Phase N: Name [STATUS]`). Need to update the file to follow the standard format with status only in headings and no separate metadata lines per phase.
+
+
 ### 128. Ensure /task command only creates tasks and never implements solutions automatically
 - **Effort**: 2-4 hours
 - **Status**: [COMPLETED]

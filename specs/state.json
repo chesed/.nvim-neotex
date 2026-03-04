@@ -2,6 +2,21 @@
   "next_project_number": 129,
   "active_projects": [
     {
+      "project_number": 129,
+      "project_name": "fix_plan_format_in_implementation_001_md",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-04T02:14:59Z",
+      "last_updated": "2026-03-04T02:15:39Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/129_fix_plan_format_in_implementation_001_md/reports/research-001.md",
+          "summary": "Identified non-standard status marker placement and field naming in implementation-001.md plan file"
+        }
+      ]
+    },
+    {
       "project_number": 127,
       "project_name": "migrate_opencode_md_to_readme_and_rename_quick_start_to_installation",
       "status": "completed",
