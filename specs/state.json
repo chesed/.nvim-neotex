@@ -30,10 +30,10 @@
     {
       "project_number": 129,
       "project_name": "fix_plan_format_in_implementation_001_md",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-04T02:14:59Z",
-      "last_updated": "2026-03-04T17:09:04Z",
+      "last_updated": "2026-03-04T17:12:57Z",
       "artifacts": [
         {
           "type": "research",
@@ -43,7 +43,7 @@
         {
           "type": "plan",
           "path": "specs/129_fix_plan_format_in_implementation_001_md/plans/implementation-001.md",
-          "summary": "Plan to reformat task 128 plan file to comply with standard format (status markers in headers, standard field names)"
+          "summary": "3-phase plan to reformat task 128 plan, create context loading guide, and implement push loading in skill-planner"
         },
         {
           "type": "research",
