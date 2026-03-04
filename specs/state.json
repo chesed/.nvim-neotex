@@ -1,6 +1,21 @@
 {
-  "next_project_number": 129,
+  "next_project_number": 131,
   "active_projects": [
+    {
+      "project_number": 130,
+      "project_name": "make_opencode_self_contained",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-04T00:00:00Z",
+      "last_updated": "2026-03-04T00:00:00Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/130_make_opencode_self_contained/reports/research-001.md",
+          "summary": "Identified deprecated format files, metadata field naming issues (claudemd_suggestions), and numerous .claude/ path references in documentation and agents needing update to .opencode/ equivalents"
+        }
+      ]
+    },
     {
       "project_number": 129,
       "project_name": "fix_plan_format_in_implementation_001_md",
