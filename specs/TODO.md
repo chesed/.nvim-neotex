@@ -37,7 +37,7 @@ next_project_number: 128
 
 ### 125. Add epidemiology research extension for R and related tooling
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Planning Started**: 2026-03-04
 - **Planning Completed**: 2026-03-04
 - **Research Started**: 2026-03-03
