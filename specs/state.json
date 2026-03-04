@@ -4,7 +4,7 @@
     {
       "project_number": 130,
       "project_name": "make_opencode_self_contained",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-04T00:00:00Z",
       "last_updated": "2026-03-04T00:00:00Z",
@@ -13,6 +13,11 @@
           "type": "research",
           "path": "specs/130_make_opencode_self_contained/reports/research-001.md",
           "summary": "Identified deprecated format files, metadata field naming issues (claudemd_suggestions), and numerous .claude/ path references in documentation and agents needing update to .opencode/ equivalents"
+        },
+        {
+          "type": "plan",
+          "path": "specs/130_make_opencode_self_contained/plans/implementation-001.md",
+          "summary": "3-phase plan to migrate deprecated format files, rename claudemd_suggestions to readme_suggestions, and update all .claude/ path references to .opencode/"
         }
       ]
     },
