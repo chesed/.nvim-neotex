@@ -135,9 +135,9 @@ description: Archive completed and abandoned tasks
   </step_4>
 
   <step_5>
-    <action>Scan Meta Tasks for CLAUDE.md Suggestions</action>
+    <action>Scan Meta Tasks for README.md Suggestions</action>
     <process>
-      For meta tasks, extract claudemd_suggestions if present.
+      For meta tasks, extract readme_suggestions if present.
       Track by action type:
       - Add: Insert new content
       - Update: Replace existing content  
@@ -154,7 +154,7 @@ description: Archive completed and abandoned tasks
       - Orphaned directories (specs/archive counts)
       - Misplaced directories count
       - Roadmap updates needed
-      - CLAUDE.md suggestions
+      - README.md suggestions
       
       Exit after display.
     </process>
@@ -198,7 +198,7 @@ description: Archive completed and abandoned tasks
   </step_9>
 
   <step_10>
-    <action>Interactive CLAUDE.md Suggestion Selection</action>
+    <action>Interactive README.md Suggestion Selection</action>
     <process>
       For actionable meta task suggestions:
       A. Filter suggestions where action != "none"
@@ -217,6 +217,7 @@ description: Archive completed and abandoned tasks
       - update {R} roadmap items  
       - track {M} orphans
       - move {P} misplaced directories
+      - update README.md with {S} suggestions
     </process>
   </step_11>
 
@@ -227,7 +228,7 @@ description: Archive completed and abandoned tasks
       - Archived tasks (completed/abandoned counts)
       - Directory operations
       - Roadmap updates
-      - CLAUDE.md suggestions
+      - README.md suggestions
       - Active tasks remaining
     </process>
   </step_12>
@@ -272,6 +273,6 @@ description: Archive completed and abandoned tasks
     specs/state.json
     specs/TODO.md
     specs/ROAD_MAP.md
-    .opencode/CLAUDE.md
+    .opencode/README.md
   </writes>
 </state_management>

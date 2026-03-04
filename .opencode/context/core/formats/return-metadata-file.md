@@ -110,11 +110,11 @@ Contains fields needed for task completion processing. Skills extract this data 
 |-------|------|----------|-------------|
 | `completion_summary` | string | Yes | 1-3 sentence description of what was accomplished |
 | `roadmap_items` | array of strings | No | Explicit ROAD_MAP.md item texts this task addresses (non-meta tasks only) |
-| `claudemd_suggestions` | string | Yes (meta only) | Description of .opencode/ changes made, or `"none"` if no .opencode/ files modified |
+| `readme_suggestions` | string | Yes (meta only) | Description of .opencode/ changes made, or `"none"` if no .opencode/ files modified |
 
 **Notes**:
 - `completion_summary` is mandatory for all `implemented` status returns
-- `claudemd_suggestions` is mandatory for meta tasks (language: "meta")
+- `readme_suggestions` is mandatory for meta tasks (language: "meta")
 - `roadmap_items` is optional and only relevant for non-meta tasks
 - Skills propagate these fields to specs/state.json for use by `/todo` command
 
@@ -262,7 +262,7 @@ rm -f "specs/${task_number}_${task_slug}/.return-meta.json"
   ],
   "completion_data": {
     "completion_summary": "Created new-agent.md with full specification including tools, execution flow, and error handling.",
-    "claudemd_suggestions": "Added new-agent to Skill-to-Agent Mapping table in CLAUDE.md"
+    "readme_suggestions": "Added new-agent to Skill-to-Agent Mapping table in CLAUDE.md"
   },
   "next_steps": "Review agent and test invocation",
   "metadata": {
@@ -296,7 +296,7 @@ rm -f "specs/${task_number}_${task_slug}/.return-meta.json"
   ],
   "completion_data": {
     "completion_summary": "Created utility.sh script for automated cleanup operations.",
-    "claudemd_suggestions": "none"
+    "readme_suggestions": "none"
   },
   "next_steps": "Test script execution",
   "metadata": {

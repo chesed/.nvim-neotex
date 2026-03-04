@@ -112,21 +112,21 @@ When a task transitions to `status: "completed"`, these fields are populated:
 |-------|------|----------|-------------|
 | `completion_summary` | string | **Yes** (when completed) | 1-3 sentence description of what was accomplished |
 | `roadmap_items` | array of strings | No | Explicit list of ROAD_MAP.md item texts this task addresses (non-meta tasks only) |
-| `claudemd_suggestions` | string | **Yes** (meta only) | Description of .opencode/ changes made, or `"none"` if no .opencode/ files modified |
+| `readme_suggestions` | string | **Yes** (meta only) | Description of .opencode/ changes made, or `"none"` if no .opencode/ files modified |
 
 **Responsibility Split**:
-- **`/implement` (Producer)**: Reports what was changed factually. Always populates `claudemd_suggestions` for meta tasks describing .opencode/ modifications, or `"none"` if no .opencode/ files were modified.
-- **`/todo` (Consumer)**: Evaluates `claudemd_suggestions` content and decides what warrants CLAUDE.md updates. The filtering criteria belongs here, not in `/implement`.
+- **`/implement` (Producer)**: Reports what was changed factually. Always populates `readme_suggestions` for meta tasks describing .opencode/ modifications, or `"none"` if no .opencode/ files were modified.
+- **`/todo` (Consumer)**: Evaluates `readme_suggestions` content and decides what warrants README.md updates. The filtering criteria belongs here, not in `/implement`.
 
 **Producer Responsibility**: The `/implement` command populates these fields in skill postflight (Stage 7) when a task is successfully completed. The agent generates `completion_data` in the metadata file, and the skill propagates it to specs/state.json.
 
 **Consumer Usage**: The `/todo` command extracts these fields via `jq` to:
 - Match non-meta tasks against ROAD_MAP.md items for annotation (using `roadmap_items`)
-- Display CLAUDE.md modification suggestions for user review (using `claudemd_suggestions` from meta tasks)
+- Display README.md modification suggestions for user review (using `readme_suggestions` from meta tasks)
 
-### claudemd_suggestions Schema (Meta Tasks Only)
+### readme_suggestions Schema (Meta Tasks Only)
 
-For meta tasks (language: "meta"), `claudemd_suggestions` is a **string** (not an object) that factually describes what .opencode/ files were modified:
+For meta tasks (language: "meta"), `readme_suggestions` is a **string** (not an object) that factually describes what .opencode/ files were modified:
 
 | Scenario | Value |
 |----------|-------|
@@ -139,7 +139,7 @@ Meta task with .opencode/ changes:
 ```json
 {
   "completion_summary": "Implemented new /debug command with MCP diagnostics.",
-  "claudemd_suggestions": "Added skill-debug/SKILL.md, updated CLAUDE.md Command Workflows section"
+  "readme_suggestions": "Added skill-debug/SKILL.md, updated README.md Command Workflows section"
 }
 ```
 
@@ -147,11 +147,11 @@ Meta task without .opencode/ changes:
 ```json
 {
   "completion_summary": "Created utility script for test automation.",
-  "claudemd_suggestions": "none"
+  "readme_suggestions": "none"
 }
 ```
 
-**Key Design Insight**: CLAUDE.md is loaded context for agents, not primarily user documentation. The `claudemd_suggestions` field exists to track .opencode/ modifications, not to pre-filter what gets documented. The `/todo` command evaluates whether changes warrant CLAUDE.md updates
+**Key Design Insight**: README.md is loaded context for agents, not primarily user documentation. The `readme_suggestions` field exists to track .opencode/ modifications, not to pre-filter what gets documented. The `/todo` command evaluates whether changes warrant README.md updates
 
 ### Artifact Object Schema
 

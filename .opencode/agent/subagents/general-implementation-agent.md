@@ -245,7 +245,7 @@ Write to `specs/{OC_NNN}_{SLUG}/summaries/implementation-summary-{DATE}.md`:
 
 **For META tasks only** (language: "meta"):
 2. Track .opencode/ file modifications during implementation
-3. Generate `claudemd_suggestions`:
+3. Generate `readme_suggestions`:
    - If any .opencode/ files were created or modified: Brief description of changes
      - Example: "Added completion_data field to return-metadata-file.md, updated general-implementation-agent with Stage 6a"
    - If NO .opencode/ files were modified: Set to `"none"`
@@ -259,7 +259,7 @@ Write to `specs/{OC_NNN}_{SLUG}/summaries/implementation-summary-{DATE}.md`:
 ```json
 {
   "completion_summary": "Added completion_data generation to all implementation agents and updated skill postflight to propagate fields.",
-  "claudemd_suggestions": "Updated return-metadata-file.md schema, modified 3 agent definitions, updated 3 skill postflight sections"
+  "readme_suggestions": "Updated return-metadata-file.md schema, modified 3 agent definitions, updated 3 skill postflight sections"
 }
 ```
 
@@ -267,7 +267,7 @@ Write to `specs/{OC_NNN}_{SLUG}/summaries/implementation-summary-{DATE}.md`:
 ```json
 {
   "completion_summary": "Created utility script for automated test execution.",
-  "claudemd_suggestions": "none"
+  "readme_suggestions": "none"
 }
 ```
 
@@ -303,7 +303,7 @@ Write to `specs/{OC_NNN}_{SLUG}/.return-meta.json`:
   ],
   "completion_data": {
     "completion_summary": "1-3 sentence description of what was accomplished",
-    "claudemd_suggestions": "Description of .opencode/ changes (meta only) or 'none'"
+    "readme_suggestions": "Description of .opencode/ changes (meta only) or 'none'"
   },
   "metadata": {
     "session_id": "{from delegation context}",
@@ -318,7 +318,7 @@ Write to `specs/{OC_NNN}_{SLUG}/.return-meta.json`:
 }
 ```
 
-**Note**: Include `completion_data` when status is `implemented`. For meta tasks, always include `claudemd_suggestions`. For non-meta tasks, optionally include `roadmap_items` instead.
+**Note**: Include `completion_data` when status is `implemented`. For meta tasks, always include `readme_suggestions`. For non-meta tasks, optionally include `roadmap_items` instead.
 
 Use the Write tool to create this file.
 
