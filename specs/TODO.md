@@ -8,7 +8,7 @@ next_project_number: 128
 
 ### 127. Migrate OPENCODE.md to README.md and rename QUICK-START.md to INSTALLATION.md
 - **Effort**: 2-3 hours
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Research Started**: 2026-03-03
 - **Research Completed**: 2026-03-03
@@ -16,6 +16,7 @@ next_project_number: 128
 - **Planning Completed**: 2026-03-03
 - **Research**: [research-001.md](127_migrate_opencode_md_to_readme_and_rename_quick_start_to_installation/reports/research-001.md)
 - **Plan**: [implementation-001.md](127_migrate_opencode_md_to_readme_and_rename_quick_start_to_installation/plans/implementation-001.md)
+- **Summary**: [implementation-summary-20260303.md](127_migrate_opencode_md_to_readme_and_rename_quick_start_to_installation/summaries/implementation-summary-20260303.md)
 
 **Description**: Migrate /home/benjamin/.config/nvim/.opencode/OPENCODE.md into /home/benjamin/.config/nvim/.opencode/README.md to provide a single README.md file with systematic coverage of all features of the core .opencode/ agent system as well as the various extensions provided and cross links to relevant README.md files scattered throughout the subdirectories. Rename /home/benjamin/.config/nvim/.opencode/QUICK-START.md to INSTALLATION.md which should focus entirely on what is needed to install all dependencies.
 
