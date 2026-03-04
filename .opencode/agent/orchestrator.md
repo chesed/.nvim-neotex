@@ -86,7 +86,7 @@ permissions:
   - "What is the command workflow?"
   - "How are skills structured?"
 
-  **Approach**: Reference system-overview.md and OPENCODE.md.
+  **Approach**: Reference system-overview.md and README.md.
 
   ### Repository Health Questions
   - "How many sorries are there?"

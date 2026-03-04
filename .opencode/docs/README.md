@@ -1,6 +1,6 @@
 # OpenCode Agent System Documentation
 
-[Back to Theory](../../README.md) | [Architecture](../README.md) | [OPENCODE.md](../../OPENCODE.md)
+[Back to Theory](../../README.md) | [Architecture](../README.md) | [README.md](../../README.md)
 
 This directory contains the documentation for the `.opencode/` agent system. The system provides structured task management, research workflows, and implementation automation for Logos/Theory development. For comprehensive system details, see [architecture/system-overview.md](architecture/system-overview.md).
 

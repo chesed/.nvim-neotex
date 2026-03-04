@@ -197,5 +197,5 @@ nvim --headless -c 'lua print(vim.inspect(vim.diagnostic.get(0)))' -c 'qa!'
 
 **AI System**:
 - [.opencode/README.md](../../README.md) - AI system overview
-- [.opencode/OPENCODE.md](../../OPENCODE.md) - Configuration reference
+- [.opencode/INSTALLATION.md](../../INSTALLATION.md) - Configuration reference
 - [.opencode/docs/guides/user-guide.md](../../docs/guides/user-guide.md) - User guide
