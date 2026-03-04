@@ -4,25 +4,30 @@
     {
       "project_number": 127,
       "project_name": "migrate_opencode_md_to_readme_and_rename_quick_start_to_installation",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-03T17:50:00Z",
-      "last_updated": "2026-03-03T18:00:00Z",
+      "last_updated": "2026-03-03T18:10:00Z",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/127_migrate_opencode_md_to_readme_and_rename_quick_start_to_installation/reports/research-001.md",
           "summary": "Comprehensive analysis of .opencode/ documentation structure: 20+ README files identified across 9 extensions, 20 commands, 17 skills, and 6 rules. Recommends consolidating OPENCODE.md into README.md with cross-links, renaming QUICK-START.md to INSTALLATION.md focused on dependencies."
+        },
+        {
+          "type": "plan",
+          "path": "specs/127_migrate_opencode_md_to_readme_and_rename_quick_start_to_installation/plans/implementation-001.md",
+          "summary": "5-phase plan to rename QUICK-START.md to INSTALLATION.md, consolidate OPENCODE.md into README.md with cross-links to 20+ files, standardize navigation footers, remove OPENCODE.md, and validate all cross-links"
         }
       ]
     },
     {
       "project_number": 126,
       "project_name": "fix_ao_picker_extension_loading_path",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-04T01:24:10Z",
-      "last_updated": "2026-03-04T01:26:10Z",
+      "last_updated": "2026-03-04T01:27:08Z",
       "artifacts": [
         {
           "type": "research",
