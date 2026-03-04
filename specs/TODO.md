@@ -8,11 +8,22 @@ next_project_number: 133
 
 ### OC_132. Create context loading best practices guide
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Research**: [research-001.md](132_create_context_loading_best_practices_guide/reports/research-001.md)
+- **Plan**: [implementation-001.md](132_create_context_loading_best_practices_guide/plans/implementation-001.md)
 
 **Description**: Document the "Push vs Pull" context loading strategy that was implemented in task 128. Create `docs/guides/context-loading-best-practices.md` explaining: (1) Push model - critical context injected directly into agent prompts via `<context_injection>` blocks in SKILL.md files, (2) Pull model - context loaded on-demand via @-references, (3) When to use each approach - Push for strict formats/rules that must be followed, Pull for optional documentation and code examples, (4) How to implement Push loading in skills with examples from skill-planner, skill-researcher, and skill-implementer. This guide will help future skill developers understand and apply the context loading patterns correctly.
+
+---
+
+### OC_131. Synchronize state.json, TODO.md, and plan files during /implement execution
+- **Effort**: 3-4 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Research**: [research-001.md](OC_131_sync_state_todo_plan_during_implementation/reports/research-001.md)
+
+**Description**: When running `/implement OC_N`, the state.json, TODO.md, and plan implementation-NNN.md files become out of sync. The plan file tracks phase status ([NOT STARTED], [IN PROGRESS], [COMPLETED], [PARTIAL]) but these are not automatically updated during execution. The root cause is that the /implement command specification lacks real-time status tracking mechanisms. The solution requires adding phase status update steps to the implementation workflow: mark phase as [IN PROGRESS] when starting, [COMPLETED] when finished, [PARTIAL] when blocked. Additionally, when phases complete, the plan status summary should reflect overall progress. This ensures all three files (state.json for task metadata, TODO.md for task overview, plan.md for detailed phase tracking) remain synchronized throughout the implementation process.
 
 ---
 

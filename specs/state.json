@@ -4,15 +4,20 @@
     {
       "project_number": 132,
       "project_name": "create_context_loading_best_practices_guide",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-04T18:35:00Z",
-      "last_updated": "2026-03-04T19:15:00Z",
+      "last_updated": "2026-03-04T19:40:00Z",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/132_create_context_loading_best_practices_guide/reports/research-001.md",
           "summary": "Comprehensive research on Push vs Pull context loading models, analyzed 11 migrated skills, identified documentation gap in .opencode/docs/guides/, ready to create best practices guide"
+        },
+        {
+          "type": "plan",
+          "path": "specs/132_create_context_loading_best_practices_guide/plans/implementation-001.md",
+          "summary": "2-phase plan to create context loading best practices guide: Phase 1 creates guide structure and core content (Push/Pull models), Phase 2 adds real examples from 4 skills and decision framework"
         }
       ]
     },
