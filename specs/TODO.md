@@ -20,9 +20,10 @@ next_project_number: 131
 
 ### OC_129. Fix plan format in implementation-001.md to follow plan-format.md standards
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [RESEARCHED]
 - **Language**: meta
 - **Research**: [research-001.md](129_fix_plan_format_in_implementation_001_md/reports/research-001.md)
+- **Research**: [research-002.md](129_fix_plan_format_in_implementation_001_md/reports/research-002.md)
 - **Plan**: [implementation-001.md](129_fix_plan_format_in_implementation_001_md/plans/implementation-001.md)
 - **Language**: meta
 
