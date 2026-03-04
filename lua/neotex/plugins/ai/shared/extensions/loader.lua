@@ -84,9 +84,10 @@ end
 --- @param target_dir string Target base directory (.claude or .opencode)
 --- @param category string Category name (agents, commands, rules)
 --- @param extension string File extension (.md)
+--- @param agents_subdir string|nil Optional subdirectory for agents (e.g., "agent/subagents")
 --- @return table copied_files Array of copied file paths
 --- @return table created_dirs Array of created directory paths
-function M.copy_simple_files(manifest, source_dir, target_dir, category, extension)
+function M.copy_simple_files(manifest, source_dir, target_dir, category, extension, agents_subdir)
   local copied_files = {}
   local created_dirs = {}
 
@@ -95,7 +96,9 @@ function M.copy_simple_files(manifest, source_dir, target_dir, category, extensi
   end
 
   local source_category_dir = source_dir .. "/" .. category
-  local target_category_dir = target_dir .. "/" .. category
+  -- Use agents_subdir for agents category if provided, otherwise use category name
+  local target_category_name = (category == "agents" and agents_subdir) or category
+  local target_category_dir = target_dir .. "/" .. target_category_name
 
   -- Track if we created the category directory
   if vim.fn.isdirectory(target_category_dir) ~= 1 then

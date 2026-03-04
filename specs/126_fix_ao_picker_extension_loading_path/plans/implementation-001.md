@@ -38,7 +38,7 @@ Add `agents_subdir` configuration to the extension system and update the loader 
 
 ### Phase 2: Update Loader Functions to Respect agents_subdir
 
-**Status**: [NOT STARTED]
+**Status**: [COMPLETED]
 **Estimated effort**: 45 minutes
 
 **Objectives**:
