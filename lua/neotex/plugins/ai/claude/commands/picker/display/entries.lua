@@ -78,6 +78,7 @@ local function format_command(command, indent_char, is_dependent)
 end
 
 --- Create entries for docs section
+--- Only shows docs/README.md (not all .md files in docs/)
 --- @param config table|nil Picker configuration for config-aware path construction
 --- @return table Array of entries
 function M.create_docs_entries(config)
@@ -86,32 +87,36 @@ function M.create_docs_entries(config)
   local global_dir = config and config.global_source_dir or scan.get_global_dir()
   local base_dir = config and config.base_dir or ".claude"
 
-  local local_docs = scan.scan_directory(project_dir .. "/" .. base_dir .. "/docs", "*.md")
-  local global_docs = scan.scan_directory(global_dir .. "/" .. base_dir .. "/docs", "*.md")
-  local all_docs = scan.merge_artifacts(local_docs, global_docs)
+  -- Only show docs/README.md (not all .md files in docs/)
+  local readme_path = nil
+  local is_local = false
+  local local_readme = project_dir .. "/" .. base_dir .. "/docs/README.md"
+  local global_readme = global_dir .. "/" .. base_dir .. "/docs/README.md"
 
-  if #all_docs > 0 then
-    table.sort(all_docs, function(a, b) return a.name < b.name end)
+  if vim.fn.filereadable(local_readme) == 1 then
+    readme_path = local_readme
+    is_local = true
+  elseif vim.fn.filereadable(global_readme) == 1 then
+    readme_path = global_readme
+    is_local = false
+  end
 
-    for i, doc in ipairs(all_docs) do
-      local is_first = (i == 1)
-      local indent_char = helpers.get_tree_char(is_first)
-      local description = metadata.parse_doc_description(doc.filepath)
+  if readme_path then
+    local description = metadata.parse_doc_description(readme_path)
 
-      table.insert(entries, {
-        display = helpers.format_display(
-          doc.is_local and "*" or " ",
-          " " .. indent_char,
-          doc.name,
-          description
-        ),
-        entry_type = "doc",
-        name = doc.name,
-        filepath = doc.filepath,
-        is_local = doc.is_local,
-        ordinal = "zzzz_doc_" .. doc.name
-      })
-    end
+    table.insert(entries, {
+      display = helpers.format_display(
+        is_local and "*" or " ",
+        " " .. helpers.get_tree_char(true),
+        "README",
+        description
+      ),
+      entry_type = "doc",
+      name = "README",
+      filepath = readme_path,
+      is_local = is_local,
+      ordinal = "zzzz_doc_README"
+    })
 
     table.insert(entries, {
       is_heading = true,
