@@ -225,8 +225,8 @@ function M.create(config)
 
     -- Wrap copy+merge in pcall for atomic rollback on failure
     local load_ok, load_err = pcall(function()
-      -- Copy agents
-      local files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "agents", ".md")
+      -- Copy agents (use configured agents_subdir for target path)
+      local files, dirs = loader_mod.copy_simple_files(ext_manifest, source_dir, target_dir, "agents", ".md", config.agents_subdir)
       vim.list_extend(all_files, files)
       vim.list_extend(all_dirs, dirs)
 

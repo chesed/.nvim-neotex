@@ -64,7 +64,7 @@ Add `agents_subdir` configuration to the extension system and update the loader 
 
 ### Phase 3: Wire Configuration Through to Loader Calls
 
-**Status**: [NOT STARTED]
+**Status**: [COMPLETED]
 **Estimated effort**: 30 minutes
 
 **Objectives**:
