@@ -56,10 +56,11 @@
     {
       "project_number": 125,
       "project_name": "epidemiology_r_extension",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-04T01:11:57Z",
-      "last_updated": "2026-03-04T01:43:00Z",
+      "last_updated": "2026-03-04T02:00:00Z",
+      "completion_summary": "Implemented epidemiology extension for R-based research workflows, including `epidemiology-research-agent` and `epidemiology-implementation-agent`. Configured `rmcp` (Python) and `mcptools` (R) as MCP servers, documented key packages (EpiModel, epidemia, EpiNow2), and set up language routing for `epidemiology` and `r`.",
       "artifacts": [
         {
           "type": "research",
@@ -75,6 +76,11 @@
           "type": "plan",
           "path": "specs/125_epidemiology_r_extension/plans/implementation-001.md",
           "summary": "4-phase plan to implement epidemiology extension in .opencode/ and .claude/ with R MCP server (rmcp) and context documentation for EpiModel, epidemia, EpiNow2"
+        },
+        {
+          "type": "summary",
+          "path": "specs/125_epidemiology_r_extension/summaries/implementation-summary-20260304.md",
+          "summary": "Implementation complete: Created epidemiology extension with agents, skills, and context for R-based research workflows, configured rmcp and mcptools, and integrated with system documentation."
         }
       ]
     },
