@@ -8,7 +8,7 @@ next_project_number: 128
 
 ### 127. Migrate OPENCODE.md to README.md and rename QUICK-START.md to INSTALLATION.md
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Research Started**: 2026-03-03
 - **Research Completed**: 2026-03-03

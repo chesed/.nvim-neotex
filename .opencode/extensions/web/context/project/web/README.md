@@ -108,3 +108,9 @@ Agents should load context based on task type:
 | CI/CD debugging | cicd-pipeline-guide.md, cloudflare-deploy-guide.md |
 | Debugging/optimization | debugging-utilities.md |
 | General | astro-framework.md, web-style-guide.md |
+
+---
+
+## Navigation
+
+[← Parent Directory](../../../../../README.md)

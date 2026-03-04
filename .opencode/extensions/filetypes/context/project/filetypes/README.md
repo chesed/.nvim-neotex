@@ -21,3 +21,9 @@ context/project/filetypes/
 - Documents: PDF, DOCX, HTML -> Markdown; Markdown -> PDF
 - Spreadsheets: XLSX, CSV, ODS -> LaTeX/Typst tables
 - Presentations: PPTX -> Beamer/Polylux/Touying
+
+---
+
+## Navigation
+
+[← Parent Directory](../../../../../README.md)

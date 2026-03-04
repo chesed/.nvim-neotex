@@ -47,7 +47,7 @@ The `.opencode/` directory implements a three-layer architecture: Commands, Skil
 ## Related Documentation
 
 ### Core References
-- [OPENCODE.md](../../OPENCODE.md) - Quick reference entry point with command syntax and workflow summaries
+- [README.md](../../README.md) - Main system documentation with command syntax and workflow summaries
 
 ### Logos/Theory Project
 - [Theory README](../../README.md) - Main project documentation
@@ -55,4 +55,6 @@ The `.opencode/` directory implements a three-layer architecture: Commands, Skil
 
 ---
 
-[Back to Theory](../../README.md) | [Architecture](../README.md) | [OPENCODE.md](../../OPENCODE.md)
+## Navigation
+
+[← Parent Directory](../README.md) | [Guides →](guides/) | [Architecture →](architecture/)

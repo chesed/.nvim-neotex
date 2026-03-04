@@ -4,10 +4,10 @@
     {
       "project_number": 127,
       "project_name": "migrate_opencode_md_to_readme_and_rename_quick_start_to_installation",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-03T17:50:00Z",
-      "last_updated": "2026-03-03T18:10:00Z",
+      "last_updated": "2026-03-03T18:15:00Z",
       "artifacts": [
         {
           "type": "research",
