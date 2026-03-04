@@ -2573,6 +2573,668 @@
         "completion_summary": "Added content to 5 language extensions (lean, latex, typst, z3, python) with 60 files total. Each extension includes agents, skills, and context files adapted from ProofChecker, Logos/Theory, and ModelChecker reference projects.",
         "claudemd_suggestions": "Created .claude/extensions/{lean,latex,typst,z3,python}/ directories with agents, skills, rules, and context subdirectories"
       }
-    ]
+    ],
+    {
+      "project_number": 124,
+      "project_name": "limit_docs_section_in_pickers",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-04T00:25:31Z",
+      "last_updated": "2026-03-04T00:42:32Z",
+      "session_id": "sess_1772584742_d56c32",
+      "researched": "2026-03-04T00:31:17Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/124_limit_docs_section_in_pickers/reports/research-001.md",
+          "summary": "Research report documenting picker architecture, docs entry generation flow, and recommended implementation approach"
+        },
+        {
+          "path": "specs/124_limit_docs_section_in_pickers/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "2-phase implementation plan to replace docs scanning with direct README.md detection"
+        },
+        {
+          "path": "specs/124_limit_docs_section_in_pickers/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-04T00:38:18Z",
+      "started": "2026-03-04T00:39:29Z",
+      "completed": "2026-03-04T00:42:32Z",
+      "completion_summary": "Limited [Docs] picker section to show only docs/README.md. Modified create_docs_entries() to use direct file checks instead of directory scanning. Both Claude and OpenCode pickers now show only README entry in [Docs] section."
+    },
+    {
+      "project_number": 123,
+      "project_name": "fix_nonatomic_extension_loading",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-03T23:46:00Z",
+      "last_updated": "2026-03-04T00:15:28Z",
+      "session_id": "sess_1772583127_f676fd",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/123_fix_nonatomic_extension_loading/reports/research-001.md",
+          "summary": "Research report analyzing failure points in extension loading, evaluating 4 proposed solutions, and recommending a hybrid approach"
+        },
+        {
+          "type": "research",
+          "path": "specs/123_fix_nonatomic_extension_loading/reports/research-002.md",
+          "summary": "Simplification research finding that pcall-only approach replaces 4-phase hybrid plan"
+        },
+        {
+          "path": "specs/123_fix_nonatomic_extension_loading/plans/implementation-002.md",
+          "type": "plan",
+          "summary": "Simplified pcall-only approach: 2 phases, 1-2 hours, ~20 lines of changes"
+        },
+        {
+          "type": "summary",
+          "path": "specs/123_fix_nonatomic_extension_loading/summaries/implementation-summary-20260303.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-04T00:09:06Z",
+      "completed": "2026-03-04T00:15:28Z",
+      "completion_summary": "Fixed non-atomic extension loading by wrapping the copy+merge sequence in pcall. On failure, copied files are removed and completed merges are reversed before returning an error message."
+    },
+    {
+      "project_number": 122,
+      "project_name": "expand_document_converter_to_filetypes",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-03T22:38:06Z",
+      "last_updated": "2026-03-03T23:51:01Z",
+      "session_id": "sess_1772580574_a8ab73",
+      "researched": "2026-03-03T22:55:11Z",
+      "artifacts": [
+        {
+          "path": "specs/122_expand_document_converter_to_filetypes/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive research on filetype conversion tools, pipelines, and architecture for expanding document-converter to filetypes extension with Excel, PowerPoint, and academic slide support"
+        },
+        {
+          "path": "specs/122_expand_document_converter_to_filetypes/reports/research-002.md",
+          "type": "research",
+          "summary": "Plan review and gap analysis: 6 findings including missing OpenCode parity, plan metadata fields, NixOS dependencies, task 121 soft dependency, untracked typst enhancement, and tool detection sequencing"
+        },
+        {
+          "path": "specs/122_expand_document_converter_to_filetypes/plans/implementation-002.md",
+          "type": "plan",
+          "summary": "Revised 5-phase plan with OpenCode parity, Option A tool detection in Phase 1, NixOS dependencies, and Future Work section"
+        },
+        {
+          "path": "specs/122_expand_document_converter_to_filetypes/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-03T23:24:21Z",
+      "started": "2026-03-03T23:30:05Z",
+      "completed": "2026-03-03T23:51:01Z",
+      "completion_summary": "Expanded document-converter to filetypes extension with router architecture (filetypes-router-agent), specialized sub-agents (spreadsheet-agent, presentation-agent), new commands (/table, /slides), shared tool-detection context, NixOS-first dependency documentation, and full .claude/.opencode parity.",
+      "claudemd_suggestions": "Updated skill references in CLAUDE.md, README.md, component-selection.md, creating-agents.md, system-overview.md (replaced document-converter with filetypes)"
+    },
+    {
+      "project_number": 121,
+      "project_name": "clean_up_core_skills_directories",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-03T22:30:00Z",
+      "last_updated": "2026-03-03T23:15:35Z",
+      "session_id": "sess_1772579391_d89627",
+      "researched": "2026-03-03T23:30:00Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/121_clean_up_core_skills_directories/reports/research-001.md",
+          "summary": "Comprehensive analysis of extension artifact contamination across three directories (skills, agents, commands, rules) with manifest-driven cleanup approach"
+        },
+        {
+          "type": "research",
+          "path": "specs/121_clean_up_core_skills_directories/reports/research-002.md",
+          "summary": "Supplementary research on clean-source architecture redesign: removing extension artifacts from .opencode source directories and simplifying sync.lua by eliminating the exclusion filter machinery"
+        },
+        {
+          "type": "research",
+          "path": "specs/121_clean_up_core_skills_directories/reports/research-003.md",
+          "summary": "Safety verification, context exclusion analysis, picker feature parity audit, and context contamination discovery for .opencode cleanup"
+        },
+        {
+          "path": "specs/121_clean_up_core_skills_directories/plans/implementation-002.md",
+          "type": "plan",
+          "summary": "Revised 5-phase plan: removes validation script, adds hooks/ context copy, preserves CONTEXT_EXCLUDE_PATTERNS"
+        },
+        {
+          "path": "specs/121_clean_up_core_skills_directories/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting cleanup of 25+ extension artifacts and sync.lua simplification"
+        }
+      ],
+      "planned": "2026-03-03T23:06:24Z",
+      "started": "2026-03-03T23:10:18Z",
+      "completed": "2026-03-03T23:15:35Z",
+      "completion_summary": "Removed extension artifacts from core directories (.opencode/ and ~/.config/.claude/) and simplified sync.lua by removing 185 lines of extension filter code, establishing clean-source invariant where core artifacts exist only in core dirs and extension artifacts only in extension dirs.",
+      "claudemd_suggestions": "none"
+    },
+    {
+      "project_number": 120,
+      "project_name": "fix_pretooluse_hook_picker_display",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-03T21:03:14Z",
+      "last_updated": "2026-03-03T22:05:11Z",
+      "session_id": "sess_1772573870_b86303",
+      "researched": "2026-03-03T21:25:28Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/120_fix_pretooluse_hook_picker_display/reports/research-001.md",
+          "summary": "Research report analyzing inline-command hook detection failure in build_hook_dependencies, with recommended combined fix approach for synthetic hook entries and event-level locality tracking"
+        },
+        {
+          "path": "specs/120_fix_pretooluse_hook_picker_display/reports/research-002.md",
+          "type": "research",
+          "summary": "Supplemental research on broader picker architecture for dynamic artifact management, analyzing all 13 picker sections for hardcoded vs dynamic entry sources"
+        },
+        {
+          "path": "specs/120_fix_pretooluse_hook_picker_display/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for inline hook detection, event locality tracking, previewer updates, and description consolidation"
+        },
+        {
+          "path": "specs/120_fix_pretooluse_hook_picker_display/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results and technical approach notes"
+        }
+      ],
+      "planned": "2026-03-03T21:32:00Z",
+      "completed": "2026-03-03T22:05:11Z",
+      "completion_summary": "Fixed PreToolUse and PostToolUse hook events displaying '*' marker in the Telescope picker by adding inline bash command detection to build_hook_dependencies, with event-level locality tracking. Consolidated duplicate hook event description tables from entries.lua and previewer.lua into a single HOOK_EVENT_DESCRIPTIONS table in registry.lua. Inline hooks now appear in the previewer with a truncated command snippet."
+    },
+    {
+      "project_number": 119,
+      "project_name": "fix_hardcoded_paths_in_picker",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-03T20:19:29Z",
+      "last_updated": "2026-03-03T20:49:40Z",
+      "session_id": "sess_1772570321_56d358",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/119_fix_hardcoded_paths_in_picker/reports/research-001.md",
+          "summary": "Research report identifying 23 hardcoded .claude/ paths across 6 files with config-threading recommendations"
+        },
+        {
+          "path": "specs/119_fix_hardcoded_paths_in_picker/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan to replace 23 hardcoded .claude/ paths with config.base_dir across 7 picker modules"
+        },
+        {
+          "path": "specs/119_fix_hardcoded_paths_in_picker/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification details"
+        }
+      ],
+      "planned": "2026-03-03T20:31:50Z",
+      "completed": "2026-03-03T20:49:40Z",
+      "completion_summary": "Replaced 23 hardcoded .claude/ paths with config-aware base_dir construction across 7 picker modules. Both Claude (<leader>ac) and OpenCode (<leader>ao) pickers now correctly scan their respective directories."
+    },
+    {
+      "project_number": 118,
+      "project_name": "redesign_leader_ao_load_core_agent_system",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-03T18:46:14Z",
+      "last_updated": "2026-03-03T19:28:31Z",
+      "session_id": "sess_1772565690_aebacd",
+      "researched": "2026-03-03T19:12:26Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/118_redesign_leader_ao_load_core_agent_system/reports/research-001.md",
+          "summary": "Complete analysis of scan_all_artifacts, extension manifest provides structure, exclusion filtering strategy, and all files requiring modification"
+        },
+        {
+          "type": "research",
+          "path": "specs/118_redesign_leader_ao_load_core_agent_system/reports/research-002.md",
+          "summary": "Analysis of Claude Code picker extension/core loading, shared architecture, previewer gaps, and config threading requirements"
+        },
+        {
+          "type": "plan",
+          "path": "specs/118_redesign_leader_ao_load_core_agent_system/plans/implementation-001.md",
+          "summary": "5-phase plan to redesign Load All Artifacts into Load Core Agent System with extension exclusion filtering, previewer fix, and config threading"
+        },
+        {
+          "type": "summary",
+          "path": "specs/118_redesign_leader_ao_load_core_agent_system/summaries/implementation-summary-20260303.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-03T19:19:53Z",
+      "started": "2026-03-03T19:22:00Z",
+      "completed": "2026-03-03T19:28:31Z",
+      "completion_summary": "Redesigned leader ao/ac picker's Load All Artifacts entry to Load Core Agent System with extension-owned artifact exclusion. Built exclusion sets from extension manifests' provides fields, filtering agents, commands, rules, scripts, hooks, skills, and context from scan results. Fixed previewer hardcoded .claude paths to use config.base_dir."
+    },
+    {
+      "project_number": 117,
+      "project_name": "study_core_artifacts_extension_overlap",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-03T06:13:38Z",
+      "last_updated": "2026-03-03T18:35:26Z",
+      "session_id": "sess_1772562392_1fbf8b",
+      "researched": "2026-03-03T18:19:24Z",
+      "artifacts": [
+        {
+          "path": "specs/117_study_core_artifacts_extension_overlap/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive analysis of core .claude/ vs extensions overlap: neovim artifacts remain in core (21 files, intentional), parent CLAUDE.md has stale extension references, adding-domains.md guide contradicts extension system, no extension documentation exists"
+        },
+        {
+          "path": "specs/117_study_core_artifacts_extension_overlap/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "3-phase plan addressing stale parent CLAUDE.md references, adding-domains.md rewrite for extensions, and new extension system documentation"
+        },
+        {
+          "path": "specs/117_study_core_artifacts_extension_overlap/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting cleanup of parent CLAUDE.md, rewritten adding-domains guide, and new extension system documentation"
+        }
+      ],
+      "planned": "2026-03-03T18:23:33Z",
+      "started": "2026-03-03T18:26:53Z",
+      "completed": "2026-03-03T18:35:26Z",
+      "completion_summary": "Cleaned up stale extension references from parent CLAUDE.md, rewrote adding-domains.md to recommend extensions as the primary approach for new domains, and created comprehensive extension system documentation (architecture doc + creation guide). Also updated docs README with extension section.",
+      "claudemd_suggestions": "Modified .claude/docs/guides/adding-domains.md (rewrite), created .claude/docs/architecture/extension-system.md, created .claude/docs/guides/creating-extensions.md, updated .claude/docs/README.md"
+    },
+    {
+      "project_number": 116,
+      "project_name": "verify_opencode_implement_extension_parity",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-03T02:34:37Z",
+      "last_updated": "2026-03-03T05:31:53Z",
+      "session_id": "sess_1772515356_39f8cd",
+      "researched": "2026-03-03T04:39:48Z",
+      "artifacts": [
+        {
+          "path": "specs/116_verify_opencode_implement_extension_parity/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive parity analysis: ModelChecker copy mostly complete, formal/lean extensions incomplete (missing agents, skills, context), 7 .claude extensions have no .opencode equivalent (document-converter, latex, nix, python, typst, web, z3)"
+        },
+        {
+          "path": "specs/116_verify_opencode_implement_extension_parity/reports/research-002.md",
+          "type": "research",
+          "summary": "Supplementary research analyzing Logos/Theory, ProofChecker, and dotfiles .opencode/ systems for reusable extension components"
+        },
+        {
+          "path": "specs/116_verify_opencode_implement_extension_parity/plans/implementation-003.md",
+          "type": "plan",
+          "summary": "Revised plan: latex/typst require full creation (not in core), all 9 extensions need full creation from .claude/"
+        },
+        {
+          "path": "specs/116_verify_opencode_implement_extension_parity/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary: 9 .opencode extensions created with 202 files"
+        }
+      ],
+      "planned": "2026-03-03T05:20:41Z",
+      "started": "2026-03-03T05:23:00Z",
+      "completed": "2026-03-03T05:31:53Z",
+      "completion_summary": "Created 9 complete .opencode/ extensions (formal, lean, document-converter, python, z3, latex, typst, web, nix) totaling 202 files with full parity to .claude/ counterparts using mechanical translation.",
+      "claudemd_suggestions": "Added 9 extensions to .opencode/extensions/ directory with 19 agents, 21 skills, 119 context files, 4 rules, 3 commands, and 2 scripts"
+    },
+    {
+      "project_number": 115,
+      "project_name": "investigate_leader_ao_load_all_feature_parity",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-03T02:06:56Z",
+      "last_updated": "2026-03-03T02:30:42Z",
+      "session_id": "sess_1772504782_aa032c",
+      "researched": "2026-03-03T02:17:09Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/115_investigate_leader_ao_load_all_feature_parity/reports/research-001.md",
+          "summary": "Research report documenting 11 missing artifact categories in OpenCode Load All, agents path mismatch, and specific code changes needed"
+        },
+        {
+          "path": "specs/115_investigate_leader_ao_load_all_feature_parity/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "3-phase implementation plan to fix OpenCode Load All feature parity with Claude Load All"
+        },
+        {
+          "type": "summary",
+          "path": "specs/115_investigate_leader_ao_load_all_feature_parity/summaries/implementation-summary-20260302.md",
+          "summary": "Implementation summary with before/after artifact count comparison"
+        }
+      ],
+      "planned": "2026-03-03T02:23:42Z",
+      "started": "2026-03-03T02:26:42Z",
+      "completed": "2026-03-03T02:30:42Z",
+      "completion_summary": "Fixed OpenCode <leader>ao Load All Artifacts to achieve full feature parity with Claude <leader>ac. OpenCode now syncs all 11 artifact categories (250+ files) instead of just 3 categories (~35 files). Key changes: agents path now uses config.agents_subdir, orchestrator.md included, and shared artifacts scanned unconditionally."
+    },
+    {
+      "project_number": 114,
+      "project_name": "make_leader_ao_identical_to_leader_ac",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-03T01:33:11Z",
+      "last_updated": "2026-03-03T01:49:12Z",
+      "session_id": "sess_1772502326_534ae0",
+      "researched": "2026-03-03T01:38:09Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/114_make_leader_ao_identical_to_leader_ac/reports/research-001.md",
+          "summary": "Research report analyzing current <leader>ac, <leader>ao, and <leader>ae keymaps with implementation recommendations"
+        },
+        {
+          "path": "specs/114_make_leader_ao_identical_to_leader_ac/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "3-phase implementation plan to unify leader-ao and leader-ac keymaps"
+        },
+        {
+          "type": "summary",
+          "path": "specs/114_make_leader_ao_identical_to_leader_ac/summaries/implementation-summary-20260302.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-03T01:42:37Z",
+      "started": "2026-03-03T01:45:45Z",
+      "completed": "2026-03-03T01:49:12Z",
+      "completion_summary": "Unified <leader>ao keymaps to match <leader>ac behavior. Created OpenCode visual selection module. Normal mode opens OpencodeCommands picker, visual mode prompts user and sends selection to OpenCode. Removed <leader>aoc, <leader>aoe, <leader>aot subcommands."
+    },
+    {
+      "project_number": 113,
+      "project_name": "review_proofchecker_opencode_virtues",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-03T00:10:48Z",
+      "last_updated": "2026-03-03T01:18:09Z",
+      "session_id": "sess_1772500132_e02406",
+      "researched": "2026-03-03T00:59:19Z",
+      "artifacts": [
+        {
+          "path": "specs/113_review_proofchecker_opencode_virtues/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive research report identifying 15 ProofChecker virtues prioritized into 3 tiers (Critical, High, Medium value). Key findings: ADRs, TESTING.md, validation scripts, and domain context as extensions would most benefit nvim system."
+        },
+        {
+          "path": "specs/113_review_proofchecker_opencode_virtues/reports/research-002.md",
+          "type": "research",
+          "summary": "Extended research comparing Logos/Theory/.opencode/ (best system) with nvim/.claude/. Identified 10 features to port for feature parity: documentation suite, parity tracking, checkpoint organization, MCP safety docs, and more. 34-hour implementation roadmap provided."
+        },
+        {
+          "path": "specs/113_review_proofchecker_opencode_virtues/reports/research-003.md",
+          "type": "research",
+          "summary": "Feature parity analysis identifying 11 gap categories between .opencode/ and .claude/, with 9 prioritized recommendations"
+        },
+        {
+          "path": "specs/113_review_proofchecker_opencode_virtues/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan for opencode feature parity including extension system, shared picker architecture, and context index"
+        },
+        {
+          "path": "specs/113_review_proofchecker_opencode_virtues/summaries/implementation-summary-20260302.md",
+          "type": "summary",
+          "summary": "Implementation summary for opencode feature parity: shared picker, extension system, context index"
+        }
+      ],
+      "planned": "2026-03-03T01:07:53Z",
+      "started": "2026-03-03T01:09:08Z",
+      "completed": "2026-03-03T01:18:09Z",
+      "completion_summary": "Implemented opencode feature parity with shared picker architecture supporting both .claude/ and .opencode/ directories, extension system with lean and formal domain extensions, and machine-readable context discovery via index.json.",
+      "claudemd_suggestions": "Added <leader>aoc keymap in which-key.lua, OpencodeCommands user command in opencode.lua, shared picker config at lua/neotex/plugins/ai/shared/picker/config.lua"
+    },
+    {
+      "project_number": 112,
+      "project_name": "fix_leader_ac_artifact_loader_project_overview",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-03T00:04:14Z",
+      "last_updated": "2026-03-03T00:31:32Z",
+      "session_id": "sess_1772497660_162aba",
+      "researched": "2026-03-03T00:09:44Z",
+      "artifacts": [
+        {
+          "path": "specs/112_fix_leader_ac_artifact_loader_project_overview/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report analyzing <leader>ac Load All sync behavior, project-overview.md exclusion gap, and CLAUDE.md file relationship"
+        },
+        {
+          "path": "specs/112_fix_leader_ac_artifact_loader_project_overview/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "3-phase implementation plan: Phase 1 adds exclude_patterns parameter to scan_directory_for_sync in scan.lua, Phase 2 applies context exclusions and removes root CLAUDE.md sync in sync.lua, Phase 3 adds test cases to scan_spec.lua"
+        },
+        {
+          "path": "specs/112_fix_leader_ac_artifact_loader_project_overview/summaries/implementation-summary-20260302.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-03T00:16:15Z",
+      "started": "2026-03-03T00:28:01Z",
+      "completed": "2026-03-03T00:31:32Z",
+      "completion_summary": "Added exclude_patterns parameter to scan_directory_for_sync() and configured CONTEXT_EXCLUDE_PATTERNS to skip project-overview.md and self-healing-implementation-details.md. Removed root CLAUDE.md sync (only .claude/CLAUDE.md syncs now). Added 5 tests."
+    },
+    {
+      "project_number": 111,
+      "project_name": "compare_opencode_agent_systems",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-02T23:58:29Z",
+      "last_updated": "2026-03-03T00:48:23Z",
+      "session_id": "sess_1772498376_223740",
+      "researched": "2026-03-03T00:45:00Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/111_compare_opencode_agent_systems/reports/research-001.md",
+          "summary": "Comprehensive comparison of nvim and ProofChecker .opencode systems across 10 dimensions (architecture, agents, domain knowledge, documentation, hooks, extensions, validation, state management) with recommendation to use nvim as base architecture and port ProofChecker domain context as extensions"
+        },
+        {
+          "type": "research",
+          "path": "specs/111_compare_opencode_agent_systems/reports/research-002.md",
+          "summary": "Comprehensive comparison of Theory/.opencode/ against nvim/.opencode/ and nvim/.claude/, with detailed loss/gain analysis and 9-phase migration strategy for replacing nvim/.opencode/ with Theory/.opencode/ base while preserving neovim-specific elements and achieving .claude/ feature parity"
+        },
+        {
+          "path": "specs/111_compare_opencode_agent_systems/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "6-phase migration plan to replace nvim/.opencode/ with Theory/.opencode/ base, porting neovim-specific agents, skills, and domain context"
+        },
+        {
+          "path": "specs/111_compare_opencode_agent_systems/summaries/implementation-summary-20260303.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results: 321 files, 17 agents, 22 skills"
+        }
+      ],
+      "planned": "2026-03-03T00:38:17Z",
+      "started": "2026-03-03T00:39:54Z",
+      "completed": "2026-03-03T00:48:23Z",
+      "completion_summary": "Migrated nvim/.opencode/ to Theory/.opencode/ base, porting neovim-specific agents (3), skills (2), and domain context (17 files). Updated OPENCODE.md and settings.json for nvim project. Final system: 321 files, 17 agents, 22 skills.",
+      "claudemd_suggestions": "Created nvim/.opencode/ with Theory base plus neovim-specific agents/skills/context. Modified OPENCODE.md, settings.json, orchestration-core.md, index.md, project-overview.md, and added neovim-lua.md rules."
+    },
+    {
+      "project_number": 110,
+      "project_name": "separate_extension_files_from_core_agent_system",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-02T23:30:27Z",
+      "last_updated": "2026-03-03T00:00:11Z",
+      "session_id": "sess_1772495480_cc9033",
+      "researched": "2026-03-02T23:42:48Z",
+      "artifacts": [
+        {
+          "path": "specs/110_separate_extension_files_from_core_agent_system/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with complete file inventory (25 extension-specific files in core), extension vs core comparison, 10 cross-reference files identified for updates, sync mechanism analysis, document-converter extension proposal, and 4-phase implementation plan"
+        },
+        {
+          "path": "specs/110_separate_extension_files_from_core_agent_system/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "4-phase implementation plan to remove 25 extension-specific files from core .claude/ and create document-converter extension"
+        },
+        {
+          "path": "specs/110_separate_extension_files_from_core_agent_system/summaries/implementation-summary-20260302.md",
+          "type": "summary",
+          "summary": "Implementation summary with full file change list and verification results"
+        }
+      ],
+      "planned": "2026-03-02T23:48:00Z",
+      "started": "2026-03-02T23:51:53Z",
+      "completed": "2026-03-03T00:00:11Z",
+      "completion_summary": "Removed 25 extension-specific files from core .claude/ directory, created document-converter extension, and updated 14 reference files to point to extension system for latex/typst/document-converter capabilities.",
+      "claudemd_suggestions": "Removed latex/typst from CLAUDE.md routing tables and skill mappings. Added notes pointing to .claude/extensions/ for additional language support. Updated 14 files total including CLAUDE.md, README.md, routing.md, system-overview.md, and various docs/guides."
+    },
+    {
+      "project_number": 109,
+      "project_name": "generic_agent_system_portability",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-02T22:51:47Z",
+      "last_updated": "2026-03-02T23:19:58Z",
+      "session_id": "sess_1772493182_a83c6d",
+      "researched": "2026-03-02T22:58:03Z",
+      "artifacts": [
+        {
+          "path": "specs/109_generic_agent_system_portability/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with file audit, sync mechanism analysis, CLAUDE.md section-by-section breakdown, proposed architecture, and 3-phase implementation plan"
+        },
+        {
+          "path": "specs/109_generic_agent_system_portability/plans/implementation-002.md",
+          "type": "plan",
+          "summary": "Revised 3-phase plan: update CLAUDE.md header only, create update-project.md, verify. Keeps all neovim tooling."
+        },
+        {
+          "path": "specs/109_generic_agent_system_portability/summaries/implementation-summary-20260302.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-02T23:08:05Z",
+      "started": "2026-03-02T23:13:53Z",
+      "completed": "2026-03-02T23:19:58Z",
+      "completion_summary": "Made the .claude/ agent system portable by updating only the documentation layer. Changed CLAUDE.md title to 'Agent System', updated Project Structure section with links to project-specific docs, and created update-project.md as a generation guide for new repositories.",
+      "claudemd_suggestions": "Changed CLAUDE.md title from 'Neovim Configuration Management System' to 'Agent System', updated Project Structure section to be generic with links to project-overview.md, created update-project.md for new repository guidance"
+    },
+    {
+      "project_number": 108,
+      "project_name": "extension_asterisk_indicator",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-02T22:18:43Z",
+      "last_updated": "2026-03-02T22:31:02Z",
+      "session_id": "sess_1772490519_aa8fad",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/108_extension_asterisk_indicator/reports/research-001.md",
+          "summary": "Research report analyzing the picker display system, extension status tracking, and recommended single-function implementation approach"
+        },
+        {
+          "path": "specs/108_extension_asterisk_indicator/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "1-phase implementation plan for adding asterisk prefix to active extensions in picker display"
+        },
+        {
+          "path": "specs/108_extension_asterisk_indicator/summaries/implementation-summary-20260302.md",
+          "type": "summary",
+          "summary": "Implementation summary for task 108"
+        }
+      ],
+      "planned": "2026-03-02T22:27:14Z",
+      "completed": "2026-03-02T22:31:02Z",
+      "completion_summary": "Added asterisk prefix to extensions with active status in the <leader>ac picker, bringing extensions into alignment with all other artifact types that show * for local/active items."
+    },
+    {
+      "project_number": 101,
+      "project_name": "add_contents_to_language_extensions",
+      "status": "orphan_archived",
+      "archived": "2026-03-04T00:49:58Z",
+      "source": "orphan_recovery",
+      "detected_artifacts": {
+        "has_reports": true,
+        "has_plans": true,
+        "has_summaries": true
+      }
+    },
+    {
+      "project_number": 102,
+      "project_name": "review_extensions_populate_missing_resources",
+      "status": "orphan_archived",
+      "archived": "2026-03-04T00:49:58Z",
+      "source": "orphan_recovery",
+      "detected_artifacts": {
+        "has_reports": true,
+        "has_plans": true,
+        "has_summaries": true
+      }
+    },
+    {
+      "project_number": 103,
+      "project_name": "compare_opencode_agent_systems_against_claude",
+      "status": "orphan_archived",
+      "archived": "2026-03-04T00:49:58Z",
+      "source": "orphan_recovery",
+      "detected_artifacts": {
+        "has_reports": true,
+        "has_plans": true,
+        "has_summaries": true
+      }
+    },
+    {
+      "project_number": 104,
+      "project_name": "fix_implement_phase_status_live_updates",
+      "status": "orphan_archived",
+      "archived": "2026-03-04T00:49:58Z",
+      "source": "orphan_recovery",
+      "detected_artifacts": {
+        "has_reports": true,
+        "has_plans": true,
+        "has_summaries": true
+      }
+    },
+    {
+      "project_number": 105,
+      "project_name": "create_web_extension",
+      "status": "orphan_archived",
+      "archived": "2026-03-04T00:49:58Z",
+      "source": "orphan_recovery",
+      "detected_artifacts": {
+        "has_reports": true,
+        "has_plans": true,
+        "has_summaries": true
+      }
+    },
+    {
+      "project_number": 106,
+      "project_name": "review_dotfiles_claude_nix_extension",
+      "status": "orphan_archived",
+      "archived": "2026-03-04T00:49:58Z",
+      "source": "orphan_recovery",
+      "detected_artifacts": {
+        "has_reports": true,
+        "has_plans": true,
+        "has_summaries": true
+      }
+    },
+    {
+      "project_number": 107,
+      "project_name": "port_tts_notification_hooks",
+      "status": "orphan_archived",
+      "archived": "2026-03-04T00:49:58Z",
+      "source": "orphan_recovery",
+      "detected_artifacts": {
+        "has_reports": true,
+        "has_plans": true,
+        "has_summaries": true
+      }
+    }
   ]
 }
