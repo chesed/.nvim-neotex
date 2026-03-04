@@ -77,8 +77,8 @@ This plan strengthens the phase status synchronization across state.json, TODO.m
 
 ### Phase 2: Update /implement Command Specification
 
-**Status**: [NOT STARTED]
-**Estimated effort**: 1 hour
+**Status**: [COMPLETED]
+**Completed**: 2026-03-04
 
 **Objectives**:
 1. Strengthen Step 6 of `/implement` command to explicitly require phase status updates
@@ -100,9 +100,10 @@ This plan strengthens the phase status synchronization across state.json, TODO.m
 4. Update the example workflow to show status transitions explicitly
 
 **Verification**:
-- [ ] implement.md updated with clear Phase Execution Requirements
-- [ ] All status markers ([NOT STARTED] → [IN PROGRESS] → [COMPLETED]/[PARTIAL]) documented
-- [ ] Per-phase commit requirement explicitly stated
+- [✓] implement.md updated with clear Phase Execution Requirements
+- [✓] All status markers ([NOT STARTED] → [IN PROGRESS] → [COMPLETED]/[PARTIAL]) documented
+- [✓] Per-phase commit requirement explicitly stated
+- [✓] Note added: "Phase status in the plan file is the source of truth for resume points"
 
 ---
 

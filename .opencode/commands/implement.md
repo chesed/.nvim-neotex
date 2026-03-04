@@ -79,6 +79,20 @@ For each phase with status `[NOT STARTED]` or `[PARTIAL]` (skip `[COMPLETED]`):
 6. **Commit phase changes** - Stage and commit only files modified in this phase
 7. Briefly report phase completion before moving to next
 
+**IMPORTANT**: Phase status in the plan file is the **source of truth** for resume points. If implementation is interrupted, the next `/implement` call will use the phase status markers to determine which phases remain. Always keep phase statuses synchronized with actual progress.
+
+**Phase Status Lifecycle**:
+```
+[NOT STARTED] → [IN PROGRESS] → [COMPLETED] (success)
+                              ↘ [PARTIAL] (blocked/failed)
+```
+
+**Status Definitions**:
+- `[NOT STARTED]` - Phase not yet begun
+- `[IN PROGRESS]` - Phase currently being executed (only one phase should be IN PROGRESS at a time)
+- `[COMPLETED]` - Phase successfully finished with all verification criteria met
+- `[PARTIAL]` - Phase started but could not complete (blocking issue or failure)
+
 **Per-phase commit**:
 ```bash
 # After phase completion, commit only changed files
