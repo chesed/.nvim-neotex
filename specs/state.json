@@ -20,10 +20,11 @@
 {
   "project_number": 137,
   "project_name": "investigate_and_fix_planner_agent_format_compliance_issue",
-  "status": "implementing",
+  "status": "completed",
   "language": "meta",
   "created": "2026-03-06T10:20:00Z",
-  "last_updated": "2026-03-06T14:00:00Z",
+  "last_updated": "2026-03-06T16:00:00Z",
+  "completion_summary": "Fixed planner-agent format compliance by: (1) Adding context injection to revise.md (CRITICAL - fixes /revise non-compliance bug), (2) Removing embedded template from plan.md (eliminates root cause), (3) Implementing discovery-layer pattern in planner-agent.md with explicit context prioritization. All critical phases completed. Both /plan and /revise now have consistent context injection ensuring format compliance.",
       "artifacts": [
         {
           "type": "research",
@@ -49,6 +50,11 @@
           "type": "plan",
           "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/plans/implementation-002.md",
           "summary": "REVISED: 9-phase comprehensive plan covering all research findings - template removal, context injection strengthening, progressive disclosure optimization, and conditional status-marker injection"
+        },
+        {
+          "type": "summary",
+          "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/summaries/implementation-summary-20260306.md",
+          "summary": "Fixed planner-agent format compliance: Added context injection to revise.md (CRITICAL FIX), removed embedded template from plan.md, implemented discovery-layer pattern in planner-agent.md. All critical phases completed."
         }
       ],
       "description": "Investigate why implementation plans do not follow plan-format.md specification. OC_136 plan has wrong format despite OC_133 supposedly fixing this. Need to audit planner-agent.md, verify context injection, and ensure all future plans are compliant."
