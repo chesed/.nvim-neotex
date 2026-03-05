@@ -86,27 +86,39 @@ This revised implementation plan addresses all findings from the three research 
 
 **Timing**: 1 hour
 
-### Phase 2: Audit All Command Specifications for Embedded Templates [NOT STARTED]
+### Phase 2: Audit All Command Specifications for Embedded Templates [COMPLETED]
 
 **Goal**: Identify all command specifications that may contain embedded plan templates
 
-**Tasks**:
-- [ ] Search all `.opencode/commands/*.md` files for embedded plan templates
-- [ ] Look for patterns: "## Phases", "**Status**: [NOT STARTED]", "**Objectives**:", "**Estimated effort**:"
-- [ ] Check for any markdown blocks showing plan structures
-- [ ] Check for any embedded skill templates or agent definitions
-- [ ] Document findings with file paths and line numbers
-- [ ] Create list of files requiring template removal
+**Tasks Completed**:
+- [x] Searched all `.opencode/commands/*.md` files for embedded plan templates
+- [x] Looked for patterns: "## Phases", "**Status**: [NOT STARTED]", "**Objectives**:", "**Estimated effort**:"
+- [x] Checked for markdown blocks showing plan structures
+- [x] Checked for embedded skill templates or agent definitions
 
-**Files to Examine**:
-- `.opencode/commands/*.md` (all command specs)
+**Audit Results**:
 
-**Verification**:
-- [ ] Complete audit report showing all embedded templates found
-- [ ] List of files and line numbers to modify
-- [ ] No embedded templates remain undetected
+| File | Embedded Template Found | Action Taken |
+|------|------------------------|--------------|
+| plan.md | YES (lines 71-125, non-compliant) | REMOVED in Phase 1 |
+| task.md | NO - Contains TODO.md entry example only | None needed |
+| revise.md | NO - Routes to planner-agent | None needed |
+| research.md | NO - Routes to researcher | None needed |
+| implement.md | NO - Routes to implementer | None needed |
+| remember.md | NO - Routes to skill-remember | None needed |
+| refresh.md | NO - Routes to skill-refresh | None needed |
+| todo.md | NO - Routes to orchestrator | None needed |
+| learn.md | NO - Routes to skill-learn | None needed |
+| errors.md | NO - Routes to orchestrator | None needed |
+| review.md | NO - Routes to planner-agent | None needed |
+| meta.md | NO - Routes to meta-builder | None needed |
 
-**Timing**: 1.5 hours
+**Findings**:
+- Only plan.md contained a non-compliant embedded plan template
+- All other commands properly delegate to skills/agents without embedded templates
+- No additional files require template removal
+
+**Timing**: 0.5 hours (shorter than estimated 1.5 hours - only plan.md had embedded template)
 
 ### Phase 3: Remove Embedded Templates from Other Commands [NOT STARTED]
 
