@@ -62,98 +62,26 @@ Edit `specs/TODO.md`: change current status marker to `[PLANNING]` on the `### O
 
 Check for `specs/OC_NNN_<project_name>/reports/research-001.md`. If it exists, read it for context. If not, plan from the task description alone.
 
-### 6. Create implementation plan
+### 6. Invoke skill-planner
 
-Decompose the task into phases. Each phase should be independently completable (2-4 hours of work). Use the task description, research findings, and any notes from $ARGUMENTS.
+**Call skill tool** to execute the planning workflow:
 
-**CRITICAL**: Do NOT use embedded templates in this command specification. 
-All plan format specifications must come from context-injected files only.
-
-Create directory: `mkdir -p specs/OC_NNN_<project_name>/plans/`
-
-Write the plan file by delegating to planner-agent with injected context:
-
-**Delegate to planner-agent** with prompt:
 ```
-Create implementation plan for task {N}.
-
-<system_context>
-Using the following format standards and guidelines:
-{plan_format}
-{status_markers}
-{task_breakdown}
-</system_context>
-
-IMPORTANT: Use ONLY the injected plan-format.md context. 
-Do NOT reference any embedded templates from command specifications.
-If plan_format is not available, load @.opencode/context/core/formats/plan-format.md directly.
+→ Tool: skill
+→ Name: skill-planner
+→ Prompt: Create implementation plan for task {N} with language {language} and research context from {research_content}
 ```
 
-**Where**: {plan_format}, {status_markers}, {task_breakdown} are injected via skill-planner context.
+The skill-planner will:
+1. Load context files (plan-format.md, status-markers.md, task-breakdown.md)
+2. Execute preflight (validate, display header, update status to PLANNING)
+3. **Call Task tool with `subagent_type="planner-agent"`** to create the plan
+4. Execute postflight (update state.json to PLANNED, update TODO.md, commit changes)
+5. Return results
 
-**Output file**: `specs/OC_NNN_<project_name>/plans/implementation-001.md`
+**CRITICAL**: Do NOT implement planning logic in this command. All planning logic belongs in skill-planner and planner-agent.
 
-**Format Reference**: All plan files must follow `.opencode/context/core/formats/plan-format.md` exactly.
-Key requirements:
-- Metadata block with Task, Status, Effort, Dependencies, Research Inputs, Artifacts, Standards, Type
-- Section named "## Implementation Phases" (not "## Phases")
-- Phase format: "### Phase N: Name [STATUS]" (status IN heading, not separate line)
-- Phase fields: **Goal**, **Tasks**, **Timing** (not Objectives, Estimated effort)
-- No `---` separators between phases
-- Required sections: Goals & Non-Goals, Risks & Mitigations, Testing & Validation, Artifacts & Outputs, Rollback/Contingency
-
-### 7. Update status to PLANNED
-
-Edit `specs/state.json`:
-- Set `status` to `"planned"`
-- Update `last_updated`
-- Add to `artifacts` array:
-```json
-{
-  "type": "plan",
-  "path": "specs/OC_NNN_<project_name>/plans/implementation-001.md",
-  "summary": "<one sentence>"
-}
-```
-
-Edit `specs/TODO.md` on the `### OC_N.` entry:
-- Change `[PLANNING]` to `[PLANNED]`
-- Add line: `- **Plan**: [implementation-001.md](OC_NNN_<project_name>/plans/implementation-001.md)`
-
-### 8. Commit changes
-
-Create a targeted commit with only the changed files:
-
-```bash
-# Generate session ID
-session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
-
-# Get list of changed files
-git status --porcelain | awk '{print $NF}' > /tmp/changed_files_$$.txt
-changed_files=$(cat /tmp/changed_files_$$.txt | tr '\n' ' ')
-
-# Commit if there are changes
-if [ -n "$changed_files" ]; then
-    git add $changed_files
-    git commit -m "task OC_${N}: create implementation plan
-
-Session: ${session_id}
-
-Co-Authored-By: OpenCode <noreply@opencode.ai>" || echo "Warning: Commit failed but plan created"
-fi
-
-# Cleanup
-rm -f /tmp/changed_files_$$.txt
-```
-
-**Files committed**:
-- `specs/OC_NNN_<project_name>/plans/implementation-001.md` - Plan file
-- `specs/state.json` - Status and artifact updates
-- `specs/TODO.md` - Status marker and plan link
-
-**Error handling**: Commit failures are non-blocking. Log a warning and continue.
-
-### 9. Report to user
+### 7. Report results
 
 Show:
 - Plan path
@@ -164,10 +92,9 @@ Show:
 
 ## Rules
 
-- Write the plan file BEFORE updating status to PLANNED
+- The skill-planner handles ALL planning logic - do not implement in command
 - Phases should be granular enough to be resumable if interrupted
 - Directories use 3-digit padded number: `OC_174_slug` not `OC_17_slug`
 - If plan already exists, create `implementation-002.md` (increment version)
-- Commit changes after creating plan (non-blocking — log warning if commit fails)
 - **NEVER use embedded plan templates** - always delegate to planner-agent with injected plan-format.md context
 - **NO EMBEDDED TEMPLATES**: Do not include example plan structures in this file - they violate plan-format.md
