@@ -3725,6 +3725,17 @@
       ],
       "description": "Skills are being displayed instead of executed. When /plan command invokes skill-planner, the skill specification content is output rather than delegating to planner-agent via Task tool. Need to audit all skill-command integration points and fix the delegation mechanism system-wide.",
       "completion_summary": "Fixed agent delegation system by adding explicit skill tool invocation to 3 core commands (plan, implement, research). Commands now properly delegate: Command → Skill → Task → Agent. 40-45% line reduction by removing duplicate logic. Root cause: commands described skills but never invoked them."
+    },
+    {
+      "project_number": 144,
+      "project_name": "fix_systemic_metadata_delegation",
+      "status": "abandoned",
+      "language": "meta",
+      "created": "2026-03-07T12:00:00Z",
+      "last_updated": "2026-03-07T12:00:00Z",
+      "artifacts": [],
+      "description": "Implement systemic fix for metadata delegation across all 6 skill/agent pairs. Currently, when skills delegate to agents via Task tool, the metadata_file_path parameter is missing from the delegation prompt. This causes agents to not know where to write .return-meta.json files, which breaks the postflight artifact linking system.",
+      "archived": "2026-03-05T22:54:07Z"
     }
   ],
   "abandoned_projects": []

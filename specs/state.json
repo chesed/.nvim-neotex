@@ -20,22 +20,13 @@
     {
       "project_number": 145,
       "project_name": "restore_settings_json_and_state_sync",
-      "status": "pending",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-07T12:00:00Z",
-      "last_updated": "2026-03-07T12:00:00Z",
+      "last_updated": "2026-03-05T22:59:54Z",
       "artifacts": [],
-      "description": "Fix the settings.json format change that removed critical PreToolUse and PostToolUse hooks. The new format removed permissions object and validation hooks that ensured TODO.md and state.json stayed synchronized after writes. Need to restore either the old format or adapt the hooks to work with the new format."
-    },
-    {
-      "project_number": 144,
-      "project_name": "fix_systemic_metadata_delegation",
-      "status": "pending",
-      "language": "meta",
-      "created": "2026-03-07T12:00:00Z",
-      "last_updated": "2026-03-07T12:00:00Z",
-      "artifacts": [],
-      "description": "Implement systemic fix for metadata delegation across all 6 skill/agent pairs. Currently, when skills delegate to agents via Task tool, the metadata_file_path parameter is missing from the delegation prompt. This causes agents to not know where to write .return-meta.json files, which breaks the postflight artifact linking system."
+      "description": "Fix the settings.json format change that removed critical PreToolUse and PostToolUse hooks. The new format removed permissions object and validation hooks that ensured TODO.md and state.json stayed synchronized after writes. Need to restore either the old format or adapt the hooks to work with the new format.",
+      "researched": "2026-03-05T22:59:54Z"
     },
     {
       "project_number": 143,
