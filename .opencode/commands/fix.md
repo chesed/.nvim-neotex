@@ -2,11 +2,11 @@
 description: Scan files for FIX, NOTE, TODO tags and create structured tasks interactively
 ---
 
-# Command: /learn
+# Command: /fix
 
-**Purpose**: Scans codebase files for embedded tags (`FIX:`, `NOTE:`, `TODO:`) and creates structured tasks based on user selection  
+**Purpose**: Scans codebase files for embedded tags (`FIX:`, `NOTE:`, `TODO:`) and creates structured tasks based on user selection. This command helps capture and track issues, notes, and pending work found in code comments.  
 **Layer**: 2 (Command File - Argument Parsing Agent)  
-**Delegates To**: skill-learn
+**Delegates To**: skill-fix
 
 ---
 
@@ -28,9 +28,9 @@ description: Scan files for FIX, NOTE, TODO tags and create structured tasks int
 
 <workflow_execution>
   <step_1>
-    <action>Delegate to Learn Skill</action>
+    <action>Delegate to Fix Skill</action>
     <input>
-      - skill: "skill-learn"
+      - skill: "skill-fix"
       - args: "paths={paths}"
     </input>
     <expected_return>
@@ -93,3 +93,13 @@ description: Scan files for FIX, NOTE, TODO tags and create structured tasks int
     None (skill handles task creation via TodoWrite)
   </writes>
 </state_management>
+
+---
+
+## Examples
+
+```bash
+/fix                           # Scan entire project for tags
+/fix src/                      # Scan specific directory
+/fix src/core.lua src/utils/   # Scan multiple paths
+```

@@ -107,51 +107,53 @@ Recommended order: Wait for OC_143 -> Create skill-todo -> Rename /learn (clean-
 2. If skill fails, restore embedded logic in todo.md
 3. Remove skill-todo directory if extraction fails
 
-### Phase 3: Rename /learn to /fix (Clean-Break) [NOT STARTED]
+### Phase 3: Rename /learn to /fix (Clean-Break) [COMPLETED]
 
 **Goal**: Rename command and skill from /learn to /fix with complete removal - NO backwards compatibility
 
 **CRITICAL**: This phase follows a clean-break approach. The /learn command will be completely removed with NO aliases, NO deprecated fallback, and NO backwards compatibility. All references must be updated atomically.
 
 **Tasks**:
-- [ ] Pre-flight: grep entire codebase for all /learn references
-  - [ ] Search .opencode/commands/ for "learn" references
-  - [ ] Search .opencode/skills/ for "learn" references
-  - [ ] Search .opencode/ root for "learn" references
-  - [ ] Document all files requiring updates (create checklist)
-- [ ] Rename .opencode/commands/learn.md to fix.md
-- [ ] Update fix.md command specification:
-  - [ ] Change command name from /learn to /fix
-  - [ ] Update description to emphasize "fix/correct" semantics
-  - [ ] Remove ALL references to /learn command
-  - [ ] Modify examples to show fixing patterns
-- [ ] Rename .opencode/skills/skill-learn/ to skill-fix/
-- [ ] Update skill-fix/SKILL.md:
-  - [ ] Change all /learn references to /fix
-  - [ ] Update agent metadata and delegation
-  - [ ] Modify examples for fix context
-- [ ] Update all internal references (atomically, using the checklist from pre-flight):
-  - [ ] Update all "learn" in commands directory to "fix"
-  - [ ] Update all "learn" in skills directory to "fix"
-  - [ ] Update any hardcoded paths to skill-learn
-  - [ ] Update documentation references
-  - [ ] Update any test files or examples
-- [ ] Delete verification - ensure NO /learn remains:
-  - [ ] Run grep -r "/learn" .opencode/ to verify complete removal
-  - [ ] Run grep -r "skill-learn" .opencode/ to verify complete removal
-  - [ ] Verify no file named learn.md exists in commands/
-  - [ ] Verify no directory named skill-learn/ exists in skills/
-- [ ] Test /fix command works correctly
-- [ ] Verify no broken references remain
+- [x] Pre-flight: grep entire codebase for all /learn references
+  - [x] Search .opencode/commands/ for "learn" references
+  - [x] Search .opencode/skills/ for "learn" references
+  - [x] Search .opencode/ root for "learn" references
+  - [x] Document all files requiring updates (create checklist)
+- [x] Rename .opencode/commands/learn.md to fix.md
+- [x] Update fix.md command specification:
+  - [x] Change command name from /learn to /fix
+  - [x] Update description to emphasize "fix/correct" semantics
+  - [x] Remove ALL references to /learn command
+  - [x] Modify examples to show fixing patterns
+- [x] Rename .opencode/skills/skill-learn/ to skill-fix/
+- [x] Update skill-fix/SKILL.md:
+  - [x] Change all /learn references to /fix
+  - [x] Update agent metadata and delegation
+  - [x] Modify examples for fix context
+- [x] Update all internal references (atomically, using the checklist from pre-flight):
+  - [x] Update all "learn" in commands directory to "fix"
+  - [x] Update all "learn" in skills directory to "fix"
+  - [x] Update any hardcoded paths to skill-learn
+  - [x] Update documentation references
+  - [x] Update any test files or examples
+- [x] Delete verification - ensure NO /learn remains:
+  - [x] Run grep -r "/learn" .opencode/ to verify complete removal
+  - [x] Run grep -r "skill-learn" .opencode/ to verify complete removal
+  - [x] Verify no file named learn.md exists in commands/
+  - [x] Verify no directory named skill-learn/ exists in skills/
+- [x] Test /fix command works correctly
+- [x] Verify no broken references remain
 
 **Timing**: 3 hours (includes comprehensive reference sweep)
 
 **Verification Checklist** (MUST complete before proceeding):
-- [ ] grep -r "/learn" .opencode/ returns NO results
-- [ ] grep -r "skill-learn" .opencode/ returns NO results
-- [ ] /fix command responds correctly
-- [ ] All commands referencing /fix work correctly
-- [ ] Documentation shows /fix (not /learn)
+- [x] grep -r "/learn" .opencode/ returns NO results
+- [x] grep -r "skill-learn" .opencode/ returns NO results
+- [x] /fix command responds correctly
+- [x] All commands referencing /fix work correctly
+- [x] Documentation shows /fix (not /learn)
+
+**Completion Notes**: Clean-break rename complete. All /learn references removed atomically. Files updated: commands/remember.md, commands/README.md, commands/fix.md (new), skills/skill-remember/SKILL.md, skills/skill-fix/SKILL.md (new), docs/guides/user-guide.md, docs/guides/component-selection.md, docs/guides/documentation-audit-checklist.md, README.md. learn.md and skill-learn/ deleted.
 
 **Rollback**:
 - Phase 3 is ATOMIC: do NOT attempt partial rollback

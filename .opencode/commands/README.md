@@ -9,7 +9,7 @@ Slash command definitions for the Logos/Theory opencode system.
 - `/implement` - Execute implementation with resume support
 - `/lake` - Build Lean 4 project with automatic error repair
 - `/lean` - Manage Lean toolchain and Mathlib versions
-- `/learn` - Scan files for FIX:, NOTE:, TODO: tags and create structured tasks interactively
+- `/fix` - Scan files for FIX:, NOTE:, TODO: tags and create structured tasks interactively
 - `/meta` - Interactive system builder that creates TASKS for agent architecture changes (never implements directly)
 - `/plan` - Create implementation plan for a task
 - `/refresh` - Comprehensive cleanup of OpenCode resources

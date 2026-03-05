@@ -25,7 +25,7 @@ A comprehensive guide to using the `.opencode/` task management system commands 
    - [/errors](#errors-command)
 4. [Utility Commands](#utility-commands)
    - [/meta](#meta-command)
-   - [/learn](#learn-command)
+   - [/fix](#fix-command)
 5. [Quick Reference](#quick-reference)
 6. [Troubleshooting](#troubleshooting)
 
@@ -444,12 +444,12 @@ Creates tasks like:
 
 ---
 
-### /learn Command
+### /fix Command
 
 Scan for FIX:/NOTE:/TODO: tags and create tasks.
 
 ```
-/learn [PATH...]
+/fix [PATH...]
 ```
 
 **Arguments**:
@@ -468,13 +468,14 @@ Scan for FIX:/NOTE:/TODO: tags and create tasks.
 | Tag | Task Type | Behavior |
 |-----|-----------|----------|
 | `FIX:` | fix-it-task | Grouped into single task |
-| `NOTE:` | fix-it-task + learn-it-task | Creates task with dependency |
+| `NOTE:` | fix-it-task + note-task | Creates task with dependency |
 | `TODO:` | todo-task | Individual or grouped by topic |
 
 **Example**:
 ```
-/learn                           # Scan entire project
-/learn Theories/Modal/           # Scan specific directory
+/fix                           # Scan entire project
+/fix src/                      # Scan specific directory
+/fix src/core.lua src/utils/   # Scan multiple paths
 ```
 
 ---
@@ -500,7 +501,7 @@ Scan for FIX:/NOTE:/TODO: tags and create tasks.
 | `/lake` | `/lake [--clean] [--max-retries N]` | Build with repair |
 | `/errors` | `/errors [--fix N]` | Analyze errors |
 | `/meta` | `/meta [PROMPT] \| --analyze` | System builder |
-| `/learn` | `/learn [PATH...]` | Extract tags to tasks |
+| `/fix` | `/fix [PATH...]` | Extract tags to tasks |
 
 ### Status Transitions
 

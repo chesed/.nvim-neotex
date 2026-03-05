@@ -73,7 +73,7 @@ All commands follow the same lifecycle:
 | `/todo` | `/todo` | Archive completed/abandoned tasks, sync metrics |
 | `/errors` | `/errors` | Analyze error patterns, create fix plans |
 | `/meta` | `/meta` | System builder for .opencode/ changes |
-| `/learn` | `/learn [PATH...]` | Scan for FIX:/NOTE:/TODO: tags |
+| `/fix` | `/fix [PATH...]` | Scan for FIX:/NOTE:/TODO: tags |
 | `/refresh` | `/refresh [--dry-run] [--force]` | Clean orphaned processes and files |
 | `/convert` | `/convert FILE --to FORMAT` | Convert document formats |
 
@@ -91,7 +91,7 @@ Store and retrieve knowledge with the `/remember` command:
 ```
 
 The memory system provides:
-- **Checkbox Confirmation**: Interactive multi-select (like `/learn` command)
+- **Checkbox Confirmation**: Interactive multi-select
 - **Similarity Detection**: Finds related memories automatically
 - **MCP Integration**: Search memories via Obsidian CLI REST server
 - **Git Versioning**: All memories tracked in git
@@ -201,7 +201,7 @@ TODO.md and state.json must stay synchronized. Update state.json first (machine 
 | skill-status-sync | (direct execution) | Atomic status updates |
 | skill-refresh | (direct execution) | Process and file cleanup |
 | skill-git-workflow | (direct execution) | Scoped git commits |
-| skill-learn | (direct execution) | Scan for FIX:/NOTE:/TODO: tags |
+| skill-fix | (direct execution) | Scan for FIX:/NOTE:/TODO: tags |
 | skill-orchestrator | (direct execution) | Route commands to workflows |
 
 ## Rules and Conventions

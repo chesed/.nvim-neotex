@@ -1,6 +1,6 @@
 ---
 name: skill-remember
-description: Add a memory to the vault with checkbox-based multi-select confirmation (similar to /learn command pattern)
+description: Add a memory to the vault with checkbox-based multi-select confirmation
 allowed-tools: Bash, Edit, Read, Write, Grep, AskUserQuestion
 ---
 
@@ -13,7 +13,7 @@ Direct execution skill for adding memories to the vault using checkbox-based int
   <task_context>Add text or file content as memory entry with user-guided actions.</task_context>
 </context>
 
-<role>Direct execution skill for memory creation with checkbox-based confirmation (similar to /learn command).</role>
+<role>Direct execution skill for memory creation with checkbox-based confirmation.</role>
 
 <task>Parse input, generate memory entry, search for similar memories, present checkbox options, execute selected actions.</task>
 

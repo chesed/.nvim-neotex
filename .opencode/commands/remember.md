@@ -1,5 +1,5 @@
 ---
-description: Add a memory to the vault with interactive checkbox confirmation (similar to /learn command)
+description: Add a memory to the vault with interactive checkbox confirmation
 ---
 
 # Command: /remember
