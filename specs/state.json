@@ -7,7 +7,7 @@
       "status": "researched",
       "language": "meta",
       "created": "2026-03-05T22:00:00Z",
-      "last_updated": "2026-03-06T00:15:00Z",
+      "last_updated": "2026-03-06T00:45:00Z",
       "artifacts": [
         {
           "type": "research",
@@ -23,6 +23,11 @@
           "type": "research",
           "path": "specs/OC_136_design_and_implement_remember_command_for_intelligent_memory_management/reports/research-003.md",
           "summary": "Obsidian integration research: advantages (plain Markdown, bidirectional links, AI ecosystem), disadvantages (requires app for full features, large vault performance), hybrid indexing best practices for fast lookup"
+        },
+        {
+          "type": "research",
+          "path": "specs/OC_136_design_and_implement_remember_command_for_intelligent_memory_management/reports/research-004.md",
+          "summary": "Simplified design research: .opencode/memory/ vault structure, MCP server integration, --remember flag for /research, minimal viable implementation approach"
         }
       ],
       "description": "Design and implement a `/remember` command for intelligent memory management that takes prompts or file paths, analyzes content, compares with existing memory files, conducts research when needed, and proposes additions via interactive checkboxes"
