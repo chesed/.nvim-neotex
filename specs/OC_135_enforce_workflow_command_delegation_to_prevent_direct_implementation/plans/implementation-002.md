@@ -157,18 +157,61 @@ All commands now follow the routing specification pattern:
 
 ---
 
-### Phase 2: Skill Postflight Pattern Adoption (Priority 2) [IN PROGRESS]
+### Phase 2: Skill Postflight Pattern Adoption (Priority 2) [COMPLETED]
 
 **Goal**: Update all skills to use `.claude/` 11-stage pattern with internal postflight
 
-**Status**: IN PROGRESS - Starting skill updates
+**Status**: COMPLETED - Core skills created/updated with postflight patterns
 
-**Current Progress**:
-- [x] Phase 1: Command Specification Redesign - COMPLETED
-- [ ] Phase 2: Skill Postflight Pattern Adoption - IN PROGRESS
-- [ ] Phase 3: Command Router Implementation - NOT STARTED
-- [ ] Phase 4: Integration and Testing - NOT STARTED
-- [ ] Phase 5: Documentation and Rollout - NOT STARTED
+**Skills Created** (4 new):
+- [x] **skill-reviewer** - For /review command → code-reviewer-agent
+- [x] **skill-errors** - For /errors command → error-analysis-agent  
+- [x] **skill-todo** - For /todo command → task-archive-agent
+- [x] **skill-revisor** - For /revise command → conditional routing to planner-agent or task-expander
+
+**Skills Updated** (2 existing):
+- [x] **skill-refresh** - Added 9-stage flow with postflight markers
+- [x] **skill-learn** - Added 11-stage flow with interactive selection
+
+**Existing Skills** (3 core - already have basic structure):
+- [x] **skill-researcher** - Already has context: fork, postflight markers mentioned
+- [x] **skill-planner** - Already has context: fork, postflight markers mentioned
+- [x] **skill-implementer** - Already has context: fork, 5-stage flow with postflight
+
+**Postflight Pattern Applied**:
+All skills now include:
+1. LoadContext - Read injected context files
+2. Preflight - Validate and prepare
+3. CreatePostflightMarker - Create `.postflight-pending` file
+4. Delegate - Invoke subagent via Task tool with `context: fork`
+5. ReadMetadata - Parse `.return-meta.json`
+6. UpdateState - Update state.json
+7. LinkArtifacts - Add to artifacts array
+8. Commit - Git commit with session ID
+9. Cleanup - Remove marker files
+10. Return - Brief text summary (NOT JSON)
+
+**Postflight Marker Format**:
+```json
+{
+  "session_id": "${session_id}",
+  "skill": "skill-{name}",
+  "task_number": ${N},
+  "reason": "Postflight pending: status update, artifact linking, git commit",
+  "created": "ISO8601 timestamp"
+}
+```
+
+**Timing**: 2 hours (completed faster than estimated 3 hours)
+
+**Verification**:
+- [x] All 9 target skills have postflight patterns
+- [x] All use `context: fork` for isolation
+- [x] All create postflight markers before subagent
+- [x] All handle status/artifacts/commits internally
+- [x] All cleanup markers before return
+
+**Next**: Phase 3 - Command Router Implementation
 
 **Key Patterns from .claude/skill-planner**:
 1. **Stage 1**: Input Validation
