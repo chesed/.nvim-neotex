@@ -8,7 +8,7 @@ next_project_number: 135
 
 ### OC_135. Enforce workflow command delegation to prevent direct implementation
 - **Effort**: 3-4 hours
-- **Status**: [PARTIAL]
+- **Status**: [IMPLEMENTING]
 - **Researched**: 2026-03-05
 - **Revised**: 2026-03-05
 - **Implemented**: 2026-03-05
