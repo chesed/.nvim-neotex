@@ -8,11 +8,11 @@ next_project_number: 142
 
 ### OC_141. Fix agent delegation system failure
 - **Effort**: 4-6 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: None (foundational fix)
 - **Research**: [research-001.md](OC_141_fix_agent_delegation_system_failure/reports/research-001.md) - Critical system failure: Skills displayed instead of executed
-- **Plan**: Needed
+- **Plan**: [implementation-001.md](OC_141_fix_agent_delegation_system_failure/plans/implementation-001.md) - 7-phase systematic audit and fix of skill-to-agent delegation
 
 **Description**: Skills are being displayed instead of executed. When `/plan` command attempts to invoke skill-planner, the skill specification content is output rather than delegating to planner-agent via Task tool. This is a system-wide failure affecting all workflow commands that depend on skill-to-agent delegation.
 
@@ -30,11 +30,11 @@ next_project_number: 142
 
 ### OC_140. Document progressive disclosure patterns in context-loading guide
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: OC_137 (completed)
 - **Research**: [research-001.md](OC_140_document_progressive_disclosure_patterns/reports/research-001.md) - Documentation needed for stage-progressive loading, conditional injection, discovery-layer pattern, context budgets, and troubleshooting
-- **Plan**: Needed
+- **Plan**: [implementation-001.md](OC_141_fix_agent_delegation_system_failure/plans/implementation-001.md) - 7-phase systematic audit and fix of skill-to-agent delegation
 
 **Description**: Follow-up to OC_137 Phase 8. Update context-loading-best-practices.md with progressive disclosure patterns: stage-progressive loading, conditional context injection, discovery-layer pattern, context budget guidelines (keep under 800 lines), and troubleshooting section for context injection verification.
 
@@ -75,11 +75,11 @@ next_project_number: 142
 
 ### OC_138. Fix plan metadata status synchronization
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](OC_138_fix_plan_metadata_status_synchronization/reports/research-001.md) - Root cause: synchronization protocol only updates state.json and TODO.md, missing plan file line 4 metadata status
-- **Plan**: Needed
+- **Plan**: [implementation-001.md](OC_141_fix_agent_delegation_system_failure/plans/implementation-001.md) - 7-phase systematic audit and fix of skill-to-agent delegation
 
 **Description**: Fix the three-way status synchronization gap identified during OC_136 implementation. When tasks complete, the plan file's line 4 status metadata (`- **Status**: [NOT STARTED]`) is not updated, while state.json and TODO.md are correctly synchronized. This creates confusion and has persisted through multiple previous fix attempts.
 
@@ -364,7 +364,7 @@ Confirmation & Summary
 
 ### 87. Investigate terminal directory change when opening neovim in wezterm
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-02-13
 - **Research Completed**: 2026-02-13
 - **Language**: neovim
