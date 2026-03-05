@@ -1,20 +1,49 @@
 ---
-next_project_number: 136
+next_project_number: 137
 ---
 
 # TODO
 
 ## Tasks
 
+### OC_137. Investigate and fix planner-agent format compliance issue
+- **Effort**: 3-4 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [research-001.md](OC_137_investigate_and_fix_planner_agent_format_compliance_issue/reports/research-001.md) - Root cause identified: context injection failure in certain invocation paths causes agent to fall back to incorrect template
+- **Plan**: Needed
+
+**Description**: Investigation into why implementation plans created by opencode do not follow the plan-format.md specification, despite task OC_133 supposedly fixing this issue. OC_136 plan (created today) has wrong format while OC_135 plans (created after OC_133) have correct format.
+
+**Root Cause Hypotheses**:
+1. Regression in planner-agent.md after OC_133 fix
+2. Context injection not working properly
+3. Template still has wrong format embedded
+4. Verification steps not being executed
+5. Different invocation paths produce different results
+
+**Required Investigation**:
+1. Audit planner-agent.md current state vs plan-format.md requirements
+2. Compare compliant (OC_135) vs non-compliant (OC_136) plans
+3. Verify context injection is working
+4. Test plan creation via different paths
+5. Identify why verification isn't catching non-compliance
+
+**Expected Outcome**:
+- All plans must follow plan-format.md specification
+- Automated verification prevents non-compliant plans
+- Clear documentation of proper invocation path
+
 ### OC_136. Design and implement `/remember` command for intelligent memory management
 - **Effort**: 6-8 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Researched**: 2026-03-05
 - **Planned**: 2026-03-06
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](OC_136_design_and_implement_remember_command_for_intelligent_memory_management/reports/research-001.md), [research-002.md](OC_136_design_and_implement_remember_command_for_intelligent_memory_management/reports/research-002.md), [research-003.md](OC_136_design_and_implement_remember_command_for_intelligent_memory_management/reports/research-003.md), [research-004.md](OC_136_design_and_implement_remember_command_for_intelligent_memory_management/reports/research-004.md)
-- **Plan**: [implementation-001.md](OC_136_design_and_implement_remember_command_for_intelligent_memory_management/plans/implementation-001.md)
+- **Plan**: [implementation-003.md](OC_136_design_and_implement_remember_command_for_intelligent_memory_management/plans/implementation-003.md) (Follows plan-format.md specification)
 
 **Description**: Design and implement a `/remember` command that takes either a prompt or file path as input, learns what it can from what has been passed in, compares existing content in the `.opencode/context/memory/` files, conducts further research online if more information would be helpful, identifies key additions to make to the memory files in a natural and well-orchestrated way, then proposes these additions for the user to approve with interactive checkboxes.
 

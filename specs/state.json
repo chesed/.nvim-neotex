@@ -1,13 +1,29 @@
 {
-  "next_project_number": 137,
+  "next_project_number": 138,
   "active_projects": [
+    {
+      "project_number": 137,
+      "project_name": "investigate_and_fix_planner_agent_format_compliance_issue",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-06T10:20:00Z",
+      "last_updated": "2026-03-06T10:25:00Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/reports/research-001.md",
+          "summary": "Comprehensive analysis of plan format non-compliance: OC_135 plans follow format correctly, OC_136 plans do not. Root cause appears to be context injection failure in certain invocation paths. Agent falls back to incorrect template when plan-format.md context unavailable."
+        }
+      ],
+      "description": "Investigate why implementation plans do not follow plan-format.md specification. OC_136 plan has wrong format despite OC_133 supposedly fixing this. Need to audit planner-agent.md, verify context injection, and ensure all future plans are compliant."
+    },
     {
       "project_number": 136,
       "project_name": "design_and_implement_remember_command_for_intelligent_memory_management",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-05T22:00:00Z",
-      "last_updated": "2026-03-06T01:15:00Z",
+      "last_updated": "2026-03-05T10:22:03.602649Z",
       "artifacts": [
         {
           "type": "research",
@@ -33,6 +49,16 @@
           "type": "plan",
           "path": "specs/OC_136_design_and_implement_remember_command_for_intelligent_memory_management/plans/implementation-001.md",
           "summary": "4-phase implementation plan: vault structure, basic /remember command with yes/no approval, MCP integration with --remember flag, testing and documentation. Simple approach using direct execution pattern and MCP built-in search."
+        },
+        {
+          "type": "plan",
+          "path": "specs/OC_136_design_and_implement_remember_command_for_intelligent_memory_management/plans/implementation-003.md",
+          "summary": "REFORMATTED: Same content as v002 but follows plan-format.md specification exactly. Changed from non-compliant format (separate Status lines, Objectives field) to compliant format (status IN phase headings, Goal field, Implementation Phases section)."
+        },
+        {
+          "type": "plan",
+          "path": "specs/OC_136_design_and_implement_remember_command_for_intelligent_memory_management/plans/implementation-002.md",
+          "summary": "REVISED: Changed Phase 2 interactive confirmation from simple yes/no to checkbox-based multi-select pattern (like /learn command). Supports adding new memories, updating existing similar ones, editing content before save, and skip options with multi-selection capability. **NOTE: This plan does NOT follow plan-format.md specification**"
         }
       ],
       "description": "Design and implement a `/remember` command for intelligent memory management that takes prompts or file paths, analyzes content, compares with existing memory files, conducts research when needed, and proposes additions via interactive checkboxes"
