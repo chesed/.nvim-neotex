@@ -1,10 +1,28 @@
 ---
-next_project_number: 147
+next_project_number: 148
 ---
 
 # TODO
 
 ## Tasks
+
+### OC_147. Fix artifact metadata linking in TODO.md
+- **Effort**: 4-6 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Research reports created by subagents are not being properly linked in the artifacts section of tasks. Instead, the report metadata appears at the bottom of the task entry in TODO.md. Need to investigate:
+
+1. **Root Cause**: Why artifacts aren't appearing in state.json artifacts array properly
+2. **Metadata Passing**: Ensure `.return-meta.json` files are being created and read correctly
+3. **TODO.md Format**: Verify artifact linking format matches expected pattern
+4. **Skill Postflight**: Check if skill postflight stages are properly updating TODO.md
+5. **Subagent Pattern**: Review all subagents that create artifacts to ensure consistent behavior
+
+The goal is to ensure artifact metadata flows correctly from subagent → metadata file → state.json → TODO.md without requiring the primary agent to read artifacts directly.
+
+---
 
 ### OC_146. Research and implement subagent workflow best practices
 - **Effort**: 6-8 hours
