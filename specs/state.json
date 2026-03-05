@@ -24,23 +24,28 @@
   "language": "meta",
   "created": "2026-03-06T10:20:00Z",
   "last_updated": "2026-03-06T13:30:00Z",
-  "artifacts": [
-    {
-      "type": "research",
-      "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/reports/research-001.md",
-      "summary": "Comprehensive analysis of plan format non-compliance: OC_135 plans follow format correctly, OC_136 plans do not. Root cause appears to be context injection failure in certain invocation paths. Agent falls back to incorrect template when plan-format.md context unavailable."
-    },
-    {
-      "type": "research",
-      "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/reports/research-002.md",
-      "summary": "Follow-up research identifying embedded non-compliant templates in plan.md as primary root cause. OC_133 only fixed planner-agent.md but missed embedded templates in command specifications that override correct behavior."
-    },
-    {
-      "type": "plan",
-      "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/plans/implementation-001.md",
-      "summary": "6-phase plan to remove embedded templates from command specs and strengthen context injection: Phase 1 removes plan.md template, Phase 2 audits other commands, Phase 3 removes found templates, Phase 4 enhances planner-agent context priority, Phase 5 adds context to revise flow, Phase 6 validates compliance"
-    }
-  ],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/reports/research-001.md",
+          "summary": "Comprehensive analysis of plan format non-compliance: OC_135 plans follow format correctly, OC_136 plans do not. Root cause appears to be context injection failure in certain invocation paths. Agent falls back to incorrect template when plan-format.md context unavailable."
+        },
+        {
+          "type": "research",
+          "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/reports/research-002.md",
+          "summary": "Follow-up research identifying embedded non-compliant templates in plan.md as primary root cause. OC_133 only fixed planner-agent.md but missed embedded templates in command specifications that override correct behavior."
+        },
+        {
+          "type": "research",
+          "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/reports/research-003.md",
+          "summary": "Context injection optimization analysis: identified 5 opportunities for improving progressive disclosure including conditional status-marker injection, stage-progressive loading, and revise.md context injection enhancement"
+        },
+        {
+          "type": "plan",
+          "path": "specs/OC_137_investigate_and_fix_planner_agent_format_compliance_issue/plans/implementation-001.md",
+          "summary": "6-phase plan to remove embedded templates from command specs and strengthen context injection: Phase 1 removes plan.md template, Phase 2 audits other commands, Phase 3 removes found templates, Phase 4 enhances planner-agent context priority, Phase 5 adds context to revise flow, Phase 6 validates compliance"
+        }
+      ],
       "description": "Investigate why implementation plans do not follow plan-format.md specification. OC_136 plan has wrong format despite OC_133 supposedly fixing this. Need to audit planner-agent.md, verify context injection, and ensure all future plans are compliant."
     },
     {
