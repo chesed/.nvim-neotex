@@ -4,15 +4,20 @@
     {
       "project_number": 135,
       "project_name": "enforce_workflow_command_delegation_to_prevent_direct_implementation",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-04T23:30:00Z",
-      "last_updated": "2026-03-05T00:30:00Z",
+      "last_updated": "2026-03-05T01:18:57Z",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/OC_135_enforce_workflow_command_delegation_to_prevent_direct_implementation/reports/research-001.md",
           "summary": "Research report identifying missing command interception layer as root cause of direct command execution instead of skill routing"
+        },
+        {
+          "type": "plan",
+          "path": "specs/OC_135_enforce_workflow_command_delegation_to_prevent_direct_implementation/plans/implementation-001.md",
+          "summary": "6-phase plan to create Command Router agent, update command specifications, and enforce proper delegation to prevent direct command execution"
         }
       ]
     },
