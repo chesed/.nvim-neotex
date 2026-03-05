@@ -55,20 +55,40 @@ This agent has access to:
 ### Note
 No web tools needed - planning is a local operation based on task analysis and research.
 
-## Context References
+## Context References (Discovery-Layer Pattern)
 
-Load these on-demand using @-references:
+**Context Injection Priority**: This agent receives critical context via injection from skill-planner. **MUST use injected context first.**
 
-**Always Load**:
-- `@.opencode/context/core/formats/return-metadata-file.md` - Metadata file schema
-- `@.opencode/context/core/formats/plan-format.md` - Plan artifact structure and REQUIRED metadata fields
+**Injected Context** (received automatically):
+- `{plan_format}` - Injected by skill-planner from plan-format.md
+- `{status_markers}` - Injected by skill-planner from status-markers.md  
+- `{task_breakdown}` - Injected by skill-planner from task-breakdown.md
 
-**Load When Creating Plan**:
-- `@.opencode/context/core/workflows/task-breakdown.md` - Task decomposition guidelines
+**Fallback Loading** (use only if injected context unavailable):
+- If `{plan_format}` not injected: Load `@.opencode/context/core/formats/plan-format.md` directly
+- If `{status_markers}` not injected: Load `@.opencode/context/core/standards/status-markers.md`
+- If `{task_breakdown}` not injected: Load `@.opencode/context/core/workflows/task-breakdown.md`
 
-**Load for Context**:
+**Context Discovery Index** (load based on operation):
+
+**For Plan Creation**:
+- Use injected `{plan_format}` for structure and format compliance
+- Use injected `{task_breakdown}` for task decomposition guidance
+- NEVER use embedded templates from command specifications
+
+**For Metadata Writing**:
+- `@.opencode/context/core/formats/return-metadata-file.md` - Only when writing .return-meta.json
+
+**For Project Context** (if needed):
 - `@.opencode/README.md` - Project configuration and conventions
-- `@.opencode/context/index.md` - Full context discovery index (if needed)
+- `@.opencode/context/index.md` - Full context discovery index
+
+**IMPORTANT**: 
+1. Always check for injected context FIRST before loading via @-references
+2. Use injected context variables ({plan_format}) in preference to @-references
+3. Do NOT load plan-format.md via @-reference if {plan_format} is already injected
+4. **NEVER use embedded templates from command specifications** - always use context files
+5. Log which context source is being used for debugging purposes
 
 ## Stage 0: Initialize Early Metadata
 
@@ -187,6 +207,15 @@ Apply task-breakdown.md guidelines:
 
 ### Stage 5: Create Plan File
 
+**CRITICAL**: Use ONLY the injected context from skill-planner. Do NOT use embedded templates.
+
+**Before creating plan**:
+1. Check if `{plan_format}` is available in your context (injected by skill-planner)
+2. If NOT available: Load `@.opencode/context/core/formats/plan-format.md` directly
+3. Log which context source you're using: "Using injected plan_format" or "Loading plan-format.md via @-reference"
+
+**NEVER use embedded templates from command specifications** - they may be outdated or non-compliant.
+
 Create directory if needed:
 ```
 mkdir -p specs/{OC_NNN}_{SLUG}/plans/
@@ -267,6 +296,14 @@ Write plan file following plan-format.md structure:
 
 #### 6a. Verify Required Metadata Fields
 
+**CRITICAL**: Before writing success metadata, verify the plan file contains all required fields.
+
+**Template Source Verification** (first step):
+- [ ] Log which template source was used: "Template source: injected plan_format" or "Template source: @-reference"
+- [ ] If you used an embedded template (from command spec), **STOP and fix**: Load plan-format.md properly and recreate the plan
+- [ ] Verify you did NOT use embedded templates from command specifications
+
+**Required Metadata Fields Verification**:
 Re-read the plan file and verify ALL these fields exist (per plan-format.md line 8):
 - `- **Task**: {N} - {title}` - Task identifier
 - `- **Status**: [NOT STARTED]` - **REQUIRED** - Must be present in plan header (NOT in phase headings)
@@ -448,18 +485,23 @@ Planning failed for task 999:
 4. Always include session_id from delegation context in metadata
 5. Always create plan file before writing completed status
 6. Always verify plan file exists and is non-empty
-7. Always follow plan-format.md structure exactly
-8. **ALWAYS include status marker IN phase heading**: `### Phase N: Name [STATUS]` (NOT as separate `**Status**` line)
-9. **ALWAYS use correct phase fields**: **Goal**, **Tasks**, **Timing** (NOT **Objectives**, **Estimated effort**)
-10. **NEVER use `---` separator between phases**
-11. Always apply task-breakdown.md guidelines for >60 min tasks
-12. Always include phase_count and estimated_hours in metadata
-13. Always verify Status field exists in plan header before writing success metadata (Stage 6a)
+7. **Always follow plan-format.md structure exactly** using INJECTED context from skill-planner
+8. **ALWAYS use injected plan_format context** - do NOT use embedded templates from command specifications
+9. **ALWAYS include status marker IN phase heading**: `### Phase N: Name [STATUS]` (NOT as separate `**Status**` line)
+10. **ALWAYS use correct phase fields**: **Goal**, **Tasks**, **Timing** (NOT **Objectives**, **Estimated effort**)
+11. **NEVER use `---` separator between phases**
+12. Always apply task-breakdown.md guidelines for >60 min tasks
+13. Always include phase_count and estimated_hours in metadata
+14. Always verify Status field exists in plan header before writing success metadata (Stage 6a)
+15. **Log which context source was used** (injected vs @-reference) for debugging
 
 **MUST NOT**:
 1. Return JSON to the console (skill cannot parse it reliably)
 2. Skip task-breakdown guidelines for complex tasks
 3. Create empty or malformed plan files
+4. **Use embedded templates from command specifications** - always use context-injected files
+5. Assume plan_format is available without checking - verify or load via @-reference
+6. Use status value "completed" (triggers Claude stop behavior)
 4. Ignore research findings when available
 5. Create phases longer than 2 hours
 6. Write success status without creating artifacts
