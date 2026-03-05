@@ -58,15 +58,19 @@ Based on research-001.md, the root cause is a gap between skill loading and skil
 
 ## Implementation Phases
 
-### Phase 1: Audit Command Specifications [NOT STARTED]
+### Phase 1: Audit Command Specifications [COMPLETED]
+- **Started:** 2026-03-06T18:30:00Z
+- **Completed:** 2026-03-06T19:00:00Z
 - **Goal:** Identify how commands currently invoke skills and where Task tool should be called
 - **Tasks:**
-  - [ ] Read all 12+ command specifications (.opencode/commands/*.md)
-  - [ ] Document current skill invocation patterns
-  - [ ] Identify which commands use → Skill notation vs explicit tool calls
-  - [ ] Check for Task tool usage with subagent_type parameter
-  - [ ] Document findings in audit report
+  - [x] Read all 12+ command specifications (.opencode/commands/*.md)
+  - [x] Document current skill invocation patterns
+  - [x] Identify which commands use → Skill notation vs explicit tool calls
+  - [x] Check for Task tool usage with subagent_type parameter
+  - [x] Document findings in audit report
 - **Timing:** 1 hour
+- **Report:** [audit-commands.md](../reports/audit-commands.md)
+- **Findings:** ROOT CAUSE IDENTIFIED - Commands describe skill invocation but don't execute skills. Skills are displayed instead of executed.
 
 ### Phase 2: Audit Skill Definitions [NOT STARTED]
 - **Goal:** Understand how skills define execution workflows and verify they are executable
