@@ -94,6 +94,13 @@
 └── README.md                       # This file
 ```
 
+## Contents
+
+### Subdirectories
+
+- [core/](core/README.md) - General/reusable context (architecture, patterns, standards)
+- [project/](project/README.md) - Project-specific context (neovim, processes, repo)
+
 ---
 
 ## Core vs Project

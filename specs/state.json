@@ -4,11 +4,12 @@
     {
       "project_number": 150,
       "project_name": "fix_todo_orphan_detection_completed_tasks",
-      "status": "researched",
+      "status": "planning",
       "language": "meta",
       "created": "2026-03-06T00:00:00Z",
-      "last_updated": "2026-03-06T00:25:00Z",
+      "last_updated": "2026-03-06T00:30:00Z",
       "researched": "2026-03-06T00:25:00Z",
+      "planning": "2026-03-06T00:30:00Z",
       "artifacts": [
         {
           "type": "research",

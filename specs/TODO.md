@@ -8,7 +8,7 @@ next_project_number: 148
 
 ### OC_150. Fix /todo orphan detection for completed tasks not in state.json
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNING]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](OC_150_fix_todo_orphan_detection/reports/research-001.md) - Analysis of orphan detection gap where completed tasks in TODO.md but removed from state.json are not archived
