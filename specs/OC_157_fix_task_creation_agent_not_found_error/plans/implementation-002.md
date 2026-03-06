@@ -57,62 +57,62 @@ This plan integrates findings from research-001.md which identified that the /ta
 
 ## Implementation Phases
 
-### Phase 1: Update task.md CREATE Mode Section [NOT STARTED]
+### Phase 1: Update task.md CREATE Mode Section [COMPLETED]
 
 - **Goal:** Rewrite CREATE mode section to perform direct task creation without skill-task delegation
 - **Tasks:**
-  - [ ] Replace Step 3 (Preflight) with simplified initialization
-  - [ ] Remove Step 4 (Delegate to Task Agent) entirely
-  - [ ] Replace Step 5 (Postflight) with direct file operations
-  - [ ] Implement new CREATE mode structure with Steps 1-4:
+  - [✓] Replace Step 3 (Preflight) with simplified initialization
+  - [✓] Remove Step 4 (Delegate to Task Agent) entirely
+  - [✓] Replace Step 5 (Postflight) with direct file operations
+  - [✓] Implement new CREATE mode structure with Steps 1-4:
     - Step 1: Validate Input (unchanged)
     - Step 2: Initialize specs/ Directory (unchanged)
     - Step 3: Calculate Task Details
     - Step 4: Create Task Entry (DIRECT - replaces steps 3-5)
-  - [ ] Add direct jq commands for state.json updates
-  - [ ] Add direct Edit commands for TODO.md updates
-  - [ ] Remove references to task-creation-agent
-  - [ ] Remove CREATING status transitions
-  - [ ] Remove marker file creation
-  - [ ] Remove .return-meta.json handling
+  - [✓] Add direct jq commands for state.json updates
+  - [✓] Add direct Edit commands for TODO.md updates
+  - [✓] Remove references to task-creation-agent
+  - [✓] Remove CREATING status transitions
+  - [✓] Remove marker file creation
+  - [✓] Remove .return-meta.json handling
 - **Timing:** 30 minutes
 - **Files Modified:** `.opencode/commands/task.md`
 
-### Phase 2: Update Other Task Modes [NOT STARTED]
+### Phase 2: Update Other Task Modes [COMPLETED]
 
 - **Goal:** Verify and update non-CREATE modes to work without skill-task
 - **Tasks:**
-  - [ ] Review RECOVER mode (lines 242-248) - verify no dependency on skill-task
-  - [ ] Review EXPAND mode (lines 252-257) - verify no dependency on skill-task
-  - [ ] Review SYNC mode (lines 261-265) - verify no dependency on skill-task
-  - [ ] Review ABANDON mode (lines 269-292) - verify no dependency on skill-task
-  - [ ] Update Rules section (lines 296-305) - remove skill-task delegation references
-  - [ ] Update Critical Notes section (lines 309-321) - remove skill-task notes
-  - [ ] Verify all non-CREATE modes work without skill-task
-  - [ ] Ensure no remaining references to skill-task
+  - [✓] Review RECOVER mode (lines 242-248) - verify no dependency on skill-task
+  - [✓] Review EXPAND mode (lines 252-257) - verify no dependency on skill-task
+  - [✓] Review SYNC mode (lines 261-265) - verify no dependency on skill-task
+  - [✓] Review ABANDON mode (lines 269-292) - verify no dependency on skill-task
+  - [✓] Update Rules section (lines 296-305) - remove skill-task delegation references
+  - [✓] Update Critical Notes section (lines 309-321) - remove skill-task notes
+  - [✓] Verify all non-CREATE modes work without skill-task
+  - [✓] Ensure no remaining references to skill-task
 - **Timing:** 15 minutes
 - **Files Modified:** `.opencode/commands/task.md`
 
-### Phase 3: Update Documentation References [NOT STARTED]
+### Phase 3: Update Documentation References [COMPLETED]
 
 - **Goal:** Clean up documentation by removing obsolete sections and references
 - **Tasks:**
-  - [ ] Delete "CREATE Mode: Task Entry Details" section (lines 209-239)
-  - [ ] Update Workflow Phases table (lines 324-333) if needed
-  - [ ] Remove any references to task-creation-agent from header comments
-  - [ ] Remove any references to delegation from header comments
-  - [ ] Verify documentation is accurate after changes
+  - [✓] Delete "CREATE Mode: Task Entry Details" section (lines 209-239) - removed in Phase 1
+  - [✓] Update Workflow Phases table (lines 324-333) if needed - no changes needed
+  - [✓] Remove any references to task-creation-agent from header comments - none found
+  - [ ] Remove any references to delegation from header comments - none found
+  - [✓] Verify documentation is accurate after changes
 - **Timing:** 10 minutes
 - **Files Modified:** `.opencode/commands/task.md`
 
-### Phase 4: Delete skill-task Directory [NOT STARTED]
+### Phase 4: Delete skill-task Directory [COMPLETED]
 
 - **Goal:** Remove the skill-task directory and all associated files
 - **Tasks:**
-  - [ ] Verify no other dependencies by grepping for "skill-task" in .opencode/
-  - [ ] Verify no references to "task-creation-agent" in .opencode/
-  - [ ] Delete .opencode/skills/skill-task/ directory
-  - [ ] Confirm directory removal
+  - [✓] Verify no other dependencies by grepping for "skill-task" in .opencode/
+  - [✓] Verify no references to "task-creation-agent" in .opencode/
+  - [✓] Delete .opencode/skills/skill-task/ directory
+  - [✓] Confirm directory removal
 - **Timing:** 5 minutes
 - **Files Deleted:** `.opencode/skills/skill-task/` (entire directory)
 

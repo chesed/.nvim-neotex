@@ -225,10 +225,7 @@ Archives a task by moving it from active state to archive, consistent with the `
 
 ## Rules
 
-- This command executes preflight (status → creating) BEFORE delegating to skill-task
-- This command executes postflight (status → not_started, verify entries) AFTER skill-task returns
-- The skill-task only loads context and delegates to task-creation-agent — it does NOT execute workflows
-- **NEVER** create directories or files other than TODO.md and state.json edits (except for archival moves in ABANDON mode, and initial specs/ directory creation)
+- **NEVER** create directories or files other than TODO.md and state.json edits (except for archival moves in ABANDON mode, initial specs/ directory creation, and task directory creation)
 - **NEVER** start implementing the task
 - Timestamps use ISO 8601 format: `2026-01-01T00:00:00Z`
 - Task numbers are plain integers (no OC_ prefix in these files)
@@ -238,17 +235,11 @@ Archives a task by moving it from active state to archive, consistent with the `
 
 ## Critical Notes
 
-**The skill tool only loads SKILL.md content — it does NOT execute preflight/postflight workflows.**
+CREATE mode performs direct task creation without delegation:
+1. **Step 3**: Calculate task details from input
+2. **Step 4**: Create directory, update state.json, update TODO.md, commit
 
-Commands must execute these workflows themselves:
-1. **Preflight** (Step 3): Calculate task details, update state.json to "creating", TODO.md to [CREATING], create marker file
-2. **Delegation** (Step 4): Call skill-task to load context and invoke task-creation-agent
-3. **Postflight** (Step 5): Read .return-meta.json, verify task entries, update state.json to "not_started", update TODO.md, commit, cleanup
-
-This pattern ensures:
-- Status updates happen automatically without orchestrator intervention
-- Consistency with `/implement`, `/plan`, `/research` commands
-- Agents follow the expected "command orchestrates workflow" pattern
+This simplified approach eliminates the triple-layered delegation (command → skill → agent) and performs task creation directly in ~60 lines instead of ~2,142 lines.
 
 ## Workflow Phases
 

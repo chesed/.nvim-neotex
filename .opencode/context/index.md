@@ -535,11 +535,6 @@ Load for: Command delegation and agent invocation
   - Agent: researcher-agent
   - Trigger: /research command
 
-- **skill-task** - Create task entries via task-creation-agent
-  - Path: `.opencode/skills/skill-task/SKILL.md`
-  - Agent: task-creation-agent
-  - Trigger: /task command
-
 - **skill-meta** - Meta system building via meta-builder-agent
   - Path: `.opencode/skills/skill-meta/SKILL.md`
   - Agent: meta-builder-agent
