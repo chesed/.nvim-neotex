@@ -40,7 +40,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" \
 ### Checkbox Confirmation Not Appearing
 
 **Symptoms**:
-- `/remember` runs but no interactive dialog shown
+- `/learn` runs but no interactive dialog shown
 - No preview displayed
 - Operation completes without confirmation
 
@@ -67,7 +67,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" \
 **Causes & Solutions**:
 
 1. **Vault empty**
-   - Add some memories first using `/remember`
+   - Add some memories first using `/learn`
    - Check `.opencode/memory/10-Memories/` for files
 
 2. **MCP server not connected**
@@ -84,7 +84,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" \
 ### Similar Memory Detection Not Working
 
 **Symptoms**:
-- `/remember` shows "Similar Memories Found: (none)" when similar memories exist
+- `/learn` shows "Similar Memories Found: (none)" when similar memories exist
 - Duplicate memories created
 
 **Causes & Solutions**:
@@ -135,7 +135,7 @@ git pull
 ### Memory Files Not Created
 
 **Symptoms**:
-- `/remember` reports success but no files in `10-Memories/`
+- `/learn` reports success but no files in `10-Memories/`
 - Index.md not updated
 
 **Causes & Solutions**:
@@ -233,7 +233,7 @@ When troubleshooting, check these in order:
 
 If issues persist:
 
-1. Check [Usage Guide](../docs/remember-usage.md) for correct syntax
+1. Check [Usage Guide](../docs/learn-usage.md) for correct syntax
 2. Review [MCP Setup Guide](../docs/memory-setup.md) for configuration
 3. Verify [Memory Vault README](../memory/README.md) for organization
 4. Check OpenCode logs for error messages
@@ -247,6 +247,6 @@ If issues persist:
 
 ## See Also
 
-- [Usage Guide](../docs/remember-usage.md) - How to use /remember
+- [Usage Guide](../docs/learn-usage.md) - How to use /learn
 - [MCP Setup Guide](../docs/memory-setup.md) - Server configuration
 - [Memory Vault README](../memory/README.md) - Vault structure

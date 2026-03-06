@@ -50,14 +50,14 @@ The `/fix` command scans files for embedded tags (FIX:, NOTE:, TODO:) and create
 
 ---
 
-## /remember Task Mode Examples
+## /learn Task Mode Examples
 
-The `/remember --task OC_N` command reviews task artifacts and creates classified memories.
+The `/learn --task OC_N` command reviews task artifacts and creates classified memories.
 
 ### Example 1: Review All Task Artifacts
 
 ```bash
-/remember --task 142
+/learn --task 142
 ```
 
 **Workflow:**
@@ -89,7 +89,7 @@ The `/remember --task OC_N` command reviews task artifacts and creates classifie
 ### Example 2: Create Memory from Research Report
 
 ```bash
-/remember --task 146
+/learn --task 146
 ```
 
 **Scenario:** Task OC_146 is a research task on subagent workflows.
@@ -111,7 +111,7 @@ The `/remember --task OC_N` command reviews task artifacts and creates classifie
 ### Example 3: Extract Pattern from Implementation
 
 ```bash
-/remember --task 139
+/learn --task 139
 ```
 
 **Scenario:** Task OC_139 demonstrated stage-progressive loading.
@@ -199,7 +199,7 @@ Creates comprehensive research report.
 
 ### Step 3: Create Memories from Research
 ```bash
-/remember --task 150
+/learn --task 150
 ```
 Reviews research report, classifies findings as [INSIGHT] and [TECHNIQUE].
 
@@ -247,7 +247,7 @@ If you were using `/learn` before the rename:
 These examples demonstrate the integrated knowledge capture system:
 
 - **`/fix`** - Capture issues and TODOs from code
-- **`/remember --task`** - Harvest knowledge from completed work
+- **`/learn --task`** - Harvest knowledge from completed work
 - **`/todo`** - Archive with CHANGE_LOG tracking and memory suggestions
 
 Together, they create a continuous knowledge loop: discover -> document -> harvest -> archive.
