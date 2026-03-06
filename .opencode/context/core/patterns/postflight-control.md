@@ -89,8 +89,8 @@ rm -f specs/.postflight-loop-guard
 
 ```bash
 # Set stop_hook_active to force stop on next iteration
-jq '.stop_hook_active = true' specs/.postflight-pending > /tmp/marker.json && \
-  mv /tmp/marker.json specs/.postflight-pending
+jq '.stop_hook_active = true' specs/.postflight-pending > specs/tmp/marker.json && \
+  mv specs/tmp/marker.json specs/.postflight-pending
 ```
 
 ## SubagentStop Hook Behavior
