@@ -201,8 +201,8 @@ Show:
 **The skill tool only loads SKILL.md content — it does NOT execute preflight/postflight workflows.**
 
 Commands must execute these workflows themselves:
-1. **Preflight** (Step 5): Update state.json to "implementing", TODO.md to [IMPLEMENTING], create marker file
-2. **Delegation** (Step 6): Call skill-implementer to load context and invoke general-implementation-agent
-3. **Postflight** (Step 7): Read .return-meta.json, update state.json to "completed"/"partial", update TODO.md, link artifacts, commit, cleanup
+1. **Preflight** (Step 4): Update state.json to "implementing", TODO.md to [IMPLEMENTING], create marker file
+2. **Delegation** (Step 5): Call skill-implementer to load context and invoke general-implementation-agent
+3. **Postflight** (Step 6): Read .return-meta.json, update state.json to "completed"/"partial", update TODO.md, link artifacts, commit, cleanup
 
 This is the fix for the bug where task status was never updated after implementation completed.
