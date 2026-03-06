@@ -8,8 +8,9 @@ next_project_number: 153
 
 ### OC_153. Fix skill-implementer postflight not executing - status not updating after implementation
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research**: [research-001.md](OC_153_fix_skill_implementer_postflight_not_executing/reports/research-001.md) - Comprehensive analysis identifying that skill tool only loads definitions, doesn't execute workflows. Commands must implement preflight/postflight status updates themselves, not rely on skills to do it.
+- **Plan**: [implementation-001.md](OC_153_fix_skill_implementer_postflight_not_executing/plans/implementation-001.md) - 6-phase implementation plan for fixing skill postflight execution
 - **Language**: meta
 - **Dependencies**: None
 
