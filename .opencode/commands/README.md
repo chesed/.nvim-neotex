@@ -7,6 +7,7 @@ Slash command definitions for the Logos/Theory opencode system.
 - `/convert` - Convert documents between formats (PDF/DOCX to Markdown, Markdown to PDF)
 - `/errors` - Analyze errors and create fix plans
 - `/implement` - Execute implementation with resume support
+- `/learn` - Add a memory to the vault with interactive checkbox confirmation
 - `/lake` - Build Lean 4 project with automatic error repair
 - `/lean` - Manage Lean toolchain and Mathlib versions
 - `/fix` - Scan files for FIX:, NOTE:, TODO: tags and create structured tasks interactively

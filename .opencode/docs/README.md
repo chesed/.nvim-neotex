@@ -20,7 +20,7 @@ This directory contains the documentation for the `.opencode/` agent system. The
 │   ├── creating-agents.md      # How to create agents
 │   ├── memory-setup.md         # Memory system setup
 │   ├── memory-troubleshooting.md # Memory troubleshooting
-│   └── remember-usage.md       # Memory usage guide
+  │   └── learn-usage.md          # Memory usage guide
 ├── architecture/               # Architecture documentation
 │   └── system-overview.md      # Three-layer architecture overview
 └── examples/                   # Example files

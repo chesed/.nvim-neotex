@@ -15,7 +15,7 @@ Skill definitions for the OpenCode system. Skills provide specialized capabiliti
 - [skill-orchestrator/](skill-orchestrator/README.md) - Command orchestration
 - [skill-planner/](skill-planner/README.md) - Implementation planning
 - [skill-refresh/](skill-refresh/README.md) - Cleanup operations
-- [skill-remember/](skill-remember/README.md) - Memory management
+- [skill-learn/](skill-learn/README.md) - Memory management
 - [skill-researcher/](skill-researcher/README.md) - General research
 - [skill-status-sync/](skill-status-sync/README.md) - Status synchronization
 - [skill-todo/](skill-todo/README.md) - Task archival

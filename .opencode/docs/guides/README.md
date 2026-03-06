@@ -20,7 +20,7 @@ How-to guides for the OpenCode system.
 
 - `memory-setup.md` - Memory system setup and configuration
 - `memory-troubleshooting.md` - Troubleshooting memory issues
-- `remember-usage.md` - How to use the remember command
+- `learn-usage.md` - How to use the learn command
 
 ### Best Practices
 
