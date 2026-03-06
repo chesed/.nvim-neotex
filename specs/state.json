@@ -22,6 +22,11 @@
           "path": "specs/OC_153_fix_skill_implementer_postflight_not_executing/plans/implementation-002.md",
           "type": "plan",
           "summary": "Revised 6-phase plan with clarifications: bug documentation added, risk upgraded to High, new success criterion for automatic status updates without orchestrator intervention"
+        },
+        {
+          "path": "specs/OC_153_fix_skill_implementer_postflight_not_executing/summaries/implementation-summary-20260306.md",
+          "type": "summary",
+          "summary": "Complete implementation summary: Fixed skill-implementer postflight bug. Updated 3 command files with preflight/postflight execution, clarified 3 skill files, remediated OC_151 status. 388 lines changed across 11 files."
         }
       ],
       "description": "Fix the issue where task status is not being updated to [COMPLETED] after implementation finishes. The skill tool only loads skill definitions but doesn't execute the preflight/postflight workflow defined in SKILL.md files. After implementing OC_151, state.json still shows 'planning', TODO.md shows [PLANNING], and the plan file header shows [NOT STARTED]."
