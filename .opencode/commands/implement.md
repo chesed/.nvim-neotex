@@ -61,9 +61,34 @@ If no plan found: "No plan found. Run `/plan OC_N` first."
 
 Read the plan to understand all phases and their current status (`[NOT STARTED]`, `[IN PROGRESS]`, `[COMPLETED]`, `[PARTIAL]`).
 
-### 5. Invoke skill-implementer
+### 5. Execute Preflight
 
-**Call skill tool** to execute the implementation workflow:
+**CRITICAL**: Commands must execute preflight BEFORE delegating to agents. The skill tool only loads skill definitions but does NOT execute workflows.
+
+**Update state.json to implementing**:
+```bash
+jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+   --arg status "implementing" \
+  '(.active_projects[] | select(.project_number == N)) |= . + {
+    status: $status,
+    last_updated: $ts,
+    implementing: $ts
+  }' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+```
+
+**Update TODO.md to [IMPLEMENTING]**:
+- Edit file: `specs/TODO.md`
+- Find line: `- **Status**: [PLANNED]` (or current status) for task OC_N
+- Change to: `- **Status**: [IMPLEMENTING]`
+
+**Create postflight marker file**:
+```bash
+touch "specs/OC_NNN_<project_name>/.postflight-pending"
+```
+
+### 6. Delegate to Implementation Agent
+
+**Call skill tool** to load skill context and delegate to implementation agent:
 
 ```
 → Tool: skill
@@ -72,20 +97,13 @@ Read the plan to understand all phases and their current status (`[NOT STARTED]`
 ```
 
 The skill-implementer will:
-1. Load context files (plan-format.md, status-markers.md)
-2. Execute preflight (validate, display header, update status to [IMPLEMENTING])
-3. **Call Task tool with `subagent_type="general-implementation-agent"`** to execute phases
-4. Execute postflight (update state.json to COMPLETED/PARTIAL, create summary, update TODO.md, commit)
-5. Return results
+1. Load context files (plan-format.md, status-markers.md, etc.)
+2. **Call Task tool with `subagent_type="general-implementation-agent"`** to execute phases
+3. Return results (subagent writes .return-meta.json)
 
-**Note**: Status updates are handled by skill-implementer, not this command. The skill updates:
-- state.json status to "implementing" in preflight
-- state.json status to "completed" or "partial" in postflight
-- TODO.md status markers at both stages
+**CRITICAL**: The skill tool ONLY loads skill definitions. It does NOT execute preflight/postflight workflows. This command MUST execute status updates before and after delegation.
 
-**CRITICAL**: Do NOT implement phase execution logic in this command. All implementation logic belongs in skill-implementer and general-implementation-agent.
-
-**Phase Status Tracking**: The skill-implementer maintains phase status in the plan file as source of truth for resume points.
+**Phase Status Tracking**: The implementation agent maintains phase status in the plan file as source of truth for resume points.
 
 **Language-specific guidance**:
 - **meta**: Edit `.opencode/` files, create/update agent and command definitions
@@ -94,7 +112,82 @@ The skill-implementer will:
 - **latex**: Write LaTeX, use `pdflatex` to verify
 - **general**: Follow the plan steps using appropriate tools
 
-### 7. Report results
+### 7. Execute Postflight
+
+**CRITICAL**: Commands must execute postflight AFTER agents return. The skill tool does NOT execute workflows.
+
+**Step 7a: Read metadata file**:
+```bash
+metadata_file="specs/OC_NNN_<project_name>/.return-meta.json"
+if [ -f "$metadata_file" ] && jq empty "$metadata_file" 2>/dev/null; then
+    status=$(jq -r '.status' "$metadata_file")
+    phases_completed=$(jq -r '.metadata.phases_completed // 0' "$metadata_file")
+    phases_total=$(jq -r '.metadata.phases_total // 0' "$metadata_file")
+    artifact_path=$(jq -r '.artifacts[0].path // ""' "$metadata_file")
+    artifact_type=$(jq -r '.artifacts[0].type // ""' "$metadata_file")
+    artifact_summary=$(jq -r '.artifacts[0].summary // ""' "$metadata_file")
+fi
+```
+
+**Step 7b: Determine final status**:
+- If `status` == "implemented" and `phases_completed` == `phases_total`: final_status="completed"
+- If `status` == "partial": final_status="partial"
+- Otherwise: final_status="implementing" (keep current)
+
+**Step 7c: Update state.json**:
+```bash
+jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+   --arg status "$final_status" \
+  '(.active_projects[] | select(.project_number == N)) |= . + {
+    status: $status,
+    last_updated: $ts,
+    "${final_status}": $ts
+  }' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+```
+
+**Step 7d: Update TODO.md**:
+- Edit file: `specs/TODO.md`
+- Find line: `- **Status**: [IMPLEMENTING]` for task OC_N
+- Change to: `- **Status**: [COMPLETED]` (or [PARTIAL] if final_status is "partial")
+
+**Step 7e: Link artifacts in state.json**:
+```bash
+# Step 1: Filter out existing summary artifacts
+jq '(.active_projects[] | select(.project_number == N)).artifacts =
+    [(.active_projects[] | select(.project_number == N)).artifacts // [] | .[] | select(.type == "summary" | not)]' \
+  specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+
+# Step 2: Add new summary artifact
+jq --arg path "$artifact_path" \
+   --arg type "$artifact_type" \
+   --arg summary "$artifact_summary" \
+  '(.active_projects[] | select(.project_number == N)).artifacts += [{"path": $path, "type": $type, "summary": $summary}]' \
+  specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+```
+
+**Step 7f: Add artifact to TODO.md**:
+- Edit file: `specs/TODO.md`
+- Find "Artifacts" section for task OC_N
+- Add line: `- [$artifact_path]($artifact_path) - $artifact_summary`
+
+**Step 7g: Git commit**:
+```bash
+git add -A
+git commit -m "task N: complete implementation
+
+Session: ${session_id}
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+```
+
+**Step 7h: Cleanup**:
+```bash
+rm -f "specs/OC_NNN_<project_name>/.postflight-pending"
+rm -f "specs/OC_NNN_<project_name>/.postflight-loop-guard"
+rm -f "specs/OC_NNN_<project_name>/.return-meta.json"
+```
+
+### 8. Report results
 
 Show:
 - Phases completed
@@ -106,7 +199,9 @@ Show:
 
 ## Rules
 
-- The skill-implementer handles ALL implementation logic - do not implement in command
+- This command executes preflight (status → implementing) BEFORE delegating to skill-implementer
+- This command executes postflight (status → completed/partial, link artifacts) AFTER skill-implementer returns
+- The skill-implementer only loads context and delegates to general-implementation-agent — it does NOT execute workflows
 - Execute phases in order — do not skip ahead
 - Mark each phase `[COMPLETED]` in the plan file as you finish it
 - If a phase fails, mark it `[PARTIAL]` in the plan and stop — do not mark task completed
@@ -115,3 +210,14 @@ Show:
 - For Lean tasks, always verify with `lake build` after each phase
 - **Commit after each phase completion** — stage only files modified in that phase
 - **Commit when blocked** — if phase fails, commit partial progress before stopping
+
+## Critical Notes
+
+**The skill tool only loads SKILL.md content — it does NOT execute preflight/postflight workflows.**
+
+Commands must execute these workflows themselves:
+1. **Preflight** (Step 5): Update state.json to "implementing", TODO.md to [IMPLEMENTING], create marker file
+2. **Delegation** (Step 6): Call skill-implementer to load context and invoke general-implementation-agent
+3. **Postflight** (Step 7): Read .return-meta.json, update state.json to "completed"/"partial", update TODO.md, link artifacts, commit, cleanup
+
+This is the fix for the bug where task status was never updated after implementation completed.
