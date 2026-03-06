@@ -141,10 +141,10 @@
     {
       "project_number": 154,
       "project_name": "task_command_fails_to_create_entries_not_specs_directory_issue",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-06T02:30:00Z",
-      "last_updated": "2026-03-06T02:52:41Z",
+      "last_updated": "2026-03-06T03:04:25Z",
       "researching": "2026-03-06T02:43:21Z",
       "researched": "2026-03-06T02:47:36Z",
       "artifacts": [
@@ -161,7 +161,9 @@
       ],
       "description": "The /task command fails to create task entries even when specs/ directory exists with TODO.md and state.json. Initial diagnosis assumed the issue was missing specs/ directory when copying .opencode/ to other directories, but the command also fails in the current directory where specs/ is present. This indicates a deeper issue with the task command implementation or the agent's interpretation of the command rules.",
       "planning": "2026-03-06T02:50:07Z",
-      "planned": "2026-03-06T02:52:41Z"
+      "planned": "2026-03-06T02:52:41Z",
+      "implementing": "2026-03-06T02:56:27Z",
+      "completed": "2026-03-06T03:04:25Z"
     }
   ],
   "repository_health": {

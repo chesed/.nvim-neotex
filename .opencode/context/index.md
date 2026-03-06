@@ -515,6 +515,46 @@ Load for: Orchestrator and routing patterns
 
 ---
 
+## Skills Context (skills/)
+
+Load for: Command delegation and agent invocation
+
+**Available Skills** (thin wrapper pattern):
+- **skill-implementer** - Execute implementation tasks via general-implementation-agent
+  - Path: `.opencode/skills/skill-implementer/SKILL.md`
+  - Agent: general-implementation-agent
+  - Trigger: /implement command
+
+- **skill-planner** - Create implementation plans via planner-agent
+  - Path: `.opencode/skills/skill-planner/SKILL.md`
+  - Agent: planner-agent
+  - Trigger: /plan command
+
+- **skill-researcher** - Conduct research via researcher-agent
+  - Path: `.opencode/skills/skill-researcher/SKILL.md`
+  - Agent: researcher-agent
+  - Trigger: /research command
+
+- **skill-task** - Create task entries via task-creation-agent
+  - Path: `.opencode/skills/skill-task/SKILL.md`
+  - Agent: task-creation-agent
+  - Trigger: /task command
+
+- **skill-meta** - Meta system building via meta-builder-agent
+  - Path: `.opencode/skills/skill-meta/SKILL.md`
+  - Agent: meta-builder-agent
+  - Trigger: /meta command
+
+**Skill Pattern**: All skills follow the thin wrapper pattern:
+1. Load context files via <context_injection>
+2. Reference command files for workflow steps
+3. Delegate to specialized agent via Task tool
+4. Coordinate postflight updates
+
+**CRITICAL**: Skills only load context and delegate. Commands execute preflight/postflight workflows.
+
+---
+
 ## Meta Context (Integrated into core/)
 
 Load for: /meta command and meta-builder-agent workflows
