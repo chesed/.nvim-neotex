@@ -168,10 +168,10 @@
     {
       "project_number": 155,
       "project_name": "review_opencode_agent_system_leader_ao_picker",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-06T03:08:57Z",
-      "last_updated": "2026-03-06T03:25:32Z",
+      "last_updated": "2026-03-06T03:31:44Z",
       "creating": "2026-03-06T03:08:57Z",
       "description": "Review .opencode/ agent system to identify improvements for the <leader>ao picker for managing the agent system. Many changes have been made and need to verify everything is tracked correctly.",
       "artifacts": [
@@ -190,7 +190,8 @@
       "researched": "2026-03-06T03:18:34Z",
       "planning": "2026-03-06T03:21:20Z",
       "planned": "2026-03-06T03:23:34Z",
-      "implementing": "2026-03-06T03:25:32Z"
+      "implementing": "2026-03-06T03:25:32Z",
+      "completed": "2026-03-06T03:31:44Z"
     },
     {
       "project_number": 156,
@@ -247,13 +248,21 @@
     {
       "project_number": 158,
       "project_name": "ensure_workflow_command_uniformity_prevent_research_failure",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-06T03:24:12Z",
-      "last_updated": "2026-03-06T03:26:15Z",
+      "last_updated": "2026-03-06T03:31:23Z",
       "creating": "2026-03-06T03:24:12Z",
       "description": "Prevent /research command from failing to call the research agent, making task workflow commands /research, /plan, /revise, and /implement uniform. Sometimes /research fails to call the research agent, conducting the research by the primary agent instead.",
-      "researching": "2026-03-06T03:26:15Z"
+      "researching": "2026-03-06T03:26:15Z",
+      "researched": "2026-03-06T03:31:23Z",
+      "artifacts": [
+        {
+          "path": "specs/OC_158_ensure_workflow_command_uniformity_prevent_research_failure/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive analysis of workflow command delegation patterns. Identified root cause: /research has extra MCP tool dependency (search_notes) and broken step numbering that can prevent proper delegation to research agent. Recommended standardizing all commands to have identical pre-delegation structure and moving MCP calls to research agent instead of command."
+        }
+      ]
     }
   ],
   "repository_health": {
