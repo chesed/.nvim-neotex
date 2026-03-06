@@ -1,4 +1,4 @@
-# Skill: Remember
+# Skill: Learn
 
 Memory management and storage system.
 

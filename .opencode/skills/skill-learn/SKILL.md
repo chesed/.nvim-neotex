@@ -4,7 +4,7 @@ description: Add a memory to the vault with checkbox-based multi-select confirma
 allowed-tools: Bash, Edit, Read, Write, Grep, AskUserQuestion, Glob
 ---
 
-# Remember Skill
+# Learn Skill
 
 Direct execution skill for adding memories to the vault using checkbox-based interactive confirmation.
 
@@ -263,7 +263,7 @@ Direct execution skill for adding memories to the vault using checkbox-based int
 
 ### Standard Mode
 ```
-1. User: /remember "neovim lsp configuration best practices"
+1. User: /learn "neovim lsp configuration best practices"
 2. Skill: Generates ID, creates entry from template
 3. Skill: Searches for similar memories
 4. Skill: Shows preview + finds 2 similar memories
@@ -281,7 +281,7 @@ Direct execution skill for adding memories to the vault using checkbox-based int
 
 ### Task Mode
 ```
-1. User: /remember --task 142
+1. User: /learn --task 142
 2. Skill: Scans specs/OC_142_*/ for artifacts
 3. Skill: Finds: research-002.md, implementation-003.md, summary-001.md
 4. Skill: Presents checkbox selection
