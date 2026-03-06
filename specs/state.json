@@ -232,6 +232,11 @@
           "path": "specs/OC_157_fix_task_creation_agent_not_found_error/reports/research-001.md",
           "type": "research",
           "summary": "Research report analyzing /task command complexity and proposing 97% reduction through direct execution pattern, eliminating skill-task delegation and non-existent task-creation-agent dependency"
+        },
+        {
+          "path": "specs/OC_157_fix_task_creation_agent_not_found_error/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "Implementation plan for simplifying /task command: 6-phase approach to remove skill-task delegation, reduce code by 97%, and perform direct task creation"
         }
       ],
       "researching": "2026-03-06T03:19:30Z",

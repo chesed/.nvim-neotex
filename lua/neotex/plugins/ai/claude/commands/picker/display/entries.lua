@@ -1080,31 +1080,31 @@ function M.create_picker_entries(structure, config)
     table.insert(all_entries, entry)
   end
 
-  -- 9. Hooks section
+  -- 10. Hooks section
   local hooks = M.create_hooks_entries(structure, config)
   for _, entry in ipairs(hooks) do
     table.insert(all_entries, entry)
   end
 
-  -- 8. Skills section
+  -- 11. Skills section
   local skills = M.create_skills_entries(structure, config)
   for _, entry in ipairs(skills) do
     table.insert(all_entries, entry)
   end
 
-  -- 9. Agents section
+  -- 12. Agents section
   local agents = M.create_agents_entries(structure, config)
   for _, entry in ipairs(agents) do
     table.insert(all_entries, entry)
   end
 
-  -- 10. Root Files section (between Agents and Commands)
+  -- 13. Root Files section (between Agents and Commands)
   local root_files = M.create_root_files_entries(structure, config)
   for _, entry in ipairs(root_files) do
     table.insert(all_entries, entry)
   end
 
-  -- 11. Commands section (appears at top)
+  -- 14. Commands section (appears at top)
   local commands = M.create_commands_entries(structure, config)
   for _, entry in ipairs(commands) do
     table.insert(all_entries, entry)
