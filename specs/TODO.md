@@ -8,23 +8,26 @@ next_project_number: 155
 
 ### OC_154. Task command fails to create entries - not a specs/ directory issue
 - **Effort**: 2-4 hours
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-06
+- **Research Completed**: 2026-03-06
 - **Language**: meta
 - **Dependencies**: None
+- **Research**: [research-001.md](OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/reports/research-001.md) - Comprehensive analysis identifying root cause: /task is a direct execution command (no skill delegation) while other commands delegate to skills. Agents interpret problem descriptions as requests to solve rather than following task.md CREATE mode steps.
 
-**Description**: The /task command fails to create task entries even when specs/ directory exists with TODO.md and state.json. Initial diagnosis assumed the issue was missing specs/ directory when copying .opencode/ to other directories, but the command also fails in the current directory where specs/ is present. This indicates a deeper issue with the task command implementation or the agent's interpretation of the command rules. The command file (.opencode/commands/task.md) exists and appears correct, yet task creation is not occurring.
+**Description**: The /task command fails to create task entries even when specs/ directory exists with TODO.md and state.json. Initial diagnosis assumed the issue was missing specs/ directory when copying .opencode/ to other directories, but the command also fails in the current directory where specs/ is present. This indicates a deeper issue with the task command implementation or the agent's interpretation of the command rules.
 
-**Revised Root Cause**: Unknown. The previous diagnosis (missing specs/ directory) is incorrect since the command fails even when specs/ exists. Potential causes:
-1. Agent not properly following task.md command instructions
-2. Task command not being invoked correctly by the system
-3. Command parsing issues preventing /task from being recognized
-4. Agent role confusion - agent diagnosing instead of creating
+**Root Cause (from research)**:
+1. **Architectural Difference**: /task is a direct execution command (no skill delegation), while /implement, /research, /plan all delegate to skills
+2. **Agent Behavior**: Agents naturally want to solve problems described in task descriptions, ignoring the "DO NOT IMPLEMENT" warnings in task.md
+3. **Lack of Enforcement**: No skill-task exists to enforce CREATE mode execution, unlike other commands
+4. **Task 151 Success**: Proves system works when agents follow instructions correctly
 
-**Required Investigation**:
-1. Verify /task command is being invoked correctly by the system
-2. Check if task.md command is being loaded and parsed properly
-3. Determine why agent is not executing the CREATE mode steps
-4. Review agent behavior when /task is called vs other commands
+**Key Findings**:
+- /task command file exists and is correct (.opencode/commands/task.md lines 7-144)
+- Task 151 was successfully created (commit 39cbfe53) following proper CREATE mode
+- Failed attempts show agents diagnosing instead of creating (current conversation)
+- No system bug - the issue is agent adherence to task.md instructions
 
 ---
 
