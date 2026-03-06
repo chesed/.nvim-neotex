@@ -2,11 +2,11 @@
 description: Add a memory to the vault with interactive checkbox confirmation
 ---
 
-# Command: /remember
+# Command: /learn
 
 **Purpose**: Takes text or file paths, analyzes content, and adds them to the memory vault with interactive checkbox confirmation. Supports task mode for reviewing task artifacts and creating classified memories.  
 **Layer**: 2 (Command File - Argument Parsing Agent)  
-**Delegates To**: skill-remember (direct execution)
+**Delegates To**: skill-learn (direct execution)
 
 ---
 
@@ -38,13 +38,13 @@ description: Add a memory to the vault with interactive checkbox confirmation
 
 <workflow_execution>
   <step_1>
-    <action>Delegate to Remember Skill</action>
+    <action>Delegate to Learn Skill</action>
     <input>
       If task_mode:
-        - skill: "skill-remember"
+        - skill: "skill-learn"
         - args: "mode=task, task_number={task_number}"
       Else:
-        - skill: "skill-remember"
+        - skill: "skill-learn"
         - args: "mode=standard, input={input}, is_file={is_file}"
     </input>
     <expected_return>
@@ -82,7 +82,7 @@ description: Add a memory to the vault with interactive checkbox confirmation
 
 ## Task Mode
 
-When invoked with `--task OC_N`, /remember enters task mode for reviewing task artifacts:
+When invoked with `--task OC_N`, /learn enters task mode for reviewing task artifacts:
 
 ### Workflow
 
@@ -109,8 +109,8 @@ When invoked with `--task OC_N`, /remember enters task mode for reviewing task a
 ### Example Usage
 
 ```bash
-/remember --task 142                    # Review all artifacts from task 142
-/remember --task 142 --category PATTERN # Focus on pattern extraction only
+/learn --task 142                    # Review all artifacts from task 142
+/learn --task 142 --category PATTERN # Focus on pattern extraction only
 ```
 
 ---
@@ -120,8 +120,8 @@ When invoked with `--task OC_N`, /remember enters task mode for reviewing task a
 Original behavior for adding arbitrary text or files:
 
 ```bash
-/remember "Text content to save"        # Add text as memory
-/remember /path/to/file.md              # Add file content as memory
+/learn "Text content to save"        # Add text as memory
+/learn /path/to/file.md              # Add file content as memory
 ```
 
 ---
@@ -130,7 +130,7 @@ Original behavior for adding arbitrary text or files:
 
 <error_handling>
   <argument_errors>
-    - No arguments provided (standard mode) -> "Usage: /remember <text or file path> OR /remember --task OC_N"
+    - No arguments provided (standard mode) -> "Usage: /learn <text or file path> OR /learn --task OC_N"
     - Invalid file path (standard mode) -> "File not found: {path}"
     - Invalid task number (task mode) -> "Task not found: OC_{N}"
     - Non-existent task directory -> "Task directory not found: specs/OC_{N}_*"
