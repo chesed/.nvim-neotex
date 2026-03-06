@@ -14,10 +14,11 @@
     {
       "project_number": 151,
       "project_name": "rename_remember_command_to_learn",
-      "status": "researched",
+      "status": "planning",
       "language": "meta",
       "created": "2026-03-06T00:00:00Z",
-      "last_updated": "2026-03-06T00:00:00Z",
+      "last_updated": "2026-03-06T00:30:00Z",
+      "planning": "2026-03-06T00:30:00Z",
       "researched": "2026-03-06T00:00:00Z",
       "artifacts": [
         {
@@ -28,127 +29,7 @@
       ],
       "description": "Rename the /remember command to /learn throughout the OpenCode system. This involves: 1) Renaming skill-remember/ directory to skill-learn/, 2) Updating SKILL.md to register as /learn command, 3) Updating any documentation references, 4) Ensuring backward compatibility if needed."
     },
-    {
-      "project_number": 150,
-      "project_name": "fix_todo_orphan_detection_completed_tasks",
-      "status": "completed",
-      "language": "meta",
-      "created": "2026-03-06T00:00:00Z",
-      "last_updated": "2026-03-06T01:04:59Z",
-      "researched": "2026-03-06T00:25:00Z",
-      "planning": "2026-03-06T00:30:00Z",
-      "artifacts": [
-        {
-          "type": "research",
-          "path": "specs/OC_150_fix_todo_orphan_detection/reports/research-001.md",
-          "summary": "Research report identifying gap in /todo orphan detection where completed tasks in TODO.md but not in state.json are not being archived"
-        },
-        {
-          "type": "research",
-          "path": "specs/OC_150_fix_todo_orphan_detection/reports/research-002.md",
-          "summary": "Comparative analysis of .claude/ and .opencode/ /todo implementations, identifying filesystem-first orphan detection pattern and TODO.md cross-referencing strategy"
-        },
-        {
-          "path": "specs/OC_150_fix_todo_orphan_detection/plans/implementation-002.md",
-          "type": "plan",
-          "summary": "5-phase implementation plan for fixing /todo orphan detection"
-        },
-        {
-          "path": "specs/OC_150_fix_todo_orphan_detection/summaries/implementation-summary-20260305.md",
-          "type": "summary",
-          "summary": "Implementation summary with technical details and verification"
-        }
-      ],
-      "description": "Fix /todo command's orphan detection to properly handle completed tasks that appear in TODO.md but have been manually removed from state.json. Currently, tasks like OC_138, OC_139, OC_140 are marked [COMPLETED] in TODO.md and have directories in specs/, but are not being archived because they're not in state.json's active_projects array. The fix should scan TODO.md for completed/abandoned entries and cross-reference with both state.json and filesystem to identify orphans.",
-      "planned": "2026-03-06T00:39:34Z",
-      "completed": "2026-03-06T01:04:59Z"
-    },
-    {
-      "project_number": 149,
-      "project_name": "review_update_opencode_documentation_readme_files",
-      "status": "completed",
-      "language": "meta",
-      "created": "2026-03-05T00:00:00Z",
-      "last_updated": "2026-03-06T00:00:00Z",
-      "researched": "2026-03-06T00:00:00Z",
-      "planned": "2026-03-06T00:00:00Z",
-      "completed": "2026-03-06T00:00:00Z",
-      "artifacts": [
-        {
-          "type": "research",
-          "path": "specs/OC_149_review_update_opencode_documentation_readme_files/reports/research-001.md",
-          "summary": "Comprehensive audit of .opencode/ directory: 177 directories, only 20 have README.md (11.3%), 157 need creation. Critical gaps in core system directories and extensions. Docs directory needs organization (4 loose files). Navigation patterns inconsistent."
-        },
-        {
-          "type": "plan",
-          "path": "specs/OC_149_review_update_opencode_documentation_readme_files/plans/implementation-001.md",
-          "summary": "6-phase implementation plan: Phase 1- Core system directories (20 dirs, 2hrs), Phase 2- Extension roots (11 dirs, 1hr), Phase 3- Extension structure (~100 dirs, 2.5hrs), Phase 4- Docs organization (45min), Phase 5- Remaining directories (~26 dirs, 1.5hrs), Phase 6- Verification (45min). Total: 6-8 hours."
-        },
-        {
-          "type": "summary",
-          "path": "specs/OC_149_review_update_opencode_documentation_readme_files/summaries/implementation-summary-20260305.md",
-          "summary": "Complete implementation summary: 183 new README.md files created, 4 existing updated, 3 files moved to docs/guides/. Achieved 100% coverage with 197 directories having README files. All 6 phases completed with bidirectional navigation."
-        }
-      ]
-    },
-    {
-      "project_number": 140,
-      "project_name": "document_progressive_disclosure_patterns",
-      "status": "researched",
-      "language": "meta",
-      "created": "2026-03-06T16:30:00Z",
-      "last_updated": "2026-03-06T16:30:00Z",
-      "artifacts": [
-        {
-          "type": "research",
-          "path": "specs/OC_140_document_progressive_disclosure_patterns/reports/research-001.md",
-          "summary": "Documentation needed for progressive disclosure patterns from OC_137: stage-progressive loading, conditional context injection, discovery-layer pattern, context budget guidelines, and troubleshooting. Updates required to context-loading-best-practices.md"
-        }
-      ],
-      "description": "Follow-up to OC_137 Phase 8. Update context-loading-best-practices.md with progressive disclosure patterns: stage-progressive loading, conditional injection, discovery-layer pattern, context budgets, and troubleshooting guidance."
-    },
-    {
-      "project_number": 139,
-      "project_name": "implement_stage_progressive_loading_demo",
-      "status": "planned",
-      "language": "meta",
-      "created": "2026-03-06T16:30:00Z",
-      "last_updated": "2026-03-05T17:30:00Z",
-      "artifacts": [
-        {
-          "type": "research",
-          "path": "specs/OC_139_implement_stage_progressive_loading_demo/reports/research-001.md",
-          "summary": "Initial POC research: Implement stage-progressive loading in skill-planner, load status-markers in Stage 1, defer plan-format.md to Stage 3. Expected 40-50% context reduction."
-        },
-        {
-          "type": "research",
-          "path": "specs/OC_139_implement_stage_progressive_loading_demo/reports/research-002.md",
-          "summary": "Systematic review of entire .opencode/ agent system for progressive context disclosure improvements. Identified optimization opportunities across 11 skills with 30-60% potential reduction per skill through stage-progressive loading, context consolidation, and 2026 best practices."
-        },
-        {
-          "type": "plan",
-          "path": "specs/OC_139_implement_stage_progressive_loading_demo/plans/implementation-001.md",
-          "summary": "3-phase implementation plan: baseline measurement, stage-progressive loading implementation in skill-planner/SKILL.md, testing and validation. Expected 40-50% Stage 1 context reduction."
-        }
-      ],
-      "description": "Follow-up to OC_137 Phase 7. Demonstrate stage-progressive context loading in skill-planner: load minimal context in Stage 1 (status-markers only), defer format specs to Stage 3. Proof-of-concept for ~40-50% context reduction."
-    },
-    {
-      "project_number": 138,
-      "project_name": "fix_plan_metadata_status_synchronization",
-      "status": "researched",
-      "language": "meta",
-      "created": "2026-03-06T11:05:00Z",
-      "last_updated": "2026-03-06T11:05:00Z",
-      "artifacts": [
-        {
-          "type": "research",
-          "path": "specs/OC_138_fix_plan_metadata_status_synchronization/reports/research-001.md",
-          "summary": "Root cause identified: synchronization protocol only updates state.json and TODO.md, missing plan file line 4 metadata status. Plan files have TWO status levels (plan-level and phase-level), but only phase-level is synchronized."
-        }
-      ],
-      "description": "Fix the three-way status synchronization gap. When tasks complete, plan file line 4 status metadata is not updated while state.json and TODO.md are correctly synchronized. Need to update phase-synchronization.md protocol and skill-implementer to include plan metadata status updates."
-    },
+
     {
       "project_number": 87,
       "project_name": "investigate_wezterm_terminal_directory_change",

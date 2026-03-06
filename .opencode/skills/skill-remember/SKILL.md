@@ -1,5 +1,5 @@
 ---
-name: skill-remember
+name: skill-learn
 description: Add a memory to the vault with checkbox-based multi-select confirmation
 allowed-tools: Bash, Edit, Read, Write, Grep, AskUserQuestion, Glob
 ---

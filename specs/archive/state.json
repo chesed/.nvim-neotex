@@ -1,6 +1,138 @@
 {
   "completed_projects": [
     {
+      "project_number": 150,
+      "project_name": "fix_todo_orphan_detection_completed_tasks",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-06T00:00:00Z",
+      "last_updated": "2026-03-06T01:04:59Z",
+      "researched": "2026-03-06T00:25:00Z",
+      "planned": "2026-03-06T00:39:34Z",
+      "completed": "2026-03-06T01:04:59Z",
+      "completion_summary": "Fixed /todo orphan detection to properly handle completed tasks that appear in TODO.md but have been removed from state.json. Added filesystem scanning and TODO.md cross-referencing to identify orphaned completed tasks.",
+      "archived": "2026-03-06",
+      "artifacts": [
+        {
+          "path": "specs/archive/OC_150_fix_todo_orphan_detection/reports/research-001.md",
+          "type": "research",
+          "summary": "Analysis of orphan detection gap"
+        },
+        {
+          "path": "specs/archive/OC_150_fix_todo_orphan_detection/reports/research-002.md",
+          "type": "research",
+          "summary": "Comparative analysis of .claude/ vs .opencode/ implementations"
+        },
+        {
+          "path": "specs/archive/OC_150_fix_todo_orphan_detection/plans/implementation-002.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan"
+        },
+        {
+          "path": "specs/archive/OC_150_fix_todo_orphan_detection/summaries/implementation-summary-20260305.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification"
+        }
+      ]
+    },
+    {
+      "project_number": 149,
+      "project_name": "review_update_opencode_documentation_readme_files",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-05T00:00:00Z",
+      "last_updated": "2026-03-06T00:00:00Z",
+      "researched": "2026-03-06T00:00:00Z",
+      "planned": "2026-03-06T00:00:00Z",
+      "completed": "2026-03-06T00:00:00Z",
+      "completion_summary": "Created 183 new README.md files achieving 100% coverage across 197 directories in .opencode/. Organized docs/ directory and established bidirectional navigation patterns.",
+      "archived": "2026-03-06",
+      "artifacts": [
+        {
+          "path": "specs/archive/OC_149_review_update_opencode_documentation_readme_files/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive audit of .opencode/ directory"
+        },
+        {
+          "path": "specs/archive/OC_149_review_update_opencode_documentation_readme_files/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan"
+        },
+        {
+          "path": "specs/archive/OC_149_review_update_opencode_documentation_readme_files/summaries/implementation-summary-20260305.md",
+          "type": "summary",
+          "summary": "Complete implementation summary"
+        }
+      ]
+    },
+    {
+      "project_number": 140,
+      "project_name": "document_progressive_disclosure_patterns",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-06T16:30:00Z",
+      "last_updated": "2026-03-06T16:30:00Z",
+      "completed": "2026-03-06T16:30:00Z",
+      "completion_summary": "TODO.md orphan - Documentation task for progressive disclosure patterns from OC_137. Research completed on patterns to document.",
+      "archived": "2026-03-06",
+      "source": "todo_md_orphan",
+      "artifacts": [
+        {
+          "path": "specs/archive/OC_140_document_progressive_disclosure_patterns/reports/research-001.md",
+          "type": "research",
+          "summary": "Documentation requirements for progressive disclosure patterns"
+        }
+      ]
+    },
+    {
+      "project_number": 139,
+      "project_name": "implement_stage_progressive_loading_demo",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-06T16:30:00Z",
+      "last_updated": "2026-03-06T16:30:00Z",
+      "completed": "2026-03-06T16:30:00Z",
+      "completion_summary": "TODO.md orphan - Research on stage-progressive loading for 40-50% context reduction in skill-planner.",
+      "archived": "2026-03-06",
+      "source": "todo_md_orphan",
+      "artifacts": [
+        {
+          "path": "specs/archive/OC_139_implement_stage_progressive_loading_demo/reports/research-001.md",
+          "type": "research",
+          "summary": "POC for progressive context loading"
+        },
+        {
+          "path": "specs/archive/OC_139_implement_stage_progressive_loading_demo/reports/research-002.md",
+          "type": "research",
+          "summary": "Systematic review of 11 skills"
+        },
+        {
+          "path": "specs/archive/OC_139_implement_stage_progressive_loading_demo/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "3-phase implementation plan"
+        }
+      ]
+    },
+    {
+      "project_number": 138,
+      "project_name": "fix_plan_metadata_status_synchronization",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-06T11:05:00Z",
+      "last_updated": "2026-03-06T11:05:00Z",
+      "completed": "2026-03-06T11:05:00Z",
+      "completion_summary": "TODO.md orphan - Research on three-way status synchronization gap between state.json, TODO.md, and plan files.",
+      "archived": "2026-03-06",
+      "source": "todo_md_orphan",
+      "artifacts": [
+        {
+          "path": "specs/archive/OC_138_fix_plan_metadata_status_synchronization/reports/research-001.md",
+          "type": "research",
+          "summary": "Root cause analysis of synchronization gap"
+        }
+      ]
+    },
+    {
       "project_number": 143,
       "project_name": "fix_skill_researcher_todo_linking",
       "status": "completed",

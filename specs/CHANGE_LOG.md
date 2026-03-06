@@ -12,6 +12,66 @@ Each entry includes:
 
 ---
 
+### 2026-03-06
+
+**Task OC_150: fix_todo_orphan_detection_completed_tasks**
+- Status: completed
+- Type: meta
+- Summary: Fixed /todo orphan detection to properly handle completed tasks that appear in TODO.md but have been removed from state.json
+
+**Artifacts:**
+- specs/archive/OC_150_fix_todo_orphan_detection/reports/research-001.md - Analysis of orphan detection gap
+- specs/archive/OC_150_fix_todo_orphan_detection/reports/research-002.md - Comparative analysis of .claude/ vs .opencode/ implementations
+- specs/archive/OC_150_fix_todo_orphan_detection/plans/implementation-002.md - 5-phase implementation plan
+- specs/archive/OC_150_fix_todo_orphan_detection/summaries/implementation-summary-20260305.md - Implementation summary
+
+**Task OC_149: review_update_opencode_documentation_readme_files**
+- Status: completed
+- Type: meta
+- Summary: Created 183 new README.md files achieving 100% coverage across 197 directories in .opencode/
+
+**Artifacts:**
+- specs/archive/OC_149_review_update_opencode_documentation_readme_files/reports/research-001.md - Comprehensive audit
+- specs/archive/OC_149_review_update_opencode_documentation_readme_files/plans/implementation-001.md - 6-phase plan
+- specs/archive/OC_149_review_update_opencode_documentation_readme_files/summaries/implementation-summary-20260305.md - Implementation summary
+
+**Task OC_140: document_progressive_disclosure_patterns (TODO.md orphan)**
+- Status: completed
+- Type: meta
+- Summary: Documentation task for progressive disclosure patterns from OC_137
+
+**Artifacts:**
+- specs/archive/OC_140_document_progressive_disclosure_patterns/reports/research-001.md - Documentation requirements
+
+**Task OC_139: implement_stage_progressive_loading_demo (TODO.md orphan)**
+- Status: completed
+- Type: meta
+- Summary: Research on stage-progressive loading for 40-50% context reduction
+
+**Artifacts:**
+- specs/archive/OC_139_implement_stage_progressive_loading_demo/reports/research-001.md - POC for progressive context loading
+- specs/archive/OC_139_implement_stage_progressive_loading_demo/reports/research-002.md - Systematic review of 11 skills
+- specs/archive/OC_139_implement_stage_progressive_loading_demo/plans/implementation-001.md - 3-phase implementation plan
+
+**Task OC_138: fix_plan_metadata_status_synchronization (TODO.md orphan)**
+- Status: completed
+- Type: meta
+- Summary: Research on three-way status synchronization gap between state.json, TODO.md, and plan files
+
+**Artifacts:**
+- specs/archive/OC_138_fix_plan_metadata_status_synchronization/reports/research-001.md - Root cause analysis
+
+**Task OC_145: restore_settings_json_and_state_sync (ORPHAN)**
+- Status: orphan_deleted
+- Type: meta
+- Summary: Empty orphaned directory with no state.json entry, removed during archival
+
+**Directory Operations:**
+- Moved 5 task directories to specs/archive/
+- Deleted 1 empty orphaned directory (OC_145)
+
+---
+
 ### 2026-03-05
 
 **Task OC_142: implement_knowledge_capture_system**
