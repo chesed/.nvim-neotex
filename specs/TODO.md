@@ -1,10 +1,20 @@
 ---
-next_project_number: 157
+next_project_number: 158
 ---
 
 # TODO
 
 ## Tasks
+
+### OC_158. Ensure workflow command uniformity - prevent /research from failing to call research agent
+- **Effort**: 2-3 hours
+- **Status**: [CREATING]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Prevent /research command from failing to call the research agent, making task workflow commands /research, /plan, /revise, and /implement uniform. Sometimes /research fails to call the research agent, conducting the research by the primary agent instead.
+
+---
 
 ### OC_157. Fix task-creation-agent not found error
 - **Effort**: 1-2 hours
@@ -21,11 +31,24 @@ next_project_number: 157
 
 ### OC_156. Avoid tmp directory permission requests in agent system
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-06
+- **Research Completed**: 2026-03-06
 - **Language**: meta
 - **Dependencies**: None
+- **Research**: [research-001.md](OC_156_avoid_tmp_directory_permission_requests_in_agent_system/reports/research-001.md) - Comprehensive analysis identifying 85+ occurrences of /tmp/state.json pattern across .opencode/ system. Recommended solution: replace with specs/tmp/state.json using existing project-local tmp directory.
 
 **Description**: Avoid permission requests for /tmp directory in opencode agent system. When using jq to update state.json, the current implementation writes to /tmp/state.json and moves it back, causing permission prompts. Use specs/tmp/ exclusively throughout .opencode/ agent system or find an elegant way to avoid temporary files altogether.
+
+**Key Findings**:
+1. **85+ occurrences** of `/tmp/state.json` pattern across codebase
+2. **Solution**: Use existing `specs/tmp/` directory (user-owned, no permission issues)
+3. **Files affected**: Commands (9), Skills (20+), Context docs (35+), Scripts (9)
+4. **Migration**: Simple find-and-replace, no logic changes
+5. **Pattern**: `> /tmp/state.json` becomes `> specs/tmp/state.json`
+
+**Artifacts**:
+- [research-001.md](OC_156_avoid_tmp_directory_permission_requests_in_agent_system/reports/research-001.md) - Comprehensive analysis and implementation plan
 
 ---
 
