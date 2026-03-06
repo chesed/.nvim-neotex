@@ -1,10 +1,20 @@
 ---
-next_project_number: 156
+next_project_number: 157
 ---
 
 # TODO
 
 ## Tasks
+
+### OC_157. Fix task-creation-agent not found error
+- **Effort**: 1-2 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Fix task-creation-agent not found error. The skill-task.md references an agent type task-creation-agent that does not exist, causing Error: Unknown agent type: task-creation-agent is not a valid agent type. Need to either create the agent, update the skill to use general agent, or fix the reference.
+
+---
 
 ### OC_156. Avoid tmp directory permission requests in agent system
 - **Effort**: 2-3 hours

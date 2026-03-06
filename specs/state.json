@@ -1,5 +1,5 @@
 {
-  "next_project_number": 157,
+  "next_project_number": 158,
   "active_projects": [
     {
       "project_number": 153,
@@ -186,6 +186,17 @@
       "last_updated": "2026-03-06T03:14:39Z",
       "creating": "2026-03-06T03:13:31Z",
       "description": "Avoid permission requests for /tmp directory in opencode agent system. When using jq to update state.json, the current implementation writes to /tmp/state.json and moves it back, causing permission prompts. Use specs/tmp/ exclusively throughout .opencode/ agent system or find an elegant way to avoid temporary files altogether.",
+      "artifacts": []
+    },
+    {
+      "project_number": 157,
+      "project_name": "fix_task_creation_agent_not_found_error",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-06T03:16:07Z",
+      "last_updated": "2026-03-06T03:17:16Z",
+      "creating": "2026-03-06T03:16:07Z",
+      "description": "Fix task-creation-agent not found error. The skill-task.md references an agent type task-creation-agent that does not exist, causing Error: Unknown agent type: task-creation-agent is not a valid agent type. Need to either create the agent, update the skill to use general agent, or fix the reference.",
       "artifacts": []
     }
   ],
