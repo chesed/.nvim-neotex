@@ -8,7 +8,7 @@ next_project_number: 155
 
 ### OC_154. Task command fails to create entries - not a specs/ directory issue
 - **Effort**: 2-4 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-06
 - **Research Completed**: 2026-03-06
 - **Language**: meta
@@ -33,6 +33,7 @@ next_project_number: 155
 - [research-001.md](OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/reports/research-001.md) - Comprehensive analysis identifying root cause
 - [research-002.md](OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/reports/research-002.md) - Regression analysis: /task command broke due to architectural shift in task 153 phases 1-4 that changed other commands to 'command orchestrates workflow' pattern while /task remained on 'direct agent execution' pattern
 - [implementation-001.md](OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/plans/implementation-001.md) - 5-phase implementation plan for fixing /task command behavioral issues
+- [implementation-002.md](OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/plans/implementation-002.md) - REPLAN: 4-phase implementation plan based on regression analysis to fix architectural pattern inconsistency
 
 ---
 

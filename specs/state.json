@@ -141,27 +141,27 @@
     {
       "project_number": 154,
       "project_name": "task_command_fails_to_create_entries_not_specs_directory_issue",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-06T02:30:00Z",
-      "last_updated": "2026-03-06T02:47:36Z",
+      "last_updated": "2026-03-06T02:52:41Z",
       "researching": "2026-03-06T02:43:21Z",
       "researched": "2026-03-06T02:47:36Z",
       "artifacts": [
         {
-          "path": "specs/OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/plans/implementation-001.md",
-          "type": "plan",
-          "summary": "5-phase implementation plan for fixing /task command behavioral issues"
-        },
-        {
           "path": "specs/OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/reports/research-002.md",
           "type": "research",
           "summary": "Regression analysis: /task command broke due to architectural shift in task 153 phases 1-4 that changed other commands to 'command orchestrates workflow' pattern while /task remained on 'direct agent execution' pattern"
+        },
+        {
+          "path": "specs/OC_154_task_command_fails_to_create_entries_not_specs_directory_issue/plans/implementation-002.md",
+          "type": "plan",
+          "summary": "REPLAN: 4-phase implementation plan for task 154 regression fix based on architectural pattern analysis"
         }
       ],
       "description": "The /task command fails to create task entries even when specs/ directory exists with TODO.md and state.json. Initial diagnosis assumed the issue was missing specs/ directory when copying .opencode/ to other directories, but the command also fails in the current directory where specs/ is present. This indicates a deeper issue with the task command implementation or the agent's interpretation of the command rules.",
-      "planning": "2026-03-06T02:39:31Z",
-      "planned": "2026-03-06T02:41:35Z"
+      "planning": "2026-03-06T02:50:07Z",
+      "planned": "2026-03-06T02:52:41Z"
     }
   ],
   "repository_health": {
