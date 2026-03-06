@@ -1,10 +1,43 @@
 ---
-next_project_number: 152
+next_project_number: 153
 ---
 
 # TODO
 
 ## Tasks
+
+### OC_153. Fix skill-implementer postflight not executing - status not updating after implementation
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Research**: [research-001.md](OC_153_fix_skill_implementer_postflight_not_executing/reports/research-001.md) - Comprehensive analysis identifying that skill tool only loads definitions, doesn't execute workflows. Commands must implement preflight/postflight status updates themselves, not rely on skills to do it.
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Fix the issue where task status is not being updated to [COMPLETED] after implementation finishes. The root cause is that the skill tool only loads skill definitions but doesn't execute the skill workflow (preflight/postflight). After implementing OC_151, state.json still shows "planning", TODO.md shows [PLANNING], and the plan file header shows [NOT STARTED], even though all phases were completed and .return-meta.json was created correctly.
+
+**Root Cause**: 
+- The `/implement` command documents calling `skill` tool to "execute the implementation workflow"
+- But `skill` tool only **loads** skill content, it doesn't **execute** the workflow
+- The preflight/postflight stages defined in skill-implementer/SKILL.md never run
+- Therefore state.json, TODO.md, and plan file status are never updated
+
+**Required Changes**:
+1. Investigate how skills should actually be invoked to execute their workflow
+2. Fix the `/implement` command to properly trigger skill-implementer postflight
+3. Fix the `/plan` command to properly trigger skill-planner postflight  
+4. Add missing postflight execution to complete status updates
+5. Remediate OC_151 status manually (currently stuck at "planning")
+
+**Files to Modify**:
+- `.opencode/commands/implement.md` - Add actual postflight execution
+- `.opencode/commands/plan.md` - Add actual postflight execution
+- `.opencode/skills/skill-implementer/SKILL.md` - Clarify execution mechanism
+- `.opencode/skills/skill-planner/SKILL.md` - Clarify execution mechanism
+- `specs/state.json` - Fix OC_151 status
+- `specs/TODO.md` - Fix OC_151 status
+- `specs/OC_151_*/plans/implementation-001.md` - Fix header status
+
+---
 
 ### OC_152. Fix git commit co-author attribution showing Claude Opus instead of actual model
 - **Effort**: 1-2 hours
@@ -28,7 +61,7 @@ next_project_number: 152
 ---
 ### 87. Investigate terminal directory change when opening neovim in wezterm
 - **Effort**: TBD
-- **Status**: [COMPLETED]
+- **Status**: [RESEARCHED]
 - **Research Started**: 2026-02-13
 - **Research Completed**: 2026-02-13
 - **Language**: neovim
@@ -39,7 +72,7 @@ next_project_number: 152
 
 ### 78. Fix Himalaya SMTP authentication failure when sending emails
 - **Effort**: 1-2 hours
-- **Status**: [COMPLETED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-02-13
 - **Research Completed**: 2026-02-13
 - **Planning Started**: 2026-02-13
