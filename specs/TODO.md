@@ -8,7 +8,7 @@ next_project_number: 151
 
 ### OC_151. Rename /remember command to /learn
 - **Effort**: 1-2 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Language**: meta
 - **Dependencies**: None
 
@@ -18,13 +18,14 @@ next_project_number: 151
 
 ### OC_150. Fix /todo orphan detection for completed tasks not in state.json
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](OC_150_fix_todo_orphan_detection/reports/research-001.md) - Analysis of orphan detection gap where completed tasks in TODO.md but removed from state.json are not archived
   - [research-002.md](OC_150_fix_todo_orphan_detection/reports/research-002.md) - Comparative analysis of .claude/ vs .opencode/ /todo implementations with implementation patterns
 - **Plan**: [implementation-001.md](OC_150_fix_todo_orphan_detection/plans/implementation-001.md) - 7-phase implementation plan for TODO.md orphan detection
   - [implementation-002.md](OC_150_fix_todo_orphan_detection/plans/implementation-002.md) - 5-phase implementation plan for fixing /todo orphan detection (updated)
+- **Summary**: [implementation-summary-20260305.md](OC_150_fix_todo_orphan_detection/summaries/implementation-summary-20260305.md) - Implementation summary with technical details and verification
 
 **Description**: Fix /todo command's orphan detection to properly handle completed tasks that appear in TODO.md but have been manually removed from state.json. Currently, tasks like OC_138, OC_139, OC_140 are marked [COMPLETED] in TODO.md and have directories in specs/, but are not being archived because they're not in state.json's active_projects array.
 

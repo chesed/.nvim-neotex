@@ -4,21 +4,20 @@
     {
       "project_number": 151,
       "project_name": "rename_remember_command_to_learn",
-      "status": "not_started",
+      "status": "researching",
       "language": "meta",
       "created": "2026-03-06T00:00:00Z",
       "last_updated": "2026-03-06T00:00:00Z",
       "artifacts": [],
       "description": "Rename the /remember command to /learn throughout the OpenCode system. This involves: 1) Renaming skill-remember/ directory to skill-learn/, 2) Updating SKILL.md to register as /learn command, 3) Updating any documentation references, 4) Ensuring backward compatibility if needed."
     },
-  "active_projects": [
     {
       "project_number": 150,
       "project_name": "fix_todo_orphan_detection_completed_tasks",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-06T00:00:00Z",
-      "last_updated": "2026-03-06T00:39:34Z",
+      "last_updated": "2026-03-06T01:04:59Z",
       "researched": "2026-03-06T00:25:00Z",
       "planning": "2026-03-06T00:30:00Z",
       "artifacts": [
@@ -36,10 +35,16 @@
           "path": "specs/OC_150_fix_todo_orphan_detection/plans/implementation-002.md",
           "type": "plan",
           "summary": "5-phase implementation plan for fixing /todo orphan detection"
+        },
+        {
+          "path": "specs/OC_150_fix_todo_orphan_detection/summaries/implementation-summary-20260305.md",
+          "type": "summary",
+          "summary": "Implementation summary with technical details and verification"
         }
       ],
       "description": "Fix /todo command's orphan detection to properly handle completed tasks that appear in TODO.md but have been manually removed from state.json. Currently, tasks like OC_138, OC_139, OC_140 are marked [COMPLETED] in TODO.md and have directories in specs/, but are not being archived because they're not in state.json's active_projects array. The fix should scan TODO.md for completed/abandoned entries and cross-reference with both state.json and filesystem to identify orphans.",
-      "planned": "2026-03-06T00:39:34Z"
+      "planned": "2026-03-06T00:39:34Z",
+      "completed": "2026-03-06T01:04:59Z"
     },
     {
       "project_number": 149,
