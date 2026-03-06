@@ -33,6 +33,7 @@ next_project_number: 159
 
 **Artifacts**:
 - [research-001.md](OC_158_ensure_workflow_command_uniformity_prevent_research_failure/reports/research-001.md) - Comprehensive analysis of workflow command delegation patterns. Identified root cause: /research has extra MCP tool dependency (search_notes) and broken step numbering that can prevent proper delegation to research agent. Recommended standardizing all commands to have identical pre-delegation structure and moving MCP calls to research agent instead of command.
+- [research-002.md](OC_158_ensure_workflow_command_uniformity_prevent_research_failure/reports/research-002.md) - Follow-up research comparing task 158 findings against task 159 implementation, concluding task 158 is superseded by task 159's delegation enforcement.
 
 ---
 
