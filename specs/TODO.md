@@ -1,10 +1,20 @@
 ---
-next_project_number: 158
+next_project_number: 159
 ---
 
 # TODO
 
 ## Tasks
+
+### OC_159. Require planner agent for /plan command and similar workflow commands
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: The /plan command currently uses the general agent instead of the planner agent, as seen when it shows "General Task" instead of delegating to the planner-agent. Need to fix the command routing to ensure /plan always calls the planner-agent, and similarly ensure other workflow commands (/research, /implement) call their respective specialized agents instead of falling back to the general agent.
+
+---
 
 ### OC_158. Ensure workflow command uniformity - prevent /research from failing to call research agent
 - **Effort**: 2-3 hours
@@ -21,7 +31,7 @@ next_project_number: 158
 
 ### OC_157. Fix task-creation-agent not found error
 - **Effort**: 1-2 hours
-- **Status**: [PLANNED]
+- **Status**: [PLANNING]
 - **Language**: meta
 - **Dependencies**: None
 

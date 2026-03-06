@@ -1,6 +1,16 @@
 {
-  "next_project_number": 159,
+  "next_project_number": 160,
   "active_projects": [
+    {
+      "project_number": 159,
+      "project_name": "require_planner_agent_for_plan_command",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-06T03:50:00Z",
+      "last_updated": "2026-03-06T03:50:00Z",
+      "artifacts": [],
+      "description": "The /plan command currently uses the general agent instead of the planner agent, as seen when it shows General Task instead of delegating to the planner-agent. Need to fix the command routing to ensure /plan always calls the planner-agent, and similarly ensure other workflow commands (/research, /implement) call their respective specialized agents instead of falling back to the general agent."
+    },
     {
       "project_number": 153,
       "project_name": "fix_skill_implementer_postflight_not_executing",
@@ -222,10 +232,10 @@
     {
       "project_number": 157,
       "project_name": "fix_task_creation_agent_not_found_error",
-      "status": "planned",
+      "status": "planning",
       "language": "meta",
       "created": "2026-03-06T03:16:07Z",
-      "last_updated": "2026-03-06T03:29:30Z",
+      "last_updated": "2026-03-06T03:45:28Z",
       "creating": "2026-03-06T03:16:07Z",
       "description": "Fix task-creation-agent not found error. The skill-task.md references an agent type task-creation-agent that does not exist, causing Error: Unknown agent type: task-creation-agent is not a valid agent type. Need to either create the agent, update the skill to use general agent, or fix the reference.",
       "artifacts": [
