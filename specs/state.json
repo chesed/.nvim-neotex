@@ -244,7 +244,7 @@
       "status": "completed",
       "language": "meta",
       "created": "2026-03-06T03:16:07Z",
-      "last_updated": "2026-03-06T03:54:05Z",
+      "last_updated": "2026-03-06T03:55:03Z",
       "creating": "2026-03-06T03:16:07Z",
       "description": "Fix task-creation-agent not found error. The skill-task.md references an agent type task-creation-agent that does not exist, causing Error: Unknown agent type: task-creation-agent is not a valid agent type. Need to either create the agent, update the skill to use general agent, or fix the reference.",
       "artifacts": [
@@ -262,6 +262,11 @@
           "path": "specs/OC_157_fix_task_creation_agent_not_found_error/plans/implementation-002.md",
           "type": "plan",
           "summary": "Revised implementation plan following plan-format.md specification"
+        },
+        {
+          "path": "specs/OC_157_fix_task_creation_agent_not_found_error/summaries/implementation-summary-20260306.md",
+          "type": "summary",
+          "summary": "Implementation summary for task 157: Simplified /task command by removing skill-task delegation, achieving 97% code reduction (274 lines removed)"
         }
       ],
       "researching": "2026-03-06T03:19:30Z",
@@ -269,7 +274,7 @@
       "planning": "2026-03-06T03:27:06Z",
       "planned": "2026-03-06T03:29:30Z",
       "implementing": "2026-03-06T03:49:54Z",
-      "completed": "2026-03-06T03:54:05Z"
+      "completed": "2026-03-06T03:55:03Z"
     },
     {
       "project_number": 158,

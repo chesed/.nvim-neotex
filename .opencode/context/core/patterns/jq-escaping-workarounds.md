@@ -41,13 +41,13 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
     status: $status,
     last_updated: $ts,
     researched: $ts
-  }' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
 # Step 2: Update artifacts - filter out old type, add new
 jq --arg path "$artifact_path" \
   '(.active_projects[] | select(.project_number == '$task_number')).artifacts =
     ([(.active_projects[] | select(.project_number == '$task_number')).artifacts // [] | .[] | select(.type != "research")] + [{"path": $path, "type": "research"}])' \
-  specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 ```
 
 ### del() Approach (Alternative)
@@ -57,7 +57,7 @@ Use `del()` instead of `map(select(!=))`:
 ```bash
 jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
    --arg status "researched" \
-   --arg path "$artifact_path" \
+    --arg path "$artifact_path" \
   '(.active_projects[] | select(.project_number == '$task_number')) |= (
     del(.artifacts[] | select(.type == "research")) |
     . + {
@@ -66,7 +66,7 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
       researched: $ts,
       artifacts: ((.artifacts // []) + [{"path": $path, "type": "research"}])
     }
-  )' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  )' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 ```
 
 ## Pattern Templates
@@ -81,13 +81,13 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
     status: $status,
     last_updated: $ts,
     researched: $ts
-  }' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
 # Step 2: Add artifact
 jq --arg path "$artifact_path" \
   '(.active_projects[] | select(.project_number == '$task_number')).artifacts =
     ([(.active_projects[] | select(.project_number == '$task_number')).artifacts // [] | .[] | select(.type != "research")] + [{"path": $path, "type": "research"}])' \
-  specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 ```
 
 ### Planning Postflight
@@ -100,13 +100,13 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
     status: $status,
     last_updated: $ts,
     planned: $ts
-  }' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
 # Step 2: Add artifact
 jq --arg path "$artifact_path" \
   '(.active_projects[] | select(.project_number == '$task_number')).artifacts =
     ([(.active_projects[] | select(.project_number == '$task_number')).artifacts // [] | .[] | select(.type != "plan")] + [{"path": $path, "type": "plan"}])' \
-  specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 ```
 
 ### Implementation Postflight
@@ -119,13 +119,13 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
     status: $status,
     last_updated: $ts,
     completed: $ts
-  }' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
 # Step 2: Add artifact
 jq --arg path "$artifact_path" \
   '(.active_projects[] | select(.project_number == '$task_number')).artifacts =
     ([(.active_projects[] | select(.project_number == '$task_number')).artifacts // [] | .[] | select(.type != "summary")] + [{"path": $path, "type": "summary"}])' \
-  specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 ```
 
 ### Task Recovery (from archive)
@@ -136,11 +136,11 @@ task_json=$(jq '.archived_projects[] | select(.project_number == '$task_number')
 
 # Step 2: Add to active projects
 jq --argjson task "$task_json" \
-  '.active_projects += [$task]' specs/state.json > /tmp/state.json && mv /tmp/state.json specs/state.json
+  '.active_projects += [$task]' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
 # Step 3: Remove from archive
 jq 'del(.archived_projects[] | select(.project_number == '$task_number'))' \
-  specs/archive/state.json > /tmp/state.json && mv /tmp/state.json specs/archive/state.json
+  specs/archive/state.json > specs/tmp/archive-state.json && mv specs/tmp/archive-state.json specs/archive/state.json
 ```
 
 ### Task Abandon (to archive)
