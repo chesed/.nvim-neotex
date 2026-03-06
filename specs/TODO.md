@@ -8,17 +8,20 @@ next_project_number: 157
 
 ### OC_157. Fix task-creation-agent not found error
 - **Effort**: 1-2 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Language**: meta
 - **Dependencies**: None
 
 **Description**: Fix task-creation-agent not found error. The skill-task.md references an agent type task-creation-agent that does not exist, causing Error: Unknown agent type: task-creation-agent is not a valid agent type. Need to either create the agent, update the skill to use general agent, or fix the reference.
 
+**Artifacts**:
+- [research-001.md](OC_157_fix_task_creation_agent_not_found_error/reports/research-001.md) - Research report analyzing /task command complexity and proposing 97% reduction through direct execution pattern, eliminating skill-task delegation and non-existent task-creation-agent dependency
+
 ---
 
 ### OC_156. Avoid tmp directory permission requests in agent system
 - **Effort**: 2-3 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Language**: meta
 - **Dependencies**: None
 
@@ -28,9 +31,10 @@ next_project_number: 157
 
 ### OC_155. Review .opencode/ agent system for <leader>ao picker improvements
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNING]
 - **Research Started**: 2026-03-06
 - **Research Completed**: 2026-03-06
+- **Planning Started**: 2026-03-06
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](OC_155_review_opencode_agent_system_leader_ao_picker/reports/research-001.md) - Comprehensive analysis of .opencode/ agent system and <leader>ao picker identifying 6 major gaps: context files (90+ not surfaced), memory system not integrated, rules directory not exposed, no task status visibility, architectural coupling risks, and incomplete docs coverage.
