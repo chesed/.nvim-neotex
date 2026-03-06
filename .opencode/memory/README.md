@@ -19,9 +19,9 @@ The memory vault stores structured knowledge that the OpenCode system can refere
 
 ## Adding Memories
 
-Use the `/remember` command:
-- `/remember "text to remember"` - Add text content
-- `/remember /path/to/file.md` - Add file content
+Use the `/learn` command:
+- `/learn "text to remember"` - Add text content
+- `/learn /path/to/file.md` - Add file content
 
 The command will:
 1. Parse the input

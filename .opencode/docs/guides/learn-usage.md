@@ -1,32 +1,32 @@
-# /remember Command Usage Guide
+# /learn Command Usage Guide
 
 ## Basic Usage
 
 ### Adding Text Memories
 
 ```
-/remember "Your text content here"
+/learn "Your text content here"
 ```
 
 **Example**:
 ```
-/remember "Use pcall() in Lua to safely call functions that might error"
+/learn "Use pcall() in Lua to safely call functions that might error"
 ```
 
 ### Adding File Memories
 
 ```
-/remember /path/to/file.md
+/learn /path/to/file.md
 ```
 
 **Example**:
 ```
-/remember ~/notes/neovim-tips.md
+/learn ~/notes/neovim-tips.md
 ```
 
 ## Checkbox Confirmation Options
 
-When you run `/remember`, you'll see a preview and checkbox options:
+When you run `/learn`, you'll see a preview and checkbox options:
 
 ```
 Memory Preview:
@@ -133,7 +133,7 @@ git push
 ### Example 1: Simple Add
 
 ```
-/remember "vim.keymap.set accepts a table of options including silent and buffer"
+/learn "vim.keymap.set accepts a table of options including silent and buffer"
 ```
 
 Select: `[x] Add as new memory`
@@ -143,7 +143,7 @@ Select: `[x] Add as new memory`
 ### Example 2: Update Existing
 
 ```
-/remember "Additional keymap tip: use noremap=true to prevent recursion"
+/learn "Additional keymap tip: use noremap=true to prevent recursion"
 ```
 
 Similar memories found:
@@ -157,7 +157,7 @@ Choose: "vim-keymap-configuration.md"
 ### Example 3: Edit Before Save
 
 ```
-/remember /tmp/draft.md
+/learn /tmp/draft.md
 ```
 
 Select: `[x] Edit content before saving`
@@ -180,8 +180,8 @@ Then select: `[x] Add as new memory`
 
 | Command | Purpose |
 |---------|---------|
-| `/remember "text"` | Add text as memory |
-| `/remember /path` | Add file as memory |
+| `/learn "text"` | Add text as memory |
+| `/learn /path` | Add file as memory |
 | `/research OC_N --remember` | Research with memory augmentation |
 
 ## See Also

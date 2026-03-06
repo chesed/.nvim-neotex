@@ -79,12 +79,12 @@ All commands follow the same lifecycle:
 
 ### Memory System
 
-Store and retrieve knowledge with the `/remember` command:
+Store and retrieve knowledge with the `/learn` command:
 
 ```bash
 # Add memories
-/remember "Text content to remember"
-/remember /path/to/file.md
+/learn "Text content to remember"
+/learn /path/to/file.md
 
 # Research with memory augmentation
 /research N --remember
@@ -99,7 +99,7 @@ The memory system provides:
 
 **Quick Links**:
 - [Memory Vault](memory/README.md) - Organization and usage
-- [Usage Guide](docs/guides/remember-usage.md) - Detailed examples
+- [Usage Guide](docs/guides/learn-usage.md) - Detailed examples
 - [MCP Setup](docs/guides/memory-setup.md) - Server configuration
 
 For detailed command documentation, see [commands/README.md](commands/README.md).
