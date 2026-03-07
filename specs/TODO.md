@@ -8,11 +8,14 @@ next_project_number: 162
 
 ### 161. Fix nvim/.opencode/ source directory to include missing core files and fix scan bugs
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-07
 - **Research Completed**: 2026-03-07
+- **Planning Started**: 2026-03-07
+- **Planning Completed**: 2026-03-07
 - **Language**: neovim
 - **Research**: [research-001.md](161_fix_opencode_source_missing_files_and_scan_bugs/reports/research-001.md)
+- **Plan**: [implementation-001.md](161_fix_opencode_source_missing_files_and_scan_bugs/plans/implementation-001.md)
 
 **Description**: Three fixes needed for the `<leader>ao` Load Core Agent System picker. (1) Copy 9 missing core files from `.claude/` into `.opencode/` in the nvim config (the true source for OpenCode syncs): `context/core/patterns/early-metadata-pattern.md`, `context/core/troubleshooting/workflow-interruptions.md`, `context/index.schema.json`, `docs/reference/standards/agent-frontmatter-standard.md`, `docs/reference/standards/multi-task-creation-standard.md`, `docs/templates/agent-template.md`, `docs/templates/command-template.md`, `scripts/update-plan-status.sh`, `scripts/validate-context-index.sh`. (2) Fix templates scan in `sync.lua` to include `*.json` in addition to `*.yaml` so `templates/settings.json` is synced. (3) Decide whether context `.sh` files (`context/core/patterns/command-execution.sh` and similar) should be synced and fix the context scan accordingly.
 

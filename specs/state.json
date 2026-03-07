@@ -4,18 +4,24 @@
     {
       "project_number": 161,
       "project_name": "fix_opencode_source_missing_files_and_scan_bugs",
-      "status": "researched",
+      "status": "planned",
       "language": "neovim",
       "created": "2026-03-07T21:28:55Z",
-      "last_updated": "2026-03-07T21:35:50Z",
-      "session_id": "sess_1772919083_883aba",
+      "last_updated": "2026-03-07T21:41:24Z",
+      "session_id": "sess_1772919499_e668f1",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/161_fix_opencode_source_missing_files_and_scan_bugs/reports/research-001.md",
           "summary": "Research report identifying 9 missing files, templates scan bug fix, and context .sh orphan cleanup"
+        },
+        {
+          "type": "plan",
+          "path": "specs/161_fix_opencode_source_missing_files_and_scan_bugs/plans/implementation-001.md",
+          "summary": "3-phase implementation plan for fixing opencode sync templates scan, deleting orphaned .sh files, and validating sync"
         }
-      ]
+      ],
+      "planned": "2026-03-07T21:41:24Z"
     },
     {
       "project_number": 160,
