@@ -4,10 +4,10 @@
     {
       "project_number": 160,
       "project_name": "fix_load_core_agent_system_missing_files",
-      "status": "implementing",
+      "status": "completed",
       "language": "neovim",
       "created": "2026-03-07T20:55:49Z",
-      "last_updated": "2026-03-07T21:16:29Z",
+      "last_updated": "2026-03-07T21:20:36Z",
       "session_id": "sess_1772918167_d953c2",
       "artifacts": [
         {
@@ -19,9 +19,16 @@
           "type": "plan",
           "path": "specs/160_fix_load_core_agent_system_missing_files/plans/implementation-001.md",
           "summary": "3-phase implementation plan to fix previewer scan in Load Core Agent System picker"
+        },
+        {
+          "type": "summary",
+          "path": "specs/160_fix_load_core_agent_system_missing_files/summaries/implementation-summary-20260307.md",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "planned": "2026-03-07T21:13:06Z"
+      "planned": "2026-03-07T21:13:06Z",
+      "completed": "2026-03-07T21:20:36Z",
+      "completion_summary": "Fixed Load Core Agent System picker preview to display accurate file counts. Exported scan_all_artifacts from sync.lua, removed duplicate previewer scan, added Agents/Context/Root Files categories."
     },
     {
       "project_number": 87,
