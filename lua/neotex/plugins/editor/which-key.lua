@@ -173,10 +173,6 @@ return {
       return true, message, nil
     end
 
-    local function is_latex()
-      return vim.tbl_contains({ "tex", "latex", "bib", "cls", "sty" }, vim.bo.filetype)
-    end
-
     local function is_python()
       return vim.bo.filetype == "python"
     end
@@ -497,29 +493,6 @@ return {
     })
 
     -- ============================================================================
-    -- <leader>l - LATEX GROUP
-    -- ============================================================================
-
-    wk.add({
-      -- Group header (static name, conditional visibility)
-      { "<leader>l", group = "latex", icon = "󰙩", cond = is_latex },
-
-      -- LaTeX-specific mappings
-      { "<leader>la", "<cmd>lua PdfAnnots()<CR>", desc = "annotate", icon = "󰏪", cond = is_latex },
-      { "<leader>lb", function() run_bibexport() end, desc = "bib export", icon = "󰈝", cond = is_latex },
-      { "<leader>lc", "<cmd>VimtexCompile<CR>", desc = "compile", icon = "󰖷", cond = is_latex },
-      { "<leader>le", "<cmd>VimtexErrors<CR>", desc = "errors", icon = "󰅚", cond = is_latex },
-      { "<leader>lf", "<cmd>terminal latexindent -w %:p:r.tex<CR>", desc = "format", icon = "󰉣", cond = is_latex },
-      { "<leader>lg", "<cmd>e ~/.config/nvim/templates/Glossary.tex<CR>", desc = "glossary", icon = "󰈚", cond = is_latex },
-      { "<leader>li", "<cmd>VimtexTocOpen<CR>", desc = "index", icon = "󰋽", cond = is_latex },
-      { "<leader>lk", "<cmd>VimtexClean<CR>", desc = "kill aux", icon = "󰩺", cond = is_latex },
-      { "<leader>lm", "<plug>(vimtex-context-menu)", desc = "menu", icon = "󰍉", cond = is_latex },
-      { "<leader>lv", "<cmd>VimtexView<CR>", desc = "view", icon = "󰛓", cond = is_latex },
-      { "<leader>lw", "<cmd>VimtexCountWords!<CR>", desc = "word count", icon = "󰆿", cond = is_latex },
-      { "<leader>lx", "<cmd>:VimtexClearCache All<CR>", desc = "clear cache", icon = "󰃢", cond = is_latex },
-    })
-
-    -- ============================================================================
     -- <leader>m - MAIL GROUP
     -- ============================================================================
 
@@ -653,35 +626,6 @@ return {
       { "<leader>tp", function() require("todo-comments").jump_prev() end, desc = "previous todo", icon = "󰮲" },
       { "<leader>tq", "<cmd>TodoQuickFix<CR>", desc = "todo quickfix", icon = "󰁨" },
       { "<leader>tt", "<cmd>TodoTelescope<CR>", desc = "todo telescope", icon = "󰄬" },
-    })
-
-    -- ============================================================================
-    -- <leader>T - TEMPLATES GROUP (LaTeX)
-    -- ============================================================================
-
-    wk.add({
-      -- Group header (static name, conditional visibility)
-      { "<leader>T", group = "templates", icon = "󰈭", cond = is_latex },
-
-      -- Template mappings
-      { "<leader>Ta", "<cmd>read ~/.config/nvim/templates/article.tex<CR>", desc = "article.tex", icon = "󰈙", cond = is_latex },
-      { "<leader>Tb", "<cmd>read ~/.config/nvim/templates/beamer_slides.tex<CR>", desc = "beamer_slides.tex", icon = "󰈙", cond = is_latex },
-      { "<leader>Tg", "<cmd>read ~/.config/nvim/templates/glossary.tex<CR>", desc = "glossary.tex", icon = "󰈙", cond = is_latex },
-      { "<leader>Th", "<cmd>read ~/.config/nvim/templates/handout.tex<CR>", desc = "handout.tex", icon = "󰈙", cond = is_latex },
-      { "<leader>Tl", "<cmd>read ~/.config/nvim/templates/letter.tex<CR>", desc = "letter.tex", icon = "󰈙", cond = is_latex },
-      { "<leader>Tm", "<cmd>read ~/.config/nvim/templates/MultipleAnswer.tex<CR>", desc = "MultipleAnswer.tex", icon = "󰈙", cond = is_latex },
-      { "<leader>Tr", function()
-        local template_dir = vim.fn.expand("~/.config/nvim/templates/report")
-        local current_dir = vim.fn.getcwd()
-        vim.fn.system("cp -r " .. vim.fn.shellescape(template_dir) .. " " .. vim.fn.shellescape(current_dir))
-        require('neotex.util.notifications').editor('Template copied', require('neotex.util.notifications').categories.USER_ACTION, { template = 'report', directory = current_dir })
-      end, desc = "Copy report/ directory", icon = "󰉖", cond = is_latex },
-      { "<leader>Ts", function()
-        local template_dir = vim.fn.expand("~/.config/nvim/templates/springer")
-        local current_dir = vim.fn.getcwd()
-        vim.fn.system("cp -r " .. vim.fn.shellescape(template_dir) .. " " .. vim.fn.shellescape(current_dir))
-        require('neotex.util.notifications').editor('Template copied', require('neotex.util.notifications').categories.USER_ACTION, { template = 'springer', directory = current_dir })
-      end, desc = "Copy springer/ directory", icon = "󰉖", cond = is_latex },
     })
 
     -- ============================================================================
