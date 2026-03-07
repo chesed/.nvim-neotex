@@ -158,7 +158,7 @@ end
 --- @param project_dir string Project directory path
 --- @param config table|nil Picker config with base_dir field (defaults to .claude config)
 --- @return table Map of artifact type -> array of files
-local function scan_all_artifacts(global_dir, project_dir, config)
+function M.scan_all_artifacts(global_dir, project_dir, config)
   local base_dir = (config and config.base_dir) or ".claude"
   local artifacts = {}
 
@@ -279,7 +279,7 @@ function M.load_all_globally(config)
   end
 
   -- Scan all artifact types using config-appropriate base_dir
-  local all_artifacts = scan_all_artifacts(global_dir, project_dir, config)
+  local all_artifacts = M.scan_all_artifacts(global_dir, project_dir, config)
 
   -- Count totals
   local total_files = 0

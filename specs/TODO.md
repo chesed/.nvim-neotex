@@ -8,11 +8,12 @@ next_project_number: 161
 
 ### 160. Fix 'Load Core Agent System' in which-key picker to include missing core files
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Research Started**: 2026-03-07
 - **Research Completed**: 2026-03-07
 - **Planning Started**: 2026-03-07
 - **Planning Completed**: 2026-03-07
+- **Implementation Started**: 2026-03-07
 - **Language**: neovim
 - **Research**: [research-001.md](160_fix_load_core_agent_system_missing_files/reports/research-001.md)
 - **Plan**: [implementation-001.md](160_fix_load_core_agent_system_missing_files/plans/implementation-001.md)
