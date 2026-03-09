@@ -4,10 +4,19 @@
     {
       "project_number": 162,
       "project_name": "deck_command_skill_agent_typst_pitchdeck",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-09T18:31:24Z",
-      "last_updated": "2026-03-09T18:31:24Z"
+      "last_updated": "2026-03-09T18:37:48Z",
+      "session_id": "sess_1773081191_0dec10",
+      "researched": "2026-03-09T18:37:48Z",
+      "artifacts": [
+        {
+          "path": "specs/162_deck_command_skill_agent_typst_pitchdeck/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report covering YC pitch deck structure (9 slides, 3 design principles), touying 0.6.3 typst slide syntax, and command-skill-agent extension patterns for implementing /deck"
+        }
+      ]
     },
     {
       "project_number": 161,
