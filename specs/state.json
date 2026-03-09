@@ -4,10 +4,19 @@
     {
       "project_number": 163,
       "project_name": "review_extension_language_routing",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-09T22:47:16Z",
-      "last_updated": "2026-03-09T22:47:16Z"
+      "last_updated": "2026-03-09T22:52:55Z",
+      "session_id": "sess_1773096500_937ef5",
+      "researched": "2026-03-09T22:52:55Z",
+      "artifacts": [
+        {
+          "path": "specs/163_review_extension_language_routing/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with 11 findings covering extension language routing gaps, missing index entries, and absent activation mechanism"
+        }
+      ]
     },
     {
       "project_number": 162,
