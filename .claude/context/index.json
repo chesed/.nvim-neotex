@@ -1,13 +1,21 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-02T00:00:00Z",
+  "generated": "2026-03-09T00:00:00Z",
   "entries": [
     {
       "path": "README.md",
       "domain": "core",
       "subdomain": "overview",
-      "topics": ["context-system", "lazy-loading", "discovery"],
-      "keywords": ["index", "context", "loading"],
+      "topics": [
+        "context-system",
+        "lazy-loading",
+        "discovery"
+      ],
+      "keywords": [
+        "index",
+        "context",
+        "loading"
+      ],
       "summary": "Overview of context system structure and usage patterns",
       "line_count": 100,
       "load_when": {
@@ -18,267 +26,2174 @@
       "path": "core/routing.md",
       "domain": "core",
       "subdomain": "orchestration",
-      "topics": ["language-routing", "agent-selection", "tool-mapping"],
-      "keywords": ["routing", "language", "agent"],
+      "topics": [
+        "language-routing",
+        "agent-selection",
+        "tool-mapping"
+      ],
+      "keywords": [
+        "routing",
+        "language",
+        "agent"
+      ],
       "summary": "Language-based routing for research and implementation",
       "line_count": 150,
       "load_when": {
-        "agents": ["orchestrator"],
-        "commands": ["/research", "/implement", "/plan"]
+        "agents": [
+          "orchestrator"
+        ],
+        "commands": [
+          "/research",
+          "/implement",
+          "/plan"
+        ]
       }
     },
     {
       "path": "core/checkpoints/checkpoint-gate-in.md",
       "domain": "core",
       "subdomain": "checkpoints",
-      "topics": ["preflight", "validation", "session-id"],
-      "keywords": ["GATE IN", "preflight", "status update"],
+      "topics": [
+        "preflight",
+        "validation",
+        "session-id"
+      ],
+      "keywords": [
+        "GATE IN",
+        "preflight",
+        "status update"
+      ],
       "summary": "GATE IN preflight validation pattern",
       "line_count": 84,
       "load_when": {
-        "commands": ["/research", "/plan", "/implement"]
+        "commands": [
+          "/research",
+          "/plan",
+          "/implement"
+        ]
       }
     },
     {
       "path": "core/checkpoints/checkpoint-gate-out.md",
       "domain": "core",
       "subdomain": "checkpoints",
-      "topics": ["postflight", "validation", "artifacts"],
-      "keywords": ["GATE OUT", "postflight", "artifact linking"],
+      "topics": [
+        "postflight",
+        "validation",
+        "artifacts"
+      ],
+      "keywords": [
+        "GATE OUT",
+        "postflight",
+        "artifact linking"
+      ],
       "summary": "GATE OUT postflight validation and artifact verification",
       "line_count": 101,
       "load_when": {
-        "commands": ["/research", "/plan", "/implement"]
+        "commands": [
+          "/research",
+          "/plan",
+          "/implement"
+        ]
       }
     },
     {
       "path": "core/formats/return-metadata-file.md",
       "domain": "core",
       "subdomain": "formats",
-      "topics": ["metadata", "return-format", "agent-output"],
-      "keywords": ["metadata", "return", "status", "artifacts"],
+      "topics": [
+        "metadata",
+        "return-format",
+        "agent-output"
+      ],
+      "keywords": [
+        "metadata",
+        "return",
+        "status",
+        "artifacts"
+      ],
       "summary": "Metadata file schema for agent return values",
       "line_count": 150,
       "load_when": {
-        "agents": ["general-implementation-agent", "neovim-implementation-agent", "lean-implementation-agent"]
+        "agents": [
+          "general-implementation-agent",
+          "neovim-implementation-agent",
+          "lean-implementation-agent"
+        ]
       }
     },
     {
       "path": "core/formats/plan-format.md",
       "domain": "core",
       "subdomain": "formats",
-      "topics": ["plan-structure", "phases", "metadata"],
-      "keywords": ["plan", "phases", "implementation"],
+      "topics": [
+        "plan-structure",
+        "phases",
+        "metadata"
+      ],
+      "keywords": [
+        "plan",
+        "phases",
+        "implementation"
+      ],
       "summary": "Implementation plan file format and structure",
       "line_count": 200,
       "load_when": {
-        "agents": ["planner-agent"],
-        "commands": ["/plan", "/implement"]
+        "agents": [
+          "planner-agent"
+        ],
+        "commands": [
+          "/plan",
+          "/implement"
+        ]
       }
     },
     {
       "path": "core/orchestration/routing.md",
       "domain": "core",
       "subdomain": "orchestration",
-      "topics": ["skill-routing", "agent-dispatch", "language-detection"],
-      "keywords": ["routing", "skill", "dispatch"],
+      "topics": [
+        "skill-routing",
+        "agent-dispatch",
+        "language-detection"
+      ],
+      "keywords": [
+        "routing",
+        "skill",
+        "dispatch"
+      ],
       "summary": "Skill and agent routing decisions",
       "line_count": 120,
       "load_when": {
-        "agents": ["orchestrator"]
+        "agents": [
+          "orchestrator"
+        ]
       }
     },
     {
       "path": "core/patterns/anti-stop-patterns.md",
       "domain": "core",
       "subdomain": "patterns",
-      "topics": ["agent-lifecycle", "completion-signals", "stop-prevention"],
-      "keywords": ["stop", "completion", "lifecycle"],
+      "topics": [
+        "agent-lifecycle",
+        "completion-signals",
+        "stop-prevention"
+      ],
+      "keywords": [
+        "stop",
+        "completion",
+        "lifecycle"
+      ],
       "summary": "Patterns to prevent premature agent termination",
       "line_count": 80,
       "load_when": {
-        "agents": ["general-implementation-agent", "neovim-implementation-agent", "lean-implementation-agent"]
+        "agents": [
+          "general-implementation-agent",
+          "neovim-implementation-agent",
+          "lean-implementation-agent"
+        ]
       }
     },
     {
       "path": "core/patterns/metadata-file-return.md",
       "domain": "core",
       "subdomain": "patterns",
-      "topics": ["metadata-exchange", "file-based-return", "agent-communication"],
-      "keywords": ["metadata", "file", "return"],
+      "topics": [
+        "metadata-exchange",
+        "file-based-return",
+        "agent-communication"
+      ],
+      "keywords": [
+        "metadata",
+        "file",
+        "return"
+      ],
       "summary": "File-based metadata exchange pattern for agents",
       "line_count": 100,
       "load_when": {
-        "agents": ["general-implementation-agent", "general-research-agent", "planner-agent"]
+        "agents": [
+          "general-implementation-agent",
+          "general-research-agent",
+          "planner-agent"
+        ]
       }
     },
     {
       "path": "project/lean4/README.md",
       "domain": "project",
       "subdomain": "lean4",
-      "topics": ["lean4", "theorem-prover", "mathlib"],
-      "keywords": ["lean", "proof", "mathlib"],
+      "topics": [
+        "lean4",
+        "theorem-prover",
+        "mathlib"
+      ],
+      "keywords": [
+        "lean",
+        "proof",
+        "mathlib"
+      ],
       "summary": "Lean 4 theorem prover domain overview",
       "line_count": 100,
       "load_when": {
-        "languages": ["lean4"],
-        "agents": ["lean-research-agent", "lean-implementation-agent"]
+        "languages": [
+          "lean4"
+        ],
+        "agents": [
+          "lean-research-agent",
+          "lean-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/lean4/patterns/tactic-patterns.md",
       "domain": "project",
       "subdomain": "lean4",
-      "topics": ["tactics", "proof-automation", "simp"],
-      "keywords": ["simp", "rfl", "exact", "apply"],
+      "topics": [
+        "tactics",
+        "proof-automation",
+        "simp"
+      ],
+      "keywords": [
+        "simp",
+        "rfl",
+        "exact",
+        "apply"
+      ],
       "summary": "Common Lean 4 tactic patterns and usage",
       "line_count": 200,
       "load_when": {
-        "languages": ["lean4"],
-        "agents": ["lean-implementation-agent"]
+        "languages": [
+          "lean4"
+        ],
+        "agents": [
+          "lean-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/lean4/tools/mcp-tools-guide.md",
       "domain": "project",
       "subdomain": "lean4",
-      "topics": ["mcp", "lsp", "lean-lsp-mcp"],
-      "keywords": ["mcp", "lean_goal", "lean_hover"],
+      "topics": [
+        "mcp",
+        "lsp",
+        "lean-lsp-mcp"
+      ],
+      "keywords": [
+        "mcp",
+        "lean_goal",
+        "lean_hover"
+      ],
       "summary": "Guide to Lean MCP tools for proof assistance",
       "line_count": 150,
       "load_when": {
-        "languages": ["lean4"],
-        "agents": ["lean-research-agent", "lean-implementation-agent"]
+        "languages": [
+          "lean4"
+        ],
+        "agents": [
+          "lean-research-agent",
+          "lean-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/neovim/README.md",
       "domain": "project",
       "subdomain": "neovim",
-      "topics": ["neovim", "lua", "configuration"],
-      "keywords": ["neovim", "lua", "plugin"],
+      "topics": [
+        "neovim",
+        "lua",
+        "configuration"
+      ],
+      "keywords": [
+        "neovim",
+        "lua",
+        "plugin"
+      ],
       "summary": "Neovim configuration domain overview",
       "line_count": 80,
       "load_when": {
-        "languages": ["neovim"],
-        "agents": ["neovim-research-agent", "neovim-implementation-agent"]
+        "languages": [
+          "neovim"
+        ],
+        "agents": [
+          "neovim-research-agent",
+          "neovim-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/neovim/patterns/plugin-spec.md",
       "domain": "project",
       "subdomain": "neovim",
-      "topics": ["lazy-nvim", "plugin-spec", "dependencies"],
-      "keywords": ["lazy", "plugin", "dependencies"],
+      "topics": [
+        "lazy-nvim",
+        "plugin-spec",
+        "dependencies"
+      ],
+      "keywords": [
+        "lazy",
+        "plugin",
+        "dependencies"
+      ],
       "summary": "lazy.nvim plugin specification patterns",
       "line_count": 150,
       "load_when": {
-        "languages": ["neovim"],
-        "agents": ["neovim-implementation-agent"]
+        "languages": [
+          "neovim"
+        ],
+        "agents": [
+          "neovim-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/logic/README.md",
       "domain": "project",
       "subdomain": "logic",
-      "topics": ["modal-logic", "kripke-semantics", "proof-theory"],
-      "keywords": ["logic", "modal", "kripke"],
+      "topics": [
+        "modal-logic",
+        "kripke-semantics",
+        "proof-theory"
+      ],
+      "keywords": [
+        "logic",
+        "modal",
+        "kripke"
+      ],
       "summary": "Modal and temporal logic domain overview",
       "line_count": 100,
       "load_when": {
-        "languages": ["lean4"],
-        "agents": ["logic-research-agent"]
+        "languages": [
+          "lean4"
+        ],
+        "agents": [
+          "logic-research-agent"
+        ]
       }
     },
     {
       "path": "project/latex/README.md",
       "domain": "project",
       "subdomain": "latex",
-      "topics": ["latex", "documents", "typesetting"],
-      "keywords": ["latex", "document", "compile"],
+      "topics": [
+        "latex",
+        "documents",
+        "typesetting"
+      ],
+      "keywords": [
+        "latex",
+        "document",
+        "compile"
+      ],
       "summary": "LaTeX document preparation overview",
       "line_count": 80,
       "load_when": {
-        "languages": ["latex"],
-        "agents": ["latex-research-agent", "latex-implementation-agent"]
+        "languages": [
+          "latex"
+        ],
+        "agents": [
+          "latex-research-agent",
+          "latex-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/typst/README.md",
       "domain": "project",
       "subdomain": "typst",
-      "topics": ["typst", "documents", "modern-typesetting"],
-      "keywords": ["typst", "document", "compile"],
+      "topics": [
+        "typst",
+        "documents",
+        "modern-typesetting"
+      ],
+      "keywords": [
+        "typst",
+        "document",
+        "compile"
+      ],
       "summary": "Typst document preparation overview",
       "line_count": 80,
       "load_when": {
-        "languages": ["typst"],
-        "agents": ["typst-research-agent", "typst-implementation-agent"]
+        "languages": [
+          "typst"
+        ],
+        "agents": [
+          "typst-research-agent",
+          "typst-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/math/category-theory/category-basics.md",
       "domain": "project",
       "subdomain": "math",
-      "topics": ["category-theory", "objects", "morphisms"],
-      "keywords": ["category", "functor", "morphism"],
+      "topics": [
+        "category-theory",
+        "objects",
+        "morphisms"
+      ],
+      "keywords": [
+        "category",
+        "functor",
+        "morphism"
+      ],
       "summary": "Category theory fundamentals",
       "line_count": 150,
       "load_when": {
-        "languages": ["lean4"],
-        "agents": ["math-research-agent"]
+        "languages": [
+          "lean4"
+        ],
+        "agents": [
+          "math-research-agent"
+        ]
       }
     },
     {
       "path": "project/meta/meta-guide.md",
       "domain": "project",
       "subdomain": "meta",
-      "topics": ["meta-tasks", "system-building", "agent-creation"],
-      "keywords": ["meta", "agent", "skill", "command"],
+      "topics": [
+        "meta-tasks",
+        "system-building",
+        "agent-creation"
+      ],
+      "keywords": [
+        "meta",
+        "agent",
+        "skill",
+        "command"
+      ],
       "summary": "Guide for building system components",
       "line_count": 100,
       "load_when": {
-        "languages": ["meta"],
-        "agents": ["meta-builder-agent"]
+        "languages": [
+          "meta"
+        ],
+        "agents": [
+          "meta-builder-agent"
+        ]
       }
     },
     {
       "path": "project/web/README.md",
       "domain": "project",
       "subdomain": "web",
-      "topics": ["astro", "tailwind", "web-development"],
-      "keywords": ["astro", "tailwind", "web"],
+      "topics": [
+        "astro",
+        "tailwind",
+        "web-development"
+      ],
+      "keywords": [
+        "astro",
+        "tailwind",
+        "web"
+      ],
       "summary": "Web development domain overview",
       "line_count": 80,
       "load_when": {
-        "languages": ["general"],
-        "agents": ["general-research-agent"]
+        "languages": [
+          "general"
+        ],
+        "agents": [
+          "general-research-agent"
+        ]
       }
     },
     {
       "path": "project/epidemiology/README.md",
       "domain": "project",
       "subdomain": "epidemiology",
-      "topics": ["epidemiology", "r-modeling", "infectious-disease"],
-      "keywords": ["epidemiology", "EpiModel", "Stan", "R"],
+      "topics": [
+        "epidemiology",
+        "r-modeling",
+        "infectious-disease"
+      ],
+      "keywords": [
+        "epidemiology",
+        "EpiModel",
+        "Stan",
+        "R"
+      ],
       "summary": "Epidemiology domain overview and R-based research workflows",
       "line_count": 100,
       "load_when": {
-        "languages": ["r", "epidemiology"],
-        "agents": ["epidemiology-research-agent", "epidemiology-implementation-agent"]
+        "languages": [
+          "r",
+          "epidemiology"
+        ],
+        "agents": [
+          "epidemiology-research-agent",
+          "epidemiology-implementation-agent"
+        ]
       }
     },
     {
       "path": "project/epidemiology/tools/r-packages.md",
       "domain": "project",
       "subdomain": "epidemiology",
-      "topics": ["EpiModel", "epidemia", "EpiNow2", "EpiEstim"],
-      "keywords": ["packages", "r-packages", "modeling-tools"],
+      "topics": [
+        "EpiModel",
+        "epidemia",
+        "EpiNow2",
+        "EpiEstim"
+      ],
+      "keywords": [
+        "packages",
+        "r-packages",
+        "modeling-tools"
+      ],
       "summary": "Documentation for key R epidemiology packages",
       "line_count": 150,
       "load_when": {
-        "languages": ["r", "epidemiology"],
-        "agents": ["epidemiology-implementation-agent"]
+        "languages": [
+          "r",
+          "epidemiology"
+        ],
+        "agents": [
+          "epidemiology-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/z3/domain/z3-api.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": [
+        "z3",
+        "api",
+        "python"
+      ],
+      "keywords": [
+        "z3",
+        "api",
+        "python"
+      ],
+      "summary": "Z3 Python API reference and examples",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "z3"
+        ],
+        "agents": [
+          "z3-research-agent",
+          "z3-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/z3/domain/smt-patterns.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": [
+        "z3",
+        "smt",
+        "tactics"
+      ],
+      "keywords": [
+        "z3",
+        "smt",
+        "tactics"
+      ],
+      "summary": "SMT-LIB patterns and Z3 tactics",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "z3"
+        ],
+        "agents": [
+          "z3-research-agent",
+          "z3-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/z3/patterns/constraint-generation.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": [
+        "z3",
+        "constraints",
+        "patterns"
+      ],
+      "keywords": [
+        "z3",
+        "constraints",
+        "patterns"
+      ],
+      "summary": "Constraint building patterns for Z3",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "z3"
+        ],
+        "agents": [
+          "z3-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/z3/patterns/bitvector-operations.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": [
+        "z3",
+        "bitvector",
+        "state"
+      ],
+      "keywords": [
+        "z3",
+        "bitvector",
+        "state"
+      ],
+      "summary": "BitVec state manipulation patterns",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "z3"
+        ],
+        "agents": [
+          "z3-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/python/standards/code-style.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": [
+        "python",
+        "style",
+        "conventions"
+      ],
+      "keywords": [
+        "python",
+        "style",
+        "conventions"
+      ],
+      "summary": "Python coding style and conventions",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "python"
+        ],
+        "agents": [
+          "python-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/python/patterns/testing-patterns.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": [
+        "python",
+        "pytest",
+        "testing"
+      ],
+      "keywords": [
+        "python",
+        "pytest",
+        "testing"
+      ],
+      "summary": "Pytest patterns and fixtures",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "python"
+        ],
+        "agents": [
+          "python-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/python/domain/application-api-patterns.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": [
+        "python",
+        "api",
+        "architecture"
+      ],
+      "keywords": [
+        "python",
+        "api",
+        "architecture"
+      ],
+      "summary": "Application API structure and patterns",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "python"
+        ],
+        "agents": [
+          "python-implementation-agent",
+          "python-research-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/python/domain/library-patterns.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": [
+        "python",
+        "library",
+        "patterns"
+      ],
+      "keywords": [
+        "python",
+        "library",
+        "patterns"
+      ],
+      "summary": "Domain-specific library patterns",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "python"
+        ],
+        "agents": [
+          "python-implementation-agent",
+          "python-research-agent"
+        ]
+      }
+    },
+    {
+      "path": "context/project/python/patterns/semantic-evaluation.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": [
+        "python",
+        "evaluation",
+        "interpreter"
+      ],
+      "keywords": [
+        "python",
+        "evaluation",
+        "interpreter"
+      ],
+      "summary": "Tree-walking evaluation patterns",
+      "line_count": 100,
+      "load_when": {
+        "languages": [
+          "python"
+        ],
+        "agents": [
+          "python-implementation-agent"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/README.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Nix context overview with directory structure and loading strategy",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/domain/nix-language.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Nix expression language syntax and builtins reference",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/domain/flakes.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Nix flake structure, inputs, outputs, and lockfile management",
+      "line_count": 180,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/domain/nixos-modules.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "NixOS module system with options, config, and imports",
+      "line_count": 170,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/domain/home-manager.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Home Manager user-level configuration and module patterns",
+      "line_count": 160,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/patterns/module-patterns.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "NixOS and Home Manager module definition patterns",
+      "line_count": 140,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/patterns/overlay-patterns.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Nixpkgs overlay patterns for package customization",
+      "line_count": 130,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/patterns/derivation-patterns.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Nix derivation and package building patterns",
+      "line_count": 160,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/standards/nix-style-guide.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Nix code formatting and naming conventions",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/tools/nixos-rebuild-guide.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "NixOS system rebuild commands and workflows",
+      "line_count": 120,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/nix/context/project/nix/tools/home-manager-guide.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": [],
+      "keywords": [],
+      "summary": "Home Manager CLI commands and configuration workflows",
+      "line_count": 130,
+      "load_when": {
+        "agents": [
+          "nix-research-agent",
+          "nix-implementation-agent"
+        ],
+        "languages": [
+          "nix"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/README.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Web context overview with directory structure and loading strategy",
+      "line_count": 110,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/domain/astro-framework.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Astro 5/6 framework reference with .astro file format and islands architecture",
+      "line_count": 287,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/domain/tailwind-v4.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Tailwind CSS v4 CSS-first configuration with @theme directive",
+      "line_count": 225,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/domain/cloudflare-pages.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Cloudflare Pages deployment platform and edge CDN reference",
+      "line_count": 203,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/domain/typescript-web.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "TypeScript configuration and patterns for type-safe Astro development",
+      "line_count": 304,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/patterns/astro-component.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Common patterns for building Astro components",
+      "line_count": 315,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/patterns/astro-layout.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Patterns for building layout components that wrap pages",
+      "line_count": 278,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/patterns/astro-content-collections.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Patterns for defining, querying, and rendering type-safe content collections",
+      "line_count": 317,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/patterns/tailwind-patterns.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "UI component patterns with Tailwind CSS v4",
+      "line_count": 200,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/patterns/accessibility-patterns.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Semantic HTML, ARIA, and keyboard navigation patterns",
+      "line_count": 200,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/standards/web-style-guide.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Naming conventions, structure, and coding standards",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/standards/performance-standards.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Core Web Vitals targets and performance optimization rules",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/standards/accessibility-standards.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "WCAG 2.2 AA compliance requirements",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/tools/astro-cli-guide.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Astro CLI commands and development workflow",
+      "line_count": 120,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/tools/pnpm-guide.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "pnpm package manager commands and best practices",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/tools/cloudflare-deploy-guide.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Wrangler deployment workflow for Cloudflare Pages",
+      "line_count": 120,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/tools/cicd-pipeline-guide.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "CI/CD pipeline configuration and deployment debugging",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/tools/debugging-utilities.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "CLI debugging and optimization tools (optipng, httpie, dig, etc.)",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "web-research-agent",
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/templates/astro-page-template.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Page boilerplate variations",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/web/context/project/web/templates/astro-component-template.md",
+      "domain": "project",
+      "subdomain": "web",
+      "topics": [],
+      "keywords": [],
+      "summary": "Component boilerplate variations",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "web-implementation-agent"
+        ],
+        "languages": [
+          "web"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/README.md",
+      "domain": "project",
+      "subdomain": "index",
+      "topics": [],
+      "keywords": [],
+      "summary": "Logic context index and terminology conventions",
+      "line_count": 40,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/kripke-semantics-overview.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "modal",
+        "kripke",
+        "semantics",
+        "accessibility"
+      ],
+      "keywords": [],
+      "summary": "Kripke frame semantics for modal logic",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/metalogic-concepts.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "soundness",
+        "completeness",
+        "decidability",
+        "canonical"
+      ],
+      "keywords": [],
+      "summary": "Soundness, completeness, and decidability for modal logic",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/proof-theory-concepts.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "proof",
+        "sequent",
+        "axiom",
+        "inference"
+      ],
+      "keywords": [],
+      "summary": "Proof-theoretic concepts: axioms, inference rules, sequent calculus",
+      "line_count": 120,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/bilateral-propositions.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "bilateral",
+        "verifier",
+        "truthmaker",
+        "hyperintensional"
+      ],
+      "keywords": [],
+      "summary": "Bilateral propositions with exact verifiers and falsifiers",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/bilateral-semantics.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "bilateral",
+        "semantics",
+        "verifier",
+        "falsifier"
+      ],
+      "keywords": [],
+      "summary": "Bilateral semantics framework for verifiers and falsifiers",
+      "line_count": 90,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/counterfactual-semantics.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "counterfactual",
+        "conditional",
+        "lewis",
+        "stalnaker"
+      ],
+      "keywords": [],
+      "summary": "Counterfactual conditional semantics with exact verification",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/lattice-theory-concepts.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "lattice",
+        "boolean",
+        "heyting",
+        "bilattice"
+      ],
+      "keywords": [],
+      "summary": "Lattice structures in logical semantics",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/mereology-foundations.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "mereology",
+        "part",
+        "fusion",
+        "state"
+      ],
+      "keywords": [],
+      "summary": "Part-whole relations for state spaces and truthmaker semantics",
+      "line_count": 90,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/spatial-domain.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "spatial",
+        "region",
+        "topology",
+        "rcc"
+      ],
+      "keywords": [],
+      "summary": "Spatial logic with region connection calculus",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/task-semantics.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "task",
+        "model",
+        "temporal",
+        "history"
+      ],
+      "keywords": [],
+      "summary": "Task-based model-theoretic framework combining modal and temporal logic",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/domain/topological-foundations-domain.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "topology",
+        "interior",
+        "closure",
+        "stone"
+      ],
+      "keywords": [],
+      "summary": "Topological semantics for modal and intuitionistic logic",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/processes/modal-proof-strategies.md",
+      "domain": "project",
+      "subdomain": "processes",
+      "topics": [
+        "proof",
+        "modal",
+        "strategy",
+        "axiom"
+      ],
+      "keywords": [],
+      "summary": "Strategies and patterns for modal logic proofs",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/processes/temporal-proof-strategies.md",
+      "domain": "project",
+      "subdomain": "processes",
+      "topics": [
+        "proof",
+        "temporal",
+        "ltl",
+        "ctl"
+      ],
+      "keywords": [],
+      "summary": "Strategies for temporal logic proofs",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/processes/proof-construction.md",
+      "domain": "project",
+      "subdomain": "processes",
+      "topics": [
+        "proof",
+        "construction",
+        "workflow"
+      ],
+      "keywords": [],
+      "summary": "General workflow for constructing formal proofs",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/processes/verification-workflow.md",
+      "domain": "project",
+      "subdomain": "processes",
+      "topics": [
+        "verification",
+        "safety",
+        "liveness"
+      ],
+      "keywords": [],
+      "summary": "Workflow for verifying logical properties",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/standards/proof-conventions.md",
+      "domain": "project",
+      "subdomain": "standards",
+      "topics": [],
+      "keywords": [],
+      "summary": "Canonical proof style conventions for modal and temporal logic",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/standards/notation-standards.md",
+      "domain": "project",
+      "subdomain": "standards",
+      "topics": [],
+      "keywords": [],
+      "summary": "Notation standards for modal and temporal logic formulas",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/logic/standards/naming-conventions.md",
+      "domain": "project",
+      "subdomain": "standards",
+      "topics": [],
+      "keywords": [],
+      "summary": "Naming standards for identifiers in logic formalization",
+      "line_count": 60,
+      "load_when": {
+        "agents": [
+          "logic-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "logic",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/README.md",
+      "domain": "project",
+      "subdomain": "index",
+      "topics": [],
+      "keywords": [],
+      "summary": "Math context index with subdirectory descriptions",
+      "line_count": 30,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/algebra/groups-and-monoids.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "group",
+        "monoid",
+        "algebra",
+        "homomorphism"
+      ],
+      "keywords": [],
+      "summary": "Group and monoid structures with Lean 4 definitions",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/algebra/rings-and-fields.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "ring",
+        "field",
+        "algebra",
+        "ideal"
+      ],
+      "keywords": [],
+      "summary": "Ring and field structures with Lean 4 definitions",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/lattice-theory/lattices.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "lattice",
+        "sup",
+        "inf",
+        "complete",
+        "boolean"
+      ],
+      "keywords": [],
+      "summary": "Lattice definitions, theorems, and Mathlib patterns",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/lattice-theory/bilattice-theory.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "bilattice",
+        "four-valued",
+        "paraconsistent"
+      ],
+      "keywords": [],
+      "summary": "Bilattice structures for multi-valued logic",
+      "line_count": 90,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/order-theory/partial-orders.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "order",
+        "partial",
+        "well-founded",
+        "zorn"
+      ],
+      "keywords": [],
+      "summary": "Partial orders, well-foundedness, and order-preserving maps",
+      "line_count": 120,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/order-theory/monoidal-posets.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "monoidal",
+        "poset",
+        "resource",
+        "linear"
+      ],
+      "keywords": [],
+      "summary": "Monoidal posets for resource semantics",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/topology/topological-spaces.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "topology",
+        "continuous",
+        "compact",
+        "connected"
+      ],
+      "keywords": [],
+      "summary": "Topological space definitions and properties",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/topology/scott-topology.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "scott",
+        "domain",
+        "cpo",
+        "continuous"
+      ],
+      "keywords": [],
+      "summary": "Scott topology for domain theory",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/category-theory/basics.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "category",
+        "functor",
+        "natural",
+        "limit"
+      ],
+      "keywords": [],
+      "summary": "Category theory fundamentals: categories, functors, natural transformations",
+      "line_count": 120,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/category-theory/monoidal-categories.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "monoidal",
+        "tensor",
+        "symmetric",
+        "closed"
+      ],
+      "keywords": [],
+      "summary": "Monoidal categories and tensor products",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/category-theory/enriched-categories.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "enriched",
+        "weighted",
+        "metric"
+      ],
+      "keywords": [],
+      "summary": "Categories enriched over monoidal categories",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/category-theory/lawvere-metric-spaces.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "lawvere",
+        "metric",
+        "enriched",
+        "distance"
+      ],
+      "keywords": [],
+      "summary": "Metric spaces as enriched categories",
+      "line_count": 90,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/category-theory/cauchy-completion.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "cauchy",
+        "completion",
+        "idempotent"
+      ],
+      "keywords": [],
+      "summary": "Cauchy completion for enriched categories",
+      "line_count": 80,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/category-theory/profunctors.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "profunctor",
+        "bimodule",
+        "weighted"
+      ],
+      "keywords": [],
+      "summary": "Profunctors as generalized relations between categories",
+      "line_count": 100,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/math/foundations/dependent-type-theory.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "type",
+        "dependent",
+        "pi",
+        "sigma",
+        "identity"
+      ],
+      "keywords": [],
+      "summary": "Dependent type theory foundations for Lean 4",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "math-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "math",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/physics/README.md",
+      "domain": "project",
+      "subdomain": "index",
+      "topics": [],
+      "keywords": [],
+      "summary": "Physics context index for dynamical systems",
+      "line_count": 30,
+      "load_when": {
+        "agents": [
+          "physics-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "physics",
+          "formal"
+        ]
+      }
+    },
+    {
+      "path": ".claude/extensions/formal/context/project/physics/dynamical-systems/dynamical-systems.md",
+      "domain": "project",
+      "subdomain": "domain",
+      "topics": [
+        "dynamical",
+        "orbit",
+        "fixed",
+        "flow",
+        "ergodic",
+        "chaos"
+      ],
+      "keywords": [],
+      "summary": "Dynamical systems: iteration, orbits, fixed points, flows",
+      "line_count": 200,
+      "load_when": {
+        "agents": [
+          "physics-research-agent",
+          "formal-research-agent"
+        ],
+        "languages": [
+          "physics",
+          "formal"
+        ]
       }
     }
   ]
