@@ -51,13 +51,22 @@ specs/{NNN}_{SLUG}/
 
 ### Language-Based Routing
 
-| Language | Research Tools | Implementation Tools |
-|----------|----------------|---------------------|
-| `neovim` | WebSearch, WebFetch, Read | Read, Write, Edit, Bash (nvim --headless) |
-| `general` | WebSearch, WebFetch, Read | Read, Write, Edit, Bash |
-| `meta` | Read, Grep, Glob | Write, Edit |
+| Language | Research Skill | Implementation Skill | Tools |
+|----------|----------------|---------------------|-------|
+| `neovim` | `skill-neovim-research` | `skill-neovim-implementation` | WebSearch, WebFetch, Read, Bash (nvim --headless) |
+| `lean4` | `skill-lean-research` | `skill-lean-implementation` | MCP (lean-lsp), Read, Write, Edit |
+| `latex` | `skill-latex-research` | `skill-latex-implementation` | WebSearch, Read, Write, Edit, Bash |
+| `typst` | `skill-typst-research` | `skill-typst-implementation` | WebSearch, Read, Write, Edit, Bash |
+| `python` | `skill-python-research` | `skill-python-implementation` | WebSearch, Read, Write, Edit, Bash |
+| `z3` | `skill-z3-research` | `skill-z3-implementation` | Read, Write, Edit, Bash |
+| `nix` | `skill-nix-research` | `skill-nix-implementation` | MCP (mcp-nixos), Read, Write, Edit, Bash |
+| `web` | `skill-web-research` | `skill-web-implementation` | WebSearch, WebFetch, Read, Write, Edit, Bash |
+| `epidemiology` | `skill-epidemiology-research` | `skill-epidemiology-implementation` | WebSearch, Read, Write, Edit, Bash |
+| `formal`, `logic`, `math`, `physics` | `skill-formal-research` | `skill-implementer` | WebSearch, Read, Write, Edit |
+| `general` | `skill-researcher` | `skill-implementer` | WebSearch, WebFetch, Read, Write, Edit, Bash |
+| `meta` | `skill-researcher` | `skill-implementer` | Read, Grep, Glob, Write, Edit |
 
-**Note**: Additional languages (latex, typst) are available via extensions. Load extensions from `.claude/extensions/` to enable language-specific routing.
+**Note**: Extension skills are located in `.claude/extensions/{ext}/skills/`. Claude Code discovers these automatically.
 
 ## Command Reference
 

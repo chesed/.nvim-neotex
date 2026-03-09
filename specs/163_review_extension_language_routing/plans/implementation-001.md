@@ -1,7 +1,7 @@
 # Implementation Plan: Task #163
 
 - **Task**: 163 - review_extension_language_routing
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 3-5 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md)
@@ -47,7 +47,7 @@ Research report research-001.md identified 11 findings across the extension rout
 
 ## Implementation Phases
 
-### Phase 1: Update Command Routing Tables [NOT STARTED]
+### Phase 1: Update Command Routing Tables [COMPLETED]
 
 **Goal**: All extension languages route to their dedicated skills in /research and /implement commands.
 

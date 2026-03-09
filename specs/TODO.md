@@ -8,7 +8,7 @@ next_project_number: 164
 
 ### 163. Review extension system language routing for correct agent and context loading
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Research**: [research-001.md](163_review_extension_language_routing/reports/research-001.md)
 - **Plan**: [implementation-001.md](163_review_extension_language_routing/plans/implementation-001.md)
