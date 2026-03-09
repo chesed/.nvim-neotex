@@ -4,19 +4,25 @@
     {
       "project_number": 164,
       "project_name": "include_tag_command_skill_web_extension",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-09T23:29:36Z",
-      "last_updated": "2026-03-09T23:30:46Z",
-      "session_id": "sess_1773099024_e9b926",
+      "last_updated": "2026-03-09T23:37:55Z",
+      "session_id": "sess_1773099320_7ca6ae",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/164_include_tag_command_skill_web_extension/reports/research-001.md",
           "summary": "Research report covering /tag command and skill-tag integration into web extension"
+        },
+        {
+          "path": "specs/164_include_tag_command_skill_web_extension/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "4-phase implementation plan to port /tag command and skill-tag into web extension"
         }
       ],
-      "effort": "1-2 hours"
+      "effort": "1-2 hours",
+      "planned": "2026-03-09T23:37:55Z"
     },
     {
       "project_number": 163,
