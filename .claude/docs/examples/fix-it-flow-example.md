@@ -1,18 +1,18 @@
-# Integration Example: Learn Flow
+# Integration Example: Fix-It Flow
 
-This example traces a complete `/learn` command execution through the Neovim Configuration agent system, showing how the command scans for tags, presents findings interactively, and creates user-selected tasks.
+This example traces a complete `/fix-it` command execution through the Neovim Configuration agent system, showing how the command scans for tags, presents findings interactively, and creates user-selected tasks.
 
 ---
 
 ## Scenario
 
-A user runs `/learn nvim/lua/` to scan the Neovim Lua configuration directory for embedded tags. The system displays findings, then prompts the user to select which task types to create.
+A user runs `/fix-it nvim/lua/` to scan the Neovim Lua configuration directory for embedded tags. The system displays findings, then prompts the user to select which task types to create.
 
 ---
 
 ## Tag Types and Task Generation
 
-The `/learn` command recognizes four tag types in source code comments:
+The `/fix-it` command recognizes four tag types in source code comments:
 
 | Tag | Task Type | Behavior |
 |-----|-----------|----------|
@@ -30,14 +30,14 @@ The `/learn` command recognizes four tag types in source code comments:
 ## Complete Flow Diagram
 
 ```
-User Input: /learn nvim/lua/
+User Input: /fix-it nvim/lua/
        |
        v
-[Layer 1: Command] .claude/commands/learn.md
+[Layer 1: Command] .claude/commands/fix-it.md
        |
        | Frontmatter specifies: allowed-tools: Skill
        v
-[Layer 2: Skill] skill-learn/SKILL.md (DIRECT EXECUTION)
+[Layer 2: Skill] skill-fix-it/SKILL.md (DIRECT EXECUTION)
        |
        | 1. Parse arguments -> paths = ["nvim/lua/"]
        | 2. Generate session ID
@@ -53,7 +53,7 @@ User Input: /learn nvim/lua/
 Output: Created N tasks from M tags
 ```
 
-**Key difference from old pattern**: No subagent delegation. Everything executes directly in skill-learn using AskUserQuestion for interactivity.
+**Key difference from old pattern**: No subagent delegation. Everything executes directly in skill-fix-it using AskUserQuestion for interactivity.
 
 ---
 
@@ -62,10 +62,10 @@ Output: Created N tasks from M tags
 ### Step 1: User Invokes Command
 
 ```bash
-/learn nvim/lua/
+/fix-it nvim/lua/
 ```
 
-Claude Code reads `.claude/commands/learn.md` and sees:
+Claude Code reads `.claude/commands/fix-it.md` and sees:
 
 ```yaml
 ---
@@ -77,7 +77,7 @@ argument-hint: [PATH...]
 
 ### Step 2: Skill Executes Tag Extraction
 
-The skill (`skill-learn/SKILL.md`) executes directly (no subagent).
+The skill (`skill-fix-it/SKILL.md`) executes directly (no subagent).
 
 **Skill Step 1: Parse Arguments**
 
@@ -365,7 +365,7 @@ When user selects "Keep as separate tasks":
 
 ```bash
 git add specs/TODO.md specs/state.json
-git commit -m "learn: create 2 tasks from 4 tags
+git commit -m "fix-it: create 2 tasks from 4 tags
 
 Session: sess_1768940708_a1b2c3
 
@@ -490,7 +490,7 @@ NOTE: tags are special because they can create both fix-it and learn-it tasks. T
 
 ### Scenario A: No Tags Found
 
-If user runs `/learn nvim/lua/` but no tags exist:
+If user runs `/fix-it nvim/lua/` but no tags exist:
 
 ```
 ## No Tags Found
@@ -505,7 +505,7 @@ Exits gracefully without prompts.
 
 ### Scenario E: QUESTION: Tags with Content-Based Language Detection
 
-If user runs `/learn` and the scan finds QUESTION: tags:
+If user runs `/fix-it` and the scan finds QUESTION: tags:
 
 ```
 ## Tag Scan Results
@@ -566,7 +566,7 @@ If user deselects all task types:
 
 You chose not to create any tasks from the 4 tags found.
 
-Run /learn again if you change your mind.
+Run /fix-it again if you change your mind.
 ```
 
 Exits gracefully without creating tasks or git commits.
@@ -578,13 +578,13 @@ Exits gracefully without creating tasks or git commits.
 ### Old Pattern (Deprecated)
 
 ```
-User runs: /learn nvim/lua/ --dry-run
-  → skill-learn (thin wrapper)
-    → learn-agent (subagent via Task tool)
+User runs: /fix-it nvim/lua/ --dry-run
+  → skill-fix-it (thin wrapper)
+    → fix-it-agent (subagent via Task tool)
       → Returns JSON metadata to skill
     → skill reads metadata, displays preview
 User reviews preview
-User runs: /learn nvim/lua/ (without --dry-run)
+User runs: /fix-it nvim/lua/ (without --dry-run)
   → Same delegation flow, but creates tasks automatically
 ```
 
@@ -596,8 +596,8 @@ User runs: /learn nvim/lua/ (without --dry-run)
 ### New Pattern (Current)
 
 ```
-User runs: /learn nvim/lua/
-  → skill-learn (direct execution)
+User runs: /fix-it nvim/lua/
+  → skill-fix-it (direct execution)
     → Scans tags inline
     → Displays findings
     → AskUserQuestion: task types
@@ -617,7 +617,7 @@ User runs: /learn nvim/lua/
 
 This example demonstrated:
 
-1. **Direct Execution**: No subagent delegation, all logic in skill-learn
+1. **Direct Execution**: No subagent delegation, all logic in skill-fix-it
 2. **Interactive Selection**: AskUserQuestion for task type and TODO/QUESTION item choices
 3. **Tag Extraction**: Using grep patterns for multiple file types (FIX:, NOTE:, TODO:, QUESTION:)
 4. **Task Grouping**: FIX:/NOTE: grouped into fix-it task, TODO:/QUESTION: individual or topic-grouped tasks
@@ -626,7 +626,7 @@ This example demonstrated:
 7. **User Control**: Granular selection of what to create and how to group
 8. **Edge Case Handling**: Graceful handling of no tags, user cancelation, large item lists
 
-The `/learn` command provides:
+The `/fix-it` command provides:
 - Automated task discovery from embedded source comments
 - Interactive preview-then-select workflow
 - **Smart topic grouping for related TODO and QUESTION items**
@@ -641,8 +641,8 @@ The `/learn` command provides:
 - [Research Flow Example](research-flow-example.md) - End-to-end research flow
 - [Creating Commands](../guides/creating-commands.md) - Command creation guide
 - [Creating Skills](../guides/creating-skills.md) - Skill creation guide (direct execution pattern)
-- `.claude/commands/learn.md` - Command definition
-- `.claude/skills/skill-learn/SKILL.md` - Skill definition (direct execution, no agent)
+- `.claude/commands/fix-it.md` - Command definition
+- `.claude/skills/skill-fix-it/SKILL.md` - Skill definition (direct execution, no agent)
 
 ---
 

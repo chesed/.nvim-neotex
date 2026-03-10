@@ -7,7 +7,9 @@ next_project_number: 174
 ## Tasks
 
 ### 173. Rename /learn command to /fix-it in .claude/ system
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
+- **Completed**: 2026-03-10
+- **Summary**: Renamed /learn command to /fix-it across entire .claude/ system. Renamed 3 paths (command file, skill directory, example file) and updated 67 references in 8 files including CLAUDE.md, user-guide, and multi-task-creation-standard.
 - **Language**: meta
 - **Research**: [research-001.md](173_rename_learn_command_to_fix_it/reports/research-001.md)
 - **Plan**: [implementation-001.md](173_rename_learn_command_to_fix_it/plans/implementation-001.md)

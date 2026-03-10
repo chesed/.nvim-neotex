@@ -4,11 +4,11 @@
     {
       "project_number": 173,
       "project_name": "rename_learn_command_to_fix_it",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-10T22:22:38Z",
-      "last_updated": "2026-03-10T22:32:22Z",
-      "session_id": "sess_1773181801_e0f482",
+      "last_updated": "2026-03-10T22:42:43Z",
+      "session_id": "sess_1773182251_a6dc57",
       "researched": "2026-03-10T22:30:00Z",
       "artifacts": [
         {
@@ -20,9 +20,18 @@
           "path": "specs/173_rename_learn_command_to_fix_it/plans/implementation-001.md",
           "type": "plan",
           "summary": "3-phase plan: rename files/dirs, update content references, verify zero stale references"
+        },
+        {
+          "path": "specs/173_rename_learn_command_to_fix_it/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "planned": "2026-03-10T22:32:22Z"
+      "planned": "2026-03-10T22:32:22Z",
+      "started": "2026-03-10T22:37:57Z",
+      "completed": "2026-03-10T22:42:43Z",
+      "completion_summary": "Renamed /learn command to /fix-it across entire .claude/ system. Renamed 3 paths (command file, skill directory, example file) and updated 67 references in 8 files including CLAUDE.md, user-guide, and multi-task-creation-standard.",
+      "claudemd_suggestions": "Updated .claude/CLAUDE.md command reference table and multi-task creation compliance table entries from /learn to /fix-it"
     },
     {
       "project_number": 172,

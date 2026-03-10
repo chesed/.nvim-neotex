@@ -26,7 +26,7 @@ This directory contains the documentation for the `.claude/` agent system. The s
 │   └── permission-configuration.md # Permission setup
 ├── examples/                    # Integration examples
 │   ├── research-flow-example.md # End-to-end research flow
-│   └── learn-flow-example.md    # Tag extraction and task creation
+│   └── fix-it-flow-example.md   # Tag extraction and task creation
 ├── templates/                   # Reusable templates
 │   ├── README.md               # Template overview
 │   ├── command-template.md     # Command template
@@ -72,7 +72,7 @@ The `.claude/` directory implements a three-layer architecture: Commands, Skills
 ## Examples
 
 - [Research Flow Example](examples/research-flow-example.md) - Complete walkthrough of the research command execution flow
-- [Learn Flow Example](examples/learn-flow-example.md) - Tag extraction from source files and interactive task creation
+- [Fix-It Flow Example](examples/fix-it-flow-example.md) - Tag extraction from source files and interactive task creation
 
 ---
 

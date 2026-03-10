@@ -24,7 +24,7 @@ A comprehensive guide to using the `.claude/` task management system commands fo
    - [/errors](#errors-command)
 4. [Utility Commands](#utility-commands)
    - [/meta](#meta-command)
-   - [/learn](#learn-command)
+   - [/fix-it](#fix-it-command)
    - [/convert](#convert-command)
 5. [Quick Reference](#quick-reference)
 6. [Troubleshooting](#troubleshooting)
@@ -424,12 +424,12 @@ Creates tasks like:
 
 ---
 
-### /learn Command
+### /fix-it Command
 
 Scan for FIX:/NOTE:/TODO: tags and create tasks.
 
 ```
-/learn [PATH...]
+/fix-it [PATH...]
 ```
 
 **Arguments**:
@@ -453,8 +453,8 @@ Scan for FIX:/NOTE:/TODO: tags and create tasks.
 
 **Example**:
 ```
-/learn                           # Scan entire project
-/learn Theories/Modal/           # Scan specific directory
+/fix-it                          # Scan entire project
+/fix-it Theories/Modal/          # Scan specific directory
 ```
 
 ---
@@ -506,7 +506,7 @@ Convert documents between formats.
 | `/refresh` | `/refresh [--dry-run] [--force]` | Clean resources |
 | `/errors` | `/errors [--fix N]` | Analyze errors |
 | `/meta` | `/meta [PROMPT] \| --analyze` | System builder |
-| `/learn` | `/learn [PATH...]` | Extract tags to tasks |
+| `/fix-it` | `/fix-it [PATH...]` | Extract tags to tasks |
 | `/convert` | `/convert SOURCE [OUTPUT]` | Convert documents |
 
 ### Status Transitions

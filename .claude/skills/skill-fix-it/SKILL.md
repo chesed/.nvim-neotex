@@ -1,10 +1,10 @@
 ---
-name: skill-learn
-description: Scan codebase for FIX:/NOTE:/TODO:/QUESTION: tags and create structured tasks with interactive selection. Invoke for /learn command.
+name: skill-fix-it
+description: Scan codebase for FIX:/NOTE:/TODO:/QUESTION: tags and create structured tasks with interactive selection. Invoke for /fix-it command.
 allowed-tools: Bash, Grep, Read, Write, Edit, AskUserQuestion
 ---
 
-# Learn Skill (Direct Execution)
+# Fix-It Skill (Direct Execution)
 
 Direct execution skill for scanning files, presenting findings interactively, and creating user-selected tasks. Replaces the previous delegation-based approach with synchronous execution and AskUserQuestion prompts.
 
@@ -937,7 +937,7 @@ If tasks were created, commit changes:
 ```bash
 task_count={number of tasks created}
 git add specs/TODO.md specs/state.json
-git commit -m "learn: create $task_count tasks from tags
+git commit -m "fix-it: create $task_count tasks from tags
 
 Session: $session_id
 

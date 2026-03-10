@@ -80,7 +80,7 @@ All commands use checkpoint-based execution: GATE IN (preflight) -> DELEGATE (sk
 | `/todo` | `/todo` | Archive completed/abandoned tasks, sync repository metrics |
 | `/errors` | `/errors` | Analyze error patterns, create fix plans |
 | `/meta` | `/meta` | System builder for .claude/ changes |
-| `/learn` | `/learn [PATH...]` | Scan for FIX:/NOTE:/TODO: tags |
+| `/fix-it` | `/fix-it [PATH...]` | Scan for FIX:/NOTE:/TODO: tags |
 | `/refresh` | `/refresh [--dry-run] [--force]` | Clean orphaned processes and old files |
 
 ### Utility Scripts
@@ -188,7 +188,7 @@ Commands that create multiple tasks follow a standardized 8-component pattern. S
 | Command | Compliance | Notes |
 |---------|------------|-------|
 | `/meta` | Full (Reference) | All 8 components, Kahn's algorithm, DAG visualization |
-| `/learn` | Full | Interactive selection, topic grouping, internal dependencies |
+| `/fix-it` | Full | Interactive selection, topic grouping, internal dependencies |
 | `/review` | Partial | Tier-based selection, grouping; no dependencies |
 | `/errors` | Partial | Automatic mode (intentional); no interactive selection |
 | `/task --review` | Partial | Numbered selection, parent_task linking |

@@ -17,7 +17,7 @@ Identify items that could become tasks from various sources.
 **Sources by Command**:
 | Command | Discovery Source |
 |---------|------------------|
-| `/learn` | FIX:, NOTE:, TODO:, QUESTION: tags in source files |
+| `/fix-it` | FIX:, NOTE:, TODO:, QUESTION: tags in source files |
 | `/meta` | User interview responses |
 | `/review` | Code analysis findings + roadmap items |
 | `/errors` | Error patterns from errors.json |
@@ -25,7 +25,7 @@ Identify items that could become tasks from various sources.
 
 **Implementation**:
 ```bash
-# Example: /learn tag discovery
+# Example: /fix-it tag discovery
 grep -rn --include="*.lua" "-- FIX:" $paths 2>/dev/null || true
 grep -rn --include="*.lua" "-- NOTE:" $paths 2>/dev/null || true
 grep -rn --include="*.lua" "-- TODO:" $paths 2>/dev/null || true
@@ -52,7 +52,7 @@ Use AskUserQuestion with multiSelect for item selection.
 - Empty selection = graceful exit, no tasks created
 - Present items in priority order (highest first)
 
-**Example from /learn**:
+**Example from /fix-it**:
 ```json
 {
   "question": "Select TODO items to create as tasks:",
@@ -355,7 +355,7 @@ See `.claude/agents/meta-builder-agent.md` for complete implementation details.
 | Command | Required | Grouping | Dependencies | Ordering | Visualization |
 |---------|----------|----------|--------------|----------|---------------|
 | `/meta` | Yes | Yes | Full DAG | Kahn's | Linear/Layered |
-| `/learn` | Yes | Yes | Internal only | No | No |
+| `/fix-it` | Yes | Yes | Internal only | No | No |
 | `/review` | Yes | Yes | No | No | No |
 | `/errors` | Partial* | No | No | No | No |
 | `/task --review` | Yes | No | parent_task | No | No |
@@ -373,7 +373,7 @@ See `.claude/agents/meta-builder-agent.md` for complete implementation details.
 - **Rationale**: Automatic mode is intentional for quick error triage
 - **Enhancement**: Add `--interactive` flag for manual selection mode
 
-### /learn
+### /fix-it
 - **Gap**: No external dependency support (only internal learn-it -> fix-it)
 - **Enhancement**: Allow TODO tasks to depend on existing tasks
 
@@ -385,5 +385,5 @@ See `.claude/agents/meta-builder-agent.md` for complete implementation details.
 
 - `.claude/rules/state-management.md` - Dependencies field schema
 - `.claude/agents/meta-builder-agent.md` - Reference implementation
-- `.claude/commands/learn.md` - Topic grouping example
+- `.claude/commands/fix-it.md` - Topic grouping example
 - `.claude/commands/review.md` - Issue grouping example

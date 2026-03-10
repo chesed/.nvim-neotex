@@ -5,7 +5,7 @@ argument-hint: [PATH...]
 model: claude-opus-4-5-20251101
 ---
 
-# /learn Command
+# /fix-it Command
 
 Scans codebase files for embedded tags (`FIX:`, `NOTE:`, `TODO:`, `QUESTION:`) and creates structured tasks based on user selection. This command helps capture work items embedded in source code comments.
 
@@ -255,16 +255,16 @@ No task types selected. No tasks created.
 
 ```bash
 # Scan entire project interactively
-/learn
+/fix-it
 
 # Scan specific directory
-/learn nvim/lua/Layer1/
+/fix-it nvim/lua/Layer1/
 
 # Scan specific file
-/learn docs/04-Metalogic.tex
+/fix-it docs/04-Metalogic.tex
 
 # Scan multiple paths
-/learn nvim/lua/ .claude/agents/
+/fix-it nvim/lua/ .claude/agents/
 ```
 
 ## Standards Reference
