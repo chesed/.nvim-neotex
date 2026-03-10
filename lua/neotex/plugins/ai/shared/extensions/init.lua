@@ -8,7 +8,32 @@ local manifest_mod = require("neotex.plugins.ai.shared.extensions.manifest")
 local state_mod = require("neotex.plugins.ai.shared.extensions.state")
 local loader_mod = require("neotex.plugins.ai.shared.extensions.loader")
 local merge_mod = require("neotex.plugins.ai.shared.extensions.merge")
+local verify_mod = require("neotex.plugins.ai.shared.extensions.verify")
 local helpers = require("neotex.plugins.ai.claude.commands.picker.utils.helpers")
+
+--- Convert absolute path to relative (from project_dir)
+--- @param abs_path string Absolute file path
+--- @param project_dir string Project directory
+--- @return string rel_path Relative path
+local function to_relative_path(abs_path, project_dir)
+  if abs_path:sub(1, #project_dir) == project_dir then
+    local rel = abs_path:sub(#project_dir + 2)  -- +2 to skip trailing /
+    return rel
+  end
+  return abs_path
+end
+
+--- Convert array of absolute paths to relative paths
+--- @param abs_paths table Array of absolute paths
+--- @param project_dir string Project directory
+--- @return table rel_paths Array of relative paths
+local function paths_to_relative(abs_paths, project_dir)
+  local rel_paths = {}
+  for _, abs_path in ipairs(abs_paths) do
+    table.insert(rel_paths, to_relative_path(abs_path, project_dir))
+  end
+  return rel_paths
+end
 
 --- Read file contents as string
 --- @param filepath string Path to file
@@ -264,14 +289,22 @@ function M.create(config)
       return false, "Extension load failed: " .. tostring(load_err)
     end
 
-    -- Update state
-    state = state_mod.mark_loaded(state, extension_name, ext_manifest, all_files, all_dirs, merged_sections)
+    -- Update state (convert to relative paths for portability)
+    local rel_files = paths_to_relative(all_files, project_dir)
+    local rel_dirs = paths_to_relative(all_dirs, project_dir)
+    state = state_mod.mark_loaded(state, extension_name, ext_manifest, rel_files, rel_dirs, merged_sections)
     state_mod.write(project_dir, state, config)
 
     helpers.notify(
       string.format("Loaded extension '%s' (%d files)", extension_name, #all_files),
       "INFO"
     )
+
+    -- Run post-load verification
+    local verification = verify_mod.verify_extension(extension_name, source_dir, target_dir, config)
+    if verification.status ~= "passed" then
+      verify_mod.notify_results(verification)
+    end
 
     return true, nil
   end
@@ -320,8 +353,18 @@ function M.create(config)
       reverse_merge_targets(extension.manifest, merged_sections, project_dir, config)
     end
 
+    -- Convert relative paths back to absolute for file removal
+    local abs_files = {}
+    for _, rel_path in ipairs(installed_files) do
+      table.insert(abs_files, project_dir .. "/" .. rel_path)
+    end
+    local abs_dirs = {}
+    for _, rel_path in ipairs(installed_dirs) do
+      table.insert(abs_dirs, project_dir .. "/" .. rel_path)
+    end
+
     -- Remove files
-    local removed_count = loader_mod.remove_installed_files(installed_files, installed_dirs)
+    local removed_count = loader_mod.remove_installed_files(abs_files, abs_dirs)
 
     -- Update state
     state = state_mod.mark_unloaded(state, extension_name)
@@ -454,6 +497,43 @@ function M.create(config)
       loaded_at = ext_info and ext_info.loaded_at or nil,
       installed_files = ext_info and ext_info.installed_files or {},
     }
+  end
+
+  --- Verify a loaded extension
+  --- @param extension_name string Extension name
+  --- @param project_dir string|nil Project directory
+  --- @return table verification Verification report
+  function manager.verify(extension_name, project_dir)
+    project_dir = project_dir or vim.fn.getcwd()
+    local target_dir = project_dir .. "/" .. config.base_dir
+
+    -- Get extension source directory
+    local extension = manifest_mod.get_extension(extension_name, config)
+    if not extension then
+      return {
+        extension = extension_name,
+        status = "failed",
+        errors = { "Extension not found: " .. extension_name },
+      }
+    end
+
+    return verify_mod.verify_extension(extension_name, extension.path, target_dir, config)
+  end
+
+  --- Verify all loaded extensions
+  --- @param project_dir string|nil Project directory
+  --- @return table results Array of verification reports
+  function manager.verify_all(project_dir)
+    project_dir = project_dir or vim.fn.getcwd()
+    local loaded = manager.list_loaded(project_dir)
+    local results = {}
+
+    for _, ext_name in ipairs(loaded) do
+      local verification = manager.verify(ext_name, project_dir)
+      table.insert(results, verification)
+    end
+
+    return results
   end
 
   return manager
