@@ -4,10 +4,19 @@
     {
       "project_number": 174,
       "project_name": "study_opencode_memory_extension",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-10T23:21:15Z",
-      "last_updated": "2026-03-10T23:21:15Z"
+      "last_updated": "2026-03-10T23:27:42Z",
+      "session_id": "sess_1773184925_2883ff",
+      "researched": "2026-03-10T23:27:42Z",
+      "artifacts": [
+        {
+          "path": "specs/174_study_opencode_memory_extension/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with 7 findings covering memory system components, extension architecture, gap analysis, and implementation recommendations for creating a memory extension"
+        }
+      ]
     },
     {
       "project_number": 87,
