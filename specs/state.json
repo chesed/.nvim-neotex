@@ -4,19 +4,25 @@
     {
       "project_number": 165,
       "project_name": "review_opencode_extension_language_routing",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-10T15:38:08Z",
-      "last_updated": "2026-03-10T16:38:21Z",
-      "session_id": "sess_1773160275_51cf46",
+      "last_updated": "2026-03-10T16:43:50Z",
+      "session_id": "sess_1773160796_3faa60",
       "researched": "2026-03-10T16:38:21Z",
       "artifacts": [
         {
           "path": "specs/165_review_opencode_extension_language_routing/reports/research-001.md",
           "type": "research",
           "summary": "Research report documenting 8 findings on extension language routing gaps with 3 fix options"
+        },
+        {
+          "path": "specs/165_review_opencode_extension_language_routing/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "5-phase plan: expand command routing, update orchestration core, merge index entries, create merge script, document registration"
         }
-      ]
+      ],
+      "planned": "2026-03-10T16:43:50Z"
     },
     {
       "project_number": 164,
