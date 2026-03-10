@@ -1,6 +1,7 @@
-[
-  {
-    "path": ".opencode/extensions/filetypes/context/project/filetypes/tools/tool-detection.md",
+{
+  "entries": [
+    {
+      "path": "project/filetypes/tools/tool-detection.md",
     "description": "Shared tool detection patterns for all filetypes agents",
     "line_count": 180,
     "load_when": {
@@ -15,7 +16,7 @@
     }
   },
   {
-    "path": ".opencode/extensions/filetypes/context/project/filetypes/tools/dependency-guide.md",
+    "path": "project/filetypes/tools/dependency-guide.md",
     "description": "Platform-specific installation instructions for conversion tools",
     "line_count": 120,
     "load_when": {
@@ -30,7 +31,7 @@
     }
   },
   {
-    "path": ".opencode/extensions/filetypes/context/project/filetypes/tools/mcp-integration.md",
+    "path": "project/filetypes/tools/mcp-integration.md",
     "description": "MCP server integration patterns for format conversion",
     "line_count": 80,
     "load_when": {
@@ -43,7 +44,7 @@
     }
   },
   {
-    "path": ".opencode/extensions/filetypes/context/project/filetypes/patterns/spreadsheet-tables.md",
+    "path": "project/filetypes/patterns/spreadsheet-tables.md",
     "description": "Spreadsheet to LaTeX/Typst table conversion patterns",
     "line_count": 150,
     "load_when": {
@@ -53,7 +54,7 @@
     }
   },
   {
-    "path": ".opencode/extensions/filetypes/context/project/filetypes/patterns/presentation-slides.md",
+    "path": "project/filetypes/patterns/presentation-slides.md",
     "description": "Presentation extraction and slide generation patterns",
     "line_count": 180,
     "load_when": {
@@ -63,7 +64,7 @@
     }
   },
   {
-    "path": ".opencode/extensions/filetypes/context/project/filetypes/README.md",
+    "path": "project/filetypes/README.md",
     "description": "Filetypes extension overview and navigation",
     "line_count": 60,
     "load_when": {
@@ -71,5 +72,26 @@
       "languages": [],
       "commands": []
     }
+  },
+  {
+    "path": "project/filetypes/patterns/pitch-deck-structure.md",
+    "description": "YC pitch deck structure, slide content guidelines, and design principles",
+    "line_count": 253,
+    "load_when": {
+      "agents": ["deck-agent"],
+      "languages": [],
+      "commands": ["/deck"]
+    }
+  },
+  {
+    "path": "project/filetypes/patterns/touying-pitch-deck-template.md",
+    "description": "Touying 0.6.3 template for investor pitch decks with customization patterns",
+    "line_count": 396,
+    "load_when": {
+      "agents": ["deck-agent"],
+      "languages": [],
+      "commands": ["/deck"]
+    }
   }
-]
+  ]
+}

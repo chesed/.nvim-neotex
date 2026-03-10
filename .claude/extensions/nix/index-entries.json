@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "path": ".claude/extensions/nix/context/project/nix/README.md",
+      "path": "project/nix/README.md",
       "description": "Nix context overview with directory structure and loading strategy",
       "load_when": {
         "agents": [
@@ -15,7 +15,7 @@
       "line_count": 100
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/domain/nix-language.md",
+      "path": "project/nix/domain/nix-language.md",
       "description": "Nix expression language syntax and builtins reference",
       "load_when": {
         "agents": [
@@ -29,7 +29,7 @@
       "line_count": 150
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/domain/flakes.md",
+      "path": "project/nix/domain/flakes.md",
       "description": "Nix flake structure, inputs, outputs, and lockfile management",
       "load_when": {
         "agents": [
@@ -43,7 +43,7 @@
       "line_count": 180
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/domain/nixos-modules.md",
+      "path": "project/nix/domain/nixos-modules.md",
       "description": "NixOS module system with options, config, and imports",
       "load_when": {
         "agents": [
@@ -57,7 +57,7 @@
       "line_count": 170
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/domain/home-manager.md",
+      "path": "project/nix/domain/home-manager.md",
       "description": "Home Manager user-level configuration and module patterns",
       "load_when": {
         "agents": [
@@ -71,7 +71,7 @@
       "line_count": 160
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/patterns/module-patterns.md",
+      "path": "project/nix/patterns/module-patterns.md",
       "description": "NixOS and Home Manager module definition patterns",
       "load_when": {
         "agents": [
@@ -85,7 +85,7 @@
       "line_count": 140
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/patterns/overlay-patterns.md",
+      "path": "project/nix/patterns/overlay-patterns.md",
       "description": "Nixpkgs overlay patterns for package customization",
       "load_when": {
         "agents": [
@@ -99,7 +99,7 @@
       "line_count": 130
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/patterns/derivation-patterns.md",
+      "path": "project/nix/patterns/derivation-patterns.md",
       "description": "Nix derivation and package building patterns",
       "load_when": {
         "agents": [
@@ -113,7 +113,7 @@
       "line_count": 160
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/standards/nix-style-guide.md",
+      "path": "project/nix/standards/nix-style-guide.md",
       "description": "Nix code formatting and naming conventions",
       "load_when": {
         "agents": [
@@ -127,7 +127,7 @@
       "line_count": 150
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/tools/nixos-rebuild-guide.md",
+      "path": "project/nix/tools/nixos-rebuild-guide.md",
       "description": "NixOS system rebuild commands and workflows",
       "load_when": {
         "agents": [
@@ -141,7 +141,7 @@
       "line_count": 120
     },
     {
-      "path": ".claude/extensions/nix/context/project/nix/tools/home-manager-guide.md",
+      "path": "project/nix/tools/home-manager-guide.md",
       "description": "Home Manager CLI commands and configuration workflows",
       "load_when": {
         "agents": [

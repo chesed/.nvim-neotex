@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "path": ".opencode/extensions/formal/context/project/logic/README.md",
+      "path": "project/logic/README.md",
       "summary": "Logic context index and terminology conventions",
       "category": "index",
       "line_count": 40,
@@ -11,7 +11,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/kripke-semantics-overview.md",
+      "path": "project/logic/domain/kripke-semantics-overview.md",
       "summary": "Kripke frame semantics for modal logic",
       "category": "domain",
       "line_count": 80,
@@ -22,7 +22,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/metalogic-concepts.md",
+      "path": "project/logic/domain/metalogic-concepts.md",
       "summary": "Soundness, completeness, and decidability for modal logic",
       "category": "domain",
       "line_count": 150,
@@ -33,7 +33,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/proof-theory-concepts.md",
+      "path": "project/logic/domain/proof-theory-concepts.md",
       "summary": "Proof-theoretic concepts: axioms, inference rules, sequent calculus",
       "category": "domain",
       "line_count": 120,
@@ -44,7 +44,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/bilateral-propositions.md",
+      "path": "project/logic/domain/bilateral-propositions.md",
       "summary": "Bilateral propositions with exact verifiers and falsifiers",
       "category": "domain",
       "line_count": 100,
@@ -55,7 +55,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/bilateral-semantics.md",
+      "path": "project/logic/domain/bilateral-semantics.md",
       "summary": "Bilateral semantics framework for verifiers and falsifiers",
       "category": "domain",
       "line_count": 90,
@@ -66,7 +66,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/counterfactual-semantics.md",
+      "path": "project/logic/domain/counterfactual-semantics.md",
       "summary": "Counterfactual conditional semantics with exact verification",
       "category": "domain",
       "line_count": 100,
@@ -77,7 +77,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/lattice-theory-concepts.md",
+      "path": "project/logic/domain/lattice-theory-concepts.md",
       "summary": "Lattice structures in logical semantics",
       "category": "domain",
       "line_count": 80,
@@ -88,7 +88,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/mereology-foundations.md",
+      "path": "project/logic/domain/mereology-foundations.md",
       "summary": "Part-whole relations for state spaces and truthmaker semantics",
       "category": "domain",
       "line_count": 90,
@@ -99,7 +99,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/spatial-domain.md",
+      "path": "project/logic/domain/spatial-domain.md",
       "summary": "Spatial logic with region connection calculus",
       "category": "domain",
       "line_count": 80,
@@ -110,7 +110,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/task-semantics.md",
+      "path": "project/logic/domain/task-semantics.md",
       "summary": "Task-based model-theoretic framework combining modal and temporal logic",
       "category": "domain",
       "line_count": 100,
@@ -121,7 +121,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/domain/topological-foundations-domain.md",
+      "path": "project/logic/domain/topological-foundations-domain.md",
       "summary": "Topological semantics for modal and intuitionistic logic",
       "category": "domain",
       "line_count": 100,
@@ -132,7 +132,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/processes/modal-proof-strategies.md",
+      "path": "project/logic/processes/modal-proof-strategies.md",
       "summary": "Strategies and patterns for modal logic proofs",
       "category": "processes",
       "line_count": 100,
@@ -143,7 +143,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/processes/temporal-proof-strategies.md",
+      "path": "project/logic/processes/temporal-proof-strategies.md",
       "summary": "Strategies for temporal logic proofs",
       "category": "processes",
       "line_count": 100,
@@ -154,7 +154,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/processes/proof-construction.md",
+      "path": "project/logic/processes/proof-construction.md",
       "summary": "General workflow for constructing formal proofs",
       "category": "processes",
       "line_count": 80,
@@ -165,7 +165,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/processes/verification-workflow.md",
+      "path": "project/logic/processes/verification-workflow.md",
       "summary": "Workflow for verifying logical properties",
       "category": "processes",
       "line_count": 80,
@@ -176,7 +176,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/standards/proof-conventions.md",
+      "path": "project/logic/standards/proof-conventions.md",
       "summary": "Canonical proof style conventions for modal and temporal logic",
       "category": "standards",
       "line_count": 80,
@@ -186,7 +186,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/standards/notation-standards.md",
+      "path": "project/logic/standards/notation-standards.md",
       "summary": "Notation standards for modal and temporal logic formulas",
       "category": "standards",
       "line_count": 80,
@@ -196,7 +196,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/logic/standards/naming-conventions.md",
+      "path": "project/logic/standards/naming-conventions.md",
       "summary": "Naming standards for identifiers in logic formalization",
       "category": "standards",
       "line_count": 60,
@@ -206,7 +206,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/README.md",
+      "path": "project/math/README.md",
       "summary": "Math context index with subdirectory descriptions",
       "category": "index",
       "line_count": 30,
@@ -216,7 +216,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/algebra/groups-and-monoids.md",
+      "path": "project/math/algebra/groups-and-monoids.md",
       "summary": "Group and monoid structures with Lean 4 definitions",
       "category": "domain",
       "line_count": 100,
@@ -227,7 +227,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/algebra/rings-and-fields.md",
+      "path": "project/math/algebra/rings-and-fields.md",
       "summary": "Ring and field structures with Lean 4 definitions",
       "category": "domain",
       "line_count": 100,
@@ -238,7 +238,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/lattice-theory/lattices.md",
+      "path": "project/math/lattice-theory/lattices.md",
       "summary": "Lattice definitions, theorems, and Mathlib patterns",
       "category": "domain",
       "line_count": 150,
@@ -249,7 +249,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/lattice-theory/bilattice-theory.md",
+      "path": "project/math/lattice-theory/bilattice-theory.md",
       "summary": "Bilattice structures for multi-valued logic",
       "category": "domain",
       "line_count": 90,
@@ -260,7 +260,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/order-theory/partial-orders.md",
+      "path": "project/math/order-theory/partial-orders.md",
       "summary": "Partial orders, well-foundedness, and order-preserving maps",
       "category": "domain",
       "line_count": 120,
@@ -271,7 +271,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/order-theory/monoidal-posets.md",
+      "path": "project/math/order-theory/monoidal-posets.md",
       "summary": "Monoidal posets for resource semantics",
       "category": "domain",
       "line_count": 80,
@@ -282,7 +282,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/topology/topological-spaces.md",
+      "path": "project/math/topology/topological-spaces.md",
       "summary": "Topological space definitions and properties",
       "category": "domain",
       "line_count": 150,
@@ -293,7 +293,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/topology/scott-topology.md",
+      "path": "project/math/topology/scott-topology.md",
       "summary": "Scott topology for domain theory",
       "category": "domain",
       "line_count": 100,
@@ -304,7 +304,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/category-theory/basics.md",
+      "path": "project/math/category-theory/basics.md",
       "summary": "Category theory fundamentals: categories, functors, natural transformations",
       "category": "domain",
       "line_count": 120,
@@ -315,7 +315,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/category-theory/monoidal-categories.md",
+      "path": "project/math/category-theory/monoidal-categories.md",
       "summary": "Monoidal categories and tensor products",
       "category": "domain",
       "line_count": 100,
@@ -326,7 +326,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/category-theory/enriched-categories.md",
+      "path": "project/math/category-theory/enriched-categories.md",
       "summary": "Categories enriched over monoidal categories",
       "category": "domain",
       "line_count": 100,
@@ -337,7 +337,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/category-theory/lawvere-metric-spaces.md",
+      "path": "project/math/category-theory/lawvere-metric-spaces.md",
       "summary": "Metric spaces as enriched categories",
       "category": "domain",
       "line_count": 90,
@@ -348,7 +348,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/category-theory/cauchy-completion.md",
+      "path": "project/math/category-theory/cauchy-completion.md",
       "summary": "Cauchy completion for enriched categories",
       "category": "domain",
       "line_count": 80,
@@ -359,7 +359,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/category-theory/profunctors.md",
+      "path": "project/math/category-theory/profunctors.md",
       "summary": "Profunctors as generalized relations between categories",
       "category": "domain",
       "line_count": 100,
@@ -370,7 +370,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/math/foundations/dependent-type-theory.md",
+      "path": "project/math/foundations/dependent-type-theory.md",
       "summary": "Dependent type theory foundations for Lean 4",
       "category": "domain",
       "line_count": 150,
@@ -381,7 +381,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/physics/README.md",
+      "path": "project/physics/README.md",
       "summary": "Physics context index for dynamical systems",
       "category": "index",
       "line_count": 30,
@@ -391,7 +391,7 @@
       }
     },
     {
-      "path": ".opencode/extensions/formal/context/project/physics/dynamical-systems/dynamical-systems.md",
+      "path": "project/physics/dynamical-systems/dynamical-systems.md",
       "summary": "Dynamical systems: iteration, orbits, fixed points, flows",
       "category": "domain",
       "line_count": 200,

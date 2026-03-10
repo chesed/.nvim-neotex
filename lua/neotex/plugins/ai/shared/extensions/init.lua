@@ -95,10 +95,14 @@ local function process_merge_targets(ext_manifest, source_dir, project_dir, conf
     local target_path = project_dir .. "/" .. mt_config.target
 
     local entries_data = read_json(source_path)
-    if entries_data and entries_data.entries then
-      local success, tracked = merge_mod.append_index_entries(target_path, entries_data.entries)
-      if success then
-        merged_sections.index = tracked
+    if entries_data then
+      -- Handle both {entries: [...]} object format and bare [...] array format
+      local entries = entries_data.entries or (vim.isarray(entries_data) and entries_data) or nil
+      if entries then
+        local success, tracked = merge_mod.append_index_entries(target_path, entries)
+        if success then
+          merged_sections.index = tracked
+        end
       end
     end
   end

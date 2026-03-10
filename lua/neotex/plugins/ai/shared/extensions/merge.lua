@@ -5,6 +5,28 @@ local M = {}
 
 local helpers = require("neotex.plugins.ai.claude.commands.picker.utils.helpers")
 
+--- Normalize index entry path by stripping known bad prefixes
+--- Handles three prefix conventions that have appeared in source index-entries.json files:
+--- 1. ".claude/extensions/*/context/" or ".opencode/extensions/*/context/" (full path)
+--- 2. "context/" (partial path from within extension directory)
+--- 3. "project/" or "core/" (correct, left unchanged)
+--- @param path string Path to normalize
+--- @return string normalized_path Path with bad prefixes stripped
+local function normalize_index_path(path)
+  -- Strip full extension path prefix: .claude/extensions/*/context/ or .opencode/extensions/*/context/
+  path = path:gsub("^%.claude/extensions/[^/]+/context/", "")
+  path = path:gsub("^%.opencode/extensions/[^/]+/context/", "")
+
+  -- Strip partial context prefix
+  path = path:gsub("^context/", "")
+
+  -- Strip .claude/context/ or .opencode/context/ prefix
+  path = path:gsub("^%.claude/context/", "")
+  path = path:gsub("^%.opencode/context/", "")
+
+  return path
+end
+
 --- Read file contents as string
 --- @param filepath string Path to file
 --- @return string|nil content File contents or nil
@@ -348,16 +370,20 @@ function M.append_index_entries(target_path, entries)
 
   -- Append entries (deduplicate by path)
   for _, entry in ipairs(entries) do
+    -- Normalize path before deduplication and insertion (defense-in-depth)
+    local normalized_path = normalize_index_path(entry.path)
+    entry.path = normalized_path
+
     local exists = false
     for _, existing in ipairs(index.entries) do
-      if existing.path == entry.path then
+      if existing.path == normalized_path then
         exists = true
         break
       end
     end
     if not exists then
       table.insert(index.entries, entry)
-      table.insert(added_paths, entry.path)
+      table.insert(added_paths, normalized_path)
     end
   end
 

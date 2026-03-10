@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "path": "context/project/neovim/README.md",
+      "path": "project/neovim/README.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["neovim", "lua", "configuration"],
@@ -14,7 +14,7 @@
       }
     },
     {
-      "path": "context/project/neovim/domain/README.md",
+      "path": "project/neovim/domain/README.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["domain", "overview"],
@@ -26,7 +26,7 @@
       }
     },
     {
-      "path": "context/project/neovim/domain/lua-patterns.md",
+      "path": "project/neovim/domain/lua-patterns.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["lua", "patterns", "idioms"],
@@ -39,7 +39,7 @@
       }
     },
     {
-      "path": "context/project/neovim/domain/neovim-api.md",
+      "path": "project/neovim/domain/neovim-api.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["api", "vim", "nvim"],
@@ -52,7 +52,7 @@
       }
     },
     {
-      "path": "context/project/neovim/domain/plugin-ecosystem.md",
+      "path": "project/neovim/domain/plugin-ecosystem.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["plugins", "ecosystem", "community"],
@@ -65,7 +65,7 @@
       }
     },
     {
-      "path": "context/project/neovim/domain/lsp-overview.md",
+      "path": "project/neovim/domain/lsp-overview.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["lsp", "language-server", "completion"],
@@ -78,7 +78,7 @@
       }
     },
     {
-      "path": "context/project/neovim/lua-patterns.md",
+      "path": "project/neovim/lua-patterns.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["lua", "patterns", "idioms"],
@@ -91,7 +91,7 @@
       }
     },
     {
-      "path": "context/project/neovim/patterns/README.md",
+      "path": "project/neovim/patterns/README.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["patterns", "overview"],
@@ -103,7 +103,7 @@
       }
     },
     {
-      "path": "context/project/neovim/patterns/autocommand-patterns.md",
+      "path": "project/neovim/patterns/autocommand-patterns.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["autocommands", "events", "augroup"],
@@ -116,7 +116,7 @@
       }
     },
     {
-      "path": "context/project/neovim/patterns/ftplugin-patterns.md",
+      "path": "project/neovim/patterns/ftplugin-patterns.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["ftplugin", "filetype", "settings"],
@@ -129,7 +129,7 @@
       }
     },
     {
-      "path": "context/project/neovim/patterns/keymap-patterns.md",
+      "path": "project/neovim/patterns/keymap-patterns.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["keymaps", "mappings", "which-key"],
@@ -142,7 +142,7 @@
       }
     },
     {
-      "path": "context/project/neovim/patterns/plugin-spec.md",
+      "path": "project/neovim/patterns/plugin-spec.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["lazy-nvim", "plugin-spec", "dependencies"],
@@ -155,7 +155,7 @@
       }
     },
     {
-      "path": "context/project/neovim/standards/README.md",
+      "path": "project/neovim/standards/README.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["standards", "overview"],
@@ -167,7 +167,7 @@
       }
     },
     {
-      "path": "context/project/neovim/standards/lua-style-guide.md",
+      "path": "project/neovim/standards/lua-style-guide.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["style", "conventions", "formatting"],
@@ -180,7 +180,7 @@
       }
     },
     {
-      "path": "context/project/neovim/standards/testing-patterns.md",
+      "path": "project/neovim/standards/testing-patterns.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["testing", "plenary", "busted"],
@@ -193,7 +193,7 @@
       }
     },
     {
-      "path": "context/project/neovim/templates/README.md",
+      "path": "project/neovim/templates/README.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["templates", "overview"],
@@ -205,7 +205,7 @@
       }
     },
     {
-      "path": "context/project/neovim/templates/ftplugin-template.md",
+      "path": "project/neovim/templates/ftplugin-template.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["template", "ftplugin", "boilerplate"],
@@ -218,7 +218,7 @@
       }
     },
     {
-      "path": "context/project/neovim/templates/plugin-template.md",
+      "path": "project/neovim/templates/plugin-template.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["template", "plugin", "boilerplate"],
@@ -231,7 +231,7 @@
       }
     },
     {
-      "path": "context/project/neovim/tools/README.md",
+      "path": "project/neovim/tools/README.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["tools", "overview"],
@@ -243,7 +243,7 @@
       }
     },
     {
-      "path": "context/project/neovim/tools/lazy-nvim-guide.md",
+      "path": "project/neovim/tools/lazy-nvim-guide.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["lazy-nvim", "plugin-manager", "loading"],
@@ -256,7 +256,7 @@
       }
     },
     {
-      "path": "context/project/neovim/tools/telescope-guide.md",
+      "path": "project/neovim/tools/telescope-guide.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["telescope", "fuzzy-finder", "pickers"],
@@ -269,7 +269,7 @@
       }
     },
     {
-      "path": "context/project/neovim/tools/treesitter-guide.md",
+      "path": "project/neovim/tools/treesitter-guide.md",
       "domain": "project",
       "subdomain": "neovim",
       "topics": ["treesitter", "parsing", "highlighting"],

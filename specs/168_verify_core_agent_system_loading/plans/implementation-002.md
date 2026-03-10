@@ -1,7 +1,7 @@
 # Implementation Plan: Task #168 (Revised)
 
 - **Task**: 168 - Fix core agent system loading and extension loader issues
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 4-6 hours
 - **Dependencies**: Task 167 (move extension artifacts into core directories)
 - **Research Inputs**: [research-001.md](../reports/research-001.md), [research-002.md](../reports/research-002.md)
@@ -67,7 +67,7 @@ Research-001 identified 77 broken paths in .claude/context/index.json and 12 in 
 
 ## Implementation Phases
 
-### Phase 1: Audit and Ensure System Independence [NOT STARTED]
+### Phase 1: Audit and Ensure System Independence [COMPLETED]
 
 **Goal**: Before making any fixes, audit both systems to identify any cross-system references or dependencies that violate independence, and document the expected independent structure.
 
@@ -95,7 +95,7 @@ Research-001 identified 77 broken paths in .claude/context/index.json and 12 in 
 
 ---
 
-### Phase 2: Fix Source index-entries.json Path Prefixes [NOT STARTED]
+### Phase 2: Fix Source index-entries.json Path Prefixes [COMPLETED]
 
 **Goal**: Normalize all 22 index-entries.json files (11 .claude + 11 .opencode) to use the correct `project/` path prefix convention. Fix each system independently.
 
@@ -145,7 +145,7 @@ Research-001 identified 77 broken paths in .claude/context/index.json and 12 in 
 
 ---
 
-### Phase 3: Add Loader Path Normalization (Defense-in-Depth) [NOT STARTED]
+### Phase 3: Add Loader Path Normalization (Defense-in-Depth) [COMPLETED]
 
 **Goal**: Add path normalization to the shared merge module so the loader strips incorrect prefixes before appending entries. The loader is shared Neovim code but produces independent outputs.
 
@@ -172,7 +172,7 @@ Research-001 identified 77 broken paths in .claude/context/index.json and 12 in 
 
 ---
 
-### Phase 4: Fix Epidemiology Manifest and Manifest Parity [NOT STARTED]
+### Phase 4: Fix Epidemiology Manifest and Manifest Parity [COMPLETED]
 
 **Goal**: Fix the epidemiology .claude manifest merge_target_key and ensure manifest parity while maintaining system independence.
 
@@ -209,7 +209,7 @@ Research-001 identified 77 broken paths in .claude/context/index.json and 12 in 
 
 ---
 
-### Phase 5: Update core/routing.md and Fix State Tracking [NOT STARTED]
+### Phase 5: Update core/routing.md and Fix State Tracking [COMPLETED]
 
 **Goal**: Update the routing reference to reflect all post-merge languages for each system independently, and fix the extensions.json state tracking.
 
@@ -235,7 +235,7 @@ Research-001 identified 77 broken paths in .claude/context/index.json and 12 in 
 
 ---
 
-### Phase 6: Create Validation Script and End-to-End Testing [NOT STARTED]
+### Phase 6: Create Validation Script and End-to-End Testing [COMPLETED]
 
 **Goal**: Create a reusable validation script that verifies index.json integrity and system independence, and run comprehensive end-to-end verification.
 

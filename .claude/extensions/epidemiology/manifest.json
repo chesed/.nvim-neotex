@@ -21,10 +21,10 @@
     "rules": []
   },
   "merge_targets": {
-    "opencode_md": {
+    "claudemd": {
       "source": "EXTENSION.md",
-      "target": ".claude/OPENCODE.md",
-      "section_id": "extension_oc_epidemiology"
+      "target": ".claude/CLAUDE.md",
+      "section_id": "extension_epidemiology"
     },
     "index": {
       "source": "index-entries.json",

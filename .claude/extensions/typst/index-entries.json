@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "path": "context/project/typst/patterns/theorem-environments.md",
+      "path": "project/typst/patterns/theorem-environments.md",
       "description": "Theorem, definition, and proof environments",
       "tags": ["typst", "theorems", "environments"],
       "load_when": {
@@ -10,7 +10,7 @@
       }
     },
     {
-      "path": "context/project/typst/patterns/cross-references.md",
+      "path": "project/typst/patterns/cross-references.md",
       "description": "Cross-reference patterns in Typst",
       "tags": ["typst", "references", "labels"],
       "load_when": {
@@ -19,7 +19,7 @@
       }
     },
     {
-      "path": "context/project/typst/patterns/fletcher-diagrams.md",
+      "path": "project/typst/patterns/fletcher-diagrams.md",
       "description": "Fletcher package for flowcharts and diagrams",
       "tags": ["typst", "diagrams", "fletcher"],
       "load_when": {
@@ -28,7 +28,7 @@
       }
     },
     {
-      "path": "context/project/typst/patterns/rule-environments.md",
+      "path": "project/typst/patterns/rule-environments.md",
       "description": "Inference rule and typing rule environments",
       "tags": ["typst", "rules", "inference"],
       "load_when": {
@@ -37,7 +37,7 @@
       }
     },
     {
-      "path": "context/project/typst/standards/document-structure.md",
+      "path": "project/typst/standards/document-structure.md",
       "description": "Document structure and organization standards",
       "tags": ["typst", "structure", "organization"],
       "load_when": {
@@ -46,7 +46,7 @@
       }
     },
     {
-      "path": "context/project/typst/standards/notation-conventions.md",
+      "path": "project/typst/standards/notation-conventions.md",
       "description": "Mathematical notation conventions in Typst",
       "tags": ["typst", "math", "notation"],
       "load_when": {
@@ -55,7 +55,7 @@
       }
     },
     {
-      "path": "context/project/typst/standards/textbook-standards.md",
+      "path": "project/typst/standards/textbook-standards.md",
       "description": "Textbook authoring standards and conventions",
       "tags": ["typst", "textbook", "standards"],
       "load_when": {
@@ -64,7 +64,7 @@
       }
     },
     {
-      "path": "context/project/typst/standards/typst-style-guide.md",
+      "path": "project/typst/standards/typst-style-guide.md",
       "description": "Typst coding style and conventions",
       "tags": ["typst", "style", "conventions"],
       "load_when": {
@@ -73,7 +73,7 @@
       }
     },
     {
-      "path": "context/project/typst/standards/type-theory-foundations.md",
+      "path": "project/typst/standards/type-theory-foundations.md",
       "description": "Type theory foundations and DTT conventions",
       "tags": ["typst", "type-theory", "foundations"],
       "load_when": {
@@ -82,7 +82,7 @@
       }
     },
     {
-      "path": "context/project/typst/templates/chapter-template.md",
+      "path": "project/typst/templates/chapter-template.md",
       "description": "Chapter template for Typst documents",
       "tags": ["typst", "templates", "chapters"],
       "load_when": {
@@ -91,7 +91,7 @@
       }
     },
     {
-      "path": "context/project/typst/tools/compilation-guide.md",
+      "path": "project/typst/tools/compilation-guide.md",
       "description": "Typst compilation and tooling",
       "tags": ["typst", "compile", "tools"],
       "load_when": {

@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "path": "context/project/python/standards/code-style.md",
+      "path": "project/python/standards/code-style.md",
       "description": "Python coding style and conventions",
       "tags": ["python", "style", "conventions"],
       "load_when": {
@@ -10,7 +10,7 @@
       }
     },
     {
-      "path": "context/project/python/patterns/testing-patterns.md",
+      "path": "project/python/patterns/testing-patterns.md",
       "description": "Pytest patterns and fixtures",
       "tags": ["python", "pytest", "testing"],
       "load_when": {
@@ -19,7 +19,7 @@
       }
     },
     {
-      "path": "context/project/python/domain/application-api-patterns.md",
+      "path": "project/python/domain/application-api-patterns.md",
       "description": "Application API structure and patterns",
       "tags": ["python", "api", "architecture"],
       "load_when": {
@@ -28,7 +28,7 @@
       }
     },
     {
-      "path": "context/project/python/domain/library-patterns.md",
+      "path": "project/python/domain/library-patterns.md",
       "description": "Domain-specific library patterns",
       "tags": ["python", "library", "patterns"],
       "load_when": {
@@ -37,7 +37,7 @@
       }
     },
     {
-      "path": "context/project/python/patterns/semantic-evaluation.md",
+      "path": "project/python/patterns/semantic-evaluation.md",
       "description": "Tree-walking evaluation patterns",
       "tags": ["python", "evaluation", "interpreter"],
       "load_when": {
