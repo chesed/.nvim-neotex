@@ -44,6 +44,15 @@
         "languages": ["python"],
         "agents": ["python-implementation-agent"]
       }
+    },
+    {
+      "path": "project/python/README.md",
+      "description": "Python extension overview and navigation",
+      "tags": ["python", "overview", "navigation"],
+      "load_when": {
+        "languages": ["python"],
+        "agents": ["python-implementation-agent", "python-research-agent"]
+      }
     }
   ]
 }

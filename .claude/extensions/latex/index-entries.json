@@ -80,6 +80,15 @@
         "languages": ["latex"],
         "agents": ["latex-implementation-agent", "latex-research-agent"]
       }
+    },
+    {
+      "path": "project/latex/README.md",
+      "description": "LaTeX extension overview and navigation",
+      "tags": ["latex", "overview", "navigation"],
+      "load_when": {
+        "languages": ["latex"],
+        "agents": ["latex-implementation-agent", "latex-research-agent"]
+      }
     }
   ]
 }

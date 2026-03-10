@@ -8,14 +8,16 @@ next_project_number: 171
 
 ### 170. Audit agent systems for complete wiring correctness
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-10
 - **Research Completed**: 2026-03-10
 - **Planning Started**: 2026-03-10
 - **Planning Completed**: 2026-03-10
+- **Implementation Completed**: 2026-03-10
 - **Language**: meta
 - **Research**: [research-001.md](170_audit_agent_systems_wiring_correctness/reports/research-001.md)
 - **Plan**: [implementation-001.md](170_audit_agent_systems_wiring_correctness/plans/implementation-001.md)
+- **Summary**: Repaired .opencode extended system in Vision project (copied 5 core agents, 12 skills, 5 rules, 20 commands, 16 scripts, merged 155 index entries). Added 32 unindexed context files across 8 extensions. Created project-overview.md for Vision project.
 
 **Description**: Carefully audit the core and extended agent systems in both .claude/ and .opencode/ (with .claude_core/ and .opencode_core/ available for comparison) to ensure everything is working correctly and no gaps remain from the work in tasks 163-169. The following must be verified:
 

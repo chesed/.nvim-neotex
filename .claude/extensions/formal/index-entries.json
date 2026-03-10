@@ -400,6 +400,94 @@
         "languages": ["physics", "formal"],
         "topics": ["dynamical", "orbit", "fixed", "flow", "ergodic", "chaos"]
       }
+    },
+    {
+      "path": "project/logic/domain/modal-logic-extensions.md",
+      "summary": "Extensions of modal logic: multi-modal, hybrid, and dynamic logics",
+      "category": "domain",
+      "line_count": 100,
+      "load_when": {
+        "agents": ["logic-research-agent", "formal-research-agent"],
+        "languages": ["logic", "formal"],
+        "topics": ["modal", "hybrid", "dynamic", "multi-modal"]
+      }
+    },
+    {
+      "path": "project/logic/domain/proof-theory-basics.md",
+      "summary": "Foundational proof theory concepts and techniques",
+      "category": "domain",
+      "line_count": 100,
+      "load_when": {
+        "agents": ["logic-research-agent", "formal-research-agent"],
+        "languages": ["logic", "formal"],
+        "topics": ["proof", "deduction", "natural", "sequent"]
+      }
+    },
+    {
+      "path": "project/logic/domain/temporal-logic-patterns.md",
+      "summary": "Temporal logic patterns for specification and verification",
+      "category": "domain",
+      "line_count": 100,
+      "load_when": {
+        "agents": ["logic-research-agent", "formal-research-agent"],
+        "languages": ["logic", "formal"],
+        "topics": ["temporal", "ltl", "ctl", "until", "eventually"]
+      }
+    },
+    {
+      "path": "project/math/category-theory/adjunctions.md",
+      "summary": "Adjoint functors and universal properties",
+      "category": "domain",
+      "line_count": 120,
+      "load_when": {
+        "agents": ["math-research-agent", "formal-research-agent"],
+        "languages": ["math", "formal"],
+        "topics": ["adjunction", "adjoint", "universal", "unit", "counit"]
+      }
+    },
+    {
+      "path": "project/math/category-theory/category-basics.md",
+      "summary": "Basic category theory definitions and examples",
+      "category": "domain",
+      "line_count": 100,
+      "load_when": {
+        "agents": ["math-research-agent", "formal-research-agent"],
+        "languages": ["math", "formal"],
+        "topics": ["category", "morphism", "composition", "identity"]
+      }
+    },
+    {
+      "path": "project/math/category-theory/functors-natural-transformations.md",
+      "summary": "Functors and natural transformations between categories",
+      "category": "domain",
+      "line_count": 120,
+      "load_when": {
+        "agents": ["math-research-agent", "formal-research-agent"],
+        "languages": ["math", "formal"],
+        "topics": ["functor", "natural", "transformation", "yoneda"]
+      }
+    },
+    {
+      "path": "project/math/category-theory/limits-colimits.md",
+      "summary": "Limits and colimits in category theory",
+      "category": "domain",
+      "line_count": 120,
+      "load_when": {
+        "agents": ["math-research-agent", "formal-research-agent"],
+        "languages": ["math", "formal"],
+        "topics": ["limit", "colimit", "cone", "product", "coproduct"]
+      }
+    },
+    {
+      "path": "project/math/foundations/set-theory-foundations.md",
+      "summary": "Set-theoretic foundations and ZFC axioms",
+      "category": "domain",
+      "line_count": 100,
+      "load_when": {
+        "agents": ["math-research-agent", "formal-research-agent"],
+        "languages": ["math", "formal"],
+        "topics": ["set", "zfc", "axiom", "ordinal", "cardinal"]
+      }
     }
   ]
 }

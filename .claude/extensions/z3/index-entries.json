@@ -35,6 +35,15 @@
         "languages": ["z3"],
         "agents": ["z3-implementation-agent"]
       }
+    },
+    {
+      "path": "project/z3/README.md",
+      "description": "Z3 extension overview and navigation",
+      "tags": ["z3", "overview", "navigation"],
+      "load_when": {
+        "languages": ["z3"],
+        "agents": ["z3-implementation-agent", "z3-research-agent"]
+      }
     }
   ]
 }

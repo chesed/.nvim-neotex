@@ -3,7 +3,7 @@
 - **Task**: 170 - Audit Agent Systems for Complete Wiring Correctness
 - **Date**: 2026-03-10
 - **Feature**: Fix broken .opencode extended system, index unindexed context files, resolve broken @-reference
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Estimated Hours**: 2-3 hours
 - **Standards File**: /home/benjamin/.config/nvim/CLAUDE.md
 - **Research Reports**: [research-001.md](../reports/research-001.md)
@@ -47,7 +47,7 @@ The research audit found that the `.opencode/` extended system in `/home/benjami
 
 ## Implementation Phases
 
-### Phase 1: Repair .opencode Extended System - Core Layer [NOT STARTED]
+### Phase 1: Repair .opencode Extended System - Core Layer [COMPLETED]
 
 **Goal**: Copy all core content from `.opencode_core/` into `.opencode/` without disturbing existing extension content.
 
@@ -86,7 +86,7 @@ The research audit found that the `.opencode/` extended system in `/home/benjami
 
 ---
 
-### Phase 2: Repair .opencode OPENCODE.md Core Content [NOT STARTED]
+### Phase 2: Repair .opencode OPENCODE.md Core Content [COMPLETED]
 
 **Goal**: Ensure OPENCODE.md has core content sections in addition to the 11 extension sections already injected.
 
@@ -109,7 +109,7 @@ The research audit found that the `.opencode/` extended system in `/home/benjami
 
 ---
 
-### Phase 3: Add Unindexed Context Files to Extension Indices [NOT STARTED]
+### Phase 3: Add Unindexed Context Files to Extension Indices [COMPLETED]
 
 **Goal**: Add 32 unindexed context files to their respective extension `index-entries.json` files in the nvim config extension sources.
 
@@ -151,7 +151,7 @@ The research audit found that the `.opencode/` extended system in `/home/benjami
 
 ---
 
-### Phase 4: Fix Broken @-Reference (project-overview.md) [NOT STARTED]
+### Phase 4: Fix Broken @-Reference (project-overview.md) [COMPLETED]
 
 **Goal**: Resolve the broken reference to `project/repo/project-overview.md` that exists in CLAUDE.md / OPENCODE.md context imports.
 
@@ -173,7 +173,7 @@ The research audit found that the `.opencode/` extended system in `/home/benjami
 
 ---
 
-### Phase 5: Reload Extensions and Final Validation [NOT STARTED]
+### Phase 5: Reload Extensions and Final Validation [COMPLETED]
 
 **Goal**: Re-deploy extensions to `.opencode/` extended system (now that core is present) and run full validation on all 4 systems.
 

@@ -4,7 +4,7 @@
     {
       "project_number": 170,
       "project_name": "audit_agent_systems_wiring_correctness",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-10T20:29:10Z",
       "last_updated": "2026-03-10T20:50:13Z",
@@ -20,9 +20,16 @@
           "path": "specs/170_audit_agent_systems_wiring_correctness/plans/implementation-001.md",
           "type": "plan",
           "summary": "5-phase implementation plan to repair broken .opencode extended system, index 32 unindexed context files, and fix broken @-reference"
+        },
+        {
+          "path": "specs/170_audit_agent_systems_wiring_correctness/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting 5-phase repair of .opencode extended system and 32 index entries added"
         }
       ],
-      "planned": "2026-03-10T20:50:13Z"
+      "planned": "2026-03-10T20:50:13Z",
+      "completion_summary": "Repaired .opencode extended system in Vision project (copied 5 core agents, 12 skills, 5 rules, 20 commands, 16 scripts, merged 155 index entries). Added 32 unindexed context files across 8 extensions (typst: 15, formal: 8, lean: 2, web: 2, epidemiology: 2, latex: 1, python: 1, z3: 1). Created project-overview.md for Vision project. Both .claude and .opencode extended systems now pass validation.",
+      "completed": "2026-03-10T21:10:11Z"
     },
     {
       "project_number": 169,

@@ -197,6 +197,24 @@
         "languages": ["lean4"],
         "agents": ["lean-implementation-agent"]
       }
+    },
+    {
+      "path": "project/lean4/README.md",
+      "description": "Lean 4 extension overview and navigation",
+      "tags": ["lean4", "overview", "navigation"],
+      "load_when": {
+        "languages": ["lean4"],
+        "agents": ["lean-research-agent", "lean-implementation-agent"]
+      }
+    },
+    {
+      "path": "project/lean4/standards/proof-conventions.md",
+      "description": "Lean proof conventions and best practices",
+      "tags": ["lean4", "proofs", "conventions"],
+      "load_when": {
+        "languages": ["lean4"],
+        "agents": ["lean-implementation-agent"]
+      }
     }
   ]
 }

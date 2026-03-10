@@ -25,6 +25,32 @@
         "languages": ["r", "epidemiology"],
         "agents": ["epidemiology-implementation-agent"]
       }
+    },
+    {
+      "path": "project/epidemiology/patterns/statistical-modeling.md",
+      "domain": "project",
+      "subdomain": "epidemiology",
+      "topics": ["statistical", "modeling", "regression"],
+      "keywords": ["statistical-modeling", "regression", "bayesian"],
+      "summary": "Statistical modeling patterns for epidemiology",
+      "line_count": 100,
+      "load_when": {
+        "languages": ["r", "epidemiology"],
+        "agents": ["epidemiology-implementation-agent"]
+      }
+    },
+    {
+      "path": "project/epidemiology/tools/mcp-guide.md",
+      "domain": "project",
+      "subdomain": "epidemiology",
+      "topics": ["mcp", "r", "integration"],
+      "keywords": ["mcp", "server", "r-integration"],
+      "summary": "MCP server integration for R-based analysis",
+      "line_count": 80,
+      "load_when": {
+        "languages": ["r", "epidemiology"],
+        "agents": ["epidemiology-research-agent", "epidemiology-implementation-agent"]
+      }
     }
   ]
 }
