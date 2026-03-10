@@ -4587,6 +4587,458 @@
       "archived": "2026-03-06T18:33:32Z",
       "source": "orphan_recovery",
       "original_directory": "OC_148_fix_status_updates_in_implementations"
+    },
+    {
+      "project_number": 173,
+      "project_name": "rename_learn_command_to_fix_it",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-10T22:22:38Z",
+      "last_updated": "2026-03-10T22:42:43Z",
+      "session_id": "sess_1773182251_a6dc57",
+      "researched": "2026-03-10T22:30:00Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/173_rename_learn_command_to_fix_it/reports/research-001.md",
+          "summary": "Comprehensive inventory of 7 files and ~67 references to /learn and skill-learn requiring updates for rename to /fix-it"
+        },
+        {
+          "path": "specs/173_rename_learn_command_to_fix_it/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "3-phase plan: rename files/dirs, update content references, verify zero stale references"
+        },
+        {
+          "path": "specs/173_rename_learn_command_to_fix_it/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-10T22:32:22Z",
+      "started": "2026-03-10T22:37:57Z",
+      "completed": "2026-03-10T22:42:43Z",
+      "completion_summary": "Renamed /learn command to /fix-it across entire .claude/ system. Renamed 3 paths (command file, skill directory, example file) and updated 67 references in 8 files including CLAUDE.md, user-guide, and multi-task-creation-standard.",
+      "claudemd_suggestions": "Updated .claude/CLAUDE.md command reference table and multi-task creation compliance table entries from /learn to /fix-it",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 172,
+      "project_name": "investigate_opencode_core_content_loss_on_reload",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-10T21:41:27Z",
+      "last_updated": "2026-03-10T15:17:02-07:00",
+      "researched": "2026-03-10T14:53:12-07:00",
+      "artifacts": [
+        {
+          "path": "specs/172_investigate_opencode_core_content_loss_on_reload/reports/research-001.md",
+          "type": "research",
+          "summary": "Root cause: inject_section creates empty OPENCODE.md when file missing, no mechanism to include core content. Fix: create global OPENCODE.md in nvim config so sync can restore it."
+        },
+        {
+          "path": "specs/172_investigate_opencode_core_content_loss_on_reload/reports/research-002.md",
+          "type": "research",
+          "summary": "AGENTS.md (not OPENCODE.md) is the standard OpenCode project instructions file. Plan should use AGENTS.md to match official conventions."
+        },
+        {
+          "path": "specs/172_investigate_opencode_core_content_loss_on_reload/plans/implementation-002.md",
+          "type": "plan",
+          "summary": "Revised 3-phase plan using AGENTS.md (not OPENCODE.md) per OpenCode conventions"
+        },
+        {
+          "path": "specs/172_investigate_opencode_core_content_loss_on_reload/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting AGENTS.md fix for core content loss"
+        }
+      ],
+      "planned": "2026-03-10T15:07:24-07:00",
+      "completed": "2026-03-10T15:17:02-07:00",
+      "completion_summary": "Created global AGENTS.md (165 lines), updated sync.lua root_file_names, modified all 11 extension manifests to target AGENTS.md, hardened merge.lua inject_section to seed from README.md. Fix prevents core content loss on extension reload.",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 171,
+      "project_name": "re_audit_agent_systems_post_reload",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-10T21:19:00Z",
+      "last_updated": "2026-03-10T14:32:31-07:00",
+      "researched": "2026-03-10T21:22:33Z",
+      "artifacts": [
+        {
+          "path": "specs/171_re_audit_agent_systems_post_reload/reports/research-001.md",
+          "type": "research",
+          "summary": "Re-audit found 2 gaps after reload: OPENCODE.md missing core content, project-overview.md missing. Core systems clean, extended systems have correct component counts, all 187 index entries valid."
+        },
+        {
+          "path": "specs/171_re_audit_agent_systems_post_reload/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "2-phase plan to fix OPENCODE.md missing core content (merge README.md before extension sections)"
+        },
+        {
+          "path": "specs/171_re_audit_agent_systems_post_reload/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting OPENCODE.md core content merge"
+        }
+      ],
+      "planned": "2026-03-10T21:26:30Z",
+      "completed": "2026-03-10T14:32:31-07:00",
+      "completion_summary": "Merged core README.md content into OPENCODE.md in Vision project. File now has 833 lines with core content (Quick Start, System Overview, Commands) followed by 11 extension sections (22 markers). All 33 agents and skills verified present.",
+      "claudemd_suggestions": "none",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 170,
+      "project_name": "audit_agent_systems_wiring_correctness",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-10T20:29:10Z",
+      "last_updated": "2026-03-10T20:50:13Z",
+      "session_id": "sess_1773175518_8fda67",
+      "researched": "2026-03-10T21:15:00Z",
+      "artifacts": [
+        {
+          "path": "specs/170_audit_agent_systems_wiring_correctness/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive audit of 4 agent systems: .claude extended passes 35/35 validation, .opencode extended critically broken (missing all core agents/skills/rules/commands/scripts), 32 unindexed context files, 1 broken @-reference"
+        },
+        {
+          "path": "specs/170_audit_agent_systems_wiring_correctness/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan to repair broken .opencode extended system, index 32 unindexed context files, and fix broken @-reference"
+        },
+        {
+          "path": "specs/170_audit_agent_systems_wiring_correctness/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting 5-phase repair of .opencode extended system and 32 index entries added"
+        }
+      ],
+      "planned": "2026-03-10T20:50:13Z",
+      "completion_summary": "Repaired .opencode extended system in Vision project (copied 5 core agents, 12 skills, 5 rules, 20 commands, 16 scripts, merged 155 index entries). Added 32 unindexed context files across 8 extensions (typst: 15, formal: 8, lean: 2, web: 2, epidemiology: 2, latex: 1, python: 1, z3: 1). Created project-overview.md for Vision project. Both .claude and .opencode extended systems now pass validation.",
+      "completed": "2026-03-10T21:10:11Z",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 169,
+      "project_name": "verify_agent_systems_wired_after_reload",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-10T19:14:19Z",
+      "last_updated": "2026-03-10T20:04:12Z",
+      "session_id": "sess_1773172241_2db079",
+      "researched": "2026-03-10T20:15:00Z",
+      "planned": "2026-03-10T21:00:00Z",
+      "artifacts": [
+        {
+          "path": "specs/169_verify_agent_systems_wired_after_reload/reports/research-001.md",
+          "type": "research",
+          "summary": "Agent system wiring is correct for routing and delegation, but neovim/filetypes extension context entries are not merged into main index.json, and 76 context files referenced in .claude index are missing from disk"
+        },
+        {
+          "path": "specs/169_verify_agent_systems_wired_after_reload/reports/research-002.md",
+          "type": "research",
+          "summary": "Supplemental research on extension loading architecture: core vs extended comparison, 27 agents/28 skills/5 rules to remove from core, index.json path inconsistencies, loader improvements"
+        },
+        {
+          "path": "specs/169_verify_agent_systems_wired_after_reload/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "6-phase plan to establish clean core/extension boundary, fix index.json as adaptive registry, and add post-load verification"
+        },
+        {
+          "path": "specs/169_verify_agent_systems_wired_after_reload/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "started": "2026-03-10T19:51:07Z",
+      "completed": "2026-03-10T20:04:12Z",
+      "completion_summary": "Established clean core/extension separation for both agent systems. Core systems now contain only 4 agents, 10 skills, 5 rules, with extensions providing domain-specific content. Added post-load verification module and wiring validation script.",
+      "claudemd_suggestions": "Updated .claude/CLAUDE.md to reflect core-only routing tables and extension notes. Created .claude/extensions/README.md with extension authoring guide and path format requirements.",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 168,
+      "project_name": "verify_core_agent_system_loading",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-10T18:25:28Z",
+      "last_updated": "2026-03-10T19:09:25Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/168_verify_core_agent_system_loading/reports/research-001.md",
+          "summary": "Core loading: 77 broken index.json paths, routing.md inconsistent, minor parity gaps"
+        },
+        {
+          "type": "research",
+          "path": "specs/168_verify_core_agent_system_loading/reports/research-002.md",
+          "summary": "Extension loading: 203+122 broken index paths, epidemiology manifest bug, 4 malformed index-entries.json"
+        },
+        {
+          "type": "plan",
+          "path": "specs/168_verify_core_agent_system_loading/plans/implementation-002.md",
+          "summary": "6-phase plan with explicit system independence requirements"
+        },
+        {
+          "type": "summary",
+          "path": "specs/168_verify_core_agent_system_loading/summaries/implementation-summary-20260310.md",
+          "summary": "Full implementation summary with all 6 phases completed"
+        }
+      ],
+      "completion_summary": "Fixed 22 index-entries.json files with path normalization and bare-array wrapping, added loader path normalization and bare-array fallback, fixed epidemiology manifest and parity gaps, updated routing.md with complete language table, created validation script",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 167,
+      "project_name": "verify_revise_agent_system_loaders",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-10T17:32:33Z",
+      "last_updated": "2026-03-10T18:16:02Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/167_verify_revise_agent_system_loaders/reports/research-001.md",
+          "summary": "Agent system loaders verified - .claude/ sync perfect via symlinks, .opencode/ missing 8 non-functional README files"
+        },
+        {
+          "type": "research",
+          "path": "specs/167_verify_revise_agent_system_loaders/reports/research-002.md",
+          "summary": "Symlink elimination design, Vision extension verification, double-question bug root cause"
+        },
+        {
+          "type": "plan",
+          "path": "specs/167_verify_revise_agent_system_loaders/plans/implementation-001.md",
+          "summary": "5-phase plan: fix bugs, eliminate symlinks, copy extensions to core, mirror to .opencode/, update docs"
+        },
+        {
+          "type": "summary",
+          "path": "specs/167_verify_revise_agent_system_loaders/summaries/implementation-summary-20260310.md",
+          "summary": "Full implementation summary with all phases completed"
+        }
+      ],
+      "completion_summary": "Fixed filetypes manifest bug, merged double-confirm dialog, copied all extension artifacts to core directories (27 agents, 29 skills, 5 rules, 7 commands), updated 159 path references, mirrored to .opencode/",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 166,
+      "project_name": "move_neovim_elements_to_nvim_extension",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-10T16:58:21Z",
+      "last_updated": "2026-03-10T17:26:04Z",
+      "session_id": "sess_1773162842_85910e",
+      "researched": "2026-03-10T17:06:19Z",
+      "artifacts": [
+        {
+          "path": "specs/166_move_neovim_elements_to_nvim_extension/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with complete inventory of neovim elements, extension structure pattern, wiring points, and structural differences between .claude/ and .opencode/"
+        },
+        {
+          "path": "specs/166_move_neovim_elements_to_nvim_extension/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "7-phase implementation plan for moving neovim elements to nvim extension in both .claude/ and .opencode/ systems"
+        },
+        {
+          "path": "specs/166_move_neovim_elements_to_nvim_extension/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results for nvim extension migration"
+        }
+      ],
+      "planned": "2026-03-10T17:12:32Z",
+      "started": "2026-03-10T17:14:45Z",
+      "completed": "2026-03-10T17:26:04Z",
+      "completion_summary": "Moved neovim-specific agents, skills, context, and rules to nvim/ extensions in both .claude/ and .opencode/ systems, updating all wiring (CLAUDE.md, README.md, index.json, orchestration-core.md) to reference extensions instead of core paths.",
+      "claudemd_suggestions": "Removed neovim rows from CLAUDE.md routing tables, updated context import references to note extensions, moved neovim-lua.md rule to extension",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 165,
+      "project_name": "review_opencode_extension_language_routing",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-10T15:38:08Z",
+      "last_updated": "2026-03-10T16:54:32Z",
+      "session_id": "sess_1773161130_856844",
+      "researched": "2026-03-10T16:38:21Z",
+      "artifacts": [
+        {
+          "path": "specs/165_review_opencode_extension_language_routing/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report documenting 8 findings on extension language routing gaps with 3 fix options"
+        },
+        {
+          "path": "specs/165_review_opencode_extension_language_routing/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "5-phase plan: expand command routing, update orchestration core, merge index entries, create merge script, document registration"
+        },
+        {
+          "path": "specs/165_review_opencode_extension_language_routing/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary with complete list of changes and verification results"
+        }
+      ],
+      "planned": "2026-03-10T16:43:50Z",
+      "started": "2026-03-10T16:46:07Z",
+      "completed": "2026-03-10T16:54:32Z",
+      "completion_summary": "Expanded .opencode/ agent system language routing to properly dispatch tasks to extension-specific skills and agents. Updated command routing tables, orchestration documentation, context index, created merge-extensions.sh utility, and documented extension registration process.",
+      "claudemd_suggestions": "Updated research.md and implement.md command routing tables, expanded orchestration-core.md with routing validation and Extension Registration section, fixed index.json web entry and added z3/nix/python entries, created merge-extensions.sh script, updated README.md with extension registration reference",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 164,
+      "project_name": "include_tag_command_skill_web_extension",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-09T23:29:36Z",
+      "last_updated": "2026-03-09T23:44:53Z",
+      "session_id": "sess_1773099552_3100c4",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/164_include_tag_command_skill_web_extension/reports/research-001.md",
+          "summary": "Research report covering /tag command and skill-tag integration into web extension"
+        },
+        {
+          "path": "specs/164_include_tag_command_skill_web_extension/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "4-phase implementation plan to port /tag command and skill-tag into web extension"
+        },
+        {
+          "path": "specs/164_include_tag_command_skill_web_extension/summaries/implementation-summary-20260309.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "effort": "1-2 hours",
+      "planned": "2026-03-09T23:37:55Z",
+      "started": "2026-03-09T23:39:32Z",
+      "completed": "2026-03-09T23:44:53Z",
+      "completion_summary": "Ported /tag command and skill-tag from Logos Website project into the web extension at .claude/extensions/web/. Generalized all project-specific references (logos-labs, GitLab) and documented the deployment_versions state.json schema extension.",
+      "claudemd_suggestions": "Added /tag command and skill-tag to web extension (manifest.json, EXTENSION.md). EXTENSION.md now includes Commands section and Deployment Version Tracking section. No changes to root CLAUDE.md required - extension auto-discovery handles integration.",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 163,
+      "project_name": "review_extension_language_routing",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-09T22:47:16Z",
+      "last_updated": "2026-03-09T23:27:36Z",
+      "session_id": "sess_1773098381_9422b3",
+      "researched": "2026-03-09T22:52:55Z",
+      "artifacts": [
+        {
+          "path": "specs/163_review_extension_language_routing/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with 11 findings covering extension language routing gaps, missing index entries, and absent activation mechanism"
+        },
+        {
+          "path": "specs/163_review_extension_language_routing/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "4-phase implementation plan for fixing extension language routing, context index merging, activation scripting, and schema standardization"
+        }
+      ],
+      "planned": "2026-03-09T23:15:23Z",
+      "started": "2026-03-09T23:20:02Z",
+      "completed": "2026-03-09T23:27:36Z",
+      "completion_summary": "Fixed extension language routing by updating command routing tables for 10 extension languages, merging 77 context index entries, creating install/uninstall scripts, and standardizing extension schemas.",
+      "claudemd_suggestions": "Updated CLAUDE.md Language-Based Routing table with complete skill mappings for all languages, updated /task language detection, added documentation notes about extension skill discovery",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 162,
+      "project_name": "deck_command_skill_agent_typst_pitchdeck",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-03-09T18:31:24Z",
+      "last_updated": "2026-03-09T19:04:07Z",
+      "session_id": "sess_1773082533_8a8ba1",
+      "researched": "2026-03-09T18:37:48Z",
+      "artifacts": [
+        {
+          "path": "specs/162_deck_command_skill_agent_typst_pitchdeck/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report covering YC pitch deck structure (9 slides, 3 design principles), touying 0.6.3 typst slide syntax, and command-skill-agent extension patterns for implementing /deck"
+        },
+        {
+          "path": "specs/162_deck_command_skill_agent_typst_pitchdeck/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for /deck command-skill-agent generating YC-style pitch decks in Typst"
+        },
+        {
+          "path": "specs/162_deck_command_skill_agent_typst_pitchdeck/summaries/implementation-summary-20260309.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-09T18:54:00Z",
+      "started": "2026-03-09T18:55:57Z",
+      "completed": "2026-03-09T19:04:07Z",
+      "completion_summary": "Created /deck command-skill-agent system in the filetypes extension for generating YC-style investor pitch decks. Includes 2 context files (pitch deck structure, touying template), 1 agent, 1 skill, 1 command, and updates to manifest.json, index-entries.json, and EXTENSION.md.",
+      "claudemd_suggestions": "Added skill-deck/deck-agent mapping to filetypes EXTENSION.md, added /deck command documentation with YC slide structure reference",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 161,
+      "project_name": "fix_opencode_source_missing_files_and_scan_bugs",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-07T21:28:55Z",
+      "last_updated": "2026-03-07T21:47:04Z",
+      "session_id": "sess_1772919788_b73b3c",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/161_fix_opencode_source_missing_files_and_scan_bugs/reports/research-001.md",
+          "summary": "Research report identifying 9 missing files, templates scan bug fix, and context .sh orphan cleanup"
+        },
+        {
+          "type": "plan",
+          "path": "specs/161_fix_opencode_source_missing_files_and_scan_bugs/plans/implementation-001.md",
+          "summary": "3-phase implementation plan for fixing opencode sync templates scan, deleting orphaned .sh files, and validating sync"
+        },
+        {
+          "type": "summary",
+          "path": "specs/161_fix_opencode_source_missing_files_and_scan_bugs/summaries/implementation-summary-20260307.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-07T21:41:24Z",
+      "completed": "2026-03-07T21:47:04Z",
+      "completion_summary": "Fixed opencode sync templates scan to discover *.json files alongside *.yaml, updated subdir_map template entry to use dynamic extension, and deleted 4 orphaned .sh files from .opencode/context/core/patterns/. The 9 missing core files will now sync correctly.",
+      "archived": "2026-03-10T22:46:29Z"
+    },
+    {
+      "project_number": 160,
+      "project_name": "fix_load_core_agent_system_missing_files",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-03-07T20:55:49Z",
+      "last_updated": "2026-03-07T21:20:36Z",
+      "session_id": "sess_1772918167_d953c2",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/160_fix_load_core_agent_system_missing_files/reports/research-001.md",
+          "summary": "Research report identifying dual scan implementation bug: previewer uses non-recursive top-level-only scan missing nested files and entire categories (agents, context, root_files)"
+        },
+        {
+          "type": "plan",
+          "path": "specs/160_fix_load_core_agent_system_missing_files/plans/implementation-001.md",
+          "summary": "3-phase implementation plan to fix previewer scan in Load Core Agent System picker"
+        },
+        {
+          "type": "summary",
+          "path": "specs/160_fix_load_core_agent_system_missing_files/summaries/implementation-summary-20260307.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "planned": "2026-03-07T21:13:06Z",
+      "completed": "2026-03-07T21:20:36Z",
+      "completion_summary": "Fixed Load Core Agent System picker preview to display accurate file counts. Exported scan_all_artifacts from sync.lua, removed duplicate previewer scan, added Agents/Context/Root Files categories.",
+      "archived": "2026-03-10T22:46:29Z"
     }
   ],
   "abandoned_projects": []
