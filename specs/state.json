@@ -4,10 +4,18 @@
     {
       "project_number": 171,
       "project_name": "re_audit_agent_systems_post_reload",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-10T21:19:00Z",
-      "last_updated": "2026-03-10T21:19:00Z"
+      "last_updated": "2026-03-10T21:22:33Z",
+      "researched": "2026-03-10T21:22:33Z",
+      "artifacts": [
+        {
+          "path": "specs/171_re_audit_agent_systems_post_reload/reports/research-001.md",
+          "type": "research",
+          "summary": "Re-audit found 2 gaps after reload: OPENCODE.md missing core content, project-overview.md missing. Core systems clean, extended systems have correct component counts, all 187 index entries valid."
+        }
+      ]
     },
     {
       "project_number": 170,

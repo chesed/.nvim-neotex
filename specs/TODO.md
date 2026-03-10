@@ -8,8 +8,11 @@ next_project_number: 172
 
 ### 171. Re-audit agent systems after core reload and extension re-load
 - **Effort**: 1-2 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-10
+- **Research Completed**: 2026-03-10
 - **Language**: meta
+- **Research**: [research-001.md](171_re_audit_agent_systems_post_reload/reports/research-001.md)
 
 **Description**: Re-audit agent systems after core reload and extension re-load to verify no gaps remain following task 170 repairs. The user has deleted and reloaded .claude_core/ and .opencode_core/ (fresh core baselines) and reloaded all extensions into .claude/ and .opencode/ in /home/benjamin/Projects/Logos/Vision/. Verify: (1) core systems are clean with correct agent/skill/rule counts and no extension contamination, (2) extended systems have all core + extension content present, (3) context/index.json entries match disk files and counts are correct, (4) validate-wiring.sh passes 35/35 for both extended systems, (5) the 32 context files indexed in task 170 are still present and indexed correctly, (6) project-overview.md reference is still valid, (7) OPENCODE.md still has core content + all 11 extension sections.
 
