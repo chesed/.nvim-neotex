@@ -77,15 +77,30 @@ touch "specs/OC_NNN_<project_name>/.postflight-pending"
 
 **Call skill tool** to load skill context and delegate to implementation agent:
 
+Determine the skill to invoke based on task language:
+
+| Language | Skill |
+|----------|-------|
+| neovim | skill-neovim-implementation |
+| lean4 | skill-lean-implementation |
+| z3 | skill-z3-implementation |
+| nix | skill-nix-implementation |
+| python | skill-python-implementation |
+| latex | skill-latex-implementation |
+| typst | skill-typst-implementation |
+| web | skill-web-implementation |
+| epidemiology | skill-epidemiology-implementation |
+| general, meta, markdown, formal, logic, math, physics | skill-implementer |
+
 ```
 → Tool: skill
-→ Name: skill-implementer
+→ Name: {selected_skill}
 → Prompt: Execute implementation plan for task {N} with language {language}
 ```
 
-The skill-implementer will:
-1. Load context files (plan-format.md, status-markers.md, etc.)
-2. **Call Task tool with `subagent_type="general-implementation-agent"`** to execute phases
+The selected skill will:
+1. Load context files (plan-format.md, status-markers.md, language-specific context)
+2. **Call Task tool with the appropriate `subagent_type`** to execute phases
 3. Return results (subagent writes .return-meta.json)
 
 **CRITICAL**: The skill tool ONLY loads skill definitions. It does NOT execute preflight/postflight workflows. This command MUST execute status updates before and after delegation.
@@ -97,7 +112,15 @@ After skill context is loaded, the skill MUST invoke the `Task` tool with the ap
 | Language | Required subagent_type |
 |----------|------------------------|
 | neovim | `neovim-implementation-agent` |
-| general, meta, markdown, latex, typst | `general-implementation-agent` |
+| lean4 | `lean-implementation-agent` |
+| z3 | `z3-implementation-agent` |
+| nix | `nix-implementation-agent` |
+| python | `python-implementation-agent` |
+| latex | `latex-implementation-agent` |
+| typst | `typst-implementation-agent` |
+| web | `web-implementation-agent` |
+| epidemiology | `epidemiology-implementation-agent` |
+| general, meta, markdown, formal, logic, math, physics | `general-implementation-agent` |
 
 **EXECUTE NOW**: USE the Task tool with the correct `subagent_type` to delegate implementation to the specialized agent. Do NOT process the implementation request directly in this context.
 
@@ -137,15 +160,30 @@ fi
 | Language | Expected agent_type |
 |----------|---------------------|
 | neovim | `neovim-implementation-agent` |
-| general, meta, markdown, latex, typst | `general-implementation-agent` |
+| lean4 | `lean-implementation-agent` |
+| z3 | `z3-implementation-agent` |
+| nix | `nix-implementation-agent` |
+| python | `python-implementation-agent` |
+| latex | `latex-implementation-agent` |
+| typst | `typst-implementation-agent` |
+| web | `web-implementation-agent` |
+| epidemiology | `epidemiology-implementation-agent` |
+| general, meta, markdown, formal, logic, math, physics | `general-implementation-agent` |
 
 ```bash
 # Determine expected agent based on task language
-if [ "$language" == "neovim" ]; then
-    expected_agent="neovim-implementation-agent"
-else
-    expected_agent="general-implementation-agent"
-fi
+case "$language" in
+    neovim) expected_agent="neovim-implementation-agent" ;;
+    lean4) expected_agent="lean-implementation-agent" ;;
+    z3) expected_agent="z3-implementation-agent" ;;
+    nix) expected_agent="nix-implementation-agent" ;;
+    python) expected_agent="python-implementation-agent" ;;
+    latex) expected_agent="latex-implementation-agent" ;;
+    typst) expected_agent="typst-implementation-agent" ;;
+    web) expected_agent="web-implementation-agent" ;;
+    epidemiology) expected_agent="epidemiology-implementation-agent" ;;
+    *) expected_agent="general-implementation-agent" ;;
+esac
 
 if [ "$agent_type" != "$expected_agent" ]; then
     echo "WARNING: Delegation verification failed!"

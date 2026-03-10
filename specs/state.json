@@ -4,11 +4,11 @@
     {
       "project_number": 165,
       "project_name": "review_opencode_extension_language_routing",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-10T15:38:08Z",
-      "last_updated": "2026-03-10T16:43:50Z",
-      "session_id": "sess_1773160796_3faa60",
+      "last_updated": "2026-03-10T16:54:32Z",
+      "session_id": "sess_1773161130_856844",
       "researched": "2026-03-10T16:38:21Z",
       "artifacts": [
         {
@@ -20,9 +20,18 @@
           "path": "specs/165_review_opencode_extension_language_routing/plans/implementation-001.md",
           "type": "plan",
           "summary": "5-phase plan: expand command routing, update orchestration core, merge index entries, create merge script, document registration"
+        },
+        {
+          "path": "specs/165_review_opencode_extension_language_routing/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary with complete list of changes and verification results"
         }
       ],
-      "planned": "2026-03-10T16:43:50Z"
+      "planned": "2026-03-10T16:43:50Z",
+      "started": "2026-03-10T16:46:07Z",
+      "completed": "2026-03-10T16:54:32Z",
+      "completion_summary": "Expanded .opencode/ agent system language routing to properly dispatch tasks to extension-specific skills and agents. Updated command routing tables, orchestration documentation, context index, created merge-extensions.sh utility, and documented extension registration process.",
+      "claudemd_suggestions": "Updated research.md and implement.md command routing tables, expanded orchestration-core.md with routing validation and Extension Registration section, fixed index.json web entry and added z3/nix/python entries, created merge-extensions.sh script, updated README.md with extension registration reference"
     },
     {
       "project_number": 164,

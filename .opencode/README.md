@@ -106,7 +106,15 @@ For detailed command documentation, see [commands/README.md](commands/README.md)
 
 ## Extensions
 
-The system supports 10 language/domain-specific extensions. See [extensions/README.md](extensions/README.md) for complete listing:
+The system supports 10 language/domain-specific extensions. See [extensions/README.md](extensions/README.md) for complete listing.
+
+**Adding New Extensions**: To add a new language extension, follow the extension registration process documented in [orchestration-core.md](context/core/orchestration/orchestration-core.md#extension-registration). Key steps:
+1. Create extension directory with manifest, agents, skills, and context
+2. Run `scripts/merge-extensions.sh --verify` to check index completeness
+3. Update routing tables in `/research` and `/implement` commands
+4. Add routing validation to orchestration-core.md
+
+**Available Extensions**:
 
 | Extension | Description | Documentation |
 |-----------|-------------|---------------|

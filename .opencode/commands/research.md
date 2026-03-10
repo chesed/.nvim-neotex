@@ -97,15 +97,31 @@ If `--remember` was passed in arguments:
 
 **Call skill tool** to load skill context and delegate to research agent:
 
+Determine the skill to invoke based on task language:
+
+| Language | Skill |
+|----------|-------|
+| neovim | skill-neovim-research |
+| lean4 | skill-lean-research |
+| z3 | skill-z3-research |
+| nix | skill-nix-research |
+| python | skill-python-research |
+| latex | skill-latex-research |
+| typst | skill-typst-research |
+| web | skill-web-research |
+| epidemiology | skill-epidemiology-research |
+| formal, logic, math, physics | skill-formal-research |
+| general, meta, markdown | skill-researcher |
+
 ```
 → Tool: skill
-→ Name: skill-researcher
+→ Name: {selected_skill}
 → Prompt: Research task {N} with language {language} and focus {focus}. Include memory context: {memory_results}
 ```
 
-The skill-researcher will:
-1. Load context files (report-format.md, status-markers.md)
-2. **Call Task tool with `subagent_type="general-research-agent"`** (or specialized agent based on language)
+The selected skill will:
+1. Load context files (report-format.md, status-markers.md, language-specific context)
+2. **Call Task tool with the appropriate `subagent_type`** (specialized agent based on language)
 3. Return results (subagent writes .return-meta.json)
 
 **CRITICAL**: The skill tool ONLY loads skill definitions. It does NOT execute preflight/postflight workflows. This command MUST execute status updates before and after delegation.
@@ -117,7 +133,19 @@ After skill context is loaded, the skill MUST invoke the `Task` tool with the ap
 | Language | Required subagent_type |
 |----------|------------------------|
 | neovim | `neovim-research-agent` |
-| general, meta, markdown, latex | `general-research-agent` |
+| lean4 | `lean-research-agent` |
+| z3 | `z3-research-agent` |
+| nix | `nix-research-agent` |
+| python | `python-research-agent` |
+| latex | `latex-research-agent` |
+| typst | `typst-research-agent` |
+| web | `web-research-agent` |
+| epidemiology | `epidemiology-research-agent` |
+| formal | `formal-research-agent` |
+| logic | `logic-research-agent` |
+| math | `math-research-agent` |
+| physics | `physics-research-agent` |
+| general, meta, markdown | `general-research-agent` |
 
 **EXECUTE NOW**: USE the Task tool with the correct `subagent_type` to delegate research to the specialized agent. Do NOT process the research request directly in this context.
 
@@ -152,15 +180,38 @@ fi
 | Language | Expected agent_type |
 |----------|---------------------|
 | neovim | `neovim-research-agent` |
-| general, meta, markdown, latex | `general-research-agent` |
+| lean4 | `lean-research-agent` |
+| z3 | `z3-research-agent` |
+| nix | `nix-research-agent` |
+| python | `python-research-agent` |
+| latex | `latex-research-agent` |
+| typst | `typst-research-agent` |
+| web | `web-research-agent` |
+| epidemiology | `epidemiology-research-agent` |
+| formal | `formal-research-agent` |
+| logic | `logic-research-agent` |
+| math | `math-research-agent` |
+| physics | `physics-research-agent` |
+| general, meta, markdown | `general-research-agent` |
 
 ```bash
 # Determine expected agent based on task language
-if [ "$language" == "neovim" ]; then
-    expected_agent="neovim-research-agent"
-else
-    expected_agent="general-research-agent"
-fi
+case "$language" in
+    neovim) expected_agent="neovim-research-agent" ;;
+    lean4) expected_agent="lean-research-agent" ;;
+    z3) expected_agent="z3-research-agent" ;;
+    nix) expected_agent="nix-research-agent" ;;
+    python) expected_agent="python-research-agent" ;;
+    latex) expected_agent="latex-research-agent" ;;
+    typst) expected_agent="typst-research-agent" ;;
+    web) expected_agent="web-research-agent" ;;
+    epidemiology) expected_agent="epidemiology-research-agent" ;;
+    formal) expected_agent="formal-research-agent" ;;
+    logic) expected_agent="logic-research-agent" ;;
+    math) expected_agent="math-research-agent" ;;
+    physics) expected_agent="physics-research-agent" ;;
+    *) expected_agent="general-research-agent" ;;
+esac
 
 if [ "$agent_type" != "$expected_agent" ]; then
     echo "WARNING: Delegation verification failed!"

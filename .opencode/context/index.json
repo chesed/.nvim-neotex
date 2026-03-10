@@ -251,8 +251,164 @@
       "summary": "Web development domain overview",
       "line_count": 80,
       "load_when": {
-        "languages": ["general"],
-        "agents": ["general-research-agent"]
+        "languages": ["web"],
+        "agents": ["web-research-agent", "web-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/z3/context/project/z3/domain/z3-api.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": ["z3", "smt", "python-api"],
+      "keywords": ["z3", "api", "python"],
+      "summary": "Z3 Python API reference and examples",
+      "line_count": 150,
+      "load_when": {
+        "languages": ["z3"],
+        "agents": ["z3-research-agent", "z3-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/z3/context/project/z3/domain/smt-patterns.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": ["z3", "smt", "tactics"],
+      "keywords": ["smt", "tactics", "patterns"],
+      "summary": "SMT-LIB patterns and Z3 tactics",
+      "line_count": 120,
+      "load_when": {
+        "languages": ["z3"],
+        "agents": ["z3-research-agent", "z3-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/z3/context/project/z3/patterns/constraint-generation.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": ["z3", "constraints", "generation"],
+      "keywords": ["constraints", "generation", "patterns"],
+      "summary": "Constraint building patterns for Z3",
+      "line_count": 100,
+      "load_when": {
+        "languages": ["z3"],
+        "agents": ["z3-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/z3/context/project/z3/patterns/bitvector-operations.md",
+      "domain": "project",
+      "subdomain": "z3",
+      "topics": ["z3", "bitvector", "state"],
+      "keywords": ["bitvector", "state", "operations"],
+      "summary": "BitVec state manipulation patterns",
+      "line_count": 100,
+      "load_when": {
+        "languages": ["z3"],
+        "agents": ["z3-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/nix/context/project/nix/README.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": ["nix", "nixos", "home-manager"],
+      "keywords": ["nix", "nixos", "flakes"],
+      "summary": "Nix context overview with directory structure and loading strategy",
+      "line_count": 100,
+      "load_when": {
+        "languages": ["nix"],
+        "agents": ["nix-research-agent", "nix-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/nix/context/project/nix/domain/nix-language.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": ["nix", "language", "builtins"],
+      "keywords": ["nix", "expression", "builtins"],
+      "summary": "Nix expression language syntax and builtins reference",
+      "line_count": 150,
+      "load_when": {
+        "languages": ["nix"],
+        "agents": ["nix-research-agent", "nix-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/nix/context/project/nix/domain/flakes.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": ["nix", "flakes", "inputs"],
+      "keywords": ["flakes", "inputs", "lockfile"],
+      "summary": "Nix flake structure, inputs, outputs, and lockfile management",
+      "line_count": 180,
+      "load_when": {
+        "languages": ["nix"],
+        "agents": ["nix-research-agent", "nix-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/nix/context/project/nix/domain/nixos-modules.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": ["nix", "modules", "nixos"],
+      "keywords": ["modules", "options", "config"],
+      "summary": "NixOS module system with options, config, and imports",
+      "line_count": 170,
+      "load_when": {
+        "languages": ["nix"],
+        "agents": ["nix-research-agent", "nix-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/nix/context/project/nix/domain/home-manager.md",
+      "domain": "project",
+      "subdomain": "nix",
+      "topics": ["nix", "home-manager", "user-config"],
+      "keywords": ["home-manager", "user", "dotfiles"],
+      "summary": "Home Manager user-level configuration and module patterns",
+      "line_count": 160,
+      "load_when": {
+        "languages": ["nix"],
+        "agents": ["nix-research-agent", "nix-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/python/context/project/python/standards/code-style.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": ["python", "style", "conventions"],
+      "keywords": ["style", "conventions", "formatting"],
+      "summary": "Python coding style and conventions",
+      "line_count": 120,
+      "load_when": {
+        "languages": ["python"],
+        "agents": ["python-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/python/context/project/python/patterns/testing-patterns.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": ["python", "pytest", "testing"],
+      "keywords": ["pytest", "fixtures", "testing"],
+      "summary": "Pytest patterns and fixtures",
+      "line_count": 150,
+      "load_when": {
+        "languages": ["python"],
+        "agents": ["python-implementation-agent"]
+      }
+    },
+    {
+      "path": ".opencode/extensions/python/context/project/python/domain/application-api-patterns.md",
+      "domain": "project",
+      "subdomain": "python",
+      "topics": ["python", "api", "architecture"],
+      "keywords": ["api", "architecture", "patterns"],
+      "summary": "Application API structure and patterns",
+      "line_count": 140,
+      "load_when": {
+        "languages": ["python"],
+        "agents": ["python-implementation-agent", "python-research-agent"]
       }
     },
     {

@@ -1,7 +1,7 @@
 # Implementation Plan: Task #165
 
 - **Task**: 165 - review_opencode_extension_language_routing
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 3-5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/165_review_opencode_extension_language_routing/reports/research-001.md
@@ -54,7 +54,7 @@ Research identified 8 gaps (findings 1-8) with the Hybrid approach (Option C) re
 
 ## Implementation Phases
 
-### Phase 1: Expand Command Routing Tables [NOT STARTED]
+### Phase 1: Expand Command Routing Tables [COMPLETED]
 
 **Goal**: Update `/research` and `/implement` commands to route tasks to the correct extension skills based on language.
 
@@ -124,7 +124,7 @@ Apply equivalent changes to `implement.md` for implementation skills and agents.
 
 ---
 
-### Phase 2: Update Orchestration Core Routing [NOT STARTED]
+### Phase 2: Update Orchestration Core Routing [COMPLETED]
 
 **Goal**: Expand the orchestration-core.md routing table and validation to cover all extension languages.
 
@@ -171,7 +171,7 @@ done
 
 ---
 
-### Phase 3: Merge Extension Index Entries [NOT STARTED]
+### Phase 3: Merge Extension Index Entries [COMPLETED]
 
 **Goal**: Merge missing extension index-entries.json into the main context/index.json and fix incorrect agent mappings.
 
@@ -197,7 +197,7 @@ done
 
 ---
 
-### Phase 4: Create merge-extensions.sh Script [NOT STARTED]
+### Phase 4: Create merge-extensions.sh Script [COMPLETED]
 
 **Goal**: Create a utility script that reads all extension manifests and merges their index-entries.json into the main context/index.json, enabling reproducible registration.
 
@@ -241,7 +241,7 @@ INDEX_FILE="$PROJECT_DIR/.opencode/context/index.json"
 
 ---
 
-### Phase 5: Document Extension Registration Process [NOT STARTED]
+### Phase 5: Document Extension Registration Process [COMPLETED]
 
 **Goal**: Document the steps needed when adding a new extension, so future extensions are correctly registered.
 
