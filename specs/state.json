@@ -7,12 +7,17 @@
       "status": "researched",
       "language": "neovim",
       "created": "2026-03-10T17:32:33Z",
-      "last_updated": "2026-03-10T17:44:19Z",
+      "last_updated": "2026-03-10T17:59:02Z",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/167_verify_revise_agent_system_loaders/reports/research-001.md",
-          "summary": "Agent system loaders verified - .claude/ sync perfect, .opencode/ missing 8 non-functional README files"
+          "summary": "Agent system loaders verified - .claude/ sync perfect via symlinks, .opencode/ missing 8 non-functional README files"
+        },
+        {
+          "type": "research",
+          "path": "specs/167_verify_revise_agent_system_loaders/reports/research-002.md",
+          "summary": "Symlink elimination design, Vision extension verification, double-question bug root cause"
         }
       ]
     },
