@@ -8,11 +8,15 @@ next_project_number: 168
 
 ### 167. Verify and revise agent system loaders for .claude/ and .opencode/
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Effort**: 6-8 hours
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-10
 - **Research Completed**: 2026-03-10
+- **Planning Started**: 2026-03-10
+- **Planning Completed**: 2026-03-10
 - **Language**: neovim
 - **Research**: [research-001.md](167_verify_revise_agent_system_loaders/reports/research-001.md), [research-002.md](167_verify_revise_agent_system_loaders/reports/research-002.md)
+- **Plan**: [implementation-001.md](167_verify_revise_agent_system_loaders/plans/implementation-001.md)
 
 **Description**: Verify that the core agent systems loaded via <leader>ac and <leader>ao keymaps for .claude/ and .opencode/ respectively in /home/benjamin/Projects/Logos/Vision/ are correct with no missing elements or inappropriate additions. Revise the agent system loaders or the agent system contents if needed while making no unnecessary changes.
 

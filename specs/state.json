@@ -4,10 +4,10 @@
     {
       "project_number": 167,
       "project_name": "verify_revise_agent_system_loaders",
-      "status": "researched",
+      "status": "planned",
       "language": "neovim",
       "created": "2026-03-10T17:32:33Z",
-      "last_updated": "2026-03-10T17:59:02Z",
+      "last_updated": "2026-03-10T18:04:10Z",
       "artifacts": [
         {
           "type": "research",
@@ -18,6 +18,11 @@
           "type": "research",
           "path": "specs/167_verify_revise_agent_system_loaders/reports/research-002.md",
           "summary": "Symlink elimination design, Vision extension verification, double-question bug root cause"
+        },
+        {
+          "type": "plan",
+          "path": "specs/167_verify_revise_agent_system_loaders/plans/implementation-001.md",
+          "summary": "5-phase plan: fix bugs, eliminate symlinks, copy extensions to core, mirror to .opencode/, update docs"
         }
       ]
     },
