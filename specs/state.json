@@ -4,10 +4,17 @@
     {
       "project_number": 167,
       "project_name": "verify_revise_agent_system_loaders",
-      "status": "not_started",
+      "status": "researched",
       "language": "neovim",
       "created": "2026-03-10T17:32:33Z",
-      "last_updated": "2026-03-10T17:32:33Z"
+      "last_updated": "2026-03-10T17:44:19Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/167_verify_revise_agent_system_loaders/reports/research-001.md",
+          "summary": "Agent system loaders verified - .claude/ sync perfect, .opencode/ missing 8 non-functional README files"
+        }
+      ]
     },
     {
       "project_number": 166,
