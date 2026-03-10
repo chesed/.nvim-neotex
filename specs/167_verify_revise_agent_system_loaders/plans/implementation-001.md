@@ -1,7 +1,7 @@
 # Implementation Plan: Verify and Revise Agent System Loaders
 
 - **Task**: 167 - Verify and revise agent system loaders for .claude/ and .opencode/
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETE]
 - **Effort**: 6-8 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md), [research-002.md](../reports/research-002.md)
@@ -173,7 +173,7 @@ Research report 001 confirmed the sync mechanism works correctly and identified 
 
 ---
 
-### Phase 5: Update Documentation and Verify End-to-End [NOT STARTED]
+### Phase 5: Update Documentation and Verify End-to-End [COMPLETED]
 
 - **Goal:** Update all documentation to reflect the new core-as-source-of-truth architecture. Perform end-to-end verification of both loaders.
 
