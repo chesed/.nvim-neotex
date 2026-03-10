@@ -1,10 +1,19 @@
 ---
-next_project_number: 166
+next_project_number: 167
 ---
 
 # TODO
 
 ## Tasks
+
+### 166. Move NeoVim-specific elements to nvim/ extension in .claude/ and .opencode/ agent systems
+- **Effort**: 4-6 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+
+**Description**: Move the NeoVim-specific elements of both the .claude/ and .opencode/ agent systems to a nvim/ extension within each system, making sure that everything is wired up correctly so that when loaded these are available for use (adding 'neovim' to the available task types so that the correct agents get called which then have access to the correct context files). The systems should be kept separate and independent, though similar changes are required (be careful to respect any differences that may be required).
+
+---
 
 ### 165. Review .opencode/ agent system extension language routing for correct agent and context loading
 - **Effort**: 3-5 hours

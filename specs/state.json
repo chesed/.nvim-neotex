@@ -1,6 +1,14 @@
 {
-  "next_project_number": 166,
+  "next_project_number": 167,
   "active_projects": [
+    {
+      "project_number": 166,
+      "project_name": "move_neovim_elements_to_nvim_extension",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-10T16:58:21Z",
+      "last_updated": "2026-03-10T16:58:21Z"
+    },
     {
       "project_number": 165,
       "project_name": "review_opencode_extension_language_routing",
