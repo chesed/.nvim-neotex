@@ -3,7 +3,7 @@
 - **Task**: 172 - Investigate OPENCODE.md core content loss on reload
 - **Date**: 2026-03-10 (Revised)
 - **Feature**: Fix core content loss when extensions are reloaded via <leader>ao
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETE]
 - **Estimated Hours**: 2-3 hours
 - **Standards File**: /home/benjamin/.config/nvim/CLAUDE.md
 - **Research Reports**: [research-001.md](../reports/research-001.md), [research-002.md](../reports/research-002.md)
@@ -49,7 +49,7 @@ The fix creates a global `AGENTS.md` source file, then hardens `inject_section` 
 
 ## Implementation Phases
 
-### Phase 1: Create Global AGENTS.md and Update Root File Names [NOT STARTED]
+### Phase 1: Create Global AGENTS.md and Update Root File Names [COMPLETED]
 
 **Goal**: Establish `~/.config/nvim/.opencode/AGENTS.md` as the canonical core content source, mirroring how `.claude/CLAUDE.md` works.
 
@@ -75,7 +75,7 @@ The fix creates a global `AGENTS.md` source file, then hardens `inject_section` 
 
 ---
 
-### Phase 2: Harden inject_section Against Empty File Creation [NOT STARTED]
+### Phase 2: Harden inject_section Against Empty File Creation [COMPLETED]
 
 **Goal**: Modify `merge.lua:inject_section` to seed new files with core content from a sibling README.md when creating the target file for the first time.
 
@@ -96,7 +96,7 @@ The fix creates a global `AGENTS.md` source file, then hardens `inject_section` 
 
 ---
 
-### Phase 3: End-to-End Verification [NOT STARTED]
+### Phase 3: End-to-End Verification [COMPLETED]
 
 **Goal**: Confirm the fix survives the exact scenario that caused the original content loss: full extension unload followed by sequential reload of all 11 extensions.
 
