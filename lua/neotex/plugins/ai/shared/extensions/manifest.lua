@@ -8,7 +8,7 @@ local REQUIRED_FIELDS = { "name", "version", "description" }
 
 --- Valid provides categories
 local VALID_PROVIDES = {
-  "agents", "skills", "commands", "rules", "context", "scripts", "hooks"
+  "agents", "skills", "commands", "rules", "context", "scripts", "hooks", "data"
 }
 
 --- Read JSON file and parse it

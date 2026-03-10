@@ -55,7 +55,7 @@ Key findings from research-001:
 
 ## Implementation Phases
 
-### Phase 1: Add "data" Category to Extension System [NOT STARTED]
+### Phase 1: Add "data" Category to Extension System [COMPLETED]
 
 **Goal**: Extend the extension loader to support a new "data" provides category that handles read-write data directories with special unload semantics.
 
@@ -96,7 +96,7 @@ Key findings from research-001:
 
 ---
 
-### Phase 2: Create Memory Extension Structure [NOT STARTED]
+### Phase 2: Create Memory Extension Structure [COMPLETED]
 
 **Goal**: Build the complete memory extension directory with manifest, EXTENSION.md, and all required configuration files.
 
@@ -140,7 +140,7 @@ Key findings from research-001:
 
 ---
 
-### Phase 3: Migrate Command, Skill, and Context [NOT STARTED]
+### Phase 3: Migrate Command, Skill, and Context [COMPLETED]
 
 **Goal**: Move the /learn command, create a proper memory-management skill, and migrate documentation into the extension structure.
 
@@ -196,7 +196,7 @@ Key findings from research-001:
 
 ---
 
-### Phase 4: Implement Safe Unload and Clean Up Core [NOT STARTED]
+### Phase 4: Implement Safe Unload and Clean Up Core [COMPLETED]
 
 **Goal**: Ensure unloading the memory extension preserves user memories, and remove migrated components from core .opencode.
 
@@ -243,7 +243,7 @@ Key findings from research-001:
 
 ---
 
-### Phase 5: Testing and Documentation [NOT STARTED]
+### Phase 5: Testing and Documentation [COMPLETED]
 
 **Goal**: Validate the complete memory extension lifecycle and update project documentation.
 

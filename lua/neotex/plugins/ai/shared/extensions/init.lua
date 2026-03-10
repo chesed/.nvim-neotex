@@ -202,7 +202,7 @@ function M.create(config)
     end
 
     -- Check for conflicts (used in confirmation dialog)
-    local conflicts = loader_mod.check_conflicts(ext_manifest, target_dir)
+    local conflicts = loader_mod.check_conflicts(ext_manifest, target_dir, project_dir)
 
     -- Single merged confirmation dialog
     if confirm then
@@ -217,8 +217,21 @@ function M.create(config)
 
       -- Include conflict info in the message if conflicts exist
       local conflict_note = ""
-      if #conflicts > 0 then
-        conflict_note = string.format("\n\nNote: %d existing file(s) will be overwritten.", #conflicts)
+      local overwrite_count = 0
+      local merge_count = 0
+      for _, conflict in ipairs(conflicts) do
+        if conflict.merge then
+          merge_count = merge_count + 1
+        else
+          overwrite_count = overwrite_count + 1
+        end
+      end
+      if overwrite_count > 0 then
+        conflict_note = string.format("\n\nNote: %d existing file(s) will be overwritten.", overwrite_count)
+      end
+      if merge_count > 0 then
+        conflict_note = conflict_note .. string.format("\n%d data director%s will be merged (existing files preserved).",
+          merge_count, merge_count > 1 and "ies" or "y")
       end
 
       local message = string.format(
@@ -240,11 +253,12 @@ function M.create(config)
     -- Ensure base directory exists
     helpers.ensure_directory(target_dir)
 
-    -- Track all installed files, directories, and merged sections
+    -- Track all installed files, directories, merged sections, and data skeleton files
     -- Declared before pcall so rollback can access them
     local all_files = {}
     local all_dirs = {}
     local merged_sections = {}
+    local data_skeleton_files = {}
 
     -- Wrap copy+merge in pcall for atomic rollback on failure
     local load_ok, load_err = pcall(function()
@@ -278,6 +292,16 @@ function M.create(config)
       vim.list_extend(all_files, files)
       vim.list_extend(all_dirs, dirs)
 
+      -- Copy data directories (merge-copy semantics - preserves existing files)
+      -- Data skeleton files are tracked separately for safe unload
+      local data_files, data_dirs = loader_mod.copy_data_dirs(ext_manifest, source_dir, target_dir)
+      vim.list_extend(all_dirs, data_dirs)
+      -- Track data files separately - they go into data_skeleton_files, not all_files
+      -- This allows unload to only remove skeleton files, not user-created data
+      for _, f in ipairs(data_files) do
+        table.insert(data_skeleton_files, f)
+      end
+
       -- Process merge targets
       merged_sections = process_merge_targets(ext_manifest, source_dir, project_dir, config)
     end)
@@ -292,7 +316,8 @@ function M.create(config)
     -- Update state (convert to relative paths for portability)
     local rel_files = paths_to_relative(all_files, project_dir)
     local rel_dirs = paths_to_relative(all_dirs, project_dir)
-    state = state_mod.mark_loaded(state, extension_name, ext_manifest, rel_files, rel_dirs, merged_sections)
+    local rel_data_files = paths_to_relative(data_skeleton_files, project_dir)
+    state = state_mod.mark_loaded(state, extension_name, ext_manifest, rel_files, rel_dirs, merged_sections, rel_data_files)
     state_mod.write(project_dir, state, config)
 
     helpers.notify(
@@ -325,20 +350,27 @@ function M.create(config)
       return false, "Extension not loaded: " .. extension_name
     end
 
-    -- Get installed files and merged sections
+    -- Get installed files, data skeleton files, and merged sections
     local installed_files = state_mod.get_installed_files(state, extension_name)
     local installed_dirs = state_mod.get_installed_dirs(state, extension_name)
     local merged_sections = state_mod.get_merged_sections(state, extension_name)
+    local data_skeleton_files = state_mod.get_data_skeleton_files(state, extension_name)
 
     -- Get extension manifest for reverse merge
     local extension = manifest_mod.get_extension(extension_name, config)
 
     -- Confirmation dialog
     if confirm then
+      local total_files = #installed_files + #data_skeleton_files
+      local data_note = ""
+      if #data_skeleton_files > 0 then
+        data_note = "\n(User-created data files will be preserved)"
+      end
       local message = string.format(
-        "Unload extension '%s'?\n\nThis will remove %d files.",
+        "Unload extension '%s'?\n\nThis will remove %d files.%s",
         extension_name,
-        #installed_files
+        total_files,
+        data_note
       )
 
       local choice = vim.fn.confirm(message, "&Unload\n&Cancel", 2)
@@ -358,12 +390,19 @@ function M.create(config)
     for _, rel_path in ipairs(installed_files) do
       table.insert(abs_files, project_dir .. "/" .. rel_path)
     end
+    -- Also add data skeleton files (these are safe to remove - they're extension-provided)
+    for _, rel_path in ipairs(data_skeleton_files) do
+      table.insert(abs_files, project_dir .. "/" .. rel_path)
+    end
     local abs_dirs = {}
     for _, rel_path in ipairs(installed_dirs) do
       table.insert(abs_dirs, project_dir .. "/" .. rel_path)
     end
 
-    -- Remove files
+    -- Remove files (includes both regular files and data skeleton files)
+    -- User-created files in data directories are NOT in the abs_files list,
+    -- so they will be preserved. The remove_installed_files function only
+    -- removes empty directories, so user data directories will also be preserved.
     local removed_count = loader_mod.remove_installed_files(abs_files, abs_dirs)
 
     -- Update state

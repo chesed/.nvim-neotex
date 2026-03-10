@@ -117,8 +117,9 @@ end
 --- @param installed_files table Array of installed file paths
 --- @param installed_dirs table Array of created directories
 --- @param merged_sections table|nil Map of merge operations performed
+--- @param data_skeleton_files table|nil Array of data skeleton file paths (for safe unload)
 --- @return table state Updated state
-function M.mark_loaded(state, extension_name, manifest, installed_files, installed_dirs, merged_sections)
+function M.mark_loaded(state, extension_name, manifest, installed_files, installed_dirs, merged_sections, data_skeleton_files)
   state.extensions[extension_name] = {
     version = manifest.version,
     loaded_at = os.date("!%Y-%m-%dT%H:%M:%SZ"),
@@ -126,6 +127,7 @@ function M.mark_loaded(state, extension_name, manifest, installed_files, install
     installed_files = installed_files or {},
     installed_dirs = installed_dirs or {},
     merged_sections = merged_sections or {},
+    data_skeleton_files = data_skeleton_files or {},
     status = "active",
   }
   return state
@@ -193,6 +195,18 @@ function M.get_merged_sections(state, extension_name)
     return {}
   end
   return ext_info.merged_sections or {}
+end
+
+--- Get data skeleton files for an extension
+--- @param state table Current state
+--- @param extension_name string Extension name
+--- @return table files Array of data skeleton file paths
+function M.get_data_skeleton_files(state, extension_name)
+  local ext_info = state.extensions[extension_name]
+  if not ext_info then
+    return {}
+  end
+  return ext_info.data_skeleton_files or {}
 end
 
 --- Check if extension needs update (version comparison)

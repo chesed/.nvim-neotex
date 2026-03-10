@@ -4,9 +4,9 @@ description: Add a memory to the vault with interactive checkbox confirmation
 
 # Command: /learn
 
-**Purpose**: Takes text or file paths, analyzes content, and adds them to the memory vault with interactive checkbox confirmation. Supports task mode for reviewing task artifacts and creating classified memories.  
-**Layer**: 2 (Command File - Argument Parsing Agent)  
-**Delegates To**: skill-learn (direct execution)
+**Purpose**: Takes text or file paths, analyzes content, and adds them to the memory vault with interactive checkbox confirmation. Supports task mode for reviewing task artifacts and creating classified memories.
+**Layer**: 2 (Command File - Argument Parsing Agent)
+**Delegates To**: skill-memory (direct execution)
 
 ---
 
@@ -15,18 +15,18 @@ description: Add a memory to the vault with interactive checkbox confirmation
 <argument_parsing>
   <step_1>
     Parse arguments:
-    - Check for --task flag: `--task OC_N`
+    - Check for --task flag: `--task N`
     - If --task present: Task mode - parse task number
     - If no --task: Standard mode - first argument is text/file
-    
+
     task_mode = "--task" in $ARGUMENTS
     task_number = extract_value("--task") if task_mode
-    
+
     If not task_mode:
       - First argument is either text content or file path
       - If path exists: treat as file
       - If path doesn't exist: treat as text content
-      
+
       input = remaining args joined with spaces
       is_file = file_exists(input)
   </step_1>
@@ -38,13 +38,13 @@ description: Add a memory to the vault with interactive checkbox confirmation
 
 <workflow_execution>
   <step_1>
-    <action>Delegate to Learn Skill</action>
+    <action>Delegate to Memory Skill</action>
     <input>
       If task_mode:
-        - skill: "skill-learn"
+        - skill: "skill-memory"
         - args: "mode=task, task_number={task_number}"
       Else:
-        - skill: "skill-learn"
+        - skill: "skill-memory"
         - args: "mode=standard, input={input}, is_file={is_file}"
     </input>
     <expected_return>
@@ -67,12 +67,12 @@ description: Add a memory to the vault with interactive checkbox confirmation
         - Number of artifacts reviewed
         - Artifacts processed by classification
         - Memories created per category
-        
+
       Else:
         Display memory operations completed:
         - List of memories added/updated
         - File paths
-        
+
       Display Git commit info and next steps guidance
     </process>
   </step_2>
@@ -82,11 +82,11 @@ description: Add a memory to the vault with interactive checkbox confirmation
 
 ## Task Mode
 
-When invoked with `--task OC_N`, /learn enters task mode for reviewing task artifacts:
+When invoked with `--task N`, /learn enters task mode for reviewing task artifacts:
 
 ### Workflow
 
-1. **Parse Task Directory**: Locate specs/OC_{N}_{SLUG}/ directory
+1. **Parse Task Directory**: Locate specs/{NNN}_{SLUG}/ directory
 2. **Scan Artifacts**: Find all files in subdirectories:
    - reports/ - Research reports
    - plans/ - Implementation plans
@@ -130,18 +130,18 @@ Original behavior for adding arbitrary text or files:
 
 <error_handling>
   <argument_errors>
-    - No arguments provided (standard mode) -> "Usage: /learn <text or file path> OR /learn --task OC_N"
+    - No arguments provided (standard mode) -> "Usage: /learn <text or file path> OR /learn --task N"
     - Invalid file path (standard mode) -> "File not found: {path}"
-    - Invalid task number (task mode) -> "Task not found: OC_{N}"
-    - Non-existent task directory -> "Task directory not found: specs/OC_{N}_*"
+    - Invalid task number (task mode) -> "Task not found: {N}"
+    - Non-existent task directory -> "Task directory not found: specs/{NNN}_*"
   </argument_errors>
-  
+
   <execution_errors>
     - Skill failure -> Return error details
     - MCP unavailable -> Continue with direct file access
-    - No artifacts found in task -> "No artifacts found for task OC_{N}"
+    - No artifacts found in task -> "No artifacts found for task {N}"
   </execution_errors>
-  
+
   <interactive_errors>
     - User cancels -> Exit gracefully, no files created
     - All artifacts skipped -> "No memories created (all artifacts skipped)"
@@ -154,11 +154,11 @@ Original behavior for adding arbitrary text or files:
 
 <state_management>
   <reads>
-    - specs/OC_{N}_*/ (task mode - artifact directories)
+    - specs/{NNN}_*/ (task mode - artifact directories)
     - .opencode/memory/30-Templates/memory-template.md
     - .opencode/memory/10-Memories/ (for ID generation)
   </reads>
-  
+
   <writes>
     - .opencode/memory/10-Memories/*.md (new memory files)
     - .opencode/memory/20-Indices/index.md (updated links)

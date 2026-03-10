@@ -259,11 +259,74 @@ function M.copy_scripts(manifest, source_dir, target_dir)
   return copied_files, created_dirs
 end
 
+--- Copy data directories (merge-copy semantics - only copy non-existing files)
+--- Data directories are copied to the parent directory (project root) not target_dir (.claude/.opencode)
+--- @param manifest table Extension manifest
+--- @param source_dir string Extension source directory
+--- @param project_dir string Project root directory (NOT target_dir)
+--- @return table copied_files Array of copied file paths (skeleton files)
+--- @return table created_dirs Array of created directory paths
+function M.copy_data_dirs(manifest, source_dir, project_dir)
+  local copied_files = {}
+  local created_dirs = {}
+
+  if not manifest.provides or not manifest.provides.data then
+    return copied_files, created_dirs
+  end
+
+  local source_data_dir = source_dir .. "/data"
+
+  for _, data_name in ipairs(manifest.provides.data) do
+    local source_data_path = source_data_dir .. "/" .. data_name
+    -- Data directories go to project root (e.g., .opencode/memory/ at base_dir/../memory/)
+    -- Actually for memory, the plan says to copy to {base_dir}/{name}/ -> .opencode/memory/
+    -- Let me re-read the plan... it says "Copies from extension/data/{name}/ to {base_dir}/{name}/"
+    -- So data goes INTO the base_dir (e.g., .opencode/memory/ or .claude/memory/)
+    local target_data_path = project_dir .. "/" .. data_name
+
+    if vim.fn.isdirectory(source_data_path) == 1 then
+      -- Create data directory if it doesn't exist
+      if vim.fn.isdirectory(target_data_path) ~= 1 then
+        helpers.ensure_directory(target_data_path)
+        table.insert(created_dirs, target_data_path)
+      end
+
+      -- Copy all files using merge-copy semantics (don't overwrite existing)
+      local files = scan_directory_recursive(source_data_path)
+      for _, rel_path in ipairs(files) do
+        local source_path = source_data_path .. "/" .. rel_path
+        local target_path = target_data_path .. "/" .. rel_path
+
+        -- Only copy if target file doesn't already exist (preserve user data)
+        if vim.fn.filereadable(target_path) ~= 1 then
+          -- Ensure subdirectory exists
+          local subdir = vim.fn.fnamemodify(target_path, ":h")
+          if vim.fn.isdirectory(subdir) ~= 1 then
+            helpers.ensure_directory(subdir)
+            table.insert(created_dirs, subdir)
+          end
+
+          -- Read and write file
+          local content = helpers.read_file(source_path)
+          if content then
+            if helpers.write_file(target_path, content) then
+              table.insert(copied_files, target_path)
+            end
+          end
+        end
+      end
+    end
+  end
+
+  return copied_files, created_dirs
+end
+
 --- Check for conflicts before loading
 --- @param manifest table Extension manifest
 --- @param target_dir string Target base directory
+--- @param project_dir string|nil Project directory (for data conflict checking)
 --- @return table conflicts Array of conflict descriptions
-function M.check_conflicts(manifest, target_dir)
+function M.check_conflicts(manifest, target_dir, project_dir)
   local conflicts = {}
 
   if not manifest.provides then
@@ -299,6 +362,28 @@ function M.check_conflicts(manifest, target_dir)
           file = skill_name,
           path = target_skill_dir,
         })
+      end
+    end
+  end
+
+  -- Check data directories (only if project_dir provided)
+  -- Note: data directories use merge-copy, so existing files are not conflicts
+  -- We only check if the directory already exists with content
+  if manifest.provides.data and project_dir then
+    for _, data_name in ipairs(manifest.provides.data) do
+      local target_data_dir = project_dir .. "/" .. data_name
+      if vim.fn.isdirectory(target_data_dir) == 1 then
+        local contents = vim.fn.readdir(target_data_dir)
+        if #contents > 0 then
+          -- Directory exists with content - this is informational, not a hard conflict
+          -- since we use merge-copy semantics
+          table.insert(conflicts, {
+            category = "data",
+            file = data_name,
+            path = target_data_dir,
+            merge = true, -- Flag indicating this is a merge scenario, not overwrite
+          })
+        end
       end
     end
   end
