@@ -1,6 +1,14 @@
 {
-  "next_project_number": 172,
+  "next_project_number": 173,
   "active_projects": [
+    {
+      "project_number": 172,
+      "project_name": "investigate_opencode_core_content_loss_on_reload",
+      "status": "not_started",
+      "language": "neovim",
+      "created": "2026-03-10T21:41:27Z",
+      "last_updated": "2026-03-10T21:41:27Z"
+    },
     {
       "project_number": 171,
       "project_name": "re_audit_agent_systems_post_reload",
