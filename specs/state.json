@@ -4,10 +4,19 @@
     {
       "project_number": 169,
       "project_name": "verify_agent_systems_wired_after_reload",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-10T19:14:19Z",
-      "last_updated": "2026-03-10T19:14:19Z"
+      "last_updated": "2026-03-10T19:24:13Z",
+      "session_id": "sess_1773170282_48e298",
+      "researched": "2026-03-10T19:24:13Z",
+      "artifacts": [
+        {
+          "path": "specs/169_verify_agent_systems_wired_after_reload/reports/research-001.md",
+          "type": "research",
+          "summary": "Agent system wiring is correct for routing and delegation, but neovim/filetypes extension context entries are not merged into main index.json, and 76 context files referenced in .claude index are missing from disk"
+        }
+      ]
     },
     {
       "project_number": 168,

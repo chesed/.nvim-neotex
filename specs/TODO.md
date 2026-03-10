@@ -8,8 +8,11 @@ next_project_number: 170
 
 ### 169. Verify agent systems are wired correctly after reload
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-10
+- **Research Completed**: 2026-03-10
 - **Language**: meta
+- **Research**: [research-001.md](169_verify_agent_systems_wired_after_reload/reports/research-001.md)
 
 **Description**: Verify agent systems are wired correctly after reload. Check .claude/ and .opencode/ have appropriate task types available so the right subagents are called by task type, and agents load an index with correct context files.
 
