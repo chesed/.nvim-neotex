@@ -1,13 +1,21 @@
 ---
-next_project_number: 168
+next_project_number: 169
 ---
 
 # TODO
 
 ## Tasks
 
-### 167. Verify and revise agent system loaders for .claude/ and .opencode/
+### 168. Verify core agent system loading without extensions
 - **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+
+**Description**: Verify that the core agent systems reloaded in .claude/ and .opencode/ in /home/benjamin/Projects/Logos/Vision/ contain no missing elements and are wired together correctly. These should ONLY include the core agent systems without extensions, where just the task types covered by the core system are available, and agents have access to an appropriate index of the context files included in the core agent systems.
+
+---
+
+### 167. Verify and revise agent system loaders for .claude/ and .opencode/
 - **Effort**: 6-8 hours
 - **Status**: [COMPLETED]
 - **Research Started**: 2026-03-10

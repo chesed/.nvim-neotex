@@ -1,6 +1,14 @@
 {
-  "next_project_number": 168,
+  "next_project_number": 169,
   "active_projects": [
+    {
+      "project_number": 168,
+      "project_name": "verify_core_agent_system_loading",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-10T18:25:28Z",
+      "last_updated": "2026-03-10T18:25:28Z"
+    },
     {
       "project_number": 167,
       "project_name": "verify_revise_agent_system_loaders",
