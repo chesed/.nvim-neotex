@@ -4,10 +4,19 @@
     {
       "project_number": 170,
       "project_name": "audit_agent_systems_wiring_correctness",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-10T20:29:10Z",
-      "last_updated": "2026-03-10T20:29:10Z"
+      "last_updated": "2026-03-10T21:15:00Z",
+      "session_id": "sess_1773174632_e0708f",
+      "researched": "2026-03-10T21:15:00Z",
+      "artifacts": [
+        {
+          "path": "specs/170_audit_agent_systems_wiring_correctness/reports/research-001.md",
+          "type": "research",
+          "summary": "Comprehensive audit of 4 agent systems: .claude extended passes 35/35 validation, .opencode extended critically broken (missing all core agents/skills/rules/commands/scripts), 32 unindexed context files, 1 broken @-reference"
+        }
+      ]
     },
     {
       "project_number": 169,

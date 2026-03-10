@@ -8,8 +8,10 @@ next_project_number: 171
 
 ### 170. Audit agent systems for complete wiring correctness
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-10
 - **Language**: meta
+- **Research**: [research-001.md](170_audit_agent_systems_wiring_correctness/reports/research-001.md)
 
 **Description**: Carefully audit the core and extended agent systems in both .claude/ and .opencode/ (with .claude_core/ and .opencode_core/ available for comparison) to ensure everything is working correctly and no gaps remain from the work in tasks 163-169. The following must be verified:
 
