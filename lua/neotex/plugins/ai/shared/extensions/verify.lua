@@ -174,7 +174,7 @@ local function verify_section_injection(extension_name, target_dir, config)
   local content = file:read("*all")
   file:close()
 
-  local marker = string.format("<!-- SECTION: extension_%s -->", extension_name)
+  local marker = string.format("<!-- SECTION: %s%s -->", config.section_prefix or "extension_", extension_name)
   return content:find(marker, 1, true) ~= nil
 end
 
@@ -299,7 +299,7 @@ function M.verify_extension(extension_name, extension_dir, target_dir, config)
   local section_ok = verify_section_injection(extension_name, target_dir, config)
   if not section_ok then
     verification.section = { passed = false }
-    table.insert(verification.errors, "Section not injected into " .. config.config_file)
+    table.insert(verification.errors, "Section '" .. (config.section_prefix or "extension_") .. extension_name .. "' not injected into " .. config.config_file)
   end
 
   -- Verify index merge

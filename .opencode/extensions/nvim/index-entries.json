@@ -14,18 +14,6 @@
       }
     },
     {
-      "path": "project/neovim/domain/README.md",
-      "domain": "project",
-      "subdomain": "neovim",
-      "topics": ["domain", "overview"],
-      "keywords": ["domain", "neovim"],
-      "summary": "Neovim domain knowledge index",
-      "line_count": 30,
-      "load_when": {
-        "languages": ["neovim"]
-      }
-    },
-    {
       "path": "project/neovim/domain/lua-patterns.md",
       "domain": "project",
       "subdomain": "neovim",
@@ -75,31 +63,6 @@
       "load_when": {
         "languages": ["neovim"],
         "agents": ["neovim-research-agent", "neovim-implementation-agent"]
-      }
-    },
-    {
-      "path": "project/neovim/lua-patterns.md",
-      "domain": "project",
-      "subdomain": "neovim",
-      "topics": ["lua", "patterns", "idioms"],
-      "keywords": ["lua", "patterns", "module"],
-      "summary": "Lua patterns reference (alternate location)",
-      "line_count": 120,
-      "load_when": {
-        "languages": ["neovim"],
-        "agents": ["neovim-implementation-agent"]
-      }
-    },
-    {
-      "path": "project/neovim/patterns/README.md",
-      "domain": "project",
-      "subdomain": "neovim",
-      "topics": ["patterns", "overview"],
-      "keywords": ["patterns", "neovim"],
-      "summary": "Neovim patterns index",
-      "line_count": 30,
-      "load_when": {
-        "languages": ["neovim"]
       }
     },
     {
@@ -155,18 +118,6 @@
       }
     },
     {
-      "path": "project/neovim/standards/README.md",
-      "domain": "project",
-      "subdomain": "neovim",
-      "topics": ["standards", "overview"],
-      "keywords": ["standards", "neovim"],
-      "summary": "Neovim standards index",
-      "line_count": 30,
-      "load_when": {
-        "languages": ["neovim"]
-      }
-    },
-    {
       "path": "project/neovim/standards/lua-style-guide.md",
       "domain": "project",
       "subdomain": "neovim",
@@ -193,18 +144,6 @@
       }
     },
     {
-      "path": "project/neovim/templates/README.md",
-      "domain": "project",
-      "subdomain": "neovim",
-      "topics": ["templates", "overview"],
-      "keywords": ["templates", "neovim"],
-      "summary": "Neovim templates index",
-      "line_count": 30,
-      "load_when": {
-        "languages": ["neovim"]
-      }
-    },
-    {
       "path": "project/neovim/templates/ftplugin-template.md",
       "domain": "project",
       "subdomain": "neovim",
@@ -228,18 +167,6 @@
       "load_when": {
         "languages": ["neovim"],
         "agents": ["neovim-implementation-agent"]
-      }
-    },
-    {
-      "path": "project/neovim/tools/README.md",
-      "domain": "project",
-      "subdomain": "neovim",
-      "topics": ["tools", "overview"],
-      "keywords": ["tools", "neovim"],
-      "summary": "Neovim tools index",
-      "line_count": 30,
-      "load_when": {
-        "languages": ["neovim"]
       }
     },
     {
