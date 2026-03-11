@@ -81,16 +81,9 @@ Determine the skill to invoke based on task language:
 
 | Language | Skill |
 |----------|-------|
-| neovim | skill-neovim-implementation |
-| lean4 | skill-lean-implementation |
-| z3 | skill-z3-implementation |
-| nix | skill-nix-implementation |
-| python | skill-python-implementation |
-| latex | skill-latex-implementation |
-| typst | skill-typst-implementation |
-| web | skill-web-implementation |
-| epidemiology | skill-epidemiology-implementation |
 | general, meta, markdown, formal, logic, math, physics | skill-implementer |
+
+**Extension Languages**: When extensions are loaded (via `<leader>ao`), additional language-specific skills become available. Extension skills follow the pattern `skill-{lang}-implementation` and are discovered automatically. See `.opencode/extensions/*/manifest.json` for available extensions.
 
 ```
 → Tool: skill

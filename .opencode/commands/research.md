@@ -101,17 +101,9 @@ Determine the skill to invoke based on task language:
 
 | Language | Skill |
 |----------|-------|
-| neovim | skill-neovim-research |
-| lean4 | skill-lean-research |
-| z3 | skill-z3-research |
-| nix | skill-nix-research |
-| python | skill-python-research |
-| latex | skill-latex-research |
-| typst | skill-typst-research |
-| web | skill-web-research |
-| epidemiology | skill-epidemiology-research |
-| formal, logic, math, physics | skill-formal-research |
 | general, meta, markdown | skill-researcher |
+
+**Extension Languages**: When extensions are loaded (via `<leader>ao`), additional language-specific skills become available. Extension skills follow the pattern `skill-{lang}-research` and are discovered automatically. See `.opencode/extensions/*/manifest.json` for available extensions.
 
 ```
 → Tool: skill
