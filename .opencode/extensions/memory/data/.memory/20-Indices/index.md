@@ -26,6 +26,22 @@
 ### [INSIGHT]
 <!-- Insight memories -->
 
+## By Topic
+
+Topics use slash-separated hierarchical paths (e.g., `neovim/plugins/telescope`, `meta/commands`).
+
+### neovim/
+<!-- Neovim-related memories -->
+
+### meta/
+<!-- System building and .opencode/ changes -->
+
+### general/
+<!-- General programming knowledge -->
+
+<!-- Additional topic hierarchies will be added as memories are created -->
+
 ## Statistics
 - Total memories: 0
+- Topics: 0
 - Last updated: (not yet updated)

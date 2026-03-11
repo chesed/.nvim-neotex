@@ -56,7 +56,7 @@ Research-002 identified six major improvements over the original design: (1) MCP
 
 ## Implementation Phases
 
-### Phase 1: Foundation - Memory Template and Index Schema [NOT STARTED]
+### Phase 1: Foundation - Memory Template and Index Schema [COMPLETED]
 
 **Goal**: Update the memory template with new frontmatter fields (topic, last_updated) and add the "By Topic" section to index.md. These schema changes are prerequisites for all subsequent phases.
 
