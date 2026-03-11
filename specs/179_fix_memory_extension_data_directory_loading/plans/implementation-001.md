@@ -4,7 +4,7 @@
 **Version**: 001
 **Created**: 2026-03-10
 **Language**: neovim
-**Status**: [NOT STARTED]
+**Status**: [COMPLETED]
 **Effort**: 0.5-1 hours
 **Type**: neovim
 **Standards File**: /home/benjamin/.config/nvim/CLAUDE.md
@@ -39,7 +39,7 @@ Research report v2 identified both bugs with exact line numbers and confirmed th
 
 ## Implementation Phases
 
-### Phase 1: Fix base directory parameter [NOT STARTED]
+### Phase 1: Fix base directory parameter [COMPLETED]
 
 **Goal**: Change the `copy_data_dirs` call to use `project_dir` instead of `target_dir`
 
@@ -58,7 +58,7 @@ Research report v2 identified both bugs with exact line numbers and confirmed th
 
 ---
 
-### Phase 2: Fix manifest and source directory naming [NOT STARTED]
+### Phase 2: Fix manifest and source directory naming [COMPLETED]
 
 **Goal**: Update manifest `data` field and rename source directory to use dot-prefix
 

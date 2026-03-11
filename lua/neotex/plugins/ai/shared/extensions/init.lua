@@ -294,7 +294,7 @@ function M.create(config)
 
       -- Copy data directories (merge-copy semantics - preserves existing files)
       -- Data skeleton files are tracked separately for safe unload
-      local data_files, data_dirs = loader_mod.copy_data_dirs(ext_manifest, source_dir, target_dir)
+      local data_files, data_dirs = loader_mod.copy_data_dirs(ext_manifest, source_dir, project_dir)
       vim.list_extend(all_dirs, data_dirs)
       -- Track data files separately - they go into data_skeleton_files, not all_files
       -- This allows unload to only remove skeleton files, not user-created data

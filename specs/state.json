@@ -5,10 +5,10 @@
     {
       "project_number": 179,
       "project_name": "fix_memory_extension_data_directory_loading",
-      "status": "planned",
+      "status": "completed",
       "language": "neovim",
       "created": "2026-03-11T01:38:33Z",
-      "last_updated": "2026-03-11T03:10:00Z",
+      "last_updated": "2026-03-11T03:23:54Z",
       "researched": "2026-03-11T01:38:33Z",
       "planned": "2026-03-11T03:10:00Z",
       "artifacts": [
@@ -26,9 +26,17 @@
           "path": "specs/179_fix_memory_extension_data_directory_loading/plans/implementation-001.md",
           "type": "plan",
           "summary": "2-phase implementation plan for fixing memory extension data directory loading"
+        },
+        {
+          "path": "specs/179_fix_memory_extension_data_directory_loading/summaries/implementation-summary-20260310.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "session_id": "sess_1773198306_70d362"
+      "session_id": "sess_1773199246_f745b1",
+      "started": "2026-03-11T03:21:19Z",
+      "completed": "2026-03-11T03:23:54Z",
+      "completion_summary": "Fixed memory extension data directory loading by changing copy_data_dirs to use project_dir (placing data at project root) and updating directory name to .memory (dot-prefixed as documented)."
     },
     {
       "project_number": 178,
@@ -229,10 +237,10 @@
     {
       "project_number": 180,
       "project_name": "investigate_opencode_claude_dependency",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-11T01:45:56Z",
-      "last_updated": "2026-03-11T03:15:00Z",
+      "last_updated": "2026-03-11T03:21:45Z",
       "researched": "2026-03-11T01:45:56Z",
       "artifacts": [
         {
@@ -248,7 +256,8 @@
       ],
       "planning": "2026-03-11T03:05:45Z",
       "planned": "2026-03-11T03:15:00Z",
-      "session_id": "sess_1773198312_501b8e"
+      "session_id": "sess_1773199280_4f00b3",
+      "implementing": "2026-03-11T03:21:45Z"
     }
   ],
   "completed_projects": [],

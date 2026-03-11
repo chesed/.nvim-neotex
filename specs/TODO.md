@@ -8,7 +8,7 @@ next_project_number: 181
 
 ### 180. Investigate .opencode/ dependency on .claude/ MCP server settings
 - **Effort**: 0.5-1 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](180_investigate_opencode_claude_dependency/reports/research-001.md)
@@ -20,11 +20,12 @@ next_project_number: 181
 
 ### 179. Fix memory extension data directory loading location
 - **Effort**: 0.5 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: neovim
 - **Dependencies**: None
 - **Research**: [research-001.md](179_fix_memory_extension_data_directory_loading/reports/research-001.md)
 - **Plan**: [implementation-001.md](179_fix_memory_extension_data_directory_loading/plans/implementation-001.md)
+- **Summary**: [implementation-summary-20260310.md](179_fix_memory_extension_data_directory_loading/summaries/implementation-summary-20260310.md)
 
 **Description**: When loading the memory extension via `<leader>ao`, the data directory is incorrectly placed at `.opencode/memory/` instead of the project root `.memory/`. This happens because `copy_data_dirs()` in `lua/neotex/plugins/ai/shared/extensions/init.lua:297` is called with `target_dir` (which is `.opencode/`) instead of `project_dir` (which is the project root). The loader function expects `project_dir` but receives `target_dir`, causing the vault to be created in the wrong location. Additionally, verify that existing `.memory/` directories are not overwritten - the merge-copy semantics should preserve existing user data. Required fix: Change line 297 parameter from `target_dir` to `project_dir`.
 

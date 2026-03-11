@@ -8,7 +8,7 @@
     "commands": ["learn.md"],
     "skills": ["skill-memory"],
     "context": ["project/memory"],
-    "data": ["memory"],
+    "data": [".memory"],
     "hooks": []
   },
   "merge_targets": {

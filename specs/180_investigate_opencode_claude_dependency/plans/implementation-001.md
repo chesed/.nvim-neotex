@@ -1,7 +1,7 @@
 # Implementation Plan: Task #180
 
 - **Task**: 180 - Fix opencode.json agent path references
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 0.5-1 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md)
@@ -45,7 +45,7 @@ Research confirmed the root cause is a path configuration error, not an architec
 
 ## Implementation Phases
 
-### Phase 1: Fix Agent Path References in opencode.json [NOT STARTED]
+### Phase 1: Fix Agent Path References in opencode.json [COMPLETED]
 
 **Goal**: Update all `{file:...}` agent references in `Website/opencode.json` to use the correct `agent/subagents/` path and `-agent` filename suffix.
 
@@ -81,7 +81,7 @@ Research confirmed the root cause is a path configuration error, not an architec
 
 ---
 
-### Phase 2: Verify and Document Extension Requirements [NOT STARTED]
+### Phase 2: Verify and Document Extension Requirements [COMPLETED]
 
 **Goal**: Confirm which extensions need to be loaded for full agent coverage and document the dependency clearly.
 
