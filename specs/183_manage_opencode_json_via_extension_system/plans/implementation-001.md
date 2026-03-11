@@ -1,7 +1,7 @@
 # Implementation Plan: Manage opencode.json via Extension System
 
 - **Task**: 183 - Manage opencode.json via extension system
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 3-4 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md)
@@ -40,7 +40,7 @@ Research report research-001.md identified the existing merge infrastructure pat
 
 ## Implementation Phases
 
-### Phase 1: Add merge/unmerge functions to merge.lua [NOT STARTED]
+### Phase 1: Add merge/unmerge functions to merge.lua [COMPLETED]
 
 **Goal:** Implement the core merge infrastructure for opencode.json agent definitions.
 
@@ -69,7 +69,7 @@ Research report research-001.md identified the existing merge infrastructure pat
 
 ---
 
-### Phase 2: Wire opencode_json into init.lua merge processing [NOT STARTED]
+### Phase 2: Wire opencode_json into init.lua merge processing [COMPLETED]
 
 **Goal:** Connect the new merge functions to the extension load/unload lifecycle.
 
@@ -94,7 +94,7 @@ Research report research-001.md identified the existing merge infrastructure pat
 
 ---
 
-### Phase 3: Create base opencode.json template and update core loader [NOT STARTED]
+### Phase 3: Create base opencode.json template and update core loader [COMPLETED]
 
 **Goal:** Install a base opencode.json with core agent definitions when the OpenCode core system loads.
 
@@ -126,7 +126,7 @@ Research report research-001.md identified the existing merge infrastructure pat
 
 ---
 
-### Phase 4: Create opencode-agents.json for all extensions [NOT STARTED]
+### Phase 4: Create opencode-agents.json for all extensions [COMPLETED]
 
 **Goal:** Create agent definition files and update manifests for all 11 extensions that provide agents.
 
@@ -177,7 +177,7 @@ Research report research-001.md identified the existing merge infrastructure pat
 
 ---
 
-### Phase 5: End-to-end verification [NOT STARTED]
+### Phase 5: End-to-end verification [COMPLETED]
 
 **Goal:** Validate the full lifecycle: core load, extension load, extension unload, core reload.
 
