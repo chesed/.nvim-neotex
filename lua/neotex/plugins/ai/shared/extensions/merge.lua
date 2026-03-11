@@ -448,4 +448,86 @@ function M.remove_index_entries_tracked(target_path, tracked)
   return true
 end
 
+--- Merge opencode.json agent definitions
+--- Adds agent definitions from fragment to target opencode.json.
+--- Only adds keys that don't already exist (no overwrite).
+--- @param target_path string Path to opencode.json
+--- @param fragment table Fragment with agent definitions {agent = {...}}
+--- @return boolean success True if merge succeeded
+--- @return table|nil tracked Tracking data for unmerge {keys = {...}}
+function M.merge_opencode_agents(target_path, fragment)
+  -- Ensure parent directory exists
+  helpers.ensure_directory(vim.fn.fnamemodify(target_path, ":h"))
+
+  -- Read or create target opencode.json
+  local target = {}
+  if vim.fn.filereadable(target_path) == 1 then
+    backup_file(target_path)
+    target = read_json(target_path) or {}
+  end
+
+  -- Ensure agent section exists
+  if not target.agent then
+    target.agent = {}
+  end
+
+  -- Track added keys for unmerge
+  local added_keys = {}
+
+  -- Get agent definitions from fragment (handle both {agent = {...}} and bare {...} formats)
+  local source_agents = fragment.agent or (type(fragment) == "table" and not vim.isarray(fragment) and fragment) or {}
+
+  -- Add each agent key if it doesn't exist
+  for key, value in pairs(source_agents) do
+    if target.agent[key] == nil then
+      target.agent[key] = value
+      table.insert(added_keys, key)
+    end
+  end
+
+  -- Write updated opencode.json
+  local success = write_json(target_path, target)
+  if not success then
+    restore_from_backup(target_path)
+    return false, nil
+  end
+
+  return true, { keys = added_keys }
+end
+
+--- Unmerge opencode.json agent definitions
+--- Removes agent keys that were previously added by merge_opencode_agents.
+--- @param target_path string Path to opencode.json
+--- @param tracked table Tracking data from merge_opencode_agents {keys = {...}}
+--- @return boolean success True if unmerge succeeded
+function M.unmerge_opencode_agents(target_path, tracked)
+  if vim.fn.filereadable(target_path) ~= 1 then
+    return true  -- Nothing to unmerge
+  end
+
+  if not tracked or not tracked.keys then
+    return true  -- Nothing to unmerge
+  end
+
+  backup_file(target_path)
+
+  local target = read_json(target_path) or {}
+  if not target.agent then
+    return true  -- No agent section
+  end
+
+  -- Remove tracked keys
+  for _, key in ipairs(tracked.keys) do
+    target.agent[key] = nil
+  end
+
+  local success = write_json(target_path, target)
+  if not success then
+    restore_from_backup(target_path)
+    return false
+  end
+
+  return true
+end
+
 return M
