@@ -5,7 +5,7 @@
   "language": "web",
   "dependencies": [],
   "provides": {
-    "agents": ["web-implementation-agent.md", "web-research-agent.md"],
+    "agents": ["web-implementation-agent.md", "web-research-agent.md", "document-converter-agent.md"],
     "skills": ["skill-web-implementation", "skill-web-research", "skill-tag"],
     "commands": ["tag.md"],
     "rules": ["web-astro.md"],
