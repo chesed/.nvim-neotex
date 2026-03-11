@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 185,
+  "next_project_number": 186,
   "active_projects": [
+    {
+      "project_number": 185,
+      "project_name": "remove_extension_commands_from_core_system",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-11T21:42:53Z",
+      "last_updated": "2026-03-11T21:42:53Z"
+    },
     {
       "project_number": 184,
       "project_name": "revise_learn_command_input_modes",

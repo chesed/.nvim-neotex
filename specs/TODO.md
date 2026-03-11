@@ -1,10 +1,20 @@
 ---
-next_project_number: 185
+next_project_number: 186
 ---
 
 # TODO
 
 ## Tasks
+
+### 185. Remove extension-specific commands from core agent system
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Remove extension-specific commands from core agent system - lake, lean, convert, deck, slides, and table commands belong in their respective extensions (lean and filetypes), not in core; also clean up the language routing tables in research.md and implement.md to only list core languages (general, meta, markdown), with extension languages injected by the extension loader when extensions are activated.
+
+---
 
 ### 184. Revise /learn command input modes
 - **Effort**: 4-6 hours
