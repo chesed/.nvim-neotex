@@ -1,10 +1,21 @@
 ---
-next_project_number: 182
+next_project_number: 183
 ---
 
 # TODO
 
 ## Tasks
+
+### 182. Fix Website opencode multi-extension agent dependency
+- **Effort**: 0.5-1 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [research-001.md](182_fix_website_opencode_multi_extension_agent_dependency/reports/research-001.md)
+
+**Description**: `opencode.json` uses `{file:...}` references to 5 agent files that are managed by extensions (`web`, `nvim`). Every time the core agent system is reloaded, these files are removed, causing opencode to fail at startup. The user must manually reload web + nvim + memory extensions after every core reload. Fix: commit the 5 agent files as static files directly in the Website repo, removing the extension dependency for these files. Recommendation: Option A (static files) from research report.
+
+---
 
 ### 181. Fix Website opencode missing agent files
 - **Effort**: 1-2 hours

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "next_project_number": 182,
+  "next_project_number": 183,
   "active_projects": [
     {
       "project_number": 179,
@@ -297,6 +297,22 @@
       "completed": "2026-03-11T04:44:49Z",
       "completion_summary": "Created 5 missing agent files in Website repository to fix opencode startup failure. Files extracted from git history and adapted to new frontmatter format. All agents validated via opencode agent list.",
       "claudemd_suggestions": "none"
+    },
+    {
+      "project_number": 182,
+      "project_name": "fix_website_opencode_multi_extension_agent_dependency",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-11T05:23:39Z",
+      "last_updated": "2026-03-11T05:23:39Z",
+      "researched": "2026-03-11T05:23:39Z",
+      "artifacts": [
+        {
+          "path": "specs/182_fix_website_opencode_multi_extension_agent_dependency/reports/research-001.md",
+          "type": "research",
+          "summary": "Root cause: opencode.json uses {file:...} references to extension-managed agents; every core reload removes them, requiring manual reload of web + nvim + memory extensions"
+        }
+      ]
     }
   ],
   "completed_projects": [],
