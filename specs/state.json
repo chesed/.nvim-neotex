@@ -21,7 +21,7 @@
       "researched": "2026-03-10T22:00:00Z",
       "artifacts": [
         {
-          "path": "specs/176_port_vision_memory_system_changes_to_neovim/reports/research-001.md",
+          "path": "specs/176_port_vision_memory_system_changes_to_neovim/reports/research-002.md",
           "type": "research",
           "summary": "Corrected research: memory extension already exists at .opencode/extensions/memory/. Task is to UPDATE the extension configuration by moving .opencode/memory/ to .memory/ and updating all path references in extension files."
         }
