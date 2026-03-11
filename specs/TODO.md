@@ -8,9 +8,10 @@ next_project_number: 178
 
 ### 177. Remove all model preferences from opencode system
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Language**: meta
 - **Dependencies**: None
+- **Research**: [research-001.md](177_remove_model_preferences_from_opencode/reports/research-001.md)
 
 **Description**: Remove all model preferences from the opencode agent system to fix ProviderModelNotFoundError when invoking planner-agent. The issue is that agent files (like planner-agent.md) specify `model: opus` in their frontmatter, but settings.json only has `"model": "sonnet"` with no `models` configuration section. This causes delegation to fail when the system cannot find a provider for "opus". Systematically remove all model preferences from:
 1. `.opencode/settings.json` - remove `"model": "sonnet"`
@@ -100,7 +101,7 @@ This ensures the system uses the default model without provider lookup failures.
 
 ### 72. Fix himalaya sidebar help showing leader keybindings that conflict with toggle selection
 - **Effort**: TBD
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Language**: neovim
 - **Dependencies**: None
 

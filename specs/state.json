@@ -5,13 +5,20 @@
     {
       "project_number": 177,
       "project_name": "remove_model_preferences_from_opencode",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-11T00:58:51Z",
-      "last_updated": "2026-03-11T01:02:08Z",
-      "artifacts": [],
+      "last_updated": "2026-03-11T01:08:01Z",
+      "artifacts": [
+        {
+          "path": "specs/177_remove_model_preferences_from_opencode/reports/research-001.md",
+          "type": "research",
+          "summary": "Complete inventory of 13 files containing model preferences across opencode system"
+        }
+      ],
       "researching": "2026-03-11T01:02:08Z",
-      "session_id": "sess_1773190928_trbcmw"
+      "session_id": "sess_1773190928_trbcmw",
+      "researched": "2026-03-11T01:08:01Z"
     },
     {
       "project_number": 176,
