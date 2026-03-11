@@ -6,7 +6,7 @@ allowed-tools: Bash, Grep, Read, Write, Edit, AskUserQuestion
 
 # Memory Skill (Direct Execution)
 
-Direct execution skill for memory vault management. Handles memory creation, similarity search, classification, and index maintenance.
+Direct execution skill for memory vault management. Handles memory creation, similarity search, classification, and index maintenance through content mapping, MCP-based deduplication, and three memory operations (UPDATE, EXTEND, CREATE).
 
 **Key behavior**: Users always see memory preview and options BEFORE any files are created.
 
@@ -21,196 +21,366 @@ Reference (do not load eagerly):
 
 ## Execution Modes
 
-### Standard Mode: `mode=standard`
+| Mode | Input | Description |
+|------|-------|-------------|
+| `text` | Text content | Add quoted text as memory |
+| `file` | File path | Add single file content as memory |
+| `directory` | Directory path | Scan directory for learnable content |
+| `task` | Task number | Review task artifacts and create memories |
 
-Add text or file content as memory.
-
-### Task Mode: `mode=task`
-
-Review task artifacts and create classified memories.
+All non-task modes flow through: **Content Mapping** -> **Memory Search** -> **Memory Operations**
 
 ---
 
-## Standard Mode Execution
+## Content Mapping
 
-### Step 1: Parse Input
+Content mapping is the intermediate representation between input acquisition and memory operations. It segments input into topic-aligned chunks that can be matched against existing memories.
 
-Extract input type:
-
-```bash
-# Determine if input is file or text
-if [ -f "$input" ]; then
-  content=$(cat "$input")
-  source="file: $input"
-else
-  content="$input"
-  source="user input"
-fi
-```
-
-### Step 2: Generate Memory ID
-
-```bash
-# Get today's date and count existing memories
-today=$(date +%Y-%m-%d)
-count=$(ls -1 .memory/10-Memories/MEM-${today}-*.md 2>/dev/null | wc -l)
-next_num=$(printf "%03d" $((count + 1)))
-memory_id="MEM-${today}-${next_num}"
-```
-
-### Step 3: Generate Title
-
-Extract first line or first 60 characters as title:
-
-```bash
-title=$(echo "$content" | head -1 | cut -c1-60)
-# Remove any leading punctuation or whitespace
-title=$(echo "$title" | sed 's/^[[:space:]#*-]*//')
-```
-
-### Step 4: Search Similar Memories
-
-Check for similar existing memories:
-
-```bash
-# Extract keywords from content (significant words)
-keywords=$(echo "$content" | tr ' ' '\n' | grep -E '^[a-zA-Z]{4,}$' | sort -u | head -10)
-
-# Search existing memories
-for keyword in $keywords; do
-  grep -l -i "$keyword" .memory/10-Memories/*.md 2>/dev/null
-done | sort | uniq -c | sort -rn | head -3
-```
-
-### Step 5: Present Preview with Options
-
-Display preview and options via AskUserQuestion:
+### Content Map Data Structure
 
 ```json
 {
-  "question": "What would you like to do with this memory?",
-  "header": "Memory Preview",
-  "multiSelect": true,
-  "options": [
+  "source": {
+    "type": "text|file|directory",
+    "path": "/path/to/input",
+    "total_tokens": 2500
+  },
+  "segments": [
     {
-      "label": "Add as new memory",
-      "description": "Create new file: {memory_id}"
-    },
-    {
-      "label": "Update existing similar memory",
-      "description": "Append to: {similar_memory_file}"
-    },
-    {
-      "label": "Edit content before saving",
-      "description": "Modify content first"
-    },
-    {
-      "label": "Skip - don't save",
-      "description": "Cancel without saving"
+      "id": "seg-001",
+      "topic": "neovim/plugins/telescope",
+      "source_file": "/path/to/file.md",
+      "source_lines": "15-42",
+      "summary": "Telescope custom picker creation pattern",
+      "estimated_tokens": 350,
+      "key_terms": ["telescope", "picker", "finders", "sorters", "attach_mappings"]
     }
   ]
 }
 ```
 
-**Display preview before options**:
+### Field Descriptions
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique segment identifier (seg-NNN) |
+| `topic` | string | Inferred topic path (slash-separated hierarchy) |
+| `source_file` | string | Original file path (for file/directory modes) |
+| `source_lines` | string | Line range in source file (e.g., "15-42") |
+| `summary` | string | 1-2 sentence summary of segment content |
+| `estimated_tokens` | number | Approximate token count for this segment |
+| `key_terms` | array | 3-5 significant terms for matching |
+
+### Segmentation Algorithms
+
+#### Structured Files (Markdown)
+
+Split at heading boundaries:
+
 ```
-Memory Preview:
----------------------------------------------
-ID: {memory_id}
-Title: {title}
-Source: {source}
-Date: {today}
-
-Content Preview (first 300 chars):
-{content_preview}
----------------------------------------------
-
-Similar Memories Found:
-- {similar_memory_1}
-- {similar_memory_2}
+1. Identify all headings (# ## ### ####)
+2. Each heading starts a new segment
+3. Segment includes all content until next same-or-higher level heading
+4. Top-level content before first heading becomes its own segment
 ```
 
-### Step 6: Handle User Selection
+#### Structured Files (Code)
 
-#### Add as new memory
+Split at blank-line-separated blocks:
+
+```
+1. Identify function/class definitions
+2. Group related comments with their definitions
+3. Separate standalone comment blocks as documentation segments
+4. Keep import/require blocks together
+```
+
+#### Unstructured Text
+
+Split at paragraph boundaries with topic grouping:
+
+```
+1. Split at double-newline (paragraph boundaries)
+2. Group adjacent paragraphs with keyword overlap >40%
+3. Single-sentence paragraphs merge with adjacent
+```
+
+#### Directory Input
+
+Each file becomes an initial segment, then large files are split:
+
+```
+1. Each file is an initial segment
+2. Files >800 tokens are split at section boundaries
+3. Files <100 tokens are candidates for merging with related files
+```
+
+### Small-Input Bypass
+
+Inputs under 500 tokens skip segmentation and become a single segment:
+
+```
+if total_tokens < 500:
+  segments = [{
+    "id": "seg-001",
+    "topic": inferred_topic,
+    "summary": first_line_or_60_chars,
+    "estimated_tokens": total_tokens,
+    "key_terms": extract_keywords(content, 5)
+  }]
+```
+
+### Segment Size Guidelines
+
+| Condition | Action |
+|-----------|--------|
+| Segment <100 tokens | Merge with adjacent same-topic segment |
+| Segment 200-500 tokens | Ideal size, no action |
+| Segment >800 tokens | Split at next heading/paragraph boundary |
+
+### Key Term Extraction
+
+Extract 3-5 significant terms per segment:
+
+```
+1. Remove stop words (the, a, is, are, etc.)
+2. Extract nouns and technical terms (>4 characters)
+3. Prioritize: proper nouns > technical terms > common nouns
+4. Deduplicate (case-insensitive)
+5. Return top 5 by frequency within segment
+```
+
+---
+
+## Memory Search
+
+After content mapping, each segment is matched against existing memories to determine the appropriate operation (UPDATE, EXTEND, or CREATE).
+
+### MCP Search Path
+
+When MCP server is available, use the execute pattern:
+
+```
+For each segment in content_map.segments:
+  query = segment.key_terms.join(" ")
+  results = execute("search", {
+    "query": query,
+    "vault": ".memory",
+    "limit": 5
+  })
+```
+
+### Grep Fallback Path
+
+When MCP is unavailable, use keyword-based file search:
 
 ```bash
-# Generate slug from title
-slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9-' | cut -c1-50)
-filename="MEM-${today}-${next_num}-${slug}.md"
-filepath=".memory/10-Memories/${filename}"
-
-# Create memory file from template
-cat > "$filepath" << EOF
----
-id: ${memory_id}
-title: "${title}"
-date: ${today}
-tags:
-source: "${source}"
----
-
-${content}
-EOF
+# For each segment
+for keyword in $key_terms; do
+  grep -l -i "$keyword" .memory/10-Memories/*.md 2>/dev/null
+done | sort | uniq -c | sort -rn | head -5
 ```
 
-#### Update existing
+### Overlap Scoring
 
-```bash
-# Append to selected memory with update marker
-cat >> "$selected_memory" << EOF
+Score keyword overlap between segment and each matching memory:
+
+```
+overlap_score = |segment_terms intersect memory_terms| / |segment_terms|
+
+Where:
+- segment_terms = segment.key_terms
+- memory_terms = keywords extracted from memory content (same algorithm)
+```
+
+### Classification Thresholds
+
+| Overlap Score | Classification | Action |
+|---------------|----------------|--------|
+| >60% | HIGH | UPDATE - Replace memory content |
+| 30-60% | MEDIUM | EXTEND - Append new section |
+| <30% | LOW | CREATE - New memory |
+
+### Search Result Presentation
+
+Present each segment with related memories via AskUserQuestion:
+
+```
+Segment: {segment.summary}
+Topic: {segment.topic}
+Key terms: {segment.key_terms.join(", ")}
+
+Related Memories:
+1. MEM-2026-03-05-042 (72% overlap) -> Recommended: UPDATE
+2. MEM-2026-03-04-038 (45% overlap) -> Recommended: EXTEND
+3. MEM-2026-03-03-015 (18% overlap) -> Recommended: CREATE (no strong match)
+
+What would you like to do with this segment?
+[ ] UPDATE MEM-2026-03-05-042 (replace content)
+[ ] EXTEND MEM-2026-03-04-038 (append section)
+[ ] CREATE new memory
+[ ] SKIP - don't save this segment
+```
+
+### Interactive Override
+
+Users can override any recommendation:
+- Change UPDATE to CREATE (preserve existing, create duplicate)
+- Change EXTEND to UPDATE (replace instead of append)
+- Skip any segment
+- Merge segments before processing (combine into single memory)
 
 ---
 
-## Update (${today})
+## Memory Operations
 
-${content}
-EOF
+Three distinct operations for memory management:
+
+### UPDATE Operation
+
+Replace memory content while preserving structure:
+
+```
+1. Read existing memory file
+2. Preserve frontmatter: id, date (original), tags, topic
+3. Update frontmatter: last_updated = today
+4. Move current content to ## History section with date marker
+5. Replace main content with new segment content
+6. Preserve ## Connections section
+7. Write updated memory
 ```
 
-#### Edit content
+Template for UPDATE:
 
-Open content in a buffer for editing, then proceed with add/update.
+```markdown
+---
+id: {existing_id}
+title: "{new_title_from_segment}"
+date: {original_date}
+tags: {merged_tags}
+topic: "{existing_or_updated_topic}"
+source: "{new_source}"
+last_updated: {today}
+---
 
-#### Skip
+# {new_title}
 
-Exit gracefully without changes.
+{new_content_from_segment}
 
-### Step 7: Update Index
+## History
 
-Add link to new memory in index.md:
+### Previous Version ({original_date})
 
-```bash
-# Append to index
-echo "- [${title}](../10-Memories/${filename})" >> .memory/20-Indices/index.md
+{previous_content}
+
+## Connections
+{preserved_connections}
 ```
 
-### Step 8: Return Result
+### EXTEND Operation
 
-```json
-{
-  "status": "completed",
-  "mode": "standard",
-  "memory_id": "{memory_id}",
-  "actions_taken": ["added"],
-  "file_path": "{filepath}"
-}
+Append new dated section without modifying existing content:
+
+```
+1. Read existing memory file
+2. Find insertion point (before ## Connections, or end of file)
+3. Add dated extension section
+4. Update frontmatter: last_updated = today
+5. Optionally update tags if new topics introduced
+6. Write updated memory
+```
+
+Template for EXTEND:
+
+```markdown
+## Extension ({today})
+
+**Source**: {segment.source_file}
+
+{segment_content}
+```
+
+### CREATE Operation
+
+Generate new memory from segment:
+
+```
+1. Generate memory ID: MEM-{today}-{sequence}
+2. Generate slug from topic/summary: {topic}-{first_words}
+3. Apply memory template with all fields
+4. Infer and apply topic
+5. Add to index (both category and topic sections)
+6. Write new memory file
+```
+
+Template for CREATE:
+
+```markdown
+---
+id: MEM-{today}-{sequence}
+title: "{segment.summary}"
+date: {today}
+tags: {inferred_tags}
+topic: "{segment.topic}"
+source: "{segment.source_file or 'user input'}"
+last_updated: {today}
+---
+
+# {segment.summary}
+
+{segment_content}
+
+## Connections
+<!-- Add links to related memories using [[filename]] syntax -->
+```
+
+### Topic Inference
+
+Infer topic using four-source priority:
+
+```
+1. Source directory path (highest priority)
+   - /project/src/utils/ -> "project/utils"
+   - /home/user/notes/neovim/ -> "neovim"
+
+2. Keyword analysis
+   - Extract domain indicators: neovim, lua, telescope, lazy
+   - Map to topic: "neovim/plugins" or "neovim/config"
+
+3. Related memory topics
+   - If UPDATE/EXTEND: inherit topic from target memory
+   - If CREATE with high-overlap match: suggest that topic
+
+4. User confirmation/override
+   - Always present inferred topic for confirmation
+   - User can modify or create new topic path
+```
+
+### Index Maintenance
+
+After each operation, update index.md:
+
+```
+1. Add/update entry in "## By Category" under appropriate tag
+2. Add/update entry in "## By Topic" under topic path
+3. Update "## Recent Memories" (prepend, keep last 10)
+4. Update "## Statistics" counts
 ```
 
 ---
 
 ## Task Mode Execution
 
+Task mode has special handling for reviewing existing task artifacts.
+
 ### Step 1: Locate Task Directory
 
 ```bash
-# Find task directory (handles zero-padded format)
 task_num=$task_number
 padded_num=$(printf "%03d" $task_num)
 task_dir=$(ls -d specs/${padded_num}_* 2>/dev/null | head -1)
 
 if [ -z "$task_dir" ]; then
-  # Try unpadded
   task_dir=$(ls -d specs/${task_num}_* 2>/dev/null | head -1)
 fi
 
@@ -223,7 +393,6 @@ fi
 ### Step 2: Scan Artifacts
 
 ```bash
-# Find all artifact files
 artifacts=$(find "$task_dir" -type f -name "*.md" | sort)
 
 if [ -z "$artifacts" ]; then
@@ -234,7 +403,7 @@ fi
 
 ### Step 3: Present Artifact List
 
-Display numbered list via AskUserQuestion:
+Display via AskUserQuestion:
 
 ```json
 {
@@ -245,97 +414,232 @@ Display numbered list via AskUserQuestion:
     {
       "label": "{artifact_1_name}",
       "description": "{artifact_1_path}"
-    },
-    ...
-  ]
-}
-```
-
-### Step 4: Review Each Selected Artifact
-
-For each selected artifact:
-
-1. Read content
-2. Display content preview (first 500 chars)
-3. Present classification options
-
-```json
-{
-  "question": "Classify this artifact for memory extraction:",
-  "header": "Classification: {artifact_name}",
-  "multiSelect": false,
-  "options": [
-    {
-      "label": "[TECHNIQUE]",
-      "description": "Reusable method or approach"
-    },
-    {
-      "label": "[PATTERN]",
-      "description": "Design or implementation pattern"
-    },
-    {
-      "label": "[CONFIG]",
-      "description": "Configuration or setup knowledge"
-    },
-    {
-      "label": "[WORKFLOW]",
-      "description": "Process or procedure"
-    },
-    {
-      "label": "[INSIGHT]",
-      "description": "Key learning or understanding"
-    },
-    {
-      "label": "[SKIP]",
-      "description": "Not valuable for memory"
     }
   ]
 }
 ```
 
-### Step 5: Create Classified Memories
+### Step 4: Process Through Content Mapping
 
-For each non-skipped artifact:
+For each selected artifact:
+1. Read content
+2. If >500 tokens: run through content mapping (segmentation)
+3. If <=500 tokens: treat as single segment
+4. Proceed to Memory Search (Phase 4)
+5. Proceed to Memory Operations (Phase 5)
 
-```bash
-# Generate memory with classification tag
-category=$selected_classification
-today=$(date +%Y-%m-%d)
+### Step 5: Classification Taxonomy
 
-cat > ".memory/10-Memories/${filename}" << EOF
----
-id: ${memory_id}
-title: "${title}"
-date: ${today}
-tags: ${category}, task-${task_number}
-source: "Task ${task_number} - ${artifact_path}"
----
+For task artifacts, also present classification options:
 
-# ${title}
-
-**Category**: ${category}
-**Source**: Task ${task_number} - ${artifact_path}
-**Date**: ${today}
-
-${extracted_content}
-EOF
+```json
+{
+  "question": "Classify this segment:",
+  "header": "Classification: {segment.summary}",
+  "multiSelect": false,
+  "options": [
+    {"label": "[TECHNIQUE]", "description": "Reusable method or approach"},
+    {"label": "[PATTERN]", "description": "Design or implementation pattern"},
+    {"label": "[CONFIG]", "description": "Configuration or setup knowledge"},
+    {"label": "[WORKFLOW]", "description": "Process or procedure"},
+    {"label": "[INSIGHT]", "description": "Key learning or understanding"},
+    {"label": "[SKIP]", "description": "Not valuable for memory"}
+  ]
+}
 ```
 
-### Step 6: Update Index
-
-Add all new memories to index with category grouping.
-
-### Step 7: Return Result
+### Step 6: Return Result
 
 ```json
 {
   "status": "completed",
   "mode": "task",
   "artifacts_reviewed": [...],
-  "memories_created": [
-    {"id": "MEM-...", "category": "[PATTERN]", "path": "..."},
-    ...
+  "content_map": { ... },
+  "operations": [
+    {"type": "CREATE", "memory_id": "MEM-...", "category": "[PATTERN]"}
+  ],
+  "memories_affected": 3
+}
+```
+
+---
+
+## Directory Mode Execution
+
+Directory mode scans a directory tree for learnable content.
+
+### Step 1: Recursive Scanning
+
+```bash
+# Exclusion patterns
+EXCLUDES="-path '*/.git' -prune -o -path '*/node_modules' -prune -o -path '*/__pycache__' -prune -o -path '*/.obsidian' -prune"
+
+# Find all files
+files=$(find "$directory_path" $EXCLUDES -type f -print | head -250)
+```
+
+### Step 2: Two-Tier Text Detection
+
+**Tier 1: Extension Whitelist**
+
+Recognized text extensions (alphabetized by category):
+
+| Category | Extensions |
+|----------|------------|
+| Code | .c, .cpp, .cs, .go, .h, .hpp, .java, .js, .jsx, .kt, .lua, .php, .pl, .py, .r, .rb, .rs, .scala, .sh, .swift, .ts, .tsx, .vim |
+| Config | .cfg, .conf, .ini, .json, .toml, .xml, .yaml, .yml |
+| Data | .csv, .sql |
+| Documentation | .adoc, .asciidoc, .md, .org, .rdoc, .rst, .tex, .txt |
+| Web | .css, .htm, .html, .less, .sass, .scss, .svg |
+| Neovim | .fnl, .janet, .nix |
+
+**Tier 2: MIME-Type Fallback**
+
+For files without recognized extensions:
+
+```bash
+mime=$(file --mime-type -b "$file")
+if [[ "$mime" == text/* ]]; then
+  # Include file
+fi
+```
+
+### Step 3: Size Limits
+
+```bash
+# Per-file limit
+if [ $(stat -c%s "$file") -gt 102400 ]; then
+  echo "Skipping large file: $file (>100KB)"
+  continue
+fi
+
+# Warning at 50 files
+if [ ${#files[@]} -gt 50 ]; then
+  echo "Warning: ${#files[@]} files found. Consider narrowing scope."
+fi
+
+# Hard limit at 200 files
+if [ ${#files[@]} -gt 200 ]; then
+  echo "Error: Too many files (${#files[@]}). Maximum is 200."
+  echo "Narrow your path or use file mode for specific files."
+  exit 1
+fi
+```
+
+### Step 4: File Selection
+
+Present via AskUserQuestion with file sizes:
+
+```json
+{
+  "question": "Select files to process for memory extraction:",
+  "header": "Directory Scan Results: {directory_path}",
+  "multiSelect": true,
+  "options": [
+    {"label": "src/utils.lua", "description": "2.3KB"},
+    {"label": "src/config.lua", "description": "1.8KB"},
+    {"label": "README.md", "description": "4.1KB"}
   ]
+}
+```
+
+### Step 5: Route Through Pipeline
+
+For each selected file:
+1. Read file content
+2. Run through content mapping (directory-type segmentation)
+3. Route segments through memory search
+4. Route through memory operations
+5. Update index
+
+### Step 6: Return Result
+
+```json
+{
+  "status": "completed",
+  "mode": "directory",
+  "files_scanned": 45,
+  "files_selected": 12,
+  "content_map": { ... },
+  "operations": [...],
+  "memories_affected": 8
+}
+```
+
+---
+
+## Text Mode Execution
+
+### Step 1: Parse Input
+
+```bash
+content="$text_content"
+source="user input"
+```
+
+### Step 2: Content Mapping
+
+For text >500 tokens, segment at paragraph boundaries:
+
+```
+1. Split at double-newline
+2. Group related paragraphs
+3. Generate single content map
+```
+
+For text <500 tokens, create single segment.
+
+### Step 3: Memory Search & Operations
+
+Route through standard memory search and operations pipeline.
+
+### Step 4: Return Result
+
+```json
+{
+  "status": "completed",
+  "mode": "text",
+  "content_map": { ... },
+  "operations": [...],
+  "memories_affected": 1
+}
+```
+
+---
+
+## File Mode Execution
+
+### Step 1: Read File
+
+```bash
+if [ ! -f "$file_path" ]; then
+  echo "File not found: $file_path"
+  exit 1
+fi
+
+content=$(cat "$file_path")
+source="file: $file_path"
+```
+
+### Step 2: Content Mapping
+
+Apply structured or unstructured segmentation based on file type.
+
+### Step 3: Memory Search & Operations
+
+Route through standard pipeline.
+
+### Step 4: Return Result
+
+```json
+{
+  "status": "completed",
+  "mode": "file",
+  "file_path": "...",
+  "content_map": { ... },
+  "operations": [...],
+  "memories_affected": 2
 }
 ```
 
@@ -346,13 +650,32 @@ Add all new memories to index with category grouping.
 ### No Content Provided
 
 ```
-Usage: /learn <text or file path> OR /learn --task N
+Usage: /learn <text or file path or directory> OR /learn --task N
 ```
 
 ### File Not Found
 
 ```
 File not found: {path}
+```
+
+### Directory Not Found
+
+```
+Directory not found: {path}
+```
+
+### Empty Directory
+
+```
+No text files found in: {path}
+```
+
+### Too Many Files
+
+```
+Too many files ({N}). Maximum is 200.
+Narrow your path or use file mode for specific files.
 ```
 
 ### Task Directory Not Found
@@ -363,26 +686,31 @@ Task directory not found: specs/{NNN}_*
 
 ### User Cancels
 
-Exit gracefully:
 ```
 Memory operation cancelled. No files created.
 ```
 
-### All Artifacts Skipped
+### All Content Skipped
 
 ```
-No memories created (all artifacts classified as SKIP)
+No memories created (all content skipped)
+```
+
+### MCP Unavailable
+
+```
+MCP search unavailable. Using grep-based fallback.
 ```
 
 ---
 
 ## Git Commit (Postflight)
 
-After successful memory creation:
+After successful memory operations:
 
 ```bash
 git add .memory/
-git commit -m "memory: add ${memory_id}
+git commit -m "memory: add/update ${memories_affected} memories
 
 Session: ${session_id}
 
