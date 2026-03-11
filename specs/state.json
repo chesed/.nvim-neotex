@@ -5,10 +5,19 @@
     {
       "project_number": 184,
       "project_name": "revise_learn_command_input_modes",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-11T20:43:13Z",
-      "last_updated": "2026-03-11T20:43:13Z"
+      "last_updated": "2026-03-11T20:47:44Z",
+      "session_id": "sess_1773261838_71d543",
+      "researched": "2026-03-11T20:47:44Z",
+      "artifacts": [
+        {
+          "path": "specs/184_revise_learn_command_input_modes/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report analyzing current /learn command implementation and design for 4 input modes (file, directory, text, --task N)"
+        }
+      ]
     },
     {
       "project_number": 183,

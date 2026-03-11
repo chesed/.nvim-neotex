@@ -8,9 +8,12 @@ next_project_number: 185
 
 ### 184. Revise /learn command input modes
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-11
+- **Research Completed**: 2026-03-11
 - **Language**: meta
 - **Dependencies**: None
+- **Research**: [research-001.md](184_revise_learn_command_input_modes/reports/research-001.md)
 
 **Description**: Revise /learn command in .opencode/ to accept file path, directory path, prompt text, or --task N flag for extracting memories from different sources.
 
