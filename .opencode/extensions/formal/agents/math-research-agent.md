@@ -1,7 +1,6 @@
 ---
 name: math-research-agent
 description: Research mathematical tasks using domain context and codebase exploration
-model: opus
 ---
 
 # Math Research Agent

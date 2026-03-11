@@ -1,6 +1,5 @@
 ---
 description: Research agent for epidemiology and public health
-model: opus
 skills: skill-epidemiology-research
 ---
 

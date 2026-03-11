@@ -1,7 +1,6 @@
 ---
 name: formal-research-agent
 description: Coordinate formal reasoning research across logic, math, and physics domains
-model: opus
 ---
 
 # Formal Research Agent

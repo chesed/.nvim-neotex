@@ -1,6 +1,5 @@
 ---
 description: Implementation agent for R-based epidemiology analysis
-model: opus
 skills: skill-epidemiology-implementation
 ---
 
