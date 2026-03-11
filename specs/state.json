@@ -4,16 +4,23 @@
     {
       "project_number": 176,
       "project_name": "port_vision_memory_system_changes_to_neovim",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-10T20:00:00Z",
-      "last_updated": "2026-03-10T20:30:00Z",
+      "last_updated": "2026-03-10T21:15:00Z",
       "researched": "2026-03-10T20:30:00Z",
+      "planning": "2026-03-10T21:00:00Z",
+      "planned": "2026-03-10T21:15:00Z",
       "artifacts": [
         {
           "path": "specs/176_port_vision_memory_system_changes_to_neovim/reports/research-001.md",
           "type": "research",
           "summary": "Comprehensive analysis of Vision repository memory system changes documenting 7 key change areas: directory structure (.opencode/memory/ -> .memory/), path references, skill-memory creation, command updates, context files, extensions.json, and verification checklist"
+        },
+        {
+          "path": "specs/176_port_vision_memory_system_changes_to_neovim/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan covering directory structure move, skill-memory creation, context documentation, command updates, extension configuration, and verification with 4-6 hour total effort estimate"
         }
       ]
     },
