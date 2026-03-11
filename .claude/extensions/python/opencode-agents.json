@@ -1,0 +1,16 @@
+{
+  "agent": {
+    "python-research": {
+      "description": "Research Python development topics and libraries",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/python-research-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash", "WebSearch", "WebFetch"]
+    },
+    "python-implementation": {
+      "description": "Implement Python code and applications",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/python-implementation-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    }
+  }
+}

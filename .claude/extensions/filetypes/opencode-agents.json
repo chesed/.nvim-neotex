@@ -1,0 +1,34 @@
+{
+  "agent": {
+    "filetypes-router": {
+      "description": "Routes file conversion tasks to appropriate specialist agents",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/filetypes-router-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "document": {
+      "description": "Convert and process document files (DOCX, PDF, etc.)",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/document-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "spreadsheet": {
+      "description": "Convert and process spreadsheet files (XLSX, CSV, etc.)",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/spreadsheet-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "presentation": {
+      "description": "Convert and process presentation files (PPTX, etc.)",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/presentation-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "deck": {
+      "description": "Create presentation decks from markdown",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/deck-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    }
+  }
+}

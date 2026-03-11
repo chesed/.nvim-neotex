@@ -1,0 +1,16 @@
+{
+  "agent": {
+    "typst-research": {
+      "description": "Research Typst documentation and formatting topics",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/typst-research-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash", "WebSearch", "WebFetch"]
+    },
+    "typst-implementation": {
+      "description": "Implement Typst documents and formatting",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/typst-implementation-agent.md}",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    }
+  }
+}

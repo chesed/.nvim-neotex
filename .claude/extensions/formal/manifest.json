@@ -35,6 +35,10 @@
     "index": {
       "source": "index-entries.json",
       "target": ".claude/context/index.json"
+    },
+    "opencode_json": {
+      "source": "opencode-agents.json",
+      "target": "opencode.json"
     }
   }
 }
