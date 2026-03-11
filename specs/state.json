@@ -304,7 +304,7 @@
       "status": "planned",
       "language": "meta",
       "created": "2026-03-11T05:23:39Z",
-      "last_updated": "2026-03-11T17:24:14Z",
+      "last_updated": "2026-03-11T17:38:11Z",
       "researched": "2026-03-11T05:23:39Z",
       "artifacts": [
         {
@@ -313,14 +313,14 @@
           "summary": "Root cause: opencode.json uses {file:...} references to extension-managed agents; every core reload removes them, requiring manual reload of web + nvim + memory extensions"
         },
         {
-          "path": "specs/182_fix_website_opencode_multi_extension_agent_dependency/plans/implementation-001.md",
+          "path": "specs/182_fix_website_opencode_multi_extension_agent_dependency/plans/implementation-002.md",
           "type": "plan",
-          "summary": "2-phase implementation plan: copy 5 agent files as static git-tracked files, then verify opencode startup after core reload"
+          "summary": "4-phase revised plan (Option B): add neovim agents to web extension for self-contained portability"
         }
       ],
       "planning": "2026-03-11T17:22:20Z",
       "session_id": "sess_1773249706_99e8fa",
-      "planned": "2026-03-11T17:24:14Z"
+      "planned": "2026-03-11T17:38:11Z"
     }
   ],
   "completed_projects": [],

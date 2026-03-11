@@ -14,9 +14,9 @@ next_project_number: 183
 - **Planning Started**: 2026-03-11
 - **Planning Completed**: 2026-03-11
 - **Research**: [research-001.md](182_fix_website_opencode_multi_extension_agent_dependency/reports/research-001.md)
-- **Plan**: [implementation-001.md](182_fix_website_opencode_multi_extension_agent_dependency/plans/implementation-001.md)
+- **Plan**: [implementation-002.md](182_fix_website_opencode_multi_extension_agent_dependency/plans/implementation-002.md) (revised)
 
-**Description**: `opencode.json` uses `{file:...}` references to 5 agent files that are managed by extensions (`web`, `nvim`). Every time the core agent system is reloaded, these files are removed, causing opencode to fail at startup. The user must manually reload web + nvim + memory extensions after every core reload. Fix: commit the 5 agent files as static files directly in the Website repo, removing the extension dependency for these files. Recommendation: Option A (static files) from research report.
+**Description**: Make web extension self-contained by adding neovim agents (Option B). The extension will provide all 5 agents needed by web projects, eliminating the need to load multiple extensions. This improves portability and maintainability.
 
 ---
 
