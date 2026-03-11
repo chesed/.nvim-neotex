@@ -304,7 +304,7 @@
       "status": "planned",
       "language": "meta",
       "created": "2026-03-11T05:23:39Z",
-      "last_updated": "2026-03-11T18:15:00Z",
+      "last_updated": "2026-03-11T18:16:54Z",
       "researched": "2026-03-11T18:15:00Z",
       "artifacts": [
         {
@@ -321,10 +321,15 @@
           "path": "specs/182_fix_website_opencode_multi_extension_agent_dependency/plans/implementation-002.md",
           "type": "plan",
           "summary": "4-phase revised plan (Option B): add neovim agents to web extension for self-contained portability"
+        },
+        {
+          "path": "specs/182_fix_website_opencode_multi_extension_agent_dependency/reports/research-003.md",
+          "type": "research",
+          "summary": "Zero-overlap architecture: remove document-converter from web extension, keep neovim agents in nvim only, update Website opencode.json"
         }
       ],
       "planning": "2026-03-11T17:22:20Z",
-      "session_id": "sess_1773252027_bc0c2e",
+      "session_id": "sess_1773252892_8372d2",
       "planned": "2026-03-11T17:38:11Z"
     }
   ],

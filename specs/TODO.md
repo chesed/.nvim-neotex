@@ -13,10 +13,10 @@ next_project_number: 183
 - **Dependencies**: None
 - **Planning Started**: 2026-03-11
 - **Planning Completed**: 2026-03-11
-- **Research**: [research-001.md](182_fix_website_opencode_multi_extension_agent_dependency/reports/research-001.md), [research-002.md](182_fix_website_opencode_multi_extension_agent_dependency/reports/research-002.md) - Extension overlap and dependency management patterns
-- **Plan**: [implementation-002.md](182_fix_website_opencode_multi_extension_agent_dependency/plans/implementation-002.md) (revised)
+- **Research**: [research-001.md](182_fix_website_opencode_multi_extension_agent_dependency/reports/research-001.md), [research-002.md](182_fix_website_opencode_multi_extension_agent_dependency/reports/research-002.md), [research-003.md](182_fix_website_opencode_multi_extension_agent_dependency/reports/research-003.md) - Zero-overlap architecture
+- **Plan**: [implementation-002.md](182_fix_website_opencode_multi_extension_agent_dependency/plans/implementation-002.md) (needs revision)
 
-**Description**: Make web extension self-contained by adding neovim agents (Option B). The extension will provide all 5 agents needed by web projects, eliminating the need to load multiple extensions. This improves portability and maintainability.
+**Description**: Eliminate extension overlap: remove document-converter-agent from web extension (filetypes provides document-agent), keep neovim agents in nvim extension only, update Website opencode.json to remove unused agent references.
 
 ---
 
