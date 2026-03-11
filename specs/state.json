@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 183,
+  "next_project_number": 184,
   "active_projects": [
+    {
+      "project_number": 183,
+      "project_name": "manage_opencode_json_via_extension_system",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-11T18:53:13Z",
+      "last_updated": "2026-03-11T18:53:13Z"
+    },
     {
       "project_number": 179,
       "project_name": "fix_memory_extension_data_directory_loading",
