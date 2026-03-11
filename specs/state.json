@@ -8,13 +8,18 @@
       "status": "researched",
       "language": "neovim",
       "created": "2026-03-11T01:38:33Z",
-      "last_updated": "2026-03-11T01:38:33Z",
+      "last_updated": "2026-03-11T02:00:00Z",
       "researched": "2026-03-11T01:38:33Z",
       "artifacts": [
         {
           "path": "specs/179_fix_memory_extension_data_directory_loading/reports/research-001.md",
           "type": "research",
           "summary": "Research report identifying the bug: copy_data_dirs called with target_dir instead of project_dir, causing data to be placed in .opencode/memory/ instead of .memory/"
+        },
+        {
+          "path": "specs/179_fix_memory_extension_data_directory_loading/reports/research-002.md",
+          "type": "research",
+          "summary": "Revised research identifying TWO bugs: copy_data_dirs parameter (target_dir vs project_dir) AND manifest naming (memory vs .memory)"
         }
       ]
     },
@@ -110,11 +115,11 @@
     {
       "project_number": 175,
       "project_name": "port_memory_extension_to_claude",
-      "status": "researched",
+      "status": "researching",
       "language": "meta",
       "created": "2026-03-10T23:56:29Z",
-      "last_updated": "2026-03-11T01:23:29Z",
-      "session_id": "sess_1773187097_625264",
+      "last_updated": "2026-03-11T03:03:28Z",
+      "session_id": "sess_1773198186_20b539",
       "researched": "2026-03-11T01:23:29Z",
       "artifacts": [
         {
@@ -215,13 +220,13 @@
       "status": "researched",
       "language": "meta",
       "created": "2026-03-11T01:45:56Z",
-      "last_updated": "2026-03-11T01:45:56Z",
+      "last_updated": "2026-03-11T02:08:00Z",
       "researched": "2026-03-11T01:45:56Z",
       "artifacts": [
         {
           "path": "specs/180_investigate_opencode_claude_dependency/reports/research-001.md",
           "type": "research",
-          "summary": "Investigation report documenting .opencode/ dependency on .claude/ - Website repo expects agents that memory extension does not provide"
+          "summary": "CORRECTED: Path configuration error in opencode.json - agents exist at .opencode/agent/subagents/ but config references wrong path .opencode/agents/"
         }
       ]
     }
