@@ -225,4 +225,39 @@ function M.get_extension(name, config)
   return nil
 end
 
+--- Aggregate all extension artifacts into a blocklist for sync filtering
+--- Reads all extension manifests and builds a set-based blocklist keyed by category.
+--- This allows core sync operations to exclude extension-provided artifacts.
+--- @param config table Extension system configuration
+--- @return table blocklist Map of category -> {[filename] = true} for O(1) lookup
+function M.aggregate_extension_artifacts(config)
+  local blocklist = {
+    agents = {},
+    skills = {},
+    commands = {},
+    rules = {},
+    context = {},
+    scripts = {},
+    hooks = {},
+    data = {},
+  }
+
+  local extensions = M.list_extensions(config)
+
+  for _, ext in ipairs(extensions) do
+    local manifest = ext.manifest
+    if manifest.provides then
+      for category, files in pairs(manifest.provides) do
+        if type(files) == "table" and blocklist[category] then
+          for _, filename in ipairs(files) do
+            blocklist[category][filename] = true
+          end
+        end
+      end
+    end
+  end
+
+  return blocklist
+end
+
 return M

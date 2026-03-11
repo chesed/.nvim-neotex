@@ -441,11 +441,11 @@
     {
       "project_number": 186,
       "project_name": "filter_extension_artifacts_from_core_sync",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "effort": "3-5 hours",
       "created": "2026-03-11T22:39:19Z",
-      "last_updated": "2026-03-11T23:11:52Z",
+      "last_updated": "2026-03-11T23:20:32Z",
       "dependencies": [],
       "artifacts": [
         {
@@ -457,11 +457,20 @@
           "path": "specs/186_filter_extension_artifacts_from_core_sync/plans/implementation-001.md",
           "type": "plan",
           "summary": "7-phase plan covering blocklist aggregation, prefix matching, sync integration, self-loading guard, shared picker, state simplification, and symlink cleanup"
+        },
+        {
+          "path": "specs/186_filter_extension_artifacts_from_core_sync/summaries/implementation-summary-20260311.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "session_id": "sess_1773270508_ade7ef",
+      "session_id": "sess_1773270773_f919f0",
       "researched": "2026-03-11T23:07:41Z",
-      "planned": "2026-03-11T23:11:52Z"
+      "planned": "2026-03-11T23:11:52Z",
+      "started": "2026-03-11T23:13:17Z",
+      "completed": "2026-03-11T23:20:32Z",
+      "completion_summary": "Implemented manifest-based blocklist filtering for core sync operations, preventing extension artifacts from leaking into synced projects. Created shared extension picker eliminating 490 lines of duplication. Added self-loading guard and cleaned leftover symlinks.",
+      "claudemd_suggestions": "none"
     }
   ],
   "completed_projects": [],

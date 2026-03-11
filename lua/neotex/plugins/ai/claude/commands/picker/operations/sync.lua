@@ -1,12 +1,15 @@
 -- neotex.plugins.ai.claude.commands.picker.operations.sync
--- Load Core Agent System operation with clean-source sync
--- Sources are already clean (no extension artifacts), so sync is a simple full-directory copy
+-- Load Core Agent System operation with manifest-based blocklist filtering
+-- Extension artifacts are filtered via aggregate_extension_artifacts() to ensure
+-- only core artifacts are synced, regardless of what extensions are loaded globally
 
 local M = {}
 
 -- Dependencies
 local scan = require("neotex.plugins.ai.claude.commands.picker.utils.scan")
 local helpers = require("neotex.plugins.ai.claude.commands.picker.utils.helpers")
+local manifest = require("neotex.plugins.ai.shared.extensions.manifest")
+local ext_config = require("neotex.plugins.ai.shared.extensions.config")
 
 -- Files to exclude from context sync (repository-specific files that should not be copied)
 -- Note: update-project.md is intentionally NOT excluded as it is a guide/template
@@ -152,8 +155,30 @@ local function execute_sync(project_dir, all_artifacts, merge_only, base_dir)
   return total_synced
 end
 
+--- Convert set-based blocklist to array for exclude_patterns parameter
+--- @param set table Set table {[key] = true}
+--- @return table array Array of keys
+local function set_to_array(set)
+  local arr = {}
+  for k, _ in pairs(set) do
+    table.insert(arr, k)
+  end
+  return arr
+end
+
+--- Get extension config for the given base_dir
+--- @param base_dir string Base directory (".claude" or ".opencode")
+--- @param global_dir string Global directory path
+--- @return table ext_cfg Extension system configuration
+local function get_extension_config(base_dir, global_dir)
+  if base_dir == ".opencode" then
+    return ext_config.opencode(global_dir)
+  end
+  return ext_config.claude(global_dir)
+end
+
 --- Scan all artifact types from global directory
---- Sources are already clean (no extension artifacts), so this is a simple full-directory scan
+--- Filters extension artifacts via manifest-based blocklist to ensure only core artifacts are synced
 --- @param global_dir string Global directory path
 --- @param project_dir string Project directory path
 --- @param config table|nil Picker config with base_dir field (defaults to .claude config)
@@ -162,17 +187,36 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
   local base_dir = (config and config.base_dir) or ".claude"
   local artifacts = {}
 
-  -- Helper to scan with base_dir threaded through
-  local function sync_scan(subdir, ext, recursive, exclude)
+  -- Build blocklist from all extension manifests
+  local extension_cfg = get_extension_config(base_dir, global_dir)
+  local blocklist = manifest.aggregate_extension_artifacts(extension_cfg)
+
+  -- Helper to scan with base_dir and blocklist threaded through
+  -- @param subdir string Subdirectory to scan
+  -- @param ext string File extension pattern
+  -- @param recursive boolean|nil Recursive scanning (default true)
+  -- @param extra_exclude table|nil Additional exclude patterns to merge
+  -- @param blocklist_category string|nil Which blocklist category to apply (e.g., "agents", "skills")
+  local function sync_scan(subdir, ext, recursive, extra_exclude, blocklist_category)
+    local exclude = extra_exclude and vim.deepcopy(extra_exclude) or {}
+
+    -- Merge blocklist entries for this category
+    if blocklist_category and blocklist[blocklist_category] then
+      local blocklist_entries = set_to_array(blocklist[blocklist_category])
+      for _, entry in ipairs(blocklist_entries) do
+        table.insert(exclude, entry)
+      end
+    end
+
     return scan.scan_directory_for_sync(global_dir, project_dir, subdir, ext, recursive, exclude, base_dir)
   end
 
-  -- Core artifacts common to both systems
-  artifacts.commands = sync_scan("commands", "*.md")
+  -- Core artifacts common to both systems (with blocklist filtering)
+  artifacts.commands = sync_scan("commands", "*.md", true, nil, "commands")
 
   -- Use config-provided agents_subdir (different for .claude vs .opencode)
   local agents_subdir = (config and config.agents_subdir) or "agents"
-  artifacts.agents = sync_scan(agents_subdir, "*.md")
+  artifacts.agents = sync_scan(agents_subdir, "*.md", true, nil, "agents")
 
   -- For OpenCode, also sync orchestrator.md from agent/ root (outside subagents/)
   if base_dir == ".opencode" then
@@ -182,9 +226,9 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
     end
   end
 
-  -- Skills (multiple file types)
-  local skills_md = sync_scan("skills", "*.md")
-  local skills_yaml = sync_scan("skills", "*.yaml")
+  -- Skills (multiple file types) with blocklist filtering
+  local skills_md = sync_scan("skills", "*.md", true, nil, "skills")
+  local skills_yaml = sync_scan("skills", "*.yaml", true, nil, "skills")
   artifacts.skills = {}
   for _, file in ipairs(skills_md) do
     table.insert(artifacts.skills, file)
@@ -195,7 +239,7 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
 
   -- Shared artifacts: scanned unconditionally for both .claude and .opencode
   -- (scan_directory_for_sync returns empty array for non-existent directories)
-  artifacts.hooks = sync_scan("hooks", "*.sh")
+  artifacts.hooks = sync_scan("hooks", "*.sh", true, nil, "hooks")
 
   -- Templates (multiple file types: yaml, json)
   local templates_yaml = sync_scan("templates", "*.yaml")
@@ -209,14 +253,15 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
   end
 
   artifacts.docs = sync_scan("docs", "*.md")
-  artifacts.scripts = sync_scan("scripts", "*.sh")
-  artifacts.rules = sync_scan("rules", "*.md")
+  artifacts.scripts = sync_scan("scripts", "*.sh", true, nil, "scripts")
+  artifacts.rules = sync_scan("rules", "*.md", true, nil, "rules")
 
   -- Context (multiple file types: md, json, yaml) - shared by both systems
   -- CONTEXT_EXCLUDE_PATTERNS filters repository-specific files (project-overview.md, etc.)
-  local ctx_md = sync_scan("context", "*.md", true, CONTEXT_EXCLUDE_PATTERNS)
-  local ctx_json = sync_scan("context", "*.json")
-  local ctx_yaml = sync_scan("context", "*.yaml")
+  -- Blocklist context entries use prefix matching for directory-based filtering
+  local ctx_md = sync_scan("context", "*.md", true, CONTEXT_EXCLUDE_PATTERNS, "context")
+  local ctx_json = sync_scan("context", "*.json", true, nil, "context")
+  local ctx_yaml = sync_scan("context", "*.yaml", true, nil, "context")
   artifacts.context = {}
   for _, files in ipairs({ ctx_md, ctx_json, ctx_yaml }) do
     for _, file in ipairs(files) do

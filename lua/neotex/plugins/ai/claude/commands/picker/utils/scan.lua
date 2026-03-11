@@ -49,8 +49,9 @@ end
 --- @param recursive boolean Enable recursive scanning with ** pattern (default: true)
 --- @param exclude_patterns table|nil Optional array of relative path strings to exclude (e.g., {"project/repo/project-overview.md"})
 --- @param base_dir string|nil Base directory name (default: ".claude", use ".opencode" for OpenCode)
+--- @param skip_symlinks boolean|nil Skip symlink files as defense in depth (default: false)
 --- @return table Array of file sync info {name, global_path, local_path, action, is_subdir}
-function M.scan_directory_for_sync(global_dir, local_dir, subdir, extension, recursive, exclude_patterns, base_dir)
+function M.scan_directory_for_sync(global_dir, local_dir, subdir, extension, recursive, exclude_patterns, base_dir, skip_symlinks)
   if recursive == nil then recursive = true end
   base_dir = base_dir or ".claude"
 
@@ -85,15 +86,32 @@ function M.scan_directory_for_sync(global_dir, local_dir, subdir, extension, rec
 
   local files = {}
   exclude_patterns = exclude_patterns or {}
+  skip_symlinks = skip_symlinks or false
 
   for _, global_file in ipairs(all_files) do
+    -- Skip symlinks if requested (defense in depth against extension artifacts)
+    if skip_symlinks then
+      local resolved = vim.fn.resolve(global_file)
+      if resolved ~= global_file then
+        goto continue
+      end
+    end
+
     -- Calculate relative path from global_path base (e.g., "core/utils.sh" from "/path/lib/core/utils.sh")
     local rel_path = global_file:sub(#global_path + 2)
 
-    -- Check if file matches any exclusion pattern (exact string match)
+    -- Check if file matches any exclusion pattern
+    -- Supports both exact match and prefix match (for directory-based exclusions)
     local should_exclude = false
     for _, pattern in ipairs(exclude_patterns) do
+      -- Exact match (original behavior)
       if rel_path == pattern then
+        should_exclude = true
+        break
+      end
+      -- Prefix match: pattern "project/neovim" excludes "project/neovim/domain/api.md"
+      -- Only match at directory boundary (pattern must be followed by /)
+      if rel_path:sub(1, #pattern + 1) == pattern .. "/" then
         should_exclude = true
         break
       end
@@ -114,6 +132,8 @@ function M.scan_directory_for_sync(global_dir, local_dir, subdir, extension, rec
         is_subdir = is_subdir,
       })
     end
+
+    ::continue::
   end
 
   return files

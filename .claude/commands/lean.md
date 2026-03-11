@@ -1,1 +1,0 @@
-../extensions/lean/commands/lean.md

@@ -1,7 +1,7 @@
 # Implementation Plan: Task #186
 
 - **Task**: 186 - filter_extension_artifacts_from_core_sync
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 4-6 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-003.md](../reports/research-003.md)
@@ -55,7 +55,7 @@ Research report 003 confirmed that:
 
 ## Implementation Phases
 
-### Phase 1: Add `aggregate_extension_artifacts()` to manifest.lua [NOT STARTED]
+### Phase 1: Add `aggregate_extension_artifacts()` to manifest.lua [COMPLETED]
 
 **Goal**: Create the function that reads all extension manifests and builds a blocklist keyed by category with set-based lookup.
 
@@ -78,7 +78,7 @@ Research report 003 confirmed that:
 
 ---
 
-### Phase 2: Enhance scan.lua exclude matching with prefix support [NOT STARTED]
+### Phase 2: Enhance scan.lua exclude matching with prefix support [COMPLETED]
 
 **Goal**: Extend the exclude pattern check in `scan_directory_for_sync` to support prefix matching for skills (directory names) and context (path prefixes), while maintaining backward compatibility with existing exact-match patterns.
 
@@ -101,7 +101,7 @@ Research report 003 confirmed that:
 
 ---
 
-### Phase 3: Apply blocklist in sync.lua `scan_all_artifacts()` [NOT STARTED]
+### Phase 3: Apply blocklist in sync.lua `scan_all_artifacts()` [COMPLETED]
 
 **Goal**: Integrate the manifest blocklist into the core sync operation so extension artifacts are excluded from every category scan.
 
@@ -127,7 +127,7 @@ Research report 003 confirmed that:
 
 ---
 
-### Phase 4: Add self-loading guard to shared/extensions/init.lua [NOT STARTED]
+### Phase 4: Add self-loading guard to shared/extensions/init.lua [COMPLETED]
 
 **Goal**: Prevent extensions from being loaded when the target project IS the global source directory, which would contaminate the source and cause future sync leakage.
 
@@ -151,7 +151,7 @@ Research report 003 confirmed that:
 
 ---
 
-### Phase 5: Create shared extension picker [NOT STARTED]
+### Phase 5: Create shared extension picker [COMPLETED]
 
 **Goal**: Replace the two near-identical 245-line extension picker files with a single shared implementation that accepts configuration parameters.
 
@@ -179,7 +179,7 @@ Research report 003 confirmed that:
 
 ---
 
-### Phase 6: Simplify claude/extensions/state.lua [NOT STARTED]
+### Phase 6: Simplify claude/extensions/state.lua [COMPLETED]
 
 **Goal**: Reduce the 102-line method-by-method delegation wrapper to a simpler pattern, since it adds no value over calling shared state directly with config.
 
@@ -204,7 +204,7 @@ Research report 003 confirmed that:
 
 ---
 
-### Phase 7: Clean existing symlinks and final verification [NOT STARTED]
+### Phase 7: Clean existing symlinks and final verification [COMPLETED]
 
 **Goal**: One-time cleanup of any symlinks in the global directory, plus end-to-end verification of the complete system.
 

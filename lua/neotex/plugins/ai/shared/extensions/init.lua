@@ -200,7 +200,7 @@ function M.create(config)
 
   --- Load an extension into the current project
   --- @param extension_name string Extension name
-  --- @param opts table|nil Options {confirm = true, project_dir = nil}
+  --- @param opts table|nil Options {confirm = true, project_dir = nil, force = false}
   --- @return boolean success True if load succeeded
   --- @return string|nil error Error message if load failed
   function manager.load(extension_name, opts)
@@ -208,6 +208,26 @@ function M.create(config)
     local confirm = opts.confirm ~= false  -- Default to true
     local project_dir = opts.project_dir or vim.fn.getcwd()
     local target_dir = project_dir .. "/" .. config.base_dir
+
+    -- Self-loading guard: prevent loading extensions into the global source directory
+    -- This would contaminate the source and cause extension artifacts to leak into core sync
+    local global_dir = vim.fn.expand("~/.config/nvim")
+    if project_dir == global_dir and not opts.force then
+      return false, "Cannot load extensions into source directory (~/.config/nvim). " ..
+        "Extensions loaded here would leak into core sync for all projects. " ..
+        "Use opts.force = true to bypass this check (not recommended)."
+    end
+
+    -- Log warning if force is used
+    if project_dir == global_dir and opts.force then
+      vim.schedule(function()
+        vim.notify(
+          "WARNING: Loading extension into source directory with force=true. " ..
+          "This may cause extension artifacts to leak into core sync.",
+          vim.log.levels.WARN
+        )
+      end)
+    end
 
     -- Find extension
     local extension = manifest_mod.get_extension(extension_name, config)

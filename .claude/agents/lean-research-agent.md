@@ -1,1 +1,0 @@
-../extensions/lean/agents/lean-research-agent.md

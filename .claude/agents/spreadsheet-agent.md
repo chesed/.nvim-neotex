@@ -1,1 +1,0 @@
-../extensions/filetypes/agents/spreadsheet-agent.md

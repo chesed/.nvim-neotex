@@ -1,1 +1,0 @@
-../extensions/filetypes/agents/deck-agent.md

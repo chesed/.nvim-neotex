@@ -1,1 +1,0 @@
-../extensions/web/agents/web-research-agent.md
