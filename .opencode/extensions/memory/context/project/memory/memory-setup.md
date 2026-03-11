@@ -5,7 +5,7 @@ This guide explains how to set up the MCP (Model Context Protocol) server for ad
 ## Prerequisites
 
 - Obsidian desktop app installed (available at [obsidian.md](https://obsidian.md))
-- `.opencode/memory/` vault created
+- `.memory/` vault created
 - Node.js/npm installed (for npx)
 
 ## Installation Steps
@@ -14,7 +14,7 @@ This guide explains how to set up the MCP (Model Context Protocol) server for ad
 
 1. Launch Obsidian desktop app
 2. Click "Open folder as vault"
-3. Select `.opencode/memory/` directory
+3. Select `.memory/` directory
 4. The vault should open successfully
 
 ### 2. Install Obsidian CLI REST Plugin

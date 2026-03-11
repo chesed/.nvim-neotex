@@ -46,7 +46,7 @@ All model specifications must be removed to ensure the system uses the default m
 
 ## Implementation Phases
 
-### Phase 1: Remove model from settings.json [NOT STARTED]
+### Phase 1: Remove model from settings.json [IN PROGRESS]
 
 **Goal**: Remove the global model preference from settings.json
 

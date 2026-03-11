@@ -52,7 +52,7 @@ What would you like to do with this memory?
 
 ### Option Descriptions
 
-**Add as new memory**: Creates a new memory file in `.opencode/memory/10-Memories/`
+**Add as new memory**: Creates a new memory file in `.memory/10-Memories/`
 
 **Update existing**: If similar memories exist, appends content to the selected memory
 
@@ -115,13 +115,13 @@ With focus prompt:
 1. **Review index.md** - Use it to navigate your memories
 2. **Update existing** - Rather than creating many similar memories
 3. **Use tags** - (Coming in Phase 2) Organize by topic
-4. **Commit regularly** - `git add .opencode/memory/ && git commit`
+4. **Commit regularly** - `git add .memory/ && git commit`
 
 ### Git Workflow
 
 ```bash
 # After adding memories
-git add .opencode/memory/
+git add .memory/
 git commit -m "memory: add neovim configuration tips"
 
 # Push to sync with remote

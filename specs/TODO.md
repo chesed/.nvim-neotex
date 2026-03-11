@@ -8,7 +8,7 @@ next_project_number: 178
 
 ### 177. Remove all model preferences from opencode system
 - **Effort**: 1-2 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](177_remove_model_preferences_from_opencode/reports/research-001.md)
@@ -42,7 +42,7 @@ This ensures the system uses the default model without provider lookup failures.
 
 ### 175. Port memory/ extension to .claude/ agent system
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Research Started**: 2026-03-10
 - **Research Completed**: 2026-03-10
 - **Language**: meta
@@ -76,7 +76,7 @@ This ensures the system uses the default model without provider lookup failures.
 
 ### 87. Investigate terminal directory change when opening neovim in wezterm
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Research Started**: 2026-02-13
 - **Research Completed**: 2026-02-13
 - **Language**: neovim
@@ -90,7 +90,7 @@ This ensures the system uses the default model without provider lookup failures.
 
 ### 78. Fix Himalaya SMTP authentication failure when sending emails
 - **Effort**: 1-2 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Research Started**: 2026-02-13
 - **Research Completed**: 2026-02-13
 - **Planning Started**: 2026-02-13
@@ -107,7 +107,7 @@ This ensures the system uses the default model without provider lookup failures.
 
 ### 72. Fix himalaya sidebar help showing leader keybindings that conflict with toggle selection
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: neovim
 - **Dependencies**: None
 

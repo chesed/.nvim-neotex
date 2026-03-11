@@ -46,7 +46,7 @@ The `obsidian-memory` MCP server provides:
 ### Memory Vault Structure
 
 ```
-.opencode/memory/
+.memory/
 +-- .obsidian/           # Obsidian configuration
 +-- 00-Inbox/            # Quick capture for new memories
 +-- 10-Memories/         # Stored memory entries

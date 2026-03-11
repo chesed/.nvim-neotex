@@ -13,7 +13,7 @@
 
 1. **Obsidian not running**
    - Start Obsidian desktop app
-   - Open `.opencode/memory/` as vault
+   - Open `.memory/` as vault
    - Verify Obsidian CLI REST plugin is enabled
 
 2. **Wrong API key**
@@ -68,7 +68,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" \
 
 1. **Vault empty**
    - Add some memories first using `/learn`
-   - Check `.opencode/memory/10-Memories/` for files
+   - Check `.memory/10-Memories/` for files
 
 2. **MCP server not connected**
    - See "MCP Server Not Connecting" above
@@ -104,7 +104,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" \
 ### Git Conflicts in index.md
 
 **Symptoms**:
-- Git merge conflicts in `.opencode/memory/20-Indices/index.md`
+- Git merge conflicts in `.memory/20-Indices/index.md`
 - Multiple entries for same memory
 
 **Solution**:
@@ -146,7 +146,7 @@ git pull
 
 2. **Permission denied**
    - Check directory permissions
-   - Ensure write access to `.opencode/memory/`
+   - Ensure write access to `.memory/`
 
 3. **Disk full**
    - Check available disk space
@@ -155,14 +155,14 @@ git pull
 ### Obsidian Not Recognizing Vault
 
 **Symptoms**:
-- "No vault found" when opening `.opencode/memory/`
+- "No vault found" when opening `.memory/`
 - Missing configuration
 
 **Solution**:
 
 1. **Verify structure**:
    ```
-   .opencode/memory/
+   .memory/
    ├── .obsidian/
    │   ├── app.json
    │   ├── appearance.json
@@ -209,8 +209,8 @@ When troubleshooting, check these in order:
 
 2. **Is the vault structure correct?**
    ```bash
-   ls -la .opencode/memory/
-   ls -la .opencode/memory/10-Memories/
+   ls -la .memory/
+   ls -la .memory/10-Memories/
    ```
 
 3. **Is MCP responding?**
@@ -220,13 +220,13 @@ When troubleshooting, check these in order:
 
 4. **Are there memory files?**
    ```bash
-   ls .opencode/memory/10-Memories/
-   wc -l .opencode/memory/10-Memories/*.md
+   ls .memory/10-Memories/
+   wc -l .memory/10-Memories/*.md
    ```
 
 5. **Check git status**:
    ```bash
-   git status --short .opencode/memory/
+   git status --short .memory/
    ```
 
 ## Getting Help

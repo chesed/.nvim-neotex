@@ -5,10 +5,10 @@
     {
       "project_number": 177,
       "project_name": "remove_model_preferences_from_opencode",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-11T00:58:51Z",
-      "last_updated": "2026-03-11T01:14:34Z",
+      "last_updated": "2026-03-11T01:17:23Z",
       "artifacts": [
         {
           "path": "specs/177_remove_model_preferences_from_opencode/reports/research-001.md",
@@ -22,10 +22,11 @@
         }
       ],
       "researching": "2026-03-11T01:02:08Z",
-      "session_id": "sess_1773191488_wg9x3a",
+      "session_id": "sess_1773191843_kn4r6z",
       "researched": "2026-03-11T01:08:01Z",
       "planning": "2026-03-11T01:11:28Z",
-      "planned": "2026-03-11T01:14:34Z"
+      "planned": "2026-03-11T01:14:34Z",
+      "implementing": "2026-03-11T01:17:23Z"
     },
     {
       "project_number": 176,
