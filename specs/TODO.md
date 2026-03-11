@@ -8,7 +8,7 @@ next_project_number: 179
 
 ### 178. Fix memory extension MCP server port configuration
 - **Effort**: 0.5 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [research-001.md](178_fix_memory_extension_mcp_port/reports/research-001.md)

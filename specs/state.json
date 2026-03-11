@@ -5,10 +5,10 @@
     {
       "project_number": 178,
       "project_name": "fix_memory_extension_mcp_port",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-10T23:00:00Z",
-      "last_updated": "2026-03-11T01:33:25Z",
+      "last_updated": "2026-03-11T01:34:28Z",
       "researched": "2026-03-10T23:00:00Z",
       "artifacts": [
         {
@@ -23,7 +23,8 @@
         }
       ],
       "planning": "2026-03-11T01:31:18Z",
-      "planned": "2026-03-11T01:33:25Z"
+      "planned": "2026-03-11T01:33:25Z",
+      "implementing": "2026-03-11T01:34:28Z"
     },
     {
       "project_number": 177,
