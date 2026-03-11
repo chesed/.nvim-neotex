@@ -1,7 +1,7 @@
 # Implementation Plan: Task #184
 
 - **Task**: 184 - revise_learn_command_input_modes
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 4-6 hours
 - **Dependencies**: None
 - **Research Inputs**: [research-001.md](../reports/research-001.md), [research-002.md](../reports/research-002.md)
