@@ -441,21 +441,27 @@
     {
       "project_number": 186,
       "project_name": "filter_extension_artifacts_from_core_sync",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "effort": "3-5 hours",
       "created": "2026-03-11T22:39:19Z",
-      "last_updated": "2026-03-11T23:07:41Z",
+      "last_updated": "2026-03-11T23:11:52Z",
       "dependencies": [],
       "artifacts": [
         {
           "path": "specs/186_filter_extension_artifacts_from_core_sync/reports/research-003.md",
           "type": "research",
           "summary": "Unified extension loader design research covering manifest blocklist, invariant-based sync, picker consolidation, and 7 concrete implementation changes for both .claude and .opencode systems"
+        },
+        {
+          "path": "specs/186_filter_extension_artifacts_from_core_sync/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "7-phase plan covering blocklist aggregation, prefix matching, sync integration, self-loading guard, shared picker, state simplification, and symlink cleanup"
         }
       ],
-      "session_id": "sess_1773270127_113425",
-      "researched": "2026-03-11T23:07:41Z"
+      "session_id": "sess_1773270508_ade7ef",
+      "researched": "2026-03-11T23:07:41Z",
+      "planned": "2026-03-11T23:11:52Z"
     }
   ],
   "completed_projects": [],

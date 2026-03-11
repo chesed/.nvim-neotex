@@ -7,11 +7,12 @@ next_project_number: 187
 ## Tasks
 
 ### 186. Filter extension artifacts from "Load Core Agent System" sync
-- **Effort**: 3-5 hours
-- **Status**: [RESEARCHED]
+- **Effort**: 4-6 hours
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-11
 - **Research Completed**: 2026-03-11
 - **Research**: [research-003.md](186_filter_extension_artifacts_from_core_sync/reports/research-003.md)
+- **Plan**: [implementation-001.md](186_filter_extension_artifacts_from_core_sync/plans/implementation-001.md)
 - **Language**: meta
 - **Dependencies**: None
 
