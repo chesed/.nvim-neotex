@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "next_project_number": 180,
+  "next_project_number": 182,
   "active_projects": [
     {
       "project_number": 179,
@@ -266,6 +266,22 @@
       "completed": "2026-03-11T03:24:46Z",
       "completion_summary": "Fixed broken agent path references in Website opencode.json. Updated 9 paths from .opencode/agents/{name}.md to .opencode/agent/subagents/{name}-agent.md. Verified 7 core/web agents exist; documented that nvim and filetypes extensions required for remaining 3 agents.",
       "claudemd_suggestions": "none"
+    },
+    {
+      "project_number": 181,
+      "project_name": "fix_website_opencode_missing_agent_files",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-11T03:30:58Z",
+      "last_updated": "2026-03-11T03:32:06Z",
+      "artifacts": [
+        {
+          "path": "specs/181_fix_website_opencode_missing_agent_files/reports/research-001.md",
+          "type": "research",
+          "summary": "Root cause: incomplete agent directory refactoring left 5 agent files missing from .opencode/agent/subagents/; opencode.json references them via {file:...} which fails at startup"
+        }
+      ],
+      "researched": "2026-03-11T03:32:06Z"
     }
   ],
   "completed_projects": [],

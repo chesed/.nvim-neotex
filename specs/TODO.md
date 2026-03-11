@@ -1,10 +1,21 @@
 ---
-next_project_number: 181
+next_project_number: 182
 ---
 
 # TODO
 
 ## Tasks
+
+### 181. Fix Website opencode missing agent files
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [research-001.md](181_fix_website_opencode_missing_agent_files/reports/research-001.md)
+
+**Description**: Opencode fails to start in `/home/benjamin/Projects/Logos/Website/` because `opencode.json` references 5 agent files via `{file:...}` that don't exist: `web-research-agent.md`, `web-implementation-agent.md`, `neovim-research-agent.md`, `neovim-implementation-agent.md`, `document-converter-agent.md`. Root cause is an incomplete refactoring from `.opencode/agents/*.md` to `.opencode/agent/subagents/*-agent.md` - old files were deleted but 5 new ones were never created. Fix: create the 5 missing agent files in `.opencode/agent/subagents/` (content can be recovered from git history).
+
+---
 
 ### 180. Investigate .opencode/ dependency on .claude/ MCP server settings
 - **Effort**: 0.5-1 hours
