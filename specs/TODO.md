@@ -1,10 +1,20 @@
 ---
-next_project_number: 189
+next_project_number: 190
 ---
 
 # TODO
 
 ## Tasks
+
+### 189. Improve memory naming conventions and deduplication for agent systems
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Improve the .claude/ and .opencode/ memory systems to use short, suggestive slugs (e.g., `research-directions.md`) instead of verbose timestamp-based names (e.g., `MEM-2026-03-12-1773330053135-4d32`). Remove redundant 'MEM' prefix and date from filenames since directory context and internal metadata provide this information. Implement overlap scanning before storing new memories to integrate with existing memories rather than create duplicates. All memories should include basic metadata with dates for all additions.
+
+---
 
 ### 188. Review memory extension durability: identify and fix overwrite risks, loader conflicts, and dual-system storage conflicts
 - **Effort**: 2-3 hours
