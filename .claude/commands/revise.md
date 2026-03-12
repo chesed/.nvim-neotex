@@ -174,12 +174,8 @@ Plan revised for Task #{N}
 Previous: implementation-{PREV}.md
 New: implementation-{NEW}.md
 
-Key changes:
-- {Change 1}
-- {Change 2}
-
-Preserved phases: 1
-Revised phases: 2-3
+Preserved phases: {N}
+Revised phases: {range}
 
 Status: [PLANNED]
 Next: /implement {N}

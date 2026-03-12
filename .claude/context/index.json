@@ -148,6 +148,34 @@
       }
     },
     {
+      "path": "core/standards/interactive-selection.md",
+      "domain": "core",
+      "subdomain": "standards",
+      "topics": [
+        "interactive-prompts",
+        "user-selection",
+        "askuserquestion"
+      ],
+      "keywords": [
+        "interactive",
+        "selection",
+        "AskUserQuestion",
+        "multiSelect",
+        "prompts"
+      ],
+      "summary": "Standard for interactive user prompts and selection patterns",
+      "line_count": 250,
+      "load_when": {
+        "commands": [
+          "/meta",
+          "/fix-it",
+          "/review",
+          "/todo",
+          "/task"
+        ]
+      }
+    },
+    {
       "path": "core/orchestration/routing.md",
       "domain": "core",
       "subdomain": "orchestration",

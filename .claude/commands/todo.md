@@ -423,41 +423,30 @@ Exit here if dry run.
 If orphaned directories were detected in Step 2.5:
 
 **Use AskUserQuestion**:
-```
-AskUserQuestion:
-  question: "Found {N} orphaned project directories not tracked in state files. What would you like to do?"
-  header: "Orphans"
-  options:
-    - label: "Track all orphans"
-      description: "Move specs/ orphans to archive/ and add state entries for all orphans"
-    - label: "Skip orphans"
-      description: "Only archive tracked completed/abandoned tasks"
-    - label: "Review list first"
-      description: "Show the full list of orphaned directories"
-  multiSelect: false
-```
-
-**If "Review list first" selected**:
-Display the full list of orphaned directories with their contents summary:
-```
-Orphaned directories:
-- 170_maintenance_report_improvements/ (contains: reports/, plans/)
-- 190_meta_system_optimization/ (contains: reports/)
-...
-
+```json
+{
+  "question": "Found {N} orphaned directories not tracked in state files. What would you like to do?",
+  "header": "Orphans",
+  "multiSelect": false,
+  "options": [
+    {"label": "Track all orphans", "description": "Move to archive/ and add state entries"},
+    {"label": "Skip orphans", "description": "Only archive tracked tasks"},
+    {"label": "Review list first", "description": "Show full list before deciding"}
+  ]
+}
 ```
 
-Then re-ask with only two options:
-```
-AskUserQuestion:
-  question: "Track these {N} orphaned directories in state files?"
-  header: "Confirm"
-  options:
-    - label: "Yes, track all"
-      description: "Move specs/ orphans to archive/ and add state entries for all"
-    - label: "No, skip orphans"
-      description: "Only archive tracked completed/abandoned tasks"
-  multiSelect: false
+**If "Review list first" selected**, display directory list then re-ask:
+```json
+{
+  "question": "Track these {N} orphaned directories?",
+  "header": "Confirm",
+  "multiSelect": false,
+  "options": [
+    {"label": "Yes, track all", "description": "Move to archive/ and add state entries"},
+    {"label": "No, skip", "description": "Only archive tracked tasks"}
+  ]
+}
 ```
 
 **Store the user's decision** (track_orphans = true/false) for use in Step 5.
@@ -469,16 +458,16 @@ If no orphaned directories were found, skip this step and proceed.
 If misplaced directories were detected in Step 2.6:
 
 **Use AskUserQuestion**:
-```
-AskUserQuestion:
-  question: "Found {N} misplaced directories in specs/ that should be in archive/ (already tracked in archive/state.json). Move them?"
-  header: "Misplaced"
-  options:
-    - label: "Move all"
-      description: "Move directories to archive/ (state already correct, no updates needed)"
-    - label: "Skip"
-      description: "Leave directories in current location"
-  multiSelect: false
+```json
+{
+  "question": "Found {N} misplaced directories in specs/ (tracked in archive/state.json). Move them?",
+  "header": "Misplaced",
+  "multiSelect": false,
+  "options": [
+    {"label": "Move all", "description": "Move to archive/ (state already correct)"},
+    {"label": "Skip", "description": "Leave in current location"}
+  ]
+}
 ```
 
 **Store the user's decision** (move_misplaced = true/false) for use in Step 5F.
@@ -737,19 +726,17 @@ If no actionable suggestions exist, skip to Step 5.6.5 (handle "none" actions on
 
 If `actionable_suggestions[]` has any entries:
 
-```
-AskUserQuestion:
-  question: "Found {N} CLAUDE.md suggestions from meta tasks. Which should be applied?"
-  header: "CLAUDE.md Updates"
-  multiSelect: true
-  options:
-    - label: "Task #{N1}: {ACTION} to {section}"
-      description: "{rationale}"
-    - label: "Task #{N2}: {ACTION} to {section}"
-      description: "{rationale}"
-    ...
-    - label: "Skip all"
-      description: "Don't apply any suggestions (display only for manual review)"
+```json
+{
+  "question": "Found {N} CLAUDE.md suggestions from meta tasks. Which should be applied?",
+  "header": "CLAUDE.md Updates",
+  "multiSelect": true,
+  "options": [
+    {"label": "Task #{N1}: {ACTION} to {section}", "description": "{rationale}"},
+    {"label": "Task #{N2}: {ACTION} to {section}", "description": "{rationale}"},
+    {"label": "Skip all", "description": "Don't apply any (display for manual review)"}
+  ]
+}
 ```
 
 Build options dynamically from `actionable_suggestions[]`:
@@ -955,66 +942,39 @@ Where `{R}` = roadmap_completed_annotated + roadmap_abandoned_annotated (total r
 
 ### 7. Output
 
+Use grouped counts instead of listing individual items:
+
 ```
-Archived {N} tasks:
+Archived {N} tasks
 
-Completed ({N}):
-- #{N1}: {title}
-- #{N2}: {title}
+Tasks: {C} completed, {A} abandoned
+Directories: {D} moved
 
-Abandoned ({N}):
-- #{N3}: {title}
+{If orphans or misplaced processed:}
+Cleanup: {O} orphans tracked, {P} misplaced moved
 
-Directories moved to archive: {N}
-- {N1}_{SLUG1}/ -> archive/
-- {N2}_{SLUG2}/ -> archive/
+{If roadmap updated:}
+Roadmap: {R} items updated
 
-Orphaned directories tracked: {N}
-- {N4}_{SLUG4}/ (moved to archive/, state entry added)
-- {N5}_{SLUG5}/ (already in archive/, state entry added)
-
-Misplaced directories moved: {N}
-- {N8}_{SLUG8}/ (already tracked in archive/state.json)
-- {N9}_{SLUG9}/ (already tracked in archive/state.json)
-
-Roadmap updated: {N} items
-- Marked complete: {N}
-  - {item text} (line {N})
-- Marked abandoned: {N}
-  - {item text} (line {N})
-- Skipped (already annotated): {N}
-
-CLAUDE.md suggestions applied: {N}
-- Task #{N1}: Added {section}
-- Task #{N2}: Updated {section}
-
-CLAUDE.md suggestions failed: {N}
-- Task #{N3}: Section not found
-
-CLAUDE.md suggestions skipped: {N}
-- Task #{N4}: Skipped by user
-
-Meta tasks with no changes: {N}
-
-Skipped (no directory): {N}
-- Task #{N6}
+{If CLAUDE.md suggestions:}
+CLAUDE.md: {applied}/{total} suggestions applied
 
 Active tasks remaining: {N}
 
-Repository metrics updated:
-- todo_count: {N}
-- fixme_count: {N}
-- build_errors: {N}
-- last_assessed: {timestamp}
-
-Archives: specs/archive/
+Next Steps:
+1. Review archive at specs/archive/
+2. Run /review for codebase analysis
 ```
 
-If no orphans were tracked (either none found or user skipped):
-- Omit the "Orphaned directories tracked" section
+**Section Inclusion Rules:**
 
-If no misplaced directories were moved (either none found or user skipped):
-- Omit the "Misplaced directories moved" section
+| Section | Show When |
+|---------|-----------|
+| Tasks | Always (with counts) |
+| Directories | directories_moved > 0 |
+| Cleanup | orphans_tracked > 0 OR misplaced_moved > 0 |
+| Roadmap | roadmap items updated |
+| CLAUDE.md | claudemd_suggestions processed |
 
 If no roadmap items were updated (no matches found in Step 3.5):
 - Omit the "Roadmap updated" section

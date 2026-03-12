@@ -1,6 +1,6 @@
 ---
 description: Create, recover, divide, sync, or abandon tasks
-allowed-tools: Read(specs/*), Edit(specs/TODO.md), Bash(jq:*), Bash(git:*), Bash(mv:*), Bash(date:*), Bash(sed:*)
+allowed-tools: Read(specs/*), Edit(specs/TODO.md), Bash(jq:*), Bash(git:*), Bash(mv:*), Bash(date:*), Bash(sed:*), AskUserQuestion
 argument-hint: "description" | --recover N | --expand N | --sync | --abandon N | --review N
 model: claude-opus-4-5-20251101
 ---
@@ -444,26 +444,37 @@ For each incomplete phase, extract:
 
 ### Step 7: Interactive User Selection
 
-**Present options to user**:
+**Use AskUserQuestion with multiSelect**:
+```json
+{
+  "question": "Select follow-up tasks to create:",
+  "header": "Follow-up Tasks",
+  "multiSelect": true,
+  "options": [
+    {
+      "label": "Phase 2: implement_validation_rules",
+      "description": "Goal: {phase_goal} | Effort: {effort}"
+    },
+    {
+      "label": "Phase 3: add_error_reporting",
+      "description": "Goal: {phase_goal} | Effort: {effort}"
+    }
+  ]
+}
 ```
-Found {N} incomplete phase(s) in task #{task_number}.
 
-Suggested follow-up tasks:
-  [1] Complete phase 2 of task 597: implement_validation_rules
-  [2] Complete phase 3 of task 597: add_error_reporting
-
-Options:
-  - Enter numbers to create (e.g., "1,2" or "1")
-  - "all" to create all suggested tasks
-  - "none" to skip task creation
-
-Your selection:
+**For >20 incomplete phases**, add "Select all" option:
+```json
+{
+  "label": "Select all",
+  "description": "Create tasks for all {N} incomplete phases"
+}
 ```
 
-**Parse user selection**:
-- Numbers → Create those specific tasks
-- "all" → Create all suggested tasks
-- "none" → Exit without creating tasks
+**Selection handling**:
+- Selected options → Create those specific tasks
+- Empty selection → Exit without creating tasks (no separate "none" option needed)
+- "Select all" selected → Create all suggested tasks
 
 ### Step 8: Create Selected Follow-up Tasks
 

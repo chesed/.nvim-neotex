@@ -129,44 +129,55 @@ The skill scans specified paths and displays findings:
 
 ### 2. Task Type Selection
 
-User selects which task types to create:
+User selects which task types to create via AskUserQuestion:
 
-```
-[Task Types]
-Which task types should be created?
-
-[ ] fix-it task (Combine 8 FIX:/NOTE: tags into single task)
-[ ] learn-it task (Update context from 3 NOTE: tags)
-[ ] TODO tasks (Create tasks for 7 TODO: items)
-[ ] Research tasks (Create research tasks for 2 QUESTION: items)
+```json
+{
+  "question": "Which task types should be created?",
+  "header": "Task Types",
+  "multiSelect": true,
+  "options": [
+    {"label": "fix-it task", "description": "Combine 8 FIX:/NOTE: tags into single task"},
+    {"label": "learn-it task", "description": "Update context from 3 NOTE: tags"},
+    {"label": "TODO tasks", "description": "Create tasks for 7 TODO: items"},
+    {"label": "Research tasks", "description": "Create research tasks for 2 QUESTION: items"}
+  ]
+}
 ```
 
 ### 3. TODO Item Selection
 
 If "TODO tasks" is selected, user picks individual items:
 
+```json
+{
+  "question": "Select TODO items to create as tasks:",
+  "header": "TODO Selection",
+  "multiSelect": true,
+  "options": [
+    {"label": "Add LSP configuration", "description": "nvim/lua/Layer1/Modal.lua:67"},
+    {"label": "Implement helper function", "description": "utils/helpers.lua:23"}
+  ]
+}
 ```
-[TODO Selection]
-Select TODO items to create as tasks:
 
-[ ] Add LSP configuration (nvim/lua/Layer1/Modal.lua:67)
-[ ] Implement helper function (utils/helpers.lua:23)
-...
-```
-
-For >20 TODO items, a "Select all" option is added.
+For >20 TODO items, add "Select all" option.
 
 ### 4. Topic Grouping (if 2+ TODOs)
 
 When multiple TODOs are selected, the command analyzes them for topics:
 
-```
-[TODO Topic Grouping]
-How should TODO items be grouped into tasks?
-
-( ) Accept suggested topic groups (Creates 2 grouped tasks: S5 Theorems (2 items), Utility Optimization (1 item))
-( ) Keep as separate tasks (Creates 3 individual tasks)
-( ) Create single combined task (Creates 1 task containing all 3 items)
+```json
+{
+  "question": "How should TODO items be grouped into tasks?",
+  "header": "Topic Grouping",
+  "multiSelect": false,
+  "options": [
+    {"label": "Accept suggested topic groups", "description": "Creates 2 grouped tasks: S5 Theorems (2), Utility Optimization (1)"},
+    {"label": "Keep as separate tasks", "description": "Creates 3 individual tasks"},
+    {"label": "Create single combined task", "description": "Creates 1 task containing all items"}
+  ]
+}
 ```
 
 ### 5. Task Creation
@@ -223,9 +234,9 @@ Selected tasks are created in TODO.md and state.json.
 
 ---
 
-**Next Steps**:
+Next Steps:
 1. Review tasks in TODO.md
-2. Run `/research 650` to begin
+2. Run /research 650 to begin
 3. Progress through /research -> /plan -> /implement cycle
 ```
 

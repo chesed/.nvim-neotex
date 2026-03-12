@@ -95,10 +95,10 @@ Commit failure is non-blocking (log and continue).
 ```
 Plan created for Task #{N}
 
-Plan: {artifact_path from skill result}
+Plan: specs/{NNN}_{SLUG}/plans/implementation-{NNN}.md
 
-Phases: {phase_count from metadata}
-Total estimated effort: {estimated_hours from metadata}
+Phases: {phase_count}
+Estimated effort: {estimated_hours}
 
 Status: [PLANNED]
 Next: /implement {N}

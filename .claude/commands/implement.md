@@ -187,7 +187,7 @@ Commit failure is non-blocking (log and continue).
 ```
 Implementation complete for Task #{N}
 
-Summary: {artifact_path from skill result}
+Summary: specs/{NNN}_{SLUG}/summaries/implementation-summary-{DATE}.md
 
 Phases completed: {phases_completed}/{phases_total}
 
@@ -202,7 +202,7 @@ Completed: Phases 1-{M}
 Remaining: Phase {M+1}
 
 Status: [IMPLEMENTING]
-Next: /implement {N} (will resume from Phase {M+1})
+Next: /implement {N}
 ```
 
 ## Error Handling
