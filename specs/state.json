@@ -5,10 +5,19 @@
     {
       "project_number": 191,
       "project_name": "typst_compilation_error_reporting",
-      "status": "not_started",
+      "status": "researched",
       "language": "neovim",
       "created": "2026-03-12T18:42:29Z",
-      "last_updated": "2026-03-12T18:42:29Z"
+      "last_updated": "2026-03-12T18:49:56Z",
+      "session_id": "sess_1773341023_19b2a6",
+      "researched": "2026-03-12T18:49:56Z",
+      "artifacts": [
+        {
+          "path": "specs/191_typst_compilation_error_reporting/reports/research-001.md",
+          "type": "research",
+          "summary": "Research report with implementation recommendations for capturing typst compilation errors and populating quickfix list"
+        }
+      ]
     },
     {
       "project_number": 190,

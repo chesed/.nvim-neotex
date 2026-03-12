@@ -209,14 +209,15 @@ end
 local typst_watch_job = nil
 
 local function typst_watch()
+  -- Toggle: stop if running
+  if typst_watch_job then
+    vim.fn.jobstop(typst_watch_job)
+    return
+  end
+
   local main_file = detect_main_file()
   local main_filename = vim.fn.fnamemodify(main_file, ":t")
   local root = detect_project_root(main_file)
-
-  -- Stop existing watch if running
-  if typst_watch_job then
-    vim.fn.jobstop(typst_watch_job)
-  end
 
   local cmd = { "typst", "watch" }
   if root then
