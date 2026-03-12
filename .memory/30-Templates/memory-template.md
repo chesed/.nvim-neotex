@@ -1,9 +1,10 @@
 ---
-id: MEM-{{date}}-{{sequence}}
 title: "{{title}}"
-date: {{date}}
+created: {{date}}
 tags: {{tags}}
+topic: "{{topic}}"
 source: "{{source}}"
+modified: {{last_updated}}
 ---
 
 # {{title}}
