@@ -178,13 +178,37 @@ if ok_surround then
   })
 end
 
+-- Parse typst short diagnostic format: file:line:col: level: message
+-- Example: chapters/foo.typ:10:5: error: undefined variable
+local function parse_typst_error(line, project_root)
+  local file, lnum, col, level, msg = line:match("^(.+):(%d+):(%d+): (%w+): (.+)$")
+  if file and lnum then
+    -- Make path absolute if relative
+    local abs_file = file
+    if not file:match("^/") and project_root then
+      abs_file = project_root .. "/" .. file
+    elseif not file:match("^/") then
+      abs_file = vim.fn.getcwd() .. "/" .. file
+    end
+
+    return {
+      filename = abs_file,
+      lnum = tonumber(lnum),
+      col = tonumber(col),
+      type = level == "error" and "E" or (level == "warning" and "W" or "I"),
+      text = msg,
+    }
+  end
+  return nil
+end
+
 -- Helper functions for Typst operations
 local function typst_compile()
   local main_file = detect_main_file()
   local main_filename = vim.fn.fnamemodify(main_file, ":t")
   local root = detect_project_root(main_file)
 
-  local cmd = { "typst", "compile" }
+  local cmd = { "typst", "compile", "--diagnostic-format", "short" }
   if root then
     table.insert(cmd, "--root")
     table.insert(cmd, root)
@@ -194,13 +218,54 @@ local function typst_compile()
   local root_info = root and (" (root: " .. vim.fn.fnamemodify(root, ":t") .. ")") or ""
   vim.notify("Compiling " .. main_filename .. root_info .. "...", vim.log.levels.INFO)
 
+  local stderr_lines = {}
+
   vim.fn.jobstart(cmd, {
-    on_exit = function(_, exit_code)
-      if exit_code == 0 then
-        vim.notify("Compilation successful", vim.log.levels.INFO)
-      else
-        vim.notify("Compilation failed (exit code: " .. exit_code .. ")", vim.log.levels.ERROR)
+    stderr_buffered = true,
+    on_stderr = function(_, data)
+      if data then
+        for _, line in ipairs(data) do
+          if line and line ~= "" then
+            table.insert(stderr_lines, line)
+          end
+        end
       end
+    end,
+    on_exit = function(_, exit_code)
+      vim.schedule(function()
+        if exit_code == 0 then
+          -- Clear quickfix on success
+          vim.fn.setqflist({}, "r", { title = "Typst Errors", items = {} })
+          vim.notify("Compilation successful", vim.log.levels.INFO)
+        else
+          -- Parse stderr and populate quickfix
+          local qf_items = {}
+          for _, line in ipairs(stderr_lines) do
+            local item = parse_typst_error(line, root)
+            if item then
+              table.insert(qf_items, item)
+            end
+          end
+
+          if #qf_items > 0 then
+            vim.fn.setqflist({}, "r", { title = "Typst Errors", items = qf_items })
+            vim.cmd("copen")
+            vim.notify(
+              "Compilation failed: " .. #qf_items .. " error(s)",
+              vim.log.levels.ERROR
+            )
+          else
+            -- No parseable errors, show raw stderr
+            vim.fn.setqflist({}, "r", { title = "Typst Errors", items = {} })
+            local stderr_msg = table.concat(stderr_lines, "\n")
+            if stderr_msg ~= "" then
+              vim.notify("Compilation failed:\n" .. stderr_msg, vim.log.levels.ERROR)
+            else
+              vim.notify("Compilation failed (exit code: " .. exit_code .. ")", vim.log.levels.ERROR)
+            end
+          end
+        end
+      end)
     end,
   })
 end
@@ -278,6 +343,10 @@ local function show_diagnostics()
   vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
 end
 
+local function show_compilation_errors()
+  vim.cmd("copen")
+end
+
 local function tinymist_clear_cache()
   -- Delete stale compiled artifacts (same base name as main .typ file)
   local main_file = vim.b.typst_main_file or vim.fn.expand("%:p")
@@ -311,8 +380,9 @@ if ok_wk then
     { "<leader>l", group = "typst", icon = "󰬛", buffer = 0 },
     { "<leader>lC", tinymist_clear_cache, desc = "clear cache", icon = "󰃢", buffer = 0 },
     { "<leader>lc", typst_watch, desc = "compile (watch)", icon = "", buffer = 0 },
-    { "<leader>le", show_diagnostics, desc = "errors", icon = "", buffer = 0 },
+    { "<leader>le", show_diagnostics, desc = "errors (LSP)", icon = "", buffer = 0 },
     { "<leader>lf", typst_format, desc = "format", icon = "", buffer = 0 },
+    { "<leader>lq", show_compilation_errors, desc = "quickfix (compile)", icon = "", buffer = 0 },
     { "<leader>ll", "<cmd>TypstPreviewToggle<CR>", desc = "live preview (web)", icon = "", buffer = 0 },
     { "<leader>lp", "<cmd>TypstPreview<CR>", desc = "preview (web)", icon = "", buffer = 0 },
     { "<leader>lP", pin_main_file, desc = "pin main file", icon = "", buffer = 0 },
