@@ -1,10 +1,20 @@
 ---
-next_project_number: 195
+next_project_number: 196
 ---
 
 # TODO
 
 ## Tasks
+
+### 195. Standardize artifact naming convention with MM_padded_slug format
+- **Effort**: 4-6 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: When artifacts are created for tasks with OpenCode, they are named such as `/home/benjamin/Projects/Logos/Theory/specs/OC_286_research_n_place_predicate_church_style_systems/reports/research-286.md` which is not correct. Instead, they should use a padded `MM_{short-slug}.md` where the short slug indicates the research topic such as `01_n-place-predicates.md`. Something similar should be done for plans and summaries. Review all commands/skills/agents/rules/context-files/etc that require revision to consistently impose this convention throughout the opencode agent system.
+
+---
 
 ### OC_194. Standardize OpenCode task naming consistency
 - **Effort**: 2-3 hours
