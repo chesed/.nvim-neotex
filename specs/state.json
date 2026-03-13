@@ -14,10 +14,10 @@
     {
       "project_number": 194,
       "project_name": "standardize_opencode_task_naming_consistency",
-      "status": "researched",
+      "status": "planning",
       "language": "meta",
       "created": "2026-03-13T16:59:19Z",
-      "last_updated": "2026-03-13T17:22:50Z",
+      "last_updated": "2026-03-13T17:24:44Z",
       "artifacts": [
         {
           "path": "specs/OC_194_standardize_opencode_task_naming_consistency/reports/research-001.md",
@@ -31,24 +31,32 @@
         }
       ],
       "researching": "2026-03-13T17:00:20Z",
-      "researched": "2026-03-13T17:03:50Z"
+      "researched": "2026-03-13T17:03:50Z",
+      "planning": "2026-03-13T17:24:44Z"
     },
     {
       "project_number": 193,
       "project_name": "set_default_opencode_model_to_kimi_k2_5_opencode_go",
-      "status": "researched",
+      "status": "planned",
       "language": "general",
       "created": "2026-03-13T16:56:02Z",
-      "last_updated": "2026-03-13T17:18:26Z",
+      "last_updated": "2026-03-13T17:27:04Z",
       "artifacts": [
         {
           "path": "specs/193_set_default_opencode_model_to_kimi_k2_5_opencode_go/reports/research-193.md",
           "type": "report",
           "summary": "Research report identifying the exact location and change needed to switch default opencode model from Kimi K2.5 OpenCode Zen to Kimi K2.5 OpenCode Go"
+        },
+        {
+          "path": "specs/193_set_default_opencode_model_to_kimi_k2_5_opencode_go/plans/implementation-001.md",
+          "type": "plan",
+          "summary": "2-phase implementation plan for changing opencode default model from Kimi K2.5 OpenCode Zen to Kimi K2.5 OpenCode Go"
         }
       ],
       "researching": "2026-03-13T16:59:19Z",
-      "researched": "2026-03-13T17:18:26Z"
+      "researched": "2026-03-13T17:18:26Z",
+      "planning": "2026-03-13T17:25:10Z",
+      "planned": "2026-03-13T17:27:04Z"
     },
     {
       "project_number": 192,

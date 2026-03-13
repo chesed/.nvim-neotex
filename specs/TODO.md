@@ -18,7 +18,7 @@ next_project_number: 196
 
 ### OC_194. Standardize OpenCode task naming consistency
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNING]
 - **Research Started**: 2026-03-13
 - **Research Completed**: 2026-03-13
 - **Language**: meta
@@ -31,12 +31,15 @@ next_project_number: 196
 
 ### 193. Set default opencode model to Kimi K2.5 OpenCode Go
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-13
 - **Research Completed**: 2026-03-13
+- **Planning Started**: 2026-03-13
+- **Planning Completed**: 2026-03-13
 - **Language**: general
 - **Dependencies**: None
 - **Research**: [research-193.md](193_set_default_opencode_model_to_kimi_k2_5_opencode_go/reports/research-193.md)
+- **Plan**: [implementation-001.md](193_set_default_opencode_model_to_kimi_k2_5_opencode_go/plans/implementation-001.md)
 
 **Description**: Configure opencode to always start with the model 'Kimi K2.5 OpenCode Go' instead of 'Kimi K2.5 OpenCode Zen' as it does currently. This requires finding where the default model is configured in the opencode system and updating it to use the preferred model.
 
