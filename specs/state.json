@@ -42,7 +42,7 @@
           "summary": "Research report identifying 28 files with old naming conventions across 6 priority categories"
         },
         {
-          "path": "specs/199_complete_summary_naming_migration_fix_validation_globs/plans/02_naming-convention-migration.md",
+          "path": "specs/199_complete_summary_naming_migration_fix_validation_globs/plans/01_naming-convention-migration.md",
           "type": "plan",
           "summary": "7-phase implementation plan for completing artifact naming convention migration"
         }

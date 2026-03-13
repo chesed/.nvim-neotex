@@ -32,7 +32,7 @@ next_project_number: 201
 - **Planning Started**: 2026-03-13
 - **Planning Completed**: 2026-03-13
 - **Research**: [01_naming-migration-gaps.md](199_complete_summary_naming_migration_fix_validation_globs/reports/01_naming-migration-gaps.md)
-- **Plan**: [02_naming-convention-migration.md](199_complete_summary_naming_migration_fix_validation_globs/plans/02_naming-convention-migration.md)
+- **Plan**: [01_naming-convention-migration.md](199_complete_summary_naming_migration_fix_validation_globs/plans/01_naming-convention-migration.md)
 
 **Description**: Complete the artifact naming convention migration left incomplete by task 198. Issues: (1) validation.md has broken glob patterns that fail to match new-convention artifacts (research-*.md, implementation-*.md, implementation-summary-*.md globs miss MM_{short-slug}.md format), (2) implementation-workflow.md still prescribes old implementation-summary-{DATE}.md format, (3) command-output.md has internally inconsistent examples mixing old/new conventions, (4) return-metadata-file.md still uses old summary paths in examples, (5) 5+ extension agents still reference old implementation-summary-{DATE}.md, (6) 3 files with research-NNN/implementation-NNN patterns were missed (anti-stop-patterns.md, knowledge-capture-usage.md), (7) plan file 02_complete-naming-migration.md status not updated to COMPLETED.
 

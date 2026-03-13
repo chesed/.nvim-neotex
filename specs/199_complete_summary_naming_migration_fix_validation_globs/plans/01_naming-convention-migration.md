@@ -5,13 +5,15 @@
 - **Effort**: 2-3 hours
 - **Dependencies**: Task #198 (predecessor)
 - **Research Inputs**: [01_naming-migration-gaps.md](../reports/01_naming-migration-gaps.md)
-- **Artifacts**: plans/02_naming-convention-migration.md (this file)
+- **Artifacts**: plans/01_naming-convention-migration.md (this file)
 - **Standards**: plan-format.md, status-markers.md, artifact-management.md, tasks.md
 - **Type**: meta
 
 ## Overview
 
 Complete the artifact naming convention migration left incomplete by task 198. The research report identified 13 files across 6 categories requiring updates. The primary issues are broken glob patterns in validation.md that fail to match new-convention artifacts (MM_{short-slug}.md format), outdated examples in extension agents/skills, and inconsistent format specification examples.
+
+Additionally, the artifact-formats.md rule has an ambiguous example that implies global cross-type sequencing (01, 02, 03 across reports/plans/summaries), while the text describes per-type independent sequences. This plan also clarifies that documentation and fixes examples to use per-type numbering (reports start at 01, plans start at 01, summaries start at 01 independently).
 
 ### Research Integration
 
@@ -26,9 +28,10 @@ Key findings from research report:
 ## Goals & Non-Goals
 
 **Goals**:
+- Clarify artifact-formats.md to specify separate per-type sequences (reports/plans/summaries each start at 01)
 - Fix validation.md glob patterns to match MM_{short-slug}.md format artifacts
 - Update plan/summary discovery patterns in task.md and update-plan-status.sh
-- Update all extension agent/skill example outputs to use new naming convention
+- Update all extension agent/skill example outputs to use new naming convention with correct per-type numbering
 - Fix format specification examples for consistency
 - Update remaining old pattern examples in documentation
 - Mark task 198 plan as COMPLETED for status consistency
@@ -48,7 +51,41 @@ Key findings from research report:
 
 ## Implementation Phases
 
-### Phase 1: Fix Critical Validation Globs [NOT STARTED]
+### Phase 1: Clarify Artifact Naming Convention Documentation [NOT STARTED]
+
+**Goal**: Fix the ambiguous example in artifact-formats.md that implies global cross-type sequencing
+
+**Problem**: The current example shows:
+```
+- 01_research-findings.md
+- 02_design-approach.md
+- 03_execution-summary.md
+```
+This looks like a single global sequence, but the text says "Reports: 01, 02, 03... Plans: 01, 02, 03..." implying separate sequences.
+
+**Tasks**:
+- [ ] Read `.claude/rules/artifact-formats.md` to confirm exact current wording
+- [ ] Update the "Per-Task Sequential Numbering" section example to clearly show separate per-type sequences:
+  ```
+  - reports/01_research-findings.md   (reports sequence starts at 01)
+  - reports/02_supplemental-analysis.md  (second report, increments independently)
+  - plans/01_implementation-plan.md   (plans sequence starts at 01, independent of reports)
+  - plans/02_revised-plan.md          (second plan version)
+  - summaries/01_execution-summary.md (summaries sequence starts at 01, independent)
+  ```
+- [ ] Update the "Summaries" bullet to remove "highest number + 1" wording which implies global numbering
+
+**Timing**: 15 minutes
+
+**Files to modify**:
+- `.claude/rules/artifact-formats.md` (Per-Task Sequential Numbering section)
+
+**Verification**:
+- Section clearly documents independent sequences per artifact type
+
+---
+
+### Phase 2: Fix Critical Validation Globs [NOT STARTED]
 
 **Goal**: Update validation.md glob patterns to match new naming convention
 
@@ -65,11 +102,11 @@ Key findings from research report:
 - `.claude/context/core/validation.md` (lines 35-37)
 
 **Verification**:
-- Glob patterns match example artifacts: `01_research-findings.md`, `02_implementation-plan.md`, `03_execution-summary.md`
+- Glob patterns match example artifacts: `01_research-findings.md`, `01_implementation-plan.md`, `01_execution-summary.md`
 
 ---
 
-### Phase 2: Update Plan/Summary Discovery Scripts [NOT STARTED]
+### Phase 3: Update Plan/Summary Discovery Scripts [NOT STARTED]
 
 **Goal**: Fix plan file discovery patterns in scripts and commands
 
@@ -91,19 +128,17 @@ Key findings from research report:
 
 ---
 
-### Phase 3: Update Extension Agent Examples [NOT STARTED]
+### Phase 4: Update Extension Agent Examples [NOT STARTED]
 
-**Goal**: Update example return text in extension implementation agents to use new naming format
+**Goal**: Update example return text in extension implementation agents to use new naming format with per-type numbering
 
 **Tasks**:
 - [ ] Update `.claude/extensions/web/agents/web-implementation-agent.md`:
-  - Line 347: `implementation-summary-20260205.md` -> `03_about-page-summary.md`
-  - Line 791: `implementation-summary-20260205.md` -> `03_about-page-summary.md`
-  - Line 802: `implementation-summary-20260205.md` -> `03_about-page-summary.md`
+  - Lines 347, 791, 802: `implementation-summary-20260205.md` -> `01_about-page-summary.md`
 - [ ] Update `.claude/extensions/nvim/agents/neovim-implementation-agent.md`:
-  - Line 282: `implementation-summary-20260202.md` -> `03_lsp-config-summary.md`
+  - Line 282: `implementation-summary-20260202.md` -> `01_lsp-config-summary.md`
 - [ ] Update `.claude/extensions/nix/agents/nix-implementation-agent.md`:
-  - Line 302: `implementation-summary-20260203.md` -> `03_nix-config-summary.md`
+  - Line 302: `implementation-summary-20260203.md` -> `01_nix-config-summary.md`
 
 **Timing**: 30 minutes
 
@@ -117,17 +152,15 @@ Key findings from research report:
 
 ---
 
-### Phase 4: Update Extension Skill Examples [NOT STARTED]
+### Phase 5: Update Extension Skill Examples [NOT STARTED]
 
-**Goal**: Update example return text in extension skills to use new naming format
+**Goal**: Update example return text in extension skills to use new naming format with per-type numbering
 
 **Tasks**:
 - [ ] Update `.claude/extensions/nix/skills/skill-nix-implementation/SKILL.md`:
-  - Line 335: `implementation-summary-20260203.md` -> `03_nix-module-summary.md`
-  - Line 345: `implementation-summary-20260203.md` -> `03_nix-module-summary.md`
+  - Lines 335, 345: `implementation-summary-20260203.md` -> `01_nix-module-summary.md`
 - [ ] Update `.claude/extensions/web/skills/skill-web-implementation/SKILL.md`:
-  - Line 336: `implementation-summary-20260205.md` -> `03_web-feature-summary.md`
-  - Line 346: `implementation-summary-20260205.md` -> `03_web-feature-summary.md`
+  - Lines 336, 346: `implementation-summary-20260205.md` -> `01_web-feature-summary.md`
 
 **Timing**: 20 minutes
 
@@ -140,20 +173,15 @@ Key findings from research report:
 
 ---
 
-### Phase 5: Update Format Specification Examples [NOT STARTED]
+### Phase 6: Update Format Specification Examples [NOT STARTED]
 
-**Goal**: Fix examples in format documentation for consistency with new convention
+**Goal**: Fix examples in format documentation for consistency with new convention and per-type numbering
 
 **Tasks**:
 - [ ] Update `.claude/context/core/formats/command-output.md`:
-  - Line 103: `implementation-summary-20260312.md` -> `03_feature-summary.md`
-  - Line 269: `implementation-summary-20260312.md` -> `03_feature-summary.md`
-  - Line 343: `implementation-summary-20260312.md` -> `03_feature-summary.md`
+  - Lines 103, 269, 343: `implementation-summary-20260312.md` -> `01_feature-summary.md`
 - [ ] Update `.claude/context/core/formats/return-metadata-file.md`:
-  - Line 255: `implementation-summary-20260118.md` -> `03_lsp-config-summary.md`
-  - Line 289: `implementation-summary-20260118.md` -> `03_lsp-config-summary.md`
-  - Line 323: `implementation-summary-20260118.md` -> `03_lsp-config-summary.md`
-  - Line 357: `implementation-summary-20260118.md` -> `03_lsp-config-summary.md`
+  - Lines 255, 289, 323, 357: `implementation-summary-20260118.md` -> `01_lsp-config-summary.md`
 
 **Timing**: 25 minutes
 
@@ -166,17 +194,17 @@ Key findings from research report:
 
 ---
 
-### Phase 6: Update Pattern Examples and Task 198 Status [NOT STARTED]
+### Phase 7: Update Pattern Examples and Task 198 Status [NOT STARTED]
 
 **Goal**: Clean up remaining old pattern references and fix task 198 plan status
 
 **Tasks**:
 - [ ] Update `.claude/context/core/patterns/anti-stop-patterns.md`:
-  - Line 164: `plans/implementation-002.md` -> `plans/02_task-plan.md`
+  - Line 164: `plans/implementation-002.md` -> `plans/01_task-plan.md`
 - [ ] Update `.claude/extensions/memory/context/project/memory/knowledge-capture-usage.md`:
-  - Line 106: `reports/research-002.md` -> `reports/02_research-findings.md`
-  - Line 107: `plans/implementation-003.md` -> `plans/03_implementation-plan.md`
-  - Line 108: `summaries/implementation-summary-20260305.md` -> `summaries/04_capture-summary.md`
+  - Line 106: `reports/research-002.md` -> `reports/01_research-findings.md`
+  - Line 107: `plans/implementation-003.md` -> `plans/01_implementation-plan.md`
+  - Line 108: `summaries/implementation-summary-20260305.md` -> `summaries/01_capture-summary.md`
 - [ ] Update `specs/198_review_recent_claude_commits_consistency/plans/02_complete-naming-migration.md`:
   - Line 4: `[NOT STARTED]` -> `[COMPLETED]`
 
@@ -193,7 +221,7 @@ Key findings from research report:
 
 ---
 
-### Phase 7: Final Verification [NOT STARTED]
+### Phase 8: Final Verification [NOT STARTED]
 
 **Goal**: Verify all old naming patterns have been migrated
 
@@ -221,8 +249,8 @@ Key findings from research report:
 
 ## Artifacts & Outputs
 
-- plans/02_naming-convention-migration.md (this file)
-- summaries/03_naming-migration-summary.md (on completion)
+- plans/01_naming-convention-migration.md (this file)
+- summaries/01_naming-migration-summary.md (on completion)
 
 ## Rollback/Contingency
 
