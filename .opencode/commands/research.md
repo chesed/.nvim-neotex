@@ -44,10 +44,11 @@ Directory: `specs/OC_NNN_<project_name>/`
 
 **CRITICAL**: Commands must execute preflight BEFORE delegating to agents. The skill tool only loads skill definitions but does NOT execute workflows.
 
-**Display header**:
-```
-[Researching] Task OC_{N}: {project_name}
-```
+**Display header** — output this line immediately using the actual task number and project name extracted in step 1:
+
+[Researching] Task OC_N: project_name
+
+(e.g. if N=200 and project_name="my_task", output: `[Researching] Task OC_200: my_task`)
 
 **Update state.json to researching**:
 ```bash

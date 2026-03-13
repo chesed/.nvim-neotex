@@ -52,10 +52,11 @@ Read the plan to understand all phases and their current status (`[NOT STARTED]`
 
 **CRITICAL**: Commands must execute preflight BEFORE delegating to agents. The skill tool only loads skill definitions but does NOT execute workflows.
 
-**Display header**:
-```
-[Implementing] Task OC_{N}: {project_name}
-```
+**Display header** — output this line immediately using the actual task number and project name extracted in step 1:
+
+[Implementing] Task OC_N: project_name
+
+(e.g. if N=200 and project_name="my_task", output: `[Implementing] Task OC_200: my_task`)
 
 **Update state.json to implementing**:
 ```bash

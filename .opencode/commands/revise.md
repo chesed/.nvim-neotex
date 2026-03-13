@@ -60,11 +60,11 @@ description: Create new version of implementation plan, or update task descripti
          - description=$(echo "$task_data" | jq -r '.description // ""')
          - priority=$(echo "$task_data" | jq -r '.priority')
 
-      5. Display header:
-         ```
-         [Revising] Task OC_{N}: {project_name}
-         ```
-         Where {N} is the stripped task number and {project_name} is from step 4.
+      5. Display header — output this line immediately using the actual values from steps 3-4:
+
+         [Revising] Task OC_N: project_name
+
+         (e.g. if N=200 and project_name="my_task", output: `[Revising] Task OC_200: my_task`)
 
       6. Check for existing implementation plan
          - Find latest plan: `specs/OC_{NNN}_{SLUG}/plans/implementation-{LATEST}.md`
