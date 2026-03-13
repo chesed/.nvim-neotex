@@ -37,10 +37,10 @@
     {
       "project_number": 197,
       "project_name": "fix_workflow_command_task_number_header_display",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-13T17:59:57Z",
-      "last_updated": "2026-03-13T18:32:14Z",
+      "last_updated": "2026-03-13T18:35:33Z",
       "artifacts": [
         {
           "path": "specs/OC_197_fix_workflow_command_task_number_header_display/reports/research-001.md",
@@ -48,20 +48,20 @@
           "summary": "Research report identifying missing Display header steps in workflow command preflight sections as root cause of OC_NNN placeholder bug"
         },
         {
-          "path": "specs/OC_197_fix_workflow_command_task_number_header_display/plans/implementation-001.md",
-          "type": "plan",
-          "summary": "4-phase implementation plan for fixing workflow command header display bug, 45 minutes estimated"
-        },
-        {
           "path": "specs/OC_197_fix_workflow_command_task_number_header_display/reports/02_opencode-best-practices.md",
           "type": "report",
           "summary": "Supplemental research on OpenCode best practices confirming implementation plan approach is correct"
+        },
+        {
+          "path": "specs/OC_197_fix_workflow_command_task_number_header_display/plans/02_revised-header-fix.md",
+          "type": "plan",
+          "summary": "Revised 4-phase plan incorporating CLI UX best practices research, header display FIRST pattern"
         }
       ],
       "researching": "2026-03-13T18:02:28Z",
       "researched": "2026-03-13T18:32:14Z",
       "planning": "2026-03-13T18:12:53Z",
-      "planned": "2026-03-13T18:14:40Z",
+      "planned": "2026-03-13T18:35:33Z",
       "session_id": "sess_1773426485_2050c1"
     },
     {
