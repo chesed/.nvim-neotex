@@ -5,11 +5,19 @@
     {
       "project_number": 202,
       "project_name": "debounce_tts_session_idle",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-13T19:34:58Z",
-      "last_updated": "2026-03-13T19:36:50Z",
-      "session_id": "sess_1741894540_a3c8f2"
+      "last_updated": "2026-03-13T19:40:09Z",
+      "session_id": "sess_1741894540_a3c8f2",
+      "researched": "2026-03-13T19:40:09Z",
+      "artifacts": [
+        {
+          "path": "specs/OC_202_debounce_tts_session_idle/reports/01_tts-debounce-research.md",
+          "type": "research",
+          "summary": "Research report documenting current TTS implementation, opencode event system, and recommended trailing-edge debounce pattern"
+        }
+      ]
     },
     {
       "project_number": 201,

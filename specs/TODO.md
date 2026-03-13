@@ -8,9 +8,12 @@ next_project_number: 203
 
 ### 202. Implement trailing-edge debounce for TTS session.idle notifications
 - **Effort**: 1-2 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Language**: meta
 - **Dependencies**: None
+- **Research Started**: 2026-03-13
+- **Research Completed**: 2026-03-13
+- **Research**: [01_tts-debounce-research.md](OC_202_debounce_tts_session_idle/reports/01_tts-debounce-research.md)
 
 **Description**: Implement trailing-edge delay for TTS notifications to prevent premature announcements during sub-agent operations. The problem is session.idle fires for sub-agents mid-operation (e.g., each agent step briefly goes idle before the next starts). The fix is a trailing-edge delay: when session.idle fires, wait 1.5 seconds and cancel if session.status:busy fires again before the timer expires.
 
