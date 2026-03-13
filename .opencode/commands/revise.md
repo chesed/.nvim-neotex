@@ -59,8 +59,14 @@ description: Create new version of implementation plan, or update task descripti
          - project_name=$(echo "$task_data" | jq -r '.project_name')
          - description=$(echo "$task_data" | jq -r '.description // ""')
          - priority=$(echo "$task_data" | jq -r '.priority')
-       
-      5. Check for existing implementation plan
+
+      5. Display header:
+         ```
+         [Revising] Task OC_{N}: {project_name}
+         ```
+         Where {N} is the stripped task number and {project_name} is from step 4.
+
+      6. Check for existing implementation plan
          - Find latest plan: `specs/OC_{NNN}_{SLUG}/plans/implementation-{LATEST}.md`
          - If plan exists:
               plan_exists=true
@@ -68,8 +74,8 @@ description: Create new version of implementation plan, or update task descripti
          - Else:
               plan_exists=false
               plan_path=""
-       
-      6. Validate task status allows revision
+
+      7. Validate task status allows revision
          case "$status" in
            "completed"|"implemented")
              if [ -n "$reason" ]; then
