@@ -2,6 +2,14 @@
 description: Execute implementation with resume support
 ---
 
+**FIRST**: The task number is the first token of $ARGUMENTS (strip `OC_` prefix if present to get integer N). Output this as your very first line before doing anything else:
+
+[Implementing] Task OC_N: project_name
+
+Where N is the integer task number from $ARGUMENTS and project_name comes from state.json after lookup. If project_name is not yet known, output just `[Implementing] Task OC_N` and update once known.
+
+---
+
 Execute the implementation plan for the given task, phase by phase.
 
 **Input**: $ARGUMENTS

@@ -2,6 +2,14 @@
 description: Create new version of implementation plan, or update task description if no plan exists
 ---
 
+**FIRST**: The task number is the first token of $ARGUMENTS (strip `OC_` prefix if present to get integer N). Output this as your very first line before doing anything else:
+
+[Revising] Task OC_N: project_name
+
+Where N is the integer task number from $ARGUMENTS and project_name comes from state.json after lookup. If project_name is not yet known, output just `[Revising] Task OC_N` and update once known.
+
+---
+
 **Task Input (required):** $ARGUMENTS
 
 <context>
