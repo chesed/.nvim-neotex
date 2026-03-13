@@ -206,17 +206,17 @@ remove_index_entries() {
   jq --argjson paths "$path_filter" '
     .entries = [.entries[] | select(.path as $p | $paths | index($p) | not)] |
     .generated = (now | strftime("%Y-%m-%dT%H:%M:%SZ"))
-  ' "$main_index" > /tmp/cleaned-index.json
+  ' "$main_index" > specs/tmp/cleaned-index.json
 
   # Validate JSON
-  if ! jq empty /tmp/cleaned-index.json 2>/dev/null; then
+  if ! jq empty specs/tmp/cleaned-index.json 2>/dev/null; then
     log_error "Cleaned index.json is invalid JSON, restoring backup"
     mv "$main_index.bak" "$main_index"
     return 1
   fi
 
   # Move cleaned index into place
-  mv /tmp/cleaned-index.json "$main_index"
+  mv specs/tmp/cleaned-index.json "$main_index"
   rm -f "$main_index.bak"
 
   local entry_count

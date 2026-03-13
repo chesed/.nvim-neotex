@@ -212,7 +212,7 @@ merge_index_entries() {
         line_count: (.line_count // 100),
         load_when: .load_when
       })) | .generated = (now | strftime("%Y-%m-%dT%H:%M:%SZ"))
-    ' "$main_index" > /tmp/merged-index.json
+    ' "$main_index" > specs/tmp/merged-index.json
   else
     # Object with entries array format (z3, python, formal)
     jq --slurpfile ext "$index_file" --arg ext_name "$EXT_NAME" '
@@ -229,11 +229,11 @@ merge_index_entries() {
           languages: (.load_when.languages // [])
         }
       })) | .generated = (now | strftime("%Y-%m-%dT%H:%M:%SZ"))
-    ' "$main_index" > /tmp/merged-index.json
+    ' "$main_index" > specs/tmp/merged-index.json
   fi
 
   # Validate JSON
-  if ! jq empty /tmp/merged-index.json 2>/dev/null; then
+  if ! jq empty specs/tmp/merged-index.json 2>/dev/null; then
     log_error "Merged index.json is invalid JSON, restoring backup"
     mv "$main_index.bak" "$main_index"
     return 1
@@ -241,7 +241,7 @@ merge_index_entries() {
 
   # Check for duplicates
   local new_paths
-  new_paths=$(jq -r '.entries[].path' /tmp/merged-index.json | sort)
+  new_paths=$(jq -r '.entries[].path' specs/tmp/merged-index.json | sort)
   local duplicates
   duplicates=$(echo "$new_paths" | uniq -d)
 
@@ -257,12 +257,12 @@ merge_index_entries() {
         .seen[$entry.path] = true | .result += [$entry]
       end
     ) | {version: .version, generated: .generated, entries: .result}' \
-      /tmp/merged-index.json > /tmp/deduped-index.json
-    mv /tmp/deduped-index.json /tmp/merged-index.json
+      specs/tmp/merged-index.json > specs/tmp/deduped-index.json
+    mv specs/tmp/deduped-index.json specs/tmp/merged-index.json
   fi
 
   # Move merged index into place
-  mv /tmp/merged-index.json "$main_index"
+  mv specs/tmp/merged-index.json "$main_index"
   rm -f "$main_index.bak"
 
   local entry_count

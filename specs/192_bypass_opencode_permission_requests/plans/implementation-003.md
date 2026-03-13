@@ -142,7 +142,7 @@ Critical finding: Claude Code and opencode are separate systems. The `--dangerou
 
 ---
 
-### Phase 4: Migrate Scripts [NOT STARTED]
+### Phase 4: Migrate Scripts [COMPLETED]
 
 **Goal**: Update postflight scripts and other shell scripts
 
