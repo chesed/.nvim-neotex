@@ -139,9 +139,9 @@ When $ARGUMENTS contains a description (no flags).
         "created": $ts,
         "last_updated": $ts
       }] + .active_projects' \
-     specs/state.json > /tmp/state.json && \
-     mv /tmp/state.json specs/state.json
-   ```
+     specs/state.json > specs/tmp/state.json && \
+     mv specs/tmp/state.json specs/state.json
+    ```
 
 7. **Update TODO.md** (TWO parts - frontmatter AND entry):
 
@@ -206,14 +206,14 @@ Parse task ranges after --recover (e.g., "343-345", "337, 343"):
    # Step 1: Remove from archive using del() instead of map(select(!=))
    jq --arg num "$task_number" \
      'del(.completed_projects[] | select(.project_number == ($num | tonumber)))' \
-     specs/archive/state.json > /tmp/archive.json && \
-     mv /tmp/archive.json specs/archive/state.json
+    specs/archive/state.json > specs/tmp/archive.json && \
+    mv specs/tmp/archive.json specs/archive/state.json
 
    # Step 2: Add to active with status reset
-   jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" --argjson task "$task_data" \
-     '.active_projects = [$task | .status = "not_started" | .last_updated = $ts] + .active_projects' \
-     specs/state.json > /tmp/state.json && \
-     mv /tmp/state.json specs/state.json
+    jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" --argjson task "$task_data" \
+      '.active_projects = [$task | .status = "not_started" | .last_updated = $ts] + .active_projects' \
+      specs/state.json > specs/tmp/state.json && \
+      mv specs/tmp/state.json specs/state.json
    ```
 
    **Move project directory from archive** (handle both legacy unpadded and new padded formats):
@@ -261,11 +261,10 @@ Parse task number and optional prompt:
        status: "expanded",
        subtasks: [list_of_subtask_numbers],
        last_updated: $ts
-     }' specs/state.json > /tmp/state.json && \
-     mv /tmp/state.json specs/state.json
-   ```
+      }' specs/state.json > specs/tmp/state.json && \
+      mv specs/tmp/state.json specs/state.json
 
-   **Also update TODO.md**: Change task status to `[EXPANDED]`
+    **Also update TODO.md**: Change task status to `[EXPANDED]`
 
 5. Git commit: "task {N}: expand into subtasks"
 
@@ -501,8 +500,8 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
      "created": $ts,
      "last_updated": $ts
    }] + .active_projects' \
-  specs/state.json > /tmp/state.json && \
-  mv /tmp/state.json specs/state.json
+     specs/state.json > specs/tmp/state.json && \
+     mv specs/tmp/state.json specs/state.json
 
 # Update TODO.md (add entry and update frontmatter)
 ```
@@ -580,13 +579,13 @@ Parse task ranges:
      mv /tmp/archive.json specs/archive/state.json
 
    # Step 2: Remove from active using del() instead of map(select(!=))
-   jq --arg num "$task_number" \
-     'del(.active_projects[] | select(.project_number == ($num | tonumber)))' \
-     specs/state.json > /tmp/state.json && \
-     mv /tmp/state.json specs/state.json
-   ```
+    jq --arg num "$task_number" \
+      'del(.active_projects[] | select(.project_number == ($num | tonumber)))' \
+      specs/state.json > specs/tmp/state.json && \
+      mv specs/tmp/state.json specs/state.json
+    ```
 
-   **Update TODO.md**: Remove the task entry (abandoned tasks should not appear in TODO.md)
+    **Update TODO.md**: Remove the task entry (abandoned tasks should not appear in TODO.md)
 
    **Move task directory to archive** (handle both legacy unpadded and new padded formats):
    ```bash

@@ -1,10 +1,20 @@
 ---
-next_project_number: 197
+next_project_number: 198
 ---
 
 # TODO
 
 ## Tasks
+
+### OC_197. Fix workflow command task number header display
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: When running workflow commands in opencode that have task numbers, the header does not always update to show the actual task number. When it does update, it shows generic placeholder 'OC_NNN' instead of the actual task number like 'OC_193'. This appears to be a display/UI bug in the workflow command output formatting. Investigate and fix the task number substitution in workflow command headers.
+
+---
 
 ### OC_196. Port wezterm tab integration features from .claude/ to .opencode/
 - **Effort**: 2-3 hours

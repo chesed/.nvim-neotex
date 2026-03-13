@@ -1,7 +1,16 @@
 {
   "version": "1.0.0",
-  "next_project_number": 197,
+  "next_project_number": 198,
   "active_projects": [
+    {
+      "project_number": 197,
+      "project_name": "fix_workflow_command_task_number_header_display",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-13T17:59:57Z",
+      "last_updated": "2026-03-13T17:59:57Z",
+      "artifacts": []
+    },
     {
       "project_number": 196,
       "project_name": "port_wezterm_tab_integration_from_claude_to_opencode",
