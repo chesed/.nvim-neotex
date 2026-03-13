@@ -1,14 +1,24 @@
 {
   "version": "1.0.0",
-  "next_project_number": 200,
+  "next_project_number": 201,
   "active_projects": [
+    {
+      "project_number": 200,
+      "project_name": "review_opencode_claude_agent_systems_feature_gaps",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-13T18:39:43Z",
+      "last_updated": "2026-03-13T18:39:43Z",
+      "artifacts": []
+    },
     {
       "project_number": 199,
       "project_name": "complete_summary_naming_migration_fix_validation_globs",
-      "status": "not_started",
+      "status": "researching",
       "language": "meta",
       "created": "2026-03-13T18:37:34Z",
-      "last_updated": "2026-03-13T18:37:34Z"
+      "last_updated": "2026-03-13T18:38:37Z",
+      "session_id": "sess_1773427098_3d4630"
     },
     {
       "project_number": 198,
@@ -45,10 +55,10 @@
     {
       "project_number": 197,
       "project_name": "fix_workflow_command_task_number_header_display",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-13T17:59:57Z",
-      "last_updated": "2026-03-13T18:35:33Z",
+      "last_updated": "2026-03-13T18:38:34Z",
       "artifacts": [
         {
           "path": "specs/OC_197_fix_workflow_command_task_number_header_display/reports/research-001.md",
@@ -70,7 +80,8 @@
       "researched": "2026-03-13T18:32:14Z",
       "planning": "2026-03-13T18:12:53Z",
       "planned": "2026-03-13T18:35:33Z",
-      "session_id": "sess_1773426485_2050c1"
+      "session_id": "sess_1773427089_d1d653",
+      "implementing": "2026-03-13T18:38:34Z"
     },
     {
       "project_number": 196,

@@ -1,16 +1,27 @@
 ---
-next_project_number: 200
+next_project_number: 201
 ---
 
 # TODO
 
 ## Tasks
 
-### 199. Complete summary naming migration and fix validation globs missed by task 198
-- **Effort**: 1-2 hours
+### OC_200. Review .opencode/ and .claude/ agent systems for feature gaps and improvements
+- **Effort**: 4-6 hours
 - **Status**: [NOT STARTED]
 - **Language**: meta
 - **Dependencies**: None
+
+**Description**: Review the .opencode/ and .claude/ agent systems to identify any feature gaps or other improvements to be made to their functionality or their documentation. This comprehensive review should examine both systems side-by-side, compare their capabilities, identify missing features in either system, assess documentation completeness, and propose specific improvements to enhance the overall agent system architecture and user experience.
+
+---
+
+### 199. Complete summary naming migration and fix validation globs missed by task 198
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHING]
+- **Language**: meta
+- **Dependencies**: None
+- **Research Started**: 2026-03-13
 
 **Description**: Complete the artifact naming convention migration left incomplete by task 198. Issues: (1) validation.md has broken glob patterns that fail to match new-convention artifacts (research-*.md, implementation-*.md, implementation-summary-*.md globs miss MM_{short-slug}.md format), (2) implementation-workflow.md still prescribes old implementation-summary-{DATE}.md format, (3) command-output.md has internally inconsistent examples mixing old/new conventions, (4) return-metadata-file.md still uses old summary paths in examples, (5) 5+ extension agents still reference old implementation-summary-{DATE}.md, (6) 3 files with research-NNN/implementation-NNN patterns were missed (anti-stop-patterns.md, knowledge-capture-usage.md), (7) plan file 02_complete-naming-migration.md status not updated to COMPLETED.
 
@@ -37,7 +48,7 @@ next_project_number: 200
 
 ### OC_197. Fix workflow command task number header display
 - **Effort**: 0.5-1 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
 - **Research Started**: 2026-03-13

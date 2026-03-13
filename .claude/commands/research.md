@@ -20,6 +20,11 @@ Conduct research for a task by delegating to the appropriate research skill/suba
 
 ### CHECKPOINT 1: GATE IN
 
+**Display header**:
+```
+[Researching] Task OC_{N}: {project_name}
+```
+
 1. **Generate Session ID**
    ```
    session_id = sess_{timestamp}_{random}

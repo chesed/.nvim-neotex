@@ -17,6 +17,11 @@ Create a phased implementation plan for a task by delegating to the planner skil
 
 ### CHECKPOINT 1: GATE IN
 
+**Display header**:
+```
+[Planning] Task OC_{N}: {project_name}
+```
+
 1. **Generate Session ID**
    ```
    session_id = sess_{timestamp}_{random}
