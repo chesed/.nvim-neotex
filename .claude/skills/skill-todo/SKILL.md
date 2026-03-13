@@ -341,7 +341,7 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
          d. Track orphan archival for CHANGE_LOG.md
          e. If no directory found, log warning:
             ```
-            Warning: TODO.md orphan OC_{N} has no directory in specs/
+            Warning: TODO.md orphan {N} has no directory in specs/
             Archive entry created but no files moved
             ```
     </process>
@@ -353,8 +353,8 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
       For each roadmap match:
       1. Skip if already annotated
       2. Apply appropriate annotation:
-         - Completed: `- [x] item *(Completed: Task OC_N, DATE)*`
-         - Abandoned: `- [ ] item *(Task OC_N abandoned: reason)*`
+         - Completed: `- [x] item *(Completed: Task {N}, DATE)*`
+         - Abandoned: `- [ ] item *(Task {N} abandoned: reason)*`
       3. Track changes: completed_annotated, abandoned_annotated, skipped
     </process>
   </stage>
@@ -394,7 +394,7 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
          ```markdown
          ### YYYY-MM-DD
          
-         **Task OC_{N}: {project_name}**
+         **Task {N}: {project_name}**
          - Status: {completed|abandoned}
          - Type: {meta|neovim|general|lean}
          - Summary: {completion_summary or description}
@@ -529,7 +529,7 @@ Each entry includes:
 
 ### YYYY-MM-DD
 
-**Task OC_{N}: {project_name}**
+**Task {N}: {project_name}**
 - Status: {completed|abandoned}
 - Type: {meta|neovim|general|lean}
 - Summary: {description}

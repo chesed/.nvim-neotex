@@ -19,7 +19,7 @@ Create a phased implementation plan for a task by delegating to the planner skil
 
 **Display header**:
 ```
-[Planning] Task OC_{N}: {project_name}
+[Planning] Task {N}: {project_name}
 ```
 
 1. **Generate Session ID**

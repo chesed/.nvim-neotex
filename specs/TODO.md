@@ -8,12 +8,13 @@ next_project_number: 204
 
 ### 203. Remove OC_ prefix from .claude/ task directory naming
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Research Started**: 2026-03-13
 - **Research Completed**: 2026-03-13
 - **Planning Started**: 2026-03-13
 - **Planning Completed**: 2026-03-13
+- **Implementation Started**: 2026-03-13
 - **Research**: [01_oc-prefix-removal.md](203_remove_oc_prefix_from_claude_task_directories/reports/01_oc-prefix-removal.md)
 - **Plan**: [02_implementation-plan.md](203_remove_oc_prefix_from_claude_task_directories/plans/02_implementation-plan.md)
 
@@ -296,13 +297,14 @@ next_project_number: 204
 ---
 
 ### 72. Fix himalaya sidebar help showing leader keybindings that conflict with toggle selection
-- **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Effort**: 1 hour
+- **Status**: [PLANNED]
 - **Language**: neovim
 - **Dependencies**: None
 - **Research Started**: 2026-03-13
 - **Research Completed**: 2026-03-13
 - **Research**: [research-072.md](OC_072_fix_himalaya_sidebar_leader_keybindings_in_help/reports/research-072.md)
+- **Plan**: [implementation-001.md](OC_072_fix_himalaya_sidebar_leader_keybindings_in_help/plans/implementation-001.md) - 2-phase verification plan
 
 **Description**: Fix himalaya sidebar help display (shown via '?') incorrectly showing leader keybindings (`<leader>mA` - Switch account, `<leader>mf` - Change folder, `<leader>ms` - Sync folder) in the Folder Management section. These leader commands should not be accessible or defined in the sidebar since `<leader>` is `<Space>` which is used for toggle selections in that buffer.
 

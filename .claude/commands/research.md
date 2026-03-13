@@ -22,7 +22,7 @@ Conduct research for a task by delegating to the appropriate research skill/suba
 
 **Display header**:
 ```
-[Researching] Task OC_{N}: {project_name}
+[Researching] Task {N}: {project_name}
 ```
 
 1. **Generate Session ID**

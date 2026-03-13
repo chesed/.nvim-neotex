@@ -22,7 +22,7 @@ Execute implementation plan with automatic resume support by delegating to the a
 
 **Display header**:
 ```
-[Implementing] Task OC_{N}: {project_name}
+[Implementing] Task {N}: {project_name}
 ```
 
 1. **Generate Session ID**
