@@ -1,15 +1,25 @@
 {
   "version": "1.0.0",
-  "next_project_number": 193,
+  "next_project_number": 194,
   "active_projects": [
+    {
+      "project_number": 193,
+      "project_name": "set_default_opencode_model_to_kimi_k2_5_opencode_go",
+      "status": "not_started",
+      "language": "general",
+      "created": "2026-03-13T16:56:02Z",
+      "last_updated": "2026-03-13T16:56:02Z",
+      "artifacts": []
+    },
     {
       "project_number": 192,
       "project_name": "bypass_opencode_permission_requests",
-      "status": "not_started",
+      "status": "researching",
       "language": "meta",
       "created": "2026-03-13T16:50:08Z",
-      "last_updated": "2026-03-13T16:50:08Z",
-      "artifacts": []
+      "last_updated": "2026-03-13T16:54:49Z",
+      "artifacts": [],
+      "researching": "2026-03-13T16:54:49Z"
     },
     {
       "project_number": 191,

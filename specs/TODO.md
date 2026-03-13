@@ -1,14 +1,26 @@
 ---
-next_project_number: 193
+next_project_number: 194
 ---
 
 # TODO
 
 ## Tasks
 
-### 192. Bypass opencode permission requests
+### 193. Set default opencode model to Kimi K2.5 OpenCode Go
 - **Effort**: 1-2 hours
 - **Status**: [NOT STARTED]
+- **Language**: general
+- **Dependencies**: None
+
+**Description**: Configure opencode to always start with the model 'Kimi K2.5 OpenCode Go' instead of 'Kimi K2.5 OpenCode Zen' as it does currently. This requires finding where the default model is configured in the opencode system and updating it to use the preferred model.
+
+---
+
+### 192. Bypass opencode permission requests
+
+### 192. Bypass opencode permission requests
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHING]
 - **Language**: meta
 - **Dependencies**: None
 
