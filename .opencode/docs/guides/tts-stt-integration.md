@@ -107,38 +107,22 @@ The script:
 2. Detects the WezTerm tab number via `wezterm cli list`
 3. Speaks "Tab N" using Piper TTS
 
-### Hook Configuration
+### Plugin Configuration
 
-The hooks are configured in `.opencode/settings.json`:
+TTS and WezTerm integration is handled by the opencode plugin at `.opencode/plugins/wezterm-hooks.js`.
+OpenCode uses a JavaScript plugin system (`@opencode-ai/plugin`), not shell hooks.
 
-```json
-{
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .opencode/hooks/tts-notify.sh 2>/dev/null || echo '{}'"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "permission_prompt|idle_prompt|elicitation_dialog",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .opencode/hooks/tts-notify.sh 2>/dev/null || echo '{}'"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+| OpenCode Event | Claude Code Equivalent | Action |
+|----------------|------------------------|--------|
+| `session.idle` | `Stop` | TTS + amber tab |
+| `permission.asked` | `Notification/permission_prompt` | TTS |
+| `question.asked` | `Notification/elicitation_dialog` | TTS |
+| `command.execute.before` | `UserPromptSubmit` | WezTerm task number |
+
+The plugin calls the existing shell scripts in `.opencode/hooks/` for all
+WezTerm OSC 1337 and piper TTS logic.
+
+**Plugin location**: `.opencode/plugins/wezterm-hooks.js` (auto-discovered by opencode)
 
 ### Environment Variables
 
@@ -188,7 +172,7 @@ export TTS_COOLDOWN=5
 
 **View logs**:
 ```bash
-cat /tmp/claude-tts-notify.log
+cat /tmp/opencode-tts-notify.log
 ```
 
 ## STT Input for Neovim
