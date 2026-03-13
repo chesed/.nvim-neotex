@@ -163,6 +163,11 @@
           "path": "specs/OC_196_port_wezterm_tab_integration_from_claude_to_opencode/summaries/03_wezterm-port-summary.md",
           "type": "summary",
           "summary": "Implementation summary documenting Notification hook and claude-ready-signal.sh additions to .opencode/settings.json"
+        },
+        {
+          "path": "specs/OC_196_port_wezterm_tab_integration_from_claude_to_opencode/reports/04_task-relevance-assessment.md",
+          "type": "report",
+          "summary": "Research report determining that task 196 is COMPLETED but status tracking is inconsistent - all planned features were implemented"
         }
       ],
       "researching": "2026-03-13T18:06:03Z",
