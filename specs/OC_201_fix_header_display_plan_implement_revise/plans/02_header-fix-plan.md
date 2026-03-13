@@ -1,7 +1,7 @@
 # Implementation Plan: Fix Header Display in /plan, /implement, and /revise Commands
 
 - **Task**: 201 - fix_header_display_plan_implement_revise
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETE]
 - **Effort**: 0.5-1 hour
 - **Dependencies**: None
 - **Research Inputs**: [01_header-display-fix.md](../reports/01_header-display-fix.md)
@@ -48,7 +48,7 @@ The research report identified that:
 
 ## Implementation Phases
 
-### Phase 1: Add Header Instruction to /plan Command [NOT STARTED]
+### Phase 1: Add Header Instruction to /plan Command [COMPLETED]
 
 **Goal**: Add the header instruction block to `.opencode/commands/plan.md` immediately after frontmatter
 
@@ -80,7 +80,7 @@ Substitute the real integer from $ARGUMENTS - never output "OC_N" or "OC_NN" lit
 
 ---
 
-### Phase 2: Add Header Instruction to /implement Command [NOT STARTED]
+### Phase 2: Add Header Instruction to /implement Command [COMPLETED]
 
 **Goal**: Add the header instruction block to `.opencode/commands/implement.md` immediately after frontmatter
 
@@ -112,7 +112,7 @@ Substitute the real integer from $ARGUMENTS - never output "OC_N" or "OC_NN" lit
 
 ---
 
-### Phase 3: Add Header Instruction to /revise Command [NOT STARTED]
+### Phase 3: Add Header Instruction to /revise Command [COMPLETED]
 
 **Goal**: Add the header instruction block to `.opencode/commands/revise.md` immediately after frontmatter
 
@@ -144,7 +144,7 @@ Substitute the real integer from $ARGUMENTS - never output "OC_N" or "OC_NN" lit
 
 ---
 
-### Phase 4: Verification and Testing [NOT STARTED]
+### Phase 4: Verification and Testing [COMPLETED]
 
 **Goal**: Verify all three commands have correct header instruction blocks
 

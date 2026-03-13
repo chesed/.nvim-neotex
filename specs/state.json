@@ -22,11 +22,11 @@
     {
       "project_number": 201,
       "project_name": "fix_header_display_plan_implement_revise",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-13T19:29:29Z",
-      "last_updated": "2026-03-13T19:36:41Z",
-      "session_id": "sess_1741894380_b7e4d1",
+      "last_updated": "2026-03-13T19:44:45Z",
+      "session_id": "sess_1741894560_c2f8e3",
       "researched": "2026-03-13T19:32:56Z",
       "artifacts": [
         {
@@ -40,7 +40,8 @@
           "summary": "4-phase implementation plan to add header instruction blocks to /plan, /implement, and /revise commands"
         }
       ],
-      "planned": "2026-03-13T19:36:41Z"
+      "planned": "2026-03-13T19:36:41Z",
+      "started": "2026-03-13T19:44:45Z"
     },
     {
       "project_number": 200,

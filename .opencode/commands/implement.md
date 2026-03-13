@@ -2,6 +2,14 @@
 description: Execute implementation with resume support
 ---
 
+**DO NOT start with a markdown heading.** Your first output must be a plain line using the actual argument value. If $ARGUMENTS is `72` or `OC_72`, output:
+
+[Implementing] Task OC_72: (project_name once known from state.json)
+
+Substitute the real integer from $ARGUMENTS - never output "OC_N" or "OC_NN" literally.
+
+---
+
 Execute the implementation plan for the given task, phase by phase.
 
 **Input**: $ARGUMENTS

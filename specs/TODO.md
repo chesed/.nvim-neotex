@@ -21,7 +21,7 @@ next_project_number: 203
 
 ### 201. Fix header display in /plan, /implement, and /revise commands to match working /research pattern
 - **Effort**: 1-2 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
 - **Research Started**: 2026-03-13
