@@ -67,10 +67,10 @@
     {
       "project_number": 196,
       "project_name": "port_wezterm_tab_integration_from_claude_to_opencode",
-      "status": "planned",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-13T17:31:45Z",
-      "last_updated": "2026-03-13T18:14:38Z",
+      "last_updated": "2026-03-13T11:33:36-07:00",
       "artifacts": [
         {
           "path": "specs/OC_196_port_wezterm_tab_integration_from_claude_to_opencode/reports/research-001.md",
@@ -81,12 +81,18 @@
           "path": "specs/OC_196_port_wezterm_tab_integration_from_claude_to_opencode/plans/implementation-001.md",
           "type": "plan",
           "summary": "3-phase implementation plan for porting wezterm tab integration features from .claude/ to .opencode/"
+        },
+        {
+          "path": "specs/OC_196_port_wezterm_tab_integration_from_claude_to_opencode/reports/02_tts-constraint-analysis.md",
+          "type": "research",
+          "summary": "Supplementary analysis validating TTS constraint alignment, focus detection enhancement proposal, and web-researched best practices"
         }
       ],
       "researching": "2026-03-13T18:06:03Z",
       "researched": "2026-03-13T18:10:13Z",
       "planning": "2026-03-13T18:12:50Z",
-      "planned": "2026-03-13T18:14:38Z"
+      "planned": "2026-03-13T18:14:38Z",
+      "researching_2": "2026-03-13T11:32:36-07:00"
     },
     {
       "project_number": 195,
