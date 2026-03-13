@@ -41,37 +41,6 @@
       ],
       "session_id": "sess_1771006114_e73864",
       "planned": "2026-02-13T18:10:48Z"
-    },
-    {
-      "project_number": 72,
-      "project_name": "fix_himalaya_sidebar_leader_keybindings_in_help",
-      "status": "completed",
-      "language": "neovim",
-      "created": "2026-02-12T19:03:20Z",
-      "last_updated": "2026-03-13T20:39:52Z",
-      "researching": "2026-03-13T19:27:06Z",
-      "researched": "2026-03-13T20:00:23Z",
-      "artifacts": [
-        {
-          "path": "specs/OC_072_fix_himalaya_sidebar_leader_keybindings_in_help/reports/research-072.md",
-          "type": "research",
-          "summary": "Research report documenting the fix for Himalaya sidebar leader keybindings conflict. Found that folder management section was already removed from folder_help.lua (lines 61-62) to resolve <Space> toggle conflict."
-        },
-        {
-          "path": "specs/OC_072_fix_himalaya_sidebar_leader_keybindings_in_help/plans/implementation-001.md",
-          "type": "plan",
-          "summary": "2-phase verification plan for Himalaya sidebar keybinding fix - confirms existing implementation and documents completion"
-        },
-        {
-          "path": "specs/OC_072_fix_himalaya_sidebar_leader_keybindings_in_help/summaries/001_himalaya-sidebar-keybindings-summary.md",
-          "type": "summary",
-          "summary": "Comprehensive documentation of the Himalaya sidebar keybindings fix and verification results"
-        }
-      ],
-      "planning": "2026-03-13T20:08:40Z",
-      "planned": "2026-03-13T20:11:50Z",
-      "implementing": "2026-03-13T20:38:31Z",
-      "completed": "2026-03-13T20:39:52Z"
     }
   ],
   "completed_projects": [],
