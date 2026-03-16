@@ -44,12 +44,12 @@
     {
       "project_number": 205,
       "project_name": "create_grant_agent",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "effort": "2-3 hours",
       "created": "2026-03-15T12:00:00Z",
-      "last_updated": "2026-03-16T04:48:19Z",
-      "session_id": "sess_1773636349_5df66b",
+      "last_updated": "2026-03-16T04:54:27Z",
+      "session_id": "sess_1773636847_c35353",
       "dependencies": [
         204
       ],
@@ -66,7 +66,8 @@
         }
       ],
       "researched": "2026-03-16T04:39:51Z",
-      "planned": "2026-03-16T04:48:19Z"
+      "planned": "2026-03-16T04:48:19Z",
+      "started": "2026-03-16T04:54:27Z"
     },
     {
       "project_number": 206,
@@ -99,12 +100,12 @@
     {
       "project_number": 208,
       "project_name": "create_grant_context_files",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "effort": "2-3 hours",
       "created": "2026-03-15T12:00:00Z",
-      "last_updated": "2026-03-16T04:50:22Z",
-      "session_id": "sess_1773636371_e4ce48",
+      "last_updated": "2026-03-16T04:56:41Z",
+      "session_id": "sess_1773636850_5a1228",
       "dependencies": [
         204
       ],
@@ -113,9 +114,15 @@
           "path": "specs/208_create_grant_context_files/reports/01_grant-context-patterns.md",
           "type": "research",
           "summary": "Research report identifying 14 context files for grant extension across domain, patterns, standards, templates, and tools directories with progressive loading strategy"
+        },
+        {
+          "path": "specs/208_create_grant_context_files/plans/01_grant-context-plan.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan for creating 14 grant writing context files"
         }
       ],
-      "researched": "2026-03-16T04:50:22Z"
+      "researched": "2026-03-16T04:50:22Z",
+      "planned": "2026-03-16T04:56:41Z"
     },
     {
       "project_number": 209,

@@ -19,13 +19,16 @@ next_project_number: 210
 
 ### 208. Create grant context files for domain knowledge
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-15
 - **Research Completed**: 2026-03-15
+- **Planning Started**: 2026-03-15
+- **Planning Completed**: 2026-03-15
 - **Language**: meta
 - **Dependencies**: Task #204
 - **Created**: 2026-03-15
 - **Research**: [01_grant-context-patterns.md](208_create_grant_context_files/reports/01_grant-context-patterns.md)
+- **Plan**: [01_grant-context-plan.md](208_create_grant_context_files/plans/01_grant-context-plan.md)
 
 **Description**: Create context files in grant/context/ containing domain knowledge for grant writing. Include templates, funder research patterns, proposal structure guidelines, and budget justification formats. These files will be progressively loaded by the grant-agent based on task needs.
 
@@ -55,11 +58,12 @@ next_project_number: 210
 
 ### 205. Create grant-agent with research and writing capabilities
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Research Started**: 2026-03-15
 - **Research Completed**: 2026-03-15
 - **Planning Started**: 2026-03-15
 - **Planning Completed**: 2026-03-15
+- **Implementation Started**: 2026-03-15
 - **Language**: meta
 - **Dependencies**: Task #204
 - **Created**: 2026-03-15
