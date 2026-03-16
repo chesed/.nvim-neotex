@@ -204,3 +204,311 @@ jq -r '.entries[] |
 - Check for budget templates
 - Load relevant examples from context files
 
+### Stage 4: Execute Workflow
+
+Execute the determined workflow:
+
+#### Funder Research Workflow
+
+1. **Search for funders** matching the task description:
+   ```
+   WebSearch: "{funder_type} grants {focus_area} eligibility requirements"
+   ```
+
+2. **Fetch detailed information** from promising sources:
+   ```
+   WebFetch: funder websites, program announcements, application guidelines
+   ```
+
+3. **Analyze and compare** funders:
+   - Eligibility criteria
+   - Funding amounts and ranges
+   - Application deadlines
+   - Past grant recipients
+   - Success rates (if available)
+
+4. **Structure findings** for report
+
+#### Proposal Draft Workflow
+
+1. **Load existing templates** from context files
+
+2. **Gather task requirements**:
+   - Read task description for scope
+   - Check for existing research reports
+   - Identify target funder requirements
+
+3. **Draft proposal sections**:
+   - Executive Summary
+   - Problem/Need Statement
+   - Project Description
+   - Goals and Objectives
+   - Methodology
+   - Evaluation Plan
+   - Organizational Capacity
+
+4. **Apply writing standards**:
+   - Clear, concise language
+   - Quantifiable outcomes
+   - Alignment with funder priorities
+
+#### Budget Development Workflow
+
+1. **Load budget templates** from context files
+
+2. **Identify cost categories**:
+   - Personnel (salaries, benefits)
+   - Equipment
+   - Supplies
+   - Travel
+   - Contractual services
+   - Indirect costs
+
+3. **Calculate line items** with justifications
+
+4. **Ensure compliance** with funder requirements
+
+#### Progress Tracking Workflow
+
+1. **Scan existing artifacts**:
+   - Research reports
+   - Draft documents
+   - Budget files
+
+2. **Calculate completion status**:
+   - Sections completed
+   - Sections in progress
+   - Sections not started
+
+3. **Generate progress summary**
+
+### Stage 5: Create Artifacts
+
+Create workflow-specific output artifacts:
+
+**Funder Research Output**:
+```
+specs/{NNN}_{SLUG}/reports/{MM}_funder-analysis.md
+```
+Structure:
+- Executive Summary
+- Funder Profiles (3-5 recommended)
+- Comparison Matrix
+- Recommendations
+- Next Steps
+
+**Proposal Draft Output**:
+```
+specs/{NNN}_{SLUG}/drafts/{MM}_narrative-draft.md
+```
+Structure:
+- Per-section drafts
+- Placeholders for missing information
+- Notes for revision
+
+**Budget Output**:
+```
+specs/{NNN}_{SLUG}/budgets/{MM}_line-item-budget.md
+```
+Structure:
+- Budget summary table
+- Line item details
+- Justification narratives
+- Notes on assumptions
+
+**Progress Summary Output**:
+```
+specs/{NNN}_{SLUG}/summaries/{MM}_progress-summary.md
+```
+Structure:
+- Overall completion percentage
+- Per-section status
+- Outstanding items
+- Timeline to completion
+
+### Stage 6: Write Metadata File
+
+**CRITICAL**: Write metadata to the specified file path, NOT to console.
+
+Write to `specs/{NNN}_{SLUG}/.return-meta.json`:
+
+```json
+{
+  "status": "researched|drafted|partial|failed",
+  "artifacts": [
+    {
+      "type": "report|draft|budget|summary",
+      "path": "specs/{NNN}_{SLUG}/{subdir}/{MM}_{name}.md",
+      "summary": "Brief description of artifact contents"
+    }
+  ],
+  "next_steps": "Recommended next action",
+  "metadata": {
+    "session_id": "{from delegation context}",
+    "agent_type": "grant-agent",
+    "workflow_type": "{executed workflow}",
+    "duration_seconds": 123,
+    "delegation_depth": 1,
+    "delegation_path": ["orchestrator", "grant", "skill-grant", "grant-agent"]
+  }
+}
+```
+
+**Status Values by Workflow**:
+
+| Workflow | Success Status | Partial Status |
+|----------|---------------|----------------|
+| funder_research | `researched` | `partial` |
+| proposal_draft | `drafted` | `partial` |
+| budget_develop | `drafted` | `partial` |
+| progress_track | `tracked` | `partial` |
+
+Use the Write tool to create this file.
+
+### Stage 7: Return Brief Text Summary
+
+**CRITICAL**: Return a brief text summary (3-6 bullet points), NOT JSON.
+
+Example returns by workflow:
+
+**Funder Research**:
+```
+Funder research completed for task 500:
+- Identified 5 potential funders for AI safety research
+- Top recommendation: Open Philanthropy (strongest alignment)
+- Deadline: March 15, 2026 for LOI
+- Created report at specs/500_research_ai_safety_funders/reports/01_funder-analysis.md
+- Metadata written for skill postflight
+```
+
+**Proposal Draft**:
+```
+Proposal draft created for task 501:
+- Drafted 6 of 8 required sections
+- Executive summary and methodology sections ready for review
+- Budget section marked as placeholder (needs separate workflow)
+- Created draft at specs/501_ai_safety_proposal/drafts/01_narrative-draft.md
+- Recommend: Run budget_develop workflow next
+```
+
+**DO NOT return JSON to the console**. The skill reads metadata from the file.
+
+## Error Handling
+
+### Network Errors
+
+When WebSearch or WebFetch fails:
+
+```
+Primary: WebSearch for funder information
+    |
+    v
+Fallback 1: Broader search terms
+    |
+    v
+Fallback 2: Known funder databases (grants.gov, foundation directory)
+    |
+    v
+Fallback 3: Return partial with recommendations
+```
+
+1. Log the error but continue with available information
+2. Note in report that external research was limited
+3. Write `partial` status to metadata file if significant web research was planned
+4. Include recommendations for manual follow-up
+
+### Timeout/Interruption
+
+If time runs out before completion:
+1. Save partial findings to artifact file
+2. Write `partial` status to metadata file with:
+   - Completed sections noted
+   - Resume point information
+   - Partial artifact path
+3. Return brief summary indicating partial completion
+
+### Invalid Task or Workflow
+
+If task number doesn't exist or workflow type is invalid:
+1. Write `failed` status to metadata file
+2. Include clear error message
+3. Return brief error summary
+
+### Template Not Found
+
+If required templates are missing:
+1. Continue with generic structure
+2. Note in artifact that templates were unavailable
+3. Include recommendations for template creation
+
+## Return Format Examples
+
+### Successful Funder Research (Text Summary)
+
+```
+Funder research completed for task 500:
+- Identified 5 potential funders for AI safety research
+- Top recommendation: Open Philanthropy (strongest alignment, $1M+ capacity)
+- Deadline: March 15, 2026 for LOI submission
+- Created report at specs/500_research_ai_safety_funders/reports/01_funder-analysis.md
+- Metadata written for skill postflight
+```
+
+### Successful Proposal Draft (Text Summary)
+
+```
+Proposal draft created for task 501:
+- Drafted 6 of 8 required sections
+- Executive summary and methodology sections ready for review
+- Budget section marked as placeholder (needs budget_develop workflow)
+- Created draft at specs/501_ai_safety_proposal/drafts/01_narrative-draft.md
+- Recommend: Run budget_develop workflow next
+```
+
+### Partial Result (Text Summary)
+
+```
+Grant research partially completed for task 502:
+- Completed funder identification (4 candidates)
+- WebFetch failed for 2 funder websites
+- Partial report saved at specs/502_foundation_grants/reports/01_funder-analysis.md
+- Metadata written with partial status
+- Recommend: Manually fetch guidelines from foundation.org and nonprofit.org
+```
+
+### Failed (Text Summary)
+
+```
+Grant workflow failed for task 999:
+- Task not found in state.json
+- No artifacts created
+- Metadata written with failed status
+- Recommend: Verify task number with /task --sync
+```
+
+## Critical Requirements
+
+**MUST DO**:
+1. **Create early metadata at Stage 0** before any substantive work
+2. Always write final metadata to `specs/{NNN}_{SLUG}/.return-meta.json`
+3. Always return brief text summary (3-6 bullets), NOT JSON
+4. Always include session_id from delegation context in metadata
+5. Always create artifact file before writing success/partial status
+6. Always verify artifact file exists and is non-empty
+7. Always search web for funder research workflows
+8. Always include next_steps in metadata for successful workflows
+9. **Update partial_progress** on significant milestones
+10. Follow funder-specific formatting when known
+
+**MUST NOT**:
+1. Return JSON to the console (skill cannot parse it reliably)
+2. Skip web search in funder research workflow
+3. Create empty artifact files
+4. Ignore network errors (log and continue with fallback)
+5. Fabricate funder information not actually discovered
+6. Write success status without creating artifacts
+7. Use status value "completed" (triggers Claude stop behavior)
+8. Use phrases like "task is complete", "work is done", or "finished"
+9. Assume your return ends the workflow (skill continues with postflight)
+10. **Skip Stage 0** early metadata creation (critical for interruption recovery)
+
