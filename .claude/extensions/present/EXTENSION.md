@@ -34,7 +34,7 @@ Recommended workflow:
 2. /plan 500 - Create proposal plan
 3. /grant 500 --draft - Draft narrative sections
 4. /grant 500 --budget - Develop budget
-5. /grant 500 --finish ~/submissions/ - Export for submission
+5. /implement 500 - Assemble grant materials to grants/500_{slug}/
 ```
 
 #### Draft Mode (--draft)
@@ -67,19 +67,29 @@ Develops line-item budget with justification. Optional prompt provides budget gu
 /grant 500 --budget "Focus on personnel costs, minimize equipment requests"
 ```
 
-#### Finish Mode (--finish)
+#### Revise Mode (--revise)
 ```bash
-/grant N --finish PATH                    # Default export
-/grant N --finish PATH "Optional prompt"  # Custom export
+/grant --revise N "description"
 ```
 
-Exports completed grant materials to PATH. PATH is required. Optional prompt customizes export.
+Creates a new task to revise an existing grant (where N is the original grant task number).
 
-**Examples**:
+**Example**:
 ```bash
-/grant 500 --finish ~/grants/NSF_CAREER/
-/grant 500 --finish ~/grants/NSF_CAREER/ "Compile as single PDF"
-/grant 500 --finish ~/submissions/ "Include only narrative and budget, exclude appendices"
+/grant --revise 500 "Update methodology for new reviewer feedback"
+```
+
+Output:
+```
+Grant revision task #505 created for Grant #500
+Status: [NOT STARTED]
+Parent Grant: Task #500
+Revises: grants/500_nsf_career_ai/
+
+Recommended workflow:
+1. /grant 505 --draft "Focus on sections needing revision"
+2. /grant 505 --budget "Update budget items as needed"
+3. /implement 505 - Update existing grant directory
 ```
 
 #### Legacy Mode (Deprecated)
@@ -120,7 +130,39 @@ Legacy workflow_type syntax is deprecated but still supported:
 3. **Create plan**: `/plan 500` (routes to skill-grant)
 4. **Draft narrative**: `/grant 500 --draft ["focus prompt"]`
 5. **Develop budget**: `/grant 500 --budget ["budget guidance"]`
-6. **Export materials**: `/grant 500 --finish ~/submissions/ ["export options"]`
+6. **Assemble materials**: `/implement 500` (creates grants/500_{slug}/)
+
+### Grant Output Directory
+
+Final grant materials are assembled to `grants/{N}_{slug}/`:
+```
+grants/500_nsf_career_ai/
+  - narrative.md     # Complete proposal narrative
+  - budget.md        # Finalized budget with justifications
+  - checklist.md     # Submission requirements checklist
+  - README.md        # Grant package overview
+```
+
+### Revision Workflow
+
+To revise an existing grant:
+
+1. **Create revision task**: `/grant --revise 500 "Update methodology section"`
+   - Creates a new task linked to the original grant
+   - Task state includes `parent_grant` and `revises_directory` fields
+
+2. **Make changes**: Use `--draft` and `--budget` to create updated sections
+
+3. **Assemble revision**: `/implement 505`
+   - Merges new changes with existing grant
+   - Preserves unchanged sections
+   - Creates backup of original files
+
+**State Fields for Revision Tasks**:
+| Field | Type | Description |
+|-------|------|-------------|
+| `parent_grant` | number | Original grant task number |
+| `revises_directory` | string | Path to existing grant directory |
 
 ### Grant Writing Components
 

@@ -5,11 +5,11 @@
     {
       "project_number": 216,
       "project_name": "refactor_grant_implement_output_to_grants_dir",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "effort": "2-3 hours",
       "created": "2026-03-16T00:00:00Z",
-      "last_updated": "2026-03-16T23:08:15Z",
+      "last_updated": "2026-03-16T23:21:12Z",
       "dependencies": [],
       "artifacts": [
         {
@@ -26,11 +26,20 @@
           "path": "specs/216_refactor_grant_implement_output_to_grants_dir/plans/04_grant-refactor-revised.md",
           "type": "plan",
           "summary": "9-phase implementation plan (revised): remove --finish, add assemble workflow, add --revise flag"
+        },
+        {
+          "path": "specs/216_refactor_grant_implement_output_to_grants_dir/summaries/05_grant-refactor-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "session_id": "sess_1773701864_6fb5ff",
+      "session_id": "sess_1773702632_bbfe3a",
       "researched": "2026-03-16T22:57:10Z",
-      "planned": "2026-03-16T23:08:15Z"
+      "planned": "2026-03-16T23:08:15Z",
+      "started": "2026-03-16T23:10:47Z",
+      "completed": "2026-03-16T23:21:12Z",
+      "completion_summary": "Refactored grant workflow to remove --finish flag and route implementation through /implement N with assemble workflow. Added --revise flag for creating grant revision tasks. Final output is assembled to grants/{N}_{slug}/ directory.",
+      "claudemd_suggestions": "Modified present extension files only (.claude/extensions/present/). No changes to core CLAUDE.md needed - extension documentation self-contained in EXTENSION.md."
     },
     {
       "project_number": 215,

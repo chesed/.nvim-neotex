@@ -8,7 +8,7 @@ model: opus
 
 ## Overview
 
-Research and writing agent for grant proposals. Invoked by `skill-grant` via the forked subagent pattern. Supports four primary workflows: funder research, proposal drafting, budget development, and progress tracking.
+Research and writing agent for grant proposals. Invoked by `skill-grant` via the forked subagent pattern. Supports five workflows: funder research, proposal drafting, budget development, progress tracking, and grant assembly.
 
 **IMPORTANT**: This agent writes metadata to a file instead of returning JSON to the console. The invoking skill reads this file during postflight operations.
 
@@ -129,8 +129,10 @@ Extract from input:
     "delegation_depth": 1,
     "delegation_path": ["orchestrator", "grant", "skill-grant", "grant-agent"]
   },
-  "workflow_type": "funder_research|proposal_draft|budget_develop|progress_track",
+  "workflow_type": "funder_research|proposal_draft|budget_develop|progress_track|assemble",
   "focus_prompt": "optional specific focus area",
+  "is_revision": false,
+  "revises_directory": "grants/{N}_{slug}/ (only when is_revision=true)",
   "metadata_file_path": "specs/500_research_ai_safety_funders/.return-meta.json"
 }
 ```
@@ -158,8 +160,15 @@ Parse workflow_type
     |    Output: budgets/{MM}_line-item-budget.md
     |
     +--- progress_track
-         Tools: Read + Write + Edit
-         Output: summaries/{MM}_progress-summary.md
+    |    Tools: Read + Write + Edit
+    |    Output: summaries/{MM}_progress-summary.md
+    |
+    +--- assemble
+         Tools: Read + Write + Glob
+         Output: grants/{N}_{slug}/
+            - narrative.md (assembled from drafts)
+            - budget.md (assembled from budgets)
+            - checklist.md (submission checklist)
 ```
 
 **Workflow Routing Table**:
@@ -170,6 +179,7 @@ Parse workflow_type
 | `proposal_draft` | Read, Write, Edit | Draft document | `drafts/{MM}_narrative-draft.md` |
 | `budget_develop` | Read, Write, Edit | Budget document | `budgets/{MM}_line-item-budget.md` |
 | `progress_track` | Read, Write, Edit | Status summary | `summaries/{MM}_progress-summary.md` |
+| `assemble` | Read, Write, Glob | Grant package | `grants/{N}_{slug}/` |
 
 ### Stage 3: Load Context
 
@@ -282,6 +292,40 @@ Execute the determined workflow:
 
 3. **Generate progress summary**
 
+#### Assemble Workflow
+
+1. **Validate prerequisites**:
+   - Check for existing drafts in specs/{NNN}_{SLUG}/drafts/
+   - Check for budget files in specs/{NNN}_{SLUG}/budgets/
+   - Validate required sections are present
+
+2. **Gather artifacts**:
+   - Read all narrative draft sections
+   - Read budget documents
+   - Read research reports for funder requirements
+
+3. **Assemble final documents**:
+   - Merge draft sections into coherent narrative
+   - Consolidate budget into final format
+   - Generate submission checklist
+
+4. **Create output directory**:
+   ```bash
+   mkdir -p grants/{N}_{slug}
+   ```
+
+5. **Write final files**:
+   - `grants/{N}_{slug}/narrative.md` - Complete proposal narrative
+   - `grants/{N}_{slug}/budget.md` - Finalized budget with justifications
+   - `grants/{N}_{slug}/checklist.md` - Submission requirements checklist
+
+6. **Handle revision mode** (when is_revision=true):
+   - Read existing grant from revises_directory
+   - Identify sections that need updating
+   - Merge new changes with existing content
+   - Preserve unchanged sections
+   - Update modification timestamps
+
 ### Stage 5: Create Artifacts
 
 Create workflow-specific output artifacts:
@@ -326,6 +370,16 @@ Structure:
 - Outstanding items
 - Timeline to completion
 
+**Assemble Output**:
+```
+grants/{N}_{slug}/
+```
+Structure:
+- `narrative.md` - Complete proposal narrative
+- `budget.md` - Finalized budget with justifications
+- `checklist.md` - Submission requirements checklist
+- `README.md` - Grant package overview with submission instructions
+
 ### Stage 6: Write Metadata File
 
 **CRITICAL**: Write metadata to the specified file path, NOT to console.
@@ -362,6 +416,7 @@ Write to `specs/{NNN}_{SLUG}/.return-meta.json`:
 | proposal_draft | `drafted` | `partial` |
 | budget_develop | `drafted` | `partial` |
 | progress_track | `tracked` | `partial` |
+| assemble | `assembled` | `partial` |
 
 Use the Write tool to create this file.
 
@@ -389,6 +444,26 @@ Proposal draft created for task 501:
 - Budget section marked as placeholder (needs separate workflow)
 - Created draft at specs/501_ai_safety_proposal/drafts/01_narrative-draft.md
 - Recommend: Run budget_develop workflow next
+```
+
+**Assemble** (new grant):
+```
+Grant materials assembled for task 502:
+- Created output directory: grants/502_nsf_career_ai_safety/
+- Files generated: narrative.md, budget.md, checklist.md, README.md
+- Narrative: 15 pages, all required sections complete
+- Budget: $500,000 over 5 years with justifications
+- Metadata written for skill postflight
+```
+
+**Assemble** (revision):
+```
+Grant revision assembled for task 503:
+- Updated existing grant at: grants/502_nsf_career_ai_safety/
+- Modified sections: methodology, budget year 2-3
+- Unchanged sections preserved: problem statement, team, timeline
+- Created backup at: grants/502_nsf_career_ai_safety/.backup-20260316/
+- Metadata written for skill postflight
 ```
 
 **DO NOT return JSON to the console**. The skill reads metadata from the file.

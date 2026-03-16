@@ -30,7 +30,7 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 
 This skill activates when:
 - Task language is "grant"
-- Grant workflow requested via flags (--draft, --budget, --finish) or legacy workflow_type
+- Grant workflow requested via flags (--draft, --budget) or /implement routing
 - Extension is loaded via `<leader>ac`
 
 ---
@@ -44,8 +44,10 @@ This skill routes to grant-agent with one of five workflow types:
 | funder_research | researching | researched | [RESEARCHING] -> [RESEARCHED] |
 | proposal_draft | planning | planned | [PLANNING] -> [PLANNED] |
 | budget_develop | planning | planned | [PLANNING] -> [PLANNED] |
-| finish | (no preflight change) | completed | -> [COMPLETED] |
 | progress_track | (no change) | (no change) | (no change) |
+| assemble | implementing | completed | [IMPLEMENTING] -> [COMPLETED] |
+
+**Note**: The `assemble` workflow is triggered via `/implement N` command (not `/grant`), which routes to skill-grant when the task language is "grant".
 
 ---
 
@@ -53,12 +55,11 @@ This skill routes to grant-agent with one of five workflow types:
 
 ### Required Parameters
 - `task_number` - Task number (must exist in state.json with language="grant")
-- `workflow_type` - One of: funder_research, proposal_draft, budget_develop, finish, progress_track
+- `workflow_type` - One of: funder_research, proposal_draft, budget_develop, progress_track, assemble
 - `session_id` - Session ID from orchestrator
 
 ### Optional Parameters
 - `focus` - Focus prompt for workflow direction (used by all workflow types)
-- `export_path` - Required for `finish` workflow type, path to export materials
 
 **Prompt Usage by Workflow Type**:
 | Workflow | focus Parameter | Example |
@@ -66,8 +67,8 @@ This skill routes to grant-agent with one of five workflow types:
 | funder_research | Research focus | "Focus on NIH institutes" |
 | proposal_draft | Drafting guidance | "Emphasize innovation and methodology" |
 | budget_develop | Budget guidance | "Include 3 conferences/year, emphasize personnel" |
-| finish | Export customization | "Compile as single PDF" |
 | progress_track | Summary focus | "Focus on budget utilization" |
+| assemble | Assembly options | "Include executive summary" |
 
 ---
 
@@ -77,9 +78,8 @@ This skill routes to grant-agent with one of five workflow types:
 
 Validate required inputs:
 - `task_number` - Must be provided and exist in state.json
-- `workflow_type` - Must be one of: funder_research, proposal_draft, budget_develop, finish, progress_track
+- `workflow_type` - Must be one of: funder_research, proposal_draft, budget_develop, progress_track, assemble
 - `focus` - Optional prompt for workflow direction
-- `export_path` - Required for finish workflow
 
 ```bash
 # Lookup task
@@ -105,17 +105,12 @@ fi
 
 # Validate workflow_type
 case "$workflow_type" in
-  funder_research|proposal_draft|budget_develop|finish|progress_track)
+  funder_research|proposal_draft|budget_develop|progress_track|assemble)
     ;;
   *)
-    return error "Invalid workflow_type: $workflow_type. Expected one of: funder_research, proposal_draft, budget_develop, finish, progress_track"
+    return error "Invalid workflow_type: $workflow_type. Expected one of: funder_research, proposal_draft, budget_develop, progress_track, assemble"
     ;;
 esac
-
-# Validate export_path for finish workflow
-if [ "$workflow_type" = "finish" ] && [ -z "$export_path" ]; then
-  return error "export_path is required for finish workflow"
-fi
 ```
 
 ---
@@ -130,8 +125,8 @@ Update task status based on workflow type BEFORE invoking subagent.
 | funder_research | researching | [RESEARCHING] |
 | proposal_draft | planning | [PLANNING] |
 | budget_develop | planning | [PLANNING] |
-| finish | (no change) | (no change) |
 | progress_track | (no change) | (no change) |
+| assemble | implementing | [IMPLEMENTING] |
 
 **Update state.json** (for workflows that change status):
 ```bash
@@ -145,9 +140,13 @@ case "$workflow_type" in
     preflight_status="planning"
     preflight_marker="[PLANNING]"
     ;;
-  finish|progress_track)
+  progress_track)
     preflight_status=""  # No status change
     preflight_marker=""
+    ;;
+  assemble)
+    preflight_status="implementing"
+    preflight_marker="[IMPLEMENTING]"
     ;;
 esac
 
@@ -194,6 +193,24 @@ EOF
 
 ### Stage 4: Prepare Delegation Context
 
+**Detect revision mode** (for assemble workflow):
+```bash
+# Check if task has parent_grant field (indicates revision task)
+parent_grant=$(echo "$task_data" | jq -r '.parent_grant // ""')
+revises_directory=$(echo "$task_data" | jq -r '.revises_directory // ""')
+
+if [ -n "$parent_grant" ] && [ "$workflow_type" = "assemble" ]; then
+    is_revision="true"
+    # Validate revises_directory exists
+    if [ ! -d "$revises_directory" ]; then
+        return error "Revision target not found: $revises_directory"
+    fi
+else
+    is_revision="false"
+    revises_directory=""
+fi
+```
+
 Prepare delegation context for the subagent:
 
 ```json
@@ -208,9 +225,10 @@ Prepare delegation context for the subagent:
     "description": "{description}",
     "language": "grant"
   },
-  "workflow_type": "funder_research|proposal_draft|budget_develop|finish|progress_track",
+  "workflow_type": "funder_research|proposal_draft|budget_develop|progress_track|assemble",
   "focus_prompt": "{optional focus - passed to agent for guidance}",
-  "export_path": "{for finish workflow only}",
+  "is_revision": "{boolean - true if task has parent_grant field}",
+  "revises_directory": "{grants/{N}_{slug}/ - path to existing grant if revision}",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json"
 }
 ```
@@ -226,14 +244,14 @@ Prepare delegation context for the subagent:
 Tool: Task (NOT Skill)
 Parameters:
   - subagent_type: "grant-agent"
-  - prompt: [Include task_context, delegation_context, workflow_type, focus_prompt, export_path, metadata_file_path]
+  - prompt: [Include task_context, delegation_context, workflow_type, focus_prompt, is_revision, revises_directory, metadata_file_path]
   - description: "Execute {workflow_type} workflow for task {N}"
 ```
 
 **DO NOT** use `Skill(grant-agent)` - this will FAIL.
 
 The subagent will:
-- Execute the specified workflow (funder_research, proposal_draft, budget_develop, finish, progress_track)
+- Execute the specified workflow (funder_research, proposal_draft, budget_develop, progress_track, assemble)
 - Use the focus_prompt to guide its output
 - Create workflow-specific artifacts in `specs/{NNN}_{SLUG}/{subdir}/`
 - Write metadata to `specs/{NNN}_{SLUG}/.return-meta.json`
@@ -304,10 +322,10 @@ Map workflow_type + metadata status to final state.json status:
 | proposal_draft | partial | planning | [PLANNING] |
 | budget_develop | drafted | planned | [PLANNED] |
 | budget_develop | partial | planning | [PLANNING] |
-| finish | exported | completed | [COMPLETED] |
-| finish | partial | planned | [PLANNED] |
 | progress_track | tracked | (no change) | (no change) |
 | progress_track | partial | (no change) | (no change) |
+| assemble | assembled | completed | [COMPLETED] |
+| assemble | partial | implementing | [IMPLEMENTING] |
 | any | failed | (keep preflight) | (keep preflight marker) |
 
 **Update state.json** (if status changed to success):
@@ -326,15 +344,15 @@ case "$workflow_type" in
       postflight_marker="[PLANNED]"
     fi
     ;;
-  finish)
-    if [ "$meta_status" = "exported" ]; then
-      postflight_status="completed"
-      postflight_marker="[COMPLETED]"
-    fi
-    ;;
   progress_track)
     postflight_status=""  # No status change for progress tracking
     postflight_marker=""
+    ;;
+  assemble)
+    if [ "$meta_status" = "assembled" ]; then
+      postflight_status="completed"
+      postflight_marker="[COMPLETED]"
+    fi
     ;;
 esac
 
@@ -374,11 +392,11 @@ case "$workflow_type" in
   budget_develop)
     artifact_filter_type="budget"
     ;;
-  finish)
-    artifact_filter_type="export"
-    ;;
   progress_track)
     artifact_filter_type="summary"
+    ;;
+  assemble)
+    artifact_filter_type="grant"
     ;;
 esac
 ```
@@ -404,8 +422,8 @@ fi
 - funder_research: `- **Research**: [{filename}]({artifact_path})`
 - proposal_draft: `- **Draft**: [{filename}]({artifact_path})`
 - budget_develop: `- **Budget**: [{filename}]({artifact_path})`
-- finish: `- **Export**: [{export_path}]({export_path})`
 - progress_track: `- **Progress**: [{filename}]({artifact_path})`
+- assemble: `- **Grant**: [{directory}](grants/{N}_{slug}/)`
 
 ---
 
@@ -425,11 +443,11 @@ case "$workflow_type" in
   budget_develop)
     commit_action="develop budget"
     ;;
-  finish)
-    commit_action="export grant materials"
-    ;;
   progress_track)
     commit_action="update progress"
+    ;;
+  assemble)
+    commit_action="assemble grant materials"
     ;;
 esac
 
@@ -492,12 +510,12 @@ Budget developed for task {N}:
 - Changes committed with session {session_id}
 ```
 
-**Finish/Export Success**:
+**Assemble Success**:
 ```
-Grant materials exported for task {N}:
-- Exported to: {export_path}
-- Files included: narrative.md, budget.md, checklist.md
-- Customization applied: "{focus_prompt}" (if provided)
+Grant materials assembled for task {N}:
+- Output directory: grants/{N}_{slug}/
+- Files created: narrative.md, budget.md, checklist.md
+- Assembly options applied: "{focus_prompt}" (if provided)
 - Status updated to [COMPLETED]
 - Changes committed with session {session_id}
 ```
@@ -541,7 +559,7 @@ Return immediately with error message:
 ```
 Grant skill error for task {N}:
 - Invalid workflow_type: {provided_value}
-- Expected one of: funder_research, proposal_draft, budget_develop, finish, progress_track
+- Expected one of: funder_research, proposal_draft, budget_develop, progress_track, assemble
 - No status changes made
 ```
 
@@ -551,15 +569,6 @@ Return immediately with error message:
 Grant skill error for task {N}:
 - Task has language '{language}', expected 'grant'
 - Use /grant {N} to update task language or use appropriate skill
-- No status changes made
-```
-
-**Missing export_path for finish**:
-Return immediately with error message:
-```
-Grant skill error for task {N}:
-- Missing export_path for finish workflow
-- Usage: /grant {N} --finish PATH ["optional prompt"]
 - No status changes made
 ```
 

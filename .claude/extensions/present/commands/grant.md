@@ -1,7 +1,7 @@
 ---
-description: Create grant tasks or execute grant workflows (draft, budget, finish)
+description: Create grant tasks, execute grant workflows (draft, budget), or create revisions
 allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Bash(sed:*), Read, Edit
-argument-hint: "description" | TASK_NUMBER --draft ["prompt"] | --budget ["prompt"] | --finish PATH ["prompt"]
+argument-hint: "description" | TASK_NUMBER --draft ["prompt"] | --budget ["prompt"] | --revise N "description"
 model: claude-opus-4-5-20251101
 ---
 
@@ -16,7 +16,7 @@ Hybrid command supporting both task creation and grant-specific workflows.
 | Task Creation | `/grant "Description"` | Create task with language="grant" |
 | Draft | `/grant N --draft ["prompt"]` | Draft narrative sections |
 | Budget | `/grant N --budget ["prompt"]` | Develop line-item budget |
-| Finish | `/grant N --finish PATH ["prompt"]` | Export materials to PATH |
+| Revise | `/grant --revise N "description"` | Create revision task for grant N |
 | Legacy | `/grant N workflow_type [focus]` | (Deprecated) Direct workflow invocation |
 
 ## CRITICAL: Task Creation Mode
@@ -42,7 +42,7 @@ Parse $ARGUMENTS to determine mode:
 2. **Check for flags**:
    - `N --draft [prompt]` → Draft Mode
    - `N --budget [prompt]` → Budget Mode
-   - `N --finish PATH [prompt]` → Finish Mode
+   - `--revise N "description"` → Revise Mode
 
 3. **Check for legacy workflow_type**:
    - `N funder_research|proposal_draft|budget_develop|progress_track [focus]` → Legacy Mode
@@ -50,7 +50,7 @@ Parse $ARGUMENTS to determine mode:
 **Flag parsing with optional prompts**:
 - Flag only: `/grant 500 --draft` → default behavior
 - Flag with prompt: `/grant 500 --draft "Focus on methodology"` → guided behavior
-- Prompt must be quoted text immediately after flag (or after PATH for --finish)
+- Prompt must be quoted text immediately after flag
 
 ---
 
@@ -139,7 +139,7 @@ When $ARGUMENTS is a description without flags.
    2. /plan {N} - Create proposal plan
    3. /grant {N} --draft - Draft narrative sections
    4. /grant {N} --budget - Develop budget
-   5. /grant {N} --finish ~/path/ - Export for submission
+   5. /implement {N} - Assemble grant materials to grants/{N}_{slug}/
    ```
 
 ---
@@ -257,73 +257,134 @@ Grant budget developed for Task #{N}
 Budget: specs/{NNN}_{SLUG}/budgets/{MM}_line-item-budget.md
 
 Status: [PLANNED]
-Next: /grant {N} --finish ~/submissions/
+Next: /implement {N}
 ```
 
 ---
 
-## Finish Mode (--finish)
+## Revise Mode (--revise)
 
-Export completed grant materials to specified path.
+Create a new task to revise an existing grant.
 
 ### Syntax
-- `/grant N --finish ~/grants/NSF/` - Default export
-- `/grant N --finish ~/grants/NSF/ "Compile as single PDF"` - Custom export
+- `/grant --revise N "description of changes"` - Create revision task for grant N
 
 ### CHECKPOINT 1: GATE IN
 
 **Display header**:
 ```
-[Grant Finish] Task {N}: {project_name} → {PATH}
+[Grant Revise] Creating revision for Grant #{N}
 ```
 
 1. **Generate Session ID**
-2. **Lookup and Validate Task**
-   - Task must exist
-   - Language must be "grant"
-   - Status should be "planned" (all drafting complete)
-3. **Validate PATH argument**
-   - PATH is required (first arg after --finish)
-   - Must be a valid directory path
-   - Create if doesn't exist
-4. **Extract optional prompt** after PATH
+   ```bash
+   session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
+   ```
 
-### STAGE 2: DELEGATE
+2. **Parse Arguments**
+   - Extract task number N (original grant task)
+   - Extract revision description
 
-**Invoke Skill tool**:
+3. **Validate Grant Exists**
+   ```bash
+   # Look up original grant task
+   grant_task=$(jq -r --argjson num "$original_task_number" \
+     '.active_projects[] | select(.project_number == $num)' \
+     specs/state.json)
+
+   # Check in archive if not found in active
+   if [ -z "$grant_task" ]; then
+     grant_task=$(jq -r --argjson num "$original_task_number" \
+       '.completed_projects[] | select(.project_number == $num)' \
+       specs/archive/state.json 2>/dev/null)
+   fi
+
+   # Validate found
+   if [ -z "$grant_task" ]; then
+     ABORT "Grant task #$original_task_number not found"
+   fi
+
+   # Extract grant directory
+   grant_slug=$(echo "$grant_task" | jq -r '.project_name')
+   grant_dir="grants/${original_task_number}_${grant_slug}"
+
+   # Validate grant directory exists
+   if [ ! -d "$grant_dir" ]; then
+     ABORT "Grant directory not found: $grant_dir"
+   fi
+   ```
+
+**ABORT** if validation fails.
+
+### STAGE 2: CREATE REVISION TASK
+
+1. **Get next_project_number**:
+   ```bash
+   next_num=$(jq -r '.next_project_number' specs/state.json)
+   ```
+
+2. **Create slug from revision description**:
+   - Lowercase, replace spaces with underscores
+   - Prefix with `revise_`
+
+3. **Update state.json**:
+   ```bash
+   jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+     --arg desc "$revision_description" \
+     --argjson parent "$original_task_number" \
+     --arg revises_dir "$grant_dir" \
+     '.next_project_number = {NEW_NUMBER} |
+      .active_projects = [{
+        "project_number": {NEW_N},
+        "project_name": "revise_slug",
+        "status": "not_started",
+        "language": "grant",
+        "description": $desc,
+        "parent_grant": $parent,
+        "revises_directory": $revises_dir,
+        "created": $ts,
+        "last_updated": $ts
+      }] + .active_projects' \
+     specs/state.json > specs/tmp/state.json && \
+     mv specs/tmp/state.json specs/state.json
+   ```
+
+4. **Update TODO.md**:
+   - Update frontmatter with new next_project_number
+   - Add task entry with parent grant reference:
+   ```markdown
+   ### {NEW_N}. {Revision Title}
+   - **Effort**: TBD
+   - **Status**: [NOT STARTED]
+   - **Language**: grant
+   - **Parent Grant**: Task #{N}
+
+   **Description**: {revision_description}
+   ```
+
+### CHECKPOINT 2: COMMIT
+
+```bash
+git add specs/
+git commit -m "task {NEW_N}: create revision for grant {N}
+
+Session: {session_id}
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
 ```
-skill: "skill-grant"
-args: "task_number={N} workflow_type=finish export_path={PATH} focus={export_prompt} session_id={session_id}"
-```
-
-The skill will:
-- Collect all grant artifacts (reports, drafts, budgets)
-- Validate all required sections are present
-- Apply customization from optional prompt
-- Copy/generate final documents to PATH
-- Create submission checklist
-
-### CHECKPOINT 2: GATE OUT
-
-1. **Verify Export**
-   - Check files exist at PATH
-   - Validate required documents present
-
-2. **Update Status**
-   - Mark task as "completed" if all materials exported
-   - Or keep as "planned" if partial export
 
 **On success, output**:
 ```
-Grant materials exported for Task #{N}
+Grant revision task #{NEW_N} created for Grant #{N}
+Status: [NOT STARTED]
+Language: grant
+Parent Grant: Task #{N}
+Revises: {grant_dir}
 
-Export path: {PATH}
-Files exported:
-  - narrative.md
-  - budget.md
-  - checklist.md
-
-Status: [COMPLETED]
+Recommended workflow:
+1. /grant {NEW_N} --draft "Focus on sections needing revision"
+2. /grant {NEW_N} --budget "Update budget items as needed"
+3. /implement {NEW_N} - Update existing grant directory
 ```
 
 ---
@@ -339,7 +400,7 @@ For backward compatibility, continue supporting:
 **Deprecation notice**: Display warning when legacy mode detected:
 ```
 [Warning] Legacy workflow_type syntax is deprecated.
-Use: /grant N --draft, --budget, or --finish instead.
+Use: /grant N --draft or --budget instead. For final assembly, use /implement N.
 For funder research, use: /research N
 ```
 
@@ -371,7 +432,6 @@ This routing is configured in the extension's manifest.json.
 - Task not found: Return error with guidance to create task first
 - Wrong language: Return error suggesting /grant for grant tasks
 - Invalid status: Return error with current status and valid transitions
-- Missing PATH (--finish): Return error specifying PATH is required
 
 ### Git Commit Failure
 - Non-blocking: Log failure but continue with success response
@@ -392,7 +452,7 @@ Recommended workflow:
 2. /plan {N} - Create proposal plan
 3. /grant {N} --draft - Draft narrative sections
 4. /grant {N} --budget - Develop budget
-5. /grant {N} --finish ~/path/ - Export for submission
+5. /implement {N} - Assemble grant materials to grants/{N}_{slug}/
 ```
 
 ### Workflow Success

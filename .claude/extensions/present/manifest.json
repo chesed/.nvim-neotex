@@ -13,6 +13,11 @@
     "scripts": [],
     "hooks": []
   },
+  "routing": {
+    "implement": {
+      "grant": "skill-grant:assemble"
+    }
+  },
   "merge_targets": {
     "claudemd": {
       "source": "EXTENSION.md",

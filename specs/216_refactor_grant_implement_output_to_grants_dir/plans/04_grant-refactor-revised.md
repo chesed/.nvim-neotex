@@ -2,7 +2,7 @@
 
 - **Task**: 216 - refactor_grant_implement_output_to_grants_dir
 - **Version**: 2 (revised to integrate --revise flag)
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETE]
 - **Effort**: 4-5 hours
 - **Dependencies**: None
 - **Research Inputs**:
@@ -59,7 +59,7 @@ Refactor the grant workflow to:
 
 ## Implementation Phases
 
-### Phase 1: Remove --finish from grant.md command [NOT STARTED]
+### Phase 1: Remove --finish from grant.md command [COMPLETED]
 
 **Goal**: Remove Finish Mode section and all --finish references from the /grant command
 
@@ -83,7 +83,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 2: Clean up skill-grant/SKILL.md routing [NOT STARTED]
+### Phase 2: Clean up skill-grant/SKILL.md routing [COMPLETED]
 
 **Goal**: Remove finish workflow type from all routing tables and case statements in skill-grant
 
@@ -110,7 +110,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 3: Remove finish from grant-agent.md [NOT STARTED]
+### Phase 3: Remove finish from grant-agent.md [COMPLETED]
 
 **Goal**: Remove finish workflow references from grant-agent
 
@@ -130,7 +130,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 4: Add assemble workflow to grant-agent [NOT STARTED]
+### Phase 4: Add assemble workflow to grant-agent [COMPLETED]
 
 **Goal**: Add new assemble workflow type for /implement routing that collects artifacts and writes to grants/ directory
 
@@ -165,7 +165,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 5: Add assemble routing to skill-grant [NOT STARTED]
+### Phase 5: Add assemble routing to skill-grant [COMPLETED]
 
 **Goal**: Enable skill-grant to handle assemble workflow type for /implement routing
 
@@ -193,7 +193,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 6: Update manifest.json for /implement routing [NOT STARTED]
+### Phase 6: Update manifest.json for /implement routing [COMPLETED]
 
 **Goal**: Add grant language routing to extension manifest so /implement can route to skill-grant
 
@@ -220,7 +220,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 7: Update EXTENSION.md documentation (core changes) [NOT STARTED]
+### Phase 7: Update EXTENSION.md documentation (core changes) [COMPLETED]
 
 **Goal**: Update documentation to reflect new workflow without --finish
 
@@ -243,7 +243,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 8: Add --revise flag to /grant command [NOT STARTED]
+### Phase 8: Add --revise flag to /grant command [COMPLETED]
 
 **Goal**: Enable creating revision tasks for existing grants
 
@@ -299,7 +299,7 @@ Refactor the grant workflow to:
 
 ---
 
-### Phase 9: Update EXTENSION.md documentation (--revise) [NOT STARTED]
+### Phase 9: Update EXTENSION.md documentation (--revise) [COMPLETED]
 
 **Goal**: Document the --revise flag and revision workflow
 
