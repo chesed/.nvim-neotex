@@ -16,6 +16,7 @@ The configuration provides:
 ----------------------------------------------------------------------------------
 TOP-LEVEL MAPPINGS (<leader>)                   | DESCRIPTION
 ----------------------------------------------------------------------------------
+<leader>b - Close other buffers                 | Close all buffers except current
 <leader>c - Create vertical split               | Split window vertically
 <leader>d - Save and delete buffer              | Save file and close buffer
 <leader>e - Toggle NvimTree explorer            | Open/close file explorer
@@ -216,6 +217,7 @@ return {
     -- ============================================================================
 
     wk.add({
+      { "<leader>b", "<cmd>lua CloseOtherBuffers()<CR>", desc = "close other buffers", icon = "󰅚" },
       { "<leader>c", "<cmd>vert sb<CR>", desc = "create split", icon = "󰯌" },
       { "<leader>d", "<cmd>update! | lua smart_bufdelete()<CR>", desc = "delete buffer", icon = "󰩺" },
       { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "explorer", icon = "󰙅" },
@@ -224,6 +226,16 @@ return {
       { "<leader>u", "<cmd>Telescope undo<CR>", desc = "undo", icon = "󰕌" },
       { "<leader>w", "<cmd>wa!<CR>", desc = "write", icon = "󰆓" },
     })
+
+    -- CloseOtherBuffers: Close all listed buffers except the current one
+    _G.CloseOtherBuffers = function()
+      local current = vim.api.nvim_get_current_buf()
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if buf ~= current and vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted then
+          vim.api.nvim_buf_delete(buf, { force = false })
+        end
+      end
+    end
 
     -- Global AI toggles are now in keymaps.lua for centralized management
 

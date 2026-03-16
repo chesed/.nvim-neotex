@@ -19,7 +19,8 @@ next_project_number: 210
 
 ### 208. Create grant context files for domain knowledge
 - **Effort**: 2-3 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
+- **Research Started**: 2026-03-15
 - **Language**: meta
 - **Dependencies**: Task #204
 - **Created**: 2026-03-15
@@ -52,13 +53,16 @@ next_project_number: 210
 
 ### 205. Create grant-agent with research and writing capabilities
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-15
 - **Research Completed**: 2026-03-15
+- **Planning Started**: 2026-03-15
+- **Planning Completed**: 2026-03-15
 - **Language**: meta
 - **Dependencies**: Task #204
 - **Created**: 2026-03-15
 - **Research**: [01_grant-agent-patterns.md](205_create_grant_agent/reports/01_grant-agent-patterns.md)
+- **Plan**: [01_grant-agent-plan.md](205_create_grant_agent/plans/01_grant-agent-plan.md)
 
 **Description**: Create grant/agents/grant-agent.md with capabilities for grant proposal research and writing. The agent should support: funder research (using WebSearch, WebFetch), proposal drafting, budget justification, and progress tracking. Include progressive context loading from grant/context/ files.
 
