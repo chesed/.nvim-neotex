@@ -1,10 +1,76 @@
 ---
-next_project_number: 204
+next_project_number: 210
 ---
 
 # TODO
 
 ## Tasks
+
+### 209. Create EXTENSION.md and index-entries.json for grant extension
+- **Effort**: 1 hour
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: Task #207, Task #208
+- **Created**: 2026-03-15
+
+**Description**: Create the EXTENSION.md file with content to inject into CLAUDE.md when the grant extension is loaded, and index-entries.json with canonical paths for context discovery. This finalizes the extension for use with the `<leader>ac` loader.
+
+---
+
+### 208. Create grant context files for domain knowledge
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: Task #204
+- **Created**: 2026-03-15
+
+**Description**: Create context files in grant/context/ containing domain knowledge for grant writing. Include templates, funder research patterns, proposal structure guidelines, and budget justification formats. These files will be progressively loaded by the grant-agent based on task needs.
+
+---
+
+### 207. Create /grant command
+- **Effort**: 1-2 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: Task #206
+- **Created**: 2026-03-15
+
+**Description**: Create grant/commands/grant.md command following existing command patterns. The command should parse arguments (e.g., project name, funder, deadline), invoke skill-grant via the Skill tool, and handle postflight operations including git commits.
+
+---
+
+### 206. Create skill-grant thin wrapper
+- **Effort**: 1-2 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: Task #205
+- **Created**: 2026-03-15
+
+**Description**: Create grant/skills/skill-grant/SKILL.md as a thin wrapper that validates inputs, prepares delegation context, invokes grant-agent via the Agent tool, validates the return, and propagates results. Follow the skill-meta pattern for internal postflight handling.
+
+---
+
+### 205. Create grant-agent with research and writing capabilities
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: Task #204
+- **Created**: 2026-03-15
+
+**Description**: Create grant/agents/grant-agent.md with capabilities for grant proposal research and writing. The agent should support: funder research (using WebSearch, WebFetch), proposal drafting, budget justification, and progress tracking. Include progressive context loading from grant/context/ files.
+
+---
+
+### 204. Create grant extension scaffold with manifest.json
+- **Effort**: 1-2 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+- **Created**: 2026-03-15
+
+**Description**: Create the foundational grant/ extension directory structure following existing extension patterns (nvim, lean). Create manifest.json with extension metadata including name, version, description, provides arrays (commands, skills, agents), and merge_targets for context index integration.
+
+---
 
 ### 87. Investigate terminal directory change when opening neovim in wezterm
 - **Effort**: TBD

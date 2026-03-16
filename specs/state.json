@@ -1,7 +1,79 @@
 {
   "version": "1.0.0",
-  "next_project_number": 204,
+  "next_project_number": 210,
   "active_projects": [
+    {
+      "project_number": 204,
+      "project_name": "create_grant_extension_scaffold",
+      "status": "not_started",
+      "language": "meta",
+      "effort": "1-2 hours",
+      "created": "2026-03-15T12:00:00Z",
+      "last_updated": "2026-03-15T12:00:00Z",
+      "session_id": "sess_1741992000_a7f3c2",
+      "dependencies": [],
+      "artifacts": []
+    },
+    {
+      "project_number": 205,
+      "project_name": "create_grant_agent",
+      "status": "not_started",
+      "language": "meta",
+      "effort": "2-3 hours",
+      "created": "2026-03-15T12:00:00Z",
+      "last_updated": "2026-03-15T12:00:00Z",
+      "session_id": "sess_1741992000_a7f3c2",
+      "dependencies": [204],
+      "artifacts": []
+    },
+    {
+      "project_number": 206,
+      "project_name": "create_skill_grant_wrapper",
+      "status": "not_started",
+      "language": "meta",
+      "effort": "1-2 hours",
+      "created": "2026-03-15T12:00:00Z",
+      "last_updated": "2026-03-15T12:00:00Z",
+      "session_id": "sess_1741992000_a7f3c2",
+      "dependencies": [205],
+      "artifacts": []
+    },
+    {
+      "project_number": 207,
+      "project_name": "create_grant_command",
+      "status": "not_started",
+      "language": "meta",
+      "effort": "1-2 hours",
+      "created": "2026-03-15T12:00:00Z",
+      "last_updated": "2026-03-15T12:00:00Z",
+      "session_id": "sess_1741992000_a7f3c2",
+      "dependencies": [206],
+      "artifacts": []
+    },
+    {
+      "project_number": 208,
+      "project_name": "create_grant_context_files",
+      "status": "not_started",
+      "language": "meta",
+      "effort": "2-3 hours",
+      "created": "2026-03-15T12:00:00Z",
+      "last_updated": "2026-03-15T12:00:00Z",
+      "session_id": "sess_1741992000_a7f3c2",
+      "dependencies": [204],
+      "artifacts": []
+    },
+    {
+      "project_number": 209,
+      "project_name": "create_extension_metadata",
+      "status": "not_started",
+      "language": "meta",
+      "effort": "1 hour",
+      "created": "2026-03-15T12:00:00Z",
+      "last_updated": "2026-03-15T12:00:00Z",
+      "session_id": "sess_1741992000_a7f3c2",
+      "dependencies": [207, 208],
+      "artifacts": []
+    },
     {
       "project_number": 87,
       "project_name": "investigate_wezterm_terminal_directory_change",
