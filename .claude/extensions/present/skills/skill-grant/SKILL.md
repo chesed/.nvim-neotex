@@ -30,21 +30,44 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 
 This skill activates when:
 - Task language is "grant"
-- Grant workflow requested (funder_research, proposal_draft, budget_develop, progress_track)
+- Grant workflow requested via flags (--draft, --budget, --finish) or legacy workflow_type
 - Extension is loaded via `<leader>ac`
 
 ---
 
 ## Workflow Type Routing
 
-This skill routes to grant-agent with one of four workflow types:
+This skill routes to grant-agent with one of five workflow types:
 
 | Workflow Type | Preflight Status | Success Status | TODO.md Markers |
 |---------------|-----------------|----------------|-----------------|
 | funder_research | researching | researched | [RESEARCHING] -> [RESEARCHED] |
 | proposal_draft | planning | planned | [PLANNING] -> [PLANNED] |
 | budget_develop | planning | planned | [PLANNING] -> [PLANNED] |
+| finish | (no preflight change) | completed | -> [COMPLETED] |
 | progress_track | (no change) | (no change) | (no change) |
+
+---
+
+## Input Parameters
+
+### Required Parameters
+- `task_number` - Task number (must exist in state.json with language="grant")
+- `workflow_type` - One of: funder_research, proposal_draft, budget_develop, finish, progress_track
+- `session_id` - Session ID from orchestrator
+
+### Optional Parameters
+- `focus` - Focus prompt for workflow direction (used by all workflow types)
+- `export_path` - Required for `finish` workflow type, path to export materials
+
+**Prompt Usage by Workflow Type**:
+| Workflow | focus Parameter | Example |
+|----------|-----------------|---------|
+| funder_research | Research focus | "Focus on NIH institutes" |
+| proposal_draft | Drafting guidance | "Emphasize innovation and methodology" |
+| budget_develop | Budget guidance | "Include 3 conferences/year, emphasize personnel" |
+| finish | Export customization | "Compile as single PDF" |
+| progress_track | Summary focus | "Focus on budget utilization" |
 
 ---
 
@@ -54,8 +77,9 @@ This skill routes to grant-agent with one of four workflow types:
 
 Validate required inputs:
 - `task_number` - Must be provided and exist in state.json
-- `workflow_type` - Must be one of: funder_research, proposal_draft, budget_develop, progress_track
-- `focus_prompt` - Optional focus for workflow direction
+- `workflow_type` - Must be one of: funder_research, proposal_draft, budget_develop, finish, progress_track
+- `focus` - Optional prompt for workflow direction
+- `export_path` - Required for finish workflow
 
 ```bash
 # Lookup task
@@ -81,12 +105,17 @@ fi
 
 # Validate workflow_type
 case "$workflow_type" in
-  funder_research|proposal_draft|budget_develop|progress_track)
+  funder_research|proposal_draft|budget_develop|finish|progress_track)
     ;;
   *)
-    return error "Invalid workflow_type: $workflow_type. Expected one of: funder_research, proposal_draft, budget_develop, progress_track"
+    return error "Invalid workflow_type: $workflow_type. Expected one of: funder_research, proposal_draft, budget_develop, finish, progress_track"
     ;;
 esac
+
+# Validate export_path for finish workflow
+if [ "$workflow_type" = "finish" ] && [ -z "$export_path" ]; then
+  return error "export_path is required for finish workflow"
+fi
 ```
 
 ---
@@ -101,6 +130,7 @@ Update task status based on workflow type BEFORE invoking subagent.
 | funder_research | researching | [RESEARCHING] |
 | proposal_draft | planning | [PLANNING] |
 | budget_develop | planning | [PLANNING] |
+| finish | (no change) | (no change) |
 | progress_track | (no change) | (no change) |
 
 **Update state.json** (for workflows that change status):
@@ -115,8 +145,8 @@ case "$workflow_type" in
     preflight_status="planning"
     preflight_marker="[PLANNING]"
     ;;
-  progress_track)
-    preflight_status=""  # No status change for progress tracking
+  finish|progress_track)
+    preflight_status=""  # No status change
     preflight_marker=""
     ;;
 esac
@@ -178,8 +208,9 @@ Prepare delegation context for the subagent:
     "description": "{description}",
     "language": "grant"
   },
-  "workflow_type": "funder_research|proposal_draft|budget_develop|progress_track",
-  "focus_prompt": "{optional focus}",
+  "workflow_type": "funder_research|proposal_draft|budget_develop|finish|progress_track",
+  "focus_prompt": "{optional focus - passed to agent for guidance}",
+  "export_path": "{for finish workflow only}",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json"
 }
 ```
@@ -195,14 +226,15 @@ Prepare delegation context for the subagent:
 Tool: Task (NOT Skill)
 Parameters:
   - subagent_type: "grant-agent"
-  - prompt: [Include task_context, delegation_context, workflow_type, focus_prompt, metadata_file_path]
+  - prompt: [Include task_context, delegation_context, workflow_type, focus_prompt, export_path, metadata_file_path]
   - description: "Execute {workflow_type} workflow for task {N}"
 ```
 
 **DO NOT** use `Skill(grant-agent)` - this will FAIL.
 
 The subagent will:
-- Execute the specified workflow (funder_research, proposal_draft, budget_develop, progress_track)
+- Execute the specified workflow (funder_research, proposal_draft, budget_develop, finish, progress_track)
+- Use the focus_prompt to guide its output
 - Create workflow-specific artifacts in `specs/{NNN}_{SLUG}/{subdir}/`
 - Write metadata to `specs/{NNN}_{SLUG}/.return-meta.json`
 - Return a brief text summary (NOT JSON)
@@ -272,6 +304,8 @@ Map workflow_type + metadata status to final state.json status:
 | proposal_draft | partial | planning | [PLANNING] |
 | budget_develop | drafted | planned | [PLANNED] |
 | budget_develop | partial | planning | [PLANNING] |
+| finish | exported | completed | [COMPLETED] |
+| finish | partial | planned | [PLANNED] |
 | progress_track | tracked | (no change) | (no change) |
 | progress_track | partial | (no change) | (no change) |
 | any | failed | (keep preflight) | (keep preflight marker) |
@@ -290,6 +324,12 @@ case "$workflow_type" in
     if [ "$meta_status" = "drafted" ]; then
       postflight_status="planned"
       postflight_marker="[PLANNED]"
+    fi
+    ;;
+  finish)
+    if [ "$meta_status" = "exported" ]; then
+      postflight_status="completed"
+      postflight_marker="[COMPLETED]"
     fi
     ;;
   progress_track)
@@ -334,6 +374,9 @@ case "$workflow_type" in
   budget_develop)
     artifact_filter_type="budget"
     ;;
+  finish)
+    artifact_filter_type="export"
+    ;;
   progress_track)
     artifact_filter_type="summary"
     ;;
@@ -361,6 +404,7 @@ fi
 - funder_research: `- **Research**: [{filename}]({artifact_path})`
 - proposal_draft: `- **Draft**: [{filename}]({artifact_path})`
 - budget_develop: `- **Budget**: [{filename}]({artifact_path})`
+- finish: `- **Export**: [{export_path}]({export_path})`
 - progress_track: `- **Progress**: [{filename}]({artifact_path})`
 
 ---
@@ -380,6 +424,9 @@ case "$workflow_type" in
     ;;
   budget_develop)
     commit_action="develop budget"
+    ;;
+  finish)
+    commit_action="export grant materials"
     ;;
   progress_track)
     commit_action="update progress"
@@ -428,10 +475,10 @@ Funder research completed for task {N}:
 ```
 Proposal draft created for task {N}:
 - Drafted {count} of {total} required sections
-- {key_sections} sections ready for review
+- Focus applied: "{focus_prompt}" (if provided)
 - Created draft at specs/{NNN}_{SLUG}/drafts/{MM}_narrative-draft.md
 - Status updated to [PLANNED]
-- Recommend: Run budget_develop workflow next
+- Recommend: Run /grant {N} --budget next
 ```
 
 **Budget Development Success**:
@@ -439,8 +486,19 @@ Proposal draft created for task {N}:
 Budget developed for task {N}:
 - Created {count} line items across {categories} categories
 - Total budget: {amount}
+- Focus applied: "{focus_prompt}" (if provided)
 - Created budget at specs/{NNN}_{SLUG}/budgets/{MM}_line-item-budget.md
 - Status updated to [PLANNED]
+- Changes committed with session {session_id}
+```
+
+**Finish/Export Success**:
+```
+Grant materials exported for task {N}:
+- Exported to: {export_path}
+- Files included: narrative.md, budget.md, checklist.md
+- Customization applied: "{focus_prompt}" (if provided)
+- Status updated to [COMPLETED]
 - Changes committed with session {session_id}
 ```
 
@@ -460,7 +518,7 @@ Grant {workflow_type} partially completed for task {N}:
 - {completed_actions}
 - {failed_action} failed: {reason}
 - Partial artifact created at specs/{NNN}_{SLUG}/{subdir}/{filename}
-- Status remains [{preflight_marker}] - run /grant {N} {workflow_type} to continue
+- Status remains [{preflight_marker}] - run /grant {N} {flag} to continue
 ```
 
 ---
@@ -483,7 +541,7 @@ Return immediately with error message:
 ```
 Grant skill error for task {N}:
 - Invalid workflow_type: {provided_value}
-- Expected one of: funder_research, proposal_draft, budget_develop, progress_track
+- Expected one of: funder_research, proposal_draft, budget_develop, finish, progress_track
 - No status changes made
 ```
 
@@ -492,7 +550,16 @@ Return immediately with error message:
 ```
 Grant skill error for task {N}:
 - Task has language '{language}', expected 'grant'
-- Use /task {N} to update task language or use appropriate skill
+- Use /grant {N} to update task language or use appropriate skill
+- No status changes made
+```
+
+**Missing export_path for finish**:
+Return immediately with error message:
+```
+Grant skill error for task {N}:
+- Missing export_path for finish workflow
+- Usage: /grant {N} --finish PATH ["optional prompt"]
 - No status changes made
 ```
 
@@ -508,7 +575,7 @@ Grant skill error for task {N}:
 - Subagent did not write metadata file
 - Task remains [{preflight_marker}] for resume
 - Postflight marker preserved
-- Run /grant {N} {workflow_type} to retry
+- Run /grant {N} {flag} to retry
 ```
 
 ### Git Commit Failure
@@ -534,7 +601,7 @@ Grant {workflow_type} timed out for task {N}:
 - Subagent exceeded timeout limit
 - Partial progress: {partial_details}
 - Status remains [{preflight_marker}]
-- Run /grant {N} {workflow_type} to continue
+- Run /grant {N} {flag} to continue
 ```
 
 ---
@@ -543,23 +610,23 @@ Grant {workflow_type} timed out for task {N}:
 
 This skill returns a **brief text summary** (NOT JSON). The JSON metadata is written to the file and processed internally.
 
-Example successful return (funder_research):
+Example successful return (proposal_draft with prompt):
 ```
-Funder research completed for task 500:
-- Identified 5 potential funders for AI safety research
-- Top recommendation: Open Philanthropy (strongest alignment, $1M+ capacity)
-- Created report at specs/500_research_ai_safety_funders/reports/01_funder-analysis.md
-- Status updated to [RESEARCHED]
-- Changes committed with session sess_1773637808_c37314
+Proposal draft created for task 500:
+- Drafted 5 of 7 required sections
+- Focus applied: "Emphasize innovation and methodology"
+- Created draft at specs/500_research_ai_safety_funders/drafts/01_narrative-draft.md
+- Status updated to [PLANNED]
+- Recommend: Run /grant 500 --budget next
 ```
 
 Example partial return:
 ```
-Grant funder_research partially completed for task 500:
-- Completed funder identification (4 candidates)
-- WebFetch failed for 2 funder websites
-- Partial report saved at specs/500_research_ai_safety_funders/reports/01_funder-analysis.md
-- Status remains [RESEARCHING] - run /grant 500 funder_research to continue
+Grant proposal_draft partially completed for task 500:
+- Completed problem statement, methodology, impact sections
+- WebFetch failed for funder template retrieval
+- Partial draft saved at specs/500_research_ai_safety_funders/drafts/01_narrative-draft.md
+- Status remains [PLANNING] - run /grant 500 --draft to continue
 ```
 
 Example failed return:

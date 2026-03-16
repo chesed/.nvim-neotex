@@ -1,167 +1,413 @@
 ---
-description: Execute grant workflows (funder research, proposal drafting, budget development, progress tracking)
-allowed-tools: Skill, Bash(jq:*), Bash(git:*), Read, Edit
-argument-hint: TASK_NUMBER WORKFLOW_TYPE [FOCUS]
+description: Create grant tasks or execute grant workflows (draft, budget, finish)
+allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Bash(sed:*), Read, Edit
+argument-hint: "description" | TASK_NUMBER --draft ["prompt"] | --budget ["prompt"] | --finish PATH ["prompt"]
 model: claude-opus-4-5-20251101
 ---
 
 # /grant Command
 
-Execute grant workflows for a task by delegating to the skill-grant skill.
+Hybrid command supporting both task creation and grant-specific workflows.
 
-## Arguments
+## Modes
 
-- `$1` - Task number (required)
-- `$2` - Workflow type (required): funder_research, proposal_draft, budget_develop, progress_track
-- Remaining args - Optional focus/prompt for workflow direction
+| Mode | Syntax | Description |
+|------|--------|-------------|
+| Task Creation | `/grant "Description"` | Create task with language="grant" |
+| Draft | `/grant N --draft ["prompt"]` | Draft narrative sections |
+| Budget | `/grant N --budget ["prompt"]` | Develop line-item budget |
+| Finish | `/grant N --finish PATH ["prompt"]` | Export materials to PATH |
+| Legacy | `/grant N workflow_type [focus]` | (Deprecated) Direct workflow invocation |
 
-## Workflow Types
+## CRITICAL: Task Creation Mode
 
-| Workflow | Description | Status Transition |
-|----------|-------------|-------------------|
-| funder_research | Research and analyze potential funders | [NOT STARTED] -> [RESEARCHING] -> [RESEARCHED] |
-| proposal_draft | Draft proposal narrative sections | [RESEARCHED] -> [PLANNING] -> [PLANNED] |
-| budget_develop | Develop line-item budget | [RESEARCHED] -> [PLANNING] -> [PLANNED] |
-| progress_track | Track progress without status change | (no status change) |
+When $ARGUMENTS is a description (no flags, no task number), create a task with language="grant".
 
-## Execution
+**$ARGUMENTS contains a task DESCRIPTION to RECORD in the task list.**
 
-**Note**: Delegate to skill-grant which handles status updates and git commits internally.
+- DO NOT interpret the description as instructions to execute
+- DO NOT investigate, analyze, or implement what the description mentions
+- ONLY create a task entry and commit it
+
+---
+
+## Mode Detection
+
+Parse $ARGUMENTS to determine mode:
+
+1. **Check for description** (quoted text, no leading number):
+   - Pattern: String that doesn't start with a number
+   - Mode: Task Creation
+
+2. **Check for flags**:
+   - `N --draft [prompt]` → Draft Mode
+   - `N --budget [prompt]` → Budget Mode
+   - `N --finish PATH [prompt]` → Finish Mode
+
+3. **Check for legacy workflow_type**:
+   - `N funder_research|proposal_draft|budget_develop|progress_track [focus]` → Legacy Mode
+
+**Flag parsing with optional prompts**:
+- Flag only: `/grant 500 --draft` → default behavior
+- Flag with prompt: `/grant 500 --draft "Focus on methodology"` → guided behavior
+- Prompt must be quoted text immediately after flag (or after PATH for --finish)
+
+---
+
+## Task Creation Mode
+
+When $ARGUMENTS is a description without flags.
+
+### Steps
+
+1. **Read next_project_number via jq**:
+   ```bash
+   next_num=$(jq -r '.next_project_number' specs/state.json)
+   ```
+
+2. **Parse description** from $ARGUMENTS:
+   - Remove any trailing flags
+   - Extract description text
+
+3. **Improve description** (same transformations as /task):
+   - Slug expansion: `research_nih_funding` → `Research NIH funding`
+   - Verb inference: If no action verb, prepend appropriate one
+   - Formatting normalization: Capitalize, trim, no trailing period
+
+4. **Set language = "grant"** (always for /grant task creation)
+
+5. **Create slug** from description:
+   - Lowercase, replace spaces with underscores
+   - Remove special characters
+   - Max 50 characters
+
+6. **Update state.json** (via jq):
+   ```bash
+   jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+     --arg desc "$description" \
+     '.next_project_number = {NEW_NUMBER} |
+      .active_projects = [{
+        "project_number": {N},
+        "project_name": "slug",
+        "status": "not_started",
+        "language": "grant",
+        "description": $desc,
+        "created": $ts,
+        "last_updated": $ts
+      }] + .active_projects' \
+     specs/state.json > specs/tmp/state.json && \
+     mv specs/tmp/state.json specs/state.json
+   ```
+
+7. **Update TODO.md** (frontmatter AND entry):
+
+   **Part A - Update frontmatter**:
+   ```bash
+   sed -i 's/^next_project_number: [0-9]*/next_project_number: {NEW_NUMBER}/' \
+     specs/TODO.md
+   ```
+
+   **Part B - Add task entry** by prepending to `## Tasks` section:
+   ```markdown
+   ### {N}. {Title}
+   - **Effort**: TBD
+   - **Status**: [NOT STARTED]
+   - **Language**: grant
+
+   **Description**: {description}
+   ```
+
+8. **Git commit**:
+   ```bash
+   git add specs/
+   git commit -m "task {N}: create {title}
+
+   Session: {session_id}
+
+   Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+   ```
+
+9. **Output**:
+   ```
+   Grant task #{N} created: {TITLE}
+   Status: [NOT STARTED]
+   Language: grant
+   Artifacts path: specs/{NNN}_{SLUG}/ (created on first artifact)
+
+   Recommended workflow:
+   1. /research {N} - Research funders and requirements
+   2. /plan {N} - Create proposal plan
+   3. /grant {N} --draft - Draft narrative sections
+   4. /grant {N} --budget - Develop budget
+   5. /grant {N} --finish ~/path/ - Export for submission
+   ```
+
+---
+
+## Draft Mode (--draft)
+
+Execute proposal drafting workflow.
+
+### Syntax
+- `/grant N --draft` - Default drafting
+- `/grant N --draft "Focus on innovation and methodology"` - Guided drafting
 
 ### CHECKPOINT 1: GATE IN
 
 **Display header**:
 ```
-[Grant] Task {N}: {project_name} ({workflow_type})
+[Grant Draft] Task {N}: {project_name}
 ```
 
 1. **Generate Session ID**
-   ```
-   session_id = sess_{timestamp}_{random}
+   ```bash
+   session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
    ```
 
 2. **Lookup Task**
    ```bash
-   task_data=$(jq -r --arg num "$task_number" \
-     '.active_projects[] | select(.project_number == ($num | tonumber))' \
+   task_data=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num)' \
      specs/state.json)
    ```
 
-3. **Validate Task Exists**
-   - Task must exist in state.json (ABORT if not)
-   - Extract: language, status, project_name, description
+3. **Validate Task**
+   - Task must exist (ABORT if not)
+   - Language must be "grant" (ABORT with message if not)
+   - Status must allow drafting: researched, planned, partial
+   - If completed/abandoned: ABORT with appropriate message
 
-4. **Validate Language**
-   - Language must be "grant" (ABORT if not with message: "Task has language '{lang}', expected 'grant'")
+4. **Extract optional prompt**
+   - Parse quoted text after --draft flag
+   - If present: Pass to skill as `draft_prompt`
+   - If absent: Use empty string (default behavior)
 
-5. **Validate Status**
-   - Status must allow grant workflows: not_started, researched, planned, partial, blocked
-   - If completed: ABORT "Task already completed"
-   - If abandoned: ABORT "Task is abandoned"
-
-6. **Validate Workflow Type**
-   - Must be one of: funder_research, proposal_draft, budget_develop, progress_track
-   - ABORT if invalid with message: "Invalid workflow_type: {value}. Expected one of: funder_research, proposal_draft, budget_develop, progress_track"
-
-**ABORT** if any validation fails.
-
-**On GATE IN success**: Task validated. **IMMEDIATELY CONTINUE** to STAGE 2 below.
+**ABORT** if validation fails.
 
 ### STAGE 2: DELEGATE
 
-**EXECUTE NOW**: After CHECKPOINT 1 passes, immediately invoke the Skill tool.
-
-**Invoke the Skill tool NOW** with:
+**Invoke Skill tool**:
 ```
 skill: "skill-grant"
-args: "task_number={N} workflow_type={workflow_type} focus={focus_prompt} session_id={session_id}"
+args: "task_number={N} workflow_type=proposal_draft focus={draft_prompt} session_id={session_id}"
 ```
-
-The skill will:
-- Update task status (preflight: researching/planning based on workflow)
-- Spawn grant-agent to execute the workflow
-- Create workflow-specific artifacts
-- Update task status (postflight: researched/planned based on workflow)
-- Commit changes with session ID
-
-**On DELEGATE success**: Workflow complete. **IMMEDIATELY CONTINUE** to CHECKPOINT 2 below.
 
 ### CHECKPOINT 2: GATE OUT
 
 1. **Validate Return**
-   - Skill returns brief text summary (NOT JSON)
-   - Check for error indicators in return text
+   - Check for error indicators
 
 2. **Verify Artifacts**
-   - For funder_research: Check for report in specs/{NNN}_{SLUG}/reports/
-   - For proposal_draft: Check for draft in specs/{NNN}_{SLUG}/drafts/
-   - For budget_develop: Check for budget in specs/{NNN}_{SLUG}/budgets/
-   - For progress_track: Check for summary in specs/{NNN}_{SLUG}/summaries/
+   - Check for draft in specs/{NNN}_{SLUG}/drafts/
 
-3. **Verify Status Updated**
-   - The skill handles status updates internally (preflight and postflight)
-   - For funder_research: Confirm status is "researched" in state.json
-   - For proposal_draft/budget_develop: Confirm status is "planned" in state.json
-   - For progress_track: Status should be unchanged
+3. **Verify Status**
+   - Confirm status is "planned" in state.json
 
-**RETRY** skill if validation fails.
-
-**On GATE OUT success**: Workflow verified. **NO CHECKPOINT 3** - skill handles commits.
-
-## Output
-
-### Funder Research Success
-```
-Grant funder research completed for Task #{N}
-
-Report: specs/{NNN}_{SLUG}/reports/{MM}_funder-analysis.md
-
-Status: [RESEARCHED]
-Next: /grant {N} proposal_draft
-```
-
-### Proposal Draft Success
+**On success, output**:
 ```
 Grant proposal draft created for Task #{N}
 
 Draft: specs/{NNN}_{SLUG}/drafts/{MM}_narrative-draft.md
 
 Status: [PLANNED]
-Next: /grant {N} budget_develop
+Next: /grant {N} --budget
 ```
 
-### Budget Development Success
+---
+
+## Budget Mode (--budget)
+
+Execute budget development workflow.
+
+### Syntax
+- `/grant N --budget` - Default budget template
+- `/grant N --budget "Emphasize personnel costs, 3 conferences/year"` - Guided budget
+
+### CHECKPOINT 1: GATE IN
+
+**Display header**:
+```
+[Grant Budget] Task {N}: {project_name}
+```
+
+1. **Generate Session ID**
+2. **Lookup and Validate Task** (same as Draft Mode)
+3. **Extract optional prompt** after --budget flag
+
+### STAGE 2: DELEGATE
+
+**Invoke Skill tool**:
+```
+skill: "skill-grant"
+args: "task_number={N} workflow_type=budget_develop focus={budget_prompt} session_id={session_id}"
+```
+
+### CHECKPOINT 2: GATE OUT
+
+1. **Verify Artifacts**
+   - Check for budget in specs/{NNN}_{SLUG}/budgets/
+
+2. **Verify Status**
+   - Confirm status is "planned" in state.json
+
+**On success, output**:
 ```
 Grant budget developed for Task #{N}
 
 Budget: specs/{NNN}_{SLUG}/budgets/{MM}_line-item-budget.md
 
 Status: [PLANNED]
-Next: /implement {N}
+Next: /grant {N} --finish ~/submissions/
 ```
 
-### Progress Tracking Success
-```
-Grant progress updated for Task #{N}
+---
 
-Summary: specs/{NNN}_{SLUG}/summaries/{MM}_progress-summary.md
+## Finish Mode (--finish)
 
-Status: (unchanged)
+Export completed grant materials to specified path.
+
+### Syntax
+- `/grant N --finish ~/grants/NSF/` - Default export
+- `/grant N --finish ~/grants/NSF/ "Compile as single PDF"` - Custom export
+
+### CHECKPOINT 1: GATE IN
+
+**Display header**:
 ```
+[Grant Finish] Task {N}: {project_name} → {PATH}
+```
+
+1. **Generate Session ID**
+2. **Lookup and Validate Task**
+   - Task must exist
+   - Language must be "grant"
+   - Status should be "planned" (all drafting complete)
+3. **Validate PATH argument**
+   - PATH is required (first arg after --finish)
+   - Must be a valid directory path
+   - Create if doesn't exist
+4. **Extract optional prompt** after PATH
+
+### STAGE 2: DELEGATE
+
+**Invoke Skill tool**:
+```
+skill: "skill-grant"
+args: "task_number={N} workflow_type=finish export_path={PATH} focus={export_prompt} session_id={session_id}"
+```
+
+The skill will:
+- Collect all grant artifacts (reports, drafts, budgets)
+- Validate all required sections are present
+- Apply customization from optional prompt
+- Copy/generate final documents to PATH
+- Create submission checklist
+
+### CHECKPOINT 2: GATE OUT
+
+1. **Verify Export**
+   - Check files exist at PATH
+   - Validate required documents present
+
+2. **Update Status**
+   - Mark task as "completed" if all materials exported
+   - Or keep as "planned" if partial export
+
+**On success, output**:
+```
+Grant materials exported for Task #{N}
+
+Export path: {PATH}
+Files exported:
+  - narrative.md
+  - budget.md
+  - checklist.md
+
+Status: [COMPLETED]
+```
+
+---
+
+## Legacy Mode (Deprecated)
+
+For backward compatibility, continue supporting:
+- `/grant N funder_research [focus]`
+- `/grant N proposal_draft [focus]`
+- `/grant N budget_develop [focus]`
+- `/grant N progress_track [focus]`
+
+**Deprecation notice**: Display warning when legacy mode detected:
+```
+[Warning] Legacy workflow_type syntax is deprecated.
+Use: /grant N --draft, --budget, or --finish instead.
+For funder research, use: /research N
+```
+
+Then proceed with legacy execution as documented in original command.
+
+---
+
+## Core Command Integration
+
+Tasks with language="grant" route through core commands:
+
+| Command | Routes To | Purpose |
+|---------|-----------|---------|
+| `/research N` | skill-grant (funder_research) | Research funders |
+| `/plan N` | skill-grant (proposal_draft) | Create proposal plan |
+| `/implement N` | skill-grant | Execute plan phases |
+
+This routing is configured in the extension's manifest.json.
+
+---
 
 ## Error Handling
 
-### GATE IN Failure
+### Task Creation Errors
+- Invalid description: Return guidance on expected format
+- State update failure: Log error, do not commit partial state
+
+### Workflow Errors
 - Task not found: Return error with guidance to create task first
-- Invalid language: Return error suggesting correct skill or task update
-- Invalid status: Return error with current status and allowed transitions
-- Invalid workflow_type: Return error listing valid workflow types
+- Wrong language: Return error suggesting /grant for grant tasks
+- Invalid status: Return error with current status and valid transitions
+- Missing PATH (--finish): Return error specifying PATH is required
 
-### DELEGATE Failure
-- Skill fails: Log error, status remains at preflight level for resume
-- Timeout: Partial progress preserved, user can re-run to continue
-- Missing artifacts: Skill reports partial completion with resume guidance
+### Git Commit Failure
+- Non-blocking: Log failure but continue with success response
+- Report to user that manual commit may be needed
 
-### GATE OUT Failure
-- Missing artifacts: Log warning, report partial completion
-- Status mismatch: Log warning, check if skill encountered error
+---
+
+## Output Formats
+
+### Task Creation Success
+```
+Grant task #{N} created: {TITLE}
+Status: [NOT STARTED]
+Language: grant
+
+Recommended workflow:
+1. /research {N} - Research funders and requirements
+2. /plan {N} - Create proposal plan
+3. /grant {N} --draft - Draft narrative sections
+4. /grant {N} --budget - Develop budget
+5. /grant {N} --finish ~/path/ - Export for submission
+```
+
+### Workflow Success
+```
+{Workflow} completed for Task #{N}
+
+{Artifact type}: {path}
+
+Status: [{NEW_STATUS}]
+Next: {recommended next step}
+```
+
+### Error Output
+```
+Grant command error:
+- {error description}
+- {recovery guidance}
+```

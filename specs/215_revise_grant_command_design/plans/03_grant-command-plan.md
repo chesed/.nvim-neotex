@@ -1,7 +1,7 @@
 # Implementation Plan: Revise /grant Command Design (v3)
 
 - **Task**: 215 - Revise grant command design
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 3-4 hours
 - **Dependencies**: None
 - **Research Inputs**: Research analysis of hybrid design approach
@@ -61,7 +61,7 @@ Key findings from research analysis:
 
 ## Implementation Phases
 
-### Phase 1: Add Task Creation Mode to /grant [NOT STARTED]
+### Phase 1: Add Task Creation Mode to /grant [COMPLETED]
 
 **Goal**: Enable `/grant "Description"` to create tasks with language="grant"
 
@@ -89,7 +89,7 @@ Key findings from research analysis:
 
 ---
 
-### Phase 2: Add --draft Flag with Optional Prompt [NOT STARTED]
+### Phase 2: Add --draft Flag with Optional Prompt [COMPLETED]
 
 **Goal**: Enable `/grant N --draft ["optional prompt"]` for narrative section drafting
 
@@ -123,7 +123,7 @@ Key findings from research analysis:
 
 ---
 
-### Phase 3: Add --budget Flag with Optional Prompt [NOT STARTED]
+### Phase 3: Add --budget Flag with Optional Prompt [COMPLETED]
 
 **Goal**: Enable `/grant N --budget ["optional prompt"]` for line-item budget development
 
@@ -157,7 +157,7 @@ Key findings from research analysis:
 
 ---
 
-### Phase 4: Add --finish Flag with PATH and Optional Prompt [NOT STARTED]
+### Phase 4: Add --finish Flag with PATH and Optional Prompt [COMPLETED]
 
 **Goal**: Enable `/grant N --finish PATH ["optional prompt"]` to export completed grant
 
@@ -195,7 +195,7 @@ Key findings from research analysis:
 
 ---
 
-### Phase 5: Update Extension Routing [NOT STARTED]
+### Phase 5: Update Extension Routing [COMPLETED]
 
 **Goal**: Ensure /research and /plan route correctly for language="grant" tasks
 
@@ -219,7 +219,7 @@ Key findings from research analysis:
 
 ---
 
-### Phase 6: Update Documentation [NOT STARTED]
+### Phase 6: Update Documentation [COMPLETED]
 
 **Goal**: Update EXTENSION.md with complete revised /grant command documentation
 
@@ -250,7 +250,7 @@ Key findings from research analysis:
 
 ---
 
-### Phase 7: Verification and Testing [NOT STARTED]
+### Phase 7: Verification and Testing [COMPLETED]
 
 **Goal**: Verify all changes work correctly end-to-end
 
