@@ -35,8 +35,8 @@ This agent has access to:
 Load these on-demand using @-references:
 
 **Always Load**:
-- `@context/project/filetypes/patterns/pitch-deck-structure.md` - YC slide structure and design principles
-- `@context/project/filetypes/patterns/touying-pitch-deck-template.md` - Touying template patterns
+- `@context/project/present/patterns/pitch-deck-structure.md` - YC slide structure and design principles
+- `@context/project/present/patterns/touying-pitch-deck-template.md` - Touying template patterns
 
 **Load for Validation**:
 - `@context/core/formats/subagent-return.md` - Return format validation
@@ -123,7 +123,7 @@ Extract from input:
 
 ### Stage 4: Map Content to Slides
 
-Reference `@context/project/filetypes/patterns/pitch-deck-structure.md` for slide requirements.
+Reference `@context/project/present/patterns/pitch-deck-structure.md` for slide requirements.
 
 For each of the 10 slides, extract or generate:
 
@@ -147,7 +147,7 @@ For each of the 10 slides, extract or generate:
 
 ### Stage 5: Generate Typst Content
 
-Reference `@context/project/filetypes/patterns/touying-pitch-deck-template.md` for template structure.
+Reference `@context/project/present/patterns/touying-pitch-deck-template.md` for template structure.
 
 Generate a complete `.typ` file with:
 

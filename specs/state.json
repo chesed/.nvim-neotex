@@ -63,12 +63,12 @@
     {
       "project_number": 212,
       "project_name": "update_present_extension_metadata_for_deck",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "effort": "1 hour",
       "created": "2026-03-16T14:00:00Z",
-      "last_updated": "2026-03-16T20:49:19Z",
-      "session_id": "sess_1741901000_e6f7g8",
+      "last_updated": "2026-03-16T20:53:00Z",
+      "session_id": "sess_1741901400_f7g8h9",
       "dependencies": [
         211
       ],
@@ -77,9 +77,18 @@
           "path": "specs/212_update_present_extension_metadata_for_deck/plans/01_update-metadata.md",
           "type": "plan",
           "summary": "4-phase implementation plan for updating present extension metadata"
+        },
+        {
+          "path": "specs/212_update_present_extension_metadata_for_deck/summaries/01_update-metadata-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "planned": "2026-03-16T20:49:19Z"
+      "planned": "2026-03-16T20:49:19Z",
+      "started": "2026-03-16T20:50:05Z",
+      "completed": "2026-03-16T20:53:00Z",
+      "completion_summary": "Updated present/ extension to register deck components: added deck-agent, skill-deck, and /deck command to manifest.json; added deck context entries to index-entries.json; updated deck-agent context paths; revised EXTENSION.md documentation.",
+      "claudemd_suggestions": "Updated manifest.json, index-entries.json, deck-agent.md, and EXTENSION.md in .claude/extensions/present/"
     },
     {
       "project_number": 213,

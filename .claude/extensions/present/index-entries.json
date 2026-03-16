@@ -1,6 +1,34 @@
 {
   "entries": [
     {
+      "path": "project/present/patterns/pitch-deck-structure.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["deck", "pitch", "yc", "slides", "investor"],
+      "keywords": ["pitch-deck", "yc", "investor", "slides", "structure", "10-slide"],
+      "summary": "YC-recommended 10-slide pitch deck structure with design principles",
+      "line_count": 180,
+      "load_when": {
+        "languages": ["deck"],
+        "agents": ["deck-agent"],
+        "commands": ["/deck"]
+      }
+    },
+    {
+      "path": "project/present/patterns/touying-pitch-deck-template.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["deck", "touying", "typst", "template", "presentation"],
+      "keywords": ["touying", "typst", "template", "pitch-deck", "slides", "themes"],
+      "summary": "Touying pitch deck template patterns and code examples for Typst",
+      "line_count": 250,
+      "load_when": {
+        "languages": ["deck"],
+        "agents": ["deck-agent"],
+        "commands": ["/deck"]
+      }
+    },
+    {
       "path": "project/grant/README.md",
       "domain": "project",
       "subdomain": "grant",
