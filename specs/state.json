@@ -9,17 +9,22 @@
       "language": "meta",
       "effort": "1-2 hours",
       "created": "2026-03-15T12:00:00Z",
-      "last_updated": "2026-03-16T02:12:24Z",
-      "session_id": "sess_1773626928_d7700d",
+      "last_updated": "2026-03-16T02:22:03Z",
+      "session_id": "sess_1773627505_9f3d42",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/204_create_grant_extension_scaffold/reports/01_extension-scaffold-patterns.md",
           "summary": "Comprehensive research report documenting extension directory structure, manifest.json schema, index-entries.json format, and recommended grant extension structure"
+        },
+        {
+          "type": "research",
+          "path": "specs/204_create_grant_extension_scaffold/reports/02_grant-best-practices.md",
+          "summary": "Supplemental research on grant application best practices, SFF structure analysis, and context file recommendations"
         }
       ],
-      "researched": "2026-03-16T02:12:24Z"
+      "researched": "2026-03-16T02:22:03Z"
     },
     {
       "project_number": 205,
