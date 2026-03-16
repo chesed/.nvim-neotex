@@ -5,14 +5,21 @@
     {
       "project_number": 204,
       "project_name": "create_grant_extension_scaffold",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "effort": "1-2 hours",
       "created": "2026-03-15T12:00:00Z",
-      "last_updated": "2026-03-15T12:00:00Z",
-      "session_id": "sess_1741992000_a7f3c2",
+      "last_updated": "2026-03-16T02:12:24Z",
+      "session_id": "sess_1773626928_d7700d",
       "dependencies": [],
-      "artifacts": []
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/204_create_grant_extension_scaffold/reports/01_extension-scaffold-patterns.md",
+          "summary": "Comprehensive research report documenting extension directory structure, manifest.json schema, index-entries.json format, and recommended grant extension structure"
+        }
+      ],
+      "researched": "2026-03-16T02:12:24Z"
     },
     {
       "project_number": 205,
@@ -23,7 +30,9 @@
       "created": "2026-03-15T12:00:00Z",
       "last_updated": "2026-03-15T12:00:00Z",
       "session_id": "sess_1741992000_a7f3c2",
-      "dependencies": [204],
+      "dependencies": [
+        204
+      ],
       "artifacts": []
     },
     {
@@ -35,7 +44,9 @@
       "created": "2026-03-15T12:00:00Z",
       "last_updated": "2026-03-15T12:00:00Z",
       "session_id": "sess_1741992000_a7f3c2",
-      "dependencies": [205],
+      "dependencies": [
+        205
+      ],
       "artifacts": []
     },
     {
@@ -47,7 +58,9 @@
       "created": "2026-03-15T12:00:00Z",
       "last_updated": "2026-03-15T12:00:00Z",
       "session_id": "sess_1741992000_a7f3c2",
-      "dependencies": [206],
+      "dependencies": [
+        206
+      ],
       "artifacts": []
     },
     {
@@ -59,7 +72,9 @@
       "created": "2026-03-15T12:00:00Z",
       "last_updated": "2026-03-15T12:00:00Z",
       "session_id": "sess_1741992000_a7f3c2",
-      "dependencies": [204],
+      "dependencies": [
+        204
+      ],
       "artifacts": []
     },
     {
@@ -71,7 +86,10 @@
       "created": "2026-03-15T12:00:00Z",
       "last_updated": "2026-03-15T12:00:00Z",
       "session_id": "sess_1741992000_a7f3c2",
-      "dependencies": [207, 208],
+      "dependencies": [
+        207,
+        208
+      ],
       "artifacts": []
     },
     {
