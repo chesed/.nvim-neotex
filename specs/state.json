@@ -5,14 +5,21 @@
     {
       "project_number": 210,
       "project_name": "rename_grant_extension_to_present",
-      "status": "not_started",
+      "status": "planned",
       "language": "meta",
       "effort": "1 hour",
       "created": "2026-03-16T14:00:00Z",
-      "last_updated": "2026-03-16T14:00:00Z",
-      "session_id": "sess_1741898400_d4e5f6",
+      "last_updated": "2026-03-16T20:30:58Z",
+      "session_id": "sess_1741899200_a2b3c4",
       "dependencies": [],
-      "artifacts": []
+      "artifacts": [
+        {
+          "path": "specs/210_rename_grant_extension_to_present/plans/01_rename-extension-dir.md",
+          "type": "plan",
+          "summary": "3-phase implementation plan for renaming grant extension to present"
+        }
+      ],
+      "planned": "2026-03-16T20:30:58Z"
     },
     {
       "project_number": 211,
@@ -23,7 +30,9 @@
       "created": "2026-03-16T14:00:00Z",
       "last_updated": "2026-03-16T14:00:00Z",
       "session_id": "sess_1741898400_d4e5f6",
-      "dependencies": [210],
+      "dependencies": [
+        210
+      ],
       "artifacts": []
     },
     {
@@ -35,7 +44,9 @@
       "created": "2026-03-16T14:00:00Z",
       "last_updated": "2026-03-16T14:00:00Z",
       "session_id": "sess_1741898400_d4e5f6",
-      "dependencies": [211],
+      "dependencies": [
+        211
+      ],
       "artifacts": []
     },
     {
@@ -47,7 +58,9 @@
       "created": "2026-03-16T14:00:00Z",
       "last_updated": "2026-03-16T14:00:00Z",
       "session_id": "sess_1741898400_d4e5f6",
-      "dependencies": [211],
+      "dependencies": [
+        211
+      ],
       "artifacts": []
     },
     {
@@ -59,7 +72,9 @@
       "created": "2026-03-16T14:00:00Z",
       "last_updated": "2026-03-16T14:00:00Z",
       "session_id": "sess_1741898400_d4e5f6",
-      "dependencies": [212],
+      "dependencies": [
+        212
+      ],
       "artifacts": []
     },
     {
