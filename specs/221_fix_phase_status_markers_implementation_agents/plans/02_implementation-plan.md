@@ -112,7 +112,7 @@ For grant tasks with implementation plans (typically `assemble` workflow):
 
 ---
 
-### Phase 2: Add update-plan-status.sh calls to skill-grant [NOT STARTED]
+### Phase 2: Add update-plan-status.sh calls to skill-grant [COMPLETED]
 
 **Goal**: Add plan file status updates to skill-grant SKILL.md at preflight and postflight stages
 

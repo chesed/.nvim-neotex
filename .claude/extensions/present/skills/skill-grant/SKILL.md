@@ -170,6 +170,14 @@ fi
 
 **Update TODO.md**: Use Edit tool to change status marker to the workflow-specific in-progress state.
 
+**Update plan file** (for assemble workflow only):
+```bash
+# Update plan file status for assemble workflow
+if [ "$workflow_type" = "assemble" ]; then
+    .claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "IMPLEMENTING" 2>/dev/null || true
+fi
+```
+
 ---
 
 ### Stage 3: Create Postflight Marker
@@ -379,6 +387,18 @@ fi
 ```
 
 **Update TODO.md**: Use Edit tool to change status marker to the final success state.
+
+**Update plan file** (for assemble workflow):
+```bash
+# Update plan file status for assemble workflow
+if [ "$workflow_type" = "assemble" ]; then
+    if [ "$meta_status" = "assembled" ]; then
+        .claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "COMPLETED" 2>/dev/null || true
+    elif [ "$meta_status" = "partial" ]; then
+        .claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "PARTIAL" 2>/dev/null || true
+    fi
+fi
+```
 
 **On partial/failed**: Keep status at preflight level for resume.
 
