@@ -5,19 +5,25 @@
     {
       "project_number": 218,
       "project_name": "implement_team_flag_for_research_command",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-16T23:56:00Z",
-      "last_updated": "2026-03-17T00:02:39Z",
-      "session_id": "sess_1773705528_fab09e",
+      "last_updated": "2026-03-17T00:10:10Z",
+      "session_id": "sess_1773706039_7ca0cf",
       "researched": "2026-03-17T00:02:39Z",
       "artifacts": [
         {
           "path": "specs/218_implement_team_flag_for_research_command/reports/01_team-flag-research.md",
           "type": "research",
           "summary": "Comprehensive analysis of --team flag implementation with ProofChecker reference, 5-phase implementation approach, and 8-12 hour estimate"
+        },
+        {
+          "path": "specs/218_implement_team_flag_for_research_command/plans/02_team-flag-implementation.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan for --team flag across /research, /plan, /implement commands"
         }
-      ]
+      ],
+      "planned": "2026-03-17T00:10:10Z"
     },
     {
       "project_number": 217,
