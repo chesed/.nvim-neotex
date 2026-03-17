@@ -1,10 +1,20 @@
 ---
-next_project_number: 223
+next_project_number: 224
 ---
 
 # TODO
 
 ## Tasks
+
+### 223. Improve /deck slide themes with polished examples and documentation
+- **Effort**: 6-9 hours
+- **Status**: [NOT STARTED]
+- **Language**: general
+- **Dependencies**: None
+
+**Description**: The slide decks created by /deck in the present/ extension need improvement. This task covers: (1) Research online to find the best, most polished slide themes suitable for investor pitch decks - focus on professional VC presentation aesthetics, modern typography, color schemes, and Typst/Touying-compatible patterns; (2) Create .claude/extensions/present/examples/ directory with sample pitch decks demonstrating each recommended theme style - each example should be a complete, compilable Typst file showing the theme applied to a mock startup pitch; (3) Create .claude/extensions/present/README.md documentation explaining extension purpose and capabilities, /deck and /grant commands, available themes with visual descriptions, how to compile and customize decks, and links to the examples/ directory.
+
+---
 
 ### 222. Document memory extension usage patterns and expectations
 - **Effort**: TBD

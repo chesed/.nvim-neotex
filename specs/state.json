@@ -1,7 +1,19 @@
 {
   "version": "1.0.0",
-  "next_project_number": 223,
+  "next_project_number": 224,
   "active_projects": [
+    {
+      "project_number": 223,
+      "project_name": "improve_deck_themes_examples_documentation",
+      "status": "not_started",
+      "language": "general",
+      "effort": "6-9 hours",
+      "created": "2026-03-17T16:50:06-07:00",
+      "last_updated": "2026-03-17T16:50:06-07:00",
+      "session_id": "sess_1742220600_a3f2c1",
+      "dependencies": [],
+      "artifacts": []
+    },
     {
       "project_number": 222,
       "project_name": "document_memory_extension_usage",
