@@ -1,7 +1,7 @@
 ---
 description: Execute implementation with resume support
 allowed-tools: Skill, Bash(jq:*), Bash(git:*), Read, Edit, Glob
-argument-hint: TASK_NUMBER
+argument-hint: TASK_NUMBER [--team [--team-size N]] [--force]
 model: claude-opus-4-5-20251101
 ---
 
@@ -13,6 +13,18 @@ Execute implementation plan with automatic resume support by delegating to the a
 
 - `$1` - Task number (required)
 - Optional: `--force` to override status validation
+
+## Options
+
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--team` | Enable parallel phase execution with multiple teammates | false |
+| `--team-size N` | Number of implementation teammates to spawn (2-4) | 2 |
+| `--force` | Override status validation | false |
+
+When `--team` is specified, implementation is delegated to `skill-team-implement` which spawns teammates to execute independent phases in parallel. Dependent phases wait for their dependencies. A debugger teammate can be spawned on build errors.
+
+**Note**: Team mode requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` environment variable. If unavailable, gracefully degrades to single-agent implementation.
 
 ## Execution
 
@@ -59,13 +71,43 @@ Execute implementation plan with automatic resume support by delegating to the a
 
 **ABORT** if any validation fails.
 
-**On GATE IN success**: Task validated. **IMMEDIATELY CONTINUE** to STAGE 2 below.
+**On GATE IN success**: Task validated. **IMMEDIATELY CONTINUE** to STAGE 1.5 below.
+
+### STAGE 1.5: PARSE FLAGS
+
+**Parse arguments to determine team mode and other flags.**
+
+1. **Extract Team Options**
+   Check args for team flags:
+   - `--team` -> `team_mode = true`
+   - `--team-size N` -> `team_size = N` (clamp 2-4)
+
+   If no team flag found: `team_mode = false`, `team_size = 2`
+
+2. **Extract Other Flags**
+   - `--force` -> `force_mode = true`
+
+3. **Validate Team Size**
+   ```bash
+   # Clamp team_size to valid range
+   team_size=${team_size:-2}
+   [ "$team_size" -lt 2 ] && team_size=2
+   [ "$team_size" -gt 4 ] && team_size=4
+   ```
+
+**On STAGE 1.5 success**: Flags parsed. **IMMEDIATELY CONTINUE** to STAGE 2 below.
 
 ### STAGE 2: DELEGATE
 
-**EXECUTE NOW**: After CHECKPOINT 1 passes, immediately invoke the Skill tool.
+**EXECUTE NOW**: After STAGE 1.5 completes, immediately invoke the Skill tool.
 
-**Language-Based Routing**:
+**Team Mode Routing** (when `--team` flag present):
+
+If `team_mode == true`:
+- Route to `skill-team-implement`
+- Pass `team_size` parameter
+
+**Language-Based Routing** (when `--team` flag NOT present):
 
 | Language | Skill to Invoke |
 |----------|-----------------|
@@ -76,13 +118,26 @@ Execute implementation plan with automatic resume support by delegating to the a
 
 **Note**: Extension skills are located in `.claude/extensions/{ext}/skills/`. Claude Code should automatically discover these skills when extensions are installed.
 
+**Skill Selection Logic**:
+```
+if team_mode:
+  skill_name = "skill-team-implement"
+else:
+  skill_name = {language-based routing from table above}
+```
+
 **Invoke the Skill tool NOW** with:
 ```
+# For team mode:
+skill: "skill-team-implement"
+args: "task_number={N} plan_path={path to implementation plan} resume_phase={phase number} team_size={team_size} session_id={session_id}"
+
+# For single-agent mode:
 skill: "{skill-name from table above}"
 args: "task_number={N} plan_path={path to implementation plan} resume_phase={phase number} session_id={session_id}"
 ```
 
-The skill will spawn the appropriate agent which executes plan phases sequentially, updates phase markers, creates commits per phase, and returns a structured result.
+The skill will spawn the appropriate agent(s) which execute plan phases (in parallel for team mode), update phase markers, create commits per phase, and return a structured result.
 
 **On DELEGATE success**: Implementation complete. **IMMEDIATELY CONTINUE** to CHECKPOINT 2 below.
 
