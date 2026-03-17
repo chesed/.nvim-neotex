@@ -5,11 +5,11 @@
     {
       "project_number": 218,
       "project_name": "implement_team_flag_for_research_command",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-16T23:56:00Z",
-      "last_updated": "2026-03-17T00:10:10Z",
-      "session_id": "sess_1773706039_7ca0cf",
+      "last_updated": "2026-03-17T00:23:35Z",
+      "session_id": "sess_1773706296_c87690",
       "researched": "2026-03-17T00:02:39Z",
       "artifacts": [
         {
@@ -21,9 +21,18 @@
           "path": "specs/218_implement_team_flag_for_research_command/plans/02_team-flag-implementation.md",
           "type": "plan",
           "summary": "6-phase implementation plan for --team flag across /research, /plan, /implement commands"
+        },
+        {
+          "path": "specs/218_implement_team_flag_for_research_command/summaries/03_team-flag-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "planned": "2026-03-17T00:10:10Z"
+      "planned": "2026-03-17T00:10:10Z",
+      "started": "2026-03-17T00:12:03Z",
+      "completed": "2026-03-17T00:23:35Z",
+      "completion_summary": "Implemented --team flag for /research, /plan, and /implement commands. Created 3 team skills (research, plan, implement), added supporting infrastructure (wave helpers, orchestration docs, metadata schema), and updated CLAUDE.md with team skill mappings and command syntax.",
+      "claudemd_suggestions": "Added 3 team skills to Skill-to-Agent Mapping table (skill-team-research, skill-team-plan, skill-team-implement). Updated command syntax to show --team flag. Added Team Mode Skills section documenting environment requirement and token usage."
     },
     {
       "project_number": 217,
