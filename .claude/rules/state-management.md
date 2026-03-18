@@ -83,6 +83,7 @@ When updating task status:
   "project_name": "task_slug_here",
   "status": "planned",
   "language": "neovim",
+  "task_type": null,
   "effort": "4 hours",
   "created": "2026-01-08T10:00:00Z",
   "last_updated": "2026-01-08T14:30:00Z",
@@ -98,6 +99,41 @@ When updating task status:
   "roadmap_items": ["Optional explicit roadmap item text to match"]
 }
 ```
+
+### task_type Field Schema
+
+The `task_type` field enables finer-grained routing within a language. This is particularly useful for extension languages like `founder` where different commands (/market, /analyze, /strategy) need different research agents.
+
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `task_type` | string or null | No | `null` | Sub-type for finer-grained routing within a language |
+
+**Valid Values for Founder Extension**:
+
+| task_type | Research Skill | Created By |
+|-----------|----------------|------------|
+| `market` | skill-market | /market command |
+| `analyze` | skill-analyze | /analyze command |
+| `strategy` | skill-strategy | /strategy command |
+| `null` | skill-market (default) | Backward compatibility |
+
+**Routing Behavior**:
+
+When `/research` is invoked on a task with `language: "founder"`:
+1. Check if `task_type` is set
+2. If set, route to skill matching task_type (e.g., `task_type: "analyze"` -> `skill-analyze`)
+3. If null or missing, fall back to default routing (skill-market)
+
+**Format Conversion**:
+
+| state.json | TODO.md |
+|------------|---------|
+| `null` | (not shown) |
+| `"market"` | `- **Type**: market` |
+| `"analyze"` | `- **Type**: analyze` |
+| `"strategy"` | `- **Type**: strategy` |
+
+**Note**: The task_type field is only relevant for extension languages that support multiple research paths. Core languages (general, meta, markdown) do not use task_type.
 
 ### Repository Health Section
 

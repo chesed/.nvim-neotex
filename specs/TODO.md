@@ -8,7 +8,7 @@ next_project_number: 241
 
 ### 240. Fix /market command to use forcing questions workflow with market type tasks
 - **Effort**: 5-6 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Started**: 2026-03-18
 - **Language**: meta
 - **Dependencies**: None

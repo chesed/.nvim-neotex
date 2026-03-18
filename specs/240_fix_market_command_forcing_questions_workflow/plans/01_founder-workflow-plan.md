@@ -1,7 +1,7 @@
 # Implementation Plan: Task #240
 
 - **Task**: 240 - Fix /market command forcing questions workflow
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4-6 hours
 - **Dependencies**: None
 - **Research Inputs**: [01_market-workflow-research.md](../reports/01_market-workflow-research.md)
@@ -48,7 +48,7 @@ Key findings from research report 01_market-workflow-research.md:
 
 ## Implementation Phases
 
-### Phase 1: Schema Update for task_type Field [NOT STARTED]
+### Phase 1: Schema Update for task_type Field [COMPLETED]
 
 **Goal**: Add `task_type` field to state.json schema and update documentation
 
