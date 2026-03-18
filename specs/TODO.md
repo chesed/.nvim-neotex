@@ -1,10 +1,20 @@
 ---
-next_project_number: 238
+next_project_number: 239
 ---
 
 # TODO
 
 ## Tasks
+
+### 238. Fix founder extension /implement to generate typst files using templates
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: Task #237
+
+**Description**: Fix /implement for founder tasks to generate typst files instead of markdown files. Currently /implement creates .md files (e.g., market-sizing-v3-20260318.md) but should use the typst templates from the founder extension (.claude/extensions/founder/) to produce properly formatted .typ files.
+
+---
 
 ### 237. Add typst output generation to founder task implementation
 - **Effort**: 4-6 hours

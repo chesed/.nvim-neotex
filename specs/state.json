@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 238,
+  "next_project_number": 239,
   "active_projects": [
+    {
+      "project_number": 238,
+      "project_name": "fix_founder_implement_typst_output",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-18T22:59:04Z",
+      "last_updated": "2026-03-18T22:59:04Z"
+    },
     {
       "project_number": 237,
       "project_name": "add_typst_output_founder_implementation",
