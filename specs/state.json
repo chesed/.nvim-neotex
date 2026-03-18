@@ -1132,7 +1132,7 @@
       "status": "planned",
       "language": "meta",
       "created": "2026-03-18T20:17:00Z",
-      "last_updated": "2026-03-18T20:23:09Z",
+      "last_updated": "2026-03-18T20:30:02Z",
       "session_id": "sess_1742313900_b2c3d4",
       "researched": "2026-03-18T20:16:26Z",
       "artifacts": [
@@ -1155,9 +1155,14 @@
           "path": "specs/235_research_integrate_mcp_founder/plans/02_mcp-tools-integration-revised.md",
           "type": "plan",
           "summary": "Revised 4-phase plan: free-tier tools only, lazy loading via agent mcp-servers field"
+        },
+        {
+          "path": "specs/235_research_integrate_mcp_founder/plans/03_mcp-tools-final.md",
+          "type": "plan",
+          "summary": "Final 4-phase plan: SEC EDGAR + Firecrawl only, lazy loading, 2-3 hours"
         }
       ],
-      "planned": "2026-03-18T20:23:09Z"
+      "planned": "2026-03-18T20:30:02Z"
     }
   ],
   "completed_projects": [],
