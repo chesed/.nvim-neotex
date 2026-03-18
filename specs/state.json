@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 240,
+  "next_project_number": 241,
   "active_projects": [
+    {
+      "project_number": 240,
+      "project_name": "fix_market_command_forcing_questions_workflow",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-18T23:37:02Z",
+      "last_updated": "2026-03-18T23:37:02Z"
+    },
     {
       "project_number": 238,
       "project_name": "fix_founder_implement_typst_output",
