@@ -44,7 +44,7 @@ Integrate 2 MCP tools into the founder extension using **lazy loading** architec
 
 ## Implementation Phases
 
-### Phase 1: Configure MCP Servers in Manifest [NOT STARTED]
+### Phase 1: Configure MCP Servers in Manifest [COMPLETED]
 
 **Goal**: Add MCP server definitions to manifest.json.
 

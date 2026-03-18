@@ -24,6 +24,42 @@ This extension provides three commands for strategic business analysis:
 
 This extension is automatically available when loaded via `<leader>ac` in Neovim.
 
+## MCP Tool Setup
+
+The founder extension integrates MCP tools for enhanced data gathering.
+
+### SEC EDGAR (No Setup Required)
+
+SEC EDGAR provides access to public company filings (10-K, 10-Q, 8-K). No API key or configuration needed.
+
+- **Fully free**, unlimited access to SEC public filings
+- **Used by**: market-agent (for public company financials and market sizing)
+- **Lazy loaded**: Only starts when market-agent is invoked
+
+### Firecrawl (Free Tier - 500 credits/month)
+
+Firecrawl enables full-page web scraping for competitor analysis.
+
+**Setup**:
+1. Visit https://firecrawl.dev/
+2. Create a free account
+3. Copy API key from dashboard
+4. Add to shell profile:
+   ```bash
+   export FIRECRAWL_API_KEY="your-key-here"
+   ```
+5. Restart terminal or source your profile
+
+**Capabilities**:
+- `scrape`: Full page content as markdown
+- `crawl`: Recursive site crawling
+- `map`: Site structure mapping
+- `extract`: LLM-powered data extraction
+
+**Used by**: analyze-agent (for competitor website analysis)
+
+**Note**: Firecrawl is optional. If API key is not configured, analyze-agent will fall back to WebSearch for competitor research.
+
 ## Commands
 
 ### /market

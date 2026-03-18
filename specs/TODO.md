@@ -8,9 +8,10 @@ next_project_number: 236
 
 ### 235. Research and integrate MCP tools for founder extension
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
+- **Started**: 2026-03-18
 - **Research**:
   - [01_meta-research.md](235_research_integrate_mcp_founder/reports/01_meta-research.md)
   - [02_mcp-tools-research.md](235_research_integrate_mcp_founder/reports/02_mcp-tools-research.md)

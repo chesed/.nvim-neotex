@@ -1,0 +1,26 @@
+{
+  "status": "tasks_created",
+  "summary": "Created 1 consolidated task for researching and integrating MCP tools into the founder extension. Task #235 covers market research tools, business strategy tools, and integration into manifest.json and agent definitions.",
+  "artifacts": [
+    {
+      "type": "task_entry",
+      "path": "specs/TODO.md",
+      "summary": "Task #235 added to TODO.md"
+    },
+    {
+      "type": "research",
+      "path": "specs/235_research_integrate_mcp_founder/reports/01_meta-research.md",
+      "summary": "Auto-generated research context from /meta interview"
+    }
+  ],
+  "metadata": {
+    "session_id": "sess_1742313418_f3a2b1",
+    "duration_seconds": 180,
+    "agent_type": "meta-builder-agent",
+    "delegation_depth": 2,
+    "delegation_path": ["orchestrator", "meta", "skill-meta", "meta-builder-agent"],
+    "mode": "prompt",
+    "tasks_created": 1
+  },
+  "next_steps": "Run /plan 235 to create implementation plan, then /implement 235 to execute"
+}
