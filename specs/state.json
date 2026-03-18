@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 224,
+  "next_project_number": 225,
   "active_projects": [
+    {
+      "project_number": 224,
+      "project_name": "add_interactive_theme_palette_picker_to_deck",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-18T00:40:21Z",
+      "last_updated": "2026-03-18T00:40:21Z"
+    },
     {
       "project_number": 223,
       "project_name": "improve_deck_themes_examples_documentation",

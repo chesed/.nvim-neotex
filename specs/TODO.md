@@ -1,10 +1,20 @@
 ---
-next_project_number: 224
+next_project_number: 225
 ---
 
 # TODO
 
 ## Tasks
+
+### 224. Add interactive theme and palette picker to /deck command
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Replace --theme and add --palette flags with an AskUserQuestion-based picker that lets users select both the Touying theme (simple, metropolis, dewdrop, university, stargazer) and color palette (professional-blue, premium-dark, minimal-light, growth-green) interactively. The picker should show visual descriptions for each option. Update deck.md command, skill-deck/SKILL.md, and deck-agent.md to support the new interactive selection flow and palette application.
+
+---
 
 ### 223. Improve /deck slide themes with polished examples and documentation
 - **Effort**: 6-9 hours
