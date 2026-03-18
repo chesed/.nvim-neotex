@@ -27,7 +27,10 @@
   },
   "routing": {
     "research": {
-      "founder": "skill-market"
+      "founder": "skill-market",
+      "founder:market": "skill-market",
+      "founder:analyze": "skill-analyze",
+      "founder:strategy": "skill-strategy"
     },
     "plan": {
       "founder": "skill-founder-plan"
