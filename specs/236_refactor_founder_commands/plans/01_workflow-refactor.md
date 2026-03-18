@@ -136,7 +136,7 @@ From `01_workflow-analysis.md`:
 
 ---
 
-### Phase 4: Update founder-plan-agent (Read Report) [IN PROGRESS]
+### Phase 4: Update founder-plan-agent (Read Report) [COMPLETED]
 
 **Goal**: Modify founder-plan-agent to read research report instead of asking forcing questions.
 
@@ -162,7 +162,7 @@ From `01_workflow-analysis.md`:
 
 ---
 
-### Phase 5: Update founder-implement-agent (Minor Enhancements) [NOT STARTED]
+### Phase 5: Update founder-implement-agent (Minor Enhancements) [IN PROGRESS]
 
 **Goal**: Ensure founder-implement-agent reads both plan and research report for full context; support optional output path.
 
