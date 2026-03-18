@@ -1,15 +1,24 @@
 {
   "version": "1.0.0",
-  "next_project_number": 225,
+  "next_project_number": 226,
   "active_projects": [
+    {
+      "project_number": 225,
+      "project_name": "enforce_postflight_boundary_after_agent_delegation",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-18T00:53:42Z",
+      "last_updated": "2026-03-18T00:53:42Z",
+      "dependencies": []
+    },
     {
       "project_number": 224,
       "project_name": "add_interactive_theme_palette_picker_to_deck",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-18T00:40:21Z",
-      "last_updated": "2026-03-18T00:49:06Z",
-      "session_id": "sess_1773794793_dc3942",
+      "last_updated": "2026-03-18T00:50:32Z",
+      "session_id": "sess_1773795009_77c09c",
       "researched": "2026-03-18T00:44:22Z",
       "artifacts": [
         {
@@ -23,7 +32,8 @@
           "summary": "4-phase implementation plan for interactive theme and palette picker"
         }
       ],
-      "planned": "2026-03-18T00:49:06Z"
+      "planned": "2026-03-18T00:49:06Z",
+      "started": "2026-03-18T00:50:32Z"
     },
     {
       "project_number": 223,

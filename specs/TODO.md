@@ -1,18 +1,38 @@
 ---
-next_project_number: 225
+next_project_number: 226
 ---
 
 # TODO
 
 ## Tasks
 
+### 225. Enforce postflight boundary after agent delegation in skills
+- **Effort**: 3-5 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Skills that delegate to subagents via the Task tool are violating the "thin wrapper" pattern by continuing to make implementation changes after the agent returns. Evidence from `/implement 982` output shows skill-lean-implementation: (1) Agent completed at line 68 ("Done - 87 tool uses"), (2) Skill then ran git status, lake build, lean_goal MCP tool, and made Edit calls to DovetailedBuild.lean (lines 74-133). This violates the architectural boundary where skills should only do postflight operations (read metadata, update status, link artifacts, git commit) after agent return - NOT continue implementation.
+
+**Root Cause**: No explicit prohibition or tool restriction preventing skills from using implementation tools (Edit, Write to source files, MCP tools) during postflight stages.
+
+**Fix Components**:
+1. Add "BLOCKED TOOLS IN POSTFLIGHT" section to skill template documentation listing tools that MUST NOT be used after agent returns (Edit on source files, Write to source files, all MCP tools except diagnostic)
+2. Update skill-lean-implementation SKILL.md Stage 5-10 to add explicit "DO NOT" constraints
+3. Update skill-implementer SKILL.md with same constraints (reference implementation)
+4. Add to code-standards.md or create new postflight-boundary-standard.md documenting this architectural rule
+5. Consider adding a lint rule to detect this anti-pattern in skill definitions
+
+---
+
 ### 224. Add interactive theme and palette picker to /deck command
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Research Started**: 2026-03-17
 - **Research Completed**: 2026-03-17
 - **Planning Started**: 2026-03-17
 - **Planning Completed**: 2026-03-17
+- **Implementation Started**: 2026-03-17
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_interactive-picker-patterns.md](224_add_interactive_theme_palette_picker_to_deck/reports/01_interactive-picker-patterns.md)
