@@ -33,11 +33,13 @@ next_project_number: 233
 
 ### 230. Update touying-pitch-deck-template with simpler layouts
 - **Effort**: 2-3 hours
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
+- **Completed**: 2026-03-18
 - **Language**: meta
 - **Dependencies**: Task #228
 - **Research**: [01_meta-research.md](230_touying_template_simplification/reports/01_meta-research.md)
 - **Plan**: [01_template-simplification.md](230_touying_template_simplification/plans/01_template-simplification.md)
+- **Summary**: [02_implementation-summary.md](230_touying_template_simplification/summaries/02_implementation-summary.md)
 
 **Description**: Update `.claude/extensions/present/context/project/present/patterns/touying-pitch-deck-template.md` to remove complex layout patterns. Replace multi-column grid examples with single-column layouts, increase default font sizes (32pt body, 48pt titles), remove panel/card helper patterns, and add explicit "DO NOT USE" section documenting prohibited layout patterns.
 

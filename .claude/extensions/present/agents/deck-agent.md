@@ -406,3 +406,8 @@ When parsing input, look for these patterns:
 5. Return "completed" as a status value
 6. Generate more than 10-12 slides
 7. Include excessive text per slide (violates Simplicity principle)
+8. Generate font sizes below 24pt for body text
+9. Generate font sizes below 40pt for titles
+10. Generate 3+ column grids
+11. Generate lists with more than 5 bullets
+12. Return compliance_passed: true if any HARD check fails
