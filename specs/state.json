@@ -5,10 +5,10 @@
     {
       "project_number": 234,
       "project_name": "upgrade_founder_extension_workflow",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-18T18:54:28Z",
-      "last_updated": "2026-03-18T19:27:54Z",
+      "last_updated": "2026-03-18T19:40:52Z",
       "session_id": "sess_1774048800_a9c3f1",
       "researched": "2026-03-18T19:19:28Z",
       "artifacts": [
@@ -26,10 +26,18 @@
           "path": "specs/234_upgrade_founder_extension_workflow/plans/01_founder-workflow-upgrade.md",
           "type": "plan",
           "summary": "8-phase implementation plan for upgrading founder extension with task integration and three-phase forcing questions workflow"
+        },
+        {
+          "path": "specs/234_upgrade_founder_extension_workflow/summaries/01_founder-workflow-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with all files created/modified"
         }
       ],
       "planned": "2026-03-18T19:24:48Z",
-      "started": "2026-03-18T19:27:54Z"
+      "started": "2026-03-18T19:27:54Z",
+      "completed": "2026-03-18T19:40:52Z",
+      "completion_summary": "Upgraded founder/ extension to v2.0 with full task system integration. Created 2 new skills (skill-founder-plan, skill-founder-implement) and 2 new agents (founder-plan-agent, founder-implement-agent). Updated all 3 commands to support task workflow with --quick legacy mode. Added extension routing to /plan and /implement commands.",
+      "claudemd_suggestions": "Updated .claude/commands/plan.md with extension routing lookup, updated .claude/commands/implement.md with enhanced extension routing, created 4 new files in .claude/extensions/founder/ (2 skills, 2 agents), updated founder extension manifest and documentation"
     },
     {
       "project_number": 233,
