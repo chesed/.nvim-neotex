@@ -1,7 +1,23 @@
 {
   "version": "1.0.0",
-  "next_project_number": 226,
+  "next_project_number": 227,
   "active_projects": [
+    {
+      "project_number": 226,
+      "project_name": "multiline_artifact_linking",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-18T02:30:00Z",
+      "last_updated": "2026-03-18T02:30:00Z",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "path": "specs/226_multiline_artifact_linking/reports/01_artifact-linking-audit.md",
+          "type": "research",
+          "summary": "Audit of all files defining or implementing artifact linking in TODO.md, with current format analysis, full file inventory, and proposed multi-line standard with before/after examples"
+        }
+      ]
+    },
     {
       "project_number": 225,
       "project_name": "enforce_postflight_boundary_after_agent_delegation",
