@@ -174,11 +174,11 @@
     {
       "project_number": 232,
       "project_name": "example_templates_yc_compliance",
-      "status": "planning",
+      "status": "planned",
       "language": "meta",
       "effort": "3-4 hours",
       "created": "2026-03-18T16:30:00Z",
-      "last_updated": "2026-03-18T17:07:53Z",
+      "last_updated": "2026-03-18T17:10:53Z",
       "dependencies": [
         229,
         230,
@@ -196,8 +196,14 @@
           "path": "specs/232_example_templates_yc_compliance/reports/02_example-analysis.md",
           "type": "research",
           "summary": "Comprehensive analysis of 4 example pitch deck files identifying YC compliance gaps: font sizes below 28pt, 3-4 column grids, decorative panels, and nested TAM/SAM/SOM circles"
+        },
+        {
+          "path": "specs/232_example_templates_yc_compliance/plans/01_yc-compliance-plan.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for YC compliance updates across 4 example pitch deck files"
         }
-      ]
+      ],
+      "planned": "2026-03-18T17:10:53Z"
     },
     {
       "project_number": 227,

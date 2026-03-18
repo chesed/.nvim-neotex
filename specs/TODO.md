@@ -18,12 +18,13 @@ next_project_number: 234
 
 ### 232. Update example templates to be YC compliant
 - **Effort**: 3-4 hours
-- **Status**: [PLANNING]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: Task #229, Task #230, Task #231
 - **Research**:
   - [01_meta-research.md](232_example_templates_yc_compliance/reports/01_meta-research.md)
   - [02_example-analysis.md](232_example_templates_yc_compliance/reports/02_example-analysis.md)
+- **Plan**: [01_yc-compliance-plan.md](232_example_templates_yc_compliance/plans/01_yc-compliance-plan.md)
 
 **Description**: Simplify all 4 example pitch deck files in `.claude/extensions/present/examples/` to demonstrate YC-compliant design. Remove complex panel layouts, use larger fonts (28pt+ body, 44pt+ titles), and ensure each slide shows one-idea-per-slide principle. Files: professional-blue-pitch.typ, premium-dark-pitch.typ, minimal-light-pitch.typ, growth-green-pitch.typ.
 
