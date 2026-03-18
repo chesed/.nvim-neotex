@@ -8,14 +8,19 @@
       "status": "researched",
       "language": "meta",
       "created": "2026-03-18T18:54:28Z",
-      "last_updated": "2026-03-18T19:06:11Z",
-      "session_id": "sess_1773860513_ab7806",
-      "researched": "2026-03-18T19:06:11Z",
+      "last_updated": "2026-03-18T19:19:28Z",
+      "session_id": "sess_1773861275_2c63e7",
+      "researched": "2026-03-18T19:19:28Z",
       "artifacts": [
         {
           "path": "specs/234_upgrade_founder_extension_workflow/reports/01_task-integration-research.md",
           "type": "research",
           "summary": "Comprehensive analysis of task system integration patterns, three-phase forcing questions workflow design, and flexible input handling for founder extension upgrade"
+        },
+        {
+          "path": "specs/234_upgrade_founder_extension_workflow/reports/02_plan-implement-workflow.md",
+          "type": "research",
+          "summary": "Complete workflow design for integrating founder tasks with /plan and /implement commands, including language-based routing, forcing questions during planning, and report output handling"
         }
       ]
     },
