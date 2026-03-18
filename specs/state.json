@@ -70,11 +70,11 @@
     {
       "project_number": 230,
       "project_name": "touying_template_simplification",
-      "status": "planning",
+      "status": "planned",
       "language": "meta",
       "effort": "2-3 hours",
       "created": "2026-03-18T16:30:00Z",
-      "last_updated": "2026-03-18T16:48:37Z",
+      "last_updated": "2026-03-18T16:51:19Z",
       "dependencies": [
         228
       ],
@@ -86,7 +86,8 @@
           "type": "research",
           "summary": "Template simplification patterns for YC-compliant layouts"
         }
-      ]
+      ],
+      "planned": "2026-03-18T16:51:19Z"
     },
     {
       "project_number": 231,
@@ -106,6 +107,11 @@
           "path": "specs/231_pitch_deck_structure_update/reports/01_meta-research.md",
           "type": "research",
           "summary": "Content density and typography enforcement guidelines"
+        },
+        {
+          "path": "specs/231_pitch_deck_structure_update/plans/01_pitch-deck-enforcement.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for adding mandatory enforcement to pitch-deck-structure.md"
         }
       ],
       "planned": "2026-03-18T16:50:51Z"
