@@ -769,24 +769,34 @@ for position, task_idx in enumerate(sorted_indices):
   # 3. Update TODO.md
 ```
 
-**state.json Entry** (with dependencies):
+**state.json Entry** (with dependencies and research artifact):
 ```json
 {
   "project_number": 36,
   "project_name": "task_slug",
-  "status": "not_started",
+  "status": "researched",
   "language": "meta",
-  "dependencies": [35, 34]
+  "dependencies": [35, 34],
+  "artifacts": [
+    {
+      "type": "research",
+      "path": "specs/036_task_slug/reports/01_meta-research.md",
+      "summary": "Auto-generated research from /meta interview"
+    }
+  ]
 }
 ```
+
+**Note**: Tasks created via /meta start in `"researched"` status because Stage 5.5 generates research artifacts from interview context. This enables immediate `/plan N` without requiring separate `/research N`.
 
 **TODO.md Entry Format**:
 ```markdown
 ### {N}. {Title}
 - **Effort**: {estimate}
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Language**: {language}
 - **Dependencies**: Task #35, Task #34  OR  None
+- **Research**: [01_meta-research.md]({NNN}_{slug}/reports/01_meta-research.md)
 
 **Description**: {description}
 
@@ -812,12 +822,16 @@ for position, task_idx in enumerate(sorted_indices):
     else:
         dep_str = "None"
 
-    # Build entry
-    entry = f"""### OC_{task_num}. {task['title']}
+    # Build entry (with RESEARCHED status and research link)
+    padded_num = f"{task_num:03d}"
+    research_path = f"{padded_num}_{task['slug']}/reports/01_meta-research.md"
+
+    entry = f"""### {task_num}. {task['title']}
 - **Effort**: {task['effort']}
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Language**: {task['language']}
 - **Dependencies**: {dep_str}
+- **Research**: [01_meta-research.md]({research_path})
 
 **Description**: {task['description']}
 

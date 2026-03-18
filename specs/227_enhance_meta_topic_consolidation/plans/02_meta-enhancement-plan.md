@@ -116,7 +116,7 @@ Key findings from research report 01_meta-enhancement-patterns.md:
 
 ---
 
-### Phase 4: Update State Entry for RESEARCHED Status [IN PROGRESS]
+### Phase 4: Update State Entry for RESEARCHED Status [COMPLETED]
 
 **Goal**: Modify Stage 6 (CreateTasks) to set status="researched" and link research artifacts
 
@@ -138,7 +138,7 @@ Key findings from research report 01_meta-enhancement-patterns.md:
 
 ---
 
-### Phase 5: Update skill-meta Postflight and Return Format [NOT STARTED]
+### Phase 5: Update skill-meta Postflight and Return Format [IN PROGRESS]
 
 **Goal**: Update skill-meta to handle RESEARCHED status and include research artifacts in return
 
