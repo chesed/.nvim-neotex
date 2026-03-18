@@ -8,10 +8,11 @@ next_project_number: 228
 
 ### 227. Enhance /meta with topic consolidation and embedded research
 - **Effort**: 4-6 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-enhancement-patterns.md](227_enhance_meta_topic_consolidation/reports/01_meta-enhancement-patterns.md)
+- **Plan**: [02_meta-enhancement-plan.md](227_enhance_meta_topic_consolidation/plans/02_meta-enhancement-plan.md)
 
 **Description**: Modify /meta command behavior to (1) actively consolidate related items into minimal topic-based tasks using aggressive grouping, and (2) generate research report artifacts during task creation so tasks start in RESEARCHED status. Changes affect meta-builder-agent.md interview stages, skill-meta postflight, and state.json artifact linking.
 

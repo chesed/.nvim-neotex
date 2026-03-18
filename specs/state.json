@@ -5,11 +5,11 @@
     {
       "project_number": 227,
       "project_name": "enhance_meta_topic_consolidation",
-      "status": "planning",
+      "status": "planned",
       "language": "meta",
       "effort": "4-6 hours",
       "created": "2026-03-18T16:00:00Z",
-      "last_updated": "2026-03-18T16:00:55Z",
+      "last_updated": "2026-03-18T16:03:39Z",
       "dependencies": [],
       "session_id": "sess_1773849637_12af01",
       "researched": "2026-03-18T15:58:52Z",
@@ -18,8 +18,14 @@
           "path": "specs/227_enhance_meta_topic_consolidation/reports/01_meta-enhancement-patterns.md",
           "type": "research",
           "summary": "Comprehensive research report with topic consolidation patterns from /fix-it, integration points for meta-builder-agent, and 3-phase implementation approach"
+        },
+        {
+          "path": "specs/227_enhance_meta_topic_consolidation/plans/02_meta-enhancement-plan.md",
+          "type": "plan",
+          "summary": "6-phase plan covering topic clustering, consolidation picker, research artifact generation, status updates, skill postflight, and documentation"
         }
-      ]
+      ],
+      "planned": "2026-03-18T16:03:39Z"
     },
     {
       "project_number": 226,
