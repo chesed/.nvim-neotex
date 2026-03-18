@@ -1,5 +1,5 @@
 ---
-next_project_number: 227
+next_project_number: 228
 ---
 
 # TODO
@@ -23,7 +23,7 @@ next_project_number: 227
 
 ### 226. Implement multi-line artifact linking in TODO.md for 2+ artifacts
 - **Effort**: 4-6 hours
-- **Status**: [PLANNING]
+- **Status**: [RESEARCHED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_artifact-linking-audit.md](226_multiline_artifact_linking/reports/01_artifact-linking-audit.md)
