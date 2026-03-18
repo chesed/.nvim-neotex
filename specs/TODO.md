@@ -19,7 +19,7 @@ next_project_number: 233
 
 ### 231. Update pitch-deck-structure with stricter guidelines
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: Task #228
 - **Research**: [01_meta-research.md](231_pitch_deck_structure_update/reports/01_meta-research.md)
@@ -31,7 +31,7 @@ next_project_number: 233
 
 ### 230. Update touying-pitch-deck-template with simpler layouts
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: Task #228
 - **Research**: [01_meta-research.md](230_touying_template_simplification/reports/01_meta-research.md)
@@ -43,12 +43,13 @@ next_project_number: 233
 
 ### 229. Update deck-agent with strict YC enforcement
 - **Effort**: 3-4 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: Task #228
 - **Research**:
   - [01_meta-research.md](229_deck_agent_enforcement/reports/01_meta-research.md)
   - [02_deck-agent-research.md](229_deck_agent_enforcement/reports/02_deck-agent-research.md)
+- **Plan**: [01_deck-agent-enforcement.md](229_deck_agent_enforcement/plans/01_deck-agent-enforcement.md)
 
 **Description**: Update `.claude/extensions/present/agents/deck-agent.md` to enforce YC compliance. Add hard limit of 10 slides max, enforce minimum font sizes (24pt body, 40pt titles) in generated Typst, add content density validation (one idea per slide), simplify default layouts by removing multi-column grids, and add YC compliance validation before returning with compliance_passed boolean in metadata.
 

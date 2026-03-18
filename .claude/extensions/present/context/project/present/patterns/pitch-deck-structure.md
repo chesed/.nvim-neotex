@@ -211,28 +211,182 @@ This document encodes Y Combinator's recommended pitch deck structure and design
 
 ---
 
-## Anti-Patterns (Things to Avoid)
+## Content Density Rules
 
-### Visual Anti-Patterns
-- **Screenshots**: Break all three design rules (illegible, complex, non-obvious)
-- **Excessive branding**: Logo on every slide, gradient backgrounds
-- **Memes and humor**: Rarely translates, distracts from message
-- **Information overload**: Too many bullet points, too much text
-- **Videos/screencasts**: Risky without careful consideration
-- **Complicated layouts**: Multi-column text, overlapping elements
+These rules establish hard limits for content per slide. Violations MUST be corrected before generation.
 
-### Content Anti-Patterns
-- **Jargon**: Industry-specific terms, acronyms without explanation
-- **Feature lists**: Instead of benefits and outcomes
-- **Defensive language**: "Of course, this might not work, but..."
-- **Future promises**: Unachieved milestones presented as fact
-- **Competitive comparison tables**: Often backfire
+### Per-Slide Limits
 
-### Structural Anti-Patterns
-- **Too many slides**: More than 10-12 loses attention
-- **Burying the lede**: Key message on slide 8 instead of slide 2
-- **No clear ask**: Leaving investors unsure what you want
-- **Appendix overload**: 50 appendix slides signal lack of focus
+| Element | Limit | Enforcement |
+|---------|-------|-------------|
+| Main ideas | 1 | **REQUIRED** |
+| Bullet points | 5 | **HARD LIMIT** |
+| Body text words | 30 | **HARD LIMIT** |
+| Nested lists | 0 | **PROHIBITED** |
+
+### Rule Details
+
+#### Maximum 1 Main Idea per Slide (REQUIRED)
+- Each slide communicates exactly ONE core concept
+- If you need to explain two ideas, use two slides
+- The main idea should be immediately obvious from the title
+
+#### Maximum 5 Bullet Points per Slide (HARD LIMIT)
+- Five bullets is the absolute maximum
+- Prefer 3-4 bullets for optimal readability
+- If you have more than 5 points, split across slides or consolidate
+
+#### Maximum 30 Words Body Text per Slide (HARD LIMIT)
+- Body text excludes titles and bullet point text
+- Count applies to explanatory paragraphs only
+- Forces concise, impactful language
+
+#### No Nested Lists (PROHIBITED)
+- Nested bullets create visual complexity
+- MUST flatten all lists to single level
+- Use separate slides for hierarchical information
+
+---
+
+## Typography Enforcement
+
+Minimum font sizes ensure legibility for all audience members. These are HARD LIMITS.
+
+### Minimum Font Sizes
+
+| Element | Minimum Size | Enforcement |
+|---------|--------------|-------------|
+| Titles | 40pt | **HARD LIMIT** |
+| Body text | 24pt | **HARD LIMIT** |
+| Bullet text | 24pt | **HARD LIMIT** |
+| Any element | 20pt | **ABSOLUTE MINIMUM** |
+
+### Rule Details
+
+#### Minimum 40pt for Titles (HARD LIMIT)
+- Slide titles MUST be at least 40pt
+- Ensures titles are readable from any seat in the room
+- Prefer 44-48pt for maximum impact
+
+#### Minimum 24pt for Body Text (HARD LIMIT)
+- All paragraph text MUST be at least 24pt
+- Applies to descriptions, explanations, and annotations
+- If text does not fit at 24pt, reduce content (not font size)
+
+#### Minimum 24pt for Bullets (HARD LIMIT)
+- Bullet point text MUST be at least 24pt
+- Consistent with body text for visual coherence
+- Short, punchy bullets work best at this size
+
+#### Minimum 20pt for Any Element (ABSOLUTE MINIMUM)
+- No text element may be smaller than 20pt
+- Includes: labels, captions, footnotes, axis labels
+- If it needs to be smaller than 20pt, remove it
+
+### Typst Implementation
+
+When generating Typst slides, use these settings:
+
+```typst
+// Title slides
+#set text(size: 44pt, weight: "bold")
+
+// Body text
+#set text(size: 24pt)
+
+// Bullet lists
+#set list(marker: [--], indent: 0.5em)
+#show list: set text(size: 24pt)
+```
+
+---
+
+## Anti-Patterns (PROHIBITED)
+
+The following patterns are PROHIBITED. Slides containing these violations MUST be rejected and regenerated.
+
+### Visual Anti-Patterns (PROHIBITED)
+
+| Anti-Pattern | Violation | Why Prohibited |
+|--------------|-----------|----------------|
+| Screenshots | MUST NOT include | Breaks all three design rules (illegible, complex, non-obvious) |
+| Excessive branding | MUST NOT use | Logo on every slide, gradient backgrounds distract from content |
+| Memes and humor | MUST NOT include | Rarely translates, distracts from message |
+| Information overload | MUST NOT create | More than 5 bullets or 30 words violates Content Density Rules |
+| Videos/screencasts | MUST NOT embed | Technical risk, attention disruption |
+| Complicated layouts | MUST NOT use | Multi-column text, overlapping elements reduce clarity |
+
+### Content Anti-Patterns (PROHIBITED)
+
+| Anti-Pattern | Violation | Why Prohibited |
+|--------------|-----------|----------------|
+| Jargon | MUST NOT use | Industry-specific terms alienate investors |
+| Feature lists | MUST NOT include | Use benefits and outcomes instead |
+| Defensive language | MUST NOT write | "Of course, this might not work, but..." signals uncertainty |
+| Future promises | MUST NOT present | Unachieved milestones presented as fact is misleading |
+| Competitive comparison tables | MUST NOT include | Often backfire, invite scrutiny |
+
+### Structural Anti-Patterns (PROHIBITED)
+
+| Anti-Pattern | Violation | Why Prohibited |
+|--------------|-----------|----------------|
+| Too many slides | MUST NOT exceed 12 | More than 10-12 slides loses attention |
+| Burying the lede | MUST NOT delay | Key message MUST appear by slide 3 |
+| No clear ask | MUST NOT omit | Investors MUST know what you want |
+| Appendix overload | MUST NOT exceed 10 | More than 10 appendix slides signals lack of focus |
+
+---
+
+## Validation Checklist
+
+Use these checklists to verify compliance before and after slide generation.
+
+### Pre-Generation Checklist
+
+Before generating slides, verify:
+
+| Check | Criterion | Pass/Fail |
+|-------|-----------|-----------|
+| Slide count | 9-12 slides planned (including optional closing) | [ ] PASS / [ ] FAIL |
+| Content outline | Each slide has exactly 1 main idea | [ ] PASS / [ ] FAIL |
+| Bullet planning | No slide planned for >5 bullets | [ ] PASS / [ ] FAIL |
+| Data availability | Traction metrics available for visualization | [ ] PASS / [ ] FAIL |
+| Ask clarity | Specific funding amount and use defined | [ ] PASS / [ ] FAIL |
+
+**Pre-Generation Gate**: All items MUST pass before proceeding to generation.
+
+### Post-Generation Checklist
+
+After generating slides, verify each slide against:
+
+| Check | Criterion | Pass/Fail |
+|-------|-----------|-----------|
+| **Content Density** | | |
+| Main ideas | Exactly 1 per slide | [ ] PASS / [ ] FAIL |
+| Bullet count | Maximum 5 per slide | [ ] PASS / [ ] FAIL |
+| Body text | Maximum 30 words per slide | [ ] PASS / [ ] FAIL |
+| Nested lists | None present | [ ] PASS / [ ] FAIL |
+| **Typography** | | |
+| Title size | Minimum 40pt | [ ] PASS / [ ] FAIL |
+| Body text size | Minimum 24pt | [ ] PASS / [ ] FAIL |
+| Smallest element | Minimum 20pt | [ ] PASS / [ ] FAIL |
+| **Anti-Patterns** | | |
+| No screenshots | None present | [ ] PASS / [ ] FAIL |
+| No jargon | Plain language only | [ ] PASS / [ ] FAIL |
+| No feature lists | Benefits/outcomes only | [ ] PASS / [ ] FAIL |
+
+### Pass/Fail Criteria
+
+| Result | Criteria | Action |
+|--------|----------|--------|
+| **PASS** | All checklist items pass | Proceed with deck |
+| **CONDITIONAL** | 1-2 minor items fail | Fix before presenting |
+| **FAIL** | Any Content Density, Typography, or Anti-Pattern item fails | Regenerate affected slides |
+
+### Cross-Reference
+
+For additional compliance checks, see:
+- `yc-compliance-checklist.md` - Detailed YC-specific requirements
 
 ---
 
@@ -251,3 +405,4 @@ The deck is a communication tool, not the pitch itself. Focus on:
 
 - See `touying-pitch-deck-template.md` for the Typst template implementing this structure
 - See `presentation-slides.md` for general slide generation patterns
+- See `yc-compliance-checklist.md` for detailed YC compliance validation

@@ -44,15 +44,15 @@
     {
       "project_number": 229,
       "project_name": "deck_agent_enforcement",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "effort": "3-4 hours",
       "created": "2026-03-18T16:30:00Z",
-      "last_updated": "2026-03-18T16:50:28Z",
+      "last_updated": "2026-03-18T16:55:15Z",
       "dependencies": [
         228
       ],
-      "session_id": "sess_1773852408_0d9f72",
+      "session_id": "sess_1773852715_0adc4c",
       "researched": "2026-03-18T16:50:28Z",
       "artifacts": [
         {
@@ -64,21 +64,27 @@
           "path": "specs/229_deck_agent_enforcement/reports/02_deck-agent-research.md",
           "type": "research",
           "summary": "Detailed deck-agent modification points with exact line numbers, code changes, and compliance validation approach"
+        },
+        {
+          "path": "specs/229_deck_agent_enforcement/plans/01_deck-agent-enforcement.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for adding YC compliance enforcement to deck-agent"
         }
-      ]
+      ],
+      "planned": "2026-03-18T16:55:15Z"
     },
     {
       "project_number": 230,
       "project_name": "touying_template_simplification",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "effort": "2-3 hours",
       "created": "2026-03-18T16:30:00Z",
-      "last_updated": "2026-03-18T16:51:19Z",
+      "last_updated": "2026-03-18T16:52:39Z",
       "dependencies": [
         228
       ],
-      "session_id": "sess_1742320000_a3b4c5",
+      "session_id": "sess_1742320100_d5e6f7",
       "researched": "2026-03-18T16:30:00Z",
       "artifacts": [
         {
@@ -92,20 +98,21 @@
           "summary": "5-phase implementation plan for simplifying touying pitch deck template"
         }
       ],
-      "planned": "2026-03-18T16:51:19Z"
+      "planned": "2026-03-18T16:51:19Z",
+      "started": "2026-03-18T16:52:39Z"
     },
     {
       "project_number": 231,
       "project_name": "pitch_deck_structure_update",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "effort": "2-3 hours",
       "created": "2026-03-18T16:30:00Z",
-      "last_updated": "2026-03-18T16:50:51Z",
+      "last_updated": "2026-03-18T16:52:35Z",
       "dependencies": [
         228
       ],
-      "session_id": "sess_1710777600_c3d4e5",
+      "session_id": "sess_1710778200_f6g7h8",
       "researched": "2026-03-18T16:30:00Z",
       "artifacts": [
         {
@@ -119,7 +126,8 @@
           "summary": "5-phase implementation plan for adding mandatory enforcement to pitch-deck-structure.md"
         }
       ],
-      "planned": "2026-03-18T16:50:51Z"
+      "planned": "2026-03-18T16:50:51Z",
+      "started": "2026-03-18T16:52:35Z"
     },
     {
       "project_number": 232,

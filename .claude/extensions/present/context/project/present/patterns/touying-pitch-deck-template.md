@@ -7,7 +7,7 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 - **Package**: touying 0.6.3
 - **Theme**: simple (minimal, high-contrast, professional)
 - **Aspect Ratio**: 16:9
-- **Font Sizes**: Large (30pt body, 48pt titles)
+- **Font Sizes**: Large (32pt body, 48pt titles)
 - **Colors**: Dark text on light background
 
 ## Complete Template
@@ -28,7 +28,7 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 )
 
 // Override font sizes for legibility
-#set text(size: 30pt)
+#set text(size: 32pt)
 #show heading.where(level: 1): set text(size: 48pt, weight: "bold")
 #show heading.where(level: 2): set text(size: 40pt, weight: "bold")
 
@@ -42,7 +42,7 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 
 == The Problem
 
-#text(size: 36pt)[
+#text(size: 32pt)[
   *[TODO: Clear articulation of the problem]*
 ]
 
@@ -56,13 +56,9 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 
 == Our Solution
 
-#text(size: 36pt)[
+#text(size: 32pt)[
   *[TODO: Brief description of your solution]*
-]
 
-#v(1em)
-
-#text(size: 28pt)[
   [TODO: How it addresses the problem. Focus on benefits, not features.]
 ]
 
@@ -73,28 +69,15 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 
 == Traction
 
-#align(center)[
-  #block(
-    width: 90%,
-    height: 60%,
-    fill: rgb("#f0f0f0"),
-    radius: 8pt,
-    inset: 20pt,
-  )[
-    #align(center + horizon)[
-      #text(size: 24pt, fill: rgb("#666"))[
-        [TODO: Insert chart/graph showing key metrics]
+*Key Metrics*
 
-        Use a line chart for growth over time,
-        or bar chart for comparative metrics.
-      ]
-    ]
-  ]
-]
+- [TODO: Primary metric with number] (X% growth MoM)
+- [TODO: Secondary metric with number]
+- [TODO: Third metric if applicable]
 
-#text(size: 24pt)[
-  *Key metric*: [TODO: X% growth MoM / $Y revenue / Z users]
-]
+#v(1em)
+
+[TODO: Insert simple chart image if available, or describe growth trajectory]
 
 #speaker-note[
   Lead with the visual. Let the chart speak first.
@@ -121,20 +104,15 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 
 == Business Model
 
-#grid(
-  columns: (1fr, 1fr),
-  gutter: 2em,
-  [
-    *Revenue Streams*
-    - [TODO: Primary revenue stream]
-    - [TODO: Secondary if applicable]
-  ],
-  [
-    *Unit Economics*
-    - [TODO: Price point]
-    - [TODO: Key margin/LTV metric]
-  ],
-)
+*Revenue Streams*
+- [TODO: Primary revenue stream]
+- [TODO: Secondary if applicable]
+
+#v(1em)
+
+*Unit Economics*
+- [TODO: Price point]
+- [TODO: Key margin/LTV metric]
 
 #speaker-note[
   Keep it simple - one or two revenue streams.
@@ -144,30 +122,15 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 
 == Market Opportunity
 
-#align(center)[
-  #stack(
-    dir: ttb,
-    spacing: 1em,
-    [
-      #circle(radius: 80pt, fill: rgb("#e8f4ea"), stroke: rgb("#4a9960"))[
-        #align(center + horizon)[
-          #text(size: 20pt)[*TAM*: [TODO: $X B]]
-        ]
-      ]
-    ],
-    [
-      #circle(radius: 50pt, fill: rgb("#d0e8d4"), stroke: rgb("#4a9960"))[
-        #align(center + horizon)[
-          #text(size: 18pt)[*SAM*: [TODO]]
-        ]
-      ]
-    ],
-  )
-]
+*Total Addressable Market (TAM)*: [TODO: $X B]
 
-#text(size: 24pt)[
-  [TODO: Brief explanation of market sizing methodology]
-]
+*Serviceable Addressable Market (SAM)*: [TODO: $X M]
+
+*Serviceable Obtainable Market (SOM)*: [TODO: $X M]
+
+#v(1em)
+
+[TODO: Brief explanation of market sizing methodology]
 
 #speaker-note[
   Use credible data sources.
@@ -185,10 +148,8 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 
     CEO / Co-founder
 
-    #text(size: 22pt)[
-      [TODO: Relevant experience]
-      - Previous role/company
-      - Domain expertise
+    #text(size: 28pt)[
+      [TODO: Key relevant experience]
     ]
   ],
   [
@@ -196,10 +157,8 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 
     CTO / Co-founder
 
-    #text(size: 22pt)[
-      [TODO: Relevant experience]
-      - Previous role/company
-      - Technical background
+    #text(size: 28pt)[
+      [TODO: Key relevant experience]
     ]
   ],
 )
@@ -239,13 +198,13 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 == Thank You
 
 #align(center)[
-  #text(size: 36pt)[
+  #text(size: 40pt)[
     *[Company Name]*
   ]
 
   #v(1em)
 
-  #text(size: 28pt)[
+  #text(size: 32pt)[
     [TODO: founder@company.com]
 
     [TODO: company.com]
@@ -305,23 +264,22 @@ This document provides a complete Touying 0.6.3 template optimized for investor 
 - Third point (appears on click)
 ```
 
-### Two-Column Layouts
+### Two-Column Layouts (Team Slide Only)
+
+Two-column layouts should ONLY be used for the Team slide where showing founders side-by-side is natural. For all other slides, use single-column layouts for clarity.
 
 ```typst
-== Two Column Slide
-
+// ONLY for Team slide
 #grid(
   columns: (1fr, 1fr),
   gutter: 2em,
   [
-    *Left Column*
-    - Point 1
-    - Point 2
+    *Founder 1*
+    #text(size: 28pt)[Key experience]
   ],
   [
-    *Right Column*
-    - Point A
-    - Point B
+    *Founder 2*
+    #text(size: 28pt)[Key experience]
   ],
 )
 ```
