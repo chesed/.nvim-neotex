@@ -127,7 +127,7 @@ See `.claude/context/core/formats/subagent-return.md` for full specification.
 ```json
 {
   "status": "tasks_created",
-  "summary": "Created 3 tasks for command creation workflow: research, implementation, and testing phases.",
+  "summary": "Created 2 tasks for command creation workflow. Tasks start in RESEARCHED status.",
   "artifacts": [
     {
       "type": "task",
@@ -135,9 +135,19 @@ See `.claude/context/core/formats/subagent-return.md` for full specification.
       "summary": "Task directory for new command"
     },
     {
+      "type": "research",
+      "path": "specs/430_create_export_command/reports/01_meta-research.md",
+      "summary": "Auto-generated research from /meta interview"
+    },
+    {
       "type": "task",
       "path": "specs/431_export_command_tests/",
       "summary": "Task directory for tests"
+    },
+    {
+      "type": "research",
+      "path": "specs/431_export_command_tests/reports/01_meta-research.md",
+      "summary": "Auto-generated research from /meta interview"
     }
   ],
   "metadata": {
@@ -146,11 +156,14 @@ See `.claude/context/core/formats/subagent-return.md` for full specification.
     "delegation_depth": 1,
     "delegation_path": ["orchestrator", "meta", "meta-builder-agent"],
     "mode": "interactive",
-    "tasks_created": 2
+    "tasks_created": 2,
+    "tasks_status": "researched"
   },
-  "next_steps": "Run /research 430 to begin research on first task"
+  "next_steps": "Run /plan 430 to create implementation plan (research already complete)"
 }
 ```
+
+**Note**: Tasks created via `/meta` start in RESEARCHED status because the interview process generates research artifacts from the captured context. This enables immediate `/plan N` execution without requiring separate `/research N` calls.
 
 ### Expected Return: Analyze Mode (read-only)
 

@@ -138,7 +138,7 @@ Key findings from research report 01_meta-enhancement-patterns.md:
 
 ---
 
-### Phase 5: Update skill-meta Postflight and Return Format [IN PROGRESS]
+### Phase 5: Update skill-meta Postflight and Return Format [COMPLETED]
 
 **Goal**: Update skill-meta to handle RESEARCHED status and include research artifacts in return
 
@@ -158,7 +158,7 @@ Key findings from research report 01_meta-enhancement-patterns.md:
 
 ---
 
-### Phase 6: Update Multi-Task Creation Standard Documentation [NOT STARTED]
+### Phase 6: Update Multi-Task Creation Standard Documentation [IN PROGRESS]
 
 **Goal**: Document "minimize tasks" principle and topic consolidation enhancement
 
