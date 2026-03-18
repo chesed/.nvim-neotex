@@ -8,10 +8,12 @@ next_project_number: 240
 
 ### 238. Fix founder extension /implement to generate typst files using templates
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Started**: 2026-03-18
+- **Completed**: 2026-03-18
 - **Research**: [01_founder-typst-fix.md](238_fix_founder_implement_typst_output/reports/01_founder-typst-fix.md)
 - **Plan**: [01_founder-typst-fix-plan.md](238_fix_founder_implement_typst_output/plans/01_founder-typst-fix-plan.md)
+- **Summary**: [01_founder-typst-fix-summary.md](238_fix_founder_implement_typst_output/summaries/01_founder-typst-fix-summary.md)
 - **Language**: meta
 - **Dependencies**: Task #237
 

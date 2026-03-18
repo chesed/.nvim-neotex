@@ -134,11 +134,15 @@ Parameters:
 
 The agent will:
 - Load plan and detect resume point
-- Execute phases (TAM -> SAM -> SOM -> Report)
-- Generate report artifact in `strategy/` directory
+- Execute phases (TAM -> SAM -> SOM -> Report -> Typst/PDF)
+- Generate report artifact in `strategy/` directory (markdown)
+- Generate typst/PDF in `founder/` directory (if typst installed)
 - Create summary in task directory
 - Write metadata file for postflight consumption
 - Return brief text summary
+
+**Note**: Phase 5 (Typst/PDF generation) is optional. Task completes successfully
+even if typst is not installed or PDF generation fails.
 
 ### 6. Read Metadata File
 
@@ -215,11 +219,54 @@ Return validated result to caller.
 
 ## Return Format
 
-Expected successful return:
+Expected successful return (with typst/PDF):
 ```json
 {
   "status": "implemented",
   "summary": "Generated market sizing report for fintech payments. TAM: $50B, SAM: $8B, SOM Y1: $40M.",
+  "artifacts": [
+    {
+      "type": "implementation",
+      "path": "strategy/market-sizing-fintech-payments.md",
+      "summary": "Full market sizing report with TAM/SAM/SOM analysis"
+    },
+    {
+      "type": "implementation",
+      "path": "founder/market-sizing-fintech-payments.typ",
+      "summary": "Self-contained typst source file"
+    },
+    {
+      "type": "implementation",
+      "path": "founder/market-sizing-fintech-payments.pdf",
+      "summary": "Professional PDF report"
+    },
+    {
+      "type": "summary",
+      "path": "specs/234_market_sizing_fintech_payments/summaries/01_market-sizing-summary.md",
+      "summary": "Implementation summary with key results"
+    }
+  ],
+  "metadata": {
+    "session_id": "sess_...",
+    "agent_type": "founder-implement-agent",
+    "delegation_depth": 2,
+    "phases_completed": 5,
+    "phases_total": 5,
+    "typst_generated": true,
+    "pdf_path": "founder/market-sizing-fintech-payments.pdf",
+    "tam": "$50B",
+    "sam": "$8B",
+    "som_y1": "$40M"
+  },
+  "next_steps": "Review report and validate assumptions"
+}
+```
+
+Expected successful return (without typst - Phase 5 partial):
+```json
+{
+  "status": "implemented",
+  "summary": "Generated market sizing report for fintech payments. TAM: $50B, SAM: $8B, SOM Y1: $40M. PDF skipped (typst not installed).",
   "artifacts": [
     {
       "type": "implementation",
@@ -237,24 +284,29 @@ Expected successful return:
     "agent_type": "founder-implement-agent",
     "delegation_depth": 2,
     "phases_completed": 4,
-    "phases_total": 4,
+    "phases_total": 5,
+    "typst_generated": false,
     "tam": "$50B",
     "sam": "$8B",
     "som_y1": "$40M"
   },
-  "next_steps": "Review report and validate assumptions"
+  "next_steps": "Install typst for PDF output, or review markdown report"
 }
 ```
 
-Expected partial return:
+**Note**: Task is considered successfully completed (`status: "implemented"`) as long as
+Phases 1-4 complete. Phase 5 (typst/PDF) is optional - if it fails or typst is not
+installed, the task still completes successfully with just the markdown output.
+
+Expected partial return (core phase failure):
 ```json
 {
   "status": "partial",
-  "summary": "Completed phases 1-2 of 4. TAM and SAM calculated.",
+  "summary": "Completed phases 1-2 of 5. TAM and SAM calculated.",
   "artifacts": [],
   "partial_progress": {
     "phases_completed": 2,
-    "phases_total": 4,
+    "phases_total": 5,
     "resume_phase": 3,
     "data_gathered": ["TAM: $50B", "SAM: $8B"]
   },
@@ -281,3 +333,11 @@ Pass through the agent's error return verbatim.
 
 ### Build/Calculation Errors
 Return partial status with progress made.
+
+### Phase 5 Typst/PDF Errors
+Phase 5 failures do NOT block task completion:
+- **Typst not installed**: Task completes with markdown output only
+- **Compilation error**: Keep .typ file for debugging, task completes
+- **PDF empty**: Keep .typ file, task completes
+
+Postflight should check `metadata.typst_generated` to determine what artifacts to report.

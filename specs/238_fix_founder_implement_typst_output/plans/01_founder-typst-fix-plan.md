@@ -1,7 +1,7 @@
 # Implementation Plan: Task #238
 
 - **Task**: 238 - Fix founder extension /implement to generate typst files using templates
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 2-3 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/238_fix_founder_implement_typst_output/reports/01_founder-typst-fix.md
@@ -46,7 +46,7 @@ Integrated findings from `specs/238_fix_founder_implement_typst_output/reports/0
 
 ## Implementation Phases
 
-### Phase 1: Fix Import Path Resolution [NOT STARTED]
+### Phase 1: Fix Import Path Resolution [COMPLETED]
 
 **Estimated effort**: 1 hour
 
@@ -79,7 +79,7 @@ Integrated findings from `specs/238_fix_founder_implement_typst_output/reports/0
 
 ---
 
-### Phase 2: Fix Compilation Command [NOT STARTED]
+### Phase 2: Fix Compilation Command [COMPLETED]
 
 **Estimated effort**: 30 minutes
 
@@ -113,7 +113,7 @@ Integrated findings from `specs/238_fix_founder_implement_typst_output/reports/0
 
 ---
 
-### Phase 3: Add Directory and Verification Steps [NOT STARTED]
+### Phase 3: Add Directory and Verification Steps [COMPLETED]
 
 **Estimated effort**: 30 minutes
 
@@ -158,7 +158,7 @@ Integrated findings from `specs/238_fix_founder_implement_typst_output/reports/0
 
 ---
 
-### Phase 4: Update Skill Postflight [NOT STARTED]
+### Phase 4: Update Skill Postflight [COMPLETED]
 
 **Estimated effort**: 30 minutes
 
@@ -185,7 +185,7 @@ Integrated findings from `specs/238_fix_founder_implement_typst_output/reports/0
 
 ---
 
-### Phase 5: Testing and Verification [NOT STARTED]
+### Phase 5: Testing and Verification [COMPLETED]
 
 **Estimated effort**: 30 minutes
 

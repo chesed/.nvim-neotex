@@ -5,10 +5,10 @@
     {
       "project_number": 238,
       "project_name": "fix_founder_implement_typst_output",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-18T22:59:04Z",
-      "last_updated": "2026-03-18T23:13:58Z",
+      "last_updated": "2026-03-18T23:17:55Z",
       "session_id": "sess_1773875603_10e0b1",
       "researched": "2026-03-18T23:06:56Z",
       "artifacts": [
@@ -21,10 +21,18 @@
           "path": "specs/238_fix_founder_implement_typst_output/plans/01_founder-typst-fix-plan.md",
           "type": "plan",
           "summary": "5-phase plan to fix founder extension typst output by generating self-contained .typ files"
+        },
+        {
+          "type": "summary",
+          "path": "specs/238_fix_founder_implement_typst_output/summaries/01_founder-typst-fix-summary.md",
+          "summary": "Implementation summary with verification results"
         }
       ],
       "planned": "2026-03-18T23:11:11Z",
-      "implementing": "2026-03-18T23:13:58Z"
+      "implementing": "2026-03-18T23:13:58Z",
+      "completed": "2026-03-18T23:17:55Z",
+      "completion_summary": "Fixed founder extension /implement to generate self-contained typst files instead of files with broken relative imports. Updated agent spec with inline template pattern and fixed compilation command.",
+      "claudemd_suggestions": "Updated .claude/extensions/founder/agents/founder-implement-agent.md (Phase 5 typst generation) and .claude/extensions/founder/skills/skill-founder-implement/SKILL.md (typst artifact handling)"
     },
     {
       "project_number": 237,
