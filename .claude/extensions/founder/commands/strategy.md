@@ -1,22 +1,32 @@
 ---
-description: Go-to-market strategy development with positioning and channel analysis
-allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read
-argument-hint: "[topic]" | --mode LAUNCH|SCALE|PIVOT|EXPAND
+description: Go-to-market strategy development with task integration
+allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit
+argument-hint: "[description]" | TASK_NUMBER | /path/to/file.md | --quick [topic]
 ---
 
 # /strategy Command
 
-Go-to-market strategy command that develops positioning, channel strategy, and 90-day execution plans.
+Go-to-market strategy command that develops positioning, channel strategy, and 90-day execution plans. Integrates with the task system for tracking and artifacts.
 
 ## Overview
 
-This command produces GTM strategy artifacts through structured questioning. It uses forcing questions to define positioning, prioritize channels, and create actionable launch plans.
+This command produces GTM strategy artifacts through structured questioning. It creates a task, runs the founder-specific planning workflow with forcing questions, then executes the plan to generate actionable launch plans.
 
 ## Syntax
 
-- `/strategy` - Start GTM strategy with interactive mode selection
-- `/strategy B2B SaaS launch` - Start with context hints
-- `/strategy --mode LAUNCH` - Skip mode selection, use LAUNCH mode
+- `/strategy "B2B SaaS product launch"` - Create task and run full workflow
+- `/strategy 234` - Operate on existing task (run /plan then /implement)
+- `/strategy /path/to/strategy-notes.md` - Use file as context, create task
+- `/strategy --quick B2B SaaS launch` - Legacy standalone mode (no task creation)
+
+## Input Types
+
+| Input | Behavior |
+|-------|----------|
+| Description string | Create task, run /plan, run /implement |
+| Task number | Load existing task, run /plan, run /implement |
+| File path | Read file for context, create task, run workflow |
+| `--quick [args]` | Legacy standalone mode (skip task creation) |
 
 ## Modes
 
@@ -42,62 +52,180 @@ This command produces GTM strategy artifacts through structured questioning. It 
 session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
 ```
 
-### Step 2: Parse Arguments
+### Step 2: Detect Input Type
 
-Parse $ARGUMENTS to extract:
-- `topic`: Optional context hint (e.g., "B2B SaaS launch")
-- `--mode`: Optional mode selection (LAUNCH, SCALE, PIVOT, EXPAND)
+```bash
+# Check for --quick flag (legacy mode)
+if echo "$ARGUMENTS" | grep -qE '^--quick'; then
+  input_type="quick"
+  args=$(echo "$ARGUMENTS" | sed 's/^--quick *//')
+fi
 
-If no `--mode` flag, mode selection happens during execution.
+# Check for task number
+elif echo "$ARGUMENTS" | grep -qE '^[0-9]+$'; then
+  input_type="task_number"
+  task_number="$ARGUMENTS"
 
-### Step 3: Prepare Delegation Context
+# Check for file path
+elif echo "$ARGUMENTS" | grep -qE '^\.|^/|^~|\.md$|\.txt$'; then
+  input_type="file_path"
+  file_path="$ARGUMENTS"
 
-```json
-{
-  "topic": "optional context hint",
-  "mode": "LAUNCH|SCALE|PIVOT|EXPAND or null for interactive",
-  "output_dir": "founder/",
-  "metadata": {
-    "session_id": "sess_{timestamp}_{random}",
-    "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "strategy", "skill-strategy"]
-  }
-}
+# Default: treat as description for new task
+else
+  input_type="description"
+  description="$ARGUMENTS"
+fi
+```
+
+### Step 3: Handle Input Type
+
+**If `--quick` (legacy mode)**:
+Skip to STAGE 2A (legacy delegation).
+
+**If file path**:
+```bash
+file_path=$(eval echo "$file_path")
+if [ ! -f "$file_path" ]; then
+  echo "Error: File not found: $file_path"
+  exit 1
+fi
+context_content=$(cat "$file_path")
+filename=$(basename "$file_path" | sed 's/\.[^.]*$//')
+description="GTM strategy: $filename"
+```
+
+**If task number**:
+```bash
+task_data=$(jq -r --argjson num "$task_number" \
+  '.active_projects[] | select(.project_number == $num)' \
+  specs/state.json)
+
+if [ -z "$task_data" ]; then
+  echo "Error: Task $task_number not found"
+  exit 1
+fi
+
+task_lang=$(echo "$task_data" | jq -r '.language')
+if [ "$task_lang" != "founder" ]; then
+  echo "Error: Task $task_number is not a founder task (language: $task_lang)"
+  exit 1
+fi
+```
+
+**If description (new task)**:
+Create task in next step.
+
+### Step 4: Create Task (if needed)
+
+```bash
+next_num=$(jq -r '.next_project_number' specs/state.json)
+slug="gtm_strategy_$(echo "$description" | tr ' ' '_' | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]//g' | cut -c1-40)"
+
+jq --argjson num "$next_num" \
+   --arg name "$slug" \
+   --arg desc "GTM strategy: $description" \
+   --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+   '. + {next_project_number: ($num + 1)} |
+    .active_projects += [{
+      project_number: $num,
+      project_name: $name,
+      status: "not_started",
+      language: "founder",
+      description: $desc,
+      created: $ts,
+      artifacts: []
+    }]' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
+
+task_number=$next_num
+```
+
+### Step 5: Update TODO.md
+
+Add task entry (if new task).
+
+### Step 6: Git Commit (Task Creation)
+
+```bash
+git add specs/state.json specs/TODO.md
+git commit -m "$(cat <<'EOF'
+task {N}: create GTM strategy task
+
+Session: {session_id}
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+EOF
+)"
 ```
 
 ---
 
 ## STAGE 2: DELEGATE
 
-**Invoke Skill tool**:
+### STAGE 2A: Legacy Mode (--quick)
+
+**If input_type == "quick"**:
+
+Invoke skill-strategy directly (original behavior):
 
 ```
 skill: "skill-strategy"
 args: "topic={topic} mode={mode} session_id={session_id}"
 ```
 
-The skill will:
-1. Present mode selection (if not pre-selected)
-2. Use forcing questions to develop positioning
-3. Analyze and prioritize channels
-4. Create 90-day launch plan
-5. Define metrics and milestones
-6. Return structured JSON result
+Skip to CHECKPOINT 2 (Legacy).
+
+### STAGE 2B: Task Workflow Mode
+
+**Run /plan {task_number}**:
+
+Routes to `skill-founder-plan` based on language="founder".
+
+The plan workflow:
+1. Presents mode selection (LAUNCH, SCALE, PIVOT, EXPAND)
+2. Conducts forcing questions for GTM strategy
+3. Creates plan with gathered data stored
+4. Returns when planning complete
+
+**Run /implement {task_number}**:
+
+Routes to `skill-founder-implement` based on language="founder".
+
+The implement workflow:
+1. Loads plan with gathered context
+2. Executes phases (Positioning, Channels, Launch Plan, Metrics)
+3. Generates report to `strategy/gtm-strategy-{slug}.md`
+4. Creates summary in task directory
+5. Updates task to completed
 
 ---
 
 ## CHECKPOINT 2: GATE OUT
 
-### Step 1: Validate Return
+### For Task Workflow Mode
 
-Check return from skill:
-- Status is one of: generated, partial, failed
-- Summary is non-empty and <100 tokens
-- Artifacts array present with output file path
+1. **Verify Task Completed**
+2. **Get Artifacts**
+3. **Display Result**
+   ```
+   GTM strategy complete for Task #{N}
 
-### Step 2: Display Result
+   Report: strategy/gtm-strategy-{slug}.md
+   Summary: specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md
 
-**On success**:
+   Positioning:
+   For {target} who {problem}, {product} is a {category} that {benefit}.
+   Unlike {competitor}, we {differentiator}.
+
+   Top Channels:
+   1. {channel1} - CAC: ${CAC1}
+   2. {channel2} - CAC: ${CAC2}
+
+   Status: [COMPLETED]
+   ```
+
+### For Legacy Mode (--quick)
+
 ```
 GTM strategy generated.
 
@@ -109,7 +237,6 @@ Summary:
 
 Positioning:
 For {target} who {problem}, {product} is a {category} that {benefit}.
-Unlike {competitor}, we {differentiator}.
 
 Top Channels:
 1. {channel1} - CAC: ${CAC1}
@@ -118,57 +245,72 @@ Top Channels:
 Next: Review 90-day plan and assign owners
 ```
 
-**On partial**:
-```
-GTM strategy partially completed.
-
-{partial_progress}
-
-Resume: /strategy --mode {mode}
-```
-
-**On failure**:
-```
-GTM strategy failed.
-
-Error: {error_message}
-Recovery: {recovery_guidance}
-```
-
 ---
 
 ## Error Handling
 
-### No Topic Provided
-
-Not an error - agent will ask interactively.
-
-### User Abandons Strategy
-
-Return partial status with progress made:
-```json
-{
-  "status": "partial",
-  "partial_progress": {
-    "sections_completed": ["positioning", "channels"],
-    "sections_remaining": ["launch_plan", "metrics"]
-  }
-}
-```
-
-### Invalid Mode
+### Task Not Found
 
 ```
-Invalid mode: {provided}
-Valid modes: LAUNCH, SCALE, PIVOT, EXPAND
+Error: Task {N} not found in state.json
+Run /task "description" to create a new task
+```
+
+### File Not Found
+
+```
+Error: File not found: {path}
+Verify the file path and try again
+```
+
+### Plan Creation Failed
+
+```
+Planning failed for Task #{N}
+Error: {error_message}
+Resume: /plan {N}
+```
+
+### Implementation Failed
+
+```
+Implementation failed for Task #{N}
+Error: {error_message}
+Resume: /implement {N}
 ```
 
 ---
 
 ## Output Artifacts
 
+### Task Workflow Mode
+
+| Artifact | Location |
+|----------|----------|
+| Implementation plan | `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` |
+| GTM strategy report | `strategy/gtm-strategy-{slug}.md` |
+| Implementation summary | `specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md` |
+
+### Legacy Mode (--quick)
+
 | Artifact | Location |
 |----------|----------|
 | GTM strategy | `founder/gtm-strategy-{datetime}.md` |
 
-Artifact follows template at `@context/project/founder/templates/gtm-strategy.md`.
+---
+
+## Examples
+
+```bash
+# Create new task with description
+/strategy "B2B SaaS product launch"
+
+# Operate on existing task
+/strategy 234
+
+# Use file as context
+/strategy ~/startup/launch-notes.md
+
+# Legacy standalone mode
+/strategy --quick B2B SaaS launch
+```

@@ -1,22 +1,32 @@
 ---
-description: Analyze market size using TAM/SAM/SOM framework with forcing questions
-allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read
-argument-hint: "[industry] [segment]" | --mode VALIDATE|SIZE|SEGMENT|DEFEND
+description: Analyze market size using TAM/SAM/SOM framework with task integration
+allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit
+argument-hint: "[description]" | TASK_NUMBER | /path/to/file.md | --quick [industry] [segment]
 ---
 
 # /market Command
 
-Market sizing analysis command using TAM/SAM/SOM framework with forcing questions pattern.
+Market sizing analysis command using TAM/SAM/SOM framework with task system integration.
 
 ## Overview
 
-This command produces market sizing analysis artifacts through structured questioning. It uses forcing questions to extract specific, evidence-based market data and produces investor-ready market sizing documents.
+This command produces market sizing analysis artifacts through structured questioning. It creates a task, runs the founder-specific planning workflow with forcing questions, then executes the plan to generate investor-ready market sizing documents.
 
 ## Syntax
 
-- `/market` - Start market sizing with interactive mode selection
-- `/market fintech payments` - Start with industry/segment hints
-- `/market --mode VALIDATE` - Skip mode selection, use VALIDATE mode
+- `/market "fintech payments app"` - Create task and run full workflow
+- `/market 234` - Operate on existing task (run /plan then /implement)
+- `/market /path/to/context.md` - Use file as context, create task
+- `/market --quick fintech payments` - Legacy standalone mode (no task creation)
+
+## Input Types
+
+| Input | Behavior |
+|-------|----------|
+| Description string | Create task, run /plan, run /implement |
+| Task number | Load existing task, run /plan, run /implement |
+| File path | Read file for context, create task, run workflow |
+| `--quick [args]` | Legacy standalone mode (skip task creation) |
 
 ## Modes
 
@@ -42,63 +52,217 @@ This command produces market sizing analysis artifacts through structured questi
 session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
 ```
 
-### Step 2: Parse Arguments
+### Step 2: Detect Input Type
 
-Parse $ARGUMENTS to extract:
-- `industry`: Optional industry hint (e.g., "fintech", "healthcare")
-- `segment`: Optional segment hint (e.g., "payments", "SMB")
-- `--mode`: Optional mode selection (VALIDATE, SIZE, SEGMENT, DEFEND)
+```bash
+# Check for --quick flag (legacy mode)
+if echo "$ARGUMENTS" | grep -qE '^--quick'; then
+  input_type="quick"
+  # Remove --quick from arguments
+  args=$(echo "$ARGUMENTS" | sed 's/^--quick *//')
+fi
 
-If no `--mode` flag, mode selection happens during execution.
+# Check for task number
+elif echo "$ARGUMENTS" | grep -qE '^[0-9]+$'; then
+  input_type="task_number"
+  task_number="$ARGUMENTS"
 
-### Step 3: Prepare Delegation Context
+# Check for file path
+elif echo "$ARGUMENTS" | grep -qE '^\.|^/|^~|\.md$|\.txt$'; then
+  input_type="file_path"
+  file_path="$ARGUMENTS"
 
-```json
-{
-  "industry": "optional industry hint",
-  "segment": "optional segment hint",
-  "mode": "VALIDATE|SIZE|SEGMENT|DEFEND or null for interactive",
-  "output_dir": "founder/",
-  "metadata": {
-    "session_id": "sess_{timestamp}_{random}",
-    "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "market", "skill-market"]
-  }
-}
+# Default: treat as description for new task
+else
+  input_type="description"
+  description="$ARGUMENTS"
+fi
+```
+
+### Step 3: Handle Input Type
+
+**If `--quick` (legacy mode)**:
+Skip to STAGE 2A (legacy delegation).
+
+**If file path**:
+```bash
+# Expand path
+file_path=$(eval echo "$file_path")
+
+# Verify file exists
+if [ ! -f "$file_path" ]; then
+  echo "Error: File not found: $file_path"
+  exit 1
+fi
+
+# Read file as context
+context_content=$(cat "$file_path")
+
+# Create description from filename
+filename=$(basename "$file_path" | sed 's/\.[^.]*$//')
+description="Market sizing: $filename"
+```
+
+**If task number**:
+```bash
+# Load existing task
+task_data=$(jq -r --argjson num "$task_number" \
+  '.active_projects[] | select(.project_number == $num)' \
+  specs/state.json)
+
+if [ -z "$task_data" ]; then
+  echo "Error: Task $task_number not found"
+  exit 1
+fi
+
+# Validate language is founder
+task_lang=$(echo "$task_data" | jq -r '.language')
+if [ "$task_lang" != "founder" ]; then
+  echo "Error: Task $task_number is not a founder task (language: $task_lang)"
+  exit 1
+fi
+```
+
+**If description (new task)**:
+Create task in next step.
+
+### Step 4: Create Task (if needed)
+
+Skip if task_number already exists.
+
+```bash
+# Get next task number
+next_num=$(jq -r '.next_project_number' specs/state.json)
+
+# Create slug from description
+slug="market_sizing_$(echo "$description" | tr ' ' '_' | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]//g' | cut -c1-40)"
+
+# Create task in state.json
+jq --argjson num "$next_num" \
+   --arg name "$slug" \
+   --arg desc "Market sizing: $description" \
+   --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+   '. + {next_project_number: ($num + 1)} |
+    .active_projects += [{
+      project_number: $num,
+      project_name: $name,
+      status: "not_started",
+      language: "founder",
+      description: $desc,
+      created: $ts,
+      artifacts: []
+    }]' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
+
+# Update TODO.md
+task_number=$next_num
+```
+
+### Step 5: Update TODO.md
+
+Add task entry to TODO.md (if new task):
+
+```markdown
+### {task_number}. Market sizing: {description}
+- **Effort**: 2-4 hours
+- **Status**: [NOT STARTED]
+- **Language**: founder
+- **Dependencies**: None
+- **Started**: {ISO timestamp}
+
+**Description**: {full description}
+```
+
+### Step 6: Git Commit (Task Creation)
+
+```bash
+git add specs/state.json specs/TODO.md
+git commit -m "$(cat <<'EOF'
+task {N}: create market sizing task
+
+Session: {session_id}
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+EOF
+)"
 ```
 
 ---
 
 ## STAGE 2: DELEGATE
 
-**Invoke Skill tool**:
+### STAGE 2A: Legacy Mode (--quick)
+
+**If input_type == "quick"**:
+
+Invoke skill-market directly (original behavior):
 
 ```
 skill: "skill-market"
 args: "industry={industry} segment={segment} mode={mode} session_id={session_id}"
 ```
 
-The skill will:
-1. Present mode selection (if not pre-selected)
-2. Use forcing questions to gather market data
-3. Calculate TAM/SAM/SOM using appropriate methodology
-4. Generate market sizing artifact
-5. Return structured JSON result
+Skip to CHECKPOINT 2 (Legacy).
+
+### STAGE 2B: Task Workflow Mode
+
+**Run /plan {task_number}**:
+
+This routes to `skill-founder-plan` based on language="founder".
+
+The plan workflow:
+1. Presents mode selection
+2. Conducts forcing questions to gather context
+3. Creates plan with gathered data stored
+4. Returns when planning complete
+
+**Run /implement {task_number}**:
+
+This routes to `skill-founder-implement` based on language="founder".
+
+The implement workflow:
+1. Loads plan with gathered context
+2. Executes phases (TAM, SAM, SOM, Report)
+3. Generates report to `strategy/market-sizing-{slug}.md`
+4. Creates summary in task directory
+5. Updates task to completed
 
 ---
 
 ## CHECKPOINT 2: GATE OUT
 
-### Step 1: Validate Return
+### For Task Workflow Mode
 
-Check return from skill:
-- Status is one of: generated, partial, failed
-- Summary is non-empty and <100 tokens
-- Artifacts array present with output file path
+1. **Verify Task Completed**
+   ```bash
+   status=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num) | .status' \
+     specs/state.json)
+   ```
 
-### Step 2: Display Result
+2. **Get Artifacts**
+   ```bash
+   artifacts=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num) | .artifacts' \
+     specs/state.json)
+   ```
 
-**On success**:
+3. **Display Result**
+   ```
+   Market sizing complete for Task #{N}
+
+   Report: strategy/market-sizing-{slug}.md
+   Summary: specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md
+
+   Key Numbers:
+   - TAM: ${TAM}
+   - SAM: ${SAM}
+   - SOM Y1: ${SOM}
+
+   Status: [COMPLETED]
+   ```
+
+### For Legacy Mode (--quick)
+
 ```
 Market sizing analysis generated.
 
@@ -116,58 +280,84 @@ Key Numbers:
 Next: Review artifact and validate assumptions
 ```
 
-**On partial**:
-```
-Market sizing analysis partially completed.
-
-{partial_progress}
-
-Resume: /market --mode {mode}
-```
-
-**On failure**:
-```
-Market sizing analysis failed.
-
-Error: {error_message}
-Recovery: {recovery_guidance}
-```
-
 ---
 
 ## Error Handling
 
-### No Industry/Segment Provided
+### Task Not Found (task number mode)
 
-Not an error - agent will ask interactively.
+```
+Error: Task {N} not found in state.json
+Run /task "description" to create a new task
+```
+
+### File Not Found (file path mode)
+
+```
+Error: File not found: {path}
+Verify the file path and try again
+```
+
+### Plan Creation Failed
+
+```
+Planning failed for Task #{N}
+Error: {error_message}
+Resume: /plan {N}
+```
+
+### Implementation Failed
+
+```
+Implementation failed for Task #{N}
+Error: {error_message}
+Resume: /implement {N}
+```
 
 ### User Abandons Forcing Questions
 
-Return partial status with progress made:
-```json
-{
-  "status": "partial",
-  "partial_progress": {
-    "questions_completed": 3,
-    "questions_total": 6,
-    "data_gathered": ["TAM approach", "industry size"]
-  }
-}
+Return partial status, task remains in [PLANNING]:
 ```
+Market sizing planning partially completed.
 
-### Invalid Mode
+Completed: {questions_completed}/{questions_total} forcing questions
+Task: #{N} - Status: [PLANNING]
 
-```
-Invalid mode: {provided}
-Valid modes: VALIDATE, SIZE, SEGMENT, DEFEND
+Resume: /plan {N}
 ```
 
 ---
 
 ## Output Artifacts
 
+### Task Workflow Mode
+
+| Artifact | Location |
+|----------|----------|
+| Implementation plan | `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` |
+| Market sizing report | `strategy/market-sizing-{slug}.md` |
+| Implementation summary | `specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md` |
+
+### Legacy Mode (--quick)
+
 | Artifact | Location |
 |----------|----------|
 | Market sizing analysis | `founder/market-sizing-{datetime}.md` |
 
-Artifact follows template at `@context/project/founder/templates/market-sizing.md`.
+---
+
+## Examples
+
+```bash
+# Create new task with description
+/market "fintech payments for SMBs"
+
+# Operate on existing task
+/market 234
+
+# Use file as context
+/market ~/startup/pitch-deck.md
+
+# Legacy standalone mode
+/market --quick fintech payments
+```
