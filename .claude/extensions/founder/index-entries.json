@@ -5,9 +5,9 @@
       "summary": "TAM/SAM/SOM market sizing frameworks, business model canvas, unit economics",
       "line_count": 240,
       "load_when": {
-        "agents": ["market-agent", "analyze-agent", "strategy-agent"],
+        "agents": ["market-agent", "analyze-agent", "strategy-agent", "founder-plan-agent", "founder-implement-agent"],
         "languages": ["founder"],
-        "commands": ["/market", "/analyze", "/strategy"]
+        "commands": ["/market", "/analyze", "/strategy", "/plan", "/implement"]
       }
     },
     {
@@ -15,9 +15,9 @@
       "summary": "CEO cognitive patterns, YC principles, completeness principle",
       "line_count": 214,
       "load_when": {
-        "agents": ["market-agent", "analyze-agent", "strategy-agent"],
+        "agents": ["market-agent", "analyze-agent", "strategy-agent", "founder-plan-agent", "founder-implement-agent"],
         "languages": ["founder"],
-        "commands": ["/market", "/analyze", "/strategy"]
+        "commands": ["/market", "/analyze", "/strategy", "/plan", "/implement"]
       }
     },
     {
@@ -25,9 +25,9 @@
       "summary": "Forcing question framework for specificity, anti-patterns to detect",
       "line_count": 221,
       "load_when": {
-        "agents": ["market-agent", "analyze-agent", "strategy-agent"],
+        "agents": ["market-agent", "analyze-agent", "strategy-agent", "founder-plan-agent"],
         "languages": ["founder"],
-        "commands": ["/market", "/analyze", "/strategy"]
+        "commands": ["/market", "/analyze", "/strategy", "/plan"]
       }
     },
     {
@@ -35,9 +35,9 @@
       "summary": "Two-way doors, inversion, focus as subtraction decision frameworks",
       "line_count": 276,
       "load_when": {
-        "agents": ["market-agent", "analyze-agent", "strategy-agent"],
+        "agents": ["market-agent", "analyze-agent", "strategy-agent", "founder-plan-agent", "founder-implement-agent"],
         "languages": ["founder"],
-        "commands": ["/market", "/analyze", "/strategy"]
+        "commands": ["/market", "/analyze", "/strategy", "/plan", "/implement"]
       }
     },
     {
@@ -45,9 +45,9 @@
       "summary": "Operational modes pattern for scope control (LAUNCH, SCALE, PIVOT, EXPAND)",
       "line_count": 239,
       "load_when": {
-        "agents": ["market-agent", "analyze-agent", "strategy-agent"],
+        "agents": ["market-agent", "analyze-agent", "strategy-agent", "founder-plan-agent"],
         "languages": ["founder"],
-        "commands": ["/market", "/analyze", "/strategy"]
+        "commands": ["/market", "/analyze", "/strategy", "/plan"]
       }
     },
     {
@@ -55,9 +55,9 @@
       "summary": "TAM/SAM/SOM market sizing artifact template with concentric circles diagram",
       "line_count": 250,
       "load_when": {
-        "agents": ["market-agent"],
+        "agents": ["market-agent", "founder-implement-agent"],
         "languages": ["founder"],
-        "commands": ["/market"]
+        "commands": ["/market", "/implement"]
       }
     },
     {
@@ -65,9 +65,9 @@
       "summary": "Competitive analysis template with 2x2 positioning map, battle cards",
       "line_count": 273,
       "load_when": {
-        "agents": ["analyze-agent"],
+        "agents": ["analyze-agent", "founder-implement-agent"],
         "languages": ["founder"],
-        "commands": ["/analyze"]
+        "commands": ["/analyze", "/implement"]
       }
     },
     {
@@ -75,9 +75,9 @@
       "summary": "Go-to-market strategy template with positioning, channels, 90-day plan",
       "line_count": 303,
       "load_when": {
-        "agents": ["strategy-agent"],
+        "agents": ["strategy-agent", "founder-implement-agent"],
         "languages": ["founder"],
-        "commands": ["/strategy"]
+        "commands": ["/strategy", "/implement"]
       }
     }
   ]
