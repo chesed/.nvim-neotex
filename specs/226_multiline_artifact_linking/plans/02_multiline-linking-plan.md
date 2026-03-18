@@ -1,7 +1,7 @@
 # Implementation Plan: Task #226
 
 - **Task**: 226 - Implement multi-line artifact linking in TODO.md for 2+ artifacts
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 3-4 hours
 - **Dependencies**: None
 - **Research Inputs**: [01_artifact-linking-audit.md](../reports/01_artifact-linking-audit.md)
@@ -274,7 +274,7 @@ For artifact-formats.md, add a note in the relevant section:
 
 ---
 
-### Phase 6: Update README Example [IN PROGRESS]
+### Phase 6: Update README Example [COMPLETED]
 
 **Goal**: Update the README example task entry to demonstrate multi-line format.
 

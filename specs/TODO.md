@@ -24,11 +24,13 @@ next_project_number: 228
 
 ### 226. Implement multi-line artifact linking in TODO.md for 2+ artifacts
 - **Effort**: 4-6 hours
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
+- **Completed**: 2026-03-18
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_artifact-linking-audit.md](226_multiline_artifact_linking/reports/01_artifact-linking-audit.md)
 - **Plan**: [02_multiline-linking-plan.md](226_multiline_artifact_linking/plans/02_multiline-linking-plan.md)
+- **Summary**: [03_multiline-linking-summary.md](226_multiline_artifact_linking/summaries/03_multiline-linking-summary.md)
 
 **Description**: The current artifact linking format puts all artifacts of the same type on one line, comma-separated. For tasks with multiple research iterations (e.g., 10 research reports for ProofChecker task 981, 6 for task 988), this produces unreadable single lines. Implement a new standard: when a task has a single artifact of a given type, keep the current inline format; when 2+ artifacts exist, switch to an indented multi-line list. Update all components that write artifact links: 3 core skills (skill-researcher, skill-planner, skill-implementer), 4 extension skills (skill-web-research, skill-web-implementation, skill-nix-implementation, skill-grant), the standalone skill-status-sync, the canonical standard files (state-management.md, artifact-formats.md), the inline-status-update.md pattern file, and 2 process workflow docs (research-workflow.md, planning-workflow.md).
 

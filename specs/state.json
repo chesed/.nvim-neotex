@@ -5,13 +5,13 @@
     {
       "project_number": 227,
       "project_name": "enhance_meta_topic_consolidation",
-      "status": "researched",
+      "status": "planning",
       "language": "meta",
       "effort": "4-6 hours",
       "created": "2026-03-18T16:00:00Z",
-      "last_updated": "2026-03-18T15:58:52Z",
+      "last_updated": "2026-03-18T16:00:55Z",
       "dependencies": [],
-      "session_id": "sess_1773849302_faf135",
+      "session_id": "sess_1773849637_12af01",
       "researched": "2026-03-18T15:58:52Z",
       "artifacts": [
         {
@@ -24,10 +24,10 @@
     {
       "project_number": 226,
       "project_name": "multiline_artifact_linking",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-18T02:30:00Z",
-      "last_updated": "2026-03-18T15:56:06Z",
+      "last_updated": "2026-03-18T16:00:33Z",
       "dependencies": [],
       "artifacts": [
         {
@@ -39,11 +39,19 @@
           "path": "specs/226_multiline_artifact_linking/plans/02_multiline-linking-plan.md",
           "type": "plan",
           "summary": "6-phase implementation plan for count-aware multi-line artifact linking"
+        },
+        {
+          "path": "specs/226_multiline_artifact_linking/summaries/03_multiline-linking-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting all 14 modified files"
         }
       ],
       "session_id": "sess_1773849500_e7f8a9",
       "planned": "2026-03-18T15:48:26Z",
-      "started": "2026-03-18T15:56:06Z"
+      "started": "2026-03-18T15:56:06Z",
+      "completed": "2026-03-18T16:00:33Z",
+      "completion_summary": "Added count-aware artifact linking format to state-management.md and propagated to 4 core skills, 4 extension skills, and 5 documentation files. Format uses inline for single artifacts, multi-line list for 2+ artifacts of same type.",
+      "claudemd_suggestions": "Added 'Artifact Linking Format' subsection to state-management.md, updated README.md with multi-line example, updated artifact-formats.md with cross-reference"
     },
     {
       "project_number": 225,
