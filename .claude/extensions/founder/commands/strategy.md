@@ -1,31 +1,31 @@
 ---
-description: Go-to-market strategy development with task integration
+description: Go-to-market strategy research with task integration
 allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit
 argument-hint: "[description]" | TASK_NUMBER | /path/to/file.md | --quick [topic]
 ---
 
 # /strategy Command
 
-Go-to-market strategy command that develops positioning, channel strategy, and 90-day execution plans. Integrates with the task system for tracking and artifacts.
+Go-to-market strategy research command that gathers positioning, channel, and launch context through structured forcing questions. Integrates with the task system for tracking and artifacts.
 
 ## Overview
 
-This command produces GTM strategy artifacts through structured questioning. It creates a task, runs the founder-specific planning workflow with forcing questions, then executes the plan to generate actionable launch plans.
+This command initiates GTM strategy research through structured questioning. It creates a task (if needed) and runs the research phase to gather strategic context. After research completes, the user explicitly runs `/plan` and `/implement` to generate final strategy output with 90-day plans.
 
 ## Syntax
 
-- `/strategy "B2B SaaS product launch"` - Create task and run full workflow
-- `/strategy 234` - Operate on existing task (run /plan then /implement)
-- `/strategy /path/to/strategy-notes.md` - Use file as context, create task
+- `/strategy "B2B SaaS product launch"` - Create task and run research
+- `/strategy 234` - Resume research on existing task
+- `/strategy /path/to/strategy-notes.md` - Use file as context, create task, run research
 - `/strategy --quick B2B SaaS launch` - Legacy standalone mode (no task creation)
 
 ## Input Types
 
 | Input | Behavior |
 |-------|----------|
-| Description string | Create task, run /plan, run /implement |
-| Task number | Load existing task, run /plan, run /implement |
-| File path | Read file for context, create task, run workflow |
+| Description string | Create task, run research, stop at [RESEARCHED] |
+| Task number | Load existing task, run research, stop at [RESEARCHED] |
+| File path | Read file for context, create task, run research |
 | `--quick [args]` | Legacy standalone mode (skip task creation) |
 
 ## Modes
@@ -43,7 +43,7 @@ This command produces GTM strategy artifacts through structured questioning. It 
 
 **Display header**:
 ```
-[Strategy] Go-to-Market Strategy Development
+[Strategy] Go-to-Market Strategy Research
 ```
 
 ### Step 1: Generate Session ID
@@ -59,7 +59,6 @@ session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
 if echo "$ARGUMENTS" | grep -qE '^--quick'; then
   input_type="quick"
   args=$(echo "$ARGUMENTS" | sed 's/^--quick *//')
-fi
 
 # Check for task number
 elif echo "$ARGUMENTS" | grep -qE '^[0-9]+$'; then
@@ -177,26 +176,21 @@ Skip to CHECKPOINT 2 (Legacy).
 
 ### STAGE 2B: Task Workflow Mode
 
-**Run /plan {task_number}**:
+**Run research via skill-strategy**:
 
-Routes to `skill-founder-plan` based on language="founder".
+```
+skill: "skill-strategy"
+args: "task_number={task_number} session_id={session_id}"
+```
 
-The plan workflow:
-1. Presents mode selection (LAUNCH, SCALE, PIVOT, EXPAND)
-2. Conducts forcing questions for GTM strategy
-3. Creates plan with gathered data stored
-4. Returns when planning complete
+The skill workflow:
+1. Updates status to [RESEARCHING] (preflight)
+2. Invokes strategy-agent for forcing questions
+3. Agent creates research report at `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md`
+4. Updates status to [RESEARCHED] (postflight)
+5. Links artifact and commits
 
-**Run /implement {task_number}**:
-
-Routes to `skill-founder-implement` based on language="founder".
-
-The implement workflow:
-1. Loads plan with gathered context
-2. Executes phases (Positioning, Channels, Launch Plan, Metrics)
-3. Generates report to `strategy/gtm-strategy-{slug}.md`
-4. Creates summary in task directory
-5. Updates task to completed
+**Note**: This command does NOT auto-invoke /plan or /implement. The user runs those separately.
 
 ---
 
@@ -204,24 +198,47 @@ The implement workflow:
 
 ### For Task Workflow Mode
 
-1. **Verify Task Completed**
-2. **Get Artifacts**
+1. **Verify Research Completed**
+   ```bash
+   status=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num) | .status' \
+     specs/state.json)
+
+   if [ "$status" != "researched" ]; then
+     echo "Research incomplete. Status: [$status]"
+     echo "Resume: /strategy $task_number"
+     exit 1
+   fi
+   ```
+
+2. **Get Research Artifact**
+   ```bash
+   research_path=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num) | .artifacts[] | select(.type == "research") | .path' \
+     specs/state.json)
+   ```
+
 3. **Display Result**
    ```
-   GTM strategy complete for Task #{N}
+   GTM strategy research complete for Task #{N}
 
-   Report: strategy/gtm-strategy-{slug}.md
-   Summary: specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md
+   Research Report: {research_path}
 
-   Positioning:
-   For {target} who {problem}, {product} is a {category} that {benefit}.
-   Unlike {competitor}, we {differentiator}.
+   Data Gathered:
+   - Target customer: {captured}
+   - Problem/need: {captured}
+   - Key benefit: {captured}
+   - Differentiator: {captured}
+   - Channel data: {captured}
+   - Launch context: {captured}
+   - North Star metric: {captured}
 
-   Top Channels:
-   1. {channel1} - CAC: ${CAC1}
-   2. {channel2} - CAC: ${CAC2}
+   Status: [RESEARCHED]
 
-   Status: [COMPLETED]
+   Next Steps:
+   - Review research report for accuracy
+   - Run /plan {N} to create implementation plan
+   - Run /implement {N} to generate full GTM strategy with 90-day plan
    ```
 
 ### For Legacy Mode (--quick)
@@ -263,20 +280,12 @@ Error: File not found: {path}
 Verify the file path and try again
 ```
 
-### Plan Creation Failed
+### Research Incomplete
 
 ```
-Planning failed for Task #{N}
-Error: {error_message}
-Resume: /plan {N}
-```
-
-### Implementation Failed
-
-```
-Implementation failed for Task #{N}
-Error: {error_message}
-Resume: /implement {N}
+Research incomplete for Task #{N}
+Status: [{current_status}]
+Resume: /strategy {N}
 ```
 
 ---
@@ -287,9 +296,9 @@ Resume: /implement {N}
 
 | Artifact | Location |
 |----------|----------|
-| Implementation plan | `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` |
-| GTM strategy report | `strategy/gtm-strategy-{slug}.md` |
-| Implementation summary | `specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md` |
+| Research report | `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md` |
+
+**Note**: Full GTM strategy (`strategy/gtm-strategy-*.md`) is generated by `/implement`, not `/strategy`.
 
 ### Legacy Mode (--quick)
 
@@ -299,18 +308,32 @@ Resume: /implement {N}
 
 ---
 
+## Workflow Summary
+
+The standard three-stage workflow:
+
+```
+/strategy "description" -> Creates task, runs research, stops at [RESEARCHED]
+/plan {N}               -> Reads research report, creates implementation plan
+/implement {N}          -> Executes plan, generates strategy/gtm-strategy-*.md
+```
+
+Each stage is a separate command invocation, giving the user control over the workflow.
+
+---
+
 ## Examples
 
 ```bash
-# Create new task with description
+# Create new task with description - runs research only
 /strategy "B2B SaaS product launch"
 
-# Operate on existing task
+# Resume research on existing task
 /strategy 234
 
 # Use file as context
 /strategy ~/startup/launch-notes.md
 
-# Legacy standalone mode
+# Legacy standalone mode (generates full output immediately)
 /strategy --quick B2B SaaS launch
 ```

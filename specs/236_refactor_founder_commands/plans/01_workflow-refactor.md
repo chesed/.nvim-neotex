@@ -108,7 +108,7 @@ From `01_workflow-analysis.md`:
 
 ---
 
-### Phase 3: Refactor Commands (Remove Auto-Proceed) [IN PROGRESS]
+### Phase 3: Refactor Commands (Remove Auto-Proceed) [COMPLETED]
 
 **Goal**: Remove auto-plan+implement stages from market.md, analyze.md, and strategy.md commands.
 
@@ -136,7 +136,7 @@ From `01_workflow-analysis.md`:
 
 ---
 
-### Phase 4: Update founder-plan-agent (Read Report) [NOT STARTED]
+### Phase 4: Update founder-plan-agent (Read Report) [IN PROGRESS]
 
 **Goal**: Modify founder-plan-agent to read research report instead of asking forcing questions.
 

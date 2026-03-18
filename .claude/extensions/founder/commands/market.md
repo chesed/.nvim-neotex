@@ -1,31 +1,31 @@
 ---
-description: Analyze market size using TAM/SAM/SOM framework with task integration
+description: Market sizing research using TAM/SAM/SOM framework with task integration
 allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit
 argument-hint: "[description]" | TASK_NUMBER | /path/to/file.md | --quick [industry] [segment]
 ---
 
 # /market Command
 
-Market sizing analysis command using TAM/SAM/SOM framework with task system integration.
+Market sizing research command using TAM/SAM/SOM framework with task system integration.
 
 ## Overview
 
-This command produces market sizing analysis artifacts through structured questioning. It creates a task, runs the founder-specific planning workflow with forcing questions, then executes the plan to generate investor-ready market sizing documents.
+This command initiates market sizing research through structured forcing questions. It creates a task (if needed) and runs the research phase to gather market data. After research completes, the user explicitly runs `/plan` and `/implement` to generate final strategy output.
 
 ## Syntax
 
-- `/market "fintech payments app"` - Create task and run full workflow
-- `/market 234` - Operate on existing task (run /plan then /implement)
-- `/market /path/to/context.md` - Use file as context, create task
+- `/market "fintech payments app"` - Create task and run research
+- `/market 234` - Resume research on existing task
+- `/market /path/to/context.md` - Use file as context, create task, run research
 - `/market --quick fintech payments` - Legacy standalone mode (no task creation)
 
 ## Input Types
 
 | Input | Behavior |
 |-------|----------|
-| Description string | Create task, run /plan, run /implement |
-| Task number | Load existing task, run /plan, run /implement |
-| File path | Read file for context, create task, run workflow |
+| Description string | Create task, run research, stop at [RESEARCHED] |
+| Task number | Load existing task, run research, stop at [RESEARCHED] |
+| File path | Read file for context, create task, run research |
 | `--quick [args]` | Legacy standalone mode (skip task creation) |
 
 ## Modes
@@ -43,7 +43,7 @@ This command produces market sizing analysis artifacts through structured questi
 
 **Display header**:
 ```
-[Market] TAM/SAM/SOM Market Sizing Analysis
+[Market] TAM/SAM/SOM Market Sizing Research
 ```
 
 ### Step 1: Generate Session ID
@@ -60,7 +60,6 @@ if echo "$ARGUMENTS" | grep -qE '^--quick'; then
   input_type="quick"
   # Remove --quick from arguments
   args=$(echo "$ARGUMENTS" | sed 's/^--quick *//')
-fi
 
 # Check for task number
 elif echo "$ARGUMENTS" | grep -qE '^[0-9]+$'; then
@@ -205,26 +204,21 @@ Skip to CHECKPOINT 2 (Legacy).
 
 ### STAGE 2B: Task Workflow Mode
 
-**Run /plan {task_number}**:
+**Run research via skill-market**:
 
-This routes to `skill-founder-plan` based on language="founder".
+```
+skill: "skill-market"
+args: "task_number={task_number} session_id={session_id}"
+```
 
-The plan workflow:
-1. Presents mode selection
-2. Conducts forcing questions to gather context
-3. Creates plan with gathered data stored
-4. Returns when planning complete
+The skill workflow:
+1. Updates status to [RESEARCHING] (preflight)
+2. Invokes market-agent for forcing questions
+3. Agent creates research report at `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md`
+4. Updates status to [RESEARCHED] (postflight)
+5. Links artifact and commits
 
-**Run /implement {task_number}**:
-
-This routes to `skill-founder-implement` based on language="founder".
-
-The implement workflow:
-1. Loads plan with gathered context
-2. Executes phases (TAM, SAM, SOM, Report)
-3. Generates report to `strategy/market-sizing-{slug}.md`
-4. Creates summary in task directory
-5. Updates task to completed
+**Note**: This command does NOT auto-invoke /plan or /implement. The user runs those separately.
 
 ---
 
@@ -232,33 +226,46 @@ The implement workflow:
 
 ### For Task Workflow Mode
 
-1. **Verify Task Completed**
+1. **Verify Research Completed**
    ```bash
    status=$(jq -r --argjson num "$task_number" \
      '.active_projects[] | select(.project_number == $num) | .status' \
      specs/state.json)
+
+   if [ "$status" != "researched" ]; then
+     echo "Research incomplete. Status: [$status]"
+     echo "Resume: /market $task_number"
+     exit 1
+   fi
    ```
 
-2. **Get Artifacts**
+2. **Get Research Artifact**
    ```bash
-   artifacts=$(jq -r --argjson num "$task_number" \
-     '.active_projects[] | select(.project_number == $num) | .artifacts' \
+   research_path=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num) | .artifacts[] | select(.type == "research") | .path' \
      specs/state.json)
    ```
 
 3. **Display Result**
    ```
-   Market sizing complete for Task #{N}
+   Market sizing research complete for Task #{N}
 
-   Report: strategy/market-sizing-{slug}.md
-   Summary: specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md
+   Research Report: {research_path}
 
-   Key Numbers:
-   - TAM: ${TAM}
-   - SAM: ${SAM}
-   - SOM Y1: ${SOM}
+   Data Gathered:
+   - Problem definition: {captured}
+   - Entity count: {captured}
+   - Price point: {captured}
+   - Geographic scope: {captured}
+   - Capture rates: {captured}
+   - Competitive context: {captured}
 
-   Status: [COMPLETED]
+   Status: [RESEARCHED]
+
+   Next Steps:
+   - Review research report for accuracy
+   - Run /plan {N} to create implementation plan
+   - Run /implement {N} to generate final market sizing report
    ```
 
 ### For Legacy Mode (--quick)
@@ -298,32 +305,24 @@ Error: File not found: {path}
 Verify the file path and try again
 ```
 
-### Plan Creation Failed
+### Research Incomplete
 
 ```
-Planning failed for Task #{N}
-Error: {error_message}
-Resume: /plan {N}
-```
-
-### Implementation Failed
-
-```
-Implementation failed for Task #{N}
-Error: {error_message}
-Resume: /implement {N}
+Research incomplete for Task #{N}
+Status: [{current_status}]
+Resume: /market {N}
 ```
 
 ### User Abandons Forcing Questions
 
-Return partial status, task remains in [PLANNING]:
+Return partial status, task remains in [RESEARCHING]:
 ```
-Market sizing planning partially completed.
+Market sizing research partially completed.
 
 Completed: {questions_completed}/{questions_total} forcing questions
-Task: #{N} - Status: [PLANNING]
+Task: #{N} - Status: [RESEARCHING]
 
-Resume: /plan {N}
+Resume: /market {N}
 ```
 
 ---
@@ -334,9 +333,9 @@ Resume: /plan {N}
 
 | Artifact | Location |
 |----------|----------|
-| Implementation plan | `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` |
-| Market sizing report | `strategy/market-sizing-{slug}.md` |
-| Implementation summary | `specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md` |
+| Research report | `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md` |
+
+**Note**: Final market sizing report (`strategy/market-sizing-*.md`) is generated by `/implement`, not `/market`.
 
 ### Legacy Mode (--quick)
 
@@ -346,18 +345,32 @@ Resume: /plan {N}
 
 ---
 
+## Workflow Summary
+
+The standard three-stage workflow:
+
+```
+/market "description"   -> Creates task, runs research, stops at [RESEARCHED]
+/plan {N}               -> Reads research report, creates implementation plan
+/implement {N}          -> Executes plan, generates strategy/market-sizing-*.md
+```
+
+Each stage is a separate command invocation, giving the user control over the workflow.
+
+---
+
 ## Examples
 
 ```bash
-# Create new task with description
+# Create new task with description - runs research only
 /market "fintech payments for SMBs"
 
-# Operate on existing task
+# Resume research on existing task
 /market 234
 
 # Use file as context
 /market ~/startup/pitch-deck.md
 
-# Legacy standalone mode
+# Legacy standalone mode (generates full output immediately)
 /market --quick fintech payments
 ```

@@ -1,31 +1,31 @@
 ---
-description: Competitive landscape analysis with task integration
+description: Competitive landscape research with task integration
 allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit
 argument-hint: "[description]" | TASK_NUMBER | /path/to/file.md | --quick [competitors]
 ---
 
 # /analyze Command
 
-Competitive analysis command that maps the competitive landscape, generates positioning maps, and produces battle cards for sales enablement. Integrates with the task system for tracking and artifacts.
+Competitive analysis research command that gathers competitive intelligence through structured forcing questions. Integrates with the task system for tracking and artifacts.
 
 ## Overview
 
-This command produces competitive analysis artifacts through structured analysis. It creates a task, runs the founder-specific planning workflow with forcing questions, then executes the plan to generate actionable competitive strategy documents.
+This command initiates competitive analysis research through structured questioning. It creates a task (if needed) and runs the research phase to gather competitor data, positioning insights, and strategic observations. After research completes, the user explicitly runs `/plan` and `/implement` to generate final strategy output.
 
 ## Syntax
 
-- `/analyze "fintech payments competitors"` - Create task and run full workflow
-- `/analyze 234` - Operate on existing task (run /plan then /implement)
-- `/analyze /path/to/competitors.md` - Use file as context, create task
+- `/analyze "fintech payments competitors"` - Create task and run research
+- `/analyze 234` - Resume research on existing task
+- `/analyze /path/to/competitors.md` - Use file as context, create task, run research
 - `/analyze --quick stripe,square,adyen` - Legacy standalone mode (no task creation)
 
 ## Input Types
 
 | Input | Behavior |
 |-------|----------|
-| Description string | Create task, run /plan, run /implement |
-| Task number | Load existing task, run /plan, run /implement |
-| File path | Read file for context, create task, run workflow |
+| Description string | Create task, run research, stop at [RESEARCHED] |
+| Task number | Load existing task, run research, stop at [RESEARCHED] |
+| File path | Read file for context, create task, run research |
 | `--quick [args]` | Legacy standalone mode (skip task creation) |
 
 ## Modes
@@ -43,7 +43,7 @@ This command produces competitive analysis artifacts through structured analysis
 
 **Display header**:
 ```
-[Analyze] Competitive Landscape Analysis
+[Analyze] Competitive Landscape Research
 ```
 
 ### Step 1: Generate Session ID
@@ -59,7 +59,6 @@ session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
 if echo "$ARGUMENTS" | grep -qE '^--quick'; then
   input_type="quick"
   args=$(echo "$ARGUMENTS" | sed 's/^--quick *//')
-fi
 
 # Check for task number
 elif echo "$ARGUMENTS" | grep -qE '^[0-9]+$'; then
@@ -177,26 +176,21 @@ Skip to CHECKPOINT 2 (Legacy).
 
 ### STAGE 2B: Task Workflow Mode
 
-**Run /plan {task_number}**:
+**Run research via skill-analyze**:
 
-Routes to `skill-founder-plan` based on language="founder".
+```
+skill: "skill-analyze"
+args: "task_number={task_number} session_id={session_id}"
+```
 
-The plan workflow:
-1. Presents mode selection (LANDSCAPE, DEEP, POSITION, BATTLE)
-2. Conducts forcing questions for competitive intelligence
-3. Creates plan with gathered data stored
-4. Returns when planning complete
+The skill workflow:
+1. Updates status to [RESEARCHING] (preflight)
+2. Invokes analyze-agent for forcing questions
+3. Agent creates research report at `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md`
+4. Updates status to [RESEARCHED] (postflight)
+5. Links artifact and commits
 
-**Run /implement {task_number}**:
-
-Routes to `skill-founder-implement` based on language="founder".
-
-The implement workflow:
-1. Loads plan with gathered context
-2. Executes phases (Landscape, Deep Dive, Positioning, Report)
-3. Generates report to `strategy/competitive-analysis-{slug}.md`
-4. Creates summary in task directory
-5. Updates task to completed
+**Note**: This command does NOT auto-invoke /plan or /implement. The user runs those separately.
 
 ---
 
@@ -204,22 +198,45 @@ The implement workflow:
 
 ### For Task Workflow Mode
 
-1. **Verify Task Completed**
-2. **Get Artifacts**
+1. **Verify Research Completed**
+   ```bash
+   status=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num) | .status' \
+     specs/state.json)
+
+   if [ "$status" != "researched" ]; then
+     echo "Research incomplete. Status: [$status]"
+     echo "Resume: /analyze $task_number"
+     exit 1
+   fi
+   ```
+
+2. **Get Research Artifact**
+   ```bash
+   research_path=$(jq -r --argjson num "$task_number" \
+     '.active_projects[] | select(.project_number == $num) | .artifacts[] | select(.type == "research") | .path' \
+     specs/state.json)
+   ```
+
 3. **Display Result**
    ```
-   Competitive analysis complete for Task #{N}
+   Competitive analysis research complete for Task #{N}
 
-   Report: strategy/competitive-analysis-{slug}.md
-   Summary: specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md
+   Research Report: {research_path}
 
-   Competitors Analyzed:
-   - {competitor1}: {positioning}
-   - {competitor2}: {positioning}
+   Data Gathered:
+   - Direct competitors: {captured}
+   - Indirect competitors: {captured}
+   - Per-competitor analysis: {captured}
+   - Positioning dimensions: {captured}
+   - Strategic observations: {captured}
 
-   Positioning Insight: {key_insight}
+   Status: [RESEARCHED]
 
-   Status: [COMPLETED]
+   Next Steps:
+   - Review research report for accuracy
+   - Run /plan {N} to create implementation plan
+   - Run /implement {N} to generate full competitive analysis with positioning map
    ```
 
 ### For Legacy Mode (--quick)
@@ -258,20 +275,12 @@ Error: File not found: {path}
 Verify the file path and try again
 ```
 
-### Plan Creation Failed
+### Research Incomplete
 
 ```
-Planning failed for Task #{N}
-Error: {error_message}
-Resume: /plan {N}
-```
-
-### Implementation Failed
-
-```
-Implementation failed for Task #{N}
-Error: {error_message}
-Resume: /implement {N}
+Research incomplete for Task #{N}
+Status: [{current_status}]
+Resume: /analyze {N}
 ```
 
 ---
@@ -282,9 +291,9 @@ Resume: /implement {N}
 
 | Artifact | Location |
 |----------|----------|
-| Implementation plan | `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` |
-| Competitive analysis report | `strategy/competitive-analysis-{slug}.md` |
-| Implementation summary | `specs/{NNN}_{SLUG}/summaries/01_{short-slug}-summary.md` |
+| Research report | `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md` |
+
+**Note**: Full competitive analysis (`strategy/competitive-analysis-*.md`) is generated by `/implement`, not `/analyze`.
 
 ### Legacy Mode (--quick)
 
@@ -294,18 +303,32 @@ Resume: /implement {N}
 
 ---
 
+## Workflow Summary
+
+The standard three-stage workflow:
+
+```
+/analyze "description"  -> Creates task, runs research, stops at [RESEARCHED]
+/plan {N}               -> Reads research report, creates implementation plan
+/implement {N}          -> Executes plan, generates strategy/competitive-analysis-*.md
+```
+
+Each stage is a separate command invocation, giving the user control over the workflow.
+
+---
+
 ## Examples
 
 ```bash
-# Create new task with description
+# Create new task with description - runs research only
 /analyze "fintech payments competitors"
 
-# Operate on existing task
+# Resume research on existing task
 /analyze 234
 
 # Use file as context
 /analyze ~/startup/competitor-notes.md
 
-# Legacy standalone mode
+# Legacy standalone mode (generates full output immediately)
 /analyze --quick stripe,square,adyen
 ```
