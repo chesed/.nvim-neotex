@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "next_project_number": 235,
+  "next_project_number": 236,
   "active_projects": [
     {
       "project_number": 234,
@@ -1125,6 +1125,23 @@
       ],
       "session_id": "sess_1771006114_e73864",
       "planned": "2026-02-13T18:10:48Z"
+    },
+    {
+      "project_number": 235,
+      "project_name": "research_integrate_mcp_founder",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-18T20:17:00Z",
+      "last_updated": "2026-03-18T20:17:00Z",
+      "session_id": "sess_1742313418_f3a2b1",
+      "researched": "2026-03-18T20:17:00Z",
+      "artifacts": [
+        {
+          "path": "specs/235_research_integrate_mcp_founder/reports/01_meta-research.md",
+          "type": "research",
+          "summary": "Auto-generated research from /meta interview covering MCP tools for market research and business strategy"
+        }
+      ]
     }
   ],
   "completed_projects": [],
