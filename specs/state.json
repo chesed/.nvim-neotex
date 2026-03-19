@@ -5,10 +5,10 @@
     {
       "project_number": 246,
       "project_name": "upgrade_founder_typst_templates_professional",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-19T20:55:04Z",
-      "last_updated": "2026-03-19T21:01:27Z",
+      "last_updated": "2026-03-19T21:06:22Z",
       "effort": "4-6 hours",
       "dependencies": [],
       "artifacts": [
@@ -16,10 +16,16 @@
           "path": "specs/246_upgrade_founder_typst_templates_professional/reports/01_typst-template-upgrade.md",
           "type": "research",
           "summary": "Comprehensive analysis of professional Typst template styling with complete color palette, typography, helper functions, and implementation strategy"
+        },
+        {
+          "path": "specs/246_upgrade_founder_typst_templates_professional/plans/01_professional-typst-templates.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan to upgrade founder typst templates with professional navy styling"
         }
       ],
-      "session_id": "sess_1773953860_443956",
-      "researched": "2026-03-19T21:01:27Z"
+      "session_id": "sess_1773954235_021c4c",
+      "researched": "2026-03-19T21:01:27Z",
+      "planned": "2026-03-19T21:06:22Z"
     },
     {
       "project_number": 245,

@@ -421,7 +421,7 @@ return {
           end
 
           notify.editor(
-            string.format("Model set to %s (restart required)", choice.label),
+            string.format("Model set to %s (takes effect on next Claude Code open)", choice.label),
             notify.categories.USER_ACTION,
             { model = choice.id }
           )

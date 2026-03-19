@@ -34,21 +34,10 @@ return {
       popd_cmd = "popd >/dev/null 2>&1",    -- Suppress popd output
     },
 
-    -- Base command (model read from ~/.claude/settings.local.json at startup)
-    command = (function()
-      local model = "claude-sonnet-4-6"
-      local path = vim.fn.expand("~/.claude/settings.local.json")
-      local f = io.open(path, "r")
-      if f then
-        local content = f:read("*all")
-        f:close()
-        local ok, data = pcall(vim.fn.json_decode, content)
-        if ok and data and data.model then
-          model = data.model
-        end
-      end
-      return "claude --dangerously-skip-permissions --model " .. model
-    end)(),
+    -- Base command (model set via ~/.claude/settings.local.json, not --model flag)
+    -- Note: passing --model via CLI flag bypasses Claude Max's 1M context window;
+    -- Claude Code reads settings.local.json natively and uses Max plan routing.
+    command = "claude --dangerously-skip-permissions",
 
     -- Command variants for different modes
     command_variants = {
