@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 247,
+  "next_project_number": 248,
   "active_projects": [
+    {
+      "project_number": 247,
+      "project_name": "leader_am_per_project_model_picker",
+      "status": "not_started",
+      "language": "neovim",
+      "created": "2026-03-19T21:36:38Z",
+      "last_updated": "2026-03-19T21:36:38Z"
+    },
     {
       "project_number": 246,
       "project_name": "upgrade_founder_typst_templates_professional",

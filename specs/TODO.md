@@ -1,10 +1,18 @@
 ---
-next_project_number: 247
+next_project_number: 248
 ---
 
 # TODO
 
 ## Tasks
+
+### 247. Make leader-am model picker write to project-level .claude/settings.local.json
+- **Effort**: 1-2 hours
+- **Status**: [NOT STARTED]
+- **Language**: neovim
+- **Dependencies**: None
+
+**Description**: Make `<leader>am` model picker write the selected model to the current project's `.claude/settings.local.json` (detected via `git rev-parse --show-toplevel`) instead of the global `~/.claude/settings.local.json`. Project-local settings have priority 3 (highest non-managed), overriding both the committed `settings.json` and global user settings. Fall back to `~/.claude/settings.local.json` if no git root exists or no `.claude/` directory is present in the git root.
 
 ### 246. Upgrade founder extension typst templates to professional styling
 - **Effort**: 4-6 hours
@@ -737,3 +745,4 @@ The existing strategy-template.typ uses generic styling (New Computer Modern fon
 
 1. **87** -> plan (independent)
 2. **78** -> implement (independent)
+3. **247** -> research (independent)
