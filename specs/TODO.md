@@ -20,7 +20,7 @@ next_project_number: 245
 
 ### 243. Create Recommended Order helper utility script
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Started**: 2026-03-19
 - **Language**: meta
 - **Dependencies**: None
@@ -688,3 +688,10 @@ next_project_number: 245
 **Description**: Fix Gmail SMTP authentication failure when sending emails via Himalaya (<leader>me). Error: "Authentication failed: Code: 535, Enhanced code: 5.7.8, Message: Username and Password not accepted". The error occurs with TLS connection attempts and persists through multiple retry attempts. Identify and fix the root cause of the SMTP credential configuration.
 
 ---
+
+## Recommended Order
+
+1. **243** -> implement (unblocks 244)
+2. **87** -> plan (independent)
+3. **78** -> implement (independent)
+4. **244** -> plan (independent)
