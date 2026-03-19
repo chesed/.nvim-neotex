@@ -69,13 +69,7 @@
   heading(level: 1)[Positioning]
 
   heading(level: 2)[Positioning Statement]
-  rect(
-    width: 100%,
-    fill: rgb("#f8fafc"),
-    inset: 16pt,
-    radius: 4pt,
-    stroke: 0.5pt + gray,
-  )[
+  callout[
     #text(size: 12pt)[
       *For* #positioning-statement.target \
       *who* #positioning-statement.problem, \

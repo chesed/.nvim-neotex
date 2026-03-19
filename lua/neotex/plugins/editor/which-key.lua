@@ -369,9 +369,9 @@ return {
 
         -- Model definitions (Opus first per task description)
         local models = {
-          { id = "claude-opus-4-6", label = "Opus 4.6", desc = "Most powerful - complex reasoning" },
-          { id = "claude-sonnet-4-6", label = "Sonnet 4.6", desc = "Balanced - everyday coding" },
-          { id = "claude-haiku-4-5-20251001", label = "Haiku 4.5", desc = "Fastest - quick tasks" },
+          { id = "opus[1m]", label = "Opus 4.6 (1M)", desc = "Most powerful - 1M context" },
+          { id = "sonnet", label = "Sonnet 4.6", desc = "Balanced - everyday coding" },
+          { id = "haiku", label = "Haiku 4.5", desc = "Fastest - quick tasks" },
         }
 
         -- Read current settings

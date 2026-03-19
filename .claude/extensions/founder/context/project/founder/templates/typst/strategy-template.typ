@@ -1,8 +1,29 @@
 // Founder Strategy Template
-// Base template for professional strategy documents
+// Professional template for strategy documents
 // Used by: market-sizing.typ, competitive-analysis.typ, gtm-strategy.typ
+// Style: Navy gradient palette with Libertinus Serif typography
 
-// Document setup
+// ============================================================================
+// Professional Color Palette
+// ============================================================================
+
+#let navy-dark = rgb("#0a2540")
+#let navy-medium = rgb("#1a4a7a")
+#let navy-light = rgb("#2a5a9a")
+#let text-primary = rgb("#1a1a1a")
+#let text-muted = rgb("#888888")
+#let text-light = rgb("#aaaaaa")
+#let fill-header = rgb("#e8eef5")
+#let fill-alt-row = rgb("#f8f9fb")
+#let fill-callout = rgb("#e8f0fb")
+#let fill-warning = rgb("#fff8e8")
+#let border-light = rgb("#cccccc")
+#let border-warning = rgb("#c87800")
+
+// ============================================================================
+// Document Setup
+// ============================================================================
+
 #let strategy-doc(
   title: "",
   project: "",
@@ -10,70 +31,127 @@
   mode: "",
   doc,
 ) = {
-  // Page setup
+  // Page setup with professional header/footer
   set page(
     paper: "us-letter",
-    margin: (top: 1in, bottom: 1in, left: 1in, right: 1in),
+    margin: (top: 1.1in, bottom: 1.0in, left: 1.1in, right: 1.1in),
     header: context {
       if counter(page).get().first() > 1 [
-        #set text(size: 9pt, fill: gray)
-        #project #h(1fr) #title
+        #set text(size: 8pt, fill: text-muted)
+        #grid(
+          columns: (1fr, auto),
+          [#project - #title],
+          align(right)[#counter(page).display()],
+        )
+        #line(length: 100%, stroke: 0.4pt + border-light)
       ]
     },
     footer: context {
-      set text(size: 9pt, fill: gray)
-      h(1fr)
-      counter(page).display("1 / 1", both: true)
-      h(1fr)
+      set text(size: 7.5pt, fill: text-light)
+      align(center)[Confidential - #project #sym.dot #date]
     },
   )
 
-  // Typography
-  set text(font: "New Computer Modern", size: 11pt)
-  set par(justify: true, leading: 0.65em)
-
-  // Heading styles
-  set heading(numbering: "1.1")
-  show heading.where(level: 1): it => {
-    pagebreak(weak: true)
-    v(0.5em)
-    text(size: 18pt, weight: "bold")[#it]
-    v(0.5em)
-  }
-  show heading.where(level: 2): it => {
-    v(0.8em)
-    text(size: 14pt, weight: "bold")[#it]
-    v(0.3em)
-  }
-  show heading.where(level: 3): it => {
-    v(0.5em)
-    text(size: 12pt, weight: "bold")[#it]
-    v(0.2em)
-  }
-
-  // Table styling
-  set table(
-    stroke: 0.5pt + gray,
-    inset: 8pt,
+  // Typography - Libertinus Serif with fallback chain
+  set text(
+    font: ("Libertinus Serif", "Linux Libertine", "Georgia"),
+    size: 10.5pt,
+    fill: text-primary,
+    hyphenate: false,
   )
-  show table.cell.where(y: 0): strong
+
+  set par(
+    justify: true,
+    leading: 0.65em,
+    spacing: 0.85em,
+  )
+
+  // Heading styles with colored underlines (no numbering)
+  show heading.where(level: 1): it => {
+    v(1.4em)
+    block[
+      #set text(size: 16pt, weight: "bold", fill: navy-dark)
+      #it.body
+      #v(0.15em)
+      #line(length: 100%, stroke: 1.5pt + navy-dark)
+    ]
+    v(0.5em)
+  }
+
+  show heading.where(level: 2): it => {
+    v(1.1em)
+    block[
+      #set text(size: 13pt, weight: "bold", fill: navy-medium)
+      #it.body
+      #v(0.1em)
+      #line(length: 100%, stroke: 0.7pt + navy-medium)
+    ]
+    v(0.35em)
+  }
+
+  show heading.where(level: 3): it => {
+    v(0.9em)
+    block[
+      #set text(size: 11pt, weight: "bold", fill: navy-light)
+      #it.body
+    ]
+    v(0.25em)
+  }
+
+  // Block quote style
+  show quote: it => {
+    pad(left: 1.4em)[
+      #line(start: (-1.4em, 0pt), length: 3pt, stroke: 2.5pt + navy-medium)
+      #set text(style: "italic", fill: rgb("#333333"))
+      #it
+    ]
+  }
+
+  // Table styling with alternating rows and header emphasis
+  set table(
+    stroke: (x, y) => {
+      if y == 0 { (bottom: 1.2pt + navy-medium) }
+      else { (bottom: 0.4pt + border-light) }
+    },
+    fill: (x, y) => {
+      if y == 0 { fill-header }
+      else if calc.odd(y) { fill-alt-row }
+      else { white }
+    },
+    inset: (x: 0.7em, y: 0.55em),
+  )
+
+  show table: it => {
+    set text(size: 9.5pt)
+    it
+  }
 
   // Title page
+  v(2em)
   align(center)[
-    #v(2in)
-    #text(size: 28pt, weight: "bold")[#title]
-    #v(0.5em)
-    #text(size: 14pt, fill: gray)[#project]
-    #v(2em)
-    #line(length: 40%, stroke: 0.5pt + gray)
-    #v(1em)
-    #text(size: 12pt)[
-      *Date:* #date \
-      *Mode:* #mode \
-      *Prepared by:* Claude
+    #block[
+      #set text(size: 22pt, weight: "bold", fill: navy-dark)
+      #title
     ]
+    #v(0.3em)
+    #block[
+      #set text(size: 14pt, weight: "regular", fill: navy-medium)
+      #project
+    ]
+    #v(1.2em)
+    #line(length: 60%, stroke: 1.5pt + navy-dark)
+    #v(1.2em)
+    #grid(
+      columns: (auto, auto),
+      column-gutter: 2em,
+      row-gutter: 0.5em,
+      align: (right, left),
+      strong[Date:], [#date],
+      strong[Mode:], [#mode],
+      strong[Prepared by:], [Claude],
+    )
     #v(1fr)
-    #text(size: 10pt, fill: gray)[Confidential - Internal Use Only]
+    #text(size: 10pt, fill: text-light)[Confidential - Internal Use Only]
   ]
 
   pagebreak()
@@ -81,41 +159,189 @@
   doc
 }
 
-// Executive summary block
+// ============================================================================
+// Metric Pill (inline compact display)
+// ============================================================================
+
+#let metric(label, value) = box(
+  fill: navy-dark,
+  radius: 3pt,
+  inset: (x: 0.6em, y: 0.3em),
+)[
+  #set text(fill: white, size: 9pt)
+  #strong[#label:] #value
+]
+
+// ============================================================================
+// Callout Box (flexible left-bordered box)
+// ============================================================================
+
+#let callout(body, color: fill-callout, border: navy-medium) = block(
+  fill: color,
+  stroke: (left: 3pt + border),
+  radius: (right: 4pt),
+  inset: (x: 1em, y: 0.7em),
+  width: 100%,
+  body,
+)
+
+// ============================================================================
+// Comparison Block (dark navy side-by-side)
+// ============================================================================
+
+#let comparison-block(left-content, right-content, left-title: "", right-title: "") = block(
+  fill: navy-dark,
+  radius: 6pt,
+  inset: (x: 1.4em, y: 1.0em),
+  width: 100%,
+)[
+  #set text(fill: white, size: 10pt)
+  #grid(
+    columns: (0.5fr, 0.5fr),
+    column-gutter: 2em,
+    [
+      #if left-title != "" [
+        #block[#set text(size: 12pt, weight: "bold"); #left-title]
+        #v(0.3em)
+      ]
+      #left-content
+    ],
+    [
+      #if right-title != "" [
+        #block[#set text(size: 12pt, weight: "bold"); #right-title]
+        #v(0.3em)
+      ]
+      #right-content
+    ],
+  )
+]
+
+// ============================================================================
+// Nested Market Diagram (TAM/SAM/SOM professional boxes)
+// ============================================================================
+
+#let nested-market-diagram(
+  tam: "",
+  sam: "",
+  som: "",
+  tam-breakdown: none,
+  sam-description: "Serviceable market with geographic and segment filters",
+  som-years: none,
+) = {
+  figure(
+    block(width: 100%)[
+      // Outer box: TAM
+      #block(
+        fill: fill-header,
+        stroke: 1.2pt + navy-medium,
+        radius: 6pt,
+        inset: (x: 1.4em, y: 1.1em),
+        width: 100%,
+      )[
+        #set text(size: 9.5pt)
+        #block[
+          #set text(size: 11pt, weight: "bold", fill: navy-dark)
+          FILTERED TAM: #tam
+        ]
+        #if tam-breakdown != none [
+          #set text(size: 9pt, fill: rgb("#333333"))
+          #tam-breakdown
+        ]
+
+        #v(0.8em)
+
+        // Middle box: SAM
+        #block(
+          fill: rgb("#d0dcea"),
+          stroke: 1pt + navy-medium,
+          radius: 5pt,
+          inset: (x: 1.2em, y: 0.9em),
+          width: 88%,
+        )[
+          #block[
+            #set text(size: 10.5pt, weight: "bold", fill: navy-dark)
+            SAM: #sam
+          ]
+          #set text(size: 8.5pt, fill: rgb("#333333"))
+          #sam-description
+
+          #v(0.7em)
+
+          // Inner box: SOM
+          #block(
+            fill: rgb("#b8cce0"),
+            stroke: 0.8pt + navy-medium,
+            radius: 4pt,
+            inset: (x: 1em, y: 0.8em),
+            width: 85%,
+          )[
+            #block[
+              #set text(size: 10pt, weight: "bold", fill: navy-dark)
+              SOM (Conservative - Aggressive)
+            ]
+            #set text(size: 8.5pt, fill: text-primary)
+            #if som-years != none [
+              #grid(
+                columns: (auto, auto),
+                column-gutter: 2em,
+                row-gutter: 0.25em,
+                ..som-years.flatten()
+              )
+            ] else [
+              #som
+            ]
+          ]
+        ]
+      ]
+    ],
+    caption: [TAM / SAM / SOM market sizing - nested view],
+  )
+}
+
+// ============================================================================
+// Executive Summary Block
+// ============================================================================
+
 #let executive-summary(content) = {
   rect(
     width: 100%,
-    fill: rgb("#f5f5f5"),
+    fill: fill-header,
     inset: 16pt,
     radius: 4pt,
   )[
-    #text(weight: "bold", size: 12pt)[Executive Summary]
+    #text(weight: "bold", size: 12pt, fill: navy-dark)[Executive Summary]
     #v(0.5em)
     #content
   ]
 }
 
-// Key metric callout
+// ============================================================================
+// Key Metric Callout (large centered display)
+// ============================================================================
+
 #let metric-callout(label, value, subtitle: none) = {
   rect(
     width: 100%,
-    fill: rgb("#e8f4f8"),
+    fill: fill-callout,
     inset: 12pt,
     radius: 4pt,
   )[
     #align(center)[
-      #text(size: 10pt, fill: gray)[#label]
+      #text(size: 10pt, fill: text-muted)[#label]
       #v(0.2em)
-      #text(size: 24pt, weight: "bold")[#value]
+      #text(size: 24pt, weight: "bold", fill: navy-dark)[#value]
       #if subtitle != none [
         #v(0.1em)
-        #text(size: 9pt, fill: gray)[#subtitle]
+        #text(size: 9pt, fill: text-muted)[#subtitle]
       ]
     ]
   ]
 }
 
-// Metric row (3 metrics side by side)
+// ============================================================================
+// Metric Row (multiple metrics side by side)
+// ============================================================================
+
 #let metric-row(..metrics) = {
   let items = metrics.pos()
   grid(
@@ -125,35 +351,44 @@
   )
 }
 
-// Highlight box for key insights
+// ============================================================================
+// Highlight Box (key insights)
+// ============================================================================
+
 #let highlight-box(title: "Key Insight", content) = {
   rect(
     width: 100%,
-    stroke: (left: 3pt + rgb("#2563eb")),
-    fill: rgb("#f0f7ff"),
+    stroke: (left: 3pt + navy-medium),
+    fill: fill-callout,
     inset: 12pt,
   )[
-    #text(weight: "bold", fill: rgb("#2563eb"))[#title]
+    #text(weight: "bold", fill: navy-medium)[#title]
     #v(0.3em)
     #content
   ]
 }
 
-// Warning/red flag box
+// ============================================================================
+// Warning Box (red flags, risks)
+// ============================================================================
+
 #let warning-box(title: "Red Flag", content) = {
   rect(
     width: 100%,
-    stroke: (left: 3pt + rgb("#dc2626")),
-    fill: rgb("#fef2f2"),
+    stroke: (left: 3pt + border-warning),
+    fill: fill-warning,
     inset: 12pt,
   )[
-    #text(weight: "bold", fill: rgb("#dc2626"))[#title]
+    #text(weight: "bold", fill: border-warning)[#title]
     #v(0.3em)
     #content
   ]
 }
 
-// Success/validation box
+// ============================================================================
+// Success Box (validation, positive signals)
+// ============================================================================
+
 #let success-box(title: "Validation", content) = {
   rect(
     width: 100%,
@@ -167,27 +402,33 @@
   ]
 }
 
-// Styled table with header row
+// ============================================================================
+// Strategy Table (with header styling)
+// ============================================================================
+
 #let strategy-table(columns: auto, header: (), ..rows) = {
   let all-rows = rows.pos()
   table(
     columns: columns,
-    fill: (_, y) => if y == 0 { rgb("#f1f5f9") } else { none },
     align: (col, _) => if col == 0 { left } else { center },
     table.header(..header.map(h => [*#h*])),
     ..all-rows.flatten(),
   )
 }
 
-// Comparison table (for feature comparisons)
+// ============================================================================
+// Comparison Table (feature comparisons with "Us" column highlight)
+// ============================================================================
+
 #let comparison-table(columns: auto, header: (), ..rows) = {
   let all-rows = rows.pos()
   table(
     columns: columns,
     fill: (x, y) => {
-      if y == 0 { rgb("#f1f5f9") }
-      else if x == 1 { rgb("#e8f4f8") }  // Highlight "Us" column
-      else { none }
+      if y == 0 { fill-header }
+      else if x == 1 { fill-callout }  // Highlight "Us" column
+      else if calc.odd(y) { fill-alt-row }
+      else { white }
     },
     align: (col, _) => if col == 0 { left } else { center },
     table.header(..header.map(h => [*#h*])),
@@ -195,14 +436,20 @@
   )
 }
 
-// Section divider
+// ============================================================================
+// Section Divider
+// ============================================================================
+
 #let section-divider() = {
   v(1em)
-  line(length: 100%, stroke: 0.5pt + gray)
+  line(length: 100%, stroke: 0.5pt + border-light)
   v(1em)
 }
 
-// Positioning map (2x2 grid)
+// ============================================================================
+// Positioning Map (2x2 grid)
+// ============================================================================
+
 #let positioning-map(
   x-axis: "X Axis",
   y-axis: "Y Axis",
@@ -216,105 +463,55 @@
   rect(
     width: 100%,
     inset: 16pt,
-    stroke: 0.5pt + gray,
+    stroke: 0.5pt + border-light,
   )[
     #align(center)[
-      #text(weight: "bold", size: 11pt)[#y-axis]
+      #text(weight: "bold", size: 11pt, fill: navy-dark)[#y-axis]
       #v(0.3em)
       #grid(
         columns: (1fr, 1fr),
         rows: (auto, auto),
         gutter: 1pt,
-        rect(fill: rgb("#f8fafc"), inset: 12pt)[
-          #text(size: 9pt, fill: gray)[High #y-axis / Low #x-axis]
+        rect(fill: fill-alt-row, inset: 12pt)[
+          #text(size: 9pt, fill: text-muted)[High #y-axis / Low #x-axis]
           #v(0.5em)
           #quadrants.top-left
         ],
         rect(fill: rgb("#f0fdf4"), inset: 12pt)[
-          #text(size: 9pt, fill: gray)[High #y-axis / High #x-axis]
+          #text(size: 9pt, fill: text-muted)[High #y-axis / High #x-axis]
           #v(0.5em)
           #quadrants.top-right
         ],
-        rect(fill: rgb("#fef2f2"), inset: 12pt)[
-          #text(size: 9pt, fill: gray)[Low #y-axis / Low #x-axis]
+        rect(fill: fill-warning, inset: 12pt)[
+          #text(size: 9pt, fill: text-muted)[Low #y-axis / Low #x-axis]
           #v(0.5em)
           #quadrants.bottom-left
         ],
-        rect(fill: rgb("#f8fafc"), inset: 12pt)[
-          #text(size: 9pt, fill: gray)[Low #y-axis / High #x-axis]
+        rect(fill: fill-alt-row, inset: 12pt)[
+          #text(size: 9pt, fill: text-muted)[Low #y-axis / High #x-axis]
           #v(0.5em)
           #quadrants.bottom-right
         ],
       )
       #v(0.3em)
-      #text(weight: "bold", size: 11pt)[#x-axis]
+      #text(weight: "bold", size: 11pt, fill: navy-dark)[#x-axis]
     ]
   ]
 }
 
-// Concentric circles diagram (for TAM/SAM/SOM)
+// ============================================================================
+// Market Circles (legacy - prefer nested-market-diagram)
+// ============================================================================
+
 #let market-circles(tam: "", sam: "", som: "") = {
-  align(center)[
-    #rect(
-      width: 80%,
-      inset: 20pt,
-      stroke: none,
-    )[
-      // Outer circle (TAM)
-      #rect(
-        width: 100%,
-        height: 200pt,
-        fill: rgb("#dbeafe"),
-        radius: 100pt,
-        stroke: 1pt + rgb("#3b82f6"),
-      )[
-        #align(center + top)[
-          #v(10pt)
-          #text(weight: "bold", fill: rgb("#1e40af"))[TAM: #tam]
-          #v(2pt)
-          #text(size: 9pt, fill: rgb("#3b82f6"))[Total Addressable Market]
-        ]
-        // Middle circle (SAM)
-        #v(-140pt)
-        #align(center)[
-          #rect(
-            width: 70%,
-            height: 140pt,
-            fill: rgb("#bbf7d0"),
-            radius: 70pt,
-            stroke: 1pt + rgb("#22c55e"),
-          )[
-            #align(center + top)[
-              #v(8pt)
-              #text(weight: "bold", fill: rgb("#166534"))[SAM: #sam]
-              #v(2pt)
-              #text(size: 9pt, fill: rgb("#22c55e"))[Serviceable Market]
-            ]
-            // Inner circle (SOM)
-            #v(-90pt)
-            #align(center)[
-              #rect(
-                width: 60%,
-                height: 80pt,
-                fill: rgb("#fef08a"),
-                radius: 40pt,
-                stroke: 1pt + rgb("#eab308"),
-              )[
-                #align(center + horizon)[
-                  #text(weight: "bold", fill: rgb("#854d0e"))[SOM: #som]
-                  #v(2pt)
-                  #text(size: 9pt, fill: rgb("#a16207"))[Obtainable]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
+  // Use nested-market-diagram for professional appearance
+  nested-market-diagram(tam: tam, sam: sam, som: som)
 }
 
-// Competitor profile card
+// ============================================================================
+// Competitor Profile Card
+// ============================================================================
+
 #let competitor-card(
   name: "",
   category: "",
@@ -325,18 +522,19 @@
 ) = {
   rect(
     width: 100%,
-    stroke: 0.5pt + gray,
+    stroke: 1pt + navy-medium,
+    fill: fill-alt-row,
     inset: 12pt,
     radius: 4pt,
   )[
     #grid(
       columns: (1fr, auto),
       [
-        #text(weight: "bold", size: 14pt)[#name]
+        #text(weight: "bold", size: 14pt, fill: navy-dark)[#name]
         #h(8pt)
-        #text(size: 10pt, fill: gray)[#category]
+        #text(size: 10pt, fill: text-muted)[#category]
       ],
-      text(size: 10pt)[#pricing],
+      text(size: 10pt, fill: navy-medium)[#pricing],
     )
     #v(0.3em)
     #text(style: "italic", size: 10pt)[#positioning]
@@ -351,7 +549,7 @@
         ]
       ],
       [
-        #text(weight: "bold", fill: rgb("#dc2626"), size: 10pt)[Weaknesses]
+        #text(weight: "bold", fill: border-warning, size: 10pt)[Weaknesses]
         #for w in weaknesses [
           - #w
         ]
@@ -360,7 +558,10 @@
   ]
 }
 
-// Battle card
+// ============================================================================
+// Battle Card
+// ============================================================================
+
 #let battle-card(
   competitor: "",
   their-pitch: "",
@@ -371,25 +572,25 @@
 ) = {
   rect(
     width: 100%,
-    stroke: 1pt + rgb("#3b82f6"),
-    fill: rgb("#f8fafc"),
+    stroke: 1pt + navy-medium,
+    fill: fill-header,
     inset: 16pt,
     radius: 4pt,
   )[
-    #text(weight: "bold", size: 14pt, fill: rgb("#1e40af"))[vs #competitor]
+    #text(weight: "bold", size: 14pt, fill: navy-dark)[vs #competitor]
     #v(0.5em)
 
     #grid(
       columns: (1fr, 1fr),
       column-gutter: 16pt,
       [
-        #text(weight: "bold", size: 10pt)[Their Pitch]
+        #text(weight: "bold", size: 10pt, fill: navy-medium)[Their Pitch]
         #rect(fill: white, inset: 8pt, radius: 2pt)[
           #text(style: "italic")[#their-pitch]
         ]
       ],
       [
-        #text(weight: "bold", size: 10pt)[Our Response]
+        #text(weight: "bold", size: 10pt, fill: navy-medium)[Our Response]
         #rect(fill: white, inset: 8pt, radius: 2pt)[
           #our-response
         ]
@@ -398,7 +599,7 @@
     #v(0.5em)
 
     #if objections.len() > 0 [
-      #text(weight: "bold", size: 10pt)[Objections & Responses]
+      #text(weight: "bold", size: 10pt, fill: navy-medium)[Objections & Responses]
       #for obj in objections [
         - *"#obj.objection"* - #obj.response
       ]
@@ -415,7 +616,7 @@
         ]
       ],
       [
-        #text(weight: "bold", fill: rgb("#dc2626"), size: 10pt)[Lose Signals]
+        #text(weight: "bold", fill: border-warning, size: 10pt)[Lose Signals]
         #for s in lose-signals [
           - #s
         ]
@@ -424,13 +625,16 @@
   ]
 }
 
-// Timeline visualization
+// ============================================================================
+// Timeline Visualization
+// ============================================================================
+
 #let timeline(phases: ()) = {
   let phase-count = phases.len()
   rect(
     width: 100%,
     inset: 16pt,
-    stroke: 0.5pt + gray,
+    stroke: 0.5pt + border-light,
     radius: 4pt,
   )[
     #for (i, phase) in phases.enumerate() [
@@ -440,23 +644,23 @@
         [
           #circle(
             radius: 12pt,
-            fill: if phase.at("complete", default: false) { rgb("#22c55e") } else { rgb("#e5e7eb") },
-            stroke: 1pt + if phase.at("complete", default: false) { rgb("#16a34a") } else { gray },
+            fill: if phase.at("complete", default: false) { navy-medium } else { fill-alt-row },
+            stroke: 1pt + if phase.at("complete", default: false) { navy-dark } else { border-light },
           )[
             #align(center + horizon)[
               #text(
                 weight: "bold",
                 size: 10pt,
-                fill: if phase.at("complete", default: false) { white } else { gray },
+                fill: if phase.at("complete", default: false) { white } else { text-muted },
               )[#str(i + 1)]
             ]
           ]
         ],
         [
-          #text(weight: "bold")[#phase.name]
+          #text(weight: "bold", fill: navy-dark)[#phase.name]
           #if phase.at("duration", default: none) != none [
             #h(8pt)
-            #text(size: 9pt, fill: gray)[#phase.duration]
+            #text(size: 9pt, fill: text-muted)[#phase.duration]
           ]
           #v(0.2em)
           #text(size: 10pt)[#phase.description]
@@ -464,14 +668,17 @@
       )
       #if i < phase-count - 1 [
         #h(12pt)
-        #line(start: (0pt, 0pt), end: (0pt, 16pt), stroke: 1pt + gray)
+        #line(start: (0pt, 0pt), end: (0pt, 16pt), stroke: 1pt + border-light)
         #v(4pt)
       ]
     ]
   ]
 }
 
-// Appendix section
+// ============================================================================
+// Appendix Section
+// ============================================================================
+
 #let appendix(title: "Appendix", content) = {
   pagebreak()
   heading(level: 1, numbering: none)[#title]

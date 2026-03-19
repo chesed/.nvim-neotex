@@ -73,7 +73,7 @@
     #status-quo
 
     #v(0.5em)
-    #text(style: "italic", size: 10pt)[
+    #text(style: "italic", size: 10pt, fill: text-muted)[
       This is your real competitor. Every other competitor is fighting for share of customers who have already decided to switch from status quo.
     ]
   ]
@@ -133,7 +133,7 @@
     )
 
     #v(0.5em)
-    #text(size: 10pt, fill: gray)[
+    #text(size: 10pt, fill: text-muted)[
       *Legend:* [check] = Yes, [x] = No, ~ = Partial, ? = Unknown
     ]
   ]

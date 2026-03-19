@@ -9,6 +9,12 @@
   project: "",
   date: "",
   mode: "SIZE",
+  // Key metrics for title page pills
+  tam-value: "",
+  sam-value: "",
+  som-y1-value: "",
+  funding-ask: "",
+  value-proposition: "",
   // Executive summary content
   summary: "",
   // Market definition
@@ -16,18 +22,22 @@
   target-customer: "",
   customer-dimensions: (),  // Array of (dimension, definition) tuples
   // TAM section
-  tam-value: "",
   tam-methodology: "Bottom-Up",
   tam-calculation: "",
   tam-sources: (),  // Array of (source, data-point, confidence) tuples
+  tam-breakdown: none,  // Optional breakdown text for nested diagram
   // SAM section
-  sam-value: "",
   sam-percent: "",
   narrowing-factors: (),  // Array of (factor, reduction, rationale) tuples
   sam-calculation: "",
+  sam-description: "Serviceable market with geographic and segment filters",
   // SOM section
   som-values: (),  // Array of (timeframe, rate, value, rationale) tuples
   competitors: (),  // Array of (name, share, advantage) tuples
+  // Revenue model (optional)
+  revenue-stages: (),  // Array of (stage, target, pricing, rationale) tuples
+  unit-economics: (),  // Array of (metric, b2c, b2b) tuples
+  revenue-projections: (),  // Array of (stage, y1, y3, y5, notes) tuples
   // Assumptions
   assumptions: (),  // Array of (assumption, sensitivity, if-wrong) tuples
   // VC checks
@@ -48,16 +58,38 @@
     mode: mode,
   )
 
+  // Key metrics pills row (on title page)
+  v(1.5em)
+  align(center)[
+    #metric("TAM", tam-value) #h(0.8em)
+    #metric("SAM", sam-value) #h(0.8em)
+    #metric("SOM Y1", som-y1-value)
+    #if funding-ask != "" [
+      #h(0.8em)
+      #metric("Funding Ask", funding-ask)
+    ]
+  ]
+
+  // Value proposition callout
+  if value-proposition != "" [
+    #v(1.5em)
+    #callout[
+      *Value Proposition:* #value-proposition
+    ]
+  ]
+
+  pagebreak()
+
   // Executive Summary
   heading(level: 1)[Executive Summary]
   executive-summary[#summary]
 
-  // Key metrics row
+  // Key metrics row (large callouts)
   v(1em)
   metric-row(
     (label: "TAM", value: tam-value),
     (label: "SAM", value: sam-value, subtitle: sam-percent + " of TAM"),
-    (label: "SOM Y1", value: if som-values.len() > 0 { som-values.at(0).value } else { "TBD" }),
+    (label: "SOM Y1", value: som-y1-value),
   )
 
   // Market Definition
@@ -132,13 +164,52 @@
     )
   ]
 
-  // Market Visualization
+  // Market Visualization (professional nested boxes)
   heading(level: 1)[Market Visualization]
-  market-circles(
+
+  // Build SOM years array if we have som-values
+  let som-years-arr = if som-values.len() > 0 {
+    som-values.map(s => ([#s.timeframe:], [#s.value]))
+  } else { none }
+
+  nested-market-diagram(
     tam: tam-value,
     sam: sam-value,
-    som: if som-values.len() > 0 { som-values.at(0).value } else { "TBD" },
+    som: if som-values.len() > 0 { som-values.at(0).value } else { som-y1-value },
+    tam-breakdown: tam-breakdown,
+    sam-description: sam-description,
+    som-years: som-years-arr,
   )
+
+  // Revenue Model (optional section)
+  if revenue-stages.len() > 0 [
+    #heading(level: 1)[Revenue Model]
+
+    #heading(level: 2)[Business Model Stages]
+    #strategy-table(
+      columns: (auto, auto, auto, 1fr),
+      header: ("Stage", "Target", "Pricing", "Rationale"),
+      ..revenue-stages.map(s => (s.stage, s.target, s.pricing, s.rationale)),
+    )
+
+    #if unit-economics.len() > 0 [
+      #heading(level: 2)[Unit Economics]
+      #strategy-table(
+        columns: (auto, auto, auto),
+        header: ("Metric", "B2C", "B2B"),
+        ..unit-economics.map(u => (u.metric, u.b2c, u.b2b)),
+      )
+    ]
+
+    #if revenue-projections.len() > 0 [
+      #heading(level: 2)[Revenue Projections]
+      #strategy-table(
+        columns: (auto, auto, auto, auto, 1fr),
+        header: ("Stage", "Year 1", "Year 3", "Year 5", "Notes"),
+        ..revenue-projections.map(r => (r.stage, r.y1, r.y3, r.y5, r.notes)),
+      )
+    ]
+  ]
 
   // Key Assumptions
   if assumptions.len() > 0 [
