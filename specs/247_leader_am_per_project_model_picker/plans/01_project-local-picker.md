@@ -1,7 +1,7 @@
 # Implementation Plan: Task #247
 
 - **Task**: 247 - Make leader-am model picker write to project-level .claude/settings.local.json
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETE]
 - **Effort**: 1-1.5 hours
 - **Dependencies**: None
 - **Research Inputs**: [01_project-local-model-picker.md](../reports/01_project-local-model-picker.md)
@@ -114,7 +114,7 @@ Integrated findings from 01_project-local-model-picker.md:
 
 ---
 
-### Phase 4: Test and verify fallback scenarios [IN PROGRESS]
+### Phase 4: Test and verify fallback scenarios [COMPLETED]
 
 **Goal**: Validate all scenarios work correctly: git repo with .claude/, git repo without .claude/, and non-git directory.
 
