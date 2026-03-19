@@ -1,7 +1,24 @@
 {
   "version": "1.0.0",
-  "next_project_number": 245,
+  "next_project_number": 246,
   "active_projects": [
+    {
+      "project_number": 245,
+      "project_name": "fix_plan_status_update_script_arguments",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-19T19:27:32Z",
+      "last_updated": "2026-03-19T19:27:32Z",
+      "effort": "30 minutes",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/245_fix_plan_status_update_script_arguments/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview identifying argument mismatch bug"
+        }
+      ]
+    },
     {
       "project_number": 243,
       "project_name": "create_recommended_order_utility",
@@ -39,7 +56,7 @@
     {
       "project_number": 244,
       "project_name": "integrate_recommended_order_utility",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "description": "Integrate the Recommended Order utility into 4 workflow components: (1) /task command - call add_to_recommended_order after creating task entry (Step 7), (2) skill-implementer - call remove_from_recommended_order in Stage 7 postflight after completion, (3) skill-spawn - call refresh_recommended_order in Stage 12 after creating spawned tasks, (4) skill-todo - call remove_from_recommended_order in Stage 10 for each archived task. Ensure graceful handling when Recommended Order section does not exist (skip, do not fail).",
       "effort": "3-4 hours",
@@ -47,7 +64,7 @@
         243
       ],
       "created": "2026-03-19T19:00:36Z",
-      "last_updated": "2026-03-19T19:26:25Z",
+      "last_updated": "2026-03-19T19:27:26Z",
       "artifacts": [
         {
           "type": "research",
@@ -60,8 +77,9 @@
           "summary": "5-phase implementation plan for integrating Recommended Order utility into workflow commands"
         }
       ],
-      "session_id": "sess_1773953100_b8d3e2",
-      "planned": "2026-03-19T19:26:25Z"
+      "session_id": "sess_1773953500_c9e4f3",
+      "planned": "2026-03-19T19:26:25Z",
+      "started": "2026-03-19T19:27:26Z"
     },
     {
       "project_number": 242,

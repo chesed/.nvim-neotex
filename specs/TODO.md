@@ -1,14 +1,26 @@
 ---
-next_project_number: 245
+next_project_number: 246
 ---
 
 # TODO
 
 ## Tasks
 
+### 245. Fix plan status update script arguments in skill-implementer
+- **Effort**: 30 minutes
+- **Status**: [RESEARCHED]
+- **Started**: 2026-03-19
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](245_fix_plan_status_update_script_arguments/reports/01_meta-research.md)
+
+**Description**: Fix the argument mismatch between `update-plan-status.sh` (expects 3 args: `TASK_NUMBER PROJECT_NAME STATUS`) and skill-implementer calls (passes 4 args including extraneous `$padded_num`). Remove `$padded_num` from script invocations at lines 93, 264, and 283 in skill-implementer/SKILL.md. Check and fix similar issues in extension skills (nvim, present) if present.
+
+---
+
 ### 244. Integrate Recommended Order utility into workflow commands
 - **Effort**: 3-4 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Started**: 2026-03-19
 - **Language**: meta
 - **Dependencies**: Task #243
