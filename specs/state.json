@@ -39,7 +39,7 @@
     {
       "project_number": 244,
       "project_name": "integrate_recommended_order_utility",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "description": "Integrate the Recommended Order utility into 4 workflow components: (1) /task command - call add_to_recommended_order after creating task entry (Step 7), (2) skill-implementer - call remove_from_recommended_order in Stage 7 postflight after completion, (3) skill-spawn - call refresh_recommended_order in Stage 12 after creating spawned tasks, (4) skill-todo - call remove_from_recommended_order in Stage 10 for each archived task. Ensure graceful handling when Recommended Order section does not exist (skip, do not fail).",
       "effort": "3-4 hours",
@@ -47,14 +47,21 @@
         243
       ],
       "created": "2026-03-19T19:00:36Z",
-      "last_updated": "2026-03-19T19:00:36Z",
+      "last_updated": "2026-03-19T19:26:25Z",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/243_recommended_order_integration/reports/01_recommended-order-research.md",
           "summary": "Analysis of workflow commands and integration points"
+        },
+        {
+          "path": "specs/244_integrate_recommended_order_utility/plans/01_workflow-integration.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for integrating Recommended Order utility into workflow commands"
         }
-      ]
+      ],
+      "session_id": "sess_1773953100_b8d3e2",
+      "planned": "2026-03-19T19:26:25Z"
     },
     {
       "project_number": 242,

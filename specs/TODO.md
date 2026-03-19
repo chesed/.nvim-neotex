@@ -8,11 +8,12 @@ next_project_number: 245
 
 ### 244. Integrate Recommended Order utility into workflow commands
 - **Effort**: 3-4 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Started**: 2026-03-19
 - **Language**: meta
 - **Dependencies**: Task #243
 - **Research**: [01_recommended-order-research.md](243_recommended_order_integration/reports/01_recommended-order-research.md)
+- **Plan**: [01_workflow-integration.md](244_integrate_recommended_order_utility/plans/01_workflow-integration.md)
 
 **Description**: Integrate the Recommended Order utility into 4 workflow components: (1) /task command - call add_to_recommended_order after creating task entry (Step 7), (2) skill-implementer - call remove_from_recommended_order in Stage 7 postflight after completion, (3) skill-spawn - call refresh_recommended_order in Stage 12 after creating spawned tasks, (4) skill-todo - call remove_from_recommended_order in Stage 10 for each archived task. Ensure graceful handling when Recommended Order section does not exist (skip, do not fail).
 
