@@ -25,8 +25,8 @@ Note: This skill is a thin wrapper. Context is loaded by the delegated agent, no
 This skill activates when:
 
 ### Direct Invocation
-- User explicitly runs `/analyze` command
-- User requests competitive analysis in conversation
+- User explicitly runs `/analyze` command with task number
+- User runs `/research` on a founder task with `task_type: "analyze"`
 
 ### Implicit Invocation (during task implementation)
 
@@ -81,6 +81,10 @@ status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
 
+# Extract pre-gathered forcing_data (if present)
+forcing_data=$(echo "$task_data" | jq -r '.forcing_data // null')
+pre_gathered_mode=$(echo "$forcing_data" | jq -r '.mode // null' 2>/dev/null)
+
 # Validate mode if provided
 if [ -n "$mode" ]; then
   case "$mode" in
@@ -134,16 +138,27 @@ EOF
 
 ### Stage 4: Prepare Delegation Context
 
+Include pre-gathered forcing_data when available:
+
 ```json
 {
   "task_context": {
     "task_number": N,
     "project_name": "{project_name}",
     "description": "{description}",
-    "language": "founder"
+    "language": "founder",
+    "task_type": "analyze"
+  },
+  "forcing_data": {
+    "mode": "{pre_gathered_mode}",
+    "product": "{pre_gathered_product}",
+    "known_competitors": "{pre_gathered_competitors}",
+    "competitive_advantage": "{pre_gathered_advantage}",
+    "decision_factors": "{pre_gathered_factors}",
+    "gathered_at": "{timestamp}"
   },
   "competitors": ["optional", "competitor", "list"],
-  "mode": "LANDSCAPE|DEEP|POSITION|BATTLE or null",
+  "mode": "LANDSCAPE|DEEP|POSITION|BATTLE or use forcing_data.mode",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json",
   "metadata": {
     "session_id": "sess_{timestamp}_{random}",
@@ -152,6 +167,9 @@ EOF
   }
 }
 ```
+
+**Note**: If `forcing_data` is present from STAGE 0 of /analyze command, pass it to the agent.
+The agent will use pre-gathered data and only ask follow-up questions for missing details.
 
 ---
 
@@ -164,13 +182,14 @@ EOF
 Tool: Task (NOT Skill)
 Parameters:
   - subagent_type: "analyze-agent"
-  - prompt: [Include task_context, competitors, mode, metadata_file_path, metadata]
+  - prompt: [Include task_context, forcing_data, competitors, mode, metadata_file_path, metadata]
   - description: "Competitive analysis research with positioning data"
 ```
 
 The agent will:
-- Present mode selection if not pre-selected
-- Identify and categorize competitors
+- Use pre-gathered forcing_data if available (skip already-answered questions)
+- Present mode selection only if not pre-selected
+- Identify and categorize competitors (using known_competitors as starting point)
 - Use forcing questions for per-competitor analysis
 - Gather positioning dimensions
 - Create research report at specs/{NNN}_{SLUG}/reports/
@@ -276,6 +295,7 @@ Competitive analysis research completed for task {N}:
 - Direct competitors: {list}
 - Indirect competitors: {list}
 - Positioning axes: {axis1}, {axis2}
+- Pre-gathered data used: {yes/no}
 - Research report: specs/{NNN}_{SLUG}/reports/01_{short-slug}.md
 - Status updated to [RESEARCHED]
 - Changes committed
@@ -295,6 +315,7 @@ Competitive analysis research completed for task 234:
 - Direct competitors: Stripe, Square, Adyen
 - Indirect competitors: Spreadsheets, legacy bank integrations
 - Positioning axes: enterprise vs SMB, API-first vs integrated
+- Pre-gathered data used: yes (4 questions from STAGE 0)
 - Research report: specs/234_competitive_analysis_fintech/reports/01_competitive-analysis.md
 - Status updated to [RESEARCHED]
 - Changes committed with session sess_1736700000_abc123

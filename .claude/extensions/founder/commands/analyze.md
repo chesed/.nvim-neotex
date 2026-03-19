@@ -1,6 +1,6 @@
 ---
 description: Competitive landscape research with task integration
-allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit
+allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit, AskUserQuestion
 argument-hint: "[description]" | TASK_NUMBER | /path/to/file.md | --quick [competitors]
 ---
 
@@ -10,22 +10,22 @@ Competitive analysis research command that gathers competitive intelligence thro
 
 ## Overview
 
-This command initiates competitive analysis research through structured questioning. It creates a task (if needed) and runs the research phase to gather competitor data, positioning insights, and strategic observations. After research completes, the user explicitly runs `/plan` and `/implement` to generate final strategy output.
+This command initiates competitive analysis research through structured questioning. It asks essential forcing questions BEFORE creating the task, storing gathered data in task metadata. After task creation, the user runs `/research`, `/plan`, and `/implement` to complete the workflow.
 
 ## Syntax
 
-- `/analyze "fintech payments competitors"` - Create task and run research
+- `/analyze "fintech payments competitors"` - Ask forcing questions, create task with gathered data
 - `/analyze 234` - Resume research on existing task
-- `/analyze /path/to/competitors.md` - Use file as context, create task, run research
+- `/analyze /path/to/competitors.md` - Use file as context, ask questions, create task
 - `/analyze --quick stripe,square,adyen` - Legacy standalone mode (no task creation)
 
 ## Input Types
 
 | Input | Behavior |
 |-------|----------|
-| Description string | Create task, run research, stop at [RESEARCHED] |
+| Description string | Ask forcing questions, create task with forcing_data, stop at [NOT STARTED] |
 | Task number | Load existing task, run research, stop at [RESEARCHED] |
-| File path | Read file for context, create task, run research |
+| File path | Read file for context, ask questions, create task |
 | `--quick [args]` | Legacy standalone mode (skip task creation) |
 
 ## Modes
@@ -36,6 +36,75 @@ This command initiates competitive analysis research through structured question
 | **DEEP** | Focus on key rivals | Top 3-5 detailed analysis |
 | **POSITION** | Find white space | 2x2 maps, differentiation |
 | **BATTLE** | Prepare for competition | Battle cards, objection handling |
+
+---
+
+## STAGE 0: PRE-TASK FORCING QUESTIONS
+
+**This stage runs BEFORE task creation for new tasks (description or file path input).**
+
+**Skip this stage if**: `--quick` flag or task number input.
+
+### Step 0.1: Mode Selection
+
+Use AskUserQuestion to present mode options:
+
+```
+What type of competitive analysis do you need?
+
+- LANDSCAPE: Map all competitors and categories
+- DEEP: Detailed analysis of top 3-5 rivals
+- POSITION: Find white space, create positioning maps
+- BATTLE: Prepare battle cards and objection handling
+```
+
+Store response as `selected_mode`.
+
+### Step 0.2: Essential Forcing Questions
+
+Ask abbreviated forcing questions to gather essential data. One question at a time.
+
+**Question 1: Your Product/Service**
+```
+What is your product/service in one sentence?
+Be specific about what you do and for whom.
+```
+Store as `forcing_data.product`.
+
+**Question 2: Known Competitors**
+```
+Who are your known competitors? (List names, comma-separated)
+Include both direct competitors and alternatives customers might consider.
+```
+Store as `forcing_data.known_competitors`.
+
+**Question 3: Competitive Dimension**
+```
+What is your primary competitive advantage?
+Examples: price, speed, features, ease of use, integrations, support
+```
+Store as `forcing_data.competitive_advantage`.
+
+**Question 4: Customer Decision Factors**
+```
+What are the top 3 factors your customers consider when choosing?
+Example: price, ease of setup, API quality, compliance certifications
+```
+Store as `forcing_data.decision_factors`.
+
+### Step 0.3: Store Forcing Data
+
+Capture all responses in a forcing_data object:
+```json
+{
+  "mode": "{selected_mode}",
+  "product": "{response_1}",
+  "known_competitors": "{response_2}",
+  "competitive_advantage": "{response_3}",
+  "decision_factors": "{response_4}",
+  "gathered_at": "{ISO timestamp}"
+}
+```
 
 ---
 
@@ -80,7 +149,7 @@ fi
 ### Step 3: Handle Input Type
 
 **If `--quick` (legacy mode)**:
-Skip to STAGE 2A (legacy delegation).
+Skip STAGE 0 and go directly to STAGE 2A (legacy delegation).
 
 **If file path**:
 ```bash
@@ -93,6 +162,7 @@ context_content=$(cat "$file_path")
 filename=$(basename "$file_path" | sed 's/\.[^.]*$//')
 description="Competitive analysis: $filename"
 ```
+Then proceed to STAGE 0 for forcing questions.
 
 **If task number**:
 ```bash
@@ -111,9 +181,10 @@ if [ "$task_lang" != "founder" ]; then
   exit 1
 fi
 ```
+Skip STAGE 0, go directly to STAGE 2B.
 
 **If description (new task)**:
-Create task in next step.
+Proceed to STAGE 0 for forcing questions, then Step 4.
 
 ### Step 4: Create Task (if needed)
 
@@ -125,14 +196,18 @@ jq --argjson num "$next_num" \
    --arg name "$slug" \
    --arg desc "Competitive analysis: $description" \
    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+   --arg task_type "analyze" \
+   --argjson forcing_data "$forcing_data_json" \
    '. + {next_project_number: ($num + 1)} |
     .active_projects += [{
       project_number: $num,
       project_name: $name,
       status: "not_started",
       language: "founder",
+      task_type: $task_type,
       description: $desc,
       created: $ts,
+      forcing_data: $forcing_data,
       artifacts: []
     }]' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
@@ -141,7 +216,25 @@ task_number=$next_num
 
 ### Step 5: Update TODO.md
 
-Add task entry (if new task).
+Add task entry (if new task):
+
+```markdown
+### {task_number}. Competitive analysis: {description}
+- **Effort**: 2-4 hours
+- **Status**: [NOT STARTED]
+- **Language**: founder
+- **Type**: analyze
+- **Dependencies**: None
+- **Started**: {ISO timestamp}
+
+**Description**: {full description}
+
+**Forcing Data Gathered**:
+- Mode: {selected_mode}
+- Product: {forcing_data.product}
+- Known Competitors: {forcing_data.known_competitors}
+- Competitive Advantage: {forcing_data.competitive_advantage}
+```
 
 ### Step 6: Git Commit (Task Creation)
 
@@ -157,9 +250,35 @@ EOF
 )"
 ```
 
+### Step 7: Display Task Created Summary
+
+For new tasks (description or file path input), display summary and STOP:
+
+```
+Competitive analysis task created: Task #{N}
+
+Forcing Data Gathered:
+- Mode: {selected_mode}
+- Product: {forcing_data.product}
+- Known Competitors: {forcing_data.known_competitors}
+- Competitive Advantage: {forcing_data.competitive_advantage}
+- Decision Factors: {forcing_data.decision_factors}
+
+Status: [NOT STARTED]
+
+Next Steps:
+- Run /research {N} to complete research with gathered data
+- Run /plan {N} to create implementation plan
+- Run /implement {N} to generate full competitive analysis with positioning map
+```
+
+**STOP HERE for new tasks.** Do not auto-invoke research.
+
 ---
 
 ## STAGE 2: DELEGATE
+
+**Only reached when input_type is "task_number" or "--quick".**
 
 ### STAGE 2A: Legacy Mode (--quick)
 
@@ -174,7 +293,7 @@ args: "competitors={competitors} mode={mode} session_id={session_id}"
 
 Skip to CHECKPOINT 2 (Legacy).
 
-### STAGE 2B: Task Workflow Mode
+### STAGE 2B: Task Workflow Mode (existing task)
 
 **Run research via skill-analyze**:
 
@@ -185,18 +304,17 @@ args: "task_number={task_number} session_id={session_id}"
 
 The skill workflow:
 1. Updates status to [RESEARCHING] (preflight)
-2. Invokes analyze-agent for forcing questions
-3. Agent creates research report at `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md`
-4. Updates status to [RESEARCHED] (postflight)
-5. Links artifact and commits
-
-**Note**: This command does NOT auto-invoke /plan or /implement. The user runs those separately.
+2. Invokes analyze-agent, passing forcing_data from task metadata
+3. Agent uses pre-gathered data, asks follow-up questions as needed
+4. Agent creates research report at `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md`
+5. Updates status to [RESEARCHED] (postflight)
+6. Links artifact and commits
 
 ---
 
 ## CHECKPOINT 2: GATE OUT
 
-### For Task Workflow Mode
+### For Task Workflow Mode (existing task)
 
 1. **Verify Research Completed**
    ```bash
@@ -283,6 +401,15 @@ Status: [{current_status}]
 Resume: /analyze {N}
 ```
 
+### User Abandons Forcing Questions (STAGE 0)
+
+If user abandons during STAGE 0 forcing questions:
+```
+Competitive analysis task creation cancelled.
+
+No task was created. Re-run /analyze with your description to start again.
+```
+
 ---
 
 ## Output Artifacts
@@ -305,30 +432,34 @@ Resume: /analyze {N}
 
 ## Workflow Summary
 
-The standard three-stage workflow:
+The standard workflow (with pre-task forcing questions):
 
 ```
-/analyze "description"  -> Creates task, runs research, stops at [RESEARCHED]
-/plan {N}               -> Reads research report, creates implementation plan
-/implement {N}          -> Executes plan, generates strategy/competitive-analysis-*.md
+/analyze "description" -> Asks forcing questions, creates task with data, stops at [NOT STARTED]
+/research {N}          -> Uses forcing_data, completes research, stops at [RESEARCHED]
+/plan {N}              -> Reads research report, creates implementation plan
+/implement {N}         -> Executes plan, generates strategy/competitive-analysis-*.md
 ```
 
-Each stage is a separate command invocation, giving the user control over the workflow.
+Alternative: Resume existing task:
+```
+/analyze {N}           -> Runs research on existing task, stops at [RESEARCHED]
+```
 
 ---
 
 ## Examples
 
 ```bash
-# Create new task with description - runs research only
+# Create new task with description - asks forcing questions first
 /analyze "fintech payments competitors"
 
-# Resume research on existing task
+# Resume research on existing task (uses stored forcing_data)
 /analyze 234
 
-# Use file as context
+# Use file as context - asks forcing questions, creates task
 /analyze ~/startup/competitor-notes.md
 
-# Legacy standalone mode (generates full output immediately)
+# Legacy standalone mode (generates full output immediately, no task)
 /analyze --quick stripe,square,adyen
 ```
