@@ -25,8 +25,8 @@ Note: This skill is a thin wrapper. Context is loaded by the delegated agent, no
 This skill activates when:
 
 ### Direct Invocation
-- User explicitly runs `/market` command
-- User requests market sizing in conversation
+- User explicitly runs `/market` command with task number
+- User runs `/research` on a founder task with `task_type: "market"`
 
 ### Implicit Invocation (during task implementation)
 
@@ -81,6 +81,10 @@ status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
 
+# Extract pre-gathered forcing_data (if present)
+forcing_data=$(echo "$task_data" | jq -r '.forcing_data // null')
+pre_gathered_mode=$(echo "$forcing_data" | jq -r '.mode // null' 2>/dev/null)
+
 # Validate mode if provided
 if [ -n "$mode" ]; then
   case "$mode" in
@@ -134,17 +138,28 @@ EOF
 
 ### Stage 4: Prepare Delegation Context
 
+Include pre-gathered forcing_data when available:
+
 ```json
 {
   "task_context": {
     "task_number": N,
     "project_name": "{project_name}",
     "description": "{description}",
-    "language": "founder"
+    "language": "founder",
+    "task_type": "market"
+  },
+  "forcing_data": {
+    "mode": "{pre_gathered_mode}",
+    "problem": "{pre_gathered_problem}",
+    "target_entity": "{pre_gathered_target}",
+    "geography": "{pre_gathered_geography}",
+    "price_point": "{pre_gathered_price_point}",
+    "gathered_at": "{timestamp}"
   },
   "industry": "optional industry hint",
   "segment": "optional segment hint",
-  "mode": "VALIDATE|SIZE|SEGMENT|DEFEND or null",
+  "mode": "VALIDATE|SIZE|SEGMENT|DEFEND or use forcing_data.mode",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json",
   "metadata": {
     "session_id": "sess_{timestamp}_{random}",
@@ -153,6 +168,9 @@ EOF
   }
 }
 ```
+
+**Note**: If `forcing_data` is present from STAGE 0 of /market command, pass it to the agent.
+The agent will use pre-gathered data and only ask follow-up questions for missing details.
 
 ---
 
@@ -165,13 +183,14 @@ EOF
 Tool: Task (NOT Skill)
 Parameters:
   - subagent_type: "market-agent"
-  - prompt: [Include task_context, industry, segment, mode, metadata_file_path, metadata]
+  - prompt: [Include task_context, forcing_data, industry, segment, mode, metadata_file_path, metadata]
   - description: "Market sizing research with TAM/SAM/SOM"
 ```
 
 The agent will:
-- Present mode selection if not pre-selected
-- Use forcing questions to gather market data
+- Use pre-gathered forcing_data if available (skip already-answered questions)
+- Present mode selection only if not pre-selected
+- Ask follow-up forcing questions for details not in forcing_data
 - Create research report at specs/{NNN}_{SLUG}/reports/
 - Write metadata file
 - Return brief text summary
@@ -274,6 +293,7 @@ Market sizing research completed for task {N}:
 - Mode: {mode}, {questions_asked} forcing questions completed
 - Problem: {brief problem statement}
 - Entity count: {value} from {source}
+- Pre-gathered data used: {yes/no}
 - Research report: specs/{NNN}_{SLUG}/reports/01_{short-slug}.md
 - Status updated to [RESEARCHED]
 - Changes committed
@@ -292,6 +312,7 @@ Market sizing research completed for task 234:
 - Mode: SIZE, 8 forcing questions completed
 - Problem: Streamline deploy coordination for mid-market SaaS
 - Entity count: 500,000 mid-market SaaS companies globally (Gartner)
+- Pre-gathered data used: yes (4 questions from STAGE 0)
 - Research report: specs/234_market_sizing_fintech/reports/01_market-sizing.md
 - Status updated to [RESEARCHED]
 - Changes committed with session sess_1736700000_abc123
