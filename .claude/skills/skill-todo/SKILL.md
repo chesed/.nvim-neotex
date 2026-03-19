@@ -354,7 +354,372 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
             ```
     </process>
   </stage>
-  
+
+  <stage id="10.5" name="DetectVaultThreshold">
+    <action>Detect if vault operation is needed</action>
+    <process>
+      1. Read next_project_number from specs/state.json:
+         ```bash
+         next_num=$(jq -r '.next_project_number' specs/state.json)
+         ```
+
+      2. Check vault threshold (next_project_number > 1000):
+         ```bash
+         vault_needed=false
+         if [ "$next_num" -gt 1000 ]; then
+           vault_needed=true
+         fi
+         ```
+
+      3. If vault not needed, skip to Stage 11:
+         ```bash
+         if [ "$vault_needed" = "false" ]; then
+           # Continue to UpdateRoadmap
+           continue_to_stage_11=true
+         fi
+         ```
+
+      4. If vault needed, identify tasks to renumber:
+         ```bash
+         # Find active tasks with project_number > 1000
+         tasks_to_renumber=$(jq -r '
+           .active_projects[] |
+           select(.project_number > 1000) |
+           {
+             old_number: .project_number,
+             new_number: (.project_number - 1000),
+             project_name: .project_name,
+             status: .status
+           }
+         ' specs/state.json)
+
+         # Count tasks to renumber
+         renumber_count=$(echo "$tasks_to_renumber" | jq -s 'length')
+         ```
+
+      5. Calculate renumbering mappings:
+         ```bash
+         # Build mapping array: [{old: 1001, new: 1}, {old: 1003, new: 3}, ...]
+         renumber_mappings=$(jq -n --argjson tasks "$tasks_to_renumber" '
+           [$tasks[] | {old: .old_number, new: .new_number, name: .project_name}]
+         ')
+         ```
+
+      6. Store detection results for subsequent stages:
+         - vault_needed (boolean)
+         - next_num (current next_project_number)
+         - renumber_count (number of tasks > 1000)
+         - renumber_mappings (old -> new number mappings)
+         - Continue to Stage 10.6 if vault_needed=true
+    </process>
+  </stage>
+
+  <stage id="10.6" name="VaultConfirmation">
+    <action>Get user confirmation for vault operation</action>
+    <process>
+      1. Skip if vault_needed = false from Stage 10.5
+
+      2. Build preview of renumbering:
+         ```bash
+         # Format preview of task renumbering
+         renumber_preview=""
+         for mapping in $(echo "$renumber_mappings" | jq -c '.[]'); do
+           old=$(echo "$mapping" | jq -r '.old')
+           new=$(echo "$mapping" | jq -r '.new')
+           name=$(echo "$mapping" | jq -r '.name')
+           renumber_preview="${renumber_preview}\n  - Task ${old} (${name}) -> Task ${new}"
+         done
+         ```
+
+      3. Present AskUserQuestion for vault confirmation:
+         ```json
+         {
+           "question": "Task numbering has exceeded 1000. Initiate vault archival?",
+           "header": "Vault Operation",
+           "description": "Current next_project_number: {next_num}\nActive tasks to renumber: {renumber_count}\n\nRenumbering preview:{renumber_preview}\n\nThis will:\n1. Move specs/archive/ to specs/vault/{NN-vault}/\n2. Renumber tasks > 1000 by subtracting 1000\n3. Reset next_project_number",
+           "multiSelect": false,
+           "options": [
+             {"label": "Yes, proceed with vault operation", "value": "proceed"},
+             {"label": "No, skip vault this time", "value": "skip"}
+           ]
+         }
+         ```
+
+      4. Handle user response:
+         ```bash
+         if [ "$user_response" = "proceed" ]; then
+           vault_approved=true
+           # Continue to Stage 10.7
+         else
+           vault_approved=false
+           # Skip to Stage 11 (UpdateRoadmap)
+         fi
+         ```
+
+      5. Store vault_approved flag for subsequent stages
+    </process>
+  </stage>
+
+  <stage id="10.7" name="CreateVault">
+    <action>Create vault directory and move archive contents</action>
+    <process>
+      1. Skip if vault_approved = false from Stage 10.6
+
+      2. Calculate vault number:
+         ```bash
+         # Get current vault_count (or 0 if not set)
+         vault_count=$(jq -r '.vault_count // 0' specs/state.json)
+         new_vault_num=$((vault_count + 1))
+         vault_dir_name=$(printf "%02d-vault" "$new_vault_num")
+         vault_path="specs/vault/${vault_dir_name}"
+         ```
+
+      3. Create vault directory structure:
+         ```bash
+         mkdir -p "$vault_path"
+         ```
+
+      4. Move archive contents to vault:
+         ```bash
+         # Move archive directory to vault
+         if [ -d "specs/archive" ]; then
+           mv "specs/archive" "${vault_path}/archive"
+         fi
+         ```
+
+      5. Move archive state.json to vault root:
+         ```bash
+         # Archive state.json becomes vault state.json
+         if [ -f "${vault_path}/archive/state.json" ]; then
+           mv "${vault_path}/archive/state.json" "${vault_path}/state.json"
+         fi
+         ```
+
+      6. Create vault meta.json:
+         ```bash
+         # Calculate metadata
+         current_timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+         archived_count=$(jq -r '.completed_projects | length' "${vault_path}/state.json" 2>/dev/null || echo "0")
+         task_range="1-$((next_num - renumber_count - 1))"
+
+         # Create meta.json
+         jq -n \
+           --arg vault_num "$new_vault_num" \
+           --arg created_at "$current_timestamp" \
+           --arg task_range "$task_range" \
+           --argjson archived_count "$archived_count" \
+           --argjson final_task_num "$next_num" \
+           '{
+             vault_number: ($vault_num | tonumber),
+             created_at: $created_at,
+             task_range: $task_range,
+             archived_count: $archived_count,
+             final_task_number: $final_task_num,
+             description: "Vault containing archived tasks from task numbering cycle"
+           }' > "${vault_path}/meta.json"
+         ```
+
+      7. Reinitialize empty specs/archive/ with fresh state.json:
+         ```bash
+         mkdir -p "specs/archive"
+
+         # Create fresh archive state.json
+         jq -n '{
+           "_comment": "Archive state for completed and abandoned tasks",
+           "completed_projects": [],
+           "archived_at": "'"$current_timestamp"'"
+         }' > "specs/archive/state.json"
+         ```
+
+      8. Track vault creation for later:
+         - vault_path (path to new vault)
+         - new_vault_num (vault number)
+         - Continue to Stage 10.8
+    </process>
+  </stage>
+
+  <stage id="10.8" name="RenumberTasks">
+    <action>Renumber active tasks > 1000 and update all references</action>
+    <process>
+      1. Skip if vault_approved = false
+
+      2. For each task in renumber_mappings, update state.json:
+         ```bash
+         # Update each task's project_number and artifact paths
+         for mapping in $(echo "$renumber_mappings" | jq -c '.[]'); do
+           old_num=$(echo "$mapping" | jq -r '.old')
+           new_num=$(echo "$mapping" | jq -r '.new')
+           task_name=$(echo "$mapping" | jq -r '.name')
+
+           # Update project_number
+           # Update artifact paths (4-digit dir -> 3-digit dir)
+           old_padded=$(printf "%04d" "$old_num")
+           new_padded=$(printf "%03d" "$new_num")
+
+           # Use jq to update the task entry
+           jq --argjson old "$old_num" \
+              --argjson new "$new_num" \
+              --arg old_pad "$old_padded" \
+              --arg new_pad "$new_padded" '
+             .active_projects |= map(
+               if .project_number == $old then
+                 .project_number = $new |
+                 .artifacts |= (if . then map(
+                   .path |= gsub("specs/\($old_pad)_"; "specs/\($new_pad)_") |
+                   .path |= gsub("specs/\($old)_"; "specs/\($new_pad)_")
+                 ) else . end)
+               else . end
+             )
+           ' specs/state.json > specs/state.json.tmp
+           mv specs/state.json.tmp specs/state.json
+         done
+         ```
+
+      3. Update dependencies arrays (task numbers > 1000):
+         ```bash
+         # Build mapping for all renumbered tasks
+         jq --argjson mappings "$renumber_mappings" '
+           # Create lookup from mappings
+           ($mappings | map({(.old | tostring): .new}) | add) as $lookup |
+           .active_projects |= map(
+             .dependencies |= (if . then map(
+               . as $dep |
+               if $lookup[$dep | tostring] then
+                 $lookup[$dep | tostring]
+               else $dep end
+             ) else . end)
+           )
+         ' specs/state.json > specs/state.json.tmp
+         mv specs/state.json.tmp specs/state.json
+         ```
+
+      4. Rename task directories:
+         ```bash
+         for mapping in $(echo "$renumber_mappings" | jq -c '.[]'); do
+           old_num=$(echo "$mapping" | jq -r '.old')
+           new_num=$(echo "$mapping" | jq -r '.new')
+           task_name=$(echo "$mapping" | jq -r '.name')
+
+           old_padded=$(printf "%04d" "$old_num")
+           new_padded=$(printf "%03d" "$new_num")
+
+           # Find source directory (could be 3-digit or 4-digit padded)
+           source_dir=""
+           if [ -d "specs/${old_padded}_${task_name}" ]; then
+             source_dir="specs/${old_padded}_${task_name}"
+           elif [ -d "specs/${old_num}_${task_name}" ]; then
+             source_dir="specs/${old_num}_${task_name}"
+           fi
+
+           # Rename to 3-digit padded format
+           if [ -n "$source_dir" ]; then
+             target_dir="specs/${new_padded}_${task_name}"
+             mv "$source_dir" "$target_dir"
+           fi
+         done
+         ```
+
+      5. Update TODO.md entries:
+         ```bash
+         for mapping in $(echo "$renumber_mappings" | jq -c '.[]'); do
+           old_num=$(echo "$mapping" | jq -r '.old')
+           new_num=$(echo "$mapping" | jq -r '.new')
+
+           old_padded=$(printf "%04d" "$old_num")
+           new_padded=$(printf "%03d" "$new_num")
+
+           # Update task headers: ### 1001. Title -> ### 1. Title
+           sed -i "s/^### ${old_num}\./### ${new_num}./" specs/TODO.md
+
+           # Update artifact links with directory references
+           sed -i "s|${old_padded}_|${new_padded}_|g" specs/TODO.md
+           sed -i "s|${old_num}_|${new_padded}_|g" specs/TODO.md
+
+           # Update dependency references
+           sed -i "s|Task #${old_num}|Task #${new_num}|g" specs/TODO.md
+         done
+         ```
+
+      6. Track renumbering results:
+         - renumbered_count (number of tasks renumbered)
+         - max_renumbered_num (highest new task number after renumbering)
+         - Continue to Stage 10.9
+    </process>
+  </stage>
+
+  <stage id="10.9" name="ResetState">
+    <action>Reset numbering state and update vault tracking</action>
+    <process>
+      1. Skip if vault_approved = false
+
+      2. Calculate new next_project_number:
+         ```bash
+         # Find maximum project_number in active_projects after renumbering
+         max_active=$(jq -r '[.active_projects[].project_number] | max // 0' specs/state.json)
+         new_next_num=$((max_active + 1))
+         ```
+
+      3. Update state.json with new next_project_number:
+         ```bash
+         jq --argjson new_next "$new_next_num" \
+            '.next_project_number = $new_next' specs/state.json > specs/state.json.tmp
+         mv specs/state.json.tmp specs/state.json
+         ```
+
+      4. Increment vault_count:
+         ```bash
+         jq '.vault_count = (.vault_count // 0) + 1' specs/state.json > specs/state.json.tmp
+         mv specs/state.json.tmp specs/state.json
+         ```
+
+      5. Add entry to vault_history:
+         ```bash
+         current_timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+         archived_count=$(jq -r '.completed_projects | length' "${vault_path}/state.json" 2>/dev/null || echo "0")
+         task_range="1-$((next_num - renumber_count - 1))"
+
+         jq --arg vault_dir "$vault_path/" \
+            --argjson vault_num "$new_vault_num" \
+            --arg created "$current_timestamp" \
+            --arg range "$task_range" \
+            --argjson archived "$archived_count" \
+            --argjson final "$next_num" '
+           .vault_history = (.vault_history // []) + [{
+             vault_number: $vault_num,
+             vault_dir: $vault_dir,
+             created_at: $created,
+             task_range: $range,
+             archived_count: $archived,
+             final_task_number: $final
+           }]
+         ' specs/state.json > specs/state.json.tmp
+         mv specs/state.json.tmp specs/state.json
+         ```
+
+      6. Add vault transition comment to TODO.md:
+         ```bash
+         current_date=$(date +"%Y-%m-%d")
+         transition_comment="<!-- Vault transition: ${current_date} - Tasks 1-$((next_num - renumber_count - 1)) archived to ${vault_path}/ -->"
+
+         # Insert after frontmatter or at top of file
+         if grep -q "^---$" specs/TODO.md; then
+           # Has frontmatter, insert after closing ---
+           sed -i "/^---$/,/^---$/{/^---$/{n;a\\
+${transition_comment}
+}}" specs/TODO.md
+         else
+           # No frontmatter, insert at top
+           sed -i "1i${transition_comment}" specs/TODO.md
+         fi
+         ```
+
+      7. Track state reset results:
+         - new_next_num (reset next_project_number value)
+         - vault_history_entry (added entry)
+         - Continue to Stage 11
+    </process>
+  </stage>
+
   <stage id="11" name="UpdateRoadmap">
     <action>Update ROAD_MAP.md with completion annotations</action>
     <process>
