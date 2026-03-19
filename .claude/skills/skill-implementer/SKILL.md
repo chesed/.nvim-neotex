@@ -90,7 +90,7 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
 
 **Update plan file** (if exists): Update the Status field in plan metadata:
 ```bash
-.claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "IMPLEMENTING"
+.claude/scripts/update-plan-status.sh "$task_number" "$project_name" "IMPLEMENTING"
 ```
 
 ---
@@ -261,7 +261,7 @@ Update TODO.md: Change status marker from `[IMPLEMENTING]` to `[COMPLETED]`.
 
 **Update plan file** (if exists): Update the Status field to `[COMPLETED]`:
 ```bash
-.claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "COMPLETED"
+.claude/scripts/update-plan-status.sh "$task_number" "$project_name" "COMPLETED"
 ```
 
 **Remove from Recommended Order section** (non-blocking):
@@ -288,7 +288,7 @@ TODO.md stays as `[IMPLEMENTING]`.
 
 **Update plan file** (if exists): Update the Status field to `[PARTIAL]`:
 ```bash
-.claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "PARTIAL"
+.claude/scripts/update-plan-status.sh "$task_number" "$project_name" "PARTIAL"
 ```
 
 **On failed**: Keep status as "implementing" for retry. Do not update plan file (leave as `[IMPLEMENTING]` for retry).

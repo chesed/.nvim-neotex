@@ -8,12 +8,14 @@ next_project_number: 246
 
 ### 245. Fix plan status update script arguments in skill-implementer
 - **Effort**: 30 minutes
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Started**: 2026-03-19
+- **Completed**: 2026-03-19
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](245_fix_plan_status_update_script_arguments/reports/01_meta-research.md)
 - **Plan**: [01_fix-script-args.md](245_fix_plan_status_update_script_arguments/plans/01_fix-script-args.md)
+- **Summary**: [01_fix-script-args-summary.md](245_fix_plan_status_update_script_arguments/summaries/01_fix-script-args-summary.md)
 
 **Description**: Fix the argument mismatch between `update-plan-status.sh` (expects 3 args: `TASK_NUMBER PROJECT_NAME STATUS`) and skill-implementer calls (passes 4 args including extraneous `$padded_num`). Remove `$padded_num` from script invocations at lines 93, 264, and 283 in skill-implementer/SKILL.md. Check and fix similar issues in extension skills (nvim, present) if present.
 

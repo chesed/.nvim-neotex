@@ -174,7 +174,7 @@ fi
 ```bash
 # Update plan file status for assemble workflow
 if [ "$workflow_type" = "assemble" ]; then
-    .claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "IMPLEMENTING" 2>/dev/null || true
+    .claude/scripts/update-plan-status.sh "$task_number" "$project_name" "IMPLEMENTING" 2>/dev/null || true
 fi
 ```
 
@@ -393,9 +393,9 @@ fi
 # Update plan file status for assemble workflow
 if [ "$workflow_type" = "assemble" ]; then
     if [ "$meta_status" = "assembled" ]; then
-        .claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "COMPLETED" 2>/dev/null || true
+        .claude/scripts/update-plan-status.sh "$task_number" "$project_name" "COMPLETED" 2>/dev/null || true
     elif [ "$meta_status" = "partial" ]; then
-        .claude/scripts/update-plan-status.sh "$task_number" "$padded_num" "$project_name" "PARTIAL" 2>/dev/null || true
+        .claude/scripts/update-plan-status.sh "$task_number" "$project_name" "PARTIAL" 2>/dev/null || true
     fi
 fi
 ```

@@ -1,7 +1,7 @@
 # Implementation Plan: Fix plan status update script arguments
 
 - **Task**: 245 - Fix plan status update script arguments in skill-implementer
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 30 minutes
 - **Dependencies**: None
 - **Research Inputs**: [01_meta-research.md](../reports/01_meta-research.md)
@@ -42,7 +42,7 @@ Research report 01_meta-research.md confirmed:
 
 ## Implementation Phases
 
-### Phase 1: Fix skill-implementer/SKILL.md [NOT STARTED]
+### Phase 1: Fix skill-implementer/SKILL.md [COMPLETED]
 
 **Goal**: Remove extraneous `$padded_num` argument from all 3 script invocations in skill-implementer.
 
@@ -62,7 +62,7 @@ Research report 01_meta-research.md confirmed:
 
 ---
 
-### Phase 2: Fix skill-grant extension [NOT STARTED]
+### Phase 2: Fix skill-grant extension [COMPLETED]
 
 **Goal**: Remove extraneous `$padded_num` argument from all 3 script invocations in skill-grant extension.
 
