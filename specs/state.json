@@ -1,7 +1,25 @@
 {
   "version": "1.0.0",
-  "next_project_number": 241,
+  "next_project_number": 242,
   "active_projects": [
+    {
+      "project_number": 241,
+      "project_name": "add_spawn_command_skill_agent",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-19T18:09:49Z",
+      "last_updated": "2026-03-19T18:09:49Z",
+      "session_id": "sess_1742397600_a7c3f1",
+      "researched": "2026-03-19T18:09:49Z",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/241_add_spawn_command_skill_agent/reports/01_meta-research.md",
+          "summary": "Auto-generated research covering /spawn command, skill-spawn wrapper, and spawn-agent design with all component interfaces, behaviors, and interactions"
+        }
+      ]
+    },
     {
       "project_number": 240,
       "project_name": "fix_market_command_forcing_questions_workflow",

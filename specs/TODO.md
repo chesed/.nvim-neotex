@@ -1,10 +1,29 @@
 ---
-next_project_number: 241
+next_project_number: 242
 ---
 
 # TODO
 
 ## Tasks
+
+### 241. Add /spawn command, skill-spawn wrapper, and spawn-agent for blocked task recovery
+- **Effort**: 4-6 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](241_add_spawn_command_skill_agent/reports/01_meta-research.md)
+
+**Description**: Create the complete `/spawn N [prompt]` workflow for recovering from blocked implementations. When `/implement` on a task gets stuck, the user runs `/spawn N` (with an optional description of what's blocking), and the command researches the blocker, decomposes it into a minimal set of new tasks, and wires up all dependency relationships automatically. Three components must be created together:
+
+**1. `/spawn` command** (`.claude/commands/spawn.md`): Accepts task number and optional blocker prompt. Validates that the target task exists and is in a blockable state (implementing, partial, blocked, planned, or researched). Generates a session ID, loads the task's latest plan for context, and delegates to `skill-spawn`. Allowed tools: `Skill, Bash(jq:*), Bash(git:*), Read, Glob`. Model: `claude-opus-4-5-20251101`.
+
+**2. `skill-spawn` wrapper** (`.claude/skills/skill-spawn/SKILL.md`): Thin wrapper following the standard skill pattern. Preflight sets the parent task status to `blocked` in state.json and `[BLOCKED]` in TODO.md. Delegates to `spawn-agent` via Task tool. Postflight reads the agent's `.spawn-return.json` file and performs all state writes: (a) creates new task directories and research stubs, (b) inserts new tasks into state.json and TODO.md in topological order (foundational tasks get lower numbers, using Kahn's algorithm on the agent-provided `dependency_order`), (c) updates the parent task's `dependencies` array in state.json to include all new task numbers, (d) edits the parent task's `- **Dependencies**:` line in TODO.md accordingly, (e) commits with message `task N: spawn {M} tasks to resolve blocker`. The skill MUST NOT perform analysis or task decomposition - that is the agent's responsibility. New tasks should have `parent_task: N` in their state.json entries and `- **Parent Task**: #N` in their TODO.md entries, and start with `status: "researched"`.
+
+**3. `spawn-agent`** (`.claude/agents/spawn-agent.md`): The analysis brain of the system. Given the blocked task's data, its plan (with phase status markers showing where it stalled), and the optional user prompt, the agent: reads all available context (research reports, plan phases, partial summaries), identifies the root cause of the block (missing prerequisite, external dependency, design ambiguity, scope creep, or technical unknowns), decomposes into the minimal number of new tasks needed, and reasons explicitly about sequentiality. The sequentiality rule is: keep tasks separate only when the specific implementation details of one task (not just its completion) affect how a later task should be implemented. Tasks that are merely ordered but don't affect each other's implementation choices should be combined or marked independent. The agent writes a blocker analysis report to `specs/{NNN}_{SLUG}/reports/02_spawn-analysis.md` and a machine-readable return file to `specs/{NNN}_{SLUG}/.spawn-return.json` with schema: `{ new_tasks: [{index, title, description, effort, language, dependencies: [indices]}], dependency_order: [sorted indices], parent_task_number, analysis_summary, report_path }`. The agent MUST NOT create tasks in state.json or TODO.md - that is the skill's responsibility.
+
+**CLAUDE.md update**: Add `skill-spawn -> spawn-agent` row to the Skill-to-Agent Mapping table.
+
+---
 
 ### 240. Fix /market command to use forcing questions workflow with market type tasks
 - **Effort**: 5-6 hours
