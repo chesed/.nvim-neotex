@@ -1,6 +1,6 @@
 ---
 description: Go-to-market strategy research with task integration
-allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit
+allowed-tools: Skill, Bash(jq:*), Bash(git:*), Bash(date:*), Read, Edit, AskUserQuestion
 argument-hint: "[description]" | TASK_NUMBER | /path/to/file.md | --quick [topic]
 ---
 
@@ -10,22 +10,22 @@ Go-to-market strategy research command that gathers positioning, channel, and la
 
 ## Overview
 
-This command initiates GTM strategy research through structured questioning. It creates a task (if needed) and runs the research phase to gather strategic context. After research completes, the user explicitly runs `/plan` and `/implement` to generate final strategy output with 90-day plans.
+This command initiates GTM strategy research through structured questioning. It asks essential forcing questions BEFORE creating the task, storing gathered data in task metadata. After task creation, the user runs `/research`, `/plan`, and `/implement` to complete the workflow with 90-day plans.
 
 ## Syntax
 
-- `/strategy "B2B SaaS product launch"` - Create task and run research
+- `/strategy "B2B SaaS product launch"` - Ask forcing questions, create task with gathered data
 - `/strategy 234` - Resume research on existing task
-- `/strategy /path/to/strategy-notes.md` - Use file as context, create task, run research
+- `/strategy /path/to/strategy-notes.md` - Use file as context, ask questions, create task
 - `/strategy --quick B2B SaaS launch` - Legacy standalone mode (no task creation)
 
 ## Input Types
 
 | Input | Behavior |
 |-------|----------|
-| Description string | Create task, run research, stop at [RESEARCHED] |
+| Description string | Ask forcing questions, create task with forcing_data, stop at [NOT STARTED] |
 | Task number | Load existing task, run research, stop at [RESEARCHED] |
-| File path | Read file for context, create task, run research |
+| File path | Read file for context, ask questions, create task |
 | `--quick [args]` | Legacy standalone mode (skip task creation) |
 
 ## Modes
@@ -36,6 +36,83 @@ This command initiates GTM strategy research through structured questioning. It 
 | **SCALE** | Optimize engine | CAC optimization, channel scaling, automation |
 | **PIVOT** | Find new wedge | Customer segments, value prop testing |
 | **EXPAND** | Adjacent markets | New segments, expansion playbook |
+
+---
+
+## STAGE 0: PRE-TASK FORCING QUESTIONS
+
+**This stage runs BEFORE task creation for new tasks (description or file path input).**
+
+**Skip this stage if**: `--quick` flag or task number input.
+
+### Step 0.1: Mode Selection
+
+Use AskUserQuestion to present mode options:
+
+```
+What type of GTM strategy do you need?
+
+- LAUNCH: Maximize awareness and initial traction
+- SCALE: Optimize acquisition engine, lower CAC
+- PIVOT: Test new customer segments or value props
+- EXPAND: Enter adjacent markets
+```
+
+Store response as `selected_mode`.
+
+### Step 0.2: Essential Forcing Questions
+
+Ask abbreviated forcing questions to gather essential data. One question at a time.
+
+**Question 1: Target Customer**
+```
+Who is your ideal customer in one sentence?
+Be specific: job title, company size, industry, pain level.
+```
+Store as `forcing_data.target_customer`.
+
+**Question 2: Core Value Proposition**
+```
+What is the single most important benefit you provide?
+Not a feature - the outcome your customer gets.
+```
+Store as `forcing_data.value_prop`.
+
+**Question 3: Key Differentiator**
+```
+Why would someone choose you over the alternative (including doing nothing)?
+What makes you fundamentally different, not just better?
+```
+Store as `forcing_data.differentiator`.
+
+**Question 4: Primary Channel Hypothesis**
+```
+Where do your target customers currently look for solutions?
+Examples: Google search, Twitter, conferences, word of mouth, etc.
+```
+Store as `forcing_data.channel_hypothesis`.
+
+**Question 5: Launch Timeline**
+```
+What is your launch context?
+Examples: "Pre-launch building waitlist", "Just launched, first 100 users", "Post-PMF scaling"
+```
+Store as `forcing_data.launch_context`.
+
+### Step 0.3: Store Forcing Data
+
+Capture all responses in a forcing_data object:
+```json
+{
+  "mode": "{selected_mode}",
+  "target_customer": "{response_1}",
+  "value_prop": "{response_2}",
+  "differentiator": "{response_3}",
+  "channel_hypothesis": "{response_4}",
+  "launch_context": "{response_5}",
+  "gathered_at": "{ISO timestamp}"
+}
+```
 
 ---
 
@@ -80,7 +157,7 @@ fi
 ### Step 3: Handle Input Type
 
 **If `--quick` (legacy mode)**:
-Skip to STAGE 2A (legacy delegation).
+Skip STAGE 0 and go directly to STAGE 2A (legacy delegation).
 
 **If file path**:
 ```bash
@@ -93,6 +170,7 @@ context_content=$(cat "$file_path")
 filename=$(basename "$file_path" | sed 's/\.[^.]*$//')
 description="GTM strategy: $filename"
 ```
+Then proceed to STAGE 0 for forcing questions.
 
 **If task number**:
 ```bash
@@ -111,9 +189,10 @@ if [ "$task_lang" != "founder" ]; then
   exit 1
 fi
 ```
+Skip STAGE 0, go directly to STAGE 2B.
 
 **If description (new task)**:
-Create task in next step.
+Proceed to STAGE 0 for forcing questions, then Step 4.
 
 ### Step 4: Create Task (if needed)
 
@@ -125,14 +204,18 @@ jq --argjson num "$next_num" \
    --arg name "$slug" \
    --arg desc "GTM strategy: $description" \
    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+   --arg task_type "strategy" \
+   --argjson forcing_data "$forcing_data_json" \
    '. + {next_project_number: ($num + 1)} |
     .active_projects += [{
       project_number: $num,
       project_name: $name,
       status: "not_started",
       language: "founder",
+      task_type: $task_type,
       description: $desc,
       created: $ts,
+      forcing_data: $forcing_data,
       artifacts: []
     }]' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
@@ -141,7 +224,25 @@ task_number=$next_num
 
 ### Step 5: Update TODO.md
 
-Add task entry (if new task).
+Add task entry (if new task):
+
+```markdown
+### {task_number}. GTM strategy: {description}
+- **Effort**: 2-4 hours
+- **Status**: [NOT STARTED]
+- **Language**: founder
+- **Type**: strategy
+- **Dependencies**: None
+- **Started**: {ISO timestamp}
+
+**Description**: {full description}
+
+**Forcing Data Gathered**:
+- Mode: {selected_mode}
+- Target Customer: {forcing_data.target_customer}
+- Value Prop: {forcing_data.value_prop}
+- Differentiator: {forcing_data.differentiator}
+```
 
 ### Step 6: Git Commit (Task Creation)
 
@@ -157,9 +258,36 @@ EOF
 )"
 ```
 
+### Step 7: Display Task Created Summary
+
+For new tasks (description or file path input), display summary and STOP:
+
+```
+GTM strategy task created: Task #{N}
+
+Forcing Data Gathered:
+- Mode: {selected_mode}
+- Target Customer: {forcing_data.target_customer}
+- Value Prop: {forcing_data.value_prop}
+- Differentiator: {forcing_data.differentiator}
+- Channel Hypothesis: {forcing_data.channel_hypothesis}
+- Launch Context: {forcing_data.launch_context}
+
+Status: [NOT STARTED]
+
+Next Steps:
+- Run /research {N} to complete research with gathered data
+- Run /plan {N} to create implementation plan
+- Run /implement {N} to generate full GTM strategy with 90-day plan
+```
+
+**STOP HERE for new tasks.** Do not auto-invoke research.
+
 ---
 
 ## STAGE 2: DELEGATE
+
+**Only reached when input_type is "task_number" or "--quick".**
 
 ### STAGE 2A: Legacy Mode (--quick)
 
@@ -174,7 +302,7 @@ args: "topic={topic} mode={mode} session_id={session_id}"
 
 Skip to CHECKPOINT 2 (Legacy).
 
-### STAGE 2B: Task Workflow Mode
+### STAGE 2B: Task Workflow Mode (existing task)
 
 **Run research via skill-strategy**:
 
@@ -185,18 +313,17 @@ args: "task_number={task_number} session_id={session_id}"
 
 The skill workflow:
 1. Updates status to [RESEARCHING] (preflight)
-2. Invokes strategy-agent for forcing questions
-3. Agent creates research report at `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md`
-4. Updates status to [RESEARCHED] (postflight)
-5. Links artifact and commits
-
-**Note**: This command does NOT auto-invoke /plan or /implement. The user runs those separately.
+2. Invokes strategy-agent, passing forcing_data from task metadata
+3. Agent uses pre-gathered data, asks follow-up questions as needed
+4. Agent creates research report at `specs/{NNN}_{SLUG}/reports/01_{short-slug}.md`
+5. Updates status to [RESEARCHED] (postflight)
+6. Links artifact and commits
 
 ---
 
 ## CHECKPOINT 2: GATE OUT
 
-### For Task Workflow Mode
+### For Task Workflow Mode (existing task)
 
 1. **Verify Research Completed**
    ```bash
@@ -288,6 +415,15 @@ Status: [{current_status}]
 Resume: /strategy {N}
 ```
 
+### User Abandons Forcing Questions (STAGE 0)
+
+If user abandons during STAGE 0 forcing questions:
+```
+GTM strategy task creation cancelled.
+
+No task was created. Re-run /strategy with your description to start again.
+```
+
 ---
 
 ## Output Artifacts
@@ -310,30 +446,34 @@ Resume: /strategy {N}
 
 ## Workflow Summary
 
-The standard three-stage workflow:
+The standard workflow (with pre-task forcing questions):
 
 ```
-/strategy "description" -> Creates task, runs research, stops at [RESEARCHED]
+/strategy "description" -> Asks forcing questions, creates task with data, stops at [NOT STARTED]
+/research {N}           -> Uses forcing_data, completes research, stops at [RESEARCHED]
 /plan {N}               -> Reads research report, creates implementation plan
 /implement {N}          -> Executes plan, generates strategy/gtm-strategy-*.md
 ```
 
-Each stage is a separate command invocation, giving the user control over the workflow.
+Alternative: Resume existing task:
+```
+/strategy {N}           -> Runs research on existing task, stops at [RESEARCHED]
+```
 
 ---
 
 ## Examples
 
 ```bash
-# Create new task with description - runs research only
+# Create new task with description - asks forcing questions first
 /strategy "B2B SaaS product launch"
 
-# Resume research on existing task
+# Resume research on existing task (uses stored forcing_data)
 /strategy 234
 
-# Use file as context
+# Use file as context - asks forcing questions, creates task
 /strategy ~/startup/launch-notes.md
 
-# Legacy standalone mode (generates full output immediately)
+# Legacy standalone mode (generates full output immediately, no task)
 /strategy --quick B2B SaaS launch
 ```

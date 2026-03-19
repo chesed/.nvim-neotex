@@ -25,8 +25,8 @@ Note: This skill is a thin wrapper. Context is loaded by the delegated agent, no
 This skill activates when:
 
 ### Direct Invocation
-- User explicitly runs `/strategy` command
-- User requests GTM strategy in conversation
+- User explicitly runs `/strategy` command with task number
+- User runs `/research` on a founder task with `task_type: "strategy"`
 
 ### Implicit Invocation (during task implementation)
 
@@ -82,6 +82,10 @@ status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
 
+# Extract pre-gathered forcing_data (if present)
+forcing_data=$(echo "$task_data" | jq -r '.forcing_data // null')
+pre_gathered_mode=$(echo "$forcing_data" | jq -r '.mode // null' 2>/dev/null)
+
 # Validate mode if provided
 if [ -n "$mode" ]; then
   case "$mode" in
@@ -135,16 +139,28 @@ EOF
 
 ### Stage 4: Prepare Delegation Context
 
+Include pre-gathered forcing_data when available:
+
 ```json
 {
   "task_context": {
     "task_number": N,
     "project_name": "{project_name}",
     "description": "{description}",
-    "language": "founder"
+    "language": "founder",
+    "task_type": "strategy"
+  },
+  "forcing_data": {
+    "mode": "{pre_gathered_mode}",
+    "target_customer": "{pre_gathered_target}",
+    "value_prop": "{pre_gathered_value_prop}",
+    "differentiator": "{pre_gathered_differentiator}",
+    "channel_hypothesis": "{pre_gathered_channel}",
+    "launch_context": "{pre_gathered_launch}",
+    "gathered_at": "{timestamp}"
   },
   "topic": "optional context hint",
-  "mode": "LAUNCH|SCALE|PIVOT|EXPAND or null",
+  "mode": "LAUNCH|SCALE|PIVOT|EXPAND or use forcing_data.mode",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json",
   "metadata": {
     "session_id": "sess_{timestamp}_{random}",
@@ -153,6 +169,9 @@ EOF
   }
 }
 ```
+
+**Note**: If `forcing_data` is present from STAGE 0 of /strategy command, pass it to the agent.
+The agent will use pre-gathered data and only ask follow-up questions for missing details.
 
 ---
 
@@ -165,13 +184,14 @@ EOF
 Tool: Task (NOT Skill)
 Parameters:
   - subagent_type: "strategy-agent"
-  - prompt: [Include task_context, topic, mode, metadata_file_path, metadata]
+  - prompt: [Include task_context, forcing_data, topic, mode, metadata_file_path, metadata]
   - description: "GTM strategy research with positioning and channels"
 ```
 
 The agent will:
-- Present mode selection if not pre-selected
-- Use forcing questions for positioning context
+- Use pre-gathered forcing_data if available (skip already-answered questions)
+- Present mode selection only if not pre-selected
+- Use forcing questions for positioning context (building on pre-gathered data)
 - Gather channel data with evidence
 - Collect launch timing and metrics data
 - Create research report at specs/{NNN}_{SLUG}/reports/
@@ -278,6 +298,7 @@ GTM strategy research completed for task {N}:
 - Key benefit: {brief benefit}
 - Top channels: {list}
 - Launch recommendation: {type}
+- Pre-gathered data used: {yes/no}
 - Research report: specs/{NNN}_{SLUG}/reports/01_{short-slug}.md
 - Status updated to [RESEARCHED]
 - Changes committed
@@ -298,6 +319,7 @@ GTM strategy research completed for task 234:
 - Key benefit: Cut deploy time by 80%
 - Top channels: Hacker News, DevOps meetups, Twitter
 - Launch recommendation: Beta (2K waitlist with 40% engagement)
+- Pre-gathered data used: yes (5 questions from STAGE 0)
 - Research report: specs/234_gtm_strategy_b2b_saas/reports/01_gtm-strategy.md
 - Status updated to [RESEARCHED]
 - Changes committed with session sess_1736700000_abc123
