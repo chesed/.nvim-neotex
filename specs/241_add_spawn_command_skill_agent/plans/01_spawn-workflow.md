@@ -1,7 +1,7 @@
 # Implementation Plan: Task #241
 
 - **Task**: 241 - Add /spawn command, skill-spawn wrapper, and spawn-agent
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETE]
 - **Effort**: 4-6 hours
 - **Dependencies**: None
 - **Research Inputs**: [01_meta-research.md](../reports/01_meta-research.md)
@@ -53,7 +53,7 @@ The research report (01_meta-research.md) provides complete specifications for:
 
 ## Implementation Phases
 
-### Phase 1: Create spawn-agent [NOT STARTED]
+### Phase 1: Create spawn-agent [COMPLETED]
 
 **Goal**: Create the blocker analysis and task decomposition agent that researches blockers and proposes minimal new tasks.
 
@@ -79,7 +79,7 @@ The research report (01_meta-research.md) provides complete specifications for:
 
 ---
 
-### Phase 2: Create skill-spawn [NOT STARTED]
+### Phase 2: Create skill-spawn [COMPLETED]
 
 **Goal**: Create the thin wrapper skill that delegates to spawn-agent and handles all state management in postflight.
 
@@ -115,7 +115,7 @@ The research report (01_meta-research.md) provides complete specifications for:
 
 ---
 
-### Phase 3: Create /spawn command [NOT STARTED]
+### Phase 3: Create /spawn command [COMPLETED]
 
 **Goal**: Create the user-facing command that validates input and delegates to skill-spawn.
 
@@ -145,7 +145,7 @@ The research report (01_meta-research.md) provides complete specifications for:
 
 ---
 
-### Phase 4: Update CLAUDE.md [NOT STARTED]
+### Phase 4: Update CLAUDE.md [COMPLETED]
 
 **Goal**: Add skill-spawn to agent mapping and command reference.
 
@@ -167,7 +167,7 @@ The research report (01_meta-research.md) provides complete specifications for:
 
 ---
 
-### Phase 5: Verification and Testing [NOT STARTED]
+### Phase 5: Verification and Testing [COMPLETED]
 
 **Goal**: Verify the complete workflow functions correctly.
 
