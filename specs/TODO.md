@@ -1,10 +1,20 @@
 ---
-next_project_number: 242
+next_project_number: 243
 ---
 
 # TODO
 
 ## Tasks
+
+### 242. Add <leader>am model picker for Claude Code with Opus as default
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: neovim
+- **Dependencies**: None
+
+**Description**: Add a `<leader>am` keymap that opens a Telescope picker listing the three Anthropic Claude models (Opus 4.6 first, then Sonnet 4.6, then Haiku 4.5). Selecting a model updates `~/.config/.claude/settings.local.json` with the chosen model value and notifies the user that a restart is required. Follow the same file-modification pattern used by `<leader>ay` (yolo mode toggle): read the JSON file, update the `"model"` field, write back. Also update the global default from `"sonnet"` to `"opus"` in `settings.local.json` as part of this task. The picker should use `vim.ui.select` or a lightweight Telescope dropdown (not the full session picker complexity), display the three options with model IDs and human-readable labels, and show the currently active model visually. Add the keymap entry in `which-key.lua` under the `<leader>a` (AI) group with icon and desc `"model (claude)"`.
+
+---
 
 ### 241. Add /spawn command, skill-spawn wrapper, and spawn-agent for blocked task recovery
 - **Effort**: 4-6 hours

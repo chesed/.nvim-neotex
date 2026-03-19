@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 242,
+  "next_project_number": 243,
   "active_projects": [
+    {
+      "project_number": 242,
+      "project_name": "add_leader_am_model_picker_for_claude_code",
+      "status": "not_started",
+      "language": "neovim",
+      "created": "2026-03-19T18:33:49Z",
+      "last_updated": "2026-03-19T18:33:49Z"
+    },
     {
       "project_number": 241,
       "project_name": "add_spawn_command_skill_agent",
