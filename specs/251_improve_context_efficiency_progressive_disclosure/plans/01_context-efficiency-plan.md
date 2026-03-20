@@ -153,7 +153,7 @@ Key findings integrated from team research:
 
 ---
 
-### Phase 5: Split Artifact-Formats and Workflows Rules [NOT STARTED]
+### Phase 5: Split Artifact-Formats and Workflows Rules [COMPLETED]
 
 **Goal**: Apply the same Category A/B/C split pattern to remaining rules files, moving format templates and process diagrams to on-demand context.
 

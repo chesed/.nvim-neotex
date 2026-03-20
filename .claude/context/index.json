@@ -1502,6 +1502,30 @@
       }
     },
     {
+      "path": "core/reference/artifact-templates.md",
+      "domain": "core",
+      "subdomain": "reference",
+      "topics": ["artifacts", "templates", "reports", "plans", "summaries"],
+      "keywords": ["template", "report", "plan", "summary", "artifact", "format"],
+      "summary": "Template structures for research reports, implementation plans, and summaries",
+      "line_count": 160,
+      "load_when": {
+        "agents": ["general-research-agent", "planner-agent", "general-implementation-agent"]
+      }
+    },
+    {
+      "path": "core/reference/workflow-diagrams.md",
+      "domain": "core",
+      "subdomain": "reference",
+      "topics": ["workflow", "process", "diagrams"],
+      "keywords": ["workflow", "diagram", "research", "planning", "implementation", "resume"],
+      "summary": "Process diagrams for research, planning, and implementation workflows",
+      "line_count": 170,
+      "load_when": {
+        "agents": ["orchestrator", "general-implementation-agent"]
+      }
+    },
+    {
       "path": "core/patterns/mcp-tool-recovery.md",
       "domain": "core",
       "subdomain": "patterns",
