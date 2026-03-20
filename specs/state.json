@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "next_project_number": 252,
+  "next_project_number": 258,
   "active_projects": [
     {
       "project_number": 251,
@@ -1684,6 +1684,115 @@
       "completed": "2026-03-19T23:06:54Z",
       "completion_summary": "Implemented vault archival functionality in /todo command with 5 new stages for detecting threshold (>1000), user confirmation, vault creation, task renumbering, and state reset. Updated schema templates, documentation, and CLAUDE.md.",
       "claudemd_suggestions": "Added vault_count/vault_history to state-template.json, added Vault Fields section to state-json-schema.md, added 5 stages (10.5-10.9) to skill-todo/SKILL.md, added Step 5.8 to todo.md command, added Vault Fields Schema to state-management.md rules, added Vault Operation subsection to CLAUDE.md"
+    },
+    {
+      "project_number": 252,
+      "project_name": "create_legal_council_agent",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-20T16:25:53Z",
+      "last_updated": "2026-03-20T16:25:53Z",
+      "session_id": "sess_1742515847_7a3b2c",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/252_create_legal_council_agent/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 253,
+      "project_name": "create_skill_legal",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-20T16:25:53Z",
+      "last_updated": "2026-03-20T16:25:53Z",
+      "session_id": "sess_1742515847_7a3b2c",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/253_create_skill_legal/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 254,
+      "project_name": "create_legal_command",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-20T16:25:53Z",
+      "last_updated": "2026-03-20T16:25:53Z",
+      "session_id": "sess_1742515847_7a3b2c",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/254_create_legal_command/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 255,
+      "project_name": "create_legal_context_files",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-20T16:25:53Z",
+      "last_updated": "2026-03-20T16:25:53Z",
+      "session_id": "sess_1742515847_7a3b2c",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/255_create_legal_context_files/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 256,
+      "project_name": "update_manifest_and_index",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-20T16:25:53Z",
+      "last_updated": "2026-03-20T16:25:53Z",
+      "session_id": "sess_1742515847_7a3b2c",
+      "dependencies": [
+        252,
+        253,
+        254,
+        255
+      ],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/256_update_manifest_and_index/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 257,
+      "project_name": "update_extension_documentation",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-20T16:25:53Z",
+      "last_updated": "2026-03-20T16:25:53Z",
+      "session_id": "sess_1742515847_7a3b2c",
+      "dependencies": [
+        256
+      ],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/257_update_extension_documentation/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
     }
   ],
   "completed_projects": [],

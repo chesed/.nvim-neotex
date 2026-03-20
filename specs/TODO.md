@@ -1,10 +1,76 @@
 ---
-next_project_number: 252
+next_project_number: 258
 ---
 
 # TODO
 
 ## Tasks
+
+### 252. Create legal-council-agent
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](252_create_legal_council_agent/reports/01_meta-research.md)
+
+**Description**: Create legal-council-agent.md in .claude/extensions/founder/agents/ following the market-agent pattern. Agent uses forcing questions (one-at-a-time via AskUserQuestion) for contract review and negotiation analysis. Supports REVIEW, NEGOTIATE, TERMS, and DILIGENCE modes. Loads legal context files and produces research reports.
+
+---
+
+### 253. Create skill-legal
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](253_create_skill_legal/reports/01_meta-research.md)
+
+**Description**: Create skill-legal/SKILL.md in .claude/extensions/founder/skills/ as a thin wrapper that delegates to legal-council-agent via Task tool. Follows skill-market pattern with input validation, preflight/postflight status updates, artifact linking, and git commit.
+
+---
+
+### 254. Create /legal command
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](254_create_legal_command/reports/01_meta-research.md)
+
+**Description**: Create legal.md in .claude/extensions/founder/commands/ following the market.md pre-task forcing question pattern. Supports description string, task number, file path (contract file), and --quick input types. STAGE 0 asks essential forcing questions (contract type, concerns, position, financial exposure) before task creation with task_type: "legal".
+
+---
+
+### 255. Create legal context files
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](255_create_legal_context_files/reports/01_meta-research.md)
+
+**Description**: Create three context files in .claude/extensions/founder/context/project/founder/: (1) domain/legal-frameworks.md - contract law basics, negotiation principles, red flag checklist; (2) patterns/contract-review.md - systematic review checklist, push-back patterns; (3) templates/contract-analysis.md - output template for contract analysis reports.
+
+---
+
+### 256. Update manifest.json and index-entries.json
+- **Effort**: 1 hour
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #252, Task #253, Task #254, Task #255
+- **Research**: [01_meta-research.md](256_update_manifest_and_index/reports/01_meta-research.md)
+
+**Description**: Register all new legal components in the founder extension's manifest.json (provides.agents, provides.skills, provides.commands, routing.research with "founder:legal" key) and add three context file entries to index-entries.json with appropriate load_when conditions.
+
+---
+
+### 257. Update EXTENSION.md documentation
+- **Effort**: 30 minutes
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #256
+- **Research**: [01_meta-research.md](257_update_extension_documentation/reports/01_meta-research.md)
+
+**Description**: Document /legal command in EXTENSION.md: add to Commands table, task_type table, Skill-to-Agent Mapping, Language-Based Routing, and Context Files sections. Add /legal workflow example to Pre-Task Forcing Questions section.
+
+---
 
 ### 251. Improve context efficiency via progressive disclosure and lazy loading
 - **Effort**: 4-8 hours
