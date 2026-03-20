@@ -5,10 +5,19 @@
     {
       "project_number": 249,
       "project_name": "fix_skill_todo_vault_stage_numbering",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-03-20T00:31:30Z",
-      "last_updated": "2026-03-20T00:31:30Z"
+      "last_updated": "2026-03-20T00:36:00Z",
+      "session_id": "sess_1773966764_a7f6fb",
+      "researched": "2026-03-20T00:36:00Z",
+      "artifacts": [
+        {
+          "path": "specs/249_fix_skill_todo_vault_stage_numbering/reports/01_vault-stage-numbering.md",
+          "type": "research",
+          "summary": "Research report analyzing vault stage numbering issue with root cause and fix recommendations"
+        }
+      ]
     },
     {
       "project_number": 247,
