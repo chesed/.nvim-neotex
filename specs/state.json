@@ -1,15 +1,23 @@
 {
   "version": "1.0.0",
-  "next_project_number": 251,
+  "next_project_number": 252,
   "active_projects": [
+    {
+      "project_number": 251,
+      "project_name": "improve_context_efficiency_progressive_disclosure",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-03-20T02:17:51Z",
+      "last_updated": "2026-03-20T02:17:51Z"
+    },
     {
       "project_number": 250,
       "project_name": "embed_vault_detection_in_archive_stage",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-20T01:46:33Z",
-      "last_updated": "2026-03-20T02:10:34Z",
-      "session_id": "sess_1773972450_1e054f",
+      "last_updated": "2026-03-20T02:13:46Z",
+      "session_id": "sess_1773972809_768a3d",
       "researched": "2026-03-20T02:05:27Z",
       "artifacts": [
         {
@@ -28,7 +36,8 @@
           "summary": "7-phase implementation plan for embedding vault detection in archive stage"
         }
       ],
-      "planned": "2026-03-20T02:10:34Z"
+      "planned": "2026-03-20T02:10:34Z",
+      "started": "2026-03-20T02:13:46Z"
     },
     {
       "project_number": 249,

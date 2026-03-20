@@ -1,7 +1,7 @@
 # Implementation Plan: Task #250
 
 - **Task**: 250 - Embed vault detection as inline check within skill-todo archive stage
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2-3 hours
 - **Dependencies**: None
 - **Research Inputs**:
@@ -51,7 +51,7 @@ Key findings integrated from both research reports:
 
 ## Implementation Phases
 
-### Phase 1: Create check-vault-threshold.sh script [NOT STARTED]
+### Phase 1: Create check-vault-threshold.sh script [COMPLETED]
 
 **Goal**: Create standalone bash script for vault threshold detection with unconditional output
 
@@ -74,7 +74,7 @@ Key findings integrated from both research reports:
 
 ---
 
-### Phase 2: Embed vault check as sub-step 9 in Stage 10 [NOT STARTED]
+### Phase 2: Embed vault check as sub-step 9 in Stage 10 [COMPLETED]
 
 **Goal**: Replace TRANSITION directive with inline mandatory vault detection
 
@@ -97,7 +97,7 @@ Key findings integrated from both research reports:
 
 ---
 
-### Phase 3: Move vault sub-operations as sub-steps 9.1-9.4 [NOT STARTED]
+### Phase 3: Move vault sub-operations as sub-steps 9.1-9.4 [COMPLETED]
 
 **Goal**: Consolidate vault operations from Stages 12-15 into Stage 10 sub-steps
 
@@ -121,7 +121,7 @@ Key findings integrated from both research reports:
 
 ---
 
-### Phase 4: Add checkpoint to Stage 10 [NOT STARTED]
+### Phase 4: Add checkpoint to Stage 10 [COMPLETED]
 
 **Goal**: Add completion criteria using checkpoint pattern
 
@@ -141,7 +141,7 @@ Key findings integrated from both research reports:
 
 ---
 
-### Phase 5: Add pre-commit safety net to GitCommit stage [NOT STARTED]
+### Phase 5: Add pre-commit safety net to GitCommit stage [COMPLETED]
 
 **Goal**: Block commits if vault threshold exceeded but vault not performed
 
@@ -164,7 +164,7 @@ Key findings integrated from both research reports:
 
 ---
 
-### Phase 6: Remove redundant vault stages 11-15 and renumber [NOT STARTED]
+### Phase 6: Remove redundant vault stages 11-15 and renumber [IN PROGRESS]
 
 **Goal**: Remove now-redundant vault stages and renumber remaining stages
 

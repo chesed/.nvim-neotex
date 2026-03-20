@@ -1,16 +1,25 @@
 ---
-next_project_number: 251
+next_project_number: 252
 ---
 
 # TODO
 
 ## Tasks
 
+### 251. Improve context efficiency via progressive disclosure and lazy loading
+- **Effort**: 4-8 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Improve context efficiency throughout the Claude Code agent system by implementing progressive disclosure and lazy loading. The CLAUDE.md files currently inline extensive documentation that should instead be concise indexes pointing to detailed docs via @-references. Key areas: (1) Reduce root and nested CLAUDE.md files to minimal indexes with @-references for on-demand loading, (2) Move verbose standards/patterns/examples out of CLAUDE.md into referenced docs, (3) Ensure rules files are concise with details loaded lazily, (4) Audit context loading patterns across commands/agents/skills for unnecessary eager loading, (5) Measure before/after token counts for system context overhead.
+
 ### 250. Embed vault detection as inline check within skill-todo archive stage
 - **Effort**: 2-4 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: Task #249
+- **Started**: 2026-03-20
 - **Research**:
   - [01_vault-embedding-strategy.md](250_embed_vault_detection_in_archive_stage/reports/01_vault-embedding-strategy.md)
   - [02_team-research.md](250_embed_vault_detection_in_archive_stage/reports/02_team-research.md) (team: 2 teammates, best practices)
@@ -808,3 +817,4 @@ The existing strategy-template.typ uses generic styling (New Computer Modern fon
 1. **87** -> plan (independent)
 2. **78** -> implement (independent)
 3. **248** -> plan (independent)
+4. **251** -> research (independent)
