@@ -1,7 +1,7 @@
 # Implementation Plan: Task #252
 
 - **Task**: 252 - add_legal_to_founder_extension
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/252_add_legal_to_founder_extension/reports/02_team-research.md
@@ -50,7 +50,7 @@ Integrated research report `02_team-research.md` covering:
 
 ## Implementation Phases
 
-### Phase 1: Context Files [NOT STARTED]
+### Phase 1: Context Files [COMPLETED]
 
 **Goal**: Create the three legal domain context files that the agent will reference.
 

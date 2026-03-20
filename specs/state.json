@@ -1688,11 +1688,11 @@
     {
       "project_number": 252,
       "project_name": "add_legal_to_founder_extension",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-03-20T16:25:53Z",
-      "last_updated": "2026-03-20T16:59:06Z",
-      "session_id": "sess_1774025776_e935ef",
+      "last_updated": "2026-03-20T17:06:58Z",
+      "session_id": "sess_1774026400_8019d4",
       "dependencies": [],
       "artifacts": [
         {
@@ -1712,7 +1712,8 @@
         }
       ],
       "researched": "2026-03-20T16:54:02Z",
-      "planned": "2026-03-20T16:59:06Z"
+      "planned": "2026-03-20T16:59:06Z",
+      "started": "2026-03-20T17:06:58Z"
     }
   ],
   "completed_projects": [],

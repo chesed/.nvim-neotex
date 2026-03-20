@@ -8,7 +8,7 @@ next_project_number: 253
 
 ### 252. Add /legal command-skill-agent to founder extension
 - **Effort**: 9-12 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**:
