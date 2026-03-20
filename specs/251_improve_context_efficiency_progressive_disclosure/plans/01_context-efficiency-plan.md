@@ -73,7 +73,7 @@ Key findings integrated from team research:
 
 ---
 
-### Phase 2: Split State-Management Rule [NOT STARTED]
+### Phase 2: Split State-Management Rule [COMPLETED]
 
 **Goal**: Separate behavioral constraints (auto-loaded) from reference schemas (on-demand). Consolidate with existing state-json-schema.md to eliminate divergent duplicates.
 

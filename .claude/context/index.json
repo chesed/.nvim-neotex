@@ -1476,16 +1476,16 @@
       }
     },
     {
-      "path": "core/reference/state-json-schema.md",
+      "path": "core/reference/state-management-schema.md",
       "domain": "core",
       "subdomain": "reference",
-      "topics": ["state", "schema", "json"],
-      "keywords": ["state.json", "schema", "projects", "status"],
-      "summary": "Complete state.json schema reference with field specifications",
-      "line_count": 150,
+      "topics": ["state", "schema", "json", "artifacts", "linking"],
+      "keywords": ["state.json", "TODO.md", "schema", "projects", "status", "artifacts"],
+      "summary": "Complete state management schema reference - state.json, TODO.md, artifact linking formats",
+      "line_count": 280,
       "load_when": {
-        "commands": ["/task", "/todo", "/implement", "/research"],
-        "agents": ["meta-builder-agent"]
+        "commands": ["/task", "/todo", "/implement", "/research", "/plan"],
+        "agents": ["meta-builder-agent", "general-implementation-agent", "planner-agent"]
       }
     },
     {
