@@ -8,10 +8,11 @@ next_project_number: 250
 
 ### 249. Fix skill-todo vault detection stages skipped due to fractional stage IDs
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_vault-stage-numbering.md](249_fix_skill_todo_vault_stage_numbering/reports/01_vault-stage-numbering.md)
+- **Plan**: [01_vault-stage-renumbering.md](249_fix_skill_todo_vault_stage_numbering/plans/01_vault-stage-renumbering.md)
 
 **Description**: Fix vault detection stages in skill-todo being skipped by model due to fractional stage IDs (10.5-10.9) lacking transition directives from Stage 10. Renumber vault stages to proper integer IDs (11-15, shifting existing 11-16 to 16-21) and add explicit transition instructions at Stage 10 exit. Root cause: Stage 10 (ArchiveTasks) has no exit directive pointing to Stage 10.5 (DetectVaultThreshold), so the model jumps directly from Stage 10 to Stage 11 (UpdateRoadmap), completely bypassing vault detection, confirmation, creation, renumbering, and state reset
 
