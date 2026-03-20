@@ -8,7 +8,7 @@ next_project_number: 252
 
 ### 251. Improve context efficiency via progressive disclosure and lazy loading
 - **Effort**: 4-8 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Started**: 2026-03-20
 - **Language**: meta
 - **Dependencies**: None
@@ -16,6 +16,7 @@ next_project_number: 252
   - [01_team-research.md](251_improve_context_efficiency_progressive_disclosure/reports/01_team-research.md) (team: 2 teammates, synthesis)
   - [01_teammate-a-findings.md](251_improve_context_efficiency_progressive_disclosure/reports/01_teammate-a-findings.md)
   - [02_teammate-b-findings.md](251_improve_context_efficiency_progressive_disclosure/reports/02_teammate-b-findings.md)
+- **Plan**: [01_context-efficiency-plan.md](251_improve_context_efficiency_progressive_disclosure/plans/01_context-efficiency-plan.md)
 
 **Description**: Improve context efficiency throughout the Claude Code agent system by implementing progressive disclosure and lazy loading. The CLAUDE.md files currently inline extensive documentation that should instead be concise indexes pointing to detailed docs via @-references. Key areas: (1) Reduce root and nested CLAUDE.md files to minimal indexes with @-references for on-demand loading, (2) Move verbose standards/patterns/examples out of CLAUDE.md into referenced docs, (3) Ensure rules files are concise with details loaded lazily, (4) Audit context loading patterns across commands/agents/skills for unnecessary eager loading, (5) Measure before/after token counts for system context overhead.
 

@@ -5,11 +5,11 @@
     {
       "project_number": 251,
       "project_name": "improve_context_efficiency_progressive_disclosure",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-20T02:17:51Z",
-      "last_updated": "2026-03-20T02:31:18Z",
-      "session_id": "sess_1773973137_a645dd",
+      "last_updated": "2026-03-20T04:55:24Z",
+      "session_id": "sess_1773982360_e255da",
       "artifacts": [
         {
           "type": "research",
@@ -25,8 +25,14 @@
           "type": "research",
           "path": "specs/251_improve_context_efficiency_progressive_disclosure/reports/01_team-research.md",
           "summary": "Team research synthesis: 5 prioritized recommendations, ~9,346 token savings (38% reduction)"
+        },
+        {
+          "path": "specs/251_improve_context_efficiency_progressive_disclosure/plans/01_context-efficiency-plan.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for context efficiency improvements with ~9,346 token savings potential"
         }
-      ]
+      ],
+      "planned": "2026-03-20T04:55:24Z"
     },
     {
       "project_number": 250,
