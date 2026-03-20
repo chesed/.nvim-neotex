@@ -352,10 +352,13 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
             Warning: TODO.md orphan {N} has no directory in specs/
             Archive entry created but no files moved
             ```
+
+      9. **TRANSITION**: After archiving tasks, continue to Stage 11 (DetectVaultThreshold)
+         to determine if vault operation is needed based on next_project_number threshold.
     </process>
   </stage>
 
-  <stage id="10.5" name="DetectVaultThreshold">
+  <stage id="11" name="DetectVaultThreshold">
     <action>Detect if vault operation is needed</action>
     <process>
       1. Read next_project_number from specs/state.json:
@@ -371,11 +374,11 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
          fi
          ```
 
-      3. If vault not needed, skip to Stage 11:
+      3. If vault not needed, skip to Stage 16 (UpdateRoadmap):
          ```bash
          if [ "$vault_needed" = "false" ]; then
            # Continue to UpdateRoadmap
-           continue_to_stage_11=true
+           continue_to_stage_16=true
          fi
          ```
 
@@ -410,14 +413,14 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
          - next_num (current next_project_number)
          - renumber_count (number of tasks > 1000)
          - renumber_mappings (old -> new number mappings)
-         - Continue to Stage 10.6 if vault_needed=true
+         - Continue to Stage 12 if vault_needed=true
     </process>
   </stage>
 
-  <stage id="10.6" name="VaultConfirmation">
+  <stage id="12" name="VaultConfirmation">
     <action>Get user confirmation for vault operation</action>
     <process>
-      1. Skip if vault_needed = false from Stage 10.5
+      1. Skip if vault_needed = false from Stage 11
 
       2. Build preview of renumbering:
          ```bash
@@ -449,10 +452,10 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
          ```bash
          if [ "$user_response" = "proceed" ]; then
            vault_approved=true
-           # Continue to Stage 10.7
+           # Continue to Stage 13
          else
            vault_approved=false
-           # Skip to Stage 11 (UpdateRoadmap)
+           # Skip to Stage 16 (UpdateRoadmap)
          fi
          ```
 
@@ -460,10 +463,10 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
     </process>
   </stage>
 
-  <stage id="10.7" name="CreateVault">
+  <stage id="13" name="CreateVault">
     <action>Create vault directory and move archive contents</action>
     <process>
-      1. Skip if vault_approved = false from Stage 10.6
+      1. Skip if vault_approved = false from Stage 12
 
       2. Calculate vault number:
          ```bash
@@ -534,11 +537,11 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
       8. Track vault creation for later:
          - vault_path (path to new vault)
          - new_vault_num (vault number)
-         - Continue to Stage 10.8
+         - Continue to Stage 14
     </process>
   </stage>
 
-  <stage id="10.8" name="RenumberTasks">
+  <stage id="14" name="RenumberTasks">
     <action>Renumber active tasks > 1000 and update all references</action>
     <process>
       1. Skip if vault_approved = false
@@ -643,11 +646,11 @@ Direct execution skill for archiving tasks, updating CHANGE_LOG.md, and suggesti
       6. Track renumbering results:
          - renumbered_count (number of tasks renumbered)
          - max_renumbered_num (highest new task number after renumbering)
-         - Continue to Stage 10.9
+         - Continue to Stage 15
     </process>
   </stage>
 
-  <stage id="10.9" name="ResetState">
+  <stage id="15" name="ResetState">
     <action>Reset numbering state and update vault tracking</action>
     <process>
       1. Skip if vault_approved = false
@@ -716,11 +719,11 @@ ${transition_comment}
       7. Track state reset results:
          - new_next_num (reset next_project_number value)
          - vault_history_entry (added entry)
-         - Continue to Stage 11
+         - Continue to Stage 16 (UpdateRoadmap)
     </process>
   </stage>
 
-  <stage id="11" name="UpdateRoadmap">
+  <stage id="16" name="UpdateRoadmap">
     <action>Update ROAD_MAP.md with completion annotations</action>
     <process>
       For each roadmap match:
@@ -732,7 +735,7 @@ ${transition_comment}
     </process>
   </stage>
   
-  <stage id="12" name="UpdateREADME">
+  <stage id="17" name="UpdateREADME">
     <action>Apply README.md suggestions</action>
     <process>
       1. Filter suggestions where action != "none"
@@ -743,7 +746,7 @@ ${transition_comment}
     </process>
   </stage>
   
-  <stage id="13" name="UpdateChangelog">
+  <stage id="18" name="UpdateChangelog">
     <action>Update CHANGE_LOG.md with archive entries</action>
     <process>
       1. Create specs/CHANGE_LOG.md if not exists:
@@ -780,7 +783,7 @@ ${transition_comment}
     </process>
   </stage>
   
-  <stage id="14" name="CreateMemories">
+  <stage id="19" name="CreateMemories">
     <action>Create selected memories</action>
     <process>
       For each selected memory suggestion:
@@ -801,7 +804,7 @@ ${transition_comment}
     </process>
   </stage>
   
-  <stage id="15" name="GitCommit">
+  <stage id="20" name="GitCommit">
     <action>Commit all changes</action>
     <process>
       1. Stage all modified files:
@@ -828,7 +831,7 @@ ${transition_comment}
     </process>
   </stage>
   
-  <stage id="16" name="OutputResults">
+  <stage id="21" name="OutputResults">
     <action>Display final results</action>
     <process>
       Display complete summary:

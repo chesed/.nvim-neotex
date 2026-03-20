@@ -5,11 +5,11 @@
     {
       "project_number": 249,
       "project_name": "fix_skill_todo_vault_stage_numbering",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-20T00:31:30Z",
-      "last_updated": "2026-03-20T00:45:54Z",
-      "session_id": "sess_1773967394_e40e01",
+      "last_updated": "2026-03-20T01:23:06Z",
+      "session_id": "sess_1773967945_f6a506",
       "researched": "2026-03-20T00:36:00Z",
       "artifacts": [
         {
@@ -21,9 +21,18 @@
           "path": "specs/249_fix_skill_todo_vault_stage_numbering/plans/01_vault-stage-renumbering.md",
           "type": "plan",
           "summary": "5-phase implementation plan for renumbering vault stages to integers"
+        },
+        {
+          "path": "specs/249_fix_skill_todo_vault_stage_numbering/summaries/01_vault-stage-renumbering-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with stage renumbering details and verification results"
         }
       ],
-      "planned": "2026-03-20T00:45:54Z"
+      "planned": "2026-03-20T00:45:54Z",
+      "started": "2026-03-20T00:52:52Z",
+      "completed": "2026-03-20T01:23:06Z",
+      "completion_summary": "Fixed vault detection stages in skill-todo by renumbering fractional IDs (10.5-10.9) to integers (11-15), shifting post-vault stages to (16-21), and adding explicit transition directive at Stage 10.",
+      "claudemd_suggestions": "Updated .claude/skills/skill-todo/SKILL.md with complete stage renumbering and transition reference updates"
     },
     {
       "project_number": 247,

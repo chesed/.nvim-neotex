@@ -1,7 +1,7 @@
 # Implementation Plan: Fix skill-todo Vault Stage Numbering
 
 - **Task**: 249 - fix_skill_todo_vault_stage_numbering
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 1-2 hours
 - **Dependencies**: None
 - **Research Inputs**: [01_vault-stage-numbering.md](../reports/01_vault-stage-numbering.md)
@@ -48,7 +48,7 @@ Research report analyzed the stage structure and confirmed:
 
 ## Implementation Phases
 
-### Phase 1: Renumber Vault Stages [NOT STARTED]
+### Phase 1: Renumber Vault Stages [COMPLETED]
 
 **Goal**: Convert fractional vault stage IDs (10.5-10.9) to integers (11-15)
 
@@ -70,7 +70,7 @@ Research report analyzed the stage structure and confirmed:
 
 ---
 
-### Phase 2: Shift Post-Vault Stages [NOT STARTED]
+### Phase 2: Shift Post-Vault Stages [COMPLETED]
 
 **Goal**: Renumber existing stages 11-16 to 16-21 to make room for vault stages
 
@@ -94,7 +94,7 @@ Research report analyzed the stage structure and confirmed:
 
 ---
 
-### Phase 3: Add Stage 10 Transition Directive [NOT STARTED]
+### Phase 3: Add Stage 10 Transition Directive [COMPLETED]
 
 **Goal**: Add explicit transition at end of Stage 10 pointing to Stage 11 (DetectVaultThreshold)
 
@@ -117,7 +117,7 @@ Research report analyzed the stage structure and confirmed:
 
 ---
 
-### Phase 4: Update Internal Transition References [NOT STARTED]
+### Phase 4: Update Internal Transition References [COMPLETED]
 
 **Goal**: Update all "Continue to Stage X" and "Skip to Stage X" references to use new stage numbers
 
@@ -142,7 +142,7 @@ Research report analyzed the stage structure and confirmed:
 
 ---
 
-### Phase 5: Verification and Testing [NOT STARTED]
+### Phase 5: Verification and Testing [COMPLETED]
 
 **Goal**: Verify all changes are consistent and no broken references remain
 
