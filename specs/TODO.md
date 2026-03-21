@@ -1,10 +1,19 @@
 ---
-next_project_number: 255
+next_project_number: 256
 ---
 
 # TODO
 
 ## Tasks
+
+### 255. Announce "Tab N worker" from worktree sessions in tts-notify.sh
+- **Effort**: 30 minutes
+- **Status**: [NOT STARTED]
+- **Language**: meta
+
+**Description**: Modify `.claude/hooks/tts-notify.sh` so that when the `Stop` hook fires inside a git worktree (sub-agent session), it announces "Tab N worker" instead of "Tab N". When not in a worktree (main session), behavior is unchanged. This lets the user distinguish sub-agent completions from final parent completions by ear.
+
+---
 
 ### 253. Fix founder-plan-agent to enforce typst generation phase
 - **Effort**: 1-3 hours
