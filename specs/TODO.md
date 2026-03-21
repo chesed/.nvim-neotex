@@ -8,9 +8,10 @@ next_project_number: 256
 
 ### 255. Announce "Tab N worker" from worktree sessions in tts-notify.sh
 - **Effort**: 30 minutes
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Research**: [01_worktree-detection.md](255_tts_worktree_worker_announcement/reports/01_worktree-detection.md)
+- **Plan**: [01_worktree-announcement.md](255_tts_worktree_worker_announcement/plans/01_worktree-announcement.md)
 
 **Description**: Modify `.claude/hooks/tts-notify.sh` so that when the `Stop` hook fires inside a git worktree (sub-agent session), it announces "Tab N worker" instead of "Tab N". When not in a worktree (main session), behavior is unchanged. This lets the user distinguish sub-agent completions from final parent completions by ear.
 
