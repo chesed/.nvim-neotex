@@ -11,7 +11,8 @@
       "strategy-agent.md",
       "founder-plan-agent.md",
       "founder-implement-agent.md",
-      "legal-council-agent.md"
+      "legal-council-agent.md",
+      "project-agent.md"
     ],
     "skills": [
       "skill-market",
@@ -19,9 +20,10 @@
       "skill-strategy",
       "skill-founder-plan",
       "skill-founder-implement",
-      "skill-legal"
+      "skill-legal",
+      "skill-project"
     ],
-    "commands": ["market.md", "analyze.md", "strategy.md", "legal.md"],
+    "commands": ["market.md", "analyze.md", "strategy.md", "legal.md", "project.md"],
     "rules": [],
     "context": ["project/founder"],
     "scripts": [],
@@ -33,7 +35,8 @@
       "founder:market": "skill-market",
       "founder:analyze": "skill-analyze",
       "founder:strategy": "skill-strategy",
-      "founder:legal": "skill-legal"
+      "founder:legal": "skill-legal",
+      "founder:project": "skill-project"
     },
     "plan": {
       "founder": "skill-founder-plan"

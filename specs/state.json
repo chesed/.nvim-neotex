@@ -176,11 +176,11 @@
     {
       "project_number": 261,
       "project_name": "project_manifest_update",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-23T12:37:00Z",
-      "last_updated": "2026-03-23T21:04:13Z",
-      "session_id": "sess_1774299683_4249f3",
+      "last_updated": "2026-03-23T21:07:52Z",
+      "session_id": "sess_1774299888_bb7884",
       "dependencies": [
         260
       ],
@@ -195,9 +195,18 @@
           "path": "specs/261_project_manifest_update/plans/01_manifest-update-plan.md",
           "type": "plan",
           "summary": "3-phase implementation plan for manifest.json and index-entries.json updates"
+        },
+        {
+          "path": "specs/261_project_manifest_update/summaries/01_manifest-update-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
-      "planned": "2026-03-23T21:04:13Z"
+      "planned": "2026-03-23T21:04:13Z",
+      "started": "2026-03-23T21:05:08Z",
+      "completed": "2026-03-23T21:07:52Z",
+      "completion_summary": "Updated founder extension manifest with project-agent, skill-project, project.md command, and routing entry. Added project-timeline.typ to index-entries.json.",
+      "claudemd_suggestions": "Updated manifest.json (4 entries) and index-entries.json (1 entry) in .claude/extensions/founder/"
     },
     {
       "project_number": 255,

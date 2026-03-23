@@ -1,7 +1,7 @@
 # Implementation Plan: Task #261
 
 - **Task**: 261 - project_manifest_update
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 0.5 hours
 - **Dependencies**: Task #260 (COMPLETED)
 - **Research Inputs**: specs/261_project_manifest_update/reports/01_manifest-update-research.md
@@ -40,7 +40,7 @@ Research identified 4 exact changes to manifest.json and 1 addition to index-ent
 
 ## Implementation Phases
 
-### Phase 1: Update manifest.json [NOT STARTED]
+### Phase 1: Update manifest.json [COMPLETED]
 
 **Goal**: Add all four entries to manifest.json
 
@@ -62,7 +62,7 @@ Research identified 4 exact changes to manifest.json and 1 addition to index-ent
 
 ---
 
-### Phase 2: Update index-entries.json [NOT STARTED]
+### Phase 2: Update index-entries.json [COMPLETED]
 
 **Goal**: Add project-timeline.typ template entry for context discovery
 
@@ -82,7 +82,7 @@ Research identified 4 exact changes to manifest.json and 1 addition to index-ent
 
 ---
 
-### Phase 3: Verification [NOT STARTED]
+### Phase 3: Verification [COMPLETED]
 
 **Goal**: Confirm extension loads correctly with new entries
 

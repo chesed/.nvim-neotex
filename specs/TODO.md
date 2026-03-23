@@ -9,11 +9,13 @@ next_project_number: 262
 
 ### 261. Update founder manifest with /project routing
 - **Effort**: 30 minutes
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
+- **Completed**: 2026-03-23
 - **Language**: meta
 - **Dependencies**: Task #260
 - **Research**: [01_manifest-update-research.md](261_project_manifest_update/reports/01_manifest-update-research.md)
 - **Plan**: [01_manifest-update-plan.md](261_project_manifest_update/plans/01_manifest-update-plan.md)
+- **Summary**: [01_manifest-update-summary.md](261_project_manifest_update/summaries/01_manifest-update-summary.md)
 
 **Description**: Update manifest.json to add project-agent.md to agents array, skill-project to skills array, project.md to commands array, and routing entries for "founder:project" in research/plan/implement sections.
 
