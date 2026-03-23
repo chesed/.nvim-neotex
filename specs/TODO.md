@@ -19,9 +19,10 @@ next_project_number: 262
 
 ### 260. Create /project command for timeline generation
 - **Effort**: 1-2 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Language**: meta
 - **Dependencies**: Task #259
+- **Research**: [01_project-command-research.md](260_project_command/reports/01_project-command-research.md)
 
 **Description**: Create `/project` command following founder extension patterns with forcing questions: project name, goals/deliverables, team members (roles + allocation %), timeline constraints (start/end dates, milestones), resource needs (compute, budget, equipment), external dependencies, and risk factors. Routes to skill-project with task_type="project" in state.json.
 
