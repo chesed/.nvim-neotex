@@ -70,11 +70,11 @@
     {
       "project_number": 258,
       "project_name": "project_agent",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-03-23T12:37:00Z",
-      "last_updated": "2026-03-23T20:18:00Z",
-      "session_id": "sess_1774296872_a9334a",
+      "last_updated": "2026-03-23T20:23:28Z",
+      "session_id": "sess_1774297223_af13f5",
       "dependencies": [
         256,
         257
@@ -85,8 +85,14 @@
           "path": "specs/258_project_agent/reports/01_project-agent-research.md",
           "type": "research",
           "summary": "Comprehensive research on founder agent patterns, mode selection, forcing questions integration for PERT estimation, WBS generation, and self-contained Typst output"
+        },
+        {
+          "path": "specs/258_project_agent/plans/01_project-agent-plan.md",
+          "type": "plan",
+          "summary": "8-phase implementation plan for project-agent with PLAN/TRACK/REPORT modes, forcing questions, and Typst generation"
         }
-      ]
+      ],
+      "planned": "2026-03-23T20:23:28Z"
     },
     {
       "project_number": 259,
