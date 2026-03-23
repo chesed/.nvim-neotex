@@ -1,6 +1,16 @@
 {
   "entries": [
     {
+      "path": "project/founder/domain/timeline-frameworks.md",
+      "summary": "WBS structure, milestone types, PERT estimation, critical path, resource allocation, risk matrices",
+      "line_count": 329,
+      "load_when": {
+        "agents": ["project-agent", "founder-plan-agent", "founder-implement-agent"],
+        "languages": ["founder"],
+        "commands": ["/project", "/plan", "/implement"]
+      }
+    },
+    {
       "path": "project/founder/domain/business-frameworks.md",
       "summary": "TAM/SAM/SOM market sizing frameworks, business model canvas, unit economics",
       "line_count": 240,
