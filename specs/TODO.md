@@ -8,10 +8,11 @@ next_project_number: 272
 
 ### 271. Add ModelChecker domain context files to Python extension
 - **Effort**: 30 minutes
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Plan**: [01_model-checker-context.md](271_add_model_checker_context_to_python_extension/plans/01_model-checker-context.md)
+- **Summary**: [01_model-checker-context-summary.md](271_add_model_checker_context_to_python_extension/summaries/01_model-checker-context-summary.md)
 
 **Description**: Replace the generic placeholder files in the Python extension with the project-specific ModelChecker context files, and update the extension's index entries accordingly.
 

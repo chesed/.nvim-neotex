@@ -19,18 +19,18 @@
       }
     },
     {
-      "path": "project/python/domain/application-api-patterns.md",
-      "description": "Application API structure and patterns",
-      "tags": ["python", "api", "architecture"],
+      "path": "project/python/domain/model-checker-api.md",
+      "description": "ModelChecker framework API - package structure, key classes, import patterns",
+      "tags": ["python", "modelchecker", "api", "z3", "semantics"],
       "load_when": {
         "languages": ["python"],
         "agents": ["python-implementation-agent", "python-research-agent"]
       }
     },
     {
-      "path": "project/python/domain/library-patterns.md",
-      "description": "Domain-specific library patterns",
-      "tags": ["python", "library", "patterns"],
+      "path": "project/python/domain/theory-lib-patterns.md",
+      "description": "Theory library file structure and conventions for semantic theories",
+      "tags": ["python", "modelchecker", "theory", "patterns"],
       "load_when": {
         "languages": ["python"],
         "agents": ["python-implementation-agent", "python-research-agent"]
