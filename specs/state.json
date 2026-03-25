@@ -129,15 +129,34 @@
     {
       "project_number": 276,
       "project_name": "task_order_interactive_management",
-      "status": "not_started",
+      "status": "completed",
       "language": "meta",
       "effort": "2 hours",
       "created": "2026-03-25T05:44:46Z",
-      "last_updated": "2026-03-25T05:44:46Z",
+      "last_updated": "2026-03-24T00:00:00Z",
       "dependencies": [
         274,
         275
-      ]
+      ],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/276_task_order_interactive_management/reports/01_task-order-interactive.md",
+          "summary": "Research on interactive Task Order management patterns and integration points"
+        },
+        {
+          "type": "plan",
+          "path": "specs/276_task_order_interactive_management/plans/01_task-order-interactive.md",
+          "summary": "Single-phase plan to add Section 6.7 to review.md"
+        },
+        {
+          "type": "summary",
+          "path": "specs/276_task_order_interactive_management/summaries/01_task-order-interactive-summary.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "completion_summary": "Added Section 6.7 (Interactive Task Order Management) to /review command with 6 subsections: skip conditions, summary display, category placement override via AskUserQuestion, dependency updates with multiSelect, apply changes procedure, and conditional goal statement update.",
+      "claudemd_suggestions": "Added Section 6.7 to .claude/commands/review.md for interactive Task Order management between Section 6.6 and Section 7; updated Standards Reference for dependency support"
     },
     {
       "project_number": 87,

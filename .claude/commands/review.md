@@ -1158,6 +1158,313 @@ Use Edit tool to apply all changes to TODO.md. If multiple edits are needed (cat
 
 **Safety**: Read TODO.md after edits to verify the Task Order section is well-formed and no content outside the section was affected.
 
+### 6.7. Interactive Task Order Management
+
+After automated pruning (Section 6.5) and insertion (Section 6.6), present interactive prompts so the user can override category placement, declare dependencies, and update the goal statement.
+
+#### 6.7.1. Skip Conditions
+
+Skip this section entirely if ALL of the following are true:
+- `task_order_state.exists == false` AND no new tasks were created in Section 5.6
+- No changes were made by Section 6.5 (no pruning) and no changes by Section 6.6 (no insertions)
+
+```
+changes_made = (pruned_tasks.length > 0) or (tasks_created.length > 0)
+if not changes_made and not task_order_state.exists:
+  skip to Section 7
+```
+
+#### 6.7.2. Present Task Order Summary
+
+Display a summary of all Task Order changes made so far:
+
+```
+Task Order changes:
+- Pruned: {pruned_tasks.length} tasks ({pruned_task_numbers})
+- Added: {tasks_created.length} tasks ({new_task_numbers})
+- Categories: {list of current category names from task_order_state.categories}
+```
+
+This gives the user context before making interactive decisions.
+
+#### 6.7.3. Category Placement Override
+
+**Condition**: Only present if `tasks_created.length > 0` (new tasks were inserted by Section 6.6).
+
+Ask user to confirm or override the automatic category assignments:
+
+```json
+{
+  "question": "Confirm category placement for new tasks?",
+  "header": "Task Order Categories",
+  "multiSelect": false,
+  "options": [
+    {
+      "label": "Accept defaults",
+      "description": "Keep automatic category assignments from Section 6.6"
+    },
+    {
+      "label": "Reassign categories",
+      "description": "Choose categories for each new task individually"
+    },
+    {
+      "label": "Skip Task Order update",
+      "description": "Revert all Task Order changes from this review"
+    }
+  ]
+}
+```
+
+**Selection handling:**
+
+**"Accept defaults"**: Proceed to Section 6.7.4 with current category assignments unchanged.
+
+**"Reassign categories"**: For each new task, present a category selection:
+
+```json
+{
+  "question": "Which category for task #{N}: {title}?",
+  "header": "Category for #{N}",
+  "multiSelect": false,
+  "options": [
+    {
+      "label": "Critical Path",
+      "description": "Main dependency chain - highest priority work"
+    },
+    {
+      "label": "Code Cleanup",
+      "description": "Refactoring and technical debt"
+    },
+    {
+      "label": "Experimental",
+      "description": "Uncertain outcomes, exploratory work"
+    },
+    {
+      "label": "Deferred",
+      "description": "Postponed to a future review cycle"
+    },
+    {
+      "label": "Backlog",
+      "description": "Unordered, low priority"
+    }
+  ]
+}
+```
+
+For each task, record the user's chosen category:
+```
+category_overrides[task.number] = selected_category
+```
+
+Then move tasks to user-specified categories:
+```
+for task_num, new_category in category_overrides:
+  remove task_num from its current category in task_order_state
+  add task_num to new_category in task_order_state
+```
+
+**"Skip Task Order update"**: Revert all Task Order modifications from Sections 6.5 and 6.6. Restore the original Task Order content from the pre-edit snapshot. Skip Sections 6.7.4 through 6.7.6 and proceed directly to Section 7.
+
+#### 6.7.4. Dependency Updates
+
+**Condition**: Only present if `tasks_created.length > 0` AND `task_order_state.tasks.length > tasks_created.length` (there are both new and existing tasks).
+
+Ask whether new tasks depend on existing tasks:
+
+```json
+{
+  "question": "Do any new tasks have dependencies on existing tasks?",
+  "header": "Task Dependencies",
+  "multiSelect": false,
+  "options": [
+    {
+      "label": "No dependencies",
+      "description": "New tasks are independent of existing Task Order tasks"
+    },
+    {
+      "label": "Add dependencies",
+      "description": "Specify which existing tasks new tasks depend on"
+    },
+    {
+      "label": "Skip",
+      "description": "Handle dependencies manually later"
+    }
+  ]
+}
+```
+
+**Selection handling:**
+
+**"No dependencies"**: Proceed to Section 6.7.5 with no dependency changes.
+
+**"Add dependencies"**: For each new task, present a multiSelect of existing tasks:
+
+```json
+{
+  "question": "Which tasks does #{N}: {title} depend on? (select all that apply)",
+  "header": "Dependencies for #{N}",
+  "multiSelect": true,
+  "options": [
+    {
+      "label": "Task #{X}: {title}",
+      "description": "[{status}] in {category_name}"
+    }
+  ]
+}
+```
+
+Options are generated from all tasks currently in the Task Order (both pre-existing and newly added), excluding the task being configured. Sort options by category, then by task number.
+
+For each task, record selected dependencies:
+```
+new_dependencies[task.number] = [selected_task_numbers]
+```
+
+**"Skip"**: Proceed to Section 6.7.5 with no dependency changes.
+
+#### 6.7.5. Apply Interactive Changes
+
+Apply all collected interactive changes to the Task Order:
+
+**Step 1: Category reassignments**
+```
+for task_num, new_category in category_overrides:
+  # Remove entry from old category
+  old_category = find_category_containing(task_num)
+  remove_entry(old_category, task_num)
+
+  # Add entry to new category (create category if missing)
+  if new_category not in task_order_state.categories:
+    create_category(new_category, next_category_number)
+  add_entry(new_category, task_num, task_title, task_status, task_deps)
+```
+
+**Step 2: Dependency chain updates**
+```
+for task_num, deps in new_dependencies:
+  # Update the task entry's dependency list
+  update_task_deps(task_num, deps)
+
+  # Add to dependency chain code blocks
+  for dep in deps:
+    append_to_chain(dep, task_num)
+```
+
+**Step 3: Renumber categories if needed**
+
+If categories were created or emptied during reassignment:
+```
+# Remove empty categories (no tasks remaining)
+remove_empty_categories()
+
+# Renumber remaining categories sequentially
+renumber_categories(start=1)
+```
+
+**Step 4: Regenerate dependency chain code blocks**
+
+Rebuild all dependency chain code blocks from the updated dependency graph:
+```
+chains = build_dependency_chains(task_order_state)
+for category in task_order_state.categories:
+  if category.has_dependencies:
+    update_chain_block(category, chains)
+```
+
+**Step 5: Update timestamp**
+```
+new_timestamp = "*Updated {YYYY-MM-DD}. Interactive Task Order management applied.*"
+```
+
+**Step 6: Write to TODO.md**
+
+Use Edit tool to apply all changes. Read TODO.md after edits to verify well-formedness.
+
+#### 6.7.6. Goal Statement Update
+
+**Condition**: Only present if significant changes were made:
+- 5 or more tasks changed (pruned + added + reassigned), OR
+- Critical Path category was modified (tasks added, removed, or moved in/out)
+
+```json
+{
+  "question": "Update the Task Order goal statement?",
+  "header": "Task Order Goal",
+  "multiSelect": false,
+  "options": [
+    {
+      "label": "Keep current",
+      "description": "Goal: {task_order_state.goal}"
+    },
+    {
+      "label": "Update goal",
+      "description": "Enter a new goal statement for the Task Order"
+    }
+  ]
+}
+```
+
+**Selection handling:**
+
+**"Keep current"**: No changes to goal statement.
+
+**"Update goal"**: Ask for the new goal text:
+
+```json
+{
+  "question": "Enter the new Task Order goal statement:",
+  "header": "New Goal",
+  "multiSelect": false,
+  "options": [
+    {
+      "label": "Custom goal",
+      "description": "Type your goal statement"
+    }
+  ]
+}
+```
+
+Since AskUserQuestion does not support free-text input, generate 3-4 suggested goal statements based on current Task Order content:
+
+```json
+{
+  "question": "Select a new goal statement:",
+  "header": "New Goal",
+  "multiSelect": false,
+  "options": [
+    {
+      "label": "{auto_generated_goal_1}",
+      "description": "Based on Critical Path tasks"
+    },
+    {
+      "label": "{auto_generated_goal_2}",
+      "description": "Based on overall task distribution"
+    },
+    {
+      "label": "{auto_generated_goal_3}",
+      "description": "Based on recent review findings"
+    },
+    {
+      "label": "Keep current",
+      "description": "Goal: {task_order_state.goal}"
+    }
+  ]
+}
+```
+
+Generate goal suggestions by analyzing:
+- Critical Path task titles and themes
+- Distribution of tasks across categories
+- Review findings from Section 3
+
+Apply selected goal:
+```
+task_order_state.goal = selected_goal
+# Use Edit tool to replace goal line in TODO.md
+old_string = "**Goal**: {old_goal}"
+new_string = "**Goal**: {selected_goal}"
+```
+
 ### 7. Git Commit
 
 Commit review report, state files, task state, and any roadmap changes:
@@ -1186,7 +1493,7 @@ review: {scope} code review
 
 Roadmap: {annotations_made} items annotated
 Tasks: {tasks_created} created ({grouped_count} grouped, {individual_count} individual)
-Task Order: {pruned_count} tasks pruned
+Task Order: {pruned_count} pruned, {inserted_count} added, {reassigned_count} reassigned
 
 Session: {session_id}
 
@@ -1208,15 +1515,13 @@ This command implements the multi-task creation pattern. See `.claude/docs/refer
 | Discovery | Yes | Code analysis + roadmap items |
 | Selection | Yes | Tier-1 group selection, Tier-2 granularity |
 | Grouping | Yes | file_section + issue_type clustering |
-| Dependencies | No | Not implemented |
+| Dependencies | Yes | Interactive dependency selection (Section 6.7.4) |
 | Ordering | No | Sequential creation |
 | Visualization | No | Not implemented |
 | Confirmation | Yes | Implicit via selection |
 | State Updates | Yes | Atomic updates (Section 5.6.3) |
 
-**Gap**: No dependency support between created tasks. When issues have natural ordering (e.g., "fix API" before "update tests"), users cannot specify this relationship.
-
-**Future Enhancement**: Add dependency interview in Tier-2 selection for groups that have natural execution order.
+**Note**: Dependency support for Task Order tasks is provided via Section 6.7.4 (Interactive Dependency Updates). Direct dependency declaration between newly created review tasks at creation time is not yet supported.
 
 ### 8. Output
 

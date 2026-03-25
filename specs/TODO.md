@@ -6,7 +6,7 @@ next_project_number: 277
 
 ## Task Order
 
-*Updated 2026-03-24. Task 275 completed (Task Order insertion added to /review). Tasks 274, 275 both done; 276 now unblocked.*
+*Updated 2026-03-24. All 5 Task Order tasks (272-276) completed. Full /review integration: parsing, pruning, insertion, and interactive management.*
 
 **Goal**: Add Task Order section management to /review command.
 
@@ -21,7 +21,7 @@ next_project_number: 277
 2. **273** [COMPLETED] — Add Task Order parsing to /review command (depends: 272)
 3. **274** [COMPLETED] — Add Task Order pruning for completed/abandoned tasks (depends: 273)
 4. **275** [COMPLETED] — Add Task Order insertion for newly created tasks (depends: 273)
-5. **276** [NOT STARTED] — Add interactive category placement and dependency management (depends: 274, 275)
+5. **276** [COMPLETED] — Add interactive category placement and dependency management (depends: 274, 275)
 
 ### 2. Other Tasks
 
@@ -32,9 +32,12 @@ next_project_number: 277
 
 ### 276. Add interactive Task Order management to /review
 - **Effort**: 2 hours
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Tasks #274, #275
+- **Research**: [01_task-order-interactive.md](276_task_order_interactive_management/reports/01_task-order-interactive.md)
+- **Plan**: [01_task-order-interactive.md](276_task_order_interactive_management/plans/01_task-order-interactive.md)
+- **Summary**: [01_task-order-interactive-summary.md](276_task_order_interactive_management/summaries/01_task-order-interactive-summary.md)
 
 **Description**: Add AskUserQuestion prompts to /review for interactive Task Order management. When creating new tasks, prompt user for category placement (Critical Path, Code Cleanup, Experimental, Deferred, Backlog). When updating existing tasks, prompt for dependency chain updates. Include option to skip Task Order updates for quick reviews.
 
