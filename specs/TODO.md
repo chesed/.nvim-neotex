@@ -6,7 +6,7 @@ next_project_number: 277
 
 ## Task Order
 
-*Updated 2026-03-24. Task 274 completed (Task Order pruning added to /review). Task 276 depends on 274, 275.*
+*Updated 2026-03-24. Task 275 completed (Task Order insertion added to /review). Tasks 274, 275 both done; 276 now unblocked.*
 
 **Goal**: Add Task Order section management to /review command.
 
@@ -20,7 +20,7 @@ next_project_number: 277
 1. **272** [COMPLETED] — Define Task Order schema and format specification
 2. **273** [COMPLETED] — Add Task Order parsing to /review command (depends: 272)
 3. **274** [COMPLETED] — Add Task Order pruning for completed/abandoned tasks (depends: 273)
-4. **275** [NOT STARTED] — Add Task Order insertion for newly created tasks (depends: 273)
+4. **275** [COMPLETED] — Add Task Order insertion for newly created tasks (depends: 273)
 5. **276** [NOT STARTED] — Add interactive category placement and dependency management (depends: 274, 275)
 
 ### 2. Other Tasks
@@ -42,9 +42,11 @@ next_project_number: 277
 
 ### 275. Add Task Order insertion for newly created review tasks
 - **Effort**: 1.5 hours
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #273
+- **Plan**: [01_task-order-insertion.md](275_task_order_insertion/plans/01_task-order-insertion.md)
+- **Summary**: [01_task-order-insertion-summary.md](275_task_order_insertion/summaries/01_task-order-insertion-summary.md)
 
 **Description**: Extend /review to add newly created tasks to the Task Order section. After task creation (Section 5.6), insert new task numbers into appropriate Task Order categories based on severity and grouping. Update dependency chains if new tasks relate to existing ones. Maintain Task Order timestamp and goal statement.
 

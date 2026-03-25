@@ -97,14 +97,34 @@
     {
       "project_number": 275,
       "project_name": "task_order_insertion",
-      "status": "not_started",
+      "status": "completed",
       "language": "meta",
       "effort": "1.5 hours",
       "created": "2026-03-25T05:44:46Z",
-      "last_updated": "2026-03-25T05:44:46Z",
+      "last_updated": "2026-03-24T00:00:00Z",
       "dependencies": [
         273
-      ]
+      ],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/275_task_order_insertion/reports/01_task-order-insertion.md",
+          "summary": "Research on insertion strategy, category mapping, and edge cases"
+        },
+        {
+          "type": "plan",
+          "path": "specs/275_task_order_insertion/plans/01_task-order-insertion.md",
+          "summary": "Single-phase plan to add Section 6.6 to review.md"
+        },
+        {
+          "type": "summary",
+          "path": "specs/275_task_order_insertion/summaries/01_task-order-insertion-summary.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "session_id": "sess_1774418015_604b89",
+      "completion_summary": "Added Section 6.6 (Insert New Tasks into Task Order) to /review command with 9 subsections covering existence checks, category placement, entry generation, insertion, missing category creation, dependency chain updates, new Task Order generation, timestamp updates, and write verification.",
+      "claudemd_suggestions": "Added Section 6.6 to .claude/commands/review.md for Task Order insertion between Section 6.5 (Prune Task Order) and Section 7 (Git Commit)"
     },
     {
       "project_number": 276,
