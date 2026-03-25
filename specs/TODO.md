@@ -12,10 +12,10 @@ next_project_number: 281
 
 ### 1. Active Tasks
 
-- **277** [RESEARCHED] -- Research PDF annotation extraction tools
-- **278** [PLANNED] -- Create scrape-agent for PDF annotation extraction (depends on #277)
-- **279** [PLANNED] -- Create skill-scrape and /scrape command (depends on #278)
-- **280** [PLANNED] -- Update filetypes extension manifest and docs (depends on #279)
+- **277** [COMPLETED] -- Research PDF annotation extraction tools
+- **278** [COMPLETED] -- Create scrape-agent for PDF annotation extraction (depends on #277)
+- **279** [COMPLETED] -- Create skill-scrape and /scrape command (depends on #278)
+- **280** [COMPLETED] -- Update filetypes extension manifest and docs (depends on #279)
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
@@ -23,7 +23,7 @@ next_project_number: 281
 
 ### 277. Research PDF annotation extraction tools
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](277_research_pdf_annotation_tools/reports/01_meta-research.md)
@@ -34,7 +34,7 @@ next_project_number: 281
 
 ### 278. Create scrape-agent for PDF annotation extraction
 - **Effort**: 1-2 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #277
 - **Research**: [01_meta-research.md](278_create_scrape_agent/reports/01_meta-research.md)
@@ -46,7 +46,7 @@ next_project_number: 281
 
 ### 279. Create skill-scrape and /scrape command
 - **Effort**: 1-2 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #278
 - **Research**: [01_meta-research.md](279_create_skill_scrape_command/reports/01_meta-research.md)
@@ -58,7 +58,7 @@ next_project_number: 281
 
 ### 280. Update filetypes extension manifest and documentation
 - **Effort**: 30 minutes
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #279
 - **Research**: [01_meta-research.md](280_update_filetypes_extension_manifest/reports/01_meta-research.md)

@@ -1,6 +1,6 @@
 {
   "name": "filetypes",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "File format conversion and manipulation for documents, spreadsheets, and presentations",
   "language": null,
   "dependencies": [],
@@ -9,17 +9,20 @@
       "filetypes-router-agent.md",
       "document-agent.md",
       "spreadsheet-agent.md",
-      "presentation-agent.md"
+      "presentation-agent.md",
+      "scrape-agent.md"
     ],
     "skills": [
       "skill-filetypes",
       "skill-spreadsheet",
-      "skill-presentation"
+      "skill-presentation",
+      "skill-scrape"
     ],
     "commands": [
       "convert.md",
       "table.md",
-      "slides.md"
+      "slides.md",
+      "scrape.md"
     ],
     "rules": [],
     "context": [

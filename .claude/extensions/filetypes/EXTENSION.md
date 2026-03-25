@@ -10,6 +10,7 @@ This project includes comprehensive file format conversion and manipulation via 
 | skill-filetypes | document-agent | Document format conversion (PDF/DOCX/Markdown) |
 | skill-spreadsheet | spreadsheet-agent | Spreadsheet to LaTeX/Typst table conversion |
 | skill-presentation | presentation-agent | Presentation extraction and slide generation |
+| skill-scrape | scrape-agent | PDF annotation extraction |
 
 ### Supported Conversions
 
@@ -42,6 +43,15 @@ This project includes comprehensive file format conversion and manipulation via 
 | PPTX | Touying (Typst) | python-pptx | markitdown |
 | Markdown | PPTX | pandoc | - |
 
+#### PDF Annotation Extraction (via /scrape)
+
+| Source | Output Format | Primary Tool | Fallback 1 | Fallback 2 |
+|--------|---------------|--------------|------------|------------|
+| PDF    | Markdown      | PyMuPDF      | pypdf      | pdfannots  |
+| PDF    | JSON          | PyMuPDF      | pypdf      | pdfannots  |
+
+Supported annotation types: highlight, note, underline, strikeout, freetext, stamp, ink
+
 ### Command Usage
 
 ```bash
@@ -59,6 +69,12 @@ This project includes comprehensive file format conversion and manipulation via 
 /slides presentation.pptx                # -> presentation.tex (Beamer)
 /slides deck.pptx slides.typ --format polylux
 /slides talk.pptx talk.typ --format touying
+
+# PDF annotation extraction
+/scrape paper.pdf                              # -> paper_annotations.md
+/scrape paper.pdf notes.md                     # -> notes.md
+/scrape paper.pdf --format json                # -> paper_annotations.md (JSON)
+/scrape paper.pdf --types highlight,note       # -> only highlights and notes
 ```
 
 ### Prerequisites
@@ -79,6 +95,12 @@ Install conversion tools based on your needs:
 - `python-pptx`: `pip install python-pptx`
 - `pandoc`: For Beamer output
 
+**PDF Annotation Extraction**:
+- `pymupdf`: `pip install pymupdf` (recommended, best annotation coverage)
+- `pypdf`: `pip install pypdf` (pure Python fallback)
+- `pdfannots`: `pip install pdfannots` (CLI fallback)
+- `pikepdf`: `pip install pikepdf` (optional, for encrypted PDFs)
+
 See `context/project/filetypes/tools/dependency-guide.md` for platform-specific installation instructions.
 
 ### NixOS Quick Install
@@ -88,7 +110,7 @@ See `context/project/filetypes/tools/dependency-guide.md` for platform-specific 
 home.packages = with pkgs; [
   pandoc typst
   (python3.withPackages (ps: with ps; [
-    markitdown openpyxl pandas python-pptx xlsx2csv
+    markitdown openpyxl pandas python-pptx xlsx2csv pymupdf pypdf pikepdf
   ]))
 ];
 ```
@@ -105,6 +127,10 @@ home.packages = with pkgs; [
 | python-pptx | PPTX extraction | /slides |
 | xlsx2csv | XLSX fallback | /table (fallback) |
 | pdflatex | LaTeX compilation | Beamer PDF output |
+| pymupdf   | PDF annotation extraction     | /scrape (primary)    |
+| pypdf     | PDF annotation extraction     | /scrape (fallback)   |
+| pdfannots | PDF annotation CLI extraction | /scrape (fallback)   |
+| pikepdf   | Decrypt encrypted PDFs        | /scrape (preprocess) |
 
 ### Context Documentation
 

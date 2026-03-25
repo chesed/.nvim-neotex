@@ -9,7 +9,8 @@
         "filetypes-router-agent",
         "document-agent",
         "spreadsheet-agent",
-        "presentation-agent"
+        "presentation-agent",
+        "scrape-agent"
       ],
       "languages": [],
       "commands": ["/convert", "/table", "/slides"]
@@ -24,7 +25,8 @@
         "filetypes-router-agent",
         "document-agent",
         "spreadsheet-agent",
-        "presentation-agent"
+        "presentation-agent",
+        "scrape-agent"
       ],
       "languages": [],
       "commands": ["/convert", "/table", "/slides"]
