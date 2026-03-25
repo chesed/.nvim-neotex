@@ -197,6 +197,133 @@ For high-confidence matches, update ROAD_MAP.md to mark items as complete.
 }
 ```
 
+### 2.6. Parse Task Order
+
+**Context**: Load @.claude/context/core/formats/task-order-format.md for parsing patterns.
+
+Read `specs/TODO.md` and extract the Task Order section if present.
+
+**1. Extract Task Order lines:**
+```bash
+# Find lines between "## Task Order" and "## Tasks"
+task_order_start=$(grep -n "^## Task Order$" specs/TODO.md | head -1 | cut -d: -f1)
+task_order_end=$(grep -n "^## Tasks$" specs/TODO.md | head -1 | cut -d: -f1)
+
+if [ -z "$task_order_start" ]; then
+  # No Task Order section -- set exists=false and skip
+  task_order_state='{"exists": false}'
+else
+  # Extract lines between headers (exclusive of both)
+  task_order_lines=$(sed -n "$((task_order_start+1)),$((task_order_end-1))p" specs/TODO.md)
+fi
+```
+
+**2. Parse metadata:**
+
+Extract timestamp and goal from the Task Order lines:
+
+| Element | Regex | Capture Groups |
+|---------|-------|----------------|
+| Timestamp | `^\*Updated (\d{4}-\d{2}-\d{2})\. (.+)\*$` | (1) date, (2) changelog |
+| Goal | `^\*\*Goal\*\*: (.+)$` | (1) goal text |
+
+**3. Parse category subsections:**
+
+For each line matching `^### (\d+)\. (.+?)(?:\s+--\s+(.+))?$`:
+- Capture (1) category number, (2) category name, (3) optional subtitle
+- Collect all lines until the next `###` header or end of section
+
+**4. Parse task entries within each category:**
+
+| Entry Type | Regex | Captures |
+|------------|-------|----------|
+| Ordered | `^\d+\.\s+\*\*(\d+)\*\*\s+\[([A-Z ]+)\]\s+--\s+(.+)$` | (1) task number, (2) status, (3) description |
+| Unordered | `^-\s+\*\*(\d+)\*\*\s+\[([A-Z ]+)\]\s+--\s+(.+)$` | (1) task number, (2) status, (3) description |
+
+For each matched entry, also check for inline dependency notes:
+- Regex: `\(depends on ([\d,\s]+)\)`
+- Extract referenced task numbers as array
+
+**5. Parse dependency chains from code blocks:**
+
+Within each category, find lines between `` ``` `` markers. For each line in a code block, extract all arrow pairs:
+- Regex: `(\d+)\s*[→->]+\s*(\d+)` (matches both Unicode arrow and ASCII)
+- Build ordered chain: `[63, 58, 59, 60]` from `63 → 58 → 59 → 60`
+
+**6. Build dependency graph:**
+
+From dependency chains and inline dependency notes, construct an adjacency list where each key maps to its prerequisite tasks:
+```
+For chain [63, 58, 59, 60]:
+  63 -> [] (no prerequisites)
+  58 -> [63]
+  59 -> [58]
+  60 -> [59]
+
+For inline "(depends on 18)":
+  20 -> [18]
+```
+
+**7. Build `task_order_state` structure:**
+
+```json
+{
+  "exists": true,
+  "timestamp": "2026-03-24",
+  "changelog": "Task 272 completed. Created 5 tasks for /review Task Order management feature.",
+  "goal": "Add Task Order section management to /review command.",
+  "categories": [
+    {
+      "number": 1,
+      "name": "Task Order Feature",
+      "subtitle": "dependency chain",
+      "dependency_chain": [272, 273, 274, 275, 276],
+      "tasks": [
+        {
+          "task_number": 272,
+          "status": "COMPLETED",
+          "description": "Define Task Order schema and format specification",
+          "list_type": "ordered",
+          "inline_deps": []
+        },
+        {
+          "task_number": 273,
+          "status": "NOT STARTED",
+          "description": "Add Task Order parsing to /review command (depends: 272)",
+          "list_type": "ordered",
+          "inline_deps": [272]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Other Tasks",
+      "subtitle": null,
+      "dependency_chain": [],
+      "tasks": [
+        {
+          "task_number": 87,
+          "status": "RESEARCHED",
+          "description": "Investigate terminal directory change in wezterm",
+          "list_type": "unordered",
+          "inline_deps": []
+        }
+      ]
+    }
+  ],
+  "all_task_numbers": [272, 273, 274, 275, 276, 87, 78],
+  "dependency_graph": {
+    "272": [],
+    "273": [272],
+    "274": [273],
+    "275": [273],
+    "276": [274, 275]
+  }
+}
+```
+
+**Error handling**: If `## Task Order` does not exist in TODO.md, set `task_order_state.exists = false` and continue review without Task Order operations. Downstream sections (pruning, insertion, interactive management) check `task_order_state.exists` before operating.
+
 ### 3. Analyze Findings
 
 Categorize issues:

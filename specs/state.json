@@ -34,14 +34,34 @@
     {
       "project_number": 273,
       "project_name": "task_order_parsing",
-      "status": "not_started",
+      "status": "completed",
       "language": "meta",
       "effort": "1.5 hours",
       "created": "2026-03-25T05:44:46Z",
-      "last_updated": "2026-03-25T05:44:46Z",
+      "last_updated": "2026-03-24T00:00:00Z",
       "dependencies": [
         272
-      ]
+      ],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/273_task_order_parsing/reports/01_task-order-parsing.md",
+          "summary": "Research on Task Order parsing integration points and strategy"
+        },
+        {
+          "type": "plan",
+          "path": "specs/273_task_order_parsing/plans/01_task-order-parsing.md",
+          "summary": "Single-phase plan to add Section 2.6 to review.md"
+        },
+        {
+          "type": "summary",
+          "path": "specs/273_task_order_parsing/summaries/01_task-order-parsing-summary.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "session_id": "sess_1774417844_e1091f",
+      "completion_summary": "Added Section 2.6 (Parse Task Order) to /review command with 7-step parsing algorithm, regex tables, dependency graph construction, and task_order_state JSON structure.",
+      "claudemd_suggestions": "Added Section 2.6 to .claude/commands/review.md for Task Order parsing between Sections 2.5.3 and 3"
     },
     {
       "project_number": 274,

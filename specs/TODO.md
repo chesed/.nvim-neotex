@@ -6,7 +6,7 @@ next_project_number: 277
 
 ## Task Order
 
-*Updated 2026-03-24. Task 272 completed (Task Order format specification). Created 5 tasks for /review Task Order management feature.*
+*Updated 2026-03-24. Task 273 completed (Task Order parsing added to /review). Tasks 274, 275 now unblocked.*
 
 **Goal**: Add Task Order section management to /review command.
 
@@ -18,7 +18,7 @@ next_project_number: 277
 ```
 
 1. **272** [COMPLETED] — Define Task Order schema and format specification
-2. **273** [NOT STARTED] — Add Task Order parsing to /review command (depends: 272)
+2. **273** [COMPLETED] — Add Task Order parsing to /review command (depends: 272)
 3. **274** [NOT STARTED] — Add Task Order pruning for completed/abandoned tasks (depends: 273)
 4. **275** [NOT STARTED] — Add Task Order insertion for newly created tasks (depends: 273)
 5. **276** [NOT STARTED] — Add interactive category placement and dependency management (depends: 274, 275)
@@ -62,9 +62,11 @@ next_project_number: 277
 
 ### 273. Add Task Order parsing to /review command
 - **Effort**: 1.5 hours
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #272
+- **Plan**: [01_task-order-parsing.md](273_task_order_parsing/plans/01_task-order-parsing.md)
+- **Summary**: [01_task-order-parsing-summary.md](273_task_order_parsing/summaries/01_task-order-parsing-summary.md)
 
 **Description**: Add Task Order section parsing to /review command. Read TODO.md and extract: update timestamp, goal statement, category sections (Critical Path, Code Cleanup, Experimental, Deferred, Backlog), dependency chains (arrow syntax), and per-task status markers. Store parsed data in `task_order_state` structure for manipulation by subsequent phases.
 
