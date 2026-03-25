@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "next_project_number": 281,
+  "next_project_number": 286,
   "active_projects": [
     {
       "project_number": 87,
@@ -144,6 +144,98 @@
         }
       ],
       "completion_summary": "Updated manifest.json v2.1.0, EXTENSION.md, and index-entries.json with scrape components"
+    },
+    {
+      "project_number": 281,
+      "project_name": "scope_unscoped_rules",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1 hour",
+      "created": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T22:51:00Z",
+      "dependencies": [],
+      "session_id": "sess_1774482683_962b30",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/281_scope_unscoped_rules/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 282,
+      "project_name": "slim_nvim_claudemd",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1 hour",
+      "created": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T22:51:00Z",
+      "dependencies": [],
+      "session_id": "sess_1774482683_962b30",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/282_slim_nvim_claudemd/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 283,
+      "project_name": "extension_slim_standard",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1-2 hours",
+      "created": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T22:51:00Z",
+      "dependencies": [],
+      "session_id": "sess_1774482683_962b30",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/283_extension_slim_standard/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 284,
+      "project_name": "migrate_large_extensions",
+      "status": "researched",
+      "language": "meta",
+      "effort": "2-3 hours",
+      "created": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T22:51:00Z",
+      "dependencies": [
+        283
+      ],
+      "session_id": "sess_1774482683_962b30",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/284_migrate_large_extensions/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 285,
+      "project_name": "slim_parent_claudemd",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1 hour",
+      "created": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T22:51:00Z",
+      "dependencies": [],
+      "session_id": "sess_1774482683_962b30",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/285_slim_parent_claudemd/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
     }
   ],
   "completed_projects": [],

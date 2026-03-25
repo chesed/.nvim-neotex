@@ -1,17 +1,22 @@
 ---
-next_project_number: 281
+next_project_number: 286
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-25. 6 active tasks remaining.*
+*Updated 2026-03-25. 11 active tasks remaining.*
 
-**Goal**: Complete pending neovim configuration tasks and add PDF annotation scraping capability.
+**Goal**: Optimize context window usage and complete pending tasks.
 
 ### 1. Active Tasks
 
+- **281** [RESEARCHED] -- Scope unscoped rules (add paths: frontmatter, deduplicate)
+- **282** [RESEARCHED] -- Slim nvim/CLAUDE.md (move reference material to context)
+- **283** [RESEARCHED] -- Create EXTENSION.md slim-down standard
+- **284** [RESEARCHED] -- Migrate large extensions to slim pattern (depends on #283)
+- **285** [RESEARCHED] -- Slim parent CLAUDE.md (convert to pointer file)
 - **277** [COMPLETED] -- Research PDF annotation extraction tools
 - **278** [COMPLETED] -- Create scrape-agent for PDF annotation extraction (depends on #277)
 - **279** [COMPLETED] -- Create skill-scrape and /scrape command (depends on #278)
@@ -20,6 +25,61 @@ next_project_number: 281
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 281. Scope unscoped rules
+- **Effort**: 1 hour
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](281_scope_unscoped_rules/reports/01_meta-research.md)
+
+**Description**: Add `paths:` frontmatter to `git-workflow.md` and `neovim-lua.md` in `~/.config/.claude/rules/` so they only load on relevant files. Deduplicate `git-workflow.md` which exists in near-identical form in both `~/.config/.claude/rules/` and `~/.config/nvim/.claude/rules/`. Saves ~310 lines of context per file touch in non-matching projects.
+
+---
+
+### 282. Slim nvim/CLAUDE.md
+- **Effort**: 1 hour
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](282_slim_nvim_claudemd/reports/01_meta-research.md)
+
+**Description**: Move reference material from `nvim/CLAUDE.md` (224 lines) to on-demand context files: box-drawing guide (52 lines), emoji policy (32 lines), documentation policy template (38 lines), Lua assertion patterns (39 lines). Keeps essential coding standards, commands, and project organization. Target: ~85 lines.
+
+---
+
+### 283. Create EXTENSION.md slim-down standard
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](283_extension_slim_standard/reports/01_meta-research.md)
+
+**Description**: Create authoring standard limiting EXTENSION.md to ~50-60 lines of essential routing info (language routing table, command list, context pointers). Detailed docs, examples, and migration guides move to context files loaded on-demand via index.json. Foundation for Task #284.
+
+---
+
+### 284. Migrate large extensions to slim pattern
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #283
+- **Research**: [01_meta-research.md](284_migrate_large_extensions/reports/01_meta-research.md)
+
+**Description**: Apply slim-down pattern to 5 largest EXTENSION.md files: founder (234->50), present (216->50), filetypes (143->50), memory (91->40), web (80->40). Move documentation to context files, update index-entries.json, verify extension loading. Target: ~534 lines saved.
+
+---
+
+### 285. Slim parent CLAUDE.md
+- **Effort**: 1 hour
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](285_slim_parent_claudemd/reports/01_meta-research.md)
+
+**Description**: Convert `~/.config/CLAUDE.md` (224 lines) to a slim pointer file (~15-20 lines), matching the pattern of `~/.config/.claude/CLAUDE.md`. Move agent-system standards sections to `.claude/CLAUDE.md` where they belong. Saves ~200 lines from cross-project context loading.
+
+---
 
 ### 277. Research PDF annotation extraction tools
 - **Effort**: 1-2 hours
