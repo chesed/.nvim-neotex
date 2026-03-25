@@ -66,14 +66,33 @@
     {
       "project_number": 274,
       "project_name": "task_order_pruning",
-      "status": "not_started",
+      "status": "completed",
       "language": "meta",
       "effort": "1 hour",
       "created": "2026-03-25T05:44:46Z",
-      "last_updated": "2026-03-25T05:44:46Z",
+      "last_updated": "2026-03-24T00:00:00Z",
       "dependencies": [
         273
-      ]
+      ],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/274_task_order_pruning/reports/01_task-order-pruning.md",
+          "summary": "Research on pruning design decisions and insertion point"
+        },
+        {
+          "type": "plan",
+          "path": "specs/274_task_order_pruning/plans/01_task-order-pruning.md",
+          "summary": "Single-phase plan to add Section 6.5 to review.md"
+        },
+        {
+          "type": "summary",
+          "path": "specs/274_task_order_pruning/summaries/01_task-order-pruning-summary.md",
+          "summary": "Implementation summary with verification results"
+        }
+      ],
+      "completion_summary": "Added Section 6.5 (Prune Task Order) to /review command with 6 subsections covering task identification, category cleanup, dependency chain reconnection, inline reference updates, timestamp management, and TODO.md writing.",
+      "claudemd_suggestions": "Added Section 6.5 to .claude/commands/review.md for Task Order pruning between Section 6 (Update Registries) and Section 7 (Git Commit)"
     },
     {
       "project_number": 275,

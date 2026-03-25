@@ -6,7 +6,7 @@ next_project_number: 277
 
 ## Task Order
 
-*Updated 2026-03-24. Task 273 completed (Task Order parsing added to /review). Tasks 274, 275 now unblocked.*
+*Updated 2026-03-24. Task 274 completed (Task Order pruning added to /review). Task 276 depends on 274, 275.*
 
 **Goal**: Add Task Order section management to /review command.
 
@@ -19,7 +19,7 @@ next_project_number: 277
 
 1. **272** [COMPLETED] — Define Task Order schema and format specification
 2. **273** [COMPLETED] — Add Task Order parsing to /review command (depends: 272)
-3. **274** [NOT STARTED] — Add Task Order pruning for completed/abandoned tasks (depends: 273)
+3. **274** [COMPLETED] — Add Task Order pruning for completed/abandoned tasks (depends: 273)
 4. **275** [NOT STARTED] — Add Task Order insertion for newly created tasks (depends: 273)
 5. **276** [NOT STARTED] — Add interactive category placement and dependency management (depends: 274, 275)
 
@@ -52,9 +52,12 @@ next_project_number: 277
 
 ### 274. Add Task Order pruning to /review
 - **Effort**: 1 hour
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #273
+- **Research**: [01_task-order-pruning.md](274_task_order_pruning/reports/01_task-order-pruning.md)
+- **Plan**: [01_task-order-pruning.md](274_task_order_pruning/plans/01_task-order-pruning.md)
+- **Summary**: [01_task-order-pruning-summary.md](274_task_order_pruning/summaries/01_task-order-pruning-summary.md)
 
 **Description**: Extend /review to remove completed, abandoned, and superseded tasks from the Task Order section. During review postflight, scan Task Order for task numbers whose status is [COMPLETED], [ABANDONED], or [EXPANDED], and remove them from category lists and dependency chains. Recompute dependency arrows after removal.
 

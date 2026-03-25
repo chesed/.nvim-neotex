@@ -826,6 +826,338 @@ If reviewing specific domains, update relevant registries:
 - `.claude/docs/registries/lean-files.md`
 - `.claude/docs/registries/documentation.md`
 
+### 6.5. Prune Task Order
+
+Remove completed, abandoned, and superseded tasks from the Task Order section in TODO.md.
+
+**Skip condition**: If `task_order_state.exists == false`, skip this section entirely.
+
+#### 6.5.1. Identify Tasks to Prune
+
+Cross-reference `task_order_state.all_task_numbers` with current statuses from state.json:
+
+```bash
+# Build list of task numbers to prune
+pruned_tasks=()
+for task_num in ${task_order_state.all_task_numbers[@]}; do
+  status=$(jq -r --argjson n "$task_num" \
+    '.active_projects[] | select(.project_number == $n) | .status' \
+    specs/state.json)
+  case "$status" in
+    completed|abandoned)
+      pruned_tasks+=("$task_num")
+      ;;
+  esac
+done
+
+# Also check TODO.md status markers for [EXPANDED] tasks
+for task_num in ${task_order_state.all_task_numbers[@]}; do
+  if grep -qE "^\#\#\# ${task_num}\." specs/TODO.md | grep -q "\[EXPANDED\]"; then
+    pruned_tasks+=("$task_num")
+  fi
+done
+```
+
+If `pruned_tasks` is empty, skip the rest of this section (nothing to prune).
+
+#### 6.5.2. Remove Pruned Tasks from Categories
+
+For each category in `task_order_state.categories`:
+
+**1. Remove matching task entries:**
+
+For each task entry in the category whose `task_number` is in `pruned_tasks`:
+- Delete the entire line (ordered or unordered entry)
+
+**2. Renumber ordered lists:**
+
+If the category uses ordered lists (`1.`, `2.`, `3.`...), renumber remaining entries sequentially starting from 1 after removing pruned entries.
+
+Example before pruning (task 272 completed):
+```
+1. **272** [COMPLETED] -- Define Task Order schema and format specification
+2. **273** [COMPLETED] -- Add Task Order parsing to /review command (depends: 272)
+3. **274** [NOT STARTED] -- Add Task Order pruning (depends: 273)
+```
+
+Example after pruning:
+```
+1. **273** [COMPLETED] -- Add Task Order parsing to /review command (depends: 272)
+2. **274** [NOT STARTED] -- Add Task Order pruning (depends: 273)
+```
+
+**3. Remove empty categories:**
+
+If a category has zero tasks remaining after pruning, remove the entire category subsection (header, dependency chain code block if present, and all content until the next `###` header or end of Task Order section).
+
+#### 6.5.3. Update Dependency Chains
+
+For each dependency chain code block in `task_order_state.categories`:
+
+**1. Remove pruned task numbers from chains:**
+
+For a simple linear chain like `272 → 273 → 274`:
+- Remove pruned numbers and reconnect neighbors
+- If 272 is pruned: result is `273 → 274`
+- If 273 is pruned: result is `272 → 274`
+
+**2. Handle branching chains:**
+
+For branching chains like:
+```
+272 → 273 → 274 ─┐
+           └ 275 ┴→ 276
+```
+
+Remove pruned tasks and reconnect:
+- If 272 is pruned, the chain starts from 273
+- If a branch point is pruned, connect its predecessors to its successors
+
+**3. Remove degenerate chains:**
+
+- If chain becomes a single task, remove the code block entirely (the task is already listed in the category entries)
+- If chain becomes empty, remove the code block
+
+#### 6.5.4. Update Inline Dependency References
+
+For remaining task entries that reference pruned tasks in `(depends on ...)` notes:
+- Remove pruned task numbers from the dependency list
+- If all dependencies are pruned, remove the `(depends: ...)` suffix entirely
+
+Example: `(depends: 272, 273)` with 272 pruned becomes `(depends: 273)`.
+
+#### 6.5.5. Update Timestamp
+
+Replace the existing timestamp line with an updated one noting the pruning:
+
+```
+old_string: "*Updated {old_date}. {old_changelog}*"
+new_string: "*Updated {TODAY}. Pruned {N} completed/abandoned tasks: {comma_separated_task_numbers}.*"
+```
+
+Where `{TODAY}` is the current date in YYYY-MM-DD format and `{N}` is the count of pruned tasks.
+
+#### 6.5.6. Write Updated Task Order
+
+Use Edit tool to replace the Task Order section content in TODO.md. Reconstruct the full section from the modified `task_order_state`:
+
+1. Timestamp line
+2. Goal line (preserved unchanged)
+3. For each remaining category:
+   - Category header (`### {number}. {name}` with optional subtitle)
+   - Dependency chain code block (if non-degenerate)
+   - Task entries (ordered or unordered)
+
+**Safety**: Read TODO.md before and after the edit to verify the Task Order section was correctly updated and no content outside the section was affected.
+
+### 6.6. Insert New Tasks into Task Order
+
+Add newly created review tasks to the Task Order section in TODO.md.
+
+**Skip condition**: If no tasks were created in Section 5.6 (i.e., `tasks_created` is empty), skip this section entirely.
+
+#### 6.6.1. Check Task Order Existence
+
+```
+if task_order_state.exists == false:
+  if tasks_created is empty:
+    # No Task Order and no new tasks -- skip entirely
+    skip section
+  else:
+    # Tasks were created but no Task Order exists -- generate a new one
+    # Use generation template from task-order-format.md
+    proceed to 6.6.7 (Generate New Task Order)
+else:
+  # Task Order exists -- proceed with insertion
+  proceed to 6.6.2
+```
+
+#### 6.6.2. Determine Category Placement
+
+Map each new task to a Task Order category based on its source and severity:
+
+| Source / Severity | Target Category | Fallback |
+|-------------------|----------------|----------|
+| Critical severity review issue | "Critical Path" or first numbered category | Create "Critical Path" as category 1 |
+| High severity review issue | "Critical Path" or first numbered category | Create "Critical Path" as category 1 |
+| Medium severity review issue | "Code Cleanup" | Create "Code Cleanup" with next available number |
+| Low severity review issue | "Backlog" | Create "Backlog" with next available number |
+| Roadmap-sourced task (from Section 2.5) | Matching roadmap phase category | "Deferred" or next available number |
+
+**Matching logic:**
+
+```
+for each new_task in tasks_created:
+  # Determine target category name
+  if new_task.source == "roadmap":
+    target_category = find_category_matching_roadmap_phase(new_task.phase)
+    if target_category is null:
+      target_category = "Deferred"
+  else:
+    case new_task.severity:
+      "critical", "high" -> target_category = "Critical Path"
+      "medium"           -> target_category = "Code Cleanup"
+      "low"              -> target_category = "Backlog"
+
+  # Find matching category in task_order_state.categories
+  matched = find category where category.name contains target_category (case-insensitive)
+
+  if matched:
+    assign new_task to matched category
+  else:
+    # Category doesn't exist -- mark for creation
+    assign new_task to pending_new_categories[target_category]
+```
+
+#### 6.6.3. Generate Task Entries
+
+For each new task, generate an unordered (bullet) Task Order entry:
+
+**Format**: `- **{task_number}** [NOT STARTED] -- {task title}`
+
+```
+for each new_task in tasks_created:
+  entry = "- **{new_task.number}** [NOT STARTED] -- {new_task.title}"
+
+  # Add inline dependency note if task has dependencies
+  if new_task.dependencies is not empty:
+    # Only include deps that are in task_order_state.all_task_numbers
+    relevant_deps = intersection(new_task.dependencies, task_order_state.all_task_numbers)
+    if relevant_deps is not empty:
+      dep_list = join(relevant_deps, ", ")
+      entry = entry + " (depends on {dep_list})"
+```
+
+#### 6.6.4. Insert into Existing Categories
+
+For each existing category that has new tasks assigned:
+
+1. Find the last task entry line in the category (last line matching ordered or unordered task entry regex)
+2. Append new entries after the last task entry
+
+```
+for each category in task_order_state.categories:
+  new_entries = tasks assigned to this category
+  if new_entries is empty:
+    continue
+
+  # Find insertion point: after last task entry in category
+  last_entry_line = last line in category matching:
+    ^\d+\.\s+\*\*\d+\*\*  (ordered)
+    or
+    ^-\s+\*\*\d+\*\*       (unordered)
+
+  # Use Edit tool to insert after last_entry_line
+  old_string = "{last_entry_line}"
+  new_string = "{last_entry_line}\n{new_entry_1}\n{new_entry_2}..."
+```
+
+**If category has no existing entries** (empty category): Insert entries after the category header line (and after any dependency chain code block).
+
+#### 6.6.5. Create Missing Categories
+
+For categories that need to be created (from `pending_new_categories`):
+
+```
+# Determine next available category number
+max_cat_num = max(category.number for category in task_order_state.categories)
+next_cat_num = max_cat_num + 1
+
+for each (category_name, tasks) in pending_new_categories:
+  # Generate category block
+  category_block = """
+### {next_cat_num}. {category_name}
+
+{task_entry_1}
+{task_entry_2}
+..."""
+
+  next_cat_num += 1
+
+  # Insert before the ## Tasks header
+  # Use Edit tool:
+  old_string = "\n## Tasks"
+  new_string = "\n{category_block}\n\n## Tasks"
+```
+
+#### 6.6.6. Update Dependency Chains
+
+If new tasks have dependencies on tasks already in the Task Order:
+
+```
+for each new_task in tasks_created:
+  if new_task.dependencies is empty:
+    continue
+
+  relevant_deps = intersection(new_task.dependencies, task_order_state.all_task_numbers)
+  if relevant_deps is empty:
+    continue
+
+  # Find which category contains the dependency
+  for each dep_num in relevant_deps:
+    dep_category = find category containing dep_num
+
+    # Check if dep_category has a dependency chain code block
+    if dep_category has dependency_chain:
+      # Append new task to end of chain if dep is the current tail
+      if dep_num == last element in dependency_chain:
+        # Extend chain: add " → {new_task.number}" to last line of code block
+        # Use Edit tool on the code block line
+    else:
+      # Create a simple chain: dep_num → new_task.number
+      # Insert code block after category header, before task entries
+```
+
+**Note**: Only create/extend chains when there is a clear linear dependency. For complex graphs, rely on inline dependency notes instead.
+
+#### 6.6.7. Generate New Task Order (when none exists)
+
+If `task_order_state.exists == false` but tasks were created:
+
+```
+# Build a minimal Task Order section
+new_section = """
+## Task Order
+
+*Updated {YYYY-MM-DD}. Created {N} tasks from review.*
+
+**Goal**: Address review findings.
+
+### 1. Review Issues
+
+{task_entries from tasks_created, as unordered bullets}
+"""
+
+# Insert between "# TODO" header and "## Tasks" header
+# Use Edit tool:
+old_string = "\n## Tasks"
+new_string = "\n{new_section}\n\n## Tasks"
+```
+
+#### 6.6.8. Update Timestamp
+
+Append or replace the timestamp line in the Task Order section:
+
+```
+new_task_nums = join(tasks_created.map(t => t.number), ", ")
+new_timestamp = "*Updated {YYYY-MM-DD}. Added {N} new tasks from review: {new_task_nums}.*"
+
+# Use Edit tool to replace existing timestamp
+old_string = "*Updated {old_date}. {old_changelog}*"
+new_string = "{new_timestamp}"
+```
+
+#### 6.6.9. Write Updated Task Order
+
+Use Edit tool to apply all changes to TODO.md. If multiple edits are needed (category insertion, new categories, timestamp), apply them in order:
+
+1. Update timestamp (Section 6.6.8)
+2. Insert entries into existing categories (Section 6.6.4)
+3. Create new categories (Section 6.6.5)
+4. Update dependency chains (Section 6.6.6)
+
+**Safety**: Read TODO.md after edits to verify the Task Order section is well-formed and no content outside the section was affected.
+
 ### 7. Git Commit
 
 Commit review report, state files, task state, and any roadmap changes:
@@ -844,11 +1176,17 @@ if git diff --name-only | grep -q "specs/state.json"; then
   git add specs/state.json specs/TODO.md
 fi
 
+# Add TODO.md if Task Order was pruned (even if no tasks were created)
+if git diff --name-only | grep -q "specs/TODO.md"; then
+  git add specs/TODO.md
+fi
+
 git commit -m "$(cat <<'EOF'
 review: {scope} code review
 
 Roadmap: {annotations_made} items annotated
 Tasks: {tasks_created} created ({grouped_count} grouped, {individual_count} individual)
+Task Order: {pruned_count} tasks pruned
 
 Session: {session_id}
 
