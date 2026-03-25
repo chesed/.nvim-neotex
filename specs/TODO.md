@@ -1,21 +1,69 @@
 ---
-next_project_number: 277
+next_project_number: 281
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-24. Archived 15 completed tasks (262-276, 271). 2 active tasks remaining.*
+*Updated 2026-03-25. 6 active tasks remaining.*
 
-**Goal**: Complete pending neovim configuration tasks.
+**Goal**: Complete pending neovim configuration tasks and add PDF annotation scraping capability.
 
 ### 1. Active Tasks
 
-- **87** [RESEARCHED] — Investigate terminal directory change in wezterm
-- **78** [PLANNED] — Fix Himalaya SMTP authentication failure
+- **277** [RESEARCHED] -- Research PDF annotation extraction tools
+- **278** [RESEARCHED] -- Create scrape-agent for PDF annotation extraction (depends on #277)
+- **279** [RESEARCHED] -- Create skill-scrape and /scrape command (depends on #278)
+- **280** [RESEARCHED] -- Update filetypes extension manifest and docs (depends on #279)
+- **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
+- **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 277. Research PDF annotation extraction tools
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](277_research_pdf_annotation_tools/reports/01_meta-research.md)
+
+**Description**: Research and compare PDF annotation extraction tools (pdfannots vs PyMuPDF/fitz, pdfplumber, poppler-utils) to determine the best primary and fallback tools for the scrape-agent. Evaluate annotation type coverage, output formats, performance, and NixOS availability. Current implementation uses pdfannots in after/ftplugin/tex.lua.
+
+---
+
+### 278. Create scrape-agent for PDF annotation extraction
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #277
+- **Research**: [01_meta-research.md](278_create_scrape_agent/reports/01_meta-research.md)
+
+**Description**: Create scrape-agent.md in .claude/extensions/filetypes/agents/ following the document-agent.md pattern. Agent should detect available annotation extraction tools with fallback chain, support multiple output formats (markdown, JSON), handle annotation type filtering, and return structured JSON matching subagent-return.md schema.
+
+---
+
+### 279. Create skill-scrape and /scrape command
+- **Effort**: 1-2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #278
+- **Research**: [01_meta-research.md](279_create_skill_scrape_command/reports/01_meta-research.md)
+
+**Description**: Create skill-scrape/SKILL.md (thin wrapper with Task tool invocation) and scrape.md command (checkpoint-based execution with GATE IN/DELEGATE/GATE OUT/COMMIT) following existing convert.md and skill-filetypes patterns. Support PDF path argument, output path inference to Annotations/ directory, and format selection based on output extension.
+
+---
+
+### 280. Update filetypes extension manifest and documentation
+- **Effort**: 30 minutes
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #279
+- **Research**: [01_meta-research.md](280_update_filetypes_extension_manifest/reports/01_meta-research.md)
+
+**Description**: Register scrape-agent, skill-scrape, and scrape.md in manifest.json. Update EXTENSION.md with /scrape command documentation. Add context index entries to index-entries.json. Update filetypes-router-agent to dispatch annotation extraction requests to scrape-agent.
+
+---
 
 ### 87. Investigate terminal directory change when opening neovim in wezterm
 - **Effort**: TBD

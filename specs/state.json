@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "next_project_number": 277,
+  "next_project_number": 281,
   "active_projects": [
     {
       "project_number": 87,
@@ -41,6 +41,78 @@
       ],
       "session_id": "sess_1771006114_e73864",
       "planned": "2026-02-13T18:10:48Z"
+    },
+    {
+      "project_number": 277,
+      "project_name": "research_pdf_annotation_tools",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1-2 hours",
+      "created": "2026-03-25T00:00:00Z",
+      "last_updated": "2026-03-25T00:00:00Z",
+      "dependencies": [],
+      "session_id": "sess_1742922000_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/277_research_pdf_annotation_tools/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 278,
+      "project_name": "create_scrape_agent",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1-2 hours",
+      "created": "2026-03-25T00:00:00Z",
+      "last_updated": "2026-03-25T00:00:00Z",
+      "dependencies": [277],
+      "session_id": "sess_1742922000_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/278_create_scrape_agent/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 279,
+      "project_name": "create_skill_scrape_command",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1-2 hours",
+      "created": "2026-03-25T00:00:00Z",
+      "last_updated": "2026-03-25T00:00:00Z",
+      "dependencies": [278],
+      "session_id": "sess_1742922000_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/279_create_skill_scrape_command/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 280,
+      "project_name": "update_filetypes_extension_manifest",
+      "status": "researched",
+      "language": "meta",
+      "effort": "30 minutes",
+      "created": "2026-03-25T00:00:00Z",
+      "last_updated": "2026-03-25T00:00:00Z",
+      "dependencies": [279],
+      "session_id": "sess_1742922000_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/280_update_filetypes_extension_manifest/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
     }
   ],
   "completed_projects": [],
