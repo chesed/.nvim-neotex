@@ -345,15 +345,18 @@ function M.create(config)
         table.insert(data_skeleton_files, f)
       end
 
-      -- Pre-load cleanup: remove index entries for non-loaded extensions
-      -- This prevents orphans from accumulating when switching between sparse/full loads.
-      -- Runs before appending new entries so the index is clean first.
+      -- Pre-load cleanup: remove stale index entries before appending fresh ones.
+      -- Excludes the current extension from valid prefixes so its stale entries
+      -- are removed. Fresh entries are then added by process_merge_targets()
+      -- and properly tracked for future unload.
       local index_path = target_dir .. "/context/index.json"
       if vim.fn.filereadable(index_path) == 1 then
         local updated_state = state_mod.read(project_dir, config)
         local loaded_names = state_mod.list_loaded(updated_state)
-        -- Include the extension being loaded (not yet in state)
-        table.insert(loaded_names, extension_name)
+        -- Do NOT include the current extension -- its stale entries must be
+        -- removed so fresh entries from process_merge_targets() are added
+        -- and tracked (append_index_entries deduplicates, so stale entries
+        -- would prevent tracking and survive unload)
         local valid_prefixes = {}
         for _, ext_name in ipairs(loaded_names) do
           local ext = manifest_mod.get_extension(ext_name, config)
