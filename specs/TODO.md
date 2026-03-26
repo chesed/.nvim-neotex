@@ -1,15 +1,19 @@
 ---
-next_project_number: 303
+next_project_number: 307
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-26. 8 active tasks remaining.*
+*Updated 2026-03-26. 12 active tasks remaining.*
 
 ### Pending
 
+- **306** [RESEARCHED] -- Persist core context index entries across reloads (depends on 301)
+- **305** [RESEARCHED] -- Persist metadata in extension source index-entries.json files (depends on 303)
+- **304** [RESEARCHED] -- Fix malformed @-references in extension rule source files
+- **303** [RESEARCHED] -- Fix filetypes extension source index-entries.json (pitch-deck duplicates)
 - **301** [RESEARCHED] -- Fix extension loader orphaned index entry cleanup (root cause)
 - **302** [RESEARCHED] -- Clean orphaned index entries from Website index.json
 - **298** [COMPLETED] -- Add missing domain/subdomain metadata to index.json entries
@@ -20,6 +24,58 @@ next_project_number: 303
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 306. Persist core context index entries across reloads
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-26
+- **Research Completed**: 2026-03-26
+- **Language**: neovim
+- **Dependencies**: 301
+- **Research**: [01_persist-core-entries.md](306_persist_core_index_entries/reports/01_persist-core-entries.md)
+
+**Description**: Create a `core-index-entries.json` file in `.claude/context/` containing all ~90 core context entries (orchestration, standards, patterns, formats, templates, etc.) and modify the extension loader to always include it during index.json rebuilds. Task 299 added 75 core entries to the Website OUTPUT index.json, but the loader rebuilds from extension sources only, discarding core entries on reload. The recommended fix adds ~10 lines to the loader to load core entries before extension entries.
+
+---
+
+### 305. Persist metadata in extension source index-entries.json files
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-26
+- **Research Completed**: 2026-03-26
+- **Language**: meta
+- **Dependencies**: 303
+- **Research**: [01_persist-metadata.md](305_persist_extension_metadata/reports/01_persist-metadata.md)
+
+**Description**: Add missing `domain`, `subdomain`, and `summary` metadata to 11 extension source `index-entries.json` files (186 entries need domain/subdomain, 119 need summaries, 232 total entries across 14 extensions). Tasks 298 and 300 added this metadata to the output `index.json`, but the extension loader rebuilds from source on every reload, discarding the improvements. Fixing the source files ensures metadata persists. Domain is always `"project"`, subdomain is derived from the second path component (lean4 -> `"lean"`). Summaries follow noun-phrase style, 27-112 chars.
+
+---
+
+### 304. Fix malformed @-references in extension rule source files
+- **Effort**: 30 minutes
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-26
+- **Research Completed**: 2026-03-26
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_rule-source-refs.md](304_fix_rule_source_refs/reports/01_rule-source-refs.md)
+
+**Description**: Fix 13 malformed @-references in 2 extension rule source files. `nix.md` (8 refs) and `web-astro.md` (5 refs) use `@.claude/extensions/{ext}/context/project/...` but should use `@.claude/context/project/...` (the installed path after extension loader copies context files). The 3 refs in `neovim-lua.md` already use the correct pattern.
+
+---
+
+### 303. Fix filetypes extension source index-entries.json
+- **Effort**: 10 minutes
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-26
+- **Research Completed**: 2026-03-26
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_filetypes-index-source.md](303_fix_filetypes_index_source/reports/01_filetypes-index-source.md)
+
+**Description**: Verify and fix pitch-deck duplicate entries in filetypes extension source `index-entries.json`. Task 297 removed 2 duplicate pitch-deck entries from the output `index.json`, but the source file at `.claude/extensions/filetypes/index-entries.json` was suspected of still containing them. Research found the source file is already clean (no pitch-deck entries). The orphaned entries in the output `index.json` persist from direct additions, not from the source file. Covered by task 302.
+
+---
 
 ### 301. Fix extension loader orphaned index entry cleanup
 - **Effort**: 2-3 hours
