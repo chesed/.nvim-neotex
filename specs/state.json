@@ -337,7 +337,7 @@
       "language": "meta",
       "effort": "3 hours",
       "created": "2026-03-25T17:40:00Z",
-      "last_updated": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-26T15:23:33Z",
       "dependencies": [
         288
       ],
@@ -348,7 +348,8 @@
           "path": "specs/289_update_extension_loader/reports/01_meta-research.md",
           "summary": "Auto-generated research from /meta interview"
         }
-      ]
+      ],
+      "description": "Clarify context architecture: extension loader copies core + extension context to .claude/context/; project-level .context/ managed via index.json for conventions and .memory/ integration"
     },
     {
       "project_number": 290,
