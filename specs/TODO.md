@@ -10,7 +10,7 @@ next_project_number: 308
 
 ### Pending
 
-- **307** [RESEARCHED] -- Add post-load index cleanup to extension loader
+- **307** [COMPLETED] -- Add post-load index cleanup to extension loader
 - **306** [COMPLETED] -- Persist core context index entries across reloads (depends on 301)
 - **305** [COMPLETED] -- Persist metadata in extension source index-entries.json files (depends on 303)
 - **304** [COMPLETED] -- Fix malformed @-references in extension rule source files
@@ -28,12 +28,15 @@ next_project_number: 308
 
 ### 307. Add post-load index cleanup to extension loader
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-26
 - **Research Completed**: 2026-03-26
+- **Completed**: 2026-03-27
 - **Language**: neovim
 - **Dependencies**: None
-- **Research**: [01_post-load-cleanup.md](307_post_load_index_cleanup/reports/01_post-load-cleanup.md)
+- **Artifacts**:
+  - **Research**: [01_post-load-cleanup.md](307_post_load_index_cleanup/reports/01_post-load-cleanup.md)
+  - **Plan**: [02_post-load-cleanup.md](307_post_load_index_cleanup/plans/02_post-load-cleanup.md)
 
 **Description**: Add post-load index cleanup that removes entries for non-loaded extensions, fixing the sparse reload orphan issue. Task 301 added `remove_index_entries_by_prefix()` to `manager.unload()`, but unload is never called during sparse reloads (when only a subset of extensions are loaded). The fix adds a new `remove_orphaned_index_entries()` function to merge.lua that runs after each `manager.load()`, reading extensions.json to determine loaded extensions, building a valid prefix set from their `provides.context` fields, and filtering index.json to keep only core entries and entries from loaded extensions.
 

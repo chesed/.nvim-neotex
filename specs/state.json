@@ -5,17 +5,22 @@
     {
       "project_number": 307,
       "project_name": "post_load_index_cleanup",
-      "status": "researched",
+      "status": "completed",
+      "completion_summary": "Added remove_orphaned_index_entries() to merge.lua and integrated post-load cleanup into manager.load() in init.lua. After each extension load, the loader reads extensions.json to get loaded extension names, collects provides.context prefixes from their manifests, and filters index.json to remove entries from non-loaded extensions. Core entries (non-project/ paths) are always preserved. Cleanup is wrapped in pcall for safety.",
       "language": "neovim",
       "effort": "1-2 hours",
       "description": "Add post-load index cleanup that removes entries for non-loaded extensions, fixing sparse reload orphan issue",
       "created": "2026-03-26T23:00:00Z",
-      "last_updated": "2026-03-26T23:00:00Z",
+      "last_updated": "2026-03-27T02:00:00Z",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/307_post_load_index_cleanup/reports/01_post-load-cleanup.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/307_post_load_index_cleanup/plans/02_post-load-cleanup.md"
         }
       ]
     },

@@ -377,6 +377,38 @@ function M.create(config)
     state = state_mod.mark_loaded(state, extension_name, ext_manifest, rel_files, rel_dirs, merged_sections, rel_data_files)
     state_mod.write(project_dir, state, config)
 
+    -- Post-load cleanup: remove index entries for non-loaded extensions
+    -- This catches orphans from sparse reloads where unload() is never called
+    local cleanup_ok, cleanup_err = pcall(function()
+      local updated_state = state_mod.read(project_dir, config)
+      local loaded_names = state_mod.list_loaded(updated_state)
+      local valid_prefixes = {}
+      for _, ext_name in ipairs(loaded_names) do
+        local ext = manifest_mod.get_extension(ext_name, config)
+        if ext and ext.manifest and ext.manifest.provides and ext.manifest.provides.context then
+          for _, prefix in ipairs(ext.manifest.provides.context) do
+            table.insert(valid_prefixes, prefix)
+          end
+        end
+      end
+      if #valid_prefixes > 0 then
+        local index_path = target_dir .. "/context/index.json"
+        local ok, removed = merge_mod.remove_orphaned_index_entries(index_path, valid_prefixes)
+        if ok and removed > 0 then
+          helpers.notify(
+            string.format("Cleaned %d orphaned index entries", removed),
+            "DEBUG"
+          )
+        end
+      end
+    end)
+    if not cleanup_ok then
+      helpers.notify(
+        "Post-load index cleanup failed: " .. tostring(cleanup_err),
+        "WARN"
+      )
+    end
+
     helpers.notify(
       string.format("Loaded extension '%s' (%d files)", extension_name, #all_files),
       "INFO"

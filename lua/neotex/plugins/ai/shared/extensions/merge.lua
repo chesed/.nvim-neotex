@@ -509,6 +509,74 @@ function M.remove_index_entries_by_prefix(target_path, prefixes)
   return true, removed_count
 end
 
+--- Remove orphaned index entries from non-loaded extensions
+--- Called after all extensions are loaded to clean entries from previous loads.
+--- Keeps: entries not under "project/" (core/other) and entries matching valid prefixes.
+--- @param index_path string Path to index.json
+--- @param valid_prefixes table Array of path prefixes from loaded extensions' provides.context
+--- @return boolean success True if cleanup succeeded
+--- @return number removed_count Number of entries removed
+function M.remove_orphaned_index_entries(index_path, valid_prefixes)
+  if vim.fn.filereadable(index_path) ~= 1 then
+    return true, 0
+  end
+
+  local index = read_json(index_path)
+  if not index or not index.entries then
+    return true, 0
+  end
+
+  -- Normalize prefixes to ensure trailing slash for safe matching
+  local normalized = {}
+  for _, prefix in ipairs(valid_prefixes) do
+    if prefix:sub(-1) ~= "/" then
+      table.insert(normalized, prefix .. "/")
+    else
+      table.insert(normalized, prefix)
+    end
+  end
+
+  -- Filter entries: keep non-project entries and those matching valid prefixes
+  local new_entries = {}
+  local removed_count = 0
+  for _, entry in ipairs(index.entries) do
+    if not entry.path or entry.path:sub(1, 8) ~= "project/" then
+      -- Not a project entry (core, or no path) -- always keep
+      table.insert(new_entries, entry)
+    else
+      -- Project entry -- keep only if it matches a valid prefix
+      local matched = false
+      for _, prefix in ipairs(normalized) do
+        if entry.path:sub(1, #prefix) == prefix then
+          matched = true
+          break
+        end
+      end
+      if matched then
+        table.insert(new_entries, entry)
+      else
+        removed_count = removed_count + 1
+      end
+    end
+  end
+
+  if removed_count == 0 then
+    return true, 0
+  end
+
+  backup_file(index_path)
+
+  index.entries = new_entries
+
+  local ok = write_json(index_path, index)
+  if not ok then
+    restore_from_backup(index_path)
+    return false, 0
+  end
+
+  return true, removed_count
+end
+
 --- Merge opencode.json agent definitions
 --- Adds agent definitions from fragment to target opencode.json.
 --- Only adds keys that don't already exist (no overwrite).
