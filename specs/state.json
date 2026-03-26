@@ -148,11 +148,11 @@
     {
       "project_number": 281,
       "project_name": "scope_unscoped_rules",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "1 hour",
       "created": "2026-03-25T22:51:00Z",
-      "last_updated": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T23:59:00Z",
       "dependencies": [],
       "session_id": "sess_1774482683_962b30",
       "artifacts": [
@@ -160,17 +160,24 @@
           "type": "research",
           "path": "specs/281_scope_unscoped_rules/reports/01_meta-research.md",
           "summary": "Auto-generated research from /meta interview"
+        },
+        {
+          "type": "plan",
+          "path": "specs/281_scope_unscoped_rules/plans/01_scope-rules-plan.md",
+          "summary": "3-phase plan to scope rules and deduplicate git-workflow.md"
         }
-      ]
+      ],
+      "completion_summary": "Added paths: frontmatter to neovim-lua.md and git-workflow.md, replaced global git-workflow.md with symlink to nvim copy",
+      "claudemd_suggestions": "none"
     },
     {
       "project_number": 282,
       "project_name": "slim_nvim_claudemd",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "1 hour",
       "created": "2026-03-25T22:51:00Z",
-      "last_updated": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T23:55:00Z",
       "dependencies": [],
       "session_id": "sess_1774482683_962b30",
       "artifacts": [
@@ -178,17 +185,24 @@
           "type": "research",
           "path": "specs/282_slim_nvim_claudemd/reports/01_meta-research.md",
           "summary": "Auto-generated research from /meta interview"
+        },
+        {
+          "type": "plan",
+          "path": "specs/282_slim_nvim_claudemd/plans/01_slim-claudemd-plan.md",
+          "summary": "3-phase plan to extract reference material and slim CLAUDE.md"
         }
-      ]
+      ],
+      "completion_summary": "Slimmed nvim/CLAUDE.md from 224 to 73 lines by extracting 4 sections to context files: box-drawing-guide, emoji-policy, documentation-policy, lua-assertion-patterns",
+      "claudemd_suggestions": "Extracted 4 sections from nvim/CLAUDE.md to .claude/context/project/neovim/standards/, replaced with one-line pointers"
     },
     {
       "project_number": 283,
       "project_name": "extension_slim_standard",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "1-2 hours",
       "created": "2026-03-25T22:51:00Z",
-      "last_updated": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T22:55:00Z",
       "dependencies": [],
       "session_id": "sess_1774482683_962b30",
       "artifacts": [
@@ -196,8 +210,15 @@
           "type": "research",
           "path": "specs/283_extension_slim_standard/reports/01_meta-research.md",
           "summary": "Auto-generated research from /meta interview"
+        },
+        {
+          "type": "implementation",
+          "path": ".claude/docs/reference/standards/extension-slim-standard.md",
+          "summary": "EXTENSION.md slim-down standard with 60-line limit, required sections, and migration template"
         }
-      ]
+      ],
+      "completion_summary": "Created extension-slim-standard.md defining 60-line max for EXTENSION.md files with required sections (header, routing table, commands, context pointers), migration template using filetypes as example, and verification checklist.",
+      "claudemd_suggestions": "Created .claude/docs/reference/standards/extension-slim-standard.md - new standard for extension context budget management"
     },
     {
       "project_number": 284,
@@ -222,11 +243,11 @@
     {
       "project_number": 285,
       "project_name": "slim_parent_claudemd",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "1 hour",
       "created": "2026-03-25T22:51:00Z",
-      "last_updated": "2026-03-25T22:51:00Z",
+      "last_updated": "2026-03-25T23:50:00Z",
       "dependencies": [],
       "session_id": "sess_1774482683_962b30",
       "artifacts": [
@@ -234,8 +255,15 @@
           "type": "research",
           "path": "specs/285_slim_parent_claudemd/reports/01_meta-research.md",
           "summary": "Auto-generated research from /meta interview"
+        },
+        {
+          "type": "plan",
+          "path": "specs/285_slim_parent_claudemd/plans/01_slim-parent-plan.md",
+          "summary": "2-phase plan to convert parent CLAUDE.md to slim pointer"
         }
-      ]
+      ],
+      "completion_summary": "Converted ~/.config/CLAUDE.md from 224 lines to 15-line pointer file, removing redundant standards sections already in .claude/docs/",
+      "claudemd_suggestions": "none"
     }
   ],
   "completed_projects": [],

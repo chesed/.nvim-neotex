@@ -12,11 +12,11 @@ next_project_number: 286
 
 ### 1. Active Tasks
 
-- **281** [RESEARCHED] -- Scope unscoped rules (add paths: frontmatter, deduplicate)
-- **282** [RESEARCHED] -- Slim nvim/CLAUDE.md (move reference material to context)
+- **281** [COMPLETED] -- Scope unscoped rules (add paths: frontmatter, deduplicate)
+- **282** [COMPLETED] -- Slim nvim/CLAUDE.md (move reference material to context)
 - **283** [RESEARCHED] -- Create EXTENSION.md slim-down standard
 - **284** [RESEARCHED] -- Migrate large extensions to slim pattern (depends on #283)
-- **285** [RESEARCHED] -- Slim parent CLAUDE.md (convert to pointer file)
+- **285** [COMPLETED] -- Slim parent CLAUDE.md (convert to pointer file)
 - **277** [COMPLETED] -- Research PDF annotation extraction tools
 - **278** [COMPLETED] -- Create scrape-agent for PDF annotation extraction (depends on #277)
 - **279** [COMPLETED] -- Create skill-scrape and /scrape command (depends on #278)
@@ -28,10 +28,11 @@ next_project_number: 286
 
 ### 281. Scope unscoped rules
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](281_scope_unscoped_rules/reports/01_meta-research.md)
+- **Plan**: [01_scope-rules-plan.md](281_scope_unscoped_rules/plans/01_scope-rules-plan.md)
 
 **Description**: Add `paths:` frontmatter to `git-workflow.md` and `neovim-lua.md` in `~/.config/.claude/rules/` so they only load on relevant files. Deduplicate `git-workflow.md` which exists in near-identical form in both `~/.config/.claude/rules/` and `~/.config/nvim/.claude/rules/`. Saves ~310 lines of context per file touch in non-matching projects.
 
@@ -39,10 +40,11 @@ next_project_number: 286
 
 ### 282. Slim nvim/CLAUDE.md
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](282_slim_nvim_claudemd/reports/01_meta-research.md)
+- **Plan**: [01_slim-claudemd-plan.md](282_slim_nvim_claudemd/plans/01_slim-claudemd-plan.md)
 
 **Description**: Move reference material from `nvim/CLAUDE.md` (224 lines) to on-demand context files: box-drawing guide (52 lines), emoji policy (32 lines), documentation policy template (38 lines), Lua assertion patterns (39 lines). Keeps essential coding standards, commands, and project organization. Target: ~85 lines.
 
@@ -72,10 +74,11 @@ next_project_number: 286
 
 ### 285. Slim parent CLAUDE.md
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](285_slim_parent_claudemd/reports/01_meta-research.md)
+- **Plan**: [01_slim-parent-plan.md](285_slim_parent_claudemd/plans/01_slim-parent-plan.md)
 
 **Description**: Convert `~/.config/CLAUDE.md` (224 lines) to a slim pointer file (~15-20 lines), matching the pattern of `~/.config/.claude/CLAUDE.md`. Move agent-system standards sections to `.claude/CLAUDE.md` where they belong. Saves ~200 lines from cross-project context loading.
 
