@@ -1,15 +1,15 @@
-# OpenCode Memory Vault
+# Claude Code Memory Vault
 
-This directory contains an Obsidian-compatible vault for the OpenCode memory management system.
+This directory contains an Obsidian-compatible vault for the Claude Code memory management system.
 
 ## Purpose
 
-The memory vault stores structured knowledge that the OpenCode system can reference and search. Memories are stored as Markdown files with YAML frontmatter for metadata.
+The memory vault stores structured knowledge that the Claude Code system can reference and search. Memories are stored as Markdown files with YAML frontmatter for metadata.
 
 ## Directory Structure
 
 ```
-.opencode/memory/
+.memory/
 ├── .obsidian/           # Obsidian configuration
 ├── 00-Inbox/           # Quick capture for new memories
 ├── 10-Memories/        # Stored memory entries
@@ -46,12 +46,12 @@ The command will:
 For advanced features (search, retrieval), install the Obsidian CLI REST MCP server:
 
 1. Open Obsidian app
-2. Open this `.opencode/memory/` as a vault
+2. Open this `.memory/` as a vault
 3. Install "Obsidian CLI REST" community plugin
 4. Note the API key from plugin settings
 5. Configure MCP server with the API key
 
-See `.opencode/docs/memory-setup.md` for detailed instructions.
+See `.claude/extensions/memory/context/project/memory/memory-setup.md` for detailed instructions.
 
 ## Naming Conventions
 

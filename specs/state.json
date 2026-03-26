@@ -507,20 +507,27 @@
     {
       "project_number": 296,
       "project_name": "fix_index_domain_semantics",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "30 minutes",
       "description": "Verify and correct domain/subdomain field values in index.json for files promoted from project/ to core level",
       "created": "2026-03-26T17:02:03Z",
-      "last_updated": "2026-03-26T17:02:03Z",
+      "last_updated": "2026-03-26T19:00:00Z",
       "dependencies": [],
       "session_id": "sess_1742932800_audit01",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/296_fix_index_domain_semantics/reports/01_index-domains.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/296_fix_index_domain_semantics/plans/02_index-domains.md",
+          "summary": "Verified no-op: only 1 promoted file in index, already has correct domain/subdomain"
         }
-      ]
+      ],
+      "completion_summary": "Verified domain/subdomain semantics are correct. Only 1 of 12 promoted files (meta/meta-guide.md) has an index entry, with correct domain='core' and subdomain='meta'. The 11 missing entries are a separate concern. No changes to index.json needed.",
+      "claudemd_suggestions": "none"
     }
   ],
   "completed_projects": [],

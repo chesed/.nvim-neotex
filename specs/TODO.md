@@ -14,8 +14,9 @@ next_project_number: 297
 
 - **293** [COMPLETED] -- Fix stale context/core/ references in docs
 - **294** [COMPLETED] -- Fix extension-dependent @-references in root CLAUDE.md and code-reviewer agent
-- **295** [RESEARCHED] -- Fix .memory/README.md OpenCode references
-- **296** [RESEARCHED] -- Verify index.json domain/subdomain field semantics
+- **295** [COMPLETED] -- Fix .memory/README.md OpenCode references
+  - **Plan**: [02_memory-readme.md](specs/295_fix_memory_readme_opencode/plans/02_memory-readme.md)
+- **296** [COMPLETED] -- Verify index.json domain/subdomain field semantics
 
 ### 2. Context System Refactor (Tasks 286-292) — Completed
 
