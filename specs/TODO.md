@@ -10,7 +10,7 @@ next_project_number: 309
 
 ### Pending
 
-- **308** [PLANNED] -- Implement adaptive context loading by extension and language
+- **308** [COMPLETED] -- Implement adaptive context loading by extension and language
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
@@ -18,12 +18,15 @@ next_project_number: 309
 
 ### 308. Implement adaptive context loading by extension and language
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-26
 - **Research Completed**: 2026-03-26
 - **Planning Started**: 2026-03-26
 - **Planning Completed**: 2026-03-26
+- **Implementation Started**: 2026-03-26
+- **Implementation Completed**: 2026-03-26
 - **Language**: meta
+- **Summary**: [01_implementation-summary.md](308_adaptive_context_loading_by_extension_and_language/summaries/01_implementation-summary.md)
 - **Research**: [01_context-loading-research.md](308_adaptive_context_loading_by_extension_and_language/reports/01_context-loading-research.md)
 - **Plan**: [01_adaptive-context-loading.md](308_adaptive_context_loading_by_extension_and_language/plans/01_adaptive-context-loading.md)
 

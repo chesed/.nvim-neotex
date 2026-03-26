@@ -153,6 +153,37 @@ jq '[.entries[] |
 
 ## Combined Queries
 
+### Adaptive Context Loading (Recommended Pattern)
+
+Load context that matches any active dimension - always, agent, language, or command:
+
+```bash
+# Full combined query for adaptive context loading
+jq -r --arg agent "general-implementation-agent" \
+      --arg lang "meta" \
+      --arg cmd "/implement" '
+  .entries[] |
+  select(
+    (.load_when.always == true) or
+    (.load_when.agents[]? == $agent) or
+    (.load_when.languages[]? == $lang) or
+    (.load_when.commands[]? == $cmd)
+  ) |
+  select(.deprecated == true | not) |
+  .path' .claude/context/index.json
+```
+
+**Priority Order**:
+1. `always: true` - Universal files loaded for all contexts
+2. `agents[]?` - Agent-specific context
+3. `languages[]?` - Language-specific context
+4. `commands[]?` - Command-specific context
+
+**Empty Array Semantics**:
+- Empty arrays `[]` mean "never match this dimension"
+- To load unconditionally, use `"always": true`
+- Entries must match at least one dimension to be discoverable
+
 ### Agent + Language
 
 ```bash
@@ -185,12 +216,39 @@ jq -r '.entries[] |
 
 ## Validation
 
-### Check All Paths Exist
+### Validate Index with Script
+
+```bash
+# Run validation script
+.claude/scripts/validate-index.sh .claude/context/index.json
+
+# Outputs:
+# - Orphaned entries (empty load_when without always:true)
+# - Missing files
+# - Duplicate paths
+# - Budget estimates per agent/language
+```
+
+### Check All Paths Exist (Manual)
 
 ```bash
 jq -r '.entries[].path' .claude/context/index.json | while read p; do
   [ -f ".claude/context/$p" ] || echo "MISSING: $p"
 done
+```
+
+### Check for Orphaned Entries
+
+Entries with empty `load_when` arrays (no agents, languages, commands) and without `always: true` are orphaned and will never be loaded:
+
+```bash
+jq '[.entries[] | select(
+  (.load_when.agents | length) == 0 and
+  (.load_when.languages | length) == 0 and
+  (.load_when.commands | length) == 0 and
+  (.load_when.always == true | not)
+)] | length' .claude/context/index.json
+# Should return 0
 ```
 
 ## Maintenance

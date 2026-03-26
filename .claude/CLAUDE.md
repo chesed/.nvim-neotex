@@ -223,15 +223,20 @@ Context is discovered from three independent layers, loaded in parallel:
 | Project memory | `.memory/` files | Loaded directly, no index needed |
 
 ```bash
-# Find context files for an agent
-jq -r '.entries[] | select(.load_when.agents[]? == "planner-agent") | .path' .claude/context/index.json
-
-# Find context by task language
-jq -r '.entries[] | select(.load_when.languages[]? == "lean4") | .path' .claude/context/index.json
+# Combined adaptive query (recommended) - loads matching context from all dimensions
+jq -r --arg agent "planner-agent" --arg lang "meta" --arg cmd "/plan" '
+  .entries[] | select(
+    (.load_when.always == true) or
+    (.load_when.agents[]? == $agent) or
+    (.load_when.languages[]? == $lang) or
+    (.load_when.commands[]? == $cmd)
+  ) | .path' .claude/context/index.json
 
 # Get line counts for budget calculation
 jq -r '.entries[] | select(.load_when.agents[]? == "planner-agent") | "\(.line_count)\t\(.path)"' .claude/context/index.json
 ```
+
+**Empty Array Semantics**: Empty `load_when` arrays mean "never match". Use `"always": true` for universal files.
 
 See `.claude/context/patterns/context-discovery.md` for full query patterns including multi-layer discovery.
 

@@ -57,6 +57,25 @@ Load these on-demand using @-references:
 - Project-specific style guides and patterns
 - Existing similar implementations as reference
 
+## Dynamic Context Discovery
+
+Use index.json for automated context discovery with the combined OR pattern:
+
+```bash
+# Combined adaptive query (recommended)
+# Loads: always + agent-match + language-match + command-match
+jq -r --arg lang "{task_language}" '.entries[] |
+  select(
+    (.load_when.always == true) or
+    (.load_when.agents[]? == "general-implementation-agent") or
+    (.load_when.languages[]? == $lang) or
+    (.load_when.commands[]? == "/implement")
+  ) |
+  .path' .claude/context/index.json
+```
+
+See `.claude/context/patterns/context-discovery.md` for additional query patterns.
+
 ## Execution Flow
 
 ### Stage 0: Initialize Early Metadata

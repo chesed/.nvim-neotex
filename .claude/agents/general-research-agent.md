@@ -52,20 +52,21 @@ Load these on-demand using @-references:
 
 ## Dynamic Context Discovery
 
-Use index.json for automated context discovery instead of hardcoded file lists:
+Use index.json for automated context discovery with the combined OR pattern:
 
 ```bash
-# Find all context files for this agent
-jq -r '.entries[] |
-  select(.load_when.agents[]? == "general-research-agent") |
+# Combined adaptive query (recommended)
+# Loads: always + agent-match + language-match + command-match
+jq -r --arg lang "{task_language}" '.entries[] |
+  select(
+    (.load_when.always == true) or
+    (.load_when.agents[]? == "general-research-agent") or
+    (.load_when.languages[]? == $lang) or
+    (.load_when.commands[]? == "/research")
+  ) |
   .path' .claude/context/index.json
 
-# Find context by task language
-jq -r '.entries[] |
-  select(.load_when.languages[]? == "{task_language}") |
-  .path' .claude/context/index.json
-
-# Find context by topic
+# Optional: Find context by topic for additional exploration
 jq -r '.entries[] |
   select(.topics[]? == "{topic}") |
   .path' .claude/context/index.json

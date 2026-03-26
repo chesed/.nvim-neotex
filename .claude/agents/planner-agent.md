@@ -49,17 +49,18 @@ Load these on-demand using @-references:
 
 ## Dynamic Context Discovery
 
-Use index.json for automated context discovery:
+Use index.json for automated context discovery with the combined OR pattern:
 
 ```bash
-# Find all context files for this agent
-jq -r '.entries[] |
-  select(.load_when.agents[]? == "planner-agent") |
-  .path' .claude/context/index.json
-
-# Find context by command
-jq -r '.entries[] |
-  select(.load_when.commands[]? == "/plan") |
+# Combined adaptive query (recommended)
+# Loads: always + agent-match + language-match + command-match
+jq -r --arg lang "{task_language}" '.entries[] |
+  select(
+    (.load_when.always == true) or
+    (.load_when.agents[]? == "planner-agent") or
+    (.load_when.languages[]? == $lang) or
+    (.load_when.commands[]? == "/plan")
+  ) |
   .path' .claude/context/index.json
 ```
 
