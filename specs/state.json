@@ -39,34 +39,44 @@
     {
       "project_number": 304,
       "project_name": "fix_rule_source_refs",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "30 minutes",
       "description": "Fix 13 malformed @-references in 2 extension rule source files (nix.md, web-astro.md) that use wrong path prefixes",
+      "completion_summary": "Fixed 13 malformed @-references in 2 extension rule source files: nix.md (8 refs) and web-astro.md (5 refs). Replaced extensions/{ext}/context/ prefix with context/ to point to installed paths instead of source directories.",
       "created": "2026-03-26T23:00:00Z",
-      "last_updated": "2026-03-26T23:00:00Z",
+      "last_updated": "2026-03-26T23:30:00Z",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/304_fix_rule_source_refs/reports/01_rule-source-refs.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/304_fix_rule_source_refs/plans/02_rule-source-refs.md"
         }
       ]
     },
     {
       "project_number": 303,
       "project_name": "fix_filetypes_index_source",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "10 minutes",
       "description": "Verify and fix pitch-deck duplicate entries in filetypes extension source index-entries.json",
+      "completion_summary": "Verified no-op: filetypes extension source index-entries.json contains 7 entries with zero pitch-deck references. The orphaned pitch-deck entries in the output index.json were added by external processes, not sourced from filetypes. Covered by task 302.",
       "created": "2026-03-26T23:00:00Z",
-      "last_updated": "2026-03-26T23:00:00Z",
+      "last_updated": "2026-03-26T23:30:00Z",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/303_fix_filetypes_index_source/reports/01_filetypes-index-source.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/303_fix_filetypes_index_source/plans/02_filetypes-index-source.md"
         }
       ]
     },
@@ -90,17 +100,21 @@
     {
       "project_number": 302,
       "project_name": "clean_website_index_orphans",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "effort": "15 minutes",
-      "description": "Remove 26 orphaned index.json entries from Website .claude/context/ that reference unloaded extension files",
+      "description": "Remove 2 orphaned index.json entries from Website .claude/context/ that reference non-existent pitch-deck files",
       "created": "2026-03-26T21:00:00Z",
-      "last_updated": "2026-03-26T21:00:00Z",
+      "last_updated": "2026-03-26T23:45:00Z",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/302_clean_website_index_orphans/reports/01_website-index-orphans.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/302_clean_website_index_orphans/plans/02_website-index-orphans.md"
         }
       ]
     },

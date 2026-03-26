@@ -12,8 +12,8 @@ next_project_number: 307
 
 - **306** [RESEARCHED] -- Persist core context index entries across reloads (depends on 301)
 - **305** [RESEARCHED] -- Persist metadata in extension source index-entries.json files (depends on 303)
-- **304** [RESEARCHED] -- Fix malformed @-references in extension rule source files
-- **303** [RESEARCHED] -- Fix filetypes extension source index-entries.json (pitch-deck duplicates)
+- **304** [COMPLETED] -- Fix malformed @-references in extension rule source files
+- **303** [COMPLETED] -- Fix filetypes extension source index-entries.json (verified no-op)
 - **301** [RESEARCHED] -- Fix extension loader orphaned index entry cleanup (root cause)
 - **302** [RESEARCHED] -- Clean orphaned index entries from Website index.json
 - **298** [COMPLETED] -- Add missing domain/subdomain metadata to index.json entries
@@ -66,14 +66,19 @@ next_project_number: 307
 
 ### 303. Fix filetypes extension source index-entries.json
 - **Effort**: 10 minutes
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-26
 - **Research Completed**: 2026-03-26
+- **Completed**: 2026-03-26
 - **Language**: meta
 - **Dependencies**: None
-- **Research**: [01_filetypes-index-source.md](303_fix_filetypes_index_source/reports/01_filetypes-index-source.md)
+- **Artifacts**:
+  - **Research**: [01_filetypes-index-source.md](303_fix_filetypes_index_source/reports/01_filetypes-index-source.md)
+  - **Plan**: [02_filetypes-index-source.md](303_fix_filetypes_index_source/plans/02_filetypes-index-source.md)
 
 **Description**: Verify and fix pitch-deck duplicate entries in filetypes extension source `index-entries.json`. Task 297 removed 2 duplicate pitch-deck entries from the output `index.json`, but the source file at `.claude/extensions/filetypes/index-entries.json` was suspected of still containing them. Research found the source file is already clean (no pitch-deck entries). The orphaned entries in the output `index.json` persist from direct additions, not from the source file. Covered by task 302.
+
+**Completion**: Verified no-op. The filetypes source index-entries.json contains 7 entries with zero pitch-deck references. No changes needed.
 
 ---
 
