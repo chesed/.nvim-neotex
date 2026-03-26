@@ -769,7 +769,7 @@ grep -r "core/system/" .claude/command .claude/agent
 **Diagnosis**:
 ```bash
 # Check context file sizes
-find .claude/context/core -name "*.md" -exec wc -l {} + | sort -n
+find .claude/context -name "*.md" -exec wc -l {} + | sort -n
 
 # Check context loading configuration
 grep -A 20 "context_loading:" .claude/command/*.md
@@ -823,7 +823,7 @@ done
 time grep -r "core/orchestration/delegation.md" .claude/command
 
 # Check file sizes
-find .claude/context/core -name "*.md" -exec wc -l {} + | sort -n | tail -10
+find .claude/context -name "*.md" -exec wc -l {} + | sort -n | tail -10
 ```
 
 **Solutions**:
@@ -851,7 +851,7 @@ grep -r "core/system/" .claude/command .claude/agent | grep -v "status-markers.m
 
 **List large files**:
 ```bash
-find .claude/context/core -name "*.md" -exec wc -l {} + | sort -n | tail -10
+find .claude/context -name "*.md" -exec wc -l {} + | sort -n | tail -10
 ```
 
 **Check context loading configurations**:

@@ -432,36 +432,48 @@
     {
       "project_number": 293,
       "project_name": "fix_stale_doc_references",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "15 minutes",
       "description": "Fix 3 stale context/core/ references in context-loading-best-practices.md",
       "created": "2026-03-26T17:02:03Z",
-      "last_updated": "2026-03-26T17:02:03Z",
+      "last_updated": "2026-03-26T18:05:00Z",
       "dependencies": [],
       "session_id": "sess_1742932800_audit01",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/293_fix_stale_doc_references/reports/01_stale-doc-refs.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/293_fix_stale_doc_references/plans/02_stale-doc-refs.md",
+          "summary": "1-phase plan to fix 3 stale context/core/ find commands"
         }
-      ]
+      ],
+      "completion_summary": "Fixed 3 stale context/core/ references in context-loading-best-practices.md by removing the /core segment from find commands on lines 772, 826, and 854.",
+      "claudemd_suggestions": "none"
     },
     {
       "project_number": 294,
       "project_name": "fix_extension_dependent_refs",
-      "status": "researched",
+      "status": "implementing",
       "language": "meta",
       "effort": "1 hour",
       "description": "Fix 8 extension-dependent @-references in root CLAUDE.md (4) and code-reviewer-agent.md (4) that break when extensions are not loaded",
       "created": "2026-03-26T17:02:03Z",
-      "last_updated": "2026-03-26T17:02:03Z",
+      "last_updated": "2026-03-26T19:00:00Z",
       "dependencies": [],
       "session_id": "sess_1742932800_audit01",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/294_fix_extension_dependent_refs/reports/01_extension-refs.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/294_fix_extension_dependent_refs/plans/02_extension-refs.md",
+          "summary": "2-phase plan to fix 8 extension-dependent references in CLAUDE.md and code-reviewer-agent.md"
         }
       ]
     },

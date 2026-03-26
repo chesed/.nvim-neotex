@@ -12,7 +12,7 @@ next_project_number: 297
 
 ### 1. Post-Refactor Cleanup (Tasks 293-296)
 
-- **293** [RESEARCHED] -- Fix stale context/core/ references in docs
+- **293** [COMPLETED] -- Fix stale context/core/ references in docs
 - **294** [RESEARCHED] -- Fix extension-dependent @-references in root CLAUDE.md and code-reviewer agent
 - **295** [RESEARCHED] -- Fix .memory/README.md OpenCode references
 - **296** [RESEARCHED] -- Verify index.json domain/subdomain field semantics
@@ -125,10 +125,11 @@ next_project_number: 297
 
 ### 293. Fix stale context/core/ references in docs
 - **Effort**: 15 minutes
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_stale-doc-refs.md](293_fix_stale_doc_references/reports/01_stale-doc-refs.md)
+- **Plan**: [02_stale-doc-refs.md](293_fix_stale_doc_references/plans/02_stale-doc-refs.md)
 
 **Description**: Fix 3 remaining stale `context/core` references in `.claude/docs/guides/context-loading-best-practices.md` (lines 772, 826, 854). These are bash commands in diagnostic examples that still use the old path before the task 288 flatten.
 
