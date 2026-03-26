@@ -1,16 +1,23 @@
 ---
-next_project_number: 293
+next_project_number: 297
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-25. 18 active tasks remaining.*
+*Updated 2026-03-25. 22 active tasks remaining.*
 
-**Goal**: Refactor context system — reassign project/ files to core or extensions, create .context/ for user conventions, flatten .claude/context/.
+**Goal**: Post-refactor cleanup — fix stale references, extension-dependent paths, and documentation gaps from tasks 286-292.
 
-### 1. Context System Refactor (Tasks 286-292)
+### 1. Post-Refactor Cleanup (Tasks 293-296)
+
+- **293** [RESEARCHED] -- Fix stale context/core/ references in docs
+- **294** [RESEARCHED] -- Fix extension-dependent @-references in root CLAUDE.md and code-reviewer agent
+- **295** [RESEARCHED] -- Fix .memory/README.md OpenCode references
+- **296** [RESEARCHED] -- Verify index.json domain/subdomain field semantics
+
+### 2. Context System Refactor (Tasks 286-292) — Completed
 
 - **286** [COMPLETED] -- Create .context/ directory for user project conventions (depends on nothing)
 - **287** [COMPLETED] -- Reassign project context files to correct owners (depends on #286)
@@ -113,6 +120,50 @@ next_project_number: 293
 - **Research**: [01_meta-research.md](292_document_role_boundaries/reports/01_meta-research.md)
 
 **Description**: Create documentation defining the four-layer context architecture: extensions own domain-specific knowledge (nvim standards, lean4 patterns), `.claude/context/` holds core agent system patterns, `.context/` is for user project conventions not covered by extensions, `.memory/` stores learned facts (independent, loaded in parallel with `.context/`), and Claude auto-memory handles small behavioral gaps. Include decision tree.
+
+---
+
+### 293. Fix stale context/core/ references in docs
+- **Effort**: 15 minutes
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_stale-doc-refs.md](293_fix_stale_doc_references/reports/01_stale-doc-refs.md)
+
+**Description**: Fix 3 remaining stale `context/core` references in `.claude/docs/guides/context-loading-best-practices.md` (lines 772, 826, 854). These are bash commands in diagnostic examples that still use the old path before the task 288 flatten.
+
+---
+
+### 294. Fix extension-dependent @-references in root CLAUDE.md and code-reviewer agent
+- **Effort**: 1 hour
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_extension-refs.md](294_fix_extension_dependent_refs/reports/01_extension-refs.md)
+
+**Description**: Root CLAUDE.md (lines 34, 37, 40, 63) references 4 neovim standards files that only exist when the nvim extension is loaded. `code-reviewer-agent.md` (lines 43, 44, 47, 48) has 4 @-references to nvim/web extension paths that fail without extensions. Move neovim standards refs to nvim EXTENSION.md; add conditional handling or index-based discovery for the code-reviewer agent.
+
+---
+
+### 295. Fix .memory/README.md OpenCode references
+- **Effort**: 15 minutes
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_memory-readme.md](295_fix_memory_readme_opencode/reports/01_memory-readme.md)
+
+**Description**: Replace 7 "OpenCode" and `.opencode/` references in `.memory/README.md` with "Claude Code" and correct paths. The file was created from an OpenCode template and never adapted.
+
+---
+
+### 296. Verify index.json domain/subdomain field semantics
+- **Effort**: 30 minutes
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_index-domains.md](296_fix_index_domain_semantics/reports/01_index-domains.md)
+
+**Description**: After task 287 promoted meta/, processes/, repo/ from `project/` to core level, their index.json entries all have `"domain": "core"`. Verify subdomain fields are set correctly. May be a no-op if subdomains already distinguish these files.
 
 ---
 
