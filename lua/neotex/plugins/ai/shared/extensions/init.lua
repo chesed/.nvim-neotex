@@ -364,7 +364,8 @@ function M.create(config)
           end
         end
         if #valid_prefixes > 0 then
-          merge_mod.remove_orphaned_index_entries(index_path, valid_prefixes)
+          local context_dir = target_dir .. "/context"
+          merge_mod.remove_orphaned_index_entries(index_path, valid_prefixes, context_dir)
         end
       end
 

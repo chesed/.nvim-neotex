@@ -510,13 +510,15 @@ function M.remove_index_entries_by_prefix(target_path, prefixes)
 end
 
 --- Remove orphaned index entries from non-loaded extensions
---- Called after all extensions are loaded to clean entries from previous loads.
---- Keeps: entries not under "project/" (core/other) and entries matching valid prefixes.
+--- Called before extension entries are appended to clean stale entries from previous loads.
+--- Keeps: entries not under "project/" (core/other) and entries matching valid prefixes
+--- whose files exist on disk.
 --- @param index_path string Path to index.json
 --- @param valid_prefixes table Array of path prefixes from loaded extensions' provides.context
+--- @param context_dir string|nil Optional context directory for file existence checks
 --- @return boolean success True if cleanup succeeded
 --- @return number removed_count Number of entries removed
-function M.remove_orphaned_index_entries(index_path, valid_prefixes)
+function M.remove_orphaned_index_entries(index_path, valid_prefixes, context_dir)
   if vim.fn.filereadable(index_path) ~= 1 then
     return true, 0
   end
@@ -550,6 +552,15 @@ function M.remove_orphaned_index_entries(index_path, valid_prefixes)
         if entry.path:sub(1, #prefix) == prefix then
           matched = true
           break
+        end
+      end
+      if matched then
+        -- Verify file exists on disk if context_dir provided
+        if context_dir and entry.path then
+          local file_path = context_dir .. "/" .. entry.path
+          if not vim.loop.fs_stat(file_path) then
+            matched = false
+          end
         end
       end
       if matched then
