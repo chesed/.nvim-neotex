@@ -12,7 +12,7 @@ next_project_number: 301
 
 - **298** [COMPLETED] -- Add missing domain/subdomain metadata to index.json entries
 - **299** [COMPLETED] -- Index 75 unindexed context files (depends on 298)
-- **300** [PLANNED] -- Add missing summaries to index.json entries (depends on 298)
+- **300** [COMPLETED] -- Add missing summaries to index.json entries (depends on 298)
 - **297** [COMPLETED] -- Remove duplicate pitch-deck index entries
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
@@ -54,11 +54,12 @@ next_project_number: 301
 
 ### 300. Add missing summaries to index.json entries
 - **Effort**: 30-45 minutes
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-26
 - **Research Completed**: 2026-03-26
 - **Planning Started**: 2026-03-26
 - **Planning Completed**: 2026-03-26
+- **Completed**: 2026-03-26
 - **Language**: meta
 - **Dependencies**: 298
 - **Artifacts**:
@@ -66,6 +67,8 @@ next_project_number: 301
   - **Plan**: [02_index-summaries.md](300_add_index_summaries/plans/02_index-summaries.md)
 
 **Description**: Add missing `summary` fields to 67 index.json entries in the Website `.claude/context/` directory. All missing entries are in the `project/` subtree (extension context), primarily in typst (24), nix (11), and latex (10) domains. Summaries are not used in routing logic but aid agent context discovery. Depends on task 298 to establish metadata conventions first.
+
+**Completion**: Added summaries to 69 project/ entries (67 original + 2 added by task 299). All follow noun-phrase style, 27-112 chars, no trailing period. Zero null summaries remain in project/ entries.
 
 ---
 

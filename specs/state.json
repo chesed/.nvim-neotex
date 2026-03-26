@@ -51,12 +51,13 @@
     {
       "project_number": 300,
       "project_name": "add_index_summaries",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "effort": "30-45 minutes",
       "description": "Add missing summary fields to 67 index.json entries in Website .claude/context/",
+      "completion_summary": "Added summaries to 69 project/ entries in index.json (67 original + 2 added by task 299). All summaries follow noun-phrase style, 27-112 chars, no trailing period. Zero null summaries remain in project/ entries.",
       "created": "2026-03-26T20:00:00Z",
-      "last_updated": "2026-03-26T22:00:00Z",
+      "last_updated": "2026-03-26T22:15:00Z",
       "dependencies": [
         298
       ],
