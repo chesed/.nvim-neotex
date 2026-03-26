@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "next_project_number": 286,
+  "next_project_number": 293,
   "active_projects": [
     {
       "project_number": 87,
@@ -271,6 +271,145 @@
       ],
       "completion_summary": "Converted ~/.config/CLAUDE.md from 224 lines to 15-line pointer file, removing redundant standards sections already in .claude/docs/",
       "claudemd_suggestions": "none"
+    },
+    {
+      "project_number": 286,
+      "project_name": "create_context_directory_structure",
+      "status": "researched",
+      "language": "meta",
+      "effort": "2 hours",
+      "created": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-25T17:40:00Z",
+      "dependencies": [],
+      "session_id": "sess_1742929200_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/286_create_context_directory_structure/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 287,
+      "project_name": "migrate_project_context_files",
+      "status": "researched",
+      "language": "meta",
+      "effort": "3 hours",
+      "created": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-25T17:40:00Z",
+      "dependencies": [
+        286
+      ],
+      "session_id": "sess_1742929200_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/287_migrate_project_context_files/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 288,
+      "project_name": "flatten_claude_context_structure",
+      "status": "researched",
+      "language": "meta",
+      "effort": "2 hours",
+      "created": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-25T17:40:00Z",
+      "dependencies": [
+        287
+      ],
+      "session_id": "sess_1742929200_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/288_flatten_claude_context_structure/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 289,
+      "project_name": "update_extension_loader",
+      "status": "researched",
+      "language": "meta",
+      "effort": "3 hours",
+      "created": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-25T17:40:00Z",
+      "dependencies": [
+        288
+      ],
+      "session_id": "sess_1742929200_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/289_update_extension_loader/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 290,
+      "project_name": "update_context_discovery_patterns",
+      "status": "researched",
+      "language": "meta",
+      "effort": "2 hours",
+      "created": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-25T17:40:00Z",
+      "dependencies": [
+        288,
+        289
+      ],
+      "session_id": "sess_1742929200_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/290_update_context_discovery_patterns/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 291,
+      "project_name": "update_claudemd_references",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1 hour",
+      "created": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-25T17:40:00Z",
+      "dependencies": [
+        290
+      ],
+      "session_id": "sess_1742929200_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/291_update_claudemd_references/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
+    },
+    {
+      "project_number": 292,
+      "project_name": "document_role_boundaries",
+      "status": "researched",
+      "language": "meta",
+      "effort": "1 hour",
+      "created": "2026-03-25T17:40:00Z",
+      "last_updated": "2026-03-25T17:40:00Z",
+      "dependencies": [
+        291
+      ],
+      "session_id": "sess_1742929200_meta01",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/292_document_role_boundaries/reports/01_meta-research.md",
+          "summary": "Auto-generated research from /meta interview"
+        }
+      ]
     }
   ],
   "completed_projects": [],

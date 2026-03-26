@@ -1,16 +1,26 @@
 ---
-next_project_number: 286
+next_project_number: 293
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-25. 11 active tasks remaining.*
+*Updated 2026-03-25. 18 active tasks remaining.*
 
-**Goal**: Optimize context window usage and complete pending tasks.
+**Goal**: Refactor context system to separate project context from agent system context.
 
-### 1. Active Tasks
+### 1. Context System Refactor (Tasks 286-292)
+
+- **286** [RESEARCHED] -- Create .context/ directory structure and index.json schema
+- **287** [RESEARCHED] -- Migrate project context files to .context/ (depends on #286)
+- **288** [RESEARCHED] -- Flatten .claude/context/ structure (depends on #287)
+- **289** [RESEARCHED] -- Update extension loader to keep context in-place (depends on #288)
+- **290** [RESEARCHED] -- Update context discovery patterns (depends on #288, #289)
+- **291** [RESEARCHED] -- Update CLAUDE.md and agent references (depends on #290)
+- **292** [RESEARCHED] -- Document role boundaries for .context/, .memory/, auto-memory (depends on #291)
+
+### 2. Previously Completed
 
 - **281** [COMPLETED] -- Scope unscoped rules (add paths: frontmatter, deduplicate)
 - **282** [COMPLETED] -- Slim nvim/CLAUDE.md (move reference material to context)
@@ -21,10 +31,90 @@ next_project_number: 286
 - **278** [COMPLETED] -- Create scrape-agent for PDF annotation extraction (depends on #277)
 - **279** [COMPLETED] -- Create skill-scrape and /scrape command (depends on #278)
 - **280** [COMPLETED] -- Update filetypes extension manifest and docs (depends on #279)
+
+### 3. Pending
+
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 286. Create .context/ directory structure and index.json schema
+- **Effort**: 2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_meta-research.md](286_create_context_directory_structure/reports/01_meta-research.md)
+
+**Description**: Create the `.context/` directory structure at project root with index.json schema for project-specific context files. This directory is protected from `.claude/` reloads and holds repository-specific information, workflows, and hooks documentation.
+
+---
+
+### 287. Migrate project context files from .claude/context/project/ to .context/
+- **Effort**: 3 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #286
+- **Research**: [01_meta-research.md](287_migrate_project_context_files/reports/01_meta-research.md)
+
+**Description**: Move project-specific context files (repo/, processes/, hooks/) from `.claude/context/project/` to the new `.context/` directory. Keep meta-builder context in `.claude/` as it's agent system context. Update both index files.
+
+---
+
+### 288. Update .claude/context/ to contain only core/ files (flatten structure)
+- **Effort**: 2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #287
+- **Research**: [01_meta-research.md](288_flatten_claude_context_structure/reports/01_meta-research.md)
+
+**Description**: Flatten `.claude/context/` by moving contents of `core/` to root level and moving `project/meta/` to `meta/`. Remove empty `core/` and `project/` directories. Update all paths in index.json and @-references.
+
+---
+
+### 289. Modify extension loader to keep context in extension directories
+- **Effort**: 3 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #288
+- **Research**: [01_meta-research.md](289_update_extension_loader/reports/01_meta-research.md)
+
+**Description**: Change extension loading to reference context files in-place instead of copying to `.claude/context/project/`. Update index merging to use `extension/{name}/context/` path prefix. Prevents overwrites on `.claude/` reloads.
+
+---
+
+### 290. Update context discovery patterns (index.json queries)
+- **Effort**: 2 hours
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #288, Task #289
+- **Research**: [01_meta-research.md](290_update_context_discovery_patterns/reports/01_meta-research.md)
+
+**Description**: Update jq query patterns to query multiple context sources: `.claude/context/index.json` (core), `.context/index.json` (project), and extension paths. Document new discovery patterns.
+
+---
+
+### 291. Update CLAUDE.md and agent references for new paths
+- **Effort**: 1 hour
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #290
+- **Research**: [01_meta-research.md](291_update_claudemd_references/reports/01_meta-research.md)
+
+**Description**: Update all documentation and code references throughout `.claude/` to use new context paths. Search for `@.claude/context/core/` and `@.claude/context/project/` patterns and update to new locations.
+
+---
+
+### 292. Document role boundaries for .context/, .memory/, Claude auto-memory
+- **Effort**: 1 hour
+- **Status**: [RESEARCHED]
+- **Language**: meta
+- **Dependencies**: Task #291
+- **Research**: [01_meta-research.md](292_document_role_boundaries/reports/01_meta-research.md)
+
+**Description**: Create clear documentation defining purpose and boundaries: `.context/` for project reference docs, `.memory/` for domain facts, `.claude/context/` for agent system patterns, Claude auto-memory for small gaps. Include decision tree for where to store new content.
+
+---
 
 ### 281. Scope unscoped rules
 - **Effort**: 1 hour
