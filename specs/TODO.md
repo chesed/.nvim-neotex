@@ -52,10 +52,11 @@ next_project_number: 286
 
 ### 283. Create EXTENSION.md slim-down standard
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](283_extension_slim_standard/reports/01_meta-research.md)
+- **Implementation**: [extension-slim-standard.md](../.claude/docs/reference/standards/extension-slim-standard.md)
 
 **Description**: Create authoring standard limiting EXTENSION.md to ~50-60 lines of essential routing info (language routing table, command list, context pointers). Detailed docs, examples, and migration guides move to context files loaded on-demand via index.json. Foundation for Task #284.
 
