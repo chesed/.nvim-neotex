@@ -38,11 +38,11 @@ No Bash or web tools needed - planning is a local operation based on task analys
 Load these on-demand using @-references:
 
 **Always Load**:
-- `@.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
-- `@.claude/context/core/formats/plan-format.md` - Plan artifact structure and REQUIRED metadata fields
+- `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
+- `@.claude/context/formats/plan-format.md` - Plan artifact structure and REQUIRED metadata fields
 
 **Load When Creating Plan**:
-- `@.claude/context/core/workflows/task-breakdown.md` - Task decomposition guidelines
+- `@.claude/context/workflows/task-breakdown.md` - Task decomposition guidelines
 
 **Load for Context**:
 - `@.claude/CLAUDE.md` - Project configuration and conventions
@@ -63,7 +63,7 @@ jq -r '.entries[] |
   .path' .claude/context/index.json
 ```
 
-See `.claude/context/core/patterns/context-discovery.md` for additional query patterns.
+See `.claude/context/patterns/context-discovery.md` for additional query patterns.
 
 ## Execution Flow
 

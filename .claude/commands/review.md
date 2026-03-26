@@ -64,7 +64,7 @@ fi
 
 ### 2.5. Roadmap Integration
 
-**Context**: Load @.claude/context/core/formats/roadmap-format.md for parsing patterns.
+**Context**: Load @.claude/context/formats/roadmap-format.md for parsing patterns.
 
 Parse `specs/ROAD_MAP.md` to extract:
 1. **Phase headers**: `## Phase {N}: {Title} ({Priority})`
@@ -104,7 +104,7 @@ Build `roadmap_state` structure:
 
 ### 2.5.2. Cross-Reference Roadmap with Project State
 
-**Context**: Load @.claude/context/core/patterns/roadmap-update.md for matching strategy.
+**Context**: Load @.claude/context/patterns/roadmap-update.md for matching strategy.
 
 Cross-reference roadmap items with project state to identify completed work:
 
@@ -199,7 +199,7 @@ For high-confidence matches, update ROAD_MAP.md to mark items as complete.
 
 ### 2.6. Parse Task Order
 
-**Context**: Load @.claude/context/core/formats/task-order-format.md for parsing patterns.
+**Context**: Load @.claude/context/formats/task-order-format.md for parsing patterns.
 
 Read `specs/TODO.md` and extract the Task Order section if present.
 

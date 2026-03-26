@@ -3,7 +3,7 @@ name: skill-researcher
 description: Conduct general research using web search, documentation, and codebase exploration. Invoke for general research tasks.
 allowed-tools: Task, Bash, Edit, Read, Write
 # Original context (now loaded by subagent):
-#   - .claude/context/core/formats/report-format.md
+#   - .claude/context/formats/report-format.md
 # Original tools (now used by subagent):
 #   - Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 ---
@@ -19,10 +19,10 @@ This eliminates the "continue" prompt issue between skill return and orchestrato
 ## Context References
 
 Reference (do not load eagerly):
-- Path: `.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
-- Path: `.claude/context/core/patterns/postflight-control.md` - Marker file protocol
-- Path: `.claude/context/core/patterns/file-metadata-exchange.md` - File I/O helpers
-- Path: `.claude/context/core/patterns/jq-escaping-workarounds.md` - jq escaping patterns (Issue #1132)
+- Path: `.claude/context/formats/return-metadata-file.md` - Metadata file schema
+- Path: `.claude/context/patterns/postflight-control.md` - Marker file protocol
+- Path: `.claude/context/patterns/file-metadata-exchange.md` - File I/O helpers
+- Path: `.claude/context/patterns/jq-escaping-workarounds.md` - jq escaping patterns (Issue #1132)
 
 Note: This skill is a thin wrapper with internal postflight. Context is loaded by the delegated agent.
 
@@ -325,7 +325,7 @@ The postflight phase is LIMITED TO:
 - Git commit
 - Cleanup of temp/marker files
 
-Reference: @.claude/context/core/standards/postflight-tool-restrictions.md
+Reference: @.claude/context/standards/postflight-tool-restrictions.md
 
 ---
 

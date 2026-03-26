@@ -40,7 +40,7 @@ Load these on-demand using @-references:
 - `@context/project/present/patterns/yc-compliance-checklist.md` - YC compliance validation rules
 
 **Load for Validation**:
-- `@context/core/formats/subagent-return.md` - Return format validation
+- `@context/formats/subagent-return.md` - Return format validation
 
 ## Input Types
 

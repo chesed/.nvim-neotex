@@ -23,7 +23,7 @@
       }
     },
     {
-      "path": "core/routing.md",
+      "path": "routing.md",
       "domain": "core",
       "subdomain": "orchestration",
       "topics": [
@@ -50,7 +50,7 @@
       }
     },
     {
-      "path": "core/checkpoints/checkpoint-gate-in.md",
+      "path": "checkpoints/checkpoint-gate-in.md",
       "domain": "core",
       "subdomain": "checkpoints",
       "topics": [
@@ -74,7 +74,7 @@
       }
     },
     {
-      "path": "core/checkpoints/checkpoint-gate-out.md",
+      "path": "checkpoints/checkpoint-gate-out.md",
       "domain": "core",
       "subdomain": "checkpoints",
       "topics": [
@@ -98,7 +98,7 @@
       }
     },
     {
-      "path": "core/formats/return-metadata-file.md",
+      "path": "formats/return-metadata-file.md",
       "domain": "core",
       "subdomain": "formats",
       "topics": [
@@ -122,7 +122,7 @@
       }
     },
     {
-      "path": "core/formats/plan-format.md",
+      "path": "formats/plan-format.md",
       "domain": "core",
       "subdomain": "formats",
       "topics": [
@@ -148,7 +148,7 @@
       }
     },
     {
-      "path": "core/standards/interactive-selection.md",
+      "path": "standards/interactive-selection.md",
       "domain": "core",
       "subdomain": "standards",
       "topics": [
@@ -176,7 +176,7 @@
       }
     },
     {
-      "path": "core/standards/postflight-tool-restrictions.md",
+      "path": "standards/postflight-tool-restrictions.md",
       "domain": "core",
       "subdomain": "standards",
       "topics": [
@@ -203,7 +203,7 @@
       }
     },
     {
-      "path": "core/orchestration/routing.md",
+      "path": "orchestration/routing.md",
       "domain": "core",
       "subdomain": "orchestration",
       "topics": [
@@ -225,7 +225,7 @@
       }
     },
     {
-      "path": "core/patterns/anti-stop-patterns.md",
+      "path": "patterns/anti-stop-patterns.md",
       "domain": "core",
       "subdomain": "patterns",
       "topics": [
@@ -248,7 +248,7 @@
       }
     },
     {
-      "path": "core/patterns/team-orchestration.md",
+      "path": "patterns/team-orchestration.md",
       "domain": "core",
       "subdomain": "patterns",
       "topics": [
@@ -278,7 +278,7 @@
       }
     },
     {
-      "path": "core/formats/team-metadata-extension.md",
+      "path": "formats/team-metadata-extension.md",
       "domain": "core",
       "subdomain": "formats",
       "topics": [
@@ -302,7 +302,7 @@
       }
     },
     {
-      "path": "core/patterns/metadata-file-return.md",
+      "path": "patterns/metadata-file-return.md",
       "domain": "core",
       "subdomain": "patterns",
       "topics": [
@@ -326,8 +326,8 @@
       }
     },
     {
-      "path": "project/meta/meta-guide.md",
-      "domain": "project",
+      "path": "meta/meta-guide.md",
+      "domain": "core",
       "subdomain": "meta",
       "topics": [
         "meta-tasks",
@@ -1476,7 +1476,7 @@
       }
     },
     {
-      "path": "core/reference/state-management-schema.md",
+      "path": "reference/state-management-schema.md",
       "domain": "core",
       "subdomain": "reference",
       "topics": ["state", "schema", "json", "artifacts", "linking"],
@@ -1489,7 +1489,7 @@
       }
     },
     {
-      "path": "core/reference/skill-agent-mapping.md",
+      "path": "reference/skill-agent-mapping.md",
       "domain": "core",
       "subdomain": "reference",
       "topics": ["skills", "agents", "routing"],
@@ -1502,7 +1502,7 @@
       }
     },
     {
-      "path": "core/reference/artifact-templates.md",
+      "path": "reference/artifact-templates.md",
       "domain": "core",
       "subdomain": "reference",
       "topics": ["artifacts", "templates", "reports", "plans", "summaries"],
@@ -1514,7 +1514,7 @@
       }
     },
     {
-      "path": "core/reference/workflow-diagrams.md",
+      "path": "reference/workflow-diagrams.md",
       "domain": "core",
       "subdomain": "reference",
       "topics": ["workflow", "process", "diagrams"],
@@ -1526,7 +1526,7 @@
       }
     },
     {
-      "path": "core/patterns/mcp-tool-recovery.md",
+      "path": "patterns/mcp-tool-recovery.md",
       "domain": "core",
       "subdomain": "patterns",
       "topics": ["mcp", "recovery", "error-handling"],
@@ -1538,7 +1538,7 @@
       }
     },
     {
-      "path": "core/formats/handoff-artifact.md",
+      "path": "formats/handoff-artifact.md",
       "domain": "core",
       "subdomain": "formats",
       "topics": ["handoff", "context-exhaustion", "team-mode"],
@@ -1550,7 +1550,7 @@
       }
     },
     {
-      "path": "core/formats/progress-file.md",
+      "path": "formats/progress-file.md",
       "domain": "core",
       "subdomain": "formats",
       "topics": ["progress", "phases", "team-mode"],
@@ -1559,6 +1559,19 @@
       "line_count": 200,
       "load_when": {
         "agents": ["skill-team-research", "skill-team-plan", "skill-team-implement"]
+      }
+    },
+    {
+      "path": "architecture/context-layers.md",
+      "domain": "core",
+      "subdomain": "architecture",
+      "topics": ["context-layers", "extension-loader", "project-context", "memory"],
+      "keywords": ["context", "layers", "loader", "boundaries", ".context", ".memory"],
+      "summary": "Three-layer context architecture: agent context, project context, project memory",
+      "line_count": 65,
+      "load_when": {
+        "agents": ["meta-builder-agent", "general-research-agent"],
+        "commands": ["/meta", "/review"]
       }
     }
   ]

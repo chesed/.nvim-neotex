@@ -2,7 +2,7 @@
 
 Extension-specific fallback table for Lean MCP tool recovery.
 
-See [MCP Tool Recovery Pattern](../../../../../context/core/patterns/mcp-tool-recovery.md) for the general recovery strategy.
+See [MCP Tool Recovery Pattern](../../../../../context/patterns/mcp-tool-recovery.md) for the general recovery strategy.
 
 ---
 
@@ -88,6 +88,6 @@ cd /path/to/project && lake build 2>&1
 
 ## Related Documentation
 
-- [MCP Tool Recovery Pattern](../../../../../context/core/patterns/mcp-tool-recovery.md) - General recovery strategy
+- [MCP Tool Recovery Pattern](../../../../../context/patterns/mcp-tool-recovery.md) - General recovery strategy
 - [MCP Tools Guide](../tools/mcp-tools-guide.md) - Lean MCP tool reference
 - [Multi-Instance Optimization](../operations/multi-instance-optimization.md) - Concurrent session setup

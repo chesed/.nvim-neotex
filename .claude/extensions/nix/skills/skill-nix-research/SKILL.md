@@ -14,9 +14,9 @@ this skill handles all postflight operations (status update, artifact linking, g
 ## Context References
 
 Reference (do not load eagerly):
-- Path: `.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
-- Path: `.claude/context/core/patterns/postflight-control.md` - Marker file protocol
-- Path: `.claude/context/core/patterns/jq-escaping-workarounds.md` - jq escaping patterns
+- Path: `.claude/context/formats/return-metadata-file.md` - Metadata file schema
+- Path: `.claude/context/patterns/postflight-control.md` - Marker file protocol
+- Path: `.claude/context/patterns/jq-escaping-workarounds.md` - jq escaping patterns
 
 ## Trigger Conditions
 

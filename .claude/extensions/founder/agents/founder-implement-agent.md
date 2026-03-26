@@ -53,7 +53,7 @@ Load these on-demand using @-references:
 - `@.claude/extensions/founder/context/project/founder/templates/typst/project-timeline.typ` - Project timeline typst template
 
 **Load for Output**:
-- `@.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
+- `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
 
 ---
 

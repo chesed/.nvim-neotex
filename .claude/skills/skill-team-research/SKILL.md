@@ -4,8 +4,8 @@ description: Orchestrate multi-agent research with wave-based parallel execution
 allowed-tools: Task, Bash, Edit, Read, Write
 # This skill uses TeammateTool for team coordination (available when CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)
 # Context loaded by lead during synthesis:
-#   - .claude/context/core/patterns/team-orchestration.md
-#   - .claude/context/core/formats/team-metadata-extension.md
+#   - .claude/context/patterns/team-orchestration.md
+#   - .claude/context/formats/team-metadata-extension.md
 #   - .claude/utils/team-wave-helpers.md
 ---
 
@@ -20,9 +20,9 @@ Multi-agent research with wave-based parallelization. Spawns 2-4 teammates to in
 ## Context References
 
 Reference (load as needed during synthesis):
-- Path: `.claude/context/core/patterns/team-orchestration.md` - Wave coordination patterns
-- Path: `.claude/context/core/formats/team-metadata-extension.md` - Team result schema
-- Path: `.claude/context/core/formats/return-metadata-file.md` - Base metadata schema
+- Path: `.claude/context/patterns/team-orchestration.md` - Wave coordination patterns
+- Path: `.claude/context/formats/team-metadata-extension.md` - Team result schema
+- Path: `.claude/context/formats/return-metadata-file.md` - Base metadata schema
 - Path: `.claude/utils/team-wave-helpers.md` - Reusable wave patterns
 
 ## Trigger Conditions
@@ -473,7 +473,7 @@ Session: ${session_id}
 Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
 ```
 
-**Note**: Use targeted staging, NOT `git add -A`. See `.claude/context/core/standards/git-staging-scope.md`.
+**Note**: Use targeted staging, NOT `git add -A`. See `.claude/context/standards/git-staging-scope.md`.
 
 ---
 
@@ -565,4 +565,4 @@ The postflight phase is LIMITED TO:
 - Git commit
 - Cleanup of temp/marker files
 
-Reference: @.claude/context/core/standards/postflight-tool-restrictions.md
+Reference: @.claude/context/standards/postflight-tool-restrictions.md

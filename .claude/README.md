@@ -67,7 +67,7 @@ All delegation follows strict safety patterns to prevent hangs and loops:
 - **Timeout Enforcement**: All delegations have timeouts (default 3600s)
 - **Return Validation**: All subagent returns validated against standard format
 
-See `.claude/context/core/workflows/subagent-delegation-guide.md` for detailed patterns.
+See `.claude/context/workflows/subagent-delegation-guide.md` for detailed patterns.
 
 ### 2. Standardized Returns
 
@@ -97,7 +97,7 @@ This enables:
 - Error propagation
 - Session tracking
 
-See `.claude/context/core/standards/subagent-return-format.md` for full specification.
+See `.claude/context/standards/subagent-return-format.md` for full specification.
 
 ### 3. Atomic State Updates
 
@@ -162,7 +162,7 @@ This enables:
 - **Context Budget Enforcement**: Each tier has defined size limits
 - **Clear Separation**: Core context is reusable, project context is Neovim configuration-specific
 
-See `.claude/context/core/system/context-loading-strategy.md` for details.
+See `.claude/context/system/context-loading-strategy.md` for details.
 
 ---
 
@@ -980,9 +980,9 @@ Subagent context: ~2000 tokens (loaded only in fork)
 
 ### Related Files
 
-- `.claude/context/core/templates/thin-wrapper-skill.md` - Template reference
-- `.claude/context/core/formats/subagent-return.md` - Return format standard
-- `.claude/context/core/orchestration/orchestration-core.md` - Delegation patterns
+- `.claude/context/templates/thin-wrapper-skill.md` - Template reference
+- `.claude/context/formats/subagent-return.md` - Return format standard
+- `.claude/context/orchestration/orchestration-core.md` - Delegation patterns
 - `.claude/CLAUDE.md` - Skill architecture section
 
 ---
@@ -1063,7 +1063,7 @@ After any MCP configuration changes, restart Claude Code for changes to take eff
 - Testing Guide: `.claude/TESTING.md`
 - Agent Context: `.claude/CLAUDE.md`
 - Documentation Hub: `.claude/docs/README.md`
-- Orchestration Core: `.claude/context/core/orchestration/orchestration-core.md`
-- Return Format Standard: `.claude/context/core/formats/subagent-return.md`
+- Orchestration Core: `.claude/context/orchestration/orchestration-core.md`
+- Return Format Standard: `.claude/context/formats/subagent-return.md`
 - Task 191 Research: `specs/191_fix_subagent_delegation_hang/reports/01_fix-delegation-hang.md`
 - Task 191 Plan: `specs/191_fix_subagent_delegation_hang/plans/02_fix-delegation-hang.md`

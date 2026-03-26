@@ -60,4 +60,4 @@ When upstream bugs are fixed:
 
 - [MCP Tools Guide](mcp-tools-guide.md) - Complete MCP tool reference
 - [MCP Fallback Table](../patterns/mcp-fallback-table.md) - Tool fallback strategies
-- [MCP Tool Recovery Pattern](../../../../../../context/core/patterns/mcp-tool-recovery.md) - General recovery patterns
+- [MCP Tool Recovery Pattern](../../../../../../context/patterns/mcp-tool-recovery.md) - General recovery patterns

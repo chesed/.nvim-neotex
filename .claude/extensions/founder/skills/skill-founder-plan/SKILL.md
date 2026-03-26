@@ -11,7 +11,7 @@ Routes founder-specific planning requests to the `founder-plan-agent`, enabling 
 ## Context Pointers
 
 Reference (do not load eagerly):
-- Path: `.claude/context/core/formats/subagent-return.md`
+- Path: `.claude/context/formats/subagent-return.md`
 - Purpose: Return validation
 - Load at: Subagent execution only
 

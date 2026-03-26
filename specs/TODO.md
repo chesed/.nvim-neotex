@@ -12,13 +12,13 @@ next_project_number: 293
 
 ### 1. Context System Refactor (Tasks 286-292)
 
-- **286** [RESEARCHED] -- Create .context/ directory for user project conventions (depends on nothing)
-- **287** [RESEARCHED] -- Reassign project context files to correct owners (depends on #286)
-- **288** [RESEARCHED] -- Flatten .claude/context/ structure (depends on #287)
-- **289** [RESEARCHED] -- Scope extension loader and project context boundaries (depends on #288)
-- **290** [RESEARCHED] -- Update context discovery for three-layer architecture (depends on #288, #289)
-- **291** [RESEARCHED] -- Update CLAUDE.md and agent references for new paths (depends on #290)
-- **292** [RESEARCHED] -- Document role boundaries for .context/, .memory/, extensions, auto-memory (depends on #291)
+- **286** [COMPLETED] -- Create .context/ directory for user project conventions (depends on nothing)
+- **287** [COMPLETED] -- Reassign project context files to correct owners (depends on #286)
+- **288** [COMPLETED] -- Flatten .claude/context/ structure (depends on #287)
+- **289** [COMPLETED] -- Scope extension loader and project context boundaries (depends on #288)
+- **290** [COMPLETED] -- Update context discovery for three-layer architecture (depends on #288, #289)
+- **291** [COMPLETED] -- Update CLAUDE.md and agent references for new paths (depends on #290)
+- **292** [COMPLETED] -- Document role boundaries for .context/, .memory/, extensions, auto-memory (depends on #291)
 
 ### 2. Previously Completed
 
@@ -41,7 +41,7 @@ next_project_number: 293
 
 ### 286. Create .context/ directory for user project conventions
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](286_create_context_directory_structure/reports/01_meta-research.md)
@@ -52,7 +52,7 @@ next_project_number: 293
 
 ### 287. Reassign project context files to correct owners
 - **Effort**: 2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #286
 - **Research**: [01_meta-research.md](287_migrate_project_context_files/reports/01_meta-research.md)
@@ -63,7 +63,7 @@ next_project_number: 293
 
 ### 288. Flatten .claude/context/ structure
 - **Effort**: 2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #287
 - **Research**: [01_meta-research.md](288_flatten_claude_context_structure/reports/01_meta-research.md)
@@ -74,7 +74,7 @@ next_project_number: 293
 
 ### 289. Scope extension loader and project context boundaries
 - **Effort**: 3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #288
 - **Research**: [01_meta-research.md](289_update_extension_loader/reports/01_meta-research.md)
@@ -85,7 +85,7 @@ next_project_number: 293
 
 ### 290. Update context discovery for three-layer architecture
 - **Effort**: 2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #288, Task #289
 - **Research**: [01_meta-research.md](290_update_context_discovery_patterns/reports/01_meta-research.md)
@@ -96,7 +96,7 @@ next_project_number: 293
 
 ### 291. Update CLAUDE.md and agent references for new paths
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #290
 - **Research**: [01_meta-research.md](291_update_claudemd_references/reports/01_meta-research.md)
@@ -107,7 +107,7 @@ next_project_number: 293
 
 ### 292. Document role boundaries for .context/, .memory/, extensions, auto-memory
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Task #291
 - **Research**: [01_meta-research.md](292_document_role_boundaries/reports/01_meta-research.md)

@@ -76,4 +76,4 @@ Use count-aware format from `.claude/rules/state-management.md`:
 ## Template Reference
 
 For complete artifact templates (research reports, implementation plans, summaries, error reports), see:
-- [Artifact Templates](.claude/context/core/reference/artifact-templates.md)
+- [Artifact Templates](.claude/context/reference/artifact-templates.md)

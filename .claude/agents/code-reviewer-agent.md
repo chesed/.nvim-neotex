@@ -36,8 +36,8 @@ This agent has access to:
 Load these on-demand using @-references:
 
 **Always Load**:
-- `@.claude/context/core/standards/code-quality.md` - Code quality standards
-- `@.claude/context/project/repo/project-overview.md` - Project context
+- `@.claude/context/standards/code-quality.md` - Code quality standards
+- `@.claude/context/repo/project-overview.md` - Project context
 
 **Load For Neovim Code**:
 - `@.claude/context/project/neovim/standards/lua-style-guide.md` - Lua style guide

@@ -207,6 +207,71 @@
         "languages": ["neovim"],
         "agents": ["neovim-research-agent", "neovim-implementation-agent"]
       }
+    },
+    {
+      "path": "project/neovim/standards/box-drawing-guide.md",
+      "domain": "project",
+      "subdomain": "neovim",
+      "topics": ["box-drawing", "unicode", "characters"],
+      "keywords": ["box", "drawing", "unicode", "border"],
+      "summary": "Unicode box-drawing character reference for UI elements",
+      "line_count": 80,
+      "load_when": {
+        "languages": ["neovim"],
+        "agents": ["neovim-research-agent", "neovim-implementation-agent"]
+      }
+    },
+    {
+      "path": "project/neovim/standards/documentation-policy.md",
+      "domain": "project",
+      "subdomain": "neovim",
+      "topics": ["documentation", "readme", "policy"],
+      "keywords": ["documentation", "readme", "structure", "style"],
+      "summary": "README requirements, structure template, and style guidelines",
+      "line_count": 100,
+      "load_when": {
+        "languages": ["neovim"],
+        "agents": ["neovim-research-agent", "neovim-implementation-agent"]
+      }
+    },
+    {
+      "path": "project/neovim/standards/emoji-policy.md",
+      "domain": "project",
+      "subdomain": "neovim",
+      "topics": ["emoji", "encoding", "characters"],
+      "keywords": ["emoji", "encoding", "unicode", "policy"],
+      "summary": "Character encoding guidelines and approved emoji alternatives",
+      "line_count": 60,
+      "load_when": {
+        "languages": ["neovim"],
+        "agents": ["neovim-research-agent", "neovim-implementation-agent"]
+      }
+    },
+    {
+      "path": "project/neovim/standards/lua-assertion-patterns.md",
+      "domain": "project",
+      "subdomain": "neovim",
+      "topics": ["testing", "assertions", "lua"],
+      "keywords": ["assert", "match", "string", "test"],
+      "summary": "Correct string:match() assertion usage for Lua tests",
+      "line_count": 80,
+      "load_when": {
+        "languages": ["neovim"],
+        "agents": ["neovim-implementation-agent"]
+      }
+    },
+    {
+      "path": "project/neovim/hooks/wezterm-integration.md",
+      "domain": "project",
+      "subdomain": "neovim",
+      "topics": ["wezterm", "terminal", "integration"],
+      "keywords": ["wezterm", "terminal", "hooks", "integration"],
+      "summary": "WezTerm terminal integration for Neovim workflow",
+      "line_count": 100,
+      "load_when": {
+        "languages": ["neovim"],
+        "agents": ["neovim-research-agent", "neovim-implementation-agent"]
+      }
     }
   ]
 }

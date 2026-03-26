@@ -80,6 +80,23 @@ modified: 2026-03-06
 
 Note: The `id:` field has been removed. Filenames serve as unique identifiers.
 
+## Role Boundaries
+
+This directory stores **learned facts** -- patterns discovered, decisions made,
+and observations recorded during development work. It is independent from
+`.context/` (user-defined project conventions) and loaded in parallel with it.
+
+| Content type | Belongs here? |
+|---|---|
+| Patterns discovered during development | Yes |
+| Decisions and their rationale | Yes |
+| Project conventions and coding style | No -- use `.context/` |
+| Agent system patterns | No -- use `.claude/context/` |
+| Language-specific references | No -- use extensions |
+| User preferences | No -- handled by Claude auto-memory |
+
+For the full context architecture, see `.claude/context/architecture/context-layers.md`.
+
 ## Best Practices
 
 - Use descriptive first lines for better titles

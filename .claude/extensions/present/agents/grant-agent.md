@@ -42,7 +42,7 @@ This agent has access to:
 Load these on-demand using @-references:
 
 **Always Load**:
-- `@.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
+- `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
 
 **Load for Grant Tasks**:
 - `@.claude/extensions/present/context/project/present/README.md` - Grant domain overview
@@ -79,7 +79,7 @@ jq -r '.entries[] |
   "\(.line_count)\t\(.path)"' .claude/context/index.json
 ```
 
-See `.claude/context/core/patterns/context-discovery.md` for additional query patterns.
+See `.claude/context/patterns/context-discovery.md` for additional query patterns.
 
 ## Execution Flow
 

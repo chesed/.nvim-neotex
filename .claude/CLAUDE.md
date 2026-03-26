@@ -25,9 +25,9 @@ Task management and agent orchestration for project development. For comprehensi
     └── context/        # Domain knowledge
 ```
 
-**Project-specific structure**: See `.claude/context/project/repo/project-overview.md` for details about this repository's layout.
+**Project-specific structure**: See `.claude/context/repo/project-overview.md` for details about this repository's layout.
 
-**New repository setup**: If project-overview.md doesn't exist, see `.claude/context/project/repo/update-project.md` for guidance on generating project-appropriate documentation.
+**New repository setup**: If project-overview.md doesn't exist, see `.claude/context/repo/update-project.md` for guidance on generating project-appropriate documentation.
 
 ## Task Management
 
@@ -214,7 +214,13 @@ Core rules (auto-applied by file path):
 
 ## Context Discovery
 
-Agents use `index.json` for automated context discovery instead of hardcoded file lists:
+Context is discovered from three independent layers, loaded in parallel:
+
+| Layer | Source | Notes |
+|-------|--------|-------|
+| Agent context | `.claude/context/index.json` | Core + extensions (merged by loader) |
+| Project context | `.context/index.json` | User conventions (may be empty) |
+| Project memory | `.memory/` files | Loaded directly, no index needed |
 
 ```bash
 # Find context files for an agent
@@ -227,15 +233,48 @@ jq -r '.entries[] | select(.load_when.languages[]? == "lean4") | .path' .claude/
 jq -r '.entries[] | select(.load_when.agents[]? == "planner-agent") | "\(.line_count)\t\(.path)"' .claude/context/index.json
 ```
 
-See `.claude/context/core/patterns/context-discovery.md` for query patterns.
+See `.claude/context/patterns/context-discovery.md` for full query patterns including multi-layer discovery.
 
-**Extension Context**: When extensions are loaded, their index entries are merged into `index.json`, enabling dynamic context discovery for extension-specific agents and languages.
+**Extension Context**: Extension index entries are merged into `.claude/context/index.json` by the loader -- no separate extension query needed.
+
+## Context Architecture
+
+Four layers provide context to agents. Each has a distinct owner and purpose.
+
+| Layer | Location | Owner | Contains |
+|-------|----------|-------|----------|
+| Agent context | `.claude/context/` | Extension loader | Core agent patterns + extension domain knowledge |
+| Extensions | `.claude/extensions/*/context/` | Extension loader | Language-specific standards, tools, patterns |
+| Project context | `.context/` | User (via index.json) | Project conventions not covered by extensions |
+| Project memory | `.memory/` | Agents over time | Learned facts, discoveries, decisions |
+| Auto-memory | `~/.claude/projects/` | Claude Code | User preferences, behavioral corrections |
+
+### Where to store new content
+
+```
+Language-specific standard, pattern, or tool reference?
+  YES --> extension context (.claude/extensions/*/context/)
+
+Agent system pattern (orchestration, format, workflow)?
+  YES --> .claude/context/
+
+Project convention (coding style, naming, domain knowledge)?
+  YES --> .context/
+
+Learned fact from development (discovery, decision, pattern)?
+  YES --> .memory/
+
+User preference or behavioral correction?
+  YES --> auto-memory (automatic, no action needed)
+```
+
+Full details: `.claude/context/architecture/context-layers.md`
 
 ## Context Imports
 
 Core context (always available):
-- @.claude/context/project/repo/project-overview.md
-- @.claude/context/project/meta/meta-guide.md
+- @.claude/context/repo/project-overview.md
+- @.claude/context/meta/meta-guide.md
 
 **Extension Context**: Available when extensions are loaded via `<leader>ac`. Query `index.json` for extension-specific context files.
 
@@ -284,7 +323,7 @@ select(.type == "plan" | not)
 select(.type != "plan")
 ```
 
-Full documentation: @.claude/context/core/patterns/jq-escaping-workarounds.md
+Full documentation: @.claude/context/patterns/jq-escaping-workarounds.md
 
 ## Important Notes
 

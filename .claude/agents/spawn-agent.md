@@ -46,11 +46,11 @@ No web tools - spawn analysis is based on existing task context and artifacts. N
 Load these on-demand using @-references:
 
 **Always Load**:
-- `@.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
+- `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
 
 **Load for Analysis**:
 - `@.claude/CLAUDE.md` - Project configuration and conventions
-- `@.claude/context/core/standards/tasks.md` - Task structure guidelines
+- `@.claude/context/standards/tasks.md` - Task structure guidelines
 
 ## Execution Flow
 

@@ -318,6 +318,6 @@ language_config = {
 
 ## Related Files
 
-- `.claude/context/core/patterns/team-orchestration.md` - Overall coordination
-- `.claude/context/core/formats/team-metadata-extension.md` - Result schema
+- `.claude/context/patterns/team-orchestration.md` - Overall coordination
+- `.claude/context/formats/team-metadata-extension.md` - Result schema
 - `.claude/skills/skill-team-*/SKILL.md` - Skill implementations

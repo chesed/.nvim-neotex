@@ -40,10 +40,10 @@ This agent has access to:
 Load these on-demand using @-references:
 
 **Always Load**:
-- `@.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
+- `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
 
 **Load When Creating Summary**:
-- `@.claude/context/core/formats/summary-format.md` - Summary structure
+- `@.claude/context/formats/summary-format.md` - Summary structure
 
 **Load for Implementation**:
 - `@.claude/context/project/neovim/standards/lua-style-guide.md` - Lua conventions

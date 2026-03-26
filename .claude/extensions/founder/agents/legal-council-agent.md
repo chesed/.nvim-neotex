@@ -46,7 +46,7 @@ Load these on-demand using @-references:
 
 **Load for Output**:
 - `@.claude/extensions/founder/context/project/founder/templates/contract-analysis.md` - Report template
-- `@.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
+- `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
 
 ---
 

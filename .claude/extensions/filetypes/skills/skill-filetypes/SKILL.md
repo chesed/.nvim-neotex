@@ -11,7 +11,7 @@ Thin wrapper that routes file format operations to the `filetypes-router-agent`,
 ## Context Pointers
 
 Reference (do not load eagerly):
-- Path: `.claude/context/core/formats/subagent-return.md`
+- Path: `.claude/context/formats/subagent-return.md`
 - Purpose: Return validation
 - Load at: Subagent execution only
 
@@ -146,7 +146,7 @@ Return validated result to caller without modification.
 
 ## Return Format
 
-See `.claude/context/core/formats/subagent-return.md` for full specification.
+See `.claude/context/formats/subagent-return.md` for full specification.
 
 Expected successful return:
 ```json

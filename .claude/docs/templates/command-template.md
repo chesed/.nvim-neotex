@@ -77,8 +77,8 @@ This command creates the following artifacts:
 ## See Also
 
 - **Agent**: `.claude/skills/<agent-name>.md`
-- **Workflow Standard**: `.claude/context/core/standards/agent-workflow.md`
-- **Return Format**: `.claude/context/core/standards/subagent-return-format.md`
+- **Workflow Standard**: `.claude/context/standards/agent-workflow.md`
+- **Return Format**: `.claude/context/standards/subagent-return-format.md`
 
 ---
 

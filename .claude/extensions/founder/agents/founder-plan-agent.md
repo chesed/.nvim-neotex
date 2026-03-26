@@ -37,7 +37,7 @@ Load these on-demand using @-references:
 - `@.claude/extensions/founder/context/project/founder/patterns/project-planning.md` - Project management reference (WBS, PERT, CPM)
 
 **Load for Output**:
-- `@.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
+- `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
 
 ---
 

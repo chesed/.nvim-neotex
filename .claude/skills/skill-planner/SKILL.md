@@ -3,8 +3,8 @@ name: skill-planner
 description: Create phased implementation plans from research findings. Invoke when a task needs an implementation plan.
 allowed-tools: Task, Bash, Edit, Read, Write
 # Original context (now loaded by subagent):
-#   - .claude/context/core/formats/plan-format.md
-#   - .claude/context/core/workflows/task-breakdown.md
+#   - .claude/context/formats/plan-format.md
+#   - .claude/context/workflows/task-breakdown.md
 # Original tools (now used by subagent):
 #   - Read, Write, Edit, Glob, Grep
 ---
@@ -20,10 +20,10 @@ This eliminates the "continue" prompt issue between skill return and orchestrato
 ## Context References
 
 Reference (do not load eagerly):
-- Path: `.claude/context/core/formats/return-metadata-file.md` - Metadata file schema
-- Path: `.claude/context/core/patterns/postflight-control.md` - Marker file protocol
-- Path: `.claude/context/core/patterns/file-metadata-exchange.md` - File I/O helpers
-- Path: `.claude/context/core/patterns/jq-escaping-workarounds.md` - jq escaping patterns (Issue #1132)
+- Path: `.claude/context/formats/return-metadata-file.md` - Metadata file schema
+- Path: `.claude/context/patterns/postflight-control.md` - Marker file protocol
+- Path: `.claude/context/patterns/file-metadata-exchange.md` - File I/O helpers
+- Path: `.claude/context/patterns/jq-escaping-workarounds.md` - jq escaping patterns (Issue #1132)
 
 Note: This skill is a thin wrapper with internal postflight. Context is loaded by the delegated agent.
 
@@ -353,7 +353,7 @@ The postflight phase is LIMITED TO:
 - Git commit
 - Cleanup of temp/marker files
 
-Reference: @.claude/context/core/standards/postflight-tool-restrictions.md
+Reference: @.claude/context/standards/postflight-tool-restrictions.md
 
 ---
 

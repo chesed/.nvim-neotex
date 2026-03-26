@@ -11,7 +11,7 @@ Thin wrapper that routes presentation operations to the `presentation-agent`.
 ## Context Pointers
 
 Reference (do not load eagerly):
-- Path: `.claude/context/core/formats/subagent-return.md`
+- Path: `.claude/context/formats/subagent-return.md`
 - Purpose: Return validation
 - Load at: Subagent execution only
 
