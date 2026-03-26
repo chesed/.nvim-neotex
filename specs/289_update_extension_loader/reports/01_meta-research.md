@@ -1,92 +1,91 @@
 # Research Report: Task #289
 
-**Task**: 289 - Modify extension loader to keep context in extension directories
+**Task**: 289 - Clarify context architecture: extension loader copies core + extension context to .claude/context/; project-level .context/ managed via index.json
 **Generated**: 2026-03-25
-**Source**: /meta interview (auto-generated)
-**Status**: Pre-populated from interview context
+**Updated**: 2026-03-25
+**Source**: /meta interview (auto-generated), revised per user direction
+**Status**: Pre-populated from interview context, revised
 
 ---
 
 ## Context Summary
 
-**Purpose**: Change extension loading to reference context in-place instead of copying
-**Scope**: Modify Neovim extension loader and extension manifest format
-**Affected Components**: Extension loader Lua code, manifest.json format, index-entries.json
+**Purpose**: Clarify the separation of concerns between agent context (managed by extension loader) and project context (managed by index.json)
+**Scope**: Extension loader behavior, .context/ directory, .memory/ integration
+**Affected Components**: Extension loader Lua code, .context/index.json, agent context discovery
 **Domain**: meta
 **Language**: meta
 
 ## Task Requirements
 
-Currently, extensions copy their context files to `.claude/context/project/`. This creates merge conflicts and gets overwritten on `.claude/` reloads. The new approach keeps context in extension directories and uses path prefixes in the merged index.
+The context system has two distinct halves with different management strategies:
 
-### Current Behavior
+### 1. Agent Context (.claude/context/) — Managed by Extension Loader
 
-```lua
--- Extension loading copies files:
--- .claude/extensions/nvim/context/project/neovim/ -> .claude/context/project/neovim/
-```
+The extension loader **copies and merges** context files into `.claude/context/`. This includes:
 
-### New Behavior
+- **Core context files**: Agent system patterns, templates, reference docs (from `.claude/context/core/`)
+- **Extension context files**: Language-specific context from each loaded extension (from `.claude/extensions/*/context/`)
 
-```lua
--- Extension loading only merges index entries with prefixed paths:
--- Entry path: "project/neovim/README.md"
--- Becomes: "extension/nvim/context/project/neovim/README.md"
-```
+The extension loader's job is to assemble a complete `.claude/context/` directory that contains everything the agent system needs. Extensions contribute their context files by copying them into this directory during loading.
+
+### 2. Project Context (.context/) — Managed by index.json
+
+Project-specific context lives in a top-level `.context/` directory, **outside** `.claude/`. This includes:
+
+- Project conventions the user wants to follow
+- Domain-specific knowledge and standards
+- Any project-level information that isn't part of the agent system itself
+
+A `.context/index.json` file manages these entries. The core agent system references this index to discover and load project-specific context as needed.
+
+### 3. Project Memory (.memory/) — Complementary to .context/
+
+The `.memory/` directory stores persistent information about the project that agents have learned over time. The `.context/index.json` can reference `.memory/` files, creating a unified discovery mechanism for both static project context and dynamic project memory.
+
+### Key Distinction
+
+| Aspect | Agent Context | Project Context |
+|--------|--------------|-----------------|
+| Location | `.claude/context/` | `.context/` |
+| Managed by | Extension loader | `index.json` |
+| Contains | Core + extension agent files | Project conventions, domain knowledge |
+| Lifecycle | Rebuilt on extension load | Persistent, user-managed |
+| Memory integration | None | Keys into `.memory/` files |
 
 ### Changes Required
 
-1. **Extension loader** (`~/.config/nvim/lua/claude/extensions.lua` or similar):
-   - Remove context directory copying logic
-   - Update index merging to prefix paths with `extension/{name}/context/`
-   - Update verification to check files exist in extension directories
+1. **Extension loader** (keeps current copy/merge behavior):
+   - Continues copying core context to `.claude/context/`
+   - Continues copying extension context to `.claude/context/` on load
+   - No change to current behavior — this is the correct approach
 
-2. **Extension manifest.json**:
-   - Change `provides.context` to be informational only (no copying)
-   - Document new path resolution in README
+2. **Project .context/ directory**:
+   - Create `.context/` at project root (outside `.claude/`)
+   - Create `.context/index.json` schema for project context discovery
+   - Migrate project-specific files from `.claude/context/project/` to `.context/`
 
-3. **Extension index-entries.json**:
-   - Entries can stay as-is (paths are prefixed during merge)
-   - Alternative: entries use `extension/{name}/` prefix directly
+3. **index.json schema**:
+   - Entries for project context files in `.context/`
+   - Entries that reference `.memory/` files for dynamic project knowledge
+   - Query patterns for agents to discover project-specific context
 
-4. **Agent context loading**:
-   - Update path resolution to handle `extension/` prefix
-   - Query pattern: check both `.claude/context/` and `.claude/extensions/*/context/`
-
-### Path Resolution Strategy
-
-Option A: Prefix during merge (recommended)
-```json
-// In merged index.json
-{
-  "path": "extension/nvim/context/project/neovim/README.md",
-  "domain": "extension",
-  "extension_name": "nvim"
-}
-```
-
-Option B: Two-index query
-```bash
-# Query core index
-jq ... .claude/context/index.json
-# Query extension indices
-for ext in .claude/extensions/*/; do
-  jq ... "$ext/index-entries.json"
-done
-```
-
-Recommendation: Option A for simplicity - single merged index with extension paths.
+4. **Agent context discovery**:
+   - Core + extension context: read from `.claude/context/` (as today)
+   - Project context: query `.context/index.json`
+   - Project memory: follow references from index.json to `.memory/`
 
 ## Integration Points
 
-- **Component Type**: Lua code, JSON schema
-- **Affected Area**: Extension loading system
-- **Action Type**: modify
+- **Component Type**: Directory structure, JSON schema, Lua code
+- **Affected Area**: Context discovery, extension loading, project configuration
+- **Action Type**: clarify and restructure
 - **Related Files**:
-  - `~/.config/nvim/lua/claude/extensions.lua` (or picker implementation)
-  - `.claude/extensions/*/manifest.json`
-  - `.claude/extensions/*/index-entries.json`
-  - `.claude/context/index.json`
+  - Extension loader (Lua code — no changes needed)
+  - `.context/index.json` (new)
+  - `.context/` directory (new, receives migrated project files)
+  - `.memory/` directory (referenced by index.json)
+  - `.claude/context/index.json` (existing, for agent context)
 
 ## Dependencies
 
@@ -95,13 +94,14 @@ Recommendation: Option A for simplicity - single merged index with extension pat
 ## Interview Context
 
 ### User-Provided Information
-The key insight is that extension context should stay in extension directories, only index entries are merged. This prevents overwrites and simplifies the extension loading process.
+The key insight is that context has two audiences: the agent system (core + extensions, managed by the loader) and the project (conventions, domain knowledge, managed by index.json). The extension loader should continue copying/merging — the change is clarifying that project context lives separately in .context/ with its own index.json, and that this index can reference .memory/ for project-specific learned information.
 
 ### Effort Assessment
 - **Estimated Effort**: 3 hours
-- **Complexity Notes**: Requires Lua code changes to extension loader. Need to test with all 14 extensions to ensure compatibility.
+- **Complexity Notes**: Primarily a structural clarification. Extension loader behavior stays the same. Main work is designing the .context/index.json schema and migration of project files.
 
 ---
 
 *This research report was auto-generated during task creation via /meta command.*
+*Revised 2026-03-25 to reflect clarified context architecture.*
 *For deeper investigation, run `/research 289 [focus]` with a specific focus prompt.*
