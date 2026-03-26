@@ -10,10 +10,10 @@ next_project_number: 301
 
 ### Pending
 
-- **298** [RESEARCHED] -- Add missing domain/subdomain metadata to index.json entries
+- **298** [COMPLETED] -- Add missing domain/subdomain metadata to index.json entries
 - **299** [RESEARCHED] -- Index 75 unindexed context files (depends on 298)
 - **300** [RESEARCHED] -- Add missing summaries to index.json entries (depends on 298)
-- **297** [RESEARCHED] -- Create missing pitch-deck context files
+- **297** [COMPLETED] -- Remove duplicate pitch-deck index entries
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
@@ -34,12 +34,14 @@ next_project_number: 301
 
 ### 298. Add missing domain/subdomain metadata to index.json entries
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-26
 - **Research Completed**: 2026-03-26
 - **Language**: meta
 - **Dependencies**: None
-- **Research**: [01_index-metadata.md](298_add_index_metadata/reports/01_index-metadata.md)
+- **Artifacts**:
+  - **Research**: [01_index-metadata.md](298_add_index_metadata/reports/01_index-metadata.md)
+  - **Plan**: [02_index-metadata.md](298_add_index_metadata/plans/02_index-metadata.md)
 
 **Description**: Add missing `domain` and `subdomain` metadata to 134 entries in the Website project's `.claude/context/index.json`. All 134 entries are under the `project/` path prefix and can be assigned `domain="project"` with `subdomain` derived from the second path component (e.g., `typst`, `logic`, `founder`, `math`, `nix`, `latex`, `python`, `memory`, `z3`, `physics`, `lean4`, `filetypes`, `web`). Many entries also lack `summary`, `keywords`, and `topics` fields, which could be addressed in a follow-up task (300).
 
@@ -58,16 +60,20 @@ next_project_number: 301
 
 ---
 
-### 297. Create missing pitch-deck context files
+### 297. Remove duplicate pitch-deck index entries
 - **Effort**: 30 minutes
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Research Started**: 2026-03-26
 - **Research Completed**: 2026-03-26
+- **Planning Started**: 2026-03-26
+- **Planning Completed**: 2026-03-26
 - **Language**: meta
 - **Dependencies**: None
-- **Research**: [01_pitch-deck-context.md](297_create_pitch_deck_context/reports/01_pitch-deck-context.md)
+- **Artifacts**:
+  - **Research**: [01_pitch-deck-context.md](297_create_pitch_deck_context/reports/01_pitch-deck-context.md)
+  - **Plan**: [02_pitch-deck-context.md](297_create_pitch_deck_context/plans/02_pitch-deck-context.md)
 
-**Description**: Create 2 missing pitch-deck context files referenced in Website `.claude/context/index.json`. The files `pitch-deck-structure.md` and `touying-pitch-deck-template.md` exist in the `present` subdomain but are also referenced (and missing) in the `filetypes` subdomain. Research recommends removing the duplicate index entries rather than creating duplicate files.
+**Description**: Remove 2 duplicate pitch-deck index entries from Website `.claude/context/index.json` that reference non-existent files in the `filetypes` subdomain. The correct entries already exist in the `present` subdomain with richer metadata (keywords, topics, languages, commands).
 
 ---
 

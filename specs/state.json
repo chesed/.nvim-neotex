@@ -11,7 +11,9 @@
       "description": "Add index.json entries for 75 context files that exist on disk but aren't indexed in Website .claude/context/",
       "created": "2026-03-26T20:00:00Z",
       "last_updated": "2026-03-26T20:00:00Z",
-      "dependencies": [298],
+      "dependencies": [
+        298
+      ],
       "artifacts": [
         {
           "type": "research",
@@ -22,19 +24,24 @@
     {
       "project_number": 297,
       "project_name": "create_pitch_deck_context",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "30 minutes",
-      "description": "Create 2 missing pitch-deck context files referenced in Website .claude/context/index.json",
+      "description": "Remove 2 duplicate pitch-deck index entries referencing non-existent files in filetypes subdomain",
       "created": "2026-03-26T20:00:00Z",
-      "last_updated": "2026-03-26T20:00:00Z",
+      "last_updated": "2026-03-26T20:30:00Z",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/297_create_pitch_deck_context/reports/01_pitch-deck-context.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/297_create_pitch_deck_context/plans/02_pitch-deck-context.md"
         }
-      ]
+      ],
+      "completion_summary": "Removed 2 duplicate pitch-deck index entries from filetypes/patterns/ that duplicated existing present/patterns/ entries with richer metadata."
     },
     {
       "project_number": 300,
@@ -45,7 +52,9 @@
       "description": "Add missing summary fields to 67 index.json entries in Website .claude/context/",
       "created": "2026-03-26T20:00:00Z",
       "last_updated": "2026-03-26T20:00:00Z",
-      "dependencies": [298],
+      "dependencies": [
+        298
+      ],
       "artifacts": [
         {
           "type": "research",
@@ -56,17 +65,22 @@
     {
       "project_number": 298,
       "project_name": "add_index_metadata",
-      "status": "researched",
+      "status": "completed",
       "language": "meta",
       "effort": "1-2 hours",
       "description": "Add missing domain/subdomain metadata to 134 index.json entries in Website .claude/context/",
+      "completion_summary": "Added domain='project' and subdomain (derived from second path component) to all 134 entries that were missing these fields. lean4 paths use subdomain 'lean' per existing convention. Verified 0 null domain/subdomain remaining.",
       "created": "2026-03-26T20:00:00Z",
-      "last_updated": "2026-03-26T20:00:00Z",
+      "last_updated": "2026-03-26T21:10:00Z",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/298_add_index_metadata/reports/01_index-metadata.md"
+        },
+        {
+          "type": "plan",
+          "path": "specs/298_add_index_metadata/plans/02_index-metadata.md"
         }
       ]
     },
