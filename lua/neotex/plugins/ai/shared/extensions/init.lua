@@ -345,6 +345,29 @@ function M.create(config)
         table.insert(data_skeleton_files, f)
       end
 
+      -- Pre-load cleanup: remove index entries for non-loaded extensions
+      -- This prevents orphans from accumulating when switching between sparse/full loads.
+      -- Runs before appending new entries so the index is clean first.
+      local index_path = target_dir .. "/context/index.json"
+      if vim.fn.filereadable(index_path) == 1 then
+        local updated_state = state_mod.read(project_dir, config)
+        local loaded_names = state_mod.list_loaded(updated_state)
+        -- Include the extension being loaded (not yet in state)
+        table.insert(loaded_names, extension_name)
+        local valid_prefixes = {}
+        for _, ext_name in ipairs(loaded_names) do
+          local ext = manifest_mod.get_extension(ext_name, config)
+          if ext and ext.manifest and ext.manifest.provides and ext.manifest.provides.context then
+            for _, prefix in ipairs(ext.manifest.provides.context) do
+              table.insert(valid_prefixes, prefix)
+            end
+          end
+        end
+        if #valid_prefixes > 0 then
+          merge_mod.remove_orphaned_index_entries(index_path, valid_prefixes)
+        end
+      end
+
       -- Load core context entries (always included, not extension-specific)
       local core_index_path = target_dir .. "/context/core-index-entries.json"
       local core_stat = vim.loop.fs_stat(core_index_path)
@@ -353,7 +376,6 @@ function M.create(config)
         if ok_core and core_data then
           local core_entries = core_data.entries or (vim.isarray(core_data) and core_data) or nil
           if core_entries then
-            local index_path = target_dir .. "/context/index.json"
             merge_mod.append_index_entries(index_path, core_entries)
           end
         end
@@ -376,38 +398,6 @@ function M.create(config)
     local rel_data_files = paths_to_relative(data_skeleton_files, project_dir)
     state = state_mod.mark_loaded(state, extension_name, ext_manifest, rel_files, rel_dirs, merged_sections, rel_data_files)
     state_mod.write(project_dir, state, config)
-
-    -- Post-load cleanup: remove index entries for non-loaded extensions
-    -- This catches orphans from sparse reloads where unload() is never called
-    local cleanup_ok, cleanup_err = pcall(function()
-      local updated_state = state_mod.read(project_dir, config)
-      local loaded_names = state_mod.list_loaded(updated_state)
-      local valid_prefixes = {}
-      for _, ext_name in ipairs(loaded_names) do
-        local ext = manifest_mod.get_extension(ext_name, config)
-        if ext and ext.manifest and ext.manifest.provides and ext.manifest.provides.context then
-          for _, prefix in ipairs(ext.manifest.provides.context) do
-            table.insert(valid_prefixes, prefix)
-          end
-        end
-      end
-      if #valid_prefixes > 0 then
-        local index_path = target_dir .. "/context/index.json"
-        local ok, removed = merge_mod.remove_orphaned_index_entries(index_path, valid_prefixes)
-        if ok and removed > 0 then
-          helpers.notify(
-            string.format("Cleaned %d orphaned index entries", removed),
-            "DEBUG"
-          )
-        end
-      end
-    end)
-    if not cleanup_ok then
-      helpers.notify(
-        "Post-load index cleanup failed: " .. tostring(cleanup_err),
-        "WARN"
-      )
-    end
 
     helpers.notify(
       string.format("Loaded extension '%s' (%d files)", extension_name, #all_files),

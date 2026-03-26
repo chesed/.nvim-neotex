@@ -6,7 +6,7 @@
       "project_number": 307,
       "project_name": "post_load_index_cleanup",
       "status": "completed",
-      "completion_summary": "Added remove_orphaned_index_entries() to merge.lua and integrated post-load cleanup into manager.load() in init.lua. After each extension load, the loader reads extensions.json to get loaded extension names, collects provides.context prefixes from their manifests, and filters index.json to remove entries from non-loaded extensions. Core entries (non-project/ paths) are always preserved. Cleanup is wrapped in pcall for safety.",
+      "completion_summary": "Moved orphan cleanup from post-load (create-then-remove) to pre-load (prevent creation). Cleanup now runs before core/extension entries are appended, filtering stale entries from previous loads. Removed redundant post-load cleanup block.",
       "language": "neovim",
       "effort": "1-2 hours",
       "description": "Add post-load index cleanup that removes entries for non-loaded extensions, fixing sparse reload orphan issue",
@@ -34,7 +34,9 @@
       "completion_summary": "Created core-index-entries.json with 95 entries for all core context .md files (orchestration, standards, patterns, formats, templates, etc.). Added 13 lines to the extension loader (init.lua) to always load core entries before processing extension merge targets. Uses pcall for safety and append_index_entries for deduplication.",
       "created": "2026-03-26T23:00:00Z",
       "last_updated": "2026-03-27T01:00:00Z",
-      "dependencies": [301],
+      "dependencies": [
+        301
+      ],
       "artifacts": [
         {
           "type": "research",
@@ -56,7 +58,9 @@
       "completion_summary": "Added domain/subdomain to 186 entries and summary to 119 entries across 11 extension source index-entries.json files. All 232 entries across 14 extensions now have complete domain, subdomain, and summary metadata. Zero missing fields remain.",
       "created": "2026-03-26T23:30:00Z",
       "last_updated": "2026-03-27T01:00:00Z",
-      "dependencies": [303],
+      "dependencies": [
+        303
+      ],
       "artifacts": [
         {
           "type": "research",
