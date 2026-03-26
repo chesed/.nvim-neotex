@@ -1,7 +1,41 @@
 {
   "version": "1.0.0",
-  "next_project_number": 301,
+  "next_project_number": 303,
   "active_projects": [
+    {
+      "project_number": 301,
+      "project_name": "fix_loader_orphan_cleanup",
+      "status": "researched",
+      "language": "neovim",
+      "effort": "2-3 hours",
+      "description": "Fix extension loader to clean orphaned index.json entries when doing sparse extension reloads",
+      "created": "2026-03-26T21:00:00Z",
+      "last_updated": "2026-03-26T21:00:00Z",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/301_fix_loader_orphan_cleanup/reports/01_loader-orphan-cleanup.md"
+        }
+      ]
+    },
+    {
+      "project_number": 302,
+      "project_name": "clean_website_index_orphans",
+      "status": "researched",
+      "language": "meta",
+      "effort": "15 minutes",
+      "description": "Remove 26 orphaned index.json entries from Website .claude/context/ that reference unloaded extension files",
+      "created": "2026-03-26T21:00:00Z",
+      "last_updated": "2026-03-26T21:00:00Z",
+      "dependencies": [],
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/302_clean_website_index_orphans/reports/01_website-index-orphans.md"
+        }
+      ]
+    },
     {
       "project_number": 299,
       "project_name": "index_unindexed_context",

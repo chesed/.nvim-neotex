@@ -1,15 +1,17 @@
 ---
-next_project_number: 301
+next_project_number: 303
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-26. 6 active tasks remaining.*
+*Updated 2026-03-26. 8 active tasks remaining.*
 
 ### Pending
 
+- **301** [RESEARCHED] -- Fix extension loader orphaned index entry cleanup (root cause)
+- **302** [RESEARCHED] -- Clean orphaned index entries from Website index.json
 - **298** [COMPLETED] -- Add missing domain/subdomain metadata to index.json entries
 - **299** [COMPLETED] -- Index 75 unindexed context files (depends on 298)
 - **300** [COMPLETED] -- Add missing summaries to index.json entries (depends on 298)
@@ -18,6 +20,32 @@ next_project_number: 301
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 301. Fix extension loader orphaned index entry cleanup
+- **Effort**: 2-3 hours
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-26
+- **Research Completed**: 2026-03-26
+- **Language**: neovim
+- **Dependencies**: None
+- **Research**: [01_loader-orphan-cleanup.md](301_fix_loader_orphan_cleanup/reports/01_loader-orphan-cleanup.md)
+
+**Description**: Fix the extension loader (`lua/neotex/plugins/ai/shared/extensions/merge.lua`) to clean orphaned `index.json` entries during sparse extension reloads. The loader tracks entries added at load time but not entries added by external processes (e.g., tasks enriching metadata). On unload, only tracked entries are removed, leaving behind orphans. Fix: add path-prefix-based cleanup using `provides.context` from the extension manifest to remove all entries under an extension's owned prefix during unload.
+
+---
+
+### 302. Clean orphaned index entries from Website index.json
+- **Effort**: 15 minutes
+- **Status**: [RESEARCHED]
+- **Research Started**: 2026-03-26
+- **Research Completed**: 2026-03-26
+- **Language**: meta
+- **Dependencies**: None
+- **Research**: [01_website-index-orphans.md](302_clean_website_index_orphans/reports/01_website-index-orphans.md)
+
+**Description**: Remove 26 orphaned entries from Website `.claude/context/index.json` that reference files not on disk. 24 entries are from the unloaded lean4 extension, 2 are leftover pitch-deck duplicates. Total entries will drop from 83 to 57. Related to task 301 (loader fix for root cause).
+
+---
 
 ### 299. Index 75 unindexed context files
 - **Effort**: 1-2 hours
