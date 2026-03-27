@@ -5,21 +5,27 @@
     {
       "project_number": 309,
       "project_name": "unified_artifact_numbering_research",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "effort": "2-3 hours",
       "created": "2026-03-27T17:26:39Z",
-      "last_updated": "2026-03-27T17:32:46Z",
-      "session_id": "sess_1774632541_2be92e",
+      "last_updated": "2026-03-27T17:36:15Z",
+      "session_id": "sess_1774632840_d40ec6",
       "dependencies": [],
       "artifacts": [
         {
           "path": "specs/309_unified_artifact_numbering_research/reports/01_unified-numbering-research.md",
           "type": "research",
           "summary": "Research report analyzing current artifact numbering patterns and designing unified sequencing with next_artifact_number field"
+        },
+        {
+          "path": "specs/309_unified_artifact_numbering_research/plans/01_unified-numbering-implementation.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan for unified artifact numbering across skills and agents"
         }
       ],
-      "researched": "2026-03-27T17:32:46Z"
+      "researched": "2026-03-27T17:32:46Z",
+      "planned": "2026-03-27T17:36:15Z"
     },
     {
       "project_number": 310,

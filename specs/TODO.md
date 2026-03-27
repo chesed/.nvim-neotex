@@ -10,7 +10,7 @@ next_project_number: 313
 
 ### Pending
 
-- **309** [RESEARCHED] -- Research unified artifact numbering system
+- **309** [PLANNED] -- Research unified artifact numbering system
 - **310** [NOT STARTED] -- Update state.json schema (blocked by 309)
 - **311** [NOT STARTED] -- Update artifact-formats.md rule (blocked by 309)
 - **312** [NOT STARTED] -- Update skills/agents unified numbering (blocked by 310, 311)
@@ -22,11 +22,14 @@ next_project_number: 313
 
 ### 309. Research unified artifact numbering system
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Research Started**: 2026-03-27
 - **Research Completed**: 2026-03-27
+- **Planning Started**: 2026-03-27
+- **Planning Completed**: 2026-03-27
 - **Language**: meta
 - **Research**: [01_unified-numbering-research.md](309_unified_artifact_numbering_research/reports/01_unified-numbering-research.md)
+- **Plan**: [01_unified-numbering-implementation.md](309_unified_artifact_numbering_research/plans/01_unified-numbering-implementation.md)
 - **Dependencies**: None
 
 **Description**: Analyze current artifact numbering patterns across all skills/agents, document how next_artifact_number should be tracked in state.json, and design the unified sequencing logic where research drives numbering and plan/summary inherit the current number. Review ProofChecker task 058 as an example of desired behavior.
