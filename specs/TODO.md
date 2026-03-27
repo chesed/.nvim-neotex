@@ -10,7 +10,7 @@ next_project_number: 319
 
 ### Pending
 
-- **313** [RESEARCHED] -- Create spreadsheet domain context (foundational)
+- **313** [PLANNED] -- Create spreadsheet domain context (foundational)
 - **314** [RESEARCHED] -- Create spreadsheet-agent (blocked by 313)
 - **315** [RESEARCHED] -- Create skill-spreadsheet (blocked by 314)
 - **316** [RESEARCHED] -- Create /sheet command (blocked by 315)
@@ -28,12 +28,13 @@ next_project_number: 319
 
 ### 313. Create spreadsheet domain context
 - **Effort**: 2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**:
   - [01_meta-research.md](313_spreadsheet_domain_context/reports/01_meta-research.md)
   - [02_team-research.md](313_spreadsheet_domain_context/reports/02_team-research.md)
+- **Plan**: [02_sheet-system-plan.md](313_spreadsheet_domain_context/plans/02_sheet-system-plan.md)
 
 **Description**: Create spreadsheet-frameworks.md domain context file with cost category taxonomies, burn rate patterns, range-based financial modeling, and dependency patterns for the founder extension.
 
