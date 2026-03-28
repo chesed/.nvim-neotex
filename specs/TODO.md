@@ -10,7 +10,7 @@ next_project_number: 320
 
 ### Pending
 
-- **319** [RESEARCHED] -- Fix founder-plan-agent plan format conformance
+- **319** [PLANNED] -- Fix founder-plan-agent plan format conformance
 - **313** [COMPLETED] -- Create spreadsheet domain context (foundational)
 - **314** [RESEARCHED] -- Create spreadsheet-agent (blocked by 313)
 - **315** [RESEARCHED] -- Create skill-spreadsheet (blocked by 314)
@@ -29,10 +29,11 @@ next_project_number: 320
 
 ### 319. Fix founder-plan-agent plan format conformance
 - **Effort**: 1-2 hours
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meta-research.md](319_founder_plan_format_conformance/reports/01_meta-research.md)
+- **Plan**: [01_plan-format-fix.md](319_founder_plan_format_conformance/plans/01_plan-format-fix.md)
 
 **Description**: Fix founder-plan-agent to load plan-format.md and generate plans conforming to the standard structure. Currently the agent defines its own plan structure with missing required sections (Goals & Non-Goals, Rollback/Contingency) and non-standard metadata format. Update agent context references and rewrite Stage 5 template.
 

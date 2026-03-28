@@ -5,21 +5,27 @@
     {
       "project_number": 319,
       "project_name": "founder_plan_format_conformance",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "effort": "1-2 hours",
       "created": "2026-03-27T23:56:55Z",
-      "last_updated": "2026-03-27T23:56:55Z",
-      "session_id": "sess_1774655767_a7c6b1",
+      "last_updated": "2026-03-27T23:59:59Z",
+      "session_id": "sess_1774655869_f14ce2",
       "dependencies": [],
       "artifacts": [
         {
           "type": "research",
           "path": "specs/319_founder_plan_format_conformance/reports/01_meta-research.md",
           "summary": "Investigation of plan format non-conformance in founder-plan-agent"
+        },
+        {
+          "path": "specs/319_founder_plan_format_conformance/plans/01_plan-format-fix.md",
+          "type": "plan",
+          "summary": "4-phase implementation plan to fix founder-plan-agent plan format conformance"
         }
       ],
-      "next_artifact_number": 2
+      "next_artifact_number": 2,
+      "planned": "2026-03-27T23:59:59Z"
     },
     {
       "project_number": 309,
