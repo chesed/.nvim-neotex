@@ -1,6 +1,36 @@
 {
   "completed_projects": [
     {
+      "project_number": 320,
+      "project_name": "study_personal_ai_infrastructure",
+      "status": "abandoned",
+      "language": "meta",
+      "created": "2026-03-29T00:15:39Z",
+      "last_updated": "2026-03-29T00:50:07Z",
+      "session_id": "sess_1743122000_p320r2",
+      "researched": "2026-03-29T00:43:55Z",
+      "artifacts": [
+        {
+          "path": "specs/320_study_personal_ai_infrastructure/reports/01_personal-ai-research.md",
+          "type": "research",
+          "summary": "Initial PAI platform analysis with 8 findings and 7 recommendations"
+        },
+        {
+          "path": "specs/320_study_personal_ai_infrastructure/reports/02_team-research.md",
+          "type": "research",
+          "summary": "Team research: 10 integrable skills and utilities with priority matrix"
+        },
+        {
+          "path": "specs/320_study_personal_ai_infrastructure/plans/02_pai-integration.md",
+          "type": "plan",
+          "summary": "9-phase implementation plan for integrating PAI components"
+        }
+      ],
+      "next_artifact_number": 3,
+      "planned": "2026-03-29T00:50:07Z",
+      "abandoned": "2026-03-29T06:42:04Z"
+    },
+    {
       "project_number": 239,
       "project_name": "implement_user_access_approval_workflow",
       "status": "abandoned",
