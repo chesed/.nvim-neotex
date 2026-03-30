@@ -6,28 +6,35 @@ next_project_number: 323
 
 ## Task Order
 
-*Updated 2026-03-30. 3 active tasks remaining.*
+*Updated 2026-03-30. 2 active tasks remaining.*
 
 ### Pending
 
-- **322** [PLANNED] -- Add REVIEW mode to /project command
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
+
+### Completed (Ready for Archive)
+
+- **322** [COMPLETED] -- Add REVIEW mode to /project command
 
 ## Tasks
 
 ### 322. Add REVIEW mode to /project command for timeline analysis
 - **Effort**: 2-3 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Started**: 2026-03-30
 - **Research Completed**: 2026-03-30
 - **Planning Completed**: 2026-03-30
+- **Implementation Completed**: 2026-03-30
 - **Research**: [01_review-mode-design.md](322_add_review_mode_to_project_command/reports/01_review-mode-design.md)
 - **Plan**: [01_implementation-plan.md](322_add_review_mode_to_project_command/plans/01_implementation-plan.md)
+- **Summary**: [01_execution-summary.md](322_add_review_mode_to_project_command/summaries/01_execution-summary.md)
 
 **Description**: Add a fourth REVIEW mode to the `/project` command that critically analyzes project timelines for gaps, issues, weaknesses, and improvement opportunities. Must support both external timeline files (e.g., `.typ`, `.md`) and existing task artifacts (research/plan reports). Analysis should cover: timeline gaps, feasibility issues, risk weaknesses, resource concerns, critical path vulnerabilities, missing dependencies, and unrealistic estimates. Update `project.md` command, `project-agent.md` agent, and create review-specific context/criteria as needed.
+
+**Completion Summary**: Added REVIEW mode to /project command with 5 forcing questions (primary concern, changed constraints, validity window, risk tolerance, review depth), 7-category analysis framework with 30+ detection rules, 4-tier severity system (Critical/High/Medium/Low), and comprehensive review report generation. Modified project.md (+120 lines) and project-agent.md (+295 lines).
 
 ---
 

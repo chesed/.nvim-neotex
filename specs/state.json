@@ -5,10 +5,11 @@
     {
       "project_number": 322,
       "project_name": "add_review_mode_to_project_command",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-03-30T16:36:04Z",
-      "last_updated": "2026-03-30T16:57:00Z",
+      "last_updated": "2026-03-30T18:00:00Z",
+      "completion_summary": "Added REVIEW mode to /project command: 5 forcing questions, 7-category analysis framework with 30+ detection rules, 4-tier severity system, comprehensive review report generation",
       "artifacts": [
         {
           "type": "research",
@@ -21,12 +22,12 @@
           "summary": "3-phase implementation plan for REVIEW mode: project.md updates, agent stages, integration testing"
         },
         {
-          "type": "plan",
-          "path": "specs/322_add_review_mode_to_project_command/plans/01_implementation-plan.md",
-          "summary": "3-phase plan: update project.md, add REVIEW stages to project-agent.md, integration testing"
+          "type": "summary",
+          "path": "specs/322_add_review_mode_to_project_command/summaries/01_execution-summary.md",
+          "summary": "Execution summary: 3 phases completed, ~415 lines added to project.md and project-agent.md"
         }
       ],
-      "session_id": "sess_1774889715_c80f76"
+      "session_id": "sess_1774890000_f96259"
     },
     {
       "project_number": 87,
