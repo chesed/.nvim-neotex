@@ -1,7 +1,23 @@
 {
   "version": "1.0.0",
-  "next_project_number": 322,
+  "next_project_number": 323,
   "active_projects": [
+    {
+      "project_number": 322,
+      "project_name": "add_review_mode_to_project_command",
+      "status": "researched",
+      "language": "meta",
+      "created": "2026-03-30T16:36:04Z",
+      "last_updated": "2026-03-30T16:48:00Z",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/322_add_review_mode_to_project_command/reports/01_review-mode-design.md",
+          "summary": "REVIEW mode design: 7-category analysis framework, 5 forcing questions, 4-tier severity output"
+        }
+      ],
+      "session_id": "sess_1774888923_d147e8"
+    },
     {
       "project_number": 87,
       "project_name": "investigate_wezterm_terminal_directory_change",
