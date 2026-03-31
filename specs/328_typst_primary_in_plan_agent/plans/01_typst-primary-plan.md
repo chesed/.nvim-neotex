@@ -1,7 +1,7 @@
 # Implementation Plan: Task #328
 
 - **Task**: 328 - Make Typst primary output in founder plan agent
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2 hours
 - **Dependencies**: None
 - **Research Inputs**: reports/01_typst-primary-plan.md
@@ -48,7 +48,7 @@ Update founder-plan-agent.md and founder-implement-agent.md so that ALL founder 
 
 ## Implementation Phases
 
-### Phase 1: Update founder-plan-agent.md Generic Template and Critical Requirements [NOT STARTED]
+### Phase 1: Update founder-plan-agent.md Generic Template and Critical Requirements [COMPLETED]
 
 **Goal**: Update the generic phase template (Phase 4/5) and critical requirements section to reflect Typst-primary pattern
 
@@ -73,7 +73,7 @@ Update founder-plan-agent.md and founder-implement-agent.md so that ALL founder 
 
 ---
 
-### Phase 2: Update founder-plan-agent.md Per-Type Phase Definitions [NOT STARTED]
+### Phase 2: Update founder-plan-agent.md Per-Type Phase Definitions [COMPLETED]
 
 **Goal**: Update all 5 non-timeline report type phase definitions to use Typst-primary pattern
 

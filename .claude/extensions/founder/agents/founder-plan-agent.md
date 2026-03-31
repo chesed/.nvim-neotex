@@ -303,7 +303,7 @@ Create plan in `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` conforming to plan-
 | Risk | Impact | Likelihood | Mitigation |
 |------|--------|------------|------------|
 | Incomplete research data | Medium | Low | Flag missing sections, proceed with available data |
-| Typst compilation failure | Low | Low | Markdown report is primary output |
+| Typst compilation failure | Low | Low | Markdown fallback available from Phase 4 |
 | {Report-type-specific risk} | {Impact} | {Likelihood} | {Mitigation} |
 
 ## Implementation Phases
@@ -336,34 +336,34 @@ Create plan in `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` conforming to plan-
 
 **Timing**: 30 minutes
 
-### Phase 4: Report Generation [NOT STARTED]
+### Phase 4: Report and Typst Generation [NOT STARTED]
 
-**Goal**: Synthesize all findings into final markdown report
+**Goal**: Generate Typst document as primary output and markdown report as fallback
 
 **Tasks**:
-- [ ] Compile analysis sections into strategy/{report-type}-{slug}.md
+- [ ] Generate self-contained typst document using template at founder/{report-type}-{slug}.typ
+- [ ] Compile analysis sections into strategy/{report-type}-{slug}.md (markdown fallback)
 - [ ] Generate executive summary / investor one-pager
-- [ ] Validate all required sections present
+- [ ] Validate all required sections present in both outputs
 
-**Timing**: 30 minutes
-
-### Phase 5: Typst Document Generation [NOT STARTED]
-
-**Goal**: Generate professional PDF from gathered context
-
-**Tasks**:
-- [ ] Generate typst document using template
-- [ ] Compile to PDF format
-- [ ] Verify output quality
-
-**Timing**: 30 minutes
+**Timing**: 45 minutes
 
 **Template**: .claude/extensions/founder/context/project/founder/templates/typst/{report-type}.typ
+
+### Phase 5: PDF Compilation [NOT STARTED]
+
+**Goal**: Compile Typst document to professional PDF
+
+**Tasks**:
+- [ ] Compile typst to PDF at founder/{report-type}-{slug}.pdf
+- [ ] Verify output quality and all visualizations render correctly
+
+**Timing**: 15 minutes
 
 **Notes**:
 - Requires typst to be installed on the system
 - If typst unavailable, phase is skipped with warning
-- Markdown report from Phase 4 is the primary output
+- Typst/PDF is the primary output; markdown report from Phase 4 is the fallback
 
 ## Testing & Validation
 
@@ -375,9 +375,9 @@ Create plan in `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` conforming to plan-
 ## Artifacts & Outputs
 
 - plans/{MM}_{short-slug}.md (this plan)
-- strategy/{report-type}-{slug}.md (markdown report)
-- founder/{report-type}-{slug}.typ (typst source, if generated)
-- founder/{report-type}-{slug}.pdf (PDF output, if compiled)
+- founder/{report-type}-{slug}.typ (typst source, primary output)
+- founder/{report-type}-{slug}.pdf (PDF output, compiled from typst)
+- strategy/{report-type}-{slug}.md (markdown fallback)
 
 **Project-timeline output paths** (override defaults above):
 - strategy/timelines/{project-slug}.typ
@@ -420,21 +420,21 @@ If implementation fails:
 - [ ] Generate multi-year SOM projections
 **Timing**: 30 minutes
 
-### Phase 4: Report Generation [NOT STARTED]
-**Goal**: Synthesize all findings into final markdown report
+### Phase 4: Report and Typst Generation [NOT STARTED]
+**Goal**: Generate Typst document as primary output and markdown report as fallback
 **Tasks**:
-- [ ] Compile TAM/SAM/SOM analysis into strategy/{report-type}-{slug}.md
+- [ ] Generate self-contained typst document using market-sizing.typ template at founder/{report-type}-{slug}.typ
+- [ ] Compile TAM/SAM/SOM analysis into strategy/{report-type}-{slug}.md (markdown fallback)
 - [ ] Generate executive summary with key numbers
-- [ ] Include concentric circles visualization description
-**Timing**: 30 minutes
+- [ ] Include concentric circles visualization in typst
+**Timing**: 45 minutes
 
-### Phase 5: Typst Document Generation [NOT STARTED]
-**Goal**: Generate professional PDF with visualizations
+### Phase 5: PDF Compilation [NOT STARTED]
+**Goal**: Compile Typst document to professional PDF
 **Tasks**:
-- [ ] Generate typst document using market-sizing.typ template
-- [ ] Compile to PDF format
+- [ ] Compile typst to PDF at founder/{report-type}-{slug}.pdf
 - [ ] Verify TAM/SAM/SOM diagram renders correctly
-**Timing**: 30 minutes
+**Timing**: 15 minutes
 
 ---
 
@@ -464,21 +464,21 @@ If implementation fails:
 - [ ] Articulate differentiation narrative
 **Timing**: 30 minutes
 
-### Phase 4: Report Generation [NOT STARTED]
-**Goal**: Compile analysis into final markdown report
+### Phase 4: Report and Typst Generation [NOT STARTED]
+**Goal**: Generate Typst document as primary output and markdown report as fallback
 **Tasks**:
-- [ ] Generate competitive-analysis report with all sections
-- [ ] Include positioning map and battle cards
+- [ ] Generate self-contained typst document using competitive-analysis.typ template at founder/{report-type}-{slug}.typ
+- [ ] Generate competitive-analysis markdown report at strategy/{report-type}-{slug}.md (fallback)
+- [ ] Include positioning map and battle cards in typst
 - [ ] Write strategic recommendations
-**Timing**: 30 minutes
+**Timing**: 45 minutes
 
-### Phase 5: Typst Document Generation [NOT STARTED]
-**Goal**: Generate professional PDF with visualizations
+### Phase 5: PDF Compilation [NOT STARTED]
+**Goal**: Compile Typst document to professional PDF
 **Tasks**:
-- [ ] Generate typst document using competitive-analysis.typ template
-- [ ] Compile to PDF format
+- [ ] Compile typst to PDF at founder/{report-type}-{slug}.pdf
 - [ ] Verify positioning map and tables render correctly
-**Timing**: 30 minutes
+**Timing**: 15 minutes
 
 ---
 
@@ -508,21 +508,21 @@ If implementation fails:
 - [ ] Create 90-day launch timeline
 **Timing**: 30 minutes
 
-### Phase 4: Report Generation [NOT STARTED]
-**Goal**: Compile GTM strategy into final markdown report
+### Phase 4: Report and Typst Generation [NOT STARTED]
+**Goal**: Generate Typst document as primary output and markdown report as fallback
 **Tasks**:
-- [ ] Generate gtm-strategy report with all sections
-- [ ] Include 90-day action plan
+- [ ] Generate self-contained typst document using gtm-strategy.typ template at founder/{report-type}-{slug}.typ
+- [ ] Generate GTM strategy markdown report at strategy/{report-type}-{slug}.md (fallback)
+- [ ] Include 90-day action plan and metrics dashboard in typst
 - [ ] Document success metrics
-**Timing**: 30 minutes
+**Timing**: 45 minutes
 
-### Phase 5: Typst Document Generation [NOT STARTED]
-**Goal**: Generate professional PDF with timeline
+### Phase 5: PDF Compilation [NOT STARTED]
+**Goal**: Compile Typst document to professional PDF
 **Tasks**:
-- [ ] Generate typst document using gtm-strategy.typ template
-- [ ] Compile to PDF format
+- [ ] Compile typst to PDF at founder/{report-type}-{slug}.pdf
 - [ ] Verify timeline and metrics dashboard render correctly
-**Timing**: 30 minutes
+**Timing**: 15 minutes
 
 ---
 
@@ -554,21 +554,21 @@ If implementation fails:
 - [ ] Apply Escalation Assessment recommendations
 **Timing**: 45 minutes
 
-### Phase 4: Report Generation [NOT STARTED]
-**Goal**: Compile contract analysis into final markdown report
+### Phase 4: Report and Typst Generation [NOT STARTED]
+**Goal**: Generate Typst document as primary output and markdown report as fallback
 **Tasks**:
-- [ ] Generate contract-analysis report with risk matrix
-- [ ] Include BATNA/ZOPA analysis and negotiation playbook
+- [ ] Generate self-contained typst document using contract-analysis.typ template at founder/{report-type}-{slug}.typ
+- [ ] Generate contract-analysis markdown report at strategy/{report-type}-{slug}.md (fallback)
+- [ ] Include risk matrix and BATNA/ZOPA analysis in typst
 - [ ] Document escalation recommendations
-**Timing**: 30 minutes
+**Timing**: 45 minutes
 
-### Phase 5: Typst Document Generation [NOT STARTED]
-**Goal**: Generate professional PDF with risk matrix
+### Phase 5: PDF Compilation [NOT STARTED]
+**Goal**: Compile Typst document to professional PDF
 **Tasks**:
-- [ ] Generate typst document using contract-analysis.typ template
-- [ ] Compile to PDF format
+- [ ] Compile typst to PDF at founder/{report-type}-{slug}.pdf
 - [ ] Verify risk matrix and clause tables render correctly
-**Timing**: 30 minutes
+**Timing**: 15 minutes
 
 ---
 
@@ -616,7 +616,7 @@ If implementation fails:
 - [ ] Verify all visualizations render correctly
 **Timing**: 30 minutes
 
-**Note on Phase 5 naming for project-timeline**: Unlike other report types where Phase 5 is "Typst Document Generation", the project-timeline type names Phase 5 "PDF Compilation and Deliverables" because Typst generation happens in Phase 4 -- the Gantt chart and timeline visualizations ARE the primary Typst output. Phase 5 handles only the compilation step.
+**Note on Phase 5 naming for project-timeline**: All report types now use Phase 5 for PDF compilation only (Typst generation happens in Phase 4). The project-timeline type names Phase 5 "PDF Compilation and Deliverables" (includes executive summary generation), while other types use "PDF Compilation".
 
 ### Stage 6: Write Plan File
 
@@ -676,7 +676,7 @@ Founder plan created for task 234:
 - Read research report: specs/234_market_sizing_fintech_payments/reports/01_market-sizing.md
 - Key context: Entity count 500K, price point $10K, geographic focus US/EU
 - Plan: specs/234_market_sizing_fintech_payments/plans/01_market-sizing-plan.md
-- 5 phases defined: TAM, SAM, SOM, Report Generation, Typst Document Generation
+- 5 phases defined: TAM, SAM, SOM, Report and Typst Generation, PDF Compilation
 - Metadata written for skill postflight
 ```
 
@@ -737,8 +737,8 @@ This ensures:
 3. Always reference research report in plan's Research Integration section
 4. Always store gathered context in plan file
 5. Always determine report type from research report
-6. Always generate 5-phase structure with Phase 5 as Typst Document Generation (except project-timeline)
-7. Always name Phase 5 exactly "Typst Document Generation" (except project-timeline, which uses "PDF Compilation and Deliverables")
+6. Always generate 5-phase structure with Phase 4 generating Typst as primary output and Phase 5 as PDF Compilation
+7. Always name Phase 5 "PDF Compilation" (project-timeline uses "PDF Compilation and Deliverables")
 8. Always write valid metadata file
 9. Return brief text summary (not JSON)
 
