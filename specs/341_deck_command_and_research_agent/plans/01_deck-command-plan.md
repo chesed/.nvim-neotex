@@ -108,7 +108,7 @@ The research report (01_deck-command-research.md) identified 7 existing founder 
 
 ---
 
-### Phase 3: Create /deck command [NOT STARTED]
+### Phase 3: Create /deck command [COMPLETED]
 
 **Goal**: Create the command definition following the founder command pattern (market.md as template), with deck-specific forcing questions and input handling.
 
