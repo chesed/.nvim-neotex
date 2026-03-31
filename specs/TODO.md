@@ -16,7 +16,7 @@ next_project_number: 336
 - **334** [IMPLEMENTING] -- Add generic/edit task_type fallback to founder-plan-agent
   - **Research**: [01_generic-fallback.md](334_add_generic_edit_task_type_to_founder_plan_agent/reports/01_generic-fallback.md)
   - **Plan**: [01_generic-fallback.md](334_add_generic_edit_task_type_to_founder_plan_agent/plans/01_generic-fallback.md)
-- **335** [IMPLEMENTING] -- Create plan-format enforcement rule
+- **335** [COMPLETED] -- Create plan-format enforcement rule
   - **Research**: [01_enforcement-rule.md](335_create_plan_format_enforcement_rule/reports/01_enforcement-rule.md)
   - **Plan**: [01_enforcement-rule.md](335_create_plan_format_enforcement_rule/plans/01_enforcement-rule.md)
 - **330** [COMPLETED] -- Create /finance command, skill, and agent
@@ -52,7 +52,7 @@ next_project_number: 336
 
 ### 335. Create plan-format enforcement rule
 - **Effort**: 30 minutes
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Created**: 2026-03-31
