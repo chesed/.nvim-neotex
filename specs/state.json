@@ -5,13 +5,25 @@
     {
       "project_number": 326,
       "project_name": "upgrade_agent_system_for_claude_code_v2",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "description": "Migrate agent system commands and skills to be compatible with Claude Code v2.1.88+. Commands in .claude/commands/ are not loading (no autocomplete, no invocation). Key issues: stale model IDs (claude-opus-4-5-20251101 -> claude-opus-4-6), potential format changes in the commands-to-skills unification, SlashCommand tool removed in favor of Skill tool, description budget constraints (250 char cap, 1% context budget). May require converting commands to skills format (.claude/skills/<name>/SKILL.md) or updating frontmatter.",
       "created": "2026-03-30T23:30:00Z",
-      "last_updated": "2026-03-31T01:20:50Z",
+      "last_updated": "2026-03-31T01:38:58Z",
       "dependencies": [],
-      "session_id": "sess_1774919807_08893f"
+      "session_id": "sess_1774920952_2bc213",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/326_upgrade_agent_system_for_claude_code_v2/reports/01_command-loading-fix.md",
+          "summary": "6 issues found: missing Skill permission, stale model IDs, name collisions, missing frontmatter, deprecated TodoWrite, description budget"
+        },
+        {
+          "type": "plan",
+          "path": "specs/326_upgrade_agent_system_for_claude_code_v2/plans/01_implementation-plan.md",
+          "summary": "5-phase plan: fix permissions, update model IDs, fix frontmatter/deprecated tools, resolve name collisions, update documentation"
+        }
+      ]
     },
     {
       "project_number": 325,
