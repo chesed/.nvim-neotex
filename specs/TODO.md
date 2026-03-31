@@ -11,7 +11,7 @@ next_project_number: 330
 ### Pending
 
 - **327** [COMPLETED] -- Pass task_type through founder delegation pipeline
-- **328** [NOT STARTED] -- Make Typst primary output in founder plan agent (depends on 327)
+- **328** [RESEARCHED] -- Make Typst primary output in founder plan agent (depends on 327)
 - **329** [NOT STARTED] -- Make Typst primary output in founder implement agent (depends on 327)
 - **326** [COMPLETED] -- Upgrade agent system for Claude Code v2.1.88+ compatibility
 - **323** [COMPLETED] -- Fix jq query duplicates in agent context loading
@@ -42,10 +42,11 @@ next_project_number: 330
 
 ### 328. Make Typst primary output in founder plan agent
 - **Effort**: 2-3 hours
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Language**: meta
 - **Dependencies**: 327
 - **Created**: 2026-03-31
+- **Research**: [01_typst-primary-plan.md](specs/328_typst_primary_in_plan_agent/reports/01_typst-primary-plan.md)
 
 **Description**: Update founder-plan-agent so Phase 4 plans Typst as primary output for ALL founder types (not just project-timeline), and Phase 5 plans PDF compilation. Currently only project-timeline outputs Typst directly; all other types plan markdown as primary with Typst as optional Phase 5. The plan template's Phase 4 tasks, output paths, and artifacts section all need updating.
 

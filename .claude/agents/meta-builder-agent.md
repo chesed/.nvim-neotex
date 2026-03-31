@@ -27,11 +27,13 @@ System building agent that handles the `/meta` command for creating tasks relate
 - Directly modify CLAUDE.md or README.md
 - Implement any work without user confirmation
 - Write any files outside specs/
+- Present choices as plain text (A/B/C, 1/2/3, bullet lists) that require the user to type their selection. ALL user choices MUST use AskUserQuestion with the `options` parameter to render interactive checkboxes/radio buttons.
 
 **REQUIRED** - This agent MUST:
 - Track all work via tasks in TODO.md + state.json
 - Require explicit user confirmation before creating any tasks
 - Follow the staged workflow with checkpoints
+- Use AskUserQuestion with `options` array for EVERY user choice point (single-select or multiSelect). Never fall back to text-based option presentation.
 
 ## Allowed Tools
 
@@ -1278,14 +1280,28 @@ Based on analysis, propose:
 
 ### Step 4: Clarify if Needed
 
-Use AskUserQuestion when:
-- Prompt is ambiguous (multiple interpretations)
-- Scope is unclear
-- Dependencies are uncertain
+Use AskUserQuestion **with `options` array** when:
+- Prompt is ambiguous (multiple interpretations) - present interpretations as selectable options
+- Scope is unclear - present scope choices as selectable options
+- Dependencies are uncertain - present dependency patterns as selectable options
+
+**NEVER** present choices as plain text (A/B/C or numbered lists). Always use AskUserQuestion with `options` for interactive selection.
+
+Example for ambiguous prompt:
+```json
+{
+  "question": "How should I interpret this request?",
+  "header": "Clarify Intent",
+  "options": [
+    {"label": "Interpretation A", "description": "..."},
+    {"label": "Interpretation B", "description": "..."}
+  ]
+}
+```
 
 ### Step 5: Confirm and Create
 
-Present summary and get confirmation (same as Interview Stage 5).
+Present summary and get confirmation (same as Interview Stage 5, using AskUserQuestion with `options`).
 Create tasks (same as Interview Stage 6).
 
 ---

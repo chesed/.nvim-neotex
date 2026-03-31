@@ -37,13 +37,23 @@
     {
       "project_number": 328,
       "project_name": "typst_primary_in_plan_agent",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "description": "Update founder-plan-agent so Phase 4 plans Typst as primary output for ALL founder types (not just project-timeline), and Phase 5 plans PDF compilation. Markdown becomes fallback. Currently only project-timeline outputs Typst; all other types plan markdown as primary with Typst as optional Phase 5.",
       "created": "2026-03-31T02:00:00Z",
-      "last_updated": "2026-03-31T02:00:00Z",
+      "last_updated": "2026-03-31T03:18:37Z",
       "dependencies": [
         327
+      ],
+      "session_id": "sess_1743394800_r328",
+      "researched": "2026-03-31T03:18:37Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/328_typst_primary_in_plan_agent/reports/01_typst-primary-plan.md",
+          "type": "research",
+          "summary": "Research report analyzing current Phase 4/5 structure and changes needed to make Typst primary output for all founder types"
+        }
       ]
     },
     {
