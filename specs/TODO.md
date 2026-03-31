@@ -1,15 +1,18 @@
 ---
-next_project_number: 327
+next_project_number: 330
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-30. 5 active tasks remaining.*
+*Updated 2026-03-31. 8 active tasks remaining.*
 
 ### Pending
 
+- **327** [RESEARCHED] -- Pass task_type through founder delegation pipeline
+- **328** [NOT STARTED] -- Make Typst primary output in founder plan agent (depends on 327)
+- **329** [NOT STARTED] -- Make Typst primary output in founder implement agent (depends on 327)
 - **326** [COMPLETED] -- Upgrade agent system for Claude Code v2.1.88+ compatibility
 - **323** [COMPLETED] -- Fix jq query duplicates in agent context loading
 - **324** [COMPLETED] -- Remove /plan from founder index entries
@@ -22,6 +25,49 @@ next_project_number: 327
 - **322** [COMPLETED] -- Add REVIEW mode to /project command
 
 ## Tasks
+
+### 329. Make Typst primary output in founder implement agent
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: 327
+- **Created**: 2026-03-31
+
+**Description**: Update founder-implement-agent Phase 4 to generate .typ files directly for ALL report types (like project-timeline already does), and Phase 5 to compile PDF. Currently Phase 4 writes markdown for non-project-timeline types and Phase 5 generates Typst as optional add-on. All founder types should follow the project-timeline pattern: Typst as primary output, markdown as fallback.
+
+**Files to modify**:
+- `.claude/extensions/founder/agents/founder-implement-agent.md` -- Phase 4 and Phase 5 restructure
+
+---
+
+### 328. Make Typst primary output in founder plan agent
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: 327
+- **Created**: 2026-03-31
+
+**Description**: Update founder-plan-agent so Phase 4 plans Typst as primary output for ALL founder types (not just project-timeline), and Phase 5 plans PDF compilation. Currently only project-timeline outputs Typst directly; all other types plan markdown as primary with Typst as optional Phase 5. The plan template's Phase 4 tasks, output paths, and artifacts section all need updating.
+
+**Files to modify**:
+- `.claude/extensions/founder/agents/founder-plan-agent.md` -- Phase 4/5 templates for all report types
+
+---
+
+### 327. Pass task_type through founder delegation pipeline
+- **Effort**: 1 hour
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+- **Created**: 2026-03-31
+
+**Description**: Update skill-founder-plan and skill-founder-implement to extract task_type from state.json and include it in the task_context passed to agents. Currently commands store task_type (e.g., "project", "market", "strategy") in state.json but both skills omit it from the delegation context, forcing agents to infer report type from keyword matching on research content.
+
+**Files to modify**:
+- `.claude/extensions/founder/skills/skill-founder-plan/SKILL.md` -- Add task_type to context preparation (Stage 4)
+- `.claude/extensions/founder/skills/skill-founder-implement/SKILL.md` -- Add task_type to context preparation (Stage 4)
+
+---
 
 ### 326. Upgrade agent system for Claude Code v2.1.88+ compatibility
 - **Effort**: 2-4 hours
