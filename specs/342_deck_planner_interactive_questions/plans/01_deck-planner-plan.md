@@ -121,7 +121,7 @@ Create a dedicated deck-planner-agent and skill-deck-plan for the founder extens
 
 ---
 
-### Phase 3: Update manifest, index entries, and documentation [NOT STARTED]
+### Phase 3: Update manifest, index entries, and documentation [COMPLETED]
 
 **Goal**: Register the new agent and skill in the founder extension manifest, update context index entries, and update extension documentation
 

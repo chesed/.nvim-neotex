@@ -581,6 +581,7 @@
         "agents": [
           "deck-agent",
           "deck-research-agent",
+          "deck-planner-agent",
           "founder-plan-agent",
           "founder-implement-agent"
         ],
@@ -605,6 +606,7 @@
         "agents": [
           "deck-agent",
           "deck-research-agent",
+          "deck-planner-agent",
           "founder-plan-agent",
           "founder-implement-agent"
         ],
@@ -629,6 +631,7 @@
         "agents": [
           "deck-agent",
           "deck-research-agent",
+          "deck-planner-agent",
           "founder-plan-agent",
           "founder-implement-agent"
         ],

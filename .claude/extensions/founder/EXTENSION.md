@@ -14,6 +14,7 @@ Strategic business analysis tools for founders and entrepreneurs. Integrates for
 | skill-spreadsheet | spreadsheet-agent | Cost breakdown spreadsheet generation (uses forcing_data) |
 | skill-finance | finance-agent | Financial analysis and verification (uses forcing_data) |
 | skill-deck-research | deck-research-agent | Pitch deck material synthesis (no forcing questions) |
+| skill-deck-plan | deck-planner-agent | Pitch deck planning with interactive questions |
 | skill-founder-plan | founder-plan-agent | Shared task planning (content-aware) |
 | skill-founder-implement | founder-implement-agent | Shared task implementation (type-aware) |
 
@@ -34,4 +35,4 @@ All commands accept: description string (create task), task number (run research
 
 ### Language Routing
 
-Tasks with `language: founder` use `task_type` for research routing (`founder:{task_type}`). Planning and implementation use shared founder agents regardless of task_type.
+Tasks with `language: founder` use `task_type` for research routing (`founder:{task_type}`). Planning uses shared founder agents for most task types, except deck tasks which route to a dedicated `deck-planner-agent` with interactive template/content/ordering selection. Implementation uses shared founder agents regardless of task_type.
