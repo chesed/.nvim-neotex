@@ -100,6 +100,15 @@ EOF
 
 ### 4. Context Preparation
 
+Extract task_type from state.json (null-safe):
+
+```bash
+# Extract task_type from state.json (null-safe)
+task_type=$(jq -r --argjson num "$task_number" \
+  '.active_projects[] | select(.project_number == $num) | .task_type // null' \
+  specs/state.json)
+```
+
 Prepare delegation context for agent:
 
 ```json
@@ -108,7 +117,8 @@ Prepare delegation context for agent:
     "task_number": 234,
     "project_name": "market_sizing_fintech_payments",
     "description": "Market sizing: fintech payments",
-    "language": "founder"
+    "language": "founder",
+    "task_type": "market"
   },
   "research_path": "specs/234_market_sizing_fintech_payments/reports/01_context.md",
   "metadata_file_path": "specs/234_market_sizing_fintech_payments/.return-meta.json",

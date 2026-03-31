@@ -1,7 +1,7 @@
 # Implementation Plan: Pass task_type Through Founder Delegation Pipeline
 
 - **Task**: 327 - Pass task_type through founder delegation pipeline
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1 hour
 - **Dependencies**: None
 - **Research Inputs**: reports/01_delegation-pipeline-gap.md
@@ -50,7 +50,7 @@ Add `task_type` field to the delegation context passed from skills to agents. Fo
 
 ## Implementation Phases
 
-### Phase 1: Update Skills (Senders) [NOT STARTED]
+### Phase 1: Update Skills (Senders) [COMPLETED]
 
 **Goal**: Add task_type extraction and inclusion in both founder skills' Stage 4
 
@@ -73,7 +73,7 @@ Then add to task_context:
 
 **Timing**: 15 minutes
 
-### Phase 2: Update Agents (Receivers) [NOT STARTED]
+### Phase 2: Update Agents (Receivers) [COMPLETED]
 
 **Goal**: Document task_type in agent input schemas and use it for report type determination
 
@@ -113,7 +113,7 @@ Default to market-sizing if unclear.
 
 **Timing**: 20 minutes
 
-### Phase 3: Validation [NOT STARTED]
+### Phase 3: Validation [COMPLETED]
 
 **Goal**: Verify changes are consistent and complete
 

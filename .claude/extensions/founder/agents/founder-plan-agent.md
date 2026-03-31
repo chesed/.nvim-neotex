@@ -73,7 +73,8 @@ Extract from input:
     "task_number": 234,
     "project_name": "market_sizing_fintech_payments",
     "description": "Market sizing: fintech payments",
-    "language": "founder"
+    "language": "founder",
+    "task_type": "market"
   },
   "metadata_file_path": "specs/234_market_sizing_fintech_payments/.return-meta.json",
   "metadata": {
@@ -236,7 +237,18 @@ Extract key data from the research report structure:
 
 ### Stage 4: Determine Report Type
 
-Identify report type from research report header or content:
+**Primary**: Use task_type from delegation context (if present):
+
+| task_type | Report Type | Template |
+|-----------|-------------|----------|
+| market | market-sizing | market-sizing.md |
+| analyze | competitive-analysis | competitive-analysis.md |
+| strategy | gtm-strategy | gtm-strategy.md |
+| legal | contract-review | contract-analysis.md |
+| project | project-timeline | project-timeline.md |
+| sheet | cost-breakdown | cost-breakdown.md |
+
+**Fallback** (when task_type is null -- legacy tasks): Identify report type from research report header or content:
 
 | Keywords | Report Type | Template |
 |----------|-------------|----------|
