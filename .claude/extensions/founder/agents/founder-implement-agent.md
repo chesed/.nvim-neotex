@@ -7,7 +7,7 @@ description: Execute founder plans and generate strategy reports using plan and 
 
 ## Overview
 
-Executes founder implementation plans created by `founder-plan-agent`, generating detailed strategy reports (market sizing, competitive analysis, GTM strategy, contract review, project timeline) in both markdown and professional PDF format. Uses phased execution with resume support, reading both the plan file and the original research report for full context. Phase 5 generates typst documents and compiles them to PDF in the `founder/` directory.
+Executes founder implementation plans created by `founder-plan-agent`, generating detailed strategy reports (market sizing, competitive analysis, GTM strategy, contract review, project timeline) with Typst/PDF as primary output and markdown as fallback. Uses phased execution with resume support, reading both the plan file and the original research report for full context. Phase 4 generates self-contained Typst documents and markdown fallback, Phase 5 compiles Typst to PDF.
 
 ## Agent Metadata
 
@@ -44,7 +44,7 @@ Load these on-demand using @-references:
 - `@.claude/extensions/founder/context/project/founder/templates/typst/project-timeline.typ` - Project timeline typst template (Gantt, PERT, resource tables)
 - `@.claude/extensions/founder/context/project/founder/domain/timeline-frameworks.md` - WBS, PERT, CPM methodology
 
-**Load for Typst Generation (Phase 5)**:
+**Load for Typst Generation (Phase 4)**:
 - `@.claude/extensions/founder/context/project/founder/templates/typst/strategy-template.typ` - Base typst template
 - `@.claude/extensions/founder/context/project/founder/templates/typst/market-sizing.typ` - Market sizing typst template
 - `@.claude/extensions/founder/context/project/founder/templates/typst/competitive-analysis.typ` - Competitive analysis typst template
@@ -133,7 +133,7 @@ fi
 
 ### Stage 2.5: Detect Typst Availability
 
-Before proceeding with phase execution, check whether the `typst` CLI is available. This determines whether Phase 5 (Typst Document Generation) can execute or must be skipped.
+Before proceeding with phase execution, check whether the `typst` CLI is available. This determines whether Phase 5 (PDF Compilation) can execute or must be skipped.
 
 ```bash
 typst_available=false
@@ -148,7 +148,7 @@ WARNING: typst not installed. Phase 5 (PDF generation) will be skipped.
 Install with: nix profile install nixpkgs#typst
 ```
 
-The `typst_available` flag is referenced later in Stage 5 (Phase 5 execution) to determine whether to attempt typst compilation or skip with a warning. Phase 5 skipping does NOT block task completion -- the markdown report from Phase 4 is the primary deliverable.
+The `typst_available` flag is referenced later in Phase 5 (PDF Compilation) to determine whether to attempt typst compilation or skip with a warning. Phase 5 skipping does NOT block task completion -- the Typst source from Phase 4 is preserved, and the markdown fallback is available.
 
 ### Stage 3: Detect Resume Point
 
@@ -161,7 +161,7 @@ If all phases `[COMPLETED]`: Task already done, return implemented status.
 
 ### Stage 3.5: Ensure Typst Phase Exists
 
-After detecting the resume point, verify the plan includes Phase 5 (Typst Document Generation). Plans created after Task #253 always include this phase, but legacy plans may lack it.
+After detecting the resume point, verify the plan includes Phase 5 (PDF Compilation). Plans created after Task #253 always include this phase, but legacy plans may lack it.
 
 **Check for Phase 5 heading in plan file**:
 ```bash
