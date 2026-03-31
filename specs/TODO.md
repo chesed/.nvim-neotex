@@ -1,17 +1,20 @@
 ---
-next_project_number: 330
+next_project_number: 333
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-03-31. 8 active tasks remaining.*
+*Updated 2026-03-31. 11 active tasks remaining.*
 
 ### Pending
 
+- **330** [NOT STARTED] -- Create /finance command, skill, and agent
+- **331** [NOT STARTED] -- Create finance context and templates
+- **332** [NOT STARTED] -- Integrate finance into founder extension (depends on 330, 331)
 - **327** [COMPLETED] -- Pass task_type through founder delegation pipeline
-- **328** [RESEARCHED] -- Make Typst primary output in founder plan agent (depends on 327)
+- **328** [PLANNED] -- Make Typst primary output in founder plan agent (depends on 327)
 - **329** [RESEARCHED] -- Make Typst primary output in founder implement agent (depends on 327)
 - **326** [COMPLETED] -- Upgrade agent system for Claude Code v2.1.88+ compatibility
 - **323** [COMPLETED] -- Fix jq query duplicates in agent context loading
@@ -25,6 +28,54 @@ next_project_number: 330
 - **322** [COMPLETED] -- Add REVIEW mode to /project command
 
 ## Tasks
+
+### 332. Integrate finance into founder extension
+- **Effort**: 1-2 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: 330, 331
+- **Created**: 2026-03-31
+
+**Description**: Wire /finance into the founder extension: add finance-agent, skill-finance, and /finance command to manifest.json routing tables. Add context entries to index-entries.json. Update EXTENSION.md documentation. Optionally add financial-analysis.typ Typst template.
+
+**Files to modify**:
+- `.claude/extensions/founder/manifest.json` -- Add routing entries
+- `.claude/extensions/founder/index-entries.json` -- Add context discovery entries
+- `.claude/extensions/founder/EXTENSION.md` -- Add /finance documentation
+
+---
+
+### 331. Create finance context and templates
+- **Effort**: 2-3 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+- **Created**: 2026-03-31
+
+**Description**: Create context files for the finance feature: domain/financial-analysis.md (frameworks for document analysis, verification methodology, spreadsheet validation patterns), patterns/financial-forcing-questions.md (question framework for financial document review), and templates/financial-analysis.md (report template for finance research output).
+
+**Files to create**:
+- `.claude/extensions/founder/context/project/founder/domain/financial-analysis.md`
+- `.claude/extensions/founder/context/project/founder/patterns/financial-forcing-questions.md`
+- `.claude/extensions/founder/context/project/founder/templates/financial-analysis.md`
+
+---
+
+### 330. Create /finance command, skill, and agent
+- **Effort**: 3-4 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+- **Created**: 2026-03-31
+
+**Description**: Create the /finance command (finance.md), research skill (skill-finance/SKILL.md), and research agent (finance-agent.md) for the founder extension. The command uses AUDIT/MODEL/FORECAST/VALIDATE modes with 5 forcing questions (mode, document scope, primary concern, time horizon, accuracy requirement). The skill follows the standard 11-stage execution pattern. The agent analyzes existing financial documents, extracts numbers, and creates verification spreadsheets (.xlsx with formulas) to confirm/improve calculations. Distinct from /sheet which creates cost breakdowns from scratch -- /finance works with existing documents containing financial data.
+
+**Files to create**:
+- `.claude/extensions/founder/commands/finance.md`
+- `.claude/extensions/founder/skills/skill-finance/SKILL.md`
+- `.claude/extensions/founder/agents/finance-agent.md`
+
+---
 
 ### 329. Make Typst primary output in founder implement agent
 - **Effort**: 2-3 hours
@@ -48,6 +99,7 @@ next_project_number: 330
 - **Dependencies**: 327
 - **Created**: 2026-03-31
 - **Research**: [01_typst-primary-plan.md](specs/328_typst_primary_in_plan_agent/reports/01_typst-primary-plan.md)
+- **Plan**: [01_typst-primary-plan.md](specs/328_typst_primary_in_plan_agent/plans/01_typst-primary-plan.md)
 
 **Description**: Update founder-plan-agent so Phase 4 plans Typst as primary output for ALL founder types (not just project-timeline), and Phase 5 plans PDF compilation. Currently only project-timeline outputs Typst directly; all other types plan markdown as primary with Typst as optional Phase 5. The plan template's Phase 4 tasks, output paths, and artifacts section all need updating.
 
