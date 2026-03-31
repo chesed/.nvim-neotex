@@ -10,7 +10,7 @@
 
 Create the /finance command, skill-finance skill, and finance-agent for the founder extension. All three files follow the established founder extension patterns exactly, adapted for financial analysis with AUDIT/MODEL/FORECAST/VALIDATE modes.
 
-## Phase 1: Create Core Files [NOT STARTED]
+## Phase 1: Create Core Files [IN PROGRESS]
 
 **Estimated**: 60-90 minutes
 **Files to create**: 3

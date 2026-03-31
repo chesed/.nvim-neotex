@@ -1,7 +1,7 @@
 # Implementation Plan: Task #328
 
 - **Task**: 328 - Make Typst primary output in founder plan agent
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 2 hours
 - **Dependencies**: None
 - **Research Inputs**: reports/01_typst-primary-plan.md

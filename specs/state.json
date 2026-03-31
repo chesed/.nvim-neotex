@@ -10,7 +10,20 @@
       "description": "Create /finance command (finance.md), research skill (skill-finance/SKILL.md), and research agent (finance-agent.md) for the founder extension. Command uses AUDIT/MODEL/FORECAST/VALIDATE modes with 5 forcing questions. Skill follows 11-stage execution pattern. Agent analyzes existing financial documents, extracts numbers, and creates verification spreadsheets (.xlsx) to confirm/improve calculations.",
       "created": "2026-03-31T04:00:00Z",
       "last_updated": "2026-03-31T04:30:00Z",
-      "dependencies": []
+      "dependencies": [],
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/330_create_finance_command_skill_agent/reports/01_finance-command-research.md",
+          "summary": "Research on existing founder extension patterns for finance command, skill, and agent design"
+        },
+        {
+          "type": "plan",
+          "path": "specs/330_create_finance_command_skill_agent/plans/01_finance-command-plan.md",
+          "summary": "3-phase plan: create core files (command, skill, agent), update integration files, verify"
+        }
+      ]
     },
     {
       "project_number": 331,
@@ -21,7 +34,25 @@
       "created": "2026-03-31T04:00:00Z",
       "last_updated": "2026-03-31T04:40:00Z",
       "dependencies": [],
-      "completion_summary": "Created 3 finance context files for founder extension: domain/financial-analysis.md (241 lines, statement analysis, ratios, verification methodology, spreadsheet validation), patterns/financial-forcing-questions.md (361 lines, 6 forcing questions for financial document review with REVIEW/DILIGENCE/AUDIT/FORECAST modes), templates/financial-analysis.md (331 lines, report template with verification tables, ratio benchmarks, red flags, scenario analysis)."
+      "completion_summary": "Created 3 finance context files for founder extension: domain/financial-analysis.md (241 lines, statement analysis, ratios, verification methodology, spreadsheet validation), patterns/financial-forcing-questions.md (361 lines, 6 forcing questions for financial document review with REVIEW/DILIGENCE/AUDIT/FORECAST modes), templates/financial-analysis.md (331 lines, report template with verification tables, ratio benchmarks, red flags, scenario analysis).",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/331_create_finance_context_templates/reports/01_finance-context-research.md",
+          "summary": "Research on existing context file patterns for finance domain, forcing questions, and report templates"
+        },
+        {
+          "type": "plan",
+          "path": "specs/331_create_finance_context_templates/plans/01_finance-context-plan.md",
+          "summary": "Plan to create 3 finance context files following existing founder extension patterns"
+        },
+        {
+          "type": "summary",
+          "path": "specs/331_create_finance_context_templates/summaries/01_finance-context-summary.md",
+          "summary": "Implementation summary: 3 context files created (241 + 361 + 331 lines)"
+        }
+      ]
     },
     {
       "project_number": 332,
@@ -71,11 +102,11 @@
     {
       "project_number": 328,
       "project_name": "typst_primary_in_plan_agent",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "description": "Update founder-plan-agent so Phase 4 plans Typst as primary output for ALL founder types (not just project-timeline), and Phase 5 plans PDF compilation. Markdown becomes fallback. Currently only project-timeline outputs Typst; all other types plan markdown as primary with Typst as optional Phase 5.",
       "created": "2026-03-31T02:00:00Z",
-      "last_updated": "2026-03-31T03:30:06Z",
+      "last_updated": "2026-03-31T03:38:27Z",
       "dependencies": [
         327
       ],
@@ -92,10 +123,18 @@
           "path": "specs/328_typst_primary_in_plan_agent/plans/01_typst-primary-plan.md",
           "type": "plan",
           "summary": "5-phase implementation plan for making Typst primary output in founder plan and implement agents"
+        },
+        {
+          "path": "specs/328_typst_primary_in_plan_agent/summaries/01_typst-primary-plan-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results"
         }
       ],
       "planned": "2026-03-31T03:26:08Z",
-      "started": "2026-03-31T03:30:06Z"
+      "started": "2026-03-31T03:30:06Z",
+      "completed": "2026-03-31T03:38:27Z",
+      "completion_summary": "Updated both founder agent specifications so all report types use Typst as primary output format with markdown as fallback, matching the project-timeline pattern.",
+      "claudemd_suggestions": "Updated founder-plan-agent.md (generic template, 5 per-type phases, critical requirements) and founder-implement-agent.md (overview, Phase 4/5 flow, 3 per-type sections, non-blocking language)"
     },
     {
       "project_number": 329,

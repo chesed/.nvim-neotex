@@ -10,13 +10,16 @@ next_project_number: 333
 
 ### Pending
 
-- **330** [PLANNED] -- Create /finance command, skill, and agent
+- **330** [IMPLEMENTING] -- Create /finance command, skill, and agent
   - **Research**: [01_finance-command-research.md](330_create_finance_command_skill_agent/reports/01_finance-command-research.md)
   - **Plan**: [01_finance-command-plan.md](330_create_finance_command_skill_agent/plans/01_finance-command-plan.md)
 - **331** [COMPLETED] -- Create finance context and templates
+  - **Research**: [01_finance-context-research.md](331_create_finance_context_templates/reports/01_finance-context-research.md)
+  - **Plan**: [01_finance-context-plan.md](331_create_finance_context_templates/plans/01_finance-context-plan.md)
+  - **Summary**: [01_finance-context-summary.md](331_create_finance_context_templates/summaries/01_finance-context-summary.md)
 - **332** [NOT STARTED] -- Integrate finance into founder extension (depends on 330, 331)
 - **327** [COMPLETED] -- Pass task_type through founder delegation pipeline
-- **328** [IMPLEMENTING] -- Make Typst primary output in founder plan agent (depends on 327)
+- **328** [COMPLETED] -- Make Typst primary output in founder plan agent (depends on 327)
 - **329** [PLANNED] -- Make Typst primary output in founder implement agent (depends on 327)
 - **326** [COMPLETED] -- Upgrade agent system for Claude Code v2.1.88+ compatibility
 - **323** [COMPLETED] -- Fix jq query duplicates in agent context loading
@@ -49,26 +52,29 @@ next_project_number: 333
 
 ### 331. Create finance context and templates
 - **Effort**: 2-3 hours
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Created**: 2026-03-31
+- **Completed**: 2026-03-30
+- **Research**: [01_finance-context-research.md](specs/331_create_finance_context_templates/reports/01_finance-context-research.md)
+- **Plan**: [01_finance-context-plan.md](specs/331_create_finance_context_templates/plans/01_finance-context-plan.md)
+- **Summary**: [01_finance-context-summary.md](specs/331_create_finance_context_templates/summaries/01_finance-context-summary.md)
 
 **Description**: Create context files for the finance feature: domain/financial-analysis.md (frameworks for document analysis, verification methodology, spreadsheet validation patterns), patterns/financial-forcing-questions.md (question framework for financial document review), and templates/financial-analysis.md (report template for finance research output).
 
-**Files to create**:
-- `.claude/extensions/founder/context/project/founder/domain/financial-analysis.md`
-- `.claude/extensions/founder/context/project/founder/patterns/financial-forcing-questions.md`
-- `.claude/extensions/founder/context/project/founder/templates/financial-analysis.md`
+**Completion Summary**: Created 3 finance context files: domain/financial-analysis.md (241 lines, statement analysis, ratios, verification methodology), patterns/financial-forcing-questions.md (361 lines, 6 forcing questions with 4 modes), templates/financial-analysis.md (331 lines, report template with verification tables and scenario analysis).
 
 ---
 
 ### 330. Create /finance command, skill, and agent
 - **Effort**: 3-4 hours
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: None
 - **Created**: 2026-03-31
+- **Research**: [01_finance-command-research.md](specs/330_create_finance_command_skill_agent/reports/01_finance-command-research.md)
+- **Plan**: [01_finance-command-plan.md](specs/330_create_finance_command_skill_agent/plans/01_finance-command-plan.md)
 
 **Description**: Create the /finance command (finance.md), research skill (skill-finance/SKILL.md), and research agent (finance-agent.md) for the founder extension. The command uses AUDIT/MODEL/FORECAST/VALIDATE modes with 5 forcing questions (mode, document scope, primary concern, time horizon, accuracy requirement). The skill follows the standard 11-stage execution pattern. The agent analyzes existing financial documents, extracts numbers, and creates verification spreadsheets (.xlsx with formulas) to confirm/improve calculations. Distinct from /sheet which creates cost breakdowns from scratch -- /finance works with existing documents containing financial data.
 
@@ -97,12 +103,14 @@ next_project_number: 333
 
 ### 328. Make Typst primary output in founder plan agent
 - **Effort**: 2-3 hours
-- **Status**: [RESEARCHED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: 327
 - **Created**: 2026-03-31
+- **Completed**: 2026-03-30
 - **Research**: [01_typst-primary-plan.md](specs/328_typst_primary_in_plan_agent/reports/01_typst-primary-plan.md)
 - **Plan**: [01_typst-primary-plan.md](specs/328_typst_primary_in_plan_agent/plans/01_typst-primary-plan.md)
+- **Summary**: [01_typst-primary-plan-summary.md](specs/328_typst_primary_in_plan_agent/summaries/01_typst-primary-plan-summary.md)
 
 **Description**: Update founder-plan-agent so Phase 4 plans Typst as primary output for ALL founder types (not just project-timeline), and Phase 5 plans PDF compilation. Currently only project-timeline outputs Typst directly; all other types plan markdown as primary with Typst as optional Phase 5. The plan template's Phase 4 tasks, output paths, and artifacts section all need updating.
 
