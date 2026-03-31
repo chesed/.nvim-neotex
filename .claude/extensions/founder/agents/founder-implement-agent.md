@@ -941,9 +941,9 @@ Generated {report type} for {topic}.
 
 ## Files Created
 
-- `strategy/{report-type}-{slug}.md` - Full analysis report (markdown)
-- `founder/{report-type}-{slug}.pdf` - Professional PDF report (if typst available)
-- `founder/{report-type}-{slug}.typ` - Typst source file (if typst available)
+- `founder/{report-type}-{slug}.typ` - Typst source file (primary output, always generated)
+- `founder/{report-type}-{slug}.pdf` - Professional PDF report (if typst CLI available)
+- `strategy/{report-type}-{slug}.md` - Markdown report (fallback)
 
 ## Research Integration
 
@@ -973,12 +973,12 @@ This implementation used context from:
 - Team Members: {count}
 - Schedule Performance Index: {SPI} (TRACK/REPORT modes only)
 
-## Typst Generation
+## Typst Output
 
-- Typst available: {yes|no}
-- Typst skipped: {yes|no}
-- PDF generated: {yes|no|skipped}
-- Typst source: {path or "N/A"}
+- Typst source: founder/{report-type}-{slug}.typ (always generated in Phase 4)
+- Typst CLI available: {yes|no}
+- PDF compiled: {yes|no|skipped}
+- PDF path: {founder/{report-type}-{slug}.pdf or "skipped"}
 
 ## Verification
 
@@ -1005,18 +1005,18 @@ Write final metadata:
   "artifacts": [
     {
       "type": "implementation",
-      "path": "strategy/{report-type}-{slug}.md",
-      "summary": "Full {report_type} report with analysis"
+      "path": "founder/{report-type}-{slug}.typ",
+      "summary": "Typst source file (primary output, always generated in Phase 4)"
     },
     {
       "type": "implementation",
       "path": "founder/{report-type}-{slug}.pdf",
-      "summary": "Professional PDF report (conditional on typst_available)"
+      "summary": "Professional PDF report (compiled in Phase 5, conditional on typst CLI)"
     },
     {
       "type": "implementation",
-      "path": "founder/{report-type}-{slug}.typ",
-      "summary": "Typst source file (conditional on typst_available)"
+      "path": "strategy/{report-type}-{slug}.md",
+      "summary": "Markdown report (fallback)"
     },
     {
       "type": "summary",
@@ -1036,9 +1036,9 @@ Write final metadata:
     "report_type": "{report_type}",
     "phases_completed": 5,
     "phases_total": 5,
-    "typst_available": true,
-    "typst_skipped": false,
-    "typst_generated": true,
+    "typst_source_generated": true,
+    "typst_cli_available": true,
+    "pdf_compiled": true,
     "pdf_path": "founder/{report-type}-{slug}.pdf",
     "research_report_used": "specs/{NNN}_{SLUG}/reports/01_{short-slug}.md",
     "plan_used": "specs/{NNN}_{SLUG}/plans/01_{short-slug}.md",
@@ -1068,8 +1068,9 @@ Return a brief summary (NOT JSON):
 Founder implementation complete for task 234:
 - Report type: market-sizing, all 5 phases executed
 - Used context from plan and research report
-- Markdown report: strategy/market-sizing-fintech-payments.md
+- Typst source: founder/market-sizing-fintech-payments.typ (primary)
 - PDF report: founder/market-sizing-fintech-payments.pdf
+- Markdown fallback: strategy/market-sizing-fintech-payments.md
 - Key results: TAM $50B, SAM $8B, SOM Y1 $40M
 - Summary: specs/234_market_sizing_fintech_payments/summaries/01_market-sizing-summary.md
 - Metadata written for skill postflight
@@ -1542,19 +1543,22 @@ When TRACK or REPORT mode is requested but no prior PLAN output exists:
 2. Always read BOTH plan file AND research report for full context
 3. Always update phase markers in plan file
 4. Always use appropriate template for report type
-5. Always include visualization (market diagram, positioning map)
-6. Always generate executive summary
-7. Always cite data sources from research report
-8. Always include red flags / risks section
-9. Always write metadata file before returning
-10. Return brief text summary (not JSON)
+5. Always generate Typst as primary output in Phase 4 for all report types
+6. Always generate markdown as fallback in Phase 4
+7. Always include visualization (market diagram, positioning map)
+8. Always generate executive summary
+9. Always cite data sources from research report
+10. Always include red flags / risks section
+11. Always write metadata file before returning
+12. Return brief text summary (not JSON)
 
 **MUST NOT**:
 1. Skip early metadata initialization
 2. Generate numbers without sources from research
 3. Skip reading research report (even if plan has context)
 4. Skip red flags section
-5. Return "completed" as status value (use "implemented")
-6. Return JSON as console output
-7. Leave phase markers in [IN PROGRESS] state
-8. Skip summary artifact creation
+5. Skip Typst source generation in Phase 4 (Typst is always primary, not conditional on typst CLI)
+6. Return "completed" as status value (use "implemented")
+7. Return JSON as console output
+8. Leave phase markers in [IN PROGRESS] state
+9. Skip summary artifact creation

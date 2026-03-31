@@ -1,7 +1,7 @@
 # Implementation Plan: Task #329
 
 - **Task**: 329 - Make Typst primary output in founder implement agent
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1.5 hours
 - **Dependencies**: Task 328 (companion plan-agent changes)
 - **Research Inputs**: reports/01_typst-primary-implement.md
@@ -51,7 +51,7 @@ Update `.claude/extensions/founder/agents/founder-implement-agent.md` so ALL fou
 
 ## Implementation Phases
 
-### Phase 1: Update Generic Phase 4 and Phase 5 [NOT STARTED]
+### Phase 1: Update Generic Phase 4 and Phase 5 [COMPLETED]
 
 **Goal**: Transform the generic Phase 4 from markdown-only to Typst-primary, and reduce generic Phase 5 from Typst generation + PDF compilation to PDF compilation only
 
@@ -80,7 +80,7 @@ Update `.claude/extensions/founder/agents/founder-implement-agent.md` so ALL fou
 
 ---
 
-### Phase 2: Update Per-Type Phase 4/5 Sections [NOT STARTED]
+### Phase 2: Update Per-Type Phase 4/5 Sections [COMPLETED]
 
 **Goal**: Update competitive-analysis, GTM strategy, and contract review per-type sections to match the Typst-primary pattern
 
@@ -105,7 +105,7 @@ Update `.claude/extensions/founder/agents/founder-implement-agent.md` so ALL fou
 
 ---
 
-### Phase 3: Update Supporting Sections [NOT STARTED]
+### Phase 3: Update Supporting Sections [COMPLETED]
 
 **Goal**: Update all remaining sections that reference the old markdown-primary / Phase 5 Typst generation pattern
 
@@ -134,7 +134,7 @@ Update `.claude/extensions/founder/agents/founder-implement-agent.md` so ALL fou
 
 ---
 
-### Phase 4: Verification and Consistency Check [NOT STARTED]
+### Phase 4: Verification and Consistency Check [COMPLETED]
 
 **Goal**: Verify the file is internally consistent and aligns with task 328 plan-agent changes
 
