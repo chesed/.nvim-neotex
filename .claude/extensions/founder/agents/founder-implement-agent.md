@@ -262,13 +262,31 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
 
 5. Mark phase `[COMPLETED]`
 
-#### Phase 4: Report Generation
+#### Phase 4: Report and Typst Generation
+
+**For all report types**, generate self-contained Typst documents as primary output and markdown reports as fallback.
 
 1. Mark phase `[IN PROGRESS]`
 
-2. Generate report using template structure (see full template in original agent spec)
+2. **Generate self-contained typst content**:
 
-3. Write report to output location:
+   The generated .typ file must be **self-contained** with all template functions inlined.
+   This avoids import path resolution issues when compiling from the founder/ directory.
+
+   **DO NOT** use: `#import "strategy-template.typ": *` (fails from founder/ directory)
+   **DO** inline all required template functions directly in the generated file.
+
+3. **Write typst file** to founder directory:
+   ```bash
+   mkdir -p "founder"
+   typst_file="founder/${report_type}-${slug}.typ"
+   write "$typst_file" "$typst_content"
+
+   # Verify file was written
+   [ -s "$typst_file" ] || return error "Failed to write typst file"
+   ```
+
+4. **Generate markdown fallback report** using template structure:
    ```bash
    # Default location, or use output_dir if provided
    output_path="${output_dir:-strategy/}${report_type}-${slug}.md"
@@ -280,16 +298,14 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
    write "$output_path" "$report_content"
 
    # Verify
-   [ -s "$output_path" ] || return error "Failed to write report"
+   [ -s "$output_path" ] || return error "Failed to write markdown fallback"
    ```
 
-4. Mark phase `[COMPLETED]`
+5. Mark phase `[COMPLETED]`
 
-#### Phase 5: Typst Document Generation
+#### Phase 5: PDF Compilation
 
-**For all report types**, generate professional PDF output using **self-contained typst files** (no external imports).
-
-**Non-blocking**: Phase 5 failure does NOT block task completion. The markdown report from Phase 4 is the primary deliverable. If Phase 5 fails for any reason, mark it `[PARTIAL]` and proceed to Stage 6.
+**Non-blocking**: Phase 5 failure does NOT block task completion. The Typst source from Phase 4 is preserved, and the markdown fallback is available. If Phase 5 fails for any reason, mark it `[PARTIAL]` and proceed to Stage 6.
 
 1. Mark phase `[IN PROGRESS]` in plan file (or skip marker update if `implicit_typst_phase=true`)
 
@@ -297,7 +313,8 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
    ```bash
    if [ "$typst_available" = "false" ]; then
      echo "WARNING: typst not installed. Phase 5 skipped."
-     echo "Markdown report available at ${output_path}"
+     echo "Typst source preserved at: founder/${report_type}-${slug}.typ"
+     echo "Markdown fallback available at ${output_path}"
      # Mark phase [PARTIAL] (unless implicit) and continue to Stage 6
      typst_skipped=true
      return
@@ -305,29 +322,7 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
    typst_skipped=false
    ```
 
-3. **Create founder directory**:
-   ```bash
-   mkdir -p "founder"
-   ```
-
-4. **Generate self-contained typst content**:
-
-   The generated .typ file must be **self-contained** with all template functions inlined.
-   This avoids import path resolution issues when compiling from the founder/ directory.
-
-   **DO NOT** use: `#import "strategy-template.typ": *` (fails from founder/ directory)
-   **DO** inline all required template functions directly in the generated file.
-
-5. **Write typst file** to founder directory:
-   ```bash
-   typst_file="founder/${report_type}-${slug}.typ"
-   write "$typst_file" "$typst_content"
-
-   # Verify file was written
-   [ -s "$typst_file" ] || return error "Failed to write typst file"
-   ```
-
-6. **Compile to PDF**:
+3. **Compile to PDF**:
    ```bash
    # Compile from project root - no cd needed since file is self-contained
    typst compile "founder/${report_type}-${slug}.typ" "founder/${report_type}-${slug}.pdf" 2>&1
@@ -348,7 +343,7 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
    fi
    ```
 
-7. **Mark phase status**:
+4. **Mark phase status**:
    - If PDF generated successfully: mark `[COMPLETED]`
    - If typst compilation failed but .typ preserved: mark `[PARTIAL]`
    - If typst not available (skipped): mark `[PARTIAL]`
@@ -356,7 +351,7 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
 
    In all cases, proceed to Stage 6. Phase 5 status does not affect the overall task status -- if Phases 1-4 succeeded, the task is `implemented`.
 
-**Self-Contained Typst Content Generation Pattern**:
+**Self-Contained Typst Content Generation Pattern** (used in Phase 4):
 
 Generate a complete, self-contained typst file by inlining the strategy-template functions.
 The generated file should include:
@@ -616,7 +611,7 @@ The generated file should include:
 | Compilation error | Keep .typ file, log error | [PARTIAL] |
 | PDF empty | Keep .typ file, log error | [PARTIAL] |
 
-Phase 5 failures do NOT block task completion. The markdown report (Phase 4) is the primary output.
+Phase 5 failures do NOT block task completion. The Typst source and markdown fallback from Phase 4 are preserved.
 
 **Example self-contained project-timeline.typ**:
 
@@ -1101,15 +1096,15 @@ For competitive-analysis reports, use these phases:
 - Competitive advantages
 - Battle cards (from research: ### Strategic Observations)
 
-### Phase 4: Report Generation
-- Full competitive analysis report
+### Phase 4: Report and Typst Generation
+- Generate self-contained typst document using competitive-analysis.typ template at founder/{report-type}-{slug}.typ
+- Generate competitive-analysis markdown report at strategy/{report-type}-{slug}.md (fallback)
 - Positioning map visualization (using axes from research: ### Positioning Dimensions)
 - Battle card summaries
 
-### Phase 5: Typst Document Generation
-- Generate typst file using competitive-analysis.typ template
-- Compile to PDF in founder/ directory
-- Include positioning map, competitor cards, battle cards
+### Phase 5: PDF Compilation
+- Compile typst to PDF at founder/{report-type}-{slug}.pdf
+- Verify positioning map, competitor cards, battle cards render correctly
 
 ---
 
@@ -1132,15 +1127,15 @@ For gtm-strategy reports, use these phases:
 - Positioning statement (from research: ### Draft Positioning Statement)
 - Messaging framework
 
-### Phase 4: Report Generation
-- Full GTM strategy report
-- 90-day action plan
+### Phase 4: Report and Typst Generation
+- Generate self-contained typst document using gtm-strategy.typ template at founder/{report-type}-{slug}.typ
+- Generate GTM strategy markdown report at strategy/{report-type}-{slug}.md (fallback)
+- 90-day action plan and metrics dashboard in typst
 - Metrics and milestones (using North Star from research: ### Metrics Framework)
 
-### Phase 5: Typst Document Generation
-- Generate typst file using gtm-strategy.typ template
-- Compile to PDF in founder/ directory
-- Include 90-day timeline, metrics dashboard, channel strategy
+### Phase 5: PDF Compilation
+- Compile typst to PDF at founder/{report-type}-{slug}.pdf
+- Verify 90-day timeline, metrics dashboard, channel strategy render correctly
 
 ---
 
@@ -1210,29 +1205,11 @@ For contract-review reports, use these phases. The legal-council-agent produces 
    - Value items to request in exchange
 6. Set escalation triggers based on financial exposure (from research: ### Financial and Exit)
 
-### Phase 4: Report Generation
+### Phase 4: Report and Typst Generation
 
-**Input**: Phases 1-3 output + contract-analysis.md template
+**Input**: Phases 1-3 output + contract-analysis.md template + contract-analysis.typ template reference
 
-1. Generate contract analysis report using `contract-analysis.md` template structure
-2. Include the following sections:
-   - **Executive Summary**: Overall risk level (Low/Medium/High/Critical), key concerns count, recommended action (proceed/negotiate/escalate/walk away)
-   - **Contract Overview**: Parties, contract type, key terms summary
-   - **Clause-by-Clause Analysis Table**: Each clause with risk level, category, issues found, and recommendations
-   - **Risk Assessment Matrix**: MUST FIX / NEGOTIATE / MONITOR / ACCEPT quadrants with clause counts and descriptions
-   - **Negotiation Position Summary**: BATNA assessment, ZOPA mapping, relative bargaining power
-   - **Recommended Modifications**: Organized as must-have, should-have, and nice-to-have with current vs proposed language
-   - **Walk-Away Conditions**: Specific triggers that warrant terminating negotiation
-   - **Action Items**: Prioritized next steps with owners and deadlines
-   - **Escalation Recommendation**: Self-serve / Attorney review / Attorney required, with justification
-3. Write to: `strategy/contract-analysis-{slug}.md`
-4. Verify report file exists and is non-empty
-
-### Phase 5: Typst Document Generation
-
-**Input**: Phase 4 report content + contract-analysis.typ template reference
-
-1. Generate **self-contained** typst file (inline all functions, no imports)
+1. Generate **self-contained** typst file (inline all functions, no imports):
    - **DO NOT** use: `#import "strategy-template.typ": *`
    - **DO** inline all required template functions directly in the generated file
 2. Include the following typst helper functions (inlined from contract-analysis.typ):
@@ -1243,14 +1220,33 @@ For contract-review reports, use these phases. The legal-council-agent produces 
    - BATNA/ZOPA display components - Visual negotiation range indicators
    - Modification tables - Current vs proposed language comparison tables
 3. Include professional styling (Navy palette + Libertinus Serif, consistent with other report types)
-4. Compile to PDF:
+4. Write to: `founder/contract-analysis-{slug}.typ`
+5. Generate contract analysis markdown report (fallback) using `contract-analysis.md` template structure
+6. Include the following sections in markdown:
+   - **Executive Summary**: Overall risk level (Low/Medium/High/Critical), key concerns count, recommended action (proceed/negotiate/escalate/walk away)
+   - **Contract Overview**: Parties, contract type, key terms summary
+   - **Clause-by-Clause Analysis Table**: Each clause with risk level, category, issues found, and recommendations
+   - **Risk Assessment Matrix**: MUST FIX / NEGOTIATE / MONITOR / ACCEPT quadrants with clause counts and descriptions
+   - **Negotiation Position Summary**: BATNA assessment, ZOPA mapping, relative bargaining power
+   - **Recommended Modifications**: Organized as must-have, should-have, and nice-to-have with current vs proposed language
+   - **Walk-Away Conditions**: Specific triggers that warrant terminating negotiation
+   - **Action Items**: Prioritized next steps with owners and deadlines
+   - **Escalation Recommendation**: Self-serve / Attorney review / Attorney required, with justification
+7. Write markdown to: `strategy/contract-analysis-{slug}.md`
+8. Verify both files exist and are non-empty
+
+### Phase 5: PDF Compilation
+
+**Input**: Phase 4 typst source file
+
+1. Compile to PDF:
    ```bash
    typst compile "founder/contract-analysis-{slug}.typ" "founder/contract-analysis-{slug}.pdf"
    ```
-5. Write to: `founder/contract-analysis-{slug}.typ` and `founder/contract-analysis-{slug}.pdf`
-6. If compilation fails, preserve .typ file for debugging and mark phase `[PARTIAL]`
+2. Verify PDF exists and is non-empty
+3. If compilation fails, preserve .typ file for debugging and mark phase `[PARTIAL]`
 
-Phase 5 failure does NOT block task completion. The markdown report from Phase 4 is the primary deliverable.
+Phase 5 failure does NOT block task completion. The Typst source and markdown fallback from Phase 4 are preserved.
 
 ---
 
@@ -1407,7 +1403,7 @@ Also generate a markdown summary report at `strategy/timelines/{project-slug}-re
 
 **Input**: Phase 4 output (Typst source files)
 
-**Non-blocking**: Phase 5 failure does NOT block task completion. The markdown report from Phase 4 is the primary deliverable.
+**Non-blocking**: Phase 5 failure does NOT block task completion. The Typst source and markdown fallback from Phase 4 are preserved.
 
 1. Check `typst_available` flag (set in Stage 2.5)
 2. If typst not available: log warning, mark `[PARTIAL]`, proceed to Stage 6
@@ -1436,7 +1432,7 @@ Also generate a markdown summary report at `strategy/timelines/{project-slug}-re
 | TRACK | `strategy/timelines/{slug}-tracking.typ` | `founder/{slug}-tracking.pdf` | `strategy/timelines/{slug}-report.md` (updated) |
 | REPORT | `strategy/timelines/{slug}-status.typ` | `founder/{slug}-status.pdf` | `strategy/timelines/{slug}-report.md` (updated) |
 
-Phase 5 failure does NOT block task completion. The markdown report from Phase 4 is the primary deliverable.
+Phase 5 failure does NOT block task completion. The Typst source and markdown fallback from Phase 4 are preserved.
 
 ---
 

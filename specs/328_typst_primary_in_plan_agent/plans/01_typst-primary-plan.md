@@ -101,7 +101,7 @@ Update founder-plan-agent.md and founder-implement-agent.md so that ALL founder 
 
 ---
 
-### Phase 3: Update founder-implement-agent.md Phase 4 and Phase 5 [IN PROGRESS]
+### Phase 3: Update founder-implement-agent.md Phase 4 and Phase 5 [COMPLETED]
 
 **Goal**: Update the implement agent so Phase 4 generates Typst as primary and Phase 5 only compiles PDF
 
@@ -126,7 +126,7 @@ Update founder-plan-agent.md and founder-implement-agent.md so that ALL founder 
 
 ---
 
-### Phase 4: Update founder-implement-agent.md Per-Type Sections [NOT STARTED]
+### Phase 4: Update founder-implement-agent.md Per-Type Sections [COMPLETED]
 
 **Goal**: Update per-type Phase 4/5 sections in the implement agent to match new pattern
 
