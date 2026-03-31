@@ -13,7 +13,7 @@ next_project_number: 336
 - **333** [COMPLETED] -- Add plan format verification to founder-plan-agent
   - **Research**: [01_format-verification.md](333_add_plan_format_verification_to_founder_plan_agent/reports/01_format-verification.md)
   - **Plan**: [01_format-verification.md](333_add_plan_format_verification_to_founder_plan_agent/plans/01_format-verification.md)
-- **334** [IMPLEMENTING] -- Add generic/edit task_type fallback to founder-plan-agent
+- **334** [COMPLETED] -- Add generic/edit task_type fallback to founder-plan-agent
   - **Research**: [01_generic-fallback.md](334_add_generic_edit_task_type_to_founder_plan_agent/reports/01_generic-fallback.md)
   - **Plan**: [01_generic-fallback.md](334_add_generic_edit_task_type_to_founder_plan_agent/plans/01_generic-fallback.md)
 - **335** [COMPLETED] -- Create plan-format enforcement rule
@@ -41,12 +41,15 @@ next_project_number: 336
 
 ### 334. Add generic/edit task_type fallback to founder-plan-agent
 - **Effort**: 1 hour
-- **Status**: [RESEARCHING]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Created**: 2026-03-31
+- **Completed**: 2026-03-30
 
 **Description**: Add generic/edit task_type fallback path to founder-plan-agent.md. When task doesn't fit specialized templates (market-sizing, competitive-analysis, etc.), fall back to standard plan-format.md template instead of improvising.
+
+**Completion Summary**: Added generic/edit task_type fallback to founder-plan-agent.md. Stage 4 routes unrecognized task types to generic instead of market-sizing. Stage 5 includes Generic/Edit phase structure with variable phase counts and conditional report/PDF phases.
 
 ---
 

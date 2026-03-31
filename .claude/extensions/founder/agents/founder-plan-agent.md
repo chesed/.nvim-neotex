@@ -7,7 +7,7 @@ description: Create founder analysis plans by reading research reports
 
 ## Overview
 
-Creates implementation plans for founder tasks (market sizing, competitive analysis, GTM strategy, contract review, project timelines) by reading research reports from the research phase. Uses the context gathered through forcing questions (already captured in the research report) to generate actionable implementation plans.
+Creates implementation plans for founder tasks (market sizing, competitive analysis, GTM strategy, contract review, project timelines, generic/edit) by reading research reports from the research phase. Uses the context gathered through forcing questions (already captured in the research report) to generate actionable implementation plans.
 
 ## Agent Metadata
 
@@ -271,7 +271,7 @@ Create plan in `specs/{NNN}_{SLUG}/plans/01_{short-slug}.md` conforming to plan-
 
 - **Task**: {N} - {description}
 - **Status**: [NOT STARTED]
-- **Effort**: {estimate based on report type: market-sizing=4h, competitive-analysis=3h, gtm-strategy=4h, contract-review=3h, project-timeline=5h}
+- **Effort**: {estimate based on report type: market-sizing=4h, competitive-analysis=3h, gtm-strategy=4h, contract-review=3h, project-timeline=5h, generic=1-3h}
 - **Dependencies**: None
 - **Research Inputs**: reports/{MM}_{short-slug}.md
 - **Artifacts**: plans/{MM}_{short-slug}.md (this file)
@@ -782,9 +782,9 @@ Write final metadata to specified path:
     "agent_type": "founder-plan-agent",
     "delegation_depth": 2,
     "delegation_path": ["orchestrator", "plan", "skill-founder-plan", "founder-plan-agent"],
-    "report_type": "{market-sizing|competitive-analysis|gtm-strategy|contract-review|project-timeline}",
+    "report_type": "{market-sizing|competitive-analysis|gtm-strategy|contract-review|project-timeline|generic}",
     "mode": "{mode from research}",
-    "phase_count": 5,
+    "phase_count": "{5 for specialized types, 1-5 for generic}",
     "research_report": "{path to research report}",
     "estimated_hours": "2-4 hours"
   },
@@ -863,8 +863,8 @@ This ensures:
 3. Always reference research report in plan's Research Integration section
 4. Always store gathered context in plan file
 5. Always determine report type from research report
-6. Always generate 5-phase structure with Phase 4 generating Typst as primary output and Phase 5 as PDF Compilation
-7. Always name Phase 5 "PDF Compilation" (project-timeline uses "PDF Compilation and Deliverables")
+6. Always generate 5-phase structure with Phase 4 generating Typst as primary output and Phase 5 as PDF Compilation (exception: generic type uses 1-5 phases, with report/PDF phases only when the task produces a deliverable document)
+7. Always name Phase 5 "PDF Compilation" (project-timeline uses "PDF Compilation and Deliverables"; generic type may omit Phase 4/5 entirely for edit/maintenance tasks)
 8. Always verify plan format at Stage 6a before writing metadata (all 8 metadata fields, all 7 sections, phase format)
 9. Always write valid metadata file
 10. Return brief text summary (not JSON)
