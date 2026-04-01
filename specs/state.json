@@ -5,10 +5,20 @@
     {
       "project_number": 348,
       "project_name": "fix_plan_interactive_questions_founder_deck",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-04-01T21:07:53Z",
-      "last_updated": "2026-04-01T21:07:53Z"
+      "last_updated": "2026-04-01T21:14:42Z",
+      "session_id": "sess_1743544073_r348m",
+      "researched": "2026-04-01T21:14:42Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/348_fix_plan_interactive_questions_founder_deck/reports/01_plan-interactive-questions.md",
+          "summary": "Root cause: founder extension not loaded, routing finds skill name from manifest but skill not registered. Fix: add existence check after routing lookup."
+        }
+      ]
     },
     {
       "project_number": 347,
