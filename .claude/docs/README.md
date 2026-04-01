@@ -16,6 +16,7 @@ This directory contains the documentation for the `.claude/` agent system. The s
 │   ├── user-installation.md    # Quick-start for new users
 │   ├── copy-claude-directory.md # Copy .claude/ to another project
 │   ├── neovim-integration.md   # Hook-based readiness signaling and TTS/STT
+│   ├── tts-stt-integration.md  # TTS/STT setup and configuration
 │   ├── component-selection.md  # When to create command vs skill vs agent
 │   ├── creating-commands.md    # How to create commands
 │   ├── creating-skills.md      # How to create skills
@@ -51,6 +52,7 @@ The `.claude/` directory implements a three-layer architecture: Commands, Skills
 - [Command Workflows User Guide](guides/user-guide.md) - Comprehensive guide to all commands with examples and troubleshooting
 - [Copy .claude/ Directory](guides/copy-claude-directory.md) - Install the agent system in another project
 - [Neovim Integration](guides/neovim-integration.md) - Hook-based readiness signaling, TTS notifications, and STT voice input
+- [TTS/STT Integration](guides/tts-stt-integration.md) - Text-to-speech and speech-to-text setup and configuration
 
 ### Component Development
 - [Component Selection](guides/component-selection.md) - Decision tree for creating commands, skills, or agents

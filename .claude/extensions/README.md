@@ -32,7 +32,7 @@ Extensions add domain-specific elements:
 | formal | formal, logic, math, physics | Formal verification domains |
 | filetypes | - | File format conversion |
 | founder | founder | Business strategy and startup operations |
-| present | deck, grant | Presentations and grant proposals |
+| present | present | Grant writing and proposal development |
 | memory | - | Learning and knowledge management |
 
 ## Loading Extensions
@@ -43,7 +43,7 @@ Extensions are loaded via the Neovim picker:
 
 When an extension is loaded:
 1. Stale index entries are cleaned (pre-load cleanup removes entries from non-loaded extensions)
-2. Core index entries are loaded from `core-index-entries.json` (always included)
+2. Core index entries are loaded from `.claude/context/core-index-entries.json` (always included)
 3. Agent, skill, rule files are copied to .claude/
 4. Context directories are copied to .claude/context/project/
 5. Extension index entries are merged into .claude/context/index.json (tracked for unload)

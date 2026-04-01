@@ -96,7 +96,7 @@ Team research report (3 teammates) identified 21 recommended changes across prio
 
 ---
 
-### Phase 3: Fix extensions/README.md and Component READMEs [NOT STARTED]
+### Phase 3: Fix extensions/README.md and Component READMEs [COMPLETED]
 
 **Goal**: Fix the present extension attribution error, add spawn-agent to agents table, add orphaned guide to docs index, and add core-index-entries.json path
 
