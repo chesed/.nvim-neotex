@@ -1,15 +1,23 @@
 {
   "version": "1.0.0",
-  "next_project_number": 349,
+  "next_project_number": 350,
   "active_projects": [
+    {
+      "project_number": 349,
+      "project_name": "review_update_claude_agent_system_docs",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-04-01T21:42:38Z",
+      "last_updated": "2026-04-01T21:42:38Z"
+    },
     {
       "project_number": 348,
       "project_name": "fix_plan_interactive_questions_founder_deck",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-04-01T21:07:53Z",
-      "last_updated": "2026-04-01T21:35:47Z",
-      "session_id": "sess_1775079171_41602e",
+      "last_updated": "2026-04-01T21:38:47Z",
+      "session_id": "sess_1775079513_7b2529",
       "researched": "2026-04-01T21:29:04Z",
       "next_artifact_number": 3,
       "artifacts": [
@@ -24,7 +32,8 @@
           "summary": "3-phase plan to move AskUserQuestion interactive pickers from deck-planner-agent into skill-deck-plan, matching the skill-fix-it pattern"
         }
       ],
-      "planned": "2026-04-01T21:35:47Z"
+      "planned": "2026-04-01T21:35:47Z",
+      "started": "2026-04-01T21:38:47Z"
     },
     {
       "project_number": 347,

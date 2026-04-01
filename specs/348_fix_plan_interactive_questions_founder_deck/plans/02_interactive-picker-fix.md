@@ -1,7 +1,7 @@
 # Implementation Plan: Fix /plan Interactive Questions for founder:deck
 
 - **Task**: 348 - Fix /plan command not showing interactive questions for founder:deck tasks
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2 hours
 - **Dependencies**: Task 347 (compound key routing - completed)
 - **Research Inputs**: specs/348_fix_plan_interactive_questions_founder_deck/reports/02_interactive-picker-pattern.md
@@ -43,7 +43,7 @@ The round-2 research report confirmed the root cause is architectural (not routi
 
 ## Implementation Phases
 
-### Phase 1: Update skill-deck-plan with AskUserQuestion stages [NOT STARTED]
+### Phase 1: Update skill-deck-plan with AskUserQuestion stages [IN PROGRESS]
 
 **Goal**: Move interactive question logic from the agent into the skill, add AskUserQuestion to allowed-tools, and pass user selections to the agent.
 
