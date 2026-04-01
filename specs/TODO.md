@@ -22,7 +22,9 @@ next_project_number: 349
 - **Effort**: 1-2 hours
 - **Status**: [RESEARCHED]
 - **Language**: meta
-- **Research**: [01_plan-interactive-questions.md](specs/348_fix_plan_interactive_questions_founder_deck/reports/01_plan-interactive-questions.md)
+- **Research**:
+  - [01_plan-interactive-questions.md](specs/348_fix_plan_interactive_questions_founder_deck/reports/01_plan-interactive-questions.md)
+  - [02_interactive-picker-pattern.md](specs/348_fix_plan_interactive_questions_founder_deck/reports/02_interactive-picker-pattern.md)
 
 **Description**: Fix /plan command not showing interactive questions for founder:deck tasks (pattern, theme, content, slide order). When running `/plan 135` on a founder:deck task, no interactive prompts were presented for selecting deck pattern, theme, content structure, or slide ordering -- despite task 347 implementing this feature. Identify root cause and fix.
 

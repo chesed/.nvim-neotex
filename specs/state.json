@@ -8,15 +8,15 @@
       "status": "researched",
       "language": "meta",
       "created": "2026-04-01T21:07:53Z",
-      "last_updated": "2026-04-01T21:14:42Z",
-      "session_id": "sess_1743544073_r348m",
-      "researched": "2026-04-01T21:14:42Z",
-      "next_artifact_number": 2,
+      "last_updated": "2026-04-01T21:29:04Z",
+      "session_id": "sess_1743544380_r348r2",
+      "researched": "2026-04-01T21:29:04Z",
+      "next_artifact_number": 3,
       "artifacts": [
         {
+          "path": "specs/348_fix_plan_interactive_questions_founder_deck/reports/02_interactive-picker-pattern.md",
           "type": "research",
-          "path": "specs/348_fix_plan_interactive_questions_founder_deck/reports/01_plan-interactive-questions.md",
-          "summary": "Root cause: founder extension not loaded, routing finds skill name from manifest but skill not registered. Fix: add existence check after routing lookup."
+          "summary": "Root cause: skill-deck-plan lacks AskUserQuestion in allowed-tools; interactive questions are incorrectly placed in deck-planner-agent instead of skill layer. Fix: add AskUserQuestion to skill, move 4 interactive stages from agent to skill, pass selections to agent."
         }
       ]
     },
