@@ -99,44 +99,63 @@ If `team_mode == true`:
 - Route to `skill-team-research` regardless of language
 - Pass `team_size` parameter
 
-**Language-Based Routing** (when `--team` flag NOT present):
+**Extension Routing** (when `--team` flag NOT present):
+
+Check extension manifests for language-specific research routing:
+
+```bash
+# Get task language (may be simple "founder" or compound "founder:deck")
+language=$(echo "$task_data" | jq -r '.language // "general"')
+
+# Check extension routing for research (skill_name starts empty)
+skill_name=""
+for manifest in .claude/extensions/*/manifest.json; do
+  if [ -f "$manifest" ]; then
+    ext_skill=$(jq -r --arg lang "$language" \
+      '.routing.research[$lang] // empty' "$manifest")
+    if [ -n "$ext_skill" ]; then
+      skill_name="$ext_skill"
+      break
+    fi
+  fi
+done
+
+# Fallback: if compound key (contains ":"), try base language
+if [ -z "$skill_name" ] && echo "$language" | grep -q ":"; then
+  base_lang=$(echo "$language" | cut -d: -f1)
+  for manifest in .claude/extensions/*/manifest.json; do
+    if [ -f "$manifest" ]; then
+      ext_skill=$(jq -r --arg lang "$base_lang" \
+        '.routing.research[$lang] // empty' "$manifest")
+      if [ -n "$ext_skill" ]; then
+        skill_name="$ext_skill"
+        break
+      fi
+    fi
+  done
+fi
+
+# Fallback to default researcher if no extension routing found
+skill_name=${skill_name:-"skill-researcher"}
+```
+
+**Extension-Based Routing Table**:
 
 | Language | Skill to Invoke |
 |----------|-----------------|
-| `general`, `meta`, `markdown` | `skill-researcher` |
-
-**Extension Languages**: When extensions are loaded (via `<leader>ac` in Neovim), additional language-specific skills become available. Extension skills follow the pattern `skill-{lang}-research` and are discovered automatically. See `.claude/extensions/*/manifest.json` for available extensions.
-
-**Note**: Extension skills are located in `.claude/extensions/{ext}/skills/`. Claude Code should automatically discover these skills when extensions are installed.
-
-**Type-Based Routing for Extensions**: Some extensions support finer-grained routing via `task_type` field. When a task has both `language` (extension) and `task_type` set, use the composite key `{language}:{task_type}` for routing lookup.
-
-Example for founder extension:
-| language | task_type | Routing Key | Skill |
-|----------|-----------|-------------|-------|
-| founder | market | founder:market | skill-market |
-| founder | analyze | founder:analyze | skill-analyze |
-| founder | strategy | founder:strategy | skill-strategy |
-| founder | (null) | founder | skill-market (default) |
+| `founder` | `skill-market` (from founder extension) |
+| `founder:deck` | `skill-deck-research` (from founder extension) |
+| `founder:analyze` | `skill-analyze` (from founder extension) |
+| `founder:strategy` | `skill-strategy` (from founder extension) |
+| `founder:{sub-type}` | Compound key lookup, falls back to `skill-market` |
+| `general`, `meta`, `markdown` | `skill-researcher` (default) |
 
 **Skill Selection Logic**:
 ```
 if team_mode:
   skill_name = "skill-team-research"
 else:
-  # Check for task_type-based routing (extensions with sub-types)
-  task_type = task_data.task_type  # may be null
-
-  if task_type is not null:
-    # Try composite key first: "{language}:{task_type}"
-    composite_key = "{language}:{task_type}"
-    if composite_key in extension_routing:
-      skill_name = extension_routing[composite_key]
-    else:
-      # Fallback to language-only routing
-      skill_name = {language-based routing}
-  else:
-    skill_name = {language-based routing from table above}
+  skill_name = {extension routing lookup} OR "skill-researcher"
 ```
 
 **Invoke the Skill tool NOW** with:

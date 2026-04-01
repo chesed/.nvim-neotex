@@ -107,7 +107,7 @@ skill_name=${skill_name:-"{default_skill}"}
 
 ---
 
-### Phase 2: Fix /research Command Routing [NOT STARTED]
+### Phase 2: Fix /research Command Routing [COMPLETED]
 
 **Goal**: Replace the pseudocode routing in `/research` with a concrete bash manifest loop matching the pattern used in `/plan` and `/implement`, including compound key support.
 
