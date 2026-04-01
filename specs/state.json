@@ -199,16 +199,16 @@
     {
       "project_number": 343,
       "project_name": "deck_builder_typst_agent",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "task_type": "deck",
       "created": "2026-03-31T05:00:00Z",
-      "last_updated": "2026-03-31T22:10:25Z",
+      "last_updated": "2026-03-31T22:55:00Z",
       "dependencies": [
         340,
         342
       ],
-      "session_id": "sess_1774995013_y1bwsp",
+      "session_id": "sess_1775002034_d1024e",
       "researched": "2026-03-31T22:02:43Z",
       "next_artifact_number": 2,
       "artifacts": [
@@ -221,10 +221,18 @@
           "path": "specs/343_deck_builder_typst_agent/plans/01_deck-builder-plan.md",
           "type": "plan",
           "summary": "4-phase implementation plan for deck builder typst agent"
+        },
+        {
+          "path": "specs/343_deck_builder_typst_agent/summaries/01_deck-builder-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary with verification results for deck builder agent and skill"
         }
       ],
       "planned": "2026-03-31T22:07:52Z",
-      "started": "2026-03-31T22:10:25Z"
+      "started": "2026-03-31T22:10:25Z",
+      "completed": "2026-03-31T22:55:00Z",
+      "completion_summary": "Created deck-builder-agent and skill-deck-implement for the founder extension, enabling /implement on deck tasks to generate typst pitch decks. Registered new agent and skill in manifest, index-entries, and EXTENSION.md with full cross-reference validation.",
+      "claudemd_suggestions": "Updated founder EXTENSION.md skill-agent table and language routing description. Added 5 deck template entries and 3 agent references to index-entries.json."
     },
     {
       "project_number": 344,
