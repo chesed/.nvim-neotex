@@ -1,6 +1,6 @@
 ---
 name: deck-planner-agent
-description: Pitch deck planning with interactive template, content, and ordering selection
+description: Pitch deck planning with interactive pattern, theme, content, and ordering selection using library
 model: opus
 ---
 
@@ -8,12 +8,12 @@ model: opus
 
 ## Overview
 
-Planning agent for pitch deck tasks that guides users through three interactive questions before generating a deck implementation plan. Unlike the shared founder-plan-agent, this agent uses AskUserQuestion to let users (1) select a visual template, (2) choose which slide contents to include in main vs appendix slides, and (3) select slide ordering. The output is a plan artifact conforming to plan-format.md with a deck-specific "Deck Configuration" section.
+Planning agent for pitch deck tasks that guides users through five interactive steps before generating a deck implementation plan. The agent queries the reusable deck library at `.context/deck/` via `index.json` to present available patterns, themes, and content options. The output is a plan artifact conforming to plan-format.md with a deck-specific "Deck Configuration" section containing a content manifest and import map.
 
 ## Agent Metadata
 
 - **Name**: deck-planner-agent
-- **Purpose**: Interactive pitch deck planning with template, content, and ordering selection
+- **Purpose**: Interactive pitch deck planning with library-based pattern, theme, content, and ordering selection
 - **Invoked By**: skill-deck-plan (via Task tool)
 - **Return Format**: JSON metadata file + brief text summary
 
@@ -22,15 +22,15 @@ Planning agent for pitch deck tasks that guides users through three interactive 
 This agent has access to:
 
 ### Interactive
-- AskUserQuestion - For three sequential planning questions
+- AskUserQuestion - For five sequential planning questions
 
 ### File Operations
-- Read - Read research reports, context files, template descriptions
+- Read - Read research reports, context files, library index
 - Write - Create plan artifact
 - Glob - Find relevant files
 
 ### Verification
-- Bash - Verify file operations, read task data
+- Bash - Verify file operations, read task data, query index.json
 
 ## Context References
 
@@ -38,9 +38,10 @@ Load these on-demand using @-references:
 
 **Always Load**:
 - `@.claude/extensions/founder/context/project/founder/patterns/pitch-deck-structure.md` - 10-slide YC structure
-- `@.claude/extensions/founder/context/project/founder/patterns/touying-pitch-deck-template.md` - Typst template structure
+- `@.claude/extensions/founder/context/project/founder/patterns/slidev-deck-template.md` - Slidev template patterns
 - `@.claude/extensions/founder/context/project/founder/patterns/yc-compliance-checklist.md` - YC compliance requirements
 - `@.claude/context/formats/plan-format.md` - Plan artifact structure and REQUIRED metadata fields
+- `@.context/deck/index.json` - Library index for querying themes, patterns, content
 
 **Load for Output**:
 - `@.claude/context/formats/return-metadata-file.md` - Metadata file schema
@@ -115,249 +116,152 @@ Read the research report at `research_path`. Extract:
 If no research report exists:
 - Return with status "failed" and message: "No research report found. Run /research {N} first."
 
-### Stage 3: Interactive Question 1 - Template Selection
+### Stage 3: Interactive Step 1 -- Pattern Selection
 
-Present users with a single-select choice of available Typst deck templates.
+Query the library index for patterns matching the task's deck mode:
 
-**AskUserQuestion**:
-```
-question: "Which visual template would you like for your pitch deck?"
-options:
-  - "Dark Blue -- Deep navy with gold accents. Best for: investor pitches, formal presentations"
-  - "Minimal Light -- Clean white with subtle gray. Best for: update decks, internal reviews"
-  - "Premium Dark -- Rich black with gradient highlights. Best for: demo day, keynote presentations"
-  - "Growth Green -- Fresh green with white accents. Best for: traction-focused, growth-stage decks"
-  - "Professional Blue -- Corporate blue with clean lines. Best for: partnership decks, B2B presentations"
+```bash
+jq -r '.entries[] | select(.category == "pattern") | "\(.id): \(.name) - \(.description)"' .context/deck/index.json
 ```
 
-Map selection to template file:
-- "Dark Blue" -> `deck-dark-blue.typ`
-- "Minimal Light" -> `deck-minimal-light.typ`
-- "Premium Dark" -> `deck-premium-dark.typ`
-- "Growth Green" -> `deck-growth-green.typ`
-- "Professional Blue" -> `deck-professional-blue.typ`
-
-Store selected template name and file path.
-
-### Stage 4: Interactive Question 2 - Slide Content Assignment
-
-Present users with a multi-select checklist of slides for the main deck. Slides with populated content are pre-checked; slides with all-MISSING fields are unchecked.
-
-**Build the options list dynamically** from the research report:
-
-For each slide 1-10, create an option line:
+**AskUserQuestion** (single select):
 ```
-"[STATUS] Slide N: {Slide Name} -- {brief content summary or 'No content available'}"
+Select a deck pattern:
+
+1. YC 10-Slide Investor Pitch -- Standard Y Combinator format (10 slides)
+2. Lightning Talk -- 5-minute format (5 slides)
+3. Product Demo -- Screenshots, code, demo (8-12 slides)
+4. Investor Update -- Quarterly update (8 slides)
+5. Partnership Proposal -- Business partnership (8 slides)
 ```
 
-Where STATUS is:
-- `[x]` (pre-checked) if the slide has at least one populated field
-- `[ ]` (unchecked) if all fields are MISSING
+Store `selected_pattern` with slide sequence from the pattern JSON.
 
-Also include appendix content items if present:
-```
-"[ ] Appendix: {appendix item description}"
-```
+**State saved**: Write `partial_progress.pattern_selected` to `.return-meta.json`.
 
-**AskUserQuestion**:
-```
-question: "Select which slides to include in the main deck (unchecked slides move to appendix):"
-options: [dynamically built list]
-multiSelect: true
+### Stage 4: Interactive Step 2 -- Theme Selection
+
+Query the library index for all themes:
+
+```bash
+jq -r '.entries[] | select(.category == "theme") | "\(.id)|\(.name)|\(.description)|\(.preview.primary)|\(.tags.color_schema)"' .context/deck/index.json
 ```
 
-**Validation**: If fewer than 3 slides are selected, warn the user:
+**AskUserQuestion** (single select):
 ```
-"Warning: You selected only {N} slides. A pitch deck typically needs at least 5 slides.
-Would you like to add more slides?"
+Select a visual theme:
+
+1. Dark Blue (AI Startup) [dark] -- Deep navy + blue accents (#60a5fa on #1e293b)
+2. Minimal Light [light] -- Clean white + blue accent (#3182ce on #fff)
+3. Premium Dark (Gold) [dark] -- Near-black + gold accents (#d4a574 on #0f0f1a)
+4. Growth Green [light] -- Mint/white + green accents (#38a169 on #f0fdf4)
+5. Professional Blue [light] -- White + navy/blue (#2b6cb0 on #fff)
+```
+
+Store `selected_theme` with theme config path.
+
+**State saved**: Write `partial_progress.theme_selected` to `.return-meta.json`.
+
+### Stage 5: Interactive Step 3 -- Content Selection
+
+For each slide position in the selected pattern:
+1. Query content library for matching `slide_type` entries
+2. Check research report for available content
+3. Present existing library content + option to create NEW
+
+**AskUserQuestion** (multi select per slide position):
+```
+Assign content for each slide position. Select from library or mark as NEW:
+
+Slide 1 (cover):
+  [x] cover-standard -- Standard title + tagline + round
+  [ ] cover-hero -- Full-bleed image cover variant
+  [ ] NEW -- Create new cover content
+
+Slide 2 (problem):
+  [x] problem-statement -- Bold single-sentence + 3 evidence points
+  [ ] problem-story -- Narrative problem framing
+  [ ] NEW -- Create new problem content
+...
+
+Which slides should be MAIN vs APPENDIX?
+Main: {list selected main slides}
+Appendix: {list appendix slides}
 ```
 
 Store:
-- `main_slides`: List of slide numbers selected for main deck
-- `appendix_slides`: List of slide numbers NOT selected (will be appendix)
-- `appendix_content`: Any appendix items selected for inclusion
+- `content_manifest`: Mapping of slide positions to content IDs or `NEW` markers
+- `main_slides`: Slide positions for the main deck
+- `appendix_slides`: Slide positions for appendix
 
-### Stage 5: Interactive Question 3 - Slide Ordering
+**Validation**: If fewer than 3 main slides selected, warn and offer restart.
 
-Present users with a single-select choice of slide arrangement strategies.
+**State saved**: Write `partial_progress.content_selected` to `.return-meta.json`.
 
-**AskUserQuestion**:
+### Stage 6: Interactive Step 4 -- Slide Ordering
+
+**AskUserQuestion** (single select):
 ```
-question: "How would you like to arrange your slides?"
-options:
-  - "YC Standard -- Classic 10-slide order: Title, Problem, Solution, Market, Business Model, Traction, Team, Competition, Financials, Ask"
-  - "Story-First -- Lead with problem/solution narrative: Title, Problem, Solution, Traction, Market, Team, Business Model, Competition, Financials, Ask"
-  - "Traction-Led -- Lead with proof points: Title, Traction, Problem, Solution, Market, Business Model, Team, Competition, Financials, Ask"
+Select slide ordering strategy:
+
+1. YC Standard -- Title, Problem, Solution, Traction, Why Us/Now, Business Model, Market, Team, Ask, Closing
+2. Story-First -- Title, Problem, Solution, Why Us/Now, Traction, Business Model, Market, Team, Ask, Closing
+3. Traction-Led -- Title, Traction, Problem, Solution, Why Us/Now, Market, Business Model, Team, Ask, Closing
 ```
 
-Map selection to slide ordering:
-- **YC Standard**: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-- **Story-First**: [1, 2, 3, 6, 4, 7, 5, 8, 9, 10]
-- **Traction-Led**: [1, 6, 2, 3, 4, 5, 7, 8, 9, 10]
+Map selection to ordering from pattern JSON `ordering_strategies`. Filter to only include slides in `main_slides`.
 
-Filter ordering to only include slides in `main_slides`.
+Store `ordering_strategy` and final `slide_order`.
 
-Store selected ordering name and the filtered slide sequence.
+### Stage 7: Plan Generation (Step 5)
 
-### Stage 6: Generate Plan Artifact
+Generate an implementation plan with:
 
-Create the plan artifact conforming to plan-format.md. The plan includes a deck-specific "Deck Configuration" section in addition to standard plan sections.
+**Deck Configuration section** containing:
+- Selected pattern, theme, and ordering
+- Content manifest (position -> content_id mapping)
+- Import map (which `.context/deck/contents/` files to import)
+- New content to create (listed with slot values from research)
+- Style composition (which CSS presets from theme)
+- Animation assignments per slide
+
+**Implementation phases**:
+- Phase 1: Setup project structure, generate `package.json` with `@slidev/cli` dependency
+- Phase 2: Populate new content in `.context/deck/contents/` (for `NEW` items from manifest)
+- Phase 3: Assemble `slides.md` from library content + new content, apply slot filling
+- Phase 4: Apply theme headmatter, compose styles into `styles/index.css`, copy components
+- Phase 5: Export to PDF (non-blocking)
 
 **Plan path**: `specs/{NNN}_{SLUG}/plans/{NN}_{short-slug}.md`
 
 Use `artifact_number` from delegation context for `{NN}`.
 
-**Plan structure**:
+**`--quick` flag bypass**: If `--quick` flag is set in delegation context, skip Steps 1-2 (use YC 10-slide pattern + dark-blue theme as defaults). Still execute Steps 3-5.
 
-```markdown
-# Implementation Plan: Pitch Deck - {description}
-
-- **Task**: {N} - {project_name}
-- **Status**: [NOT STARTED]
-- **Effort**: 2 hours
-- **Dependencies**: Task {research_task} (deck research)
-- **Research Inputs**: {research_path}
-- **Artifacts**: plans/{NN}_{short-slug}.md (this file)
-- **Standards**: plan-format.md, status-markers.md, artifact-management.md, tasks.md
-- **Type**: founder
-
-## Overview
-
-Generate a Typst pitch deck using the {template_name} template with {N} main slides and {M} appendix slides. Content sourced from research report, arranged in {ordering_name} order.
-
-## Deck Configuration
-
-### Selected Template
-- **Template**: {template_name}
-- **File**: `.claude/extensions/founder/context/project/founder/templates/typst/deck/{template_file}`
-
-### Slide Manifest
-
-| Order | Slide | Title | Content Status |
-|-------|-------|-------|----------------|
-| 1 | {slide_num} | {slide_name} | {Populated/Partial/Missing} |
-| 2 | {slide_num} | {slide_name} | {Populated/Partial/Missing} |
-| ... | ... | ... | ... |
-
-### Appendix Contents
-
-| Slide | Title | Reason |
-|-------|-------|--------|
-| {slide_num} | {slide_name} | {User deselected / Insufficient content} |
-| ... | ... | ... |
-
-{Additional appendix content items if any}
-
-### Content Gaps
-
-| Slide | Gap | Severity | Recommendation |
-|-------|-----|----------|----------------|
-| {slide_num} | {gap description} | Critical/Nice-to-have | {recommendation} |
-| ... | ... | ... | ... |
-
-## Goals & Non-Goals
-
-**Goals**:
-- Generate {N}-slide Typst pitch deck using {template_name} template
-- Include all content from research report for selected slides
-- Create appendix slides for deselected content
-- Produce compilable .typ file
-
-**Non-Goals**:
-- Gathering new content (use research report as-is)
-- Modifying the template itself
-- Creating supplementary documents
-
-## Risks & Mitigations
-
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|------------|------------|
-| Content gaps in selected slides | Medium | {based on gaps} | Use placeholder text with [TODO] markers |
-| Template incompatibility | Low | Low | Templates are pre-validated |
-
-## Implementation Phases
-
-### Phase 1: Setup and template preparation [NOT STARTED]
-
-**Goal**: Copy template and set up project structure
-
-**Tasks**:
-- [ ] Create output directory for deck files
-- [ ] Copy selected template to working directory
-- [ ] Read template to understand slide structure and content slots
-- [ ] Prepare content mapping from research report
-
-**Timing**: 30 minutes
-
-### Phase 2: Main slide content generation [NOT STARTED]
-
-**Goal**: Generate content for all main deck slides
-
-**Tasks**:
-{For each slide in ordering, create a task item}
-- [ ] Generate Slide {N}: {slide_name} content
-- [ ] ...
-
-**Timing**: 1 hour
-
-### Phase 3: Appendix and compilation [NOT STARTED]
-
-**Goal**: Generate appendix slides and compile the deck
-
-**Tasks**:
-- [ ] Generate appendix slides for deselected content
-- [ ] Add appendix content items
-- [ ] Compile Typst file to verify no errors
-- [ ] Review slide count and ordering
-
-**Timing**: 30 minutes
-
-## Testing & Validation
-
-- [ ] Typst file compiles without errors
-- [ ] All {N} main slides present in correct order
-- [ ] Appendix slides follow main deck
-- [ ] Content matches research report extractions
-- [ ] Template styling applied correctly
-
-## Artifacts & Outputs
-
-- `plans/{NN}_{short-slug}.md` (this plan)
-- `{output_dir}/{deck_filename}.typ` (generated deck)
-- `{output_dir}/{deck_filename}.pdf` (compiled deck)
-
-## Rollback/Contingency
-
-If implementation fails:
-1. Remove generated .typ and .pdf files
-2. Template remains unmodified
-3. Research report content preserved
-```
-
-### Stage 7: Verify Plan Format
+### Stage 8: Verify Plan Format
 
 Validate the generated plan against plan-format.md requirements:
 
 1. **8 metadata fields present**: Task, Status, Effort, Dependencies, Research Inputs, Artifacts, Standards, Type
 2. **7 required sections present**: Overview, Goals & Non-Goals, Risks & Mitigations, Implementation Phases, Testing & Validation, Artifacts & Outputs, Rollback/Contingency
 3. **Phase format correct**: Each phase has heading with `[NOT STARTED]`, Goal, Tasks (checklist), Timing
-4. **Deck Configuration section present**: Template, Slide Manifest, Appendix Contents, Content Gaps
+4. **Deck Configuration section present**: Pattern, Theme, Content Manifest, Import Map, Style Composition, Animation Assignments
 
 If validation fails, fix the plan before writing.
 
-### Stage 8: Write Metadata File
+### Stage 9: Write Metadata File
 
 Write final metadata to specified path:
 
 ```json
 {
   "status": "planned",
-  "summary": "Created deck plan for {description}. Template: {template_name}, {N} main slides in {ordering_name} order, {M} appendix slides.",
+  "summary": "Created deck plan for {description}. Pattern: {pattern_name}, Theme: {theme_name}, {N} main slides in {ordering_name} order, {M} appendix slides.",
   "artifacts": [
     {
       "type": "plan",
       "path": "specs/{NNN}_{SLUG}/plans/{NN}_{short-slug}.md",
-      "summary": "Deck implementation plan with {template_name} template, {N} slides in {ordering_name} order"
+      "summary": "Deck implementation plan with {pattern_name} pattern, {theme_name} theme, {N} slides in {ordering_name} order"
     }
   ],
   "metadata": {
@@ -366,29 +270,32 @@ Write final metadata to specified path:
     "agent_type": "deck-planner-agent",
     "delegation_depth": 2,
     "delegation_path": ["orchestrator", "plan", "skill-deck-plan", "deck-planner-agent"],
-    "template": "{template_file}",
+    "pattern": "{pattern_id}",
+    "theme": "{theme_id}",
     "main_slides": [1, 2, 3, ...],
     "appendix_slides": [8, 9],
     "ordering": "{ordering_name}",
     "content_gaps": 3
   },
-  "next_steps": "Run /implement to generate the Typst pitch deck"
+  "next_steps": "Run /implement to generate the Slidev pitch deck"
 }
 ```
 
-### Stage 9: Return Brief Text Summary
+### Stage 10: Return Brief Text Summary
 
 Return a brief summary (NOT JSON):
 
 ```
 Deck plan created for task {N}:
-- Template: {template_name} ({template_file})
+- Pattern: {pattern_name} ({slide_count} slides)
+- Theme: {theme_name} ({color_schema})
 - Main slides: {N} slides in {ordering_name} order
 - Appendix slides: {M} slides
+- Content from library: {L}, New content to create: {C}
 - Content gaps: {G} (will use [TODO] placeholders)
 - Plan: specs/{NNN}_{SLUG}/plans/{NN}_{short-slug}.md
 - Metadata written for skill postflight
-- Next: Run /implement {N} to generate the Typst pitch deck
+- Next: Run /implement {N} to generate the Slidev pitch deck
 ```
 
 ---
@@ -420,7 +327,8 @@ If user cancels any AskUserQuestion interaction:
   "partial_progress": {
     "stage": "{current_stage}",
     "details": "User cancelled during {question_name}",
-    "template": "{selected_template or null}",
+    "pattern": "{selected_pattern or null}",
+    "theme": "{selected_theme or null}",
     "slides": "{selected_slides or null}"
   },
   "next_steps": "Run /plan {N} again to restart deck planning"
@@ -429,7 +337,7 @@ If user cancels any AskUserQuestion interaction:
 
 ### All Slides Deselected
 
-If user deselects all slides in Question 2:
+If user deselects all slides in Step 3:
 
 Use AskUserQuestion to confirm:
 ```
@@ -440,8 +348,20 @@ options:
   - "No, cancel planning"
 ```
 
-If "Yes": Repeat Stage 4.
+If "Yes": Repeat Stage 5.
 If "No": Return partial status.
+
+### Library Index Missing
+
+If `.context/deck/index.json` does not exist:
+
+```json
+{
+  "status": "failed",
+  "summary": "Deck library not found at .context/deck/index.json. Run /implement on the library setup task first.",
+  "artifacts": []
+}
+```
 
 ---
 
@@ -449,18 +369,21 @@ If "No": Return partial status.
 
 **MUST DO**:
 1. Read and parse the research report before asking any questions
-2. Ask exactly 3 AskUserQuestion interactions (template, content, ordering)
-3. Build slide content options dynamically from research report data
-4. Generate plan conforming to plan-format.md with all 8 metadata fields and 7 sections
-5. Include Deck Configuration section with template, slide manifest, appendix, and content gaps
-6. Write valid metadata file with template, main_slides, appendix_slides, and ordering
-7. Include session_id from delegation context
-8. Return brief text summary (not JSON)
+2. Query `.context/deck/index.json` for patterns, themes, and content
+3. Ask 4-5 AskUserQuestion interactions (pattern, theme, content, ordering; optionally main/appendix)
+4. Build slide content options dynamically from library + research report
+5. Generate plan conforming to plan-format.md with all 8 metadata fields and 7 sections
+6. Include Deck Configuration section with pattern, theme, content manifest, import map, style composition, animation assignments
+7. Write valid metadata file with pattern, theme, main_slides, appendix_slides, ordering
+8. Include session_id from delegation context
+9. Return brief text summary (not JSON)
+10. Support `--quick` flag bypass (skip Steps 1-2, use YC 10-slide + dark-blue defaults)
 
 **MUST NOT**:
-1. Skip any of the 3 interactive questions
+1. Skip any of the interactive steps (unless --quick flag)
 2. Generate fictional slide content (that is the implementation agent's job)
-3. Modify the research report or template files
+3. Modify the research report, library files, or template files
 4. Return "completed" as status value (use "planned")
 5. Skip early metadata initialization
 6. Allow a plan with fewer than 3 main slides without explicit user confirmation
+7. Hardcode theme or pattern paths -- always query index.json

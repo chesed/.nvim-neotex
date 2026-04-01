@@ -37,7 +37,7 @@ Load these on-demand using @-references:
 
 **Always Load**:
 - `@.claude/extensions/founder/context/project/founder/patterns/pitch-deck-structure.md` - 10-slide YC structure
-- `@.claude/extensions/founder/context/project/founder/patterns/touying-pitch-deck-template.md` - Typst template structure
+- `@.claude/extensions/founder/context/project/founder/patterns/slidev-deck-template.md` - Slidev template patterns
 - `@.claude/extensions/founder/context/project/founder/patterns/yc-compliance-checklist.md` - YC compliance requirements
 
 **Load for Output**:
@@ -286,7 +286,7 @@ Analyzed {N} source materials for pitch deck content. Extracted content for {M}/
 
 ## Next Steps
 
-Run `/plan {N}` to create implementation plan for deck generation, then `/implement {N}` to produce the final Typst pitch deck.
+Run `/plan {N}` to create implementation plan for deck generation, then `/implement {N}` to produce the final Slidev pitch deck.
 ```
 
 ### Stage 7: Write Research Report

@@ -251,7 +251,7 @@ Five research reports and one prior plan were integrated:
 
 ---
 
-### Phase 5: Agent Rewrites [NOT STARTED]
+### Phase 5: Agent Rewrites [COMPLETED]
 
 **Goal**: Rewrite the three deck agents for the library-based Slidev architecture. The planner gets the 5-step library-aware workflow. The builder gets library-based assembly with slot filling and write-back. The research agent gets minor updates.
 
