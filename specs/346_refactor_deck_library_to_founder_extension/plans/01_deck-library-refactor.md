@@ -66,7 +66,7 @@ Team research (2 teammates) identified the critical tension between extension lo
 
 ---
 
-### Phase 2: Add Initialization Guards to Agents [NOT STARTED]
+### Phase 2: Add Initialization Guards to Agents [COMPLETED]
 
 **Goal**: Add initialize-on-first-use logic so agents copy the seed library to `.context/deck/` when it does not exist.
 

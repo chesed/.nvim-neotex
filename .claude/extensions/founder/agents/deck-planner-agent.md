@@ -98,6 +98,20 @@ Key fields:
 - `research_path` - Path to deck research report with slide content analysis
 - `metadata.session_id` - For commit messages and tracing
 
+### Stage 1.5: Library Initialization
+
+If `.context/deck/index.json` does not exist, initialize the deck library from the extension seed:
+
+```bash
+if [ ! -f .context/deck/index.json ]; then
+  mkdir -p .context/deck
+  cp -r .claude/extensions/founder/context/project/founder/deck/* .context/deck/
+  echo "Initialized deck library from extension seed"
+fi
+```
+
+This ensures the reusable deck library is available at `.context/deck/` for all subsequent queries. The extension directory serves as the canonical seed; `.context/deck/` is the mutable runtime copy where agents read from and write back to.
+
 ### Stage 2: Load and Parse Research Report
 
 Read the research report at `research_path`. Extract:

@@ -98,6 +98,20 @@ Key fields:
 - `output_dir` - Output directory (default: "strategy/")
 - `forcing_data.purpose` - INVESTOR, UPDATE, INTERNAL, or PARTNERSHIP
 
+### Stage 1.5: Library Initialization
+
+If `.context/deck/index.json` does not exist, initialize the deck library from the extension seed:
+
+```bash
+if [ ! -f .context/deck/index.json ]; then
+  mkdir -p .context/deck
+  cp -r .claude/extensions/founder/context/project/founder/deck/* .context/deck/
+  echo "Initialized deck library from extension seed"
+fi
+```
+
+This ensures the reusable deck library is available at `.context/deck/` for all subsequent queries. The extension directory serves as the canonical seed; `.context/deck/` is the mutable runtime copy where agents read from and write back to.
+
 ### Stage 2: Load Plan and Research Report
 
 **Read the plan file** and extract:
