@@ -5,11 +5,11 @@
     {
       "project_number": 347,
       "project_name": "add_interactive_deck_plan_picker",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "created": "2026-04-01T18:36:59Z",
-      "last_updated": "2026-04-01T18:57:50Z",
-      "session_id": "sess_1743537000_pL4nX7",
+      "last_updated": "2026-04-01T19:02:59Z",
+      "session_id": "sess_1743537300_iMpL9k",
       "researched": "2026-04-01T18:53:22Z",
       "next_artifact_number": 3,
       "artifacts": [
@@ -24,7 +24,8 @@
           "summary": "4-phase plan: fix compound key routing in /plan, /implement, /research and add founder sub-type detection to /task"
         }
       ],
-      "planned": "2026-04-01T18:57:50Z"
+      "planned": "2026-04-01T18:57:50Z",
+      "started": "2026-04-01T19:02:59Z"
     },
     {
       "project_number": 345,

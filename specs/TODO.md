@@ -10,7 +10,7 @@ next_project_number: 348
 
 ### Pending
 
-- **347** [PLANNED] -- Add interactive deck plan picker
+- **347** [IMPLEMENTING] -- Add interactive deck plan picker
 - **346** [COMPLETED] -- Refactor deck library from .context/ to founder extension
 - **345** [COMPLETED] -- Port /deck command-skill-agent from Typst to Slidev
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
@@ -20,7 +20,7 @@ next_project_number: 348
 
 ### 347. Add interactive deck plan picker
 - **Effort**: 2-4 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: 345, 346
 - **Research**:

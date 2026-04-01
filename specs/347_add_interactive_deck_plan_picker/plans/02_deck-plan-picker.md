@@ -1,7 +1,7 @@
 # Implementation Plan: Add Interactive Deck Plan Picker
 
 - **Task**: 347 - Add interactive deck plan picker
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2 hours
 - **Dependencies**: Task 346 (deck library refactor -- completed)
 - **Research Inputs**: reports/01_deck-plan-picker.md, reports/02_team-research.md
@@ -51,7 +51,7 @@ Research reports 01 and 02 (including team findings from teammates A and B) agre
 
 ## Implementation Phases
 
-### Phase 1: Fix /plan and /implement Command Routing [NOT STARTED]
+### Phase 1: Fix /plan and /implement Command Routing [COMPLETED]
 
 **Goal**: Add base-language fallback to both commands so `"founder:deck"` resolves to `skill-deck-plan` (direct match) and unknown compound keys fall back to the base language.
 

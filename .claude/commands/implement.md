@@ -112,7 +112,7 @@ If `team_mode == true`:
 Check extension manifests for language-specific implement routing:
 
 ```bash
-# Get task language
+# Get task language (may be simple "founder" or compound "founder:deck")
 language=$(echo "$task_data" | jq -r '.language // "general"')
 
 # Check extension routing for implement (skill_name starts empty)
@@ -128,6 +128,21 @@ for manifest in .claude/extensions/*/manifest.json; do
   fi
 done
 
+# Fallback: if compound key (contains ":"), try base language
+if [ -z "$skill_name" ] && echo "$language" | grep -q ":"; then
+  base_lang=$(echo "$language" | cut -d: -f1)
+  for manifest in .claude/extensions/*/manifest.json; do
+    if [ -f "$manifest" ]; then
+      ext_skill=$(jq -r --arg lang "$base_lang" \
+        '.routing.implement[$lang] // empty' "$manifest")
+      if [ -n "$ext_skill" ]; then
+        skill_name="$ext_skill"
+        break
+      fi
+    fi
+  done
+fi
+
 # Fallback to default implementer if no extension routing found
 skill_name=${skill_name:-"skill-implementer"}
 ```
@@ -137,6 +152,8 @@ skill_name=${skill_name:-"skill-implementer"}
 | Language | Skill to Invoke |
 |----------|-----------------|
 | `founder` | `skill-founder-implement` (from founder extension) |
+| `founder:deck` | `skill-deck-implement` (from founder extension) |
+| `founder:{sub-type}` | Compound key lookup, falls back to `skill-founder-implement` |
 | `general`, `meta`, `markdown` | `skill-implementer` (default) |
 | `formal`, `logic`, `math`, `physics` | `skill-implementer` (default) |
 
