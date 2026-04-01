@@ -1,7 +1,7 @@
 # Implementation Plan: Migrate Deck from Present to Founder
 
 - **Task**: 344 - migrate_deck_present_to_founder
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1.5 hours
 - **Dependencies**: 341, 342, 343 (founder extension and deck skills -- already completed)
 - **Research Inputs**: reports/01_migrate-deck-present.md
@@ -43,7 +43,7 @@ Research report (01_migrate-deck-present.md) provided a complete file inventory,
 
 ## Implementation Phases
 
-### Phase 1: Move context files and delete deck artifacts [NOT STARTED]
+### Phase 1: Move context files and delete deck artifacts [COMPLETED]
 
 **Goal:** Physically relocate shared context files to founder/ and remove all deck-only files from present/.
 

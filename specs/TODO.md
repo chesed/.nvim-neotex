@@ -14,7 +14,7 @@ next_project_number: 345
 - **341** [COMPLETED] -- /deck command and deck-research-agent integration
 - **342** [COMPLETED] -- Deck planner with interactive style/content questions (depends: 340, 341)
 - **343** [COMPLETED] -- Deck builder typst agent (depends: 340, 342)
-- **344** [PLANNED] -- Migrate deck from present/ to founder/ extension (depends: 341, 342, 343)
+- **344** [IMPLEMENTING] -- Migrate deck from present/ to founder/ extension (depends: 341, 342, 343)
   - **Research**: [01_migrate-deck-present.md](specs/344_migrate_deck_present_to_founder/reports/01_migrate-deck-present.md)
   - **Plan**: [01_migrate-deck-present.md](specs/344_migrate_deck_present_to_founder/plans/01_migrate-deck-present.md)
 - **336** [COMPLETED] -- Fix TODO.md status update bug in skill-implementer
@@ -87,7 +87,7 @@ next_project_number: 345
 
 ### 344. Migrate deck from present/ to founder/ extension
 - **Effort**: Small
-- **Status**: [RESEARCHED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Dependencies**: 341, 342, 343
 

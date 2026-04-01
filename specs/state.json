@@ -237,17 +237,17 @@
     {
       "project_number": 344,
       "project_name": "migrate_deck_present_to_founder",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "task_type": "deck",
       "created": "2026-03-31T05:00:00Z",
-      "last_updated": "2026-04-01T00:24:27Z",
+      "last_updated": "2026-04-01T00:26:18Z",
       "dependencies": [
         341,
         342,
         343
       ],
-      "session_id": "sess_1775002832_ewjqv",
+      "session_id": "sess_1775003149_2jyqk",
       "artifacts": [
         {
           "type": "research",
@@ -261,7 +261,8 @@
         }
       ],
       "next_artifact_number": 2,
-      "planned": "2026-04-01T00:24:27Z"
+      "planned": "2026-04-01T00:24:27Z",
+      "started": "2026-04-01T00:26:18Z"
     }
   ],
   "completed_projects": [],
