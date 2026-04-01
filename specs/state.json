@@ -102,20 +102,40 @@
     {
       "project_number": 346,
       "project_name": "refactor_deck_library_to_founder_extension",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-04-01T17:25:46Z",
-      "last_updated": "2026-04-01T17:33:31Z",
+      "last_updated": "2026-04-01T17:44:00Z",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/346_refactor_deck_library_to_founder_extension/reports/01_team-research.md",
           "type": "research",
           "summary": "Team research (2 teammates): file inventory, path audit, extension loader analysis, write-back tension resolution, seed-and-overlay architecture recommendation"
+        },
+        {
+          "path": "specs/346_refactor_deck_library_to_founder_extension/plans/01_deck-library-refactor.md",
+          "type": "plan",
+          "summary": "4-phase implementation plan for migrating deck library to founder extension with seed-and-overlay architecture"
         }
       ],
-      "session_id": "sess_1775064430_qxFHkg",
-      "researched": "2026-04-01T17:33:31Z"
+      "session_id": "sess_1775067856_pLn2Kv",
+      "researched": "2026-04-01T17:33:31Z",
+      "planned": "2026-04-01T17:44:00Z",
+      "plan_metadata": {
+        "phases": 4,
+        "total_effort_hours": 3,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "reports_integrated": [
+          {
+            "path": "reports/01_team-research.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-01"
+          }
+        ]
+      }
     }
   ],
   "completed_projects": [],
