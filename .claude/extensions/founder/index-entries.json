@@ -582,6 +582,7 @@
           "deck-agent",
           "deck-research-agent",
           "deck-planner-agent",
+          "deck-builder-agent",
           "founder-plan-agent",
           "founder-implement-agent"
         ],
@@ -607,6 +608,7 @@
           "deck-agent",
           "deck-research-agent",
           "deck-planner-agent",
+          "deck-builder-agent",
           "founder-plan-agent",
           "founder-implement-agent"
         ],
@@ -632,6 +634,7 @@
           "deck-agent",
           "deck-research-agent",
           "deck-planner-agent",
+          "deck-builder-agent",
           "founder-plan-agent",
           "founder-implement-agent"
         ],
@@ -647,6 +650,101 @@
       },
       "domain": "project",
       "subdomain": "present"
+    },
+    {
+      "path": "project/founder/templates/typst/deck/deck-dark-blue.typ",
+      "summary": "Dark blue pitch deck typst template with touying theme, 10 YC slides, TODO markers",
+      "line_count": 412,
+      "load_when": {
+        "agents": [
+          "deck-builder-agent"
+        ],
+        "languages": [
+          "founder"
+        ],
+        "task_types": [
+          "deck"
+        ],
+        "commands": []
+      },
+      "domain": "project",
+      "subdomain": "founder"
+    },
+    {
+      "path": "project/founder/templates/typst/deck/deck-minimal-light.typ",
+      "summary": "Minimal light pitch deck typst template with touying theme, 10 YC slides, TODO markers",
+      "line_count": 406,
+      "load_when": {
+        "agents": [
+          "deck-builder-agent"
+        ],
+        "languages": [
+          "founder"
+        ],
+        "task_types": [
+          "deck"
+        ],
+        "commands": []
+      },
+      "domain": "project",
+      "subdomain": "founder"
+    },
+    {
+      "path": "project/founder/templates/typst/deck/deck-premium-dark.typ",
+      "summary": "Premium dark pitch deck typst template with touying theme, 10 YC slides, TODO markers",
+      "line_count": 410,
+      "load_when": {
+        "agents": [
+          "deck-builder-agent"
+        ],
+        "languages": [
+          "founder"
+        ],
+        "task_types": [
+          "deck"
+        ],
+        "commands": []
+      },
+      "domain": "project",
+      "subdomain": "founder"
+    },
+    {
+      "path": "project/founder/templates/typst/deck/deck-growth-green.typ",
+      "summary": "Growth green pitch deck typst template with touying theme, 10 YC slides, TODO markers",
+      "line_count": 407,
+      "load_when": {
+        "agents": [
+          "deck-builder-agent"
+        ],
+        "languages": [
+          "founder"
+        ],
+        "task_types": [
+          "deck"
+        ],
+        "commands": []
+      },
+      "domain": "project",
+      "subdomain": "founder"
+    },
+    {
+      "path": "project/founder/templates/typst/deck/deck-professional-blue.typ",
+      "summary": "Professional blue pitch deck typst template with touying theme, 10 YC slides, TODO markers",
+      "line_count": 407,
+      "load_when": {
+        "agents": [
+          "deck-builder-agent"
+        ],
+        "languages": [
+          "founder"
+        ],
+        "task_types": [
+          "deck"
+        ],
+        "commands": []
+      },
+      "domain": "project",
+      "subdomain": "founder"
     }
   ]
 }

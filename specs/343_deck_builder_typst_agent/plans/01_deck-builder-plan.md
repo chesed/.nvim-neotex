@@ -126,7 +126,7 @@ Key findings from research:
 
 ---
 
-### Phase 3: Update manifest.json, index-entries.json, and EXTENSION.md [NOT STARTED]
+### Phase 3: Update manifest.json, index-entries.json, and EXTENSION.md [COMPLETED]
 
 **Goal**: Register the new agent and skill in the founder extension's configuration files
 
@@ -156,7 +156,7 @@ Key findings from research:
 
 ---
 
-### Phase 4: Integration Validation [NOT STARTED]
+### Phase 4: Integration Validation [IN PROGRESS]
 
 **Goal**: Verify the complete deck builder pipeline is correctly wired and all files are consistent
 
