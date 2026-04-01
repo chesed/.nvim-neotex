@@ -4,14 +4,14 @@ Strategic business analysis tools for founders and entrepreneurs. Integrates for
 
 ## What's New in v3.0
 
-- **Unified Phased Workflow**: All 5 commands (market, analyze, strategy, legal, project) follow the same `/research -> /plan -> /implement` lifecycle
+- **Unified Phased Workflow**: All 8 commands (market, analyze, strategy, legal, project, deck, finance, sheet) follow the same `/research -> /plan -> /implement` lifecycle
 - **Project Command Updated**: `/project` now creates research reports instead of generating timelines directly
 - **Per-Type Routing**: Complete routing table with 5 types across 3 phases (research, plan, implement)
 - **Breaking Changes**: project-agent is now research-only; TRACK/REPORT modes move to `/implement`
 
 ## Overview
 
-This extension provides five commands for strategic business analysis:
+This extension provides eight commands for strategic business analysis:
 
 | Command | Purpose | Output |
 |---------|---------|--------|
@@ -20,6 +20,9 @@ This extension provides five commands for strategic business analysis:
 | `/strategy` | Go-to-market strategy | GTM strategy with 90-day plan |
 | `/legal` | Contract review and legal counsel | Risk assessment, negotiation strategy |
 | `/project` | Project timeline management | WBS, PERT estimates, Gantt timeline |
+| `/deck` | Pitch deck creation | Slidev pitch deck with material synthesis |
+| `/finance` | Financial analysis | Revenue verification, runway analysis |
+| `/sheet` | Cost breakdown spreadsheets | Budget and cost analysis spreadsheets |
 
 ## Installation
 
@@ -143,6 +146,52 @@ Project timeline management with WBS, PERT estimation, and resource allocation.
 
 **Modes**: PLAN, TRACK, REPORT
 
+### /deck
+
+Pitch deck creation with material synthesis and slide mapping.
+
+**Syntax**:
+```bash
+# Task workflow (default)
+/deck "Seed round pitch for AI startup"  # Ask questions, create task
+/deck 234                                # Resume research on existing task
+/deck /path/to/context.md               # Use file as primary source
+
+# Legacy standalone mode
+/deck --quick "investor pitch"           # No task creation
+```
+
+### /finance
+
+Financial analysis and verification with spreadsheet generation.
+
+**Syntax**:
+```bash
+# Task workflow (default)
+/finance "Q1 revenue verification"       # Ask forcing questions, create task
+/finance 330                             # Resume research on existing task
+/finance /path/to/projections.xlsx       # Use file as financial input
+
+# Legacy standalone mode
+/finance --quick "runway analysis"       # No task creation
+```
+
+### /sheet
+
+Cost breakdown spreadsheet generation with forcing questions.
+
+**Syntax**:
+```bash
+# Task workflow (default)
+/sheet "Q1 product launch costs"         # Ask forcing questions, create task
+/sheet 234                               # Resume research on existing task
+
+# Legacy standalone mode
+/sheet --quick BUDGET                    # No task creation
+```
+
+**Modes**: BUDGET, FORECAST, COMPARISON
+
 ## Architecture
 
 ```
@@ -157,7 +206,10 @@ founder/
 │   ├── analyze.md            # /analyze command (task-integrated)
 │   ├── strategy.md           # /strategy command (task-integrated)
 │   ├── legal.md              # /legal command (task-integrated)
-│   └── project.md            # /project command (task-integrated)
+│   ├── project.md            # /project command (task-integrated)
+│   ├── deck.md               # /deck command (task-integrated)
+│   ├── finance.md            # /finance command (task-integrated)
+│   └── sheet.md              # /sheet command (task-integrated)
 │
 ├── skills/                    # Skill wrappers
 │   ├── skill-market/         # Market sizing research
@@ -170,6 +222,16 @@ founder/
 │   │   └── SKILL.md
 │   ├── skill-project/        # Project timeline research
 │   │   └── SKILL.md
+│   ├── skill-deck-research/  # Deck content research
+│   │   └── SKILL.md
+│   ├── skill-deck-plan/      # Deck planning
+│   │   └── SKILL.md
+│   ├── skill-deck-implement/ # Deck building
+│   │   └── SKILL.md
+│   ├── skill-finance/        # Financial analysis
+│   │   └── SKILL.md
+│   ├── skill-spreadsheet/    # Cost breakdown spreadsheets
+│   │   └── SKILL.md
 │   ├── skill-founder-plan/   # Shared task planning
 │   │   └── SKILL.md
 │   └── skill-founder-implement/  # Shared task implementation
@@ -181,13 +243,19 @@ founder/
 │   ├── strategy-agent.md     # GTM strategy research agent
 │   ├── legal-council-agent.md    # Contract review research agent
 │   ├── project-agent.md      # Project timeline research agent
-│   ├── founder-plan-agent.md     # Shared planning agent
+│   ├── deck-research-agent.md   # Deck content research agent
+│   ├── deck-planner-agent.md    # Deck planning agent
+│   ├── deck-builder-agent.md    # Deck building agent
+│   ├── finance-agent.md         # Financial analysis agent
+│   ├── spreadsheet-agent.md     # Cost breakdown agent
+│   ├── founder-plan-agent.md    # Shared planning agent
 │   └── founder-implement-agent.md # Shared implementation agent
 │
 └── context/                   # Domain knowledge
     └── project/
         └── founder/
             ├── README.md
+            ├── deck/          # Deck-specific context
             ├── domain/        # Business frameworks
             │   ├── business-frameworks.md
             │   ├── strategic-thinking.md
@@ -248,6 +316,9 @@ Summary in specs/{NNN}_{SLUG}/summaries/
 | /strategy | strategy-agent | Channel analysis, positioning, GTM |
 | /legal | legal-council-agent | Contract review, risk assessment, escalation |
 | /project | project-agent | WBS, PERT estimation, resource allocation |
+| /deck | deck-research-agent | Material synthesis, slide mapping |
+| /finance | finance-agent | Financial verification, runway analysis |
+| /sheet | spreadsheet-agent | Cost breakdown, budget generation |
 
 ### Legacy Workflow (--quick)
 
