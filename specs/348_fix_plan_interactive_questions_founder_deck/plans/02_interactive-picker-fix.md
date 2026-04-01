@@ -108,7 +108,7 @@ The round-2 research report confirmed the root cause is architectural (not routi
 
 ---
 
-### Phase 3: Validation and smoke test [NOT STARTED]
+### Phase 3: Validation and smoke test [COMPLETED]
 
 **Goal**: Verify both files are internally consistent, cross-reference each other correctly, and the delegation contract is aligned.
 
