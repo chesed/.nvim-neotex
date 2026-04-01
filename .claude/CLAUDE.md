@@ -72,7 +72,7 @@ This distinction enables identification of which system created each task.
 
 **Extension Languages** (available when extensions are loaded via `<leader>ac`):
 
-Extensions provide additional language support (neovim, lean4, latex, typst, python, nix, web, z3, epidemiology, formal, etc.). See `.claude/extensions/*/manifest.json` for available extensions and their capabilities.
+Extensions provide additional language support (neovim, lean4, latex, typst, python, nix, web, z3, epidemiology, formal, founder, present, etc.). See `.claude/extensions/*/manifest.json` for available extensions and their capabilities.
 
 When an extension is loaded, its routing entries are merged into the command tables and context index.
 
@@ -92,10 +92,11 @@ All commands use checkpoint-based execution: GATE IN (preflight) -> DELEGATE (sk
 | `/todo` | `/todo` | Archive completed/abandoned tasks, sync repository metrics |
 | `/errors` | `/errors` | Analyze error patterns, create fix plans |
 | `/meta` | `/meta` | System builder for .claude/ changes |
-| `/fix-it` | `/fix-it [PATH...]` | Scan for FIX:/NOTE:/TODO: tags |
+| `/fix-it` | `/fix-it [PATH...]` | Scan for FIX:/NOTE:/TODO:/QUESTION: tags |
 | `/refresh` | `/refresh [--dry-run] [--force]` | Clean orphaned processes and old files |
 | `/tag` | `/tag [--patch|--minor|--major]` | Create semantic version tag (user-only) |
 | `/spawn` | `/spawn N [blocker description]` | Spawn new tasks to unblock a blocked task |
+| `/merge` | `/merge` | Create pull/merge request for current branch |
 
 ### Utility Scripts
 
@@ -173,6 +174,8 @@ Standard actions: `create`, `complete research`, `create implementation plan`, `
 | skill-team-plan | (team orchestration) | sonnet | Multi-agent parallel planning (--team flag) |
 | skill-team-implement | (team orchestration) | sonnet | Multi-agent parallel implementation (--team flag) |
 | skill-spawn | spawn-agent | opus | Analyze blockers and spawn new tasks |
+| skill-orchestrator | (direct execution) | - | Route commands to appropriate workflows |
+| skill-git-workflow | (direct execution) | - | Create scoped git commits for task operations |
 
 ### Agents
 
@@ -244,7 +247,7 @@ See `.claude/context/patterns/context-discovery.md` for full query patterns incl
 
 ## Context Architecture
 
-Four layers provide context to agents. Each has a distinct owner and purpose.
+Five layers provide context to agents. Each has a distinct owner and purpose.
 
 | Layer | Location | Owner | Contains |
 |-------|----------|-------|----------|
