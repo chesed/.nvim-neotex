@@ -5,9 +5,9 @@
   "language": "present",
   "dependencies": [],
   "provides": {
-    "agents": ["grant-agent.md", "deck-agent.md"],
-    "skills": ["skill-grant", "skill-deck"],
-    "commands": ["grant.md", "deck.md"],
+    "agents": ["grant-agent.md"],
+    "skills": ["skill-grant"],
+    "commands": ["grant.md"],
     "rules": [],
     "context": ["project/present"],
     "scripts": [],

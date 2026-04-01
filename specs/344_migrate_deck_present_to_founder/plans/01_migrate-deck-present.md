@@ -76,7 +76,7 @@ Research report (01_migrate-deck-present.md) provided a complete file inventory,
 
 ---
 
-### Phase 2: Edit present/ configuration files [NOT STARTED]
+### Phase 2: Edit present/ configuration files [COMPLETED]
 
 **Goal:** Remove all deck references from present/ config files so it becomes grant-only.
 

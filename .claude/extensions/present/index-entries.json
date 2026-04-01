@@ -1,48 +1,6 @@
 {
   "entries": [
     {
-      "path": "project/present/patterns/pitch-deck-structure.md",
-      "domain": "project",
-      "subdomain": "present",
-      "topics": ["deck", "pitch", "yc", "slides", "investor"],
-      "keywords": ["pitch-deck", "yc", "investor", "slides", "structure", "10-slide"],
-      "summary": "YC-recommended 10-slide pitch deck structure with design principles",
-      "line_count": 180,
-      "load_when": {
-        "languages": ["deck"],
-        "agents": ["deck-agent"],
-        "commands": ["/deck"]
-      }
-    },
-    {
-      "path": "project/present/patterns/touying-pitch-deck-template.md",
-      "domain": "project",
-      "subdomain": "present",
-      "topics": ["deck", "touying", "typst", "template", "presentation"],
-      "keywords": ["touying", "typst", "template", "pitch-deck", "slides", "themes"],
-      "summary": "Touying pitch deck template patterns and code examples for Typst",
-      "line_count": 250,
-      "load_when": {
-        "languages": ["deck"],
-        "agents": ["deck-agent"],
-        "commands": ["/deck"]
-      }
-    },
-    {
-      "path": "project/present/patterns/yc-compliance-checklist.md",
-      "domain": "project",
-      "subdomain": "present",
-      "topics": ["deck", "yc", "compliance", "validation", "enforcement"],
-      "keywords": ["yc", "compliance", "checklist", "validation", "font-size", "legibility", "simplicity"],
-      "summary": "YC compliance checklist with PASS/FAIL enforcement rules for pitch decks",
-      "line_count": 289,
-      "load_when": {
-        "languages": ["deck"],
-        "agents": ["deck-agent"],
-        "commands": ["/deck"]
-      }
-    },
-    {
       "path": "project/present/README.md",
       "domain": "project",
       "subdomain": "present",
@@ -264,20 +222,6 @@
         "languages": ["grant"],
         "agents": ["grant-agent"],
         "commands": ["/grant"]
-      }
-    },
-    {
-      "path": "project/present/domain/deck-workflow.md",
-      "domain": "project",
-      "subdomain": "present",
-      "topics": ["deck", "workflow", "generation", "touying"],
-      "keywords": ["deck", "workflow", "generation", "yc", "touying", "slides"],
-      "summary": "Deck generation workflow, YC 10-slide structure, touying integration",
-      "line_count": 18,
-      "load_when": {
-        "languages": ["deck"],
-        "agents": ["deck-agent"],
-        "commands": ["/deck"]
       }
     },
     {
