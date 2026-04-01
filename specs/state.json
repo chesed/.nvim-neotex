@@ -30,6 +30,11 @@
           "type": "plan",
           "path": "specs/345_port_deck_typst_to_slidev/plans/02_implementation-plan.md",
           "summary": "5-phase implementation plan for porting /deck from Typst to Slidev"
+        },
+        {
+          "type": "research",
+          "path": "specs/345_port_deck_typst_to_slidev/reports/05_deck-library-system.md",
+          "summary": "Team research (3 teammates): reusable deck library system with 12 protocols, animation library, styling presets, JSON index schema, 6-step planner workflow, and deck summary format"
         }
       ],
       "researched": "2026-04-01T02:45:24Z",
