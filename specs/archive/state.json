@@ -14109,6 +14109,729 @@
       "started": "2026-04-01T00:26:18Z",
       "completion_summary": "Migrated deck functionality from present/ to founder/ extension: moved 3 context files, deleted 10 deck artifacts, updated 10 config files across 3 extensions. Present/ is now grant-writing only.",
       "claudemd_suggestions": "none"
+    },
+    {
+      "project_number": 362,
+      "project_name": "centralized_status_script",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T20:00:00Z",
+      "last_updated": "2026-04-03T19:55:16Z",
+      "researched": "2026-04-03T20:00:00Z",
+      "dependencies": [],
+      "session_id": "sess_1743638400_impl362",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/362_centralized_status_script/reports/01_meta-research.md",
+          "type": "research",
+          "summary": "Infrastructure analysis of duplicated status update logic across workflow skills; design for centralized update-task-status.sh script"
+        },
+        {
+          "path": "specs/362_centralized_status_script/plans/01_status-script-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for centralized status update script with 6 phases"
+        },
+        {
+          "path": "specs/362_centralized_status_script/summaries/01_status-script-summary.md",
+          "type": "summary",
+          "summary": "Execution summary for centralized status update script"
+        }
+      ],
+      "planned": "2026-04-03T19:45:33Z",
+      "started": "2026-04-03T19:46:16Z",
+      "completed": "2026-04-03T19:55:16Z",
+      "completion_summary": "Created .claude/scripts/update-task-status.sh that centralizes status updates across state.json, TODO.md task entries, and TODO.md Task Order section, eliminating duplicated logic across workflow skills",
+      "claudemd_suggestions": "Consider documenting update-task-status.sh usage in CLAUDE.md under Utility Scripts section"
+    },
+    {
+      "project_number": 363,
+      "project_name": "refactor_skill_researcher",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T20:00:00Z",
+      "last_updated": "2026-04-03T20:02:49Z",
+      "researched": "2026-04-03T20:00:00Z",
+      "dependencies": [
+        362
+      ],
+      "session_id": "sess_1743638400_impl_wave2",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/363_refactor_skill_researcher/reports/01_meta-research.md",
+          "type": "research",
+          "summary": "Analysis of skill-researcher preflight/postflight gaps including missing Task Order updates"
+        },
+        {
+          "path": "specs/363_refactor_skill_researcher/plans/01_refactor-researcher-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for task 363"
+        },
+        {
+          "path": "specs/363_refactor_skill_researcher/summaries/01_refactor-researcher-summary.md",
+          "type": "summary",
+          "summary": "Execution summary for task 363"
+        }
+      ],
+      "completion_summary": "Refactored skill-researcher preflight and postflight to use centralized update-task-status.sh, removed redundant git commit stage, fixing missing Task Order updates"
+    },
+    {
+      "project_number": 364,
+      "project_name": "refactor_skill_planner",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T20:00:00Z",
+      "last_updated": "2026-04-03T20:02:49Z",
+      "researched": "2026-04-03T20:00:00Z",
+      "dependencies": [
+        362
+      ],
+      "session_id": "sess_1743638400_impl_wave2",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/364_refactor_skill_planner/reports/01_meta-research.md",
+          "type": "research",
+          "summary": "Analysis of skill-planner preflight/postflight gaps including missing Task Order updates"
+        },
+        {
+          "path": "specs/364_refactor_skill_planner/plans/01_refactor-planner-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for task 364"
+        },
+        {
+          "path": "specs/364_refactor_skill_planner/summaries/01_refactor-planner-summary.md",
+          "type": "summary",
+          "summary": "Execution summary for task 364"
+        }
+      ],
+      "completion_summary": "Refactored skill-planner preflight (Stage 2) and postflight (Stage 7) to use centralized update-task-status.sh, replacing inline jq/Edit patterns and fixing missing Task Order updates."
+    },
+    {
+      "project_number": 365,
+      "project_name": "refactor_skill_implementer",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T20:00:00Z",
+      "last_updated": "2026-04-03T20:02:49Z",
+      "researched": "2026-04-03T20:00:00Z",
+      "dependencies": [
+        362
+      ],
+      "session_id": "sess_1743638400_impl_wave2",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/365_refactor_skill_implementer/reports/01_meta-research.md",
+          "type": "research",
+          "summary": "Analysis of skill-implementer status patterns including completion_data handling and partial status"
+        },
+        {
+          "path": "specs/365_refactor_skill_implementer/plans/01_refactor-implementer-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for task 365"
+        },
+        {
+          "path": "specs/365_refactor_skill_implementer/summaries/01_refactor-implementer-summary.md",
+          "type": "summary",
+          "summary": "Execution summary for task 365"
+        }
+      ],
+      "completion_summary": "Refactored skill-implementer preflight and postflight to use centralized update-task-status.sh, preserving completion_data and partial status handling inline"
+    },
+    {
+      "project_number": 366,
+      "project_name": "defensive_gate_out",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T20:00:00Z",
+      "last_updated": "2026-04-03T20:07:35Z",
+      "researched": "2026-04-03T20:00:00Z",
+      "dependencies": [
+        363,
+        364
+      ],
+      "session_id": "sess_1743638400_impl366",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/366_defensive_gate_out/reports/01_meta-research.md",
+          "type": "research",
+          "summary": "Gap analysis of /research and /plan GATE OUT defensive verification compared to /implement"
+        },
+        {
+          "path": "specs/366_defensive_gate_out/plans/01_defensive-gate-out-plan.md",
+          "type": "plan",
+          "summary": "Plan for defensive GATE OUT verification"
+        },
+        {
+          "path": "specs/366_defensive_gate_out/summaries/01_defensive-gate-out-summary.md",
+          "type": "summary",
+          "summary": "Execution summary for defensive GATE OUT"
+        }
+      ],
+      "completion_summary": "Added defensive status verification to /research and /plan GATE OUT checkpoints, matching the existing pattern in /implement. Research gets 2 defensive steps (state.json + TODO.md), plan gets 3 (state.json + TODO.md + plan file status)."
+    },
+    {
+      "project_number": 367,
+      "project_name": "refactor_revise_skill",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T20:00:00Z",
+      "last_updated": "2026-04-03T20:02:49Z",
+      "researched": "2026-04-03T20:00:00Z",
+      "dependencies": [
+        362
+      ],
+      "session_id": "sess_1743638400_impl_wave2",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/367_refactor_revise_skill/reports/01_meta-research.md",
+          "type": "research",
+          "summary": "Architecture analysis of /revise inline execution vs skill delegation pattern used by other commands"
+        },
+        {
+          "path": "specs/367_refactor_revise_skill/plans/01_refactor-revise-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for task 367"
+        },
+        {
+          "path": "specs/367_refactor_revise_skill/summaries/01_refactor-revise-summary.md",
+          "type": "summary",
+          "summary": "Execution summary for task 367"
+        }
+      ],
+      "completion_summary": "Created skill-reviser/SKILL.md with plan revision and description update flows using update-task-status.sh for centralized status updates. Refactored /revise command to delegate to skill-reviser. Updated CLAUDE.md mapping table."
+    },
+    {
+      "project_number": 358,
+      "project_name": "process_manager_core",
+      "status": "completed",
+      "started": "2026-04-03T17:30:00Z",
+      "completed": "2026-04-03T17:45:00Z",
+      "language": "neovim",
+      "created": "2026-04-03T17:00:00Z",
+      "last_updated": "2026-04-03T17:45:00Z",
+      "completion_summary": "Created lua/neotex/util/process.lua with full process manager: job registry, start/stop/list lifecycle, port auto-detection via vim.uv.new_tcp(), browser auto-open with dedup, VimLeavePre cleanup, filetype launcher registry with slidev and typst defaults, and virtual process registration for plugin-managed processes.",
+      "dependencies": [],
+      "session_id": "sess_1775235900_batch358",
+      "next_artifact_number": 2,
+      "researched": "2026-04-03T17:05:00Z",
+      "planned": "2026-04-03T17:15:00Z",
+      "plan_metadata": {
+        "phases": 3,
+        "total_effort_hours": 3,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_process-mgr-core.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-03"
+          }
+        ]
+      },
+      "artifacts": [
+        {
+          "path": "specs/358_process_manager_core/reports/01_process-mgr-core.md",
+          "type": "research",
+          "summary": "Research on existing job management patterns, utility module conventions, port detection, browser opening, and VimLeavePre cleanup for process manager design"
+        },
+        {
+          "path": "specs/358_process_manager_core/plans/01_process-mgr-core.md",
+          "type": "plan",
+          "summary": "3-phase implementation plan: core registry and API, browser auto-open with notifications, filetype launcher registry with slidev and typst defaults"
+        },
+        {
+          "path": "specs/358_process_manager_core/summaries/01_process-mgr-core-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for process manager core module"
+        }
+      ]
+    },
+    {
+      "project_number": 359,
+      "project_name": "telescope_process_picker",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-04-03T17:00:00Z",
+      "last_updated": "2026-04-03T18:00:00Z",
+      "dependencies": [
+        358
+      ],
+      "session_id": "sess_1775235900_batch359",
+      "researched": "2026-04-03T17:05:00Z",
+      "planned": "2026-04-03T17:15:00Z",
+      "started": "2026-04-03T17:50:00Z",
+      "completed": "2026-04-03T18:00:00Z",
+      "completion_summary": "Created lua/neotex/plugins/tools/process-picker.lua with telescope picker for background processes: fixed-width column display (name, cmd, port, uptime, status), buffer previewer with stdout/stderr from ring buffers, CR to kill and refresh, C-o to open port in browser, pcall guards and nil-safe field access throughout.",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/359_telescope_process_picker/reports/01_process-picker.md",
+          "type": "research",
+          "summary": "Telescope picker API patterns, recommended module structure, entry format, previewer, and action mappings for process management"
+        },
+        {
+          "path": "specs/359_telescope_process_picker/plans/01_process-picker.md",
+          "type": "plan",
+          "summary": "2-phase implementation plan for telescope process picker with entry maker, previewer, and kill/browser actions"
+        },
+        {
+          "path": "specs/359_telescope_process_picker/summaries/01_process-picker-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for telescope process picker module"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 2,
+        "total_effort_hours": 1.5,
+        "complexity": "simple",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_process-picker.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-03"
+          }
+        ]
+      }
+    },
+    {
+      "project_number": 360,
+      "project_name": "process_whichkey_mappings",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-04-03T17:00:00Z",
+      "last_updated": "2026-04-03T18:30:00Z",
+      "started": "2026-04-03T18:15:00Z",
+      "completed": "2026-04-03T18:30:00Z",
+      "completion_summary": "Added 4 process management keymappings (xl/xp/xk/xo) to which-key.lua: launch dispatches via process.launch() with registered filetype launchers, process picker uses telescope picker.show(), kill all via process.stop_all(), open in browser finds current file's running process port. All mappings use pcall wrappers for graceful degradation.",
+      "dependencies": [
+        358,
+        359
+      ],
+      "session_id": "sess_1775235900_batch360",
+      "researched": "2026-04-03T17:05:00Z",
+      "planned": "2026-04-03T17:15:00Z",
+      "next_artifact_number": 2,
+      "plan_metadata": {
+        "phases": 1,
+        "total_effort_hours": 0.75,
+        "complexity": "simple",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_process-keymaps.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-03"
+          }
+        ]
+      },
+      "artifacts": [
+        {
+          "path": "specs/360_process_whichkey_mappings/reports/01_process-keymaps.md",
+          "type": "research",
+          "summary": "Which-key structure analysis, recommended mappings (xl/xp/xk/xo), icon choices, filetype dispatch strategy, and integration points with process.lua and telescope picker"
+        },
+        {
+          "path": "specs/360_process_whichkey_mappings/plans/01_process-keymaps.md",
+          "type": "plan",
+          "summary": "Single-phase plan to add 4 process management keymappings (xl/xp/xk/xo) to which-key.lua with filetype-aware launch dispatch"
+        }
+      ]
+    },
+    {
+      "project_number": 361,
+      "project_name": "typst_process_integration",
+      "status": "completed",
+      "language": "neovim",
+      "created": "2026-04-03T17:00:00Z",
+      "last_updated": "2026-04-03T19:00:00Z",
+      "started": "2026-04-03T18:45:00Z",
+      "completed": "2026-04-03T19:00:00Z",
+      "completion_summary": "Migrated after/ftplugin/typst.lua from ad-hoc vim.fn.jobstart/jobstop with script-local typst_watch_job variable to neotex.util.process registry API. typst_watch and typst_compile now use process.start(), typst_watch_stop uses process.find_by_name/stop. Added TypstPreview wrapper functions (start/stop/toggle) with virtual process registry entries via register_external/deregister. Updated which-key mappings for lp/lx/ll to use wrappers. Updated tinymist_clear_cache to deregister preview entry.",
+      "dependencies": [
+        358,
+        360
+      ],
+      "session_id": "sess_1775235900_batch361",
+      "researched": "2026-04-03T17:05:00Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/361_typst_process_integration/reports/01_typst-integration.md",
+          "type": "research",
+          "summary": "Complete inventory of typst job management code, migration strategy for typst_watch/typst_compile to process.lua, TypstPreview wrapping approach, risk assessment"
+        },
+        {
+          "path": "specs/361_typst_process_integration/plans/01_typst-integration.md",
+          "type": "plan",
+          "summary": "2-phase plan: migrate typst_watch/typst_compile to process.lua, wrap TypstPreview with virtual registry entries"
+        }
+      ],
+      "planned": "2026-04-03T17:15:00Z",
+      "plan_metadata": {
+        "phases": 2,
+        "total_effort_hours": 1.5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_typst-integration.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-03"
+          }
+        ]
+      }
+    },
+    {
+      "project_number": 356,
+      "project_name": "plan_phase_dependencies",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T15:49:36Z",
+      "last_updated": "2026-04-03T16:05:16Z",
+      "dependencies": [],
+      "session_id": "sess_1775231615_6d12da",
+      "next_artifact_number": 2,
+      "researched": "2026-04-03T15:56:52Z",
+      "artifacts": [
+        {
+          "path": "specs/356_plan_phase_dependencies/reports/01_plan-phase-deps.md",
+          "type": "research",
+          "summary": "Research on adding phase dependency analysis to plan format"
+        },
+        {
+          "path": "specs/356_plan_phase_dependencies/plans/01_plan-phase-deps.md",
+          "type": "plan",
+          "summary": "3-phase plan for adding phase dependency analysis to plan format and planner agent"
+        },
+        {
+          "path": "specs/356_plan_phase_dependencies/summaries/01_plan-phase-deps-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for phase dependency analysis additions"
+        }
+      ],
+      "planned": "2026-04-03T16:00:54Z",
+      "started": "2026-04-03T16:02:03Z",
+      "completed": "2026-04-03T16:05:16Z",
+      "completion_summary": "Added phase dependency analysis to plan format: per-phase Depends on field, Dependency Analysis wave table in Implementation Phases section, dependency_waves in plan_metadata schema. Updated planner-agent Stage 4 (Build Wave Map), Stage 5 (template with dependencies), and Stage 6 (verification and metadata). Updated plan-format-enforcement checklist.",
+      "claudemd_suggestions": "none"
+    },
+    {
+      "project_number": 357,
+      "project_name": "team_implement_consume_deps",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-03T15:49:36Z",
+      "last_updated": "2026-04-03T16:14:12Z",
+      "dependencies": [
+        356
+      ],
+      "session_id": "sess_1775232391_499afe",
+      "next_artifact_number": 2,
+      "researched": "2026-04-03T16:07:19Z",
+      "artifacts": [
+        {
+          "path": "specs/357_team_implement_consume_deps/reports/01_team-implement-deps.md",
+          "type": "research",
+          "summary": "Research on updating skill-team-implement to consume plan dependency analysis"
+        },
+        {
+          "path": "specs/357_team_implement_consume_deps/plans/01_team-implement-deps.md",
+          "type": "plan",
+          "summary": "1-phase plan to update skill-team-implement Stage 5-6 for explicit dependency consumption"
+        },
+        {
+          "path": "specs/357_team_implement_consume_deps/plans/01_team-implement-deps.md",
+          "type": "plan",
+          "summary": "2-phase plan to update skill-team-implement for explicit dependency consumption and Y-shaped execution"
+        }
+      ],
+      "planned": "2026-04-03T16:11:54Z",
+      "started": "2026-04-03T16:12:55Z",
+      "completed": "2026-04-03T16:14:12Z",
+      "completion_summary": "Updated skill-team-implement Stage 5 to prefer explicit Depends on fields over heuristic file-overlap inference, Stage 6 to read Dependency Analysis wave table directly, and Stage 8 to detect Y-shaped dependency patterns executing trunk waves with single agent before spawning parallel teammates for branching waves.",
+      "claudemd_suggestions": "none"
+    },
+    {
+      "project_number": 355,
+      "project_name": "update_founder_readme_deck_docs",
+      "status": "completed",
+      "language": "founder",
+      "created": "2026-04-03T03:00:37Z",
+      "last_updated": "2026-04-03T03:35:00Z",
+      "session_id": "sess_1775186466_e3dafd",
+      "researched": "2026-04-03T03:07:43Z",
+      "next_artifact_number": 2,
+      "planned": "2026-04-03T03:11:54Z",
+      "artifacts": [
+        {
+          "path": "specs/355_update_founder_readme_deck_docs/plans/01_founder-readme-deck-docs.md",
+          "type": "plan",
+          "summary": "2-phase implementation plan for updating founder README and creating deck library README"
+        },
+        {
+          "path": "specs/355_update_founder_readme_deck_docs/summaries/01_founder-readme-deck-docs-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for founder README and deck library documentation update"
+        }
+      ],
+      "started": "2026-04-03T03:21:28Z",
+      "completed": "2026-04-03T03:35:00Z",
+      "completion_summary": "Created comprehensive deck/README.md (296 lines) documenting all 49 library items across 6 categories with content slot system and agent navigation guide. Updated main founder README.md from 86 to 131 lines with complete v3.0 directory tree, all 8 commands, and context discovery section."
+    },
+    {
+      "project_number": 350,
+      "project_name": "multi_task_operations_pattern",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T02:43:17Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/350_multi_task_operations_pattern/reports/01_multi-task-ops.md",
+          "type": "research",
+          "summary": "Research report on multi-task operations pattern covering argument parsing, parallel dispatch, batch commits, and error handling"
+        },
+        {
+          "path": "specs/350_multi_task_operations_pattern/plans/01_multi-task-ops-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for creating .claude/context/patterns/multi-task-operations.md"
+        },
+        {
+          "path": "specs/350_multi_task_operations_pattern/summaries/01_multi-task-ops-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for multi-task operations pattern"
+        }
+      ],
+      "dependencies": [],
+      "session_id": "sess_1743552000_i350mt",
+      "researched": "2026-04-03T02:30:59Z",
+      "planned": "2026-04-03T02:34:18Z",
+      "started": "2026-04-03T02:35:26Z",
+      "completed": "2026-04-03T02:43:17Z",
+      "completion_summary": "Created .claude/context/patterns/multi-task-operations.md defining multi-task argument parsing, parallel agent dispatch, batch commit format, consolidated output, and error handling for workflow commands",
+      "claudemd_suggestions": "Update CLAUDE.md command reference to show new multi-task argument format for /research, /plan, /implement"
+    },
+    {
+      "project_number": 351,
+      "project_name": "research_multi_task_support",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T02:54:38Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/351_research_multi_task_support/reports/01_research-cmd-multi-task.md",
+          "type": "research",
+          "summary": "Research report on /research command multi-task changes"
+        },
+        {
+          "path": "specs/351_research_multi_task_support/plans/01_research-cmd-multi-task.md",
+          "type": "plan",
+          "summary": "Implementation plan for /research multi-task support"
+        },
+        {
+          "path": "specs/351_research_multi_task_support/summaries/01_research-cmd-multi-task-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for /research multi-task support"
+        }
+      ],
+      "dependencies": [
+        350
+      ],
+      "session_id": "sess_1743552000_batch351",
+      "researched": "2026-04-03T02:54:38Z",
+      "planned": "2026-04-03T02:54:38Z",
+      "started": "2026-04-03T02:54:38Z",
+      "completed": "2026-04-03T02:54:38Z",
+      "completion_summary": "Updated /research command with STAGE 0 multi-task argument parsing and batch dispatch flow supporting ranges, comma-separated lists, parallel agent spawning, batch commits, and consolidated output",
+      "claudemd_suggestions": "Update CLAUDE.md argument-hint for /research to show TASK_NUMBERS syntax"
+    },
+    {
+      "project_number": 352,
+      "project_name": "plan_multi_task_support",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T02:54:38Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/352_plan_multi_task_support/reports/01_plan-cmd-multi-task.md",
+          "type": "research",
+          "summary": "Research report on /plan command multi-task changes"
+        },
+        {
+          "path": "specs/352_plan_multi_task_support/plans/01_plan-cmd-multi-task.md",
+          "type": "plan",
+          "summary": "Implementation plan for /plan multi-task support"
+        },
+        {
+          "path": "specs/352_plan_multi_task_support/summaries/01_plan-cmd-multi-task-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for /plan multi-task support"
+        }
+      ],
+      "dependencies": [
+        350
+      ],
+      "session_id": "sess_1743552000_batch352",
+      "researched": "2026-04-03T02:54:38Z",
+      "planned": "2026-04-03T02:54:38Z",
+      "started": "2026-04-03T02:54:38Z",
+      "completed": "2026-04-03T02:54:38Z",
+      "completion_summary": "Updated /plan command with STAGE 0 multi-task argument parsing and batch dispatch flow supporting ranges, comma-separated lists, parallel agent spawning, batch commits, and consolidated output",
+      "claudemd_suggestions": "Update CLAUDE.md argument-hint for /plan to show TASK_NUMBERS syntax"
+    },
+    {
+      "project_number": 353,
+      "project_name": "implement_multi_task_support",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T02:54:38Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/353_implement_multi_task_support/reports/01_implement-cmd-multi-task.md",
+          "type": "research",
+          "summary": "Research report on /implement command multi-task changes"
+        },
+        {
+          "path": "specs/353_implement_multi_task_support/plans/01_implement-cmd-multi-task.md",
+          "type": "plan",
+          "summary": "Implementation plan for /implement multi-task support"
+        },
+        {
+          "path": "specs/353_implement_multi_task_support/summaries/01_implement-cmd-multi-task-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for /implement multi-task support"
+        }
+      ],
+      "dependencies": [
+        350
+      ],
+      "session_id": "sess_1743552000_batch353",
+      "researched": "2026-04-03T02:54:38Z",
+      "planned": "2026-04-03T02:54:38Z",
+      "started": "2026-04-03T02:54:38Z",
+      "completed": "2026-04-03T02:54:38Z",
+      "completion_summary": "Updated /implement command with STAGE 0 multi-task argument parsing and batch dispatch flow supporting ranges, comma-separated lists, parallel agent spawning, batch commits, and consolidated output with --force flag support",
+      "claudemd_suggestions": "Update CLAUDE.md argument-hint for /implement to show TASK_NUMBERS syntax"
+    },
+    {
+      "project_number": 354,
+      "project_name": "update_docs_multi_task",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T03:04:44Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/354_update_docs_multi_task/reports/01_docs-update-scope.md",
+          "type": "research",
+          "summary": "Scope analysis of documentation updates needed for multi-task support"
+        },
+        {
+          "path": "specs/354_update_docs_multi_task/plans/01_docs-update-plan.md",
+          "type": "plan",
+          "summary": "Single-phase plan to update CLAUDE.md command reference table"
+        },
+        {
+          "path": "specs/354_update_docs_multi_task/summaries/01_docs-update-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for CLAUDE.md documentation update"
+        }
+      ],
+      "dependencies": [
+        351,
+        352,
+        353
+      ],
+      "session_id": "sess_1743552000_i354mt",
+      "researched": "2026-04-03T02:59:52Z",
+      "planned": "2026-04-03T03:02:00Z",
+      "started": "2026-04-03T03:03:41Z",
+      "completed": "2026-04-03T03:04:44Z",
+      "completion_summary": "Updated .claude/CLAUDE.md command reference table with multi-task N[,N-N] syntax for /research, /plan, /implement and added multi-task dispatch note",
+      "claudemd_suggestions": "Command reference table and multi-task note updated in CLAUDE.md"
+    },
+    {
+      "project_number": 349,
+      "project_name": "review_update_claude_agent_system_docs",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-01T21:42:38Z",
+      "last_updated": "2026-04-01T22:30:00Z",
+      "session_id": "sess_1743546000_i349im",
+      "researched": "2026-04-01T21:51:06Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/349_review_update_claude_agent_system_docs/reports/01_team-research.md",
+          "type": "research",
+          "summary": "Team research (3 teammates): documentation correctness, extension cross-reference, box-drawing audit"
+        },
+        {
+          "path": "specs/349_review_update_claude_agent_system_docs/plans/01_documentation-review-plan.md",
+          "type": "plan",
+          "summary": "5-phase implementation plan addressing 21 documentation issues across .claude/ agent system files"
+        },
+        {
+          "path": "specs/349_review_update_claude_agent_system_docs/summaries/01_documentation-review-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary: 8 files updated across 5 phases fixing factual errors, missing content, and box-drawing"
+        }
+      ],
+      "planned": "2026-04-01T22:02:21Z",
+      "started": "2026-04-01T22:05:52Z",
+      "completed": "2026-04-01T22:30:00Z",
+      "completion_summary": "Updated .claude/ agent system documentation across 8 files: fixed factual errors (layer count, extension names), added missing commands/skills/agents to tables, updated founder extension README with 3 new commands, converted ASCII box-drawing to Unicode in 3 architecture diagrams.",
+      "claudemd_suggestions": "Updated CLAUDE.md (added /merge, skill-orchestrator, skill-git-workflow, fixed layer count and /fix-it tags), updated README.md (fixed extension names, added 7 extensions), updated system-overview.md (added 5 commands, replaced extension skills with core skills)"
     }
   ],
   "abandoned_projects": []
