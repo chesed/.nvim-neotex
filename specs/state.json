@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 355,
+  "next_project_number": 356,
   "active_projects": [
+    {
+      "project_number": 355,
+      "project_name": "update_founder_readme_deck_docs",
+      "status": "not_started",
+      "language": "founder",
+      "created": "2026-04-03T03:00:37Z",
+      "last_updated": "2026-04-03T03:00:37Z"
+    },
     {
       "project_number": 350,
       "project_name": "multi_task_operations_pattern",

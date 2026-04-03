@@ -1,5 +1,5 @@
 ---
-next_project_number: 355
+next_project_number: 356
 ---
 
 # TODO
@@ -10,6 +10,7 @@ next_project_number: 355
 
 ### Pending
 
+- **355** [NOT STARTED] -- Update founder extension README and deck documentation
 - **350** [COMPLETED] -- Create multi-task operations context pattern
 - **351** [COMPLETED] -- Update /research command for multi-task support (depends: 350)
 - **352** [COMPLETED] -- Update /plan command for multi-task support (depends: 350)
@@ -20,6 +21,13 @@ next_project_number: 355
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 355. Update founder extension README and deck documentation
+- **Effort**: 1 hour
+- **Status**: [NOT STARTED]
+- **Language**: founder
+
+**Description**: Update /home/benjamin/.config/nvim/.claude/extensions/founder/context/project/founder/README.md and add content to /home/benjamin/.config/nvim/.claude/extensions/founder/context/project/founder/deck/README.md providing complete, consistent, clear, and concise documentation
 
 ### 350. Create multi-task operations context pattern
 - **Effort**: 1 hour
