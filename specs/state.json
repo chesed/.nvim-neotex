@@ -135,22 +135,27 @@
     {
       "project_number": 366,
       "project_name": "defensive_gate_out",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-04-03T20:00:00Z",
-      "last_updated": "2026-04-03T20:00:00Z",
+      "last_updated": "2026-04-03T20:05:01Z",
       "researched": "2026-04-03T20:00:00Z",
       "dependencies": [
         363,
         364
       ],
-      "session_id": "sess_1743638400_meta_status",
+      "session_id": "sess_1743638400_plan366",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/366_defensive_gate_out/reports/01_meta-research.md",
           "type": "research",
           "summary": "Gap analysis of /research and /plan GATE OUT defensive verification compared to /implement"
+        },
+        {
+          "path": "specs/366_defensive_gate_out/plans/01_defensive-gate-out-plan.md",
+          "type": "plan",
+          "summary": "Plan for defensive GATE OUT verification"
         }
       ]
     },

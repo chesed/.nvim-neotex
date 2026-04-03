@@ -14,7 +14,7 @@ next_project_number: 368
 - **363** [COMPLETED] -- Refactor skill-researcher for centralized status updates (depends: 362)
 - **364** [COMPLETED] -- Refactor skill-planner for centralized status updates (depends: 362)
 - **365** [COMPLETED] -- Refactor skill-implementer for centralized status updates (depends: 362)
-- **366** [RESEARCHED] -- Add defensive status verification to /research and /plan GATE OUT (depends: 363, 364)
+- **366** [PLANNED] -- Add defensive status verification to /research and /plan GATE OUT (depends: 363, 364)
 - **367** [COMPLETED] -- Refactor /revise to use skill delegation pattern (depends: 362)
 - **358** [COMPLETED] -- Create process manager core module (lua/neotex/util/process.lua)
 - **359** [COMPLETED] -- Create telescope process picker (depends: 358)
@@ -80,7 +80,7 @@ next_project_number: 368
 
 ### 366. Add defensive status verification to /research and /plan GATE OUT
 - **Effort**: 1 hour
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Dependencies**: 363, 364
 - **Research**: [01_meta-research.md](366_defensive_gate_out/reports/01_meta-research.md)
