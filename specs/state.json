@@ -1,7 +1,72 @@
 {
   "version": "1.0.0",
-  "next_project_number": 350,
+  "next_project_number": 355,
   "active_projects": [
+    {
+      "project_number": 350,
+      "project_name": "multi_task_operations_pattern",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-02T00:00:00Z",
+      "next_artifact_number": 1,
+      "artifacts": [],
+      "dependencies": []
+    },
+    {
+      "project_number": 351,
+      "project_name": "research_multi_task_support",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-02T00:00:00Z",
+      "next_artifact_number": 1,
+      "artifacts": [],
+      "dependencies": [
+        350
+      ]
+    },
+    {
+      "project_number": 352,
+      "project_name": "plan_multi_task_support",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-02T00:00:00Z",
+      "next_artifact_number": 1,
+      "artifacts": [],
+      "dependencies": [
+        350
+      ]
+    },
+    {
+      "project_number": 353,
+      "project_name": "implement_multi_task_support",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-02T00:00:00Z",
+      "next_artifact_number": 1,
+      "artifacts": [],
+      "dependencies": [
+        350
+      ]
+    },
+    {
+      "project_number": 354,
+      "project_name": "update_docs_multi_task",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-02T00:00:00Z",
+      "next_artifact_number": 1,
+      "artifacts": [],
+      "dependencies": [
+        351,
+        352,
+        353
+      ]
+    },
     {
       "project_number": 349,
       "project_name": "review_update_claude_agent_system_docs",
