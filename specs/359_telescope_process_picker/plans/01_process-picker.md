@@ -55,7 +55,7 @@ Key findings from the research report:
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Core Picker Module [NOT STARTED]
+### Phase 1: Core Picker Module [COMPLETED]
 
 **Goal**: Create the complete telescope process picker module with entry maker, previewer, actions, and `M.show()` export.
 
@@ -93,7 +93,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Edge Cases and Polish [NOT STARTED]
+### Phase 2: Edge Cases and Polish [COMPLETED]
 
 **Goal**: Handle edge cases, add defensive coding, and verify integration readiness.
 

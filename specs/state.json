@@ -63,16 +63,19 @@
     {
       "project_number": 359,
       "project_name": "telescope_process_picker",
-      "status": "planned",
+      "status": "completed",
       "language": "neovim",
       "created": "2026-04-03T17:00:00Z",
-      "last_updated": "2026-04-03T17:15:00Z",
+      "last_updated": "2026-04-03T18:00:00Z",
       "dependencies": [
         358
       ],
       "session_id": "sess_1775235900_batch359",
       "researched": "2026-04-03T17:05:00Z",
       "planned": "2026-04-03T17:15:00Z",
+      "started": "2026-04-03T17:50:00Z",
+      "completed": "2026-04-03T18:00:00Z",
+      "completion_summary": "Created lua/neotex/plugins/tools/process-picker.lua with telescope picker for background processes: fixed-width column display (name, cmd, port, uptime, status), buffer previewer with stdout/stderr from ring buffers, CR to kill and refresh, C-o to open port in browser, pcall guards and nil-safe field access throughout.",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -84,6 +87,11 @@
           "path": "specs/359_telescope_process_picker/plans/01_process-picker.md",
           "type": "plan",
           "summary": "2-phase implementation plan for telescope process picker with entry maker, previewer, and kill/browser actions"
+        },
+        {
+          "path": "specs/359_telescope_process_picker/summaries/01_process-picker-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for telescope process picker module"
         }
       ],
       "plan_metadata": {

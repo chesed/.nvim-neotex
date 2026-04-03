@@ -11,7 +11,7 @@ next_project_number: 358
 ### Pending
 
 - **358** [COMPLETED] -- Create process manager core module (lua/neotex/util/process.lua)
-- **359** [PLANNED] -- Create telescope process picker (depends: 358)
+- **359** [COMPLETED] -- Create telescope process picker (depends: 358)
 - **360** [PLANNED] -- Add which-key mappings under leader-x for process management (depends: 358, 359)
 - **361** [PLANNED] -- Integrate typst preview with process manager (depends: 358, 360)
 - **356** [COMPLETED] -- Add phase dependency analysis to plan format and planner agent
@@ -46,13 +46,15 @@ next_project_number: 358
 
 ### 359. Create telescope process picker
 - **Effort**: 1 hour
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
+- **Completed**: 2026-04-03
 - **Research Completed**: 2026-04-03
 - **Planning Completed**: 2026-04-03
 - **Language**: neovim
 - **Dependencies**: 358
 - **Research**: [01_process-picker.md](specs/359_telescope_process_picker/reports/01_process-picker.md)
 - **Plan**: [01_process-picker.md](specs/359_telescope_process_picker/plans/01_process-picker.md)
+- **Summary**: [01_process-picker-summary.md](specs/359_telescope_process_picker/summaries/01_process-picker-summary.md)
 
 **Description**: Create `lua/neotex/plugins/tools/process-picker.lua` - a telescope picker for viewing and managing background processes. Columns: name, command, port, uptime, status. Actions: `<CR>` to kill selected process, `<C-o>` to open port in browser. Preview pane shows recent stdout/stderr output. Integrates with the process.lua registry from task 358.
 
