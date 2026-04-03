@@ -11,9 +11,9 @@ next_project_number: 355
 ### Pending
 
 - **350** [COMPLETED] -- Create multi-task operations context pattern
-- **351** [NOT STARTED] -- Update /research command for multi-task support (depends: 350)
-- **352** [NOT STARTED] -- Update /plan command for multi-task support (depends: 350)
-- **353** [NOT STARTED] -- Update /implement command for multi-task support (depends: 350)
+- **351** [RESEARCHING] -- Update /research command for multi-task support (depends: 350)
+- **352** [RESEARCHING] -- Update /plan command for multi-task support (depends: 350)
+- **353** [RESEARCHING] -- Update /implement command for multi-task support (depends: 350)
 - **354** [NOT STARTED] -- Update CLAUDE.md argument-hints and documentation (depends: 351, 352, 353)
 - **349** [COMPLETED] -- Review and update .claude/ agent system documentation
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm

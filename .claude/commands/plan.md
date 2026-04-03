@@ -1,7 +1,7 @@
 ---
 description: Create implementation plan for a task
 allowed-tools: Skill, Bash(jq:*), Bash(git:*), Read, Edit
-argument-hint: TASK_NUMBER [--team [--team-size N]]
+argument-hint: TASK_NUMBERS [--team [--team-size N]]
 model: opus
 ---
 
@@ -11,7 +11,14 @@ Create a phased implementation plan for a task by delegating to the planner skil
 
 ## Arguments
 
-- `$1` - Task number (required)
+- `$1` - Task number(s) (required). Supports:
+  - Single task: `352`
+  - Comma-separated: `7, 22, 59`
+  - Ranges: `22-24`
+  - Combined: `7, 22-24, 59`
+- Remaining args - Optional flags
+
+When multiple task numbers are provided, the command enters multi-task mode (see STAGE 0 below). Single task numbers fall through to the existing single-task flow unchanged.
 
 ## Options
 
@@ -25,6 +32,205 @@ When `--team` is specified, planning is delegated to `skill-team-plan` which spa
 **Note**: Team mode requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` environment variable. If unavailable, gracefully degrades to single-agent planning.
 
 ## Execution
+
+### STAGE 0: PARSE TASK NUMBERS
+
+**Parse task arguments to separate task numbers from remaining args.**
+
+```bash
+parse_task_args() {
+  local input="$1"
+  local task_spec=""
+  local remaining=""
+
+  # Match leading task specification: digits, commas, hyphens, spaces
+  # Stop at first alphabetic char or -- flag
+  if [[ "$input" =~ ^([0-9][0-9,\ \-]*)(\ +.*)?$ ]]; then
+    task_spec="${BASH_REMATCH[1]}"
+    remaining="${BASH_REMATCH[2]}"
+  else
+    echo "[FAIL] No task number found in arguments"
+    return 1
+  fi
+
+  # Trim trailing whitespace/commas from task_spec
+  task_spec=$(echo "$task_spec" | sed 's/[, ]*$//')
+
+  # Parse through existing parse_ranges()
+  task_numbers=($(parse_ranges "$task_spec"))
+
+  # Trim leading whitespace from remaining
+  remaining=$(echo "$remaining" | sed 's/^[[:space:]]*//')
+
+  echo "TASK_NUMBERS=${task_numbers[*]}"
+  echo "REMAINING_ARGS=$remaining"
+}
+```
+
+**Examples**:
+
+| Input | task_numbers | remaining_args | Mode |
+|-------|-------------|----------------|------|
+| `7` | `[7]` | `` | single |
+| `7, 22-24, 59` | `[7, 22, 23, 24, 59]` | `` | multi |
+| `7 --team` | `[7]` | `--team` | single |
+| `7, 22-24 --team` | `[7, 22, 23, 24]` | `--team` | multi |
+| `42 --team --team-size 3` | `[42]` | `--team --team-size 3` | single |
+
+**Dispatch decision**:
+
+```
+task_numbers = parse_task_args($ARGUMENTS)
+
+if len(task_numbers) == 1:
+    # SINGLE-TASK MODE
+    task_number = task_numbers[0]
+    # Fall through to CHECKPOINT 1: GATE IN below
+    # Existing single-task flow proceeds unchanged
+
+elif len(task_numbers) > 1:
+    # MULTI-TASK MODE
+    # Continue to MULTI-TASK DISPATCH below
+```
+
+### MULTI-TASK DISPATCH
+
+When `parse_task_args()` produces more than one task number, execute the batch flow below instead of the single-task checkpoints.
+
+#### Step 1: Batch Validation
+
+Validate all tasks exist and have status `researched` (the required status for planning):
+
+```bash
+validated_tasks=()
+invalid_tasks=()
+
+for task_num in "${task_numbers[@]}"; do
+  task_data=$(jq -r --argjson num "$task_num" \
+    '.active_projects[] | select(.project_number == $num)' \
+    specs/state.json)
+
+  if [ -z "$task_data" ]; then
+    invalid_tasks+=("$task_num: not found")
+    continue
+  fi
+
+  status=$(echo "$task_data" | jq -r '.status')
+
+  # /plan requires status = researched
+  if [ "$status" = "researched" ] || [ "$status" = "not_started" ] || [ "$status" = "partial" ]; then
+    validated_tasks+=("$task_num")
+  else
+    invalid_tasks+=("$task_num: invalid status [$status]")
+  fi
+done
+
+# Report invalid tasks but continue with valid ones
+if [ ${#invalid_tasks[@]} -gt 0 ]; then
+  echo "[WARN] Skipping invalid tasks:"
+  for msg in "${invalid_tasks[@]}"; do
+    echo "  - $msg"
+  done
+fi
+
+if [ ${#validated_tasks[@]} -eq 0 ]; then
+  echo "[FAIL] No valid tasks to process"
+  exit 1
+fi
+```
+
+#### Step 2: Generate Batch Session ID
+
+```bash
+batch_session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
+```
+
+#### Step 3: Invoke Batch Skill
+
+Invoke a single batch skill that handles parallel agent spawning and result collection:
+
+```
+Tool: Skill
+Parameters:
+  skill: "skill-batch-dispatch"
+  args: |
+    command=plan
+    task_numbers={validated_tasks}
+    session_id={batch_session_id}
+    remaining_args={remaining_args}
+```
+
+The batch skill:
+1. Extracts language per task from state.json
+2. Routes each task to the appropriate planner skill (extension routing or default `skill-planner`)
+3. Spawns one agent per task via parallel Task tool calls
+4. Collects results from all agents
+5. Produces consolidated status update
+
+#### Step 4: Batch Git Commit
+
+After the batch skill returns, produce a single git commit:
+
+**Full success**:
+```
+plan tasks {range_summary}: create implementation plan
+
+Tasks: {comma-separated list}
+Session: {batch_session_id}
+
+Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>
+```
+
+**Partial success**:
+```
+plan tasks {range_summary}: create implementation plan ({succeeded}/{total} succeeded)
+
+Tasks completed: {comma-separated}
+Tasks failed: {num} ({reason})[, {num} ({reason})]
+Session: {batch_session_id}
+
+Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>
+```
+
+#### Step 5: Consolidated Output
+
+```markdown
+## Batch Plan Results
+
+Session: {batch_session_id}
+Tasks requested: {count}
+Succeeded: {count}
+Failed: {count}
+Skipped: {count}
+
+### Succeeded
+
+| Task | Title | Status | Artifact |
+|------|-------|--------|----------|
+| #7 | task_title | [PLANNED] | specs/007_slug/plans/01_short.md |
+| #22 | task_title | [PLANNED] | specs/022_slug/plans/01_short.md |
+
+### Failed
+
+| Task | Error |
+|------|-------|
+| #23 | Invalid status [IMPLEMENTING] |
+
+### Skipped
+
+| Task | Reason |
+|------|--------|
+| #99 | Not found in state.json |
+
+### Next Steps
+- /implement 7, 22, 24, 59
+```
+
+**End of multi-task flow. Do NOT continue to the single-task checkpoints below.**
+
+---
+
+**The sections below handle SINGLE-TASK mode only (when `parse_task_args()` produces exactly one task number).**
 
 ### CHECKPOINT 1: GATE IN
 

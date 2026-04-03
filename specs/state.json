@@ -39,41 +39,44 @@
     {
       "project_number": 351,
       "project_name": "research_multi_task_support",
-      "status": "not_started",
+      "status": "researching",
       "language": "meta",
       "created": "2026-04-02T00:00:00Z",
-      "last_updated": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T02:48:55Z",
       "next_artifact_number": 1,
       "artifacts": [],
       "dependencies": [
         350
-      ]
+      ],
+      "session_id": "sess_1743552000_batch351"
     },
     {
       "project_number": 352,
       "project_name": "plan_multi_task_support",
-      "status": "not_started",
+      "status": "researching",
       "language": "meta",
       "created": "2026-04-02T00:00:00Z",
-      "last_updated": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T02:48:55Z",
       "next_artifact_number": 1,
       "artifacts": [],
       "dependencies": [
         350
-      ]
+      ],
+      "session_id": "sess_1743552000_batch352"
     },
     {
       "project_number": 353,
       "project_name": "implement_multi_task_support",
-      "status": "not_started",
+      "status": "researching",
       "language": "meta",
       "created": "2026-04-02T00:00:00Z",
-      "last_updated": "2026-04-02T00:00:00Z",
+      "last_updated": "2026-04-03T02:48:55Z",
       "next_artifact_number": 1,
       "artifacts": [],
       "dependencies": [
         350
-      ]
+      ],
+      "session_id": "sess_1743552000_batch353"
     },
     {
       "project_number": 354,
