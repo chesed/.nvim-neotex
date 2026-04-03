@@ -10,12 +10,12 @@ next_project_number: 356
 
 ### Pending
 
-- **355** [NOT STARTED] -- Update founder extension README and deck documentation
+- **355** [RESEARCHING] -- Update founder extension README and deck documentation
 - **350** [COMPLETED] -- Create multi-task operations context pattern
 - **351** [COMPLETED] -- Update /research command for multi-task support (depends: 350)
 - **352** [COMPLETED] -- Update /plan command for multi-task support (depends: 350)
 - **353** [COMPLETED] -- Update /implement command for multi-task support (depends: 350)
-- **354** [PLANNED] -- Update CLAUDE.md argument-hints and documentation (depends: 351, 352, 353)
+- **354** [COMPLETED] -- Update CLAUDE.md argument-hints and documentation (depends: 351, 352, 353)
 - **349** [COMPLETED] -- Review and update .claude/ agent system documentation
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
@@ -24,7 +24,7 @@ next_project_number: 356
 
 ### 355. Update founder extension README and deck documentation
 - **Effort**: 1 hour
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Language**: founder
 
 **Description**: Update /home/benjamin/.config/nvim/.claude/extensions/founder/context/project/founder/README.md and add content to /home/benjamin/.config/nvim/.claude/extensions/founder/context/project/founder/deck/README.md providing complete, consistent, clear, and concise documentation
@@ -89,13 +89,15 @@ next_project_number: 356
 
 ### 354. Update CLAUDE.md argument-hints and documentation
 - **Effort**: 30 minutes
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Research Completed**: 2026-04-02
 - **Planning Completed**: 2026-04-02
+- **Completed**: 2026-04-02
 - **Language**: meta
 - **Dependencies**: 351, 352, 353
 - **Research**: [01_docs-update-scope.md](specs/354_update_docs_multi_task/reports/01_docs-update-scope.md)
 - **Plan**: [01_docs-update-plan.md](specs/354_update_docs_multi_task/plans/01_docs-update-plan.md)
+- **Summary**: [01_docs-update-summary.md](specs/354_update_docs_multi_task/summaries/01_docs-update-summary.md)
 
 **Description**: Update argument-hint frontmatter in research.md, plan.md, and implement.md to reflect new multi-task syntax. Update the command reference table in `.claude/CLAUDE.md` to show the new argument formats. Add a brief note about multi-task dispatch to the Command Reference section.
 

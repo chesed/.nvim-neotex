@@ -84,9 +84,9 @@ All commands use checkpoint-based execution: GATE IN (preflight) -> DELEGATE (sk
 |---------|-------|-------------|
 | `/task` | `/task "Description"` | Create task |
 | `/task` | `/task --recover N`, `--expand N`, `--sync`, `--abandon N` | Manage tasks |
-| `/research` | `/research N [focus] [--team]` | Research task, route by language |
-| `/plan` | `/plan N [--team]` | Create implementation plan |
-| `/implement` | `/implement N [--team]` | Execute plan, resume from incomplete phase |
+| `/research` | `/research N[,N-N] [focus] [--team]` | Research task(s), route by language |
+| `/plan` | `/plan N[,N-N] [--team]` | Create implementation plan(s) |
+| `/implement` | `/implement N[,N-N] [--team] [--force]` | Execute plan(s), resume from incomplete phase |
 | `/revise` | `/revise N` | Create new plan version |
 | `/review` | `/review` | Analyze codebase |
 | `/todo` | `/todo` | Archive completed/abandoned tasks, sync repository metrics |
@@ -97,6 +97,8 @@ All commands use checkpoint-based execution: GATE IN (preflight) -> DELEGATE (sk
 | `/tag` | `/tag [--patch|--minor|--major]` | Create semantic version tag (user-only) |
 | `/spawn` | `/spawn N [blocker description]` | Spawn new tasks to unblock a blocked task |
 | `/merge` | `/merge` | Create pull/merge request for current branch |
+
+**Multi-task syntax**: `/research`, `/plan`, and `/implement` accept multiple task numbers using commas and ranges (e.g., `/research 7, 22-24, 59`). Each task is processed by a separate agent in parallel. Flags like `--team` and `--force` apply to all tasks. See `.claude/context/patterns/multi-task-operations.md` for the full specification.
 
 ### Utility Scripts
 

@@ -1,7 +1,7 @@
 # Implementation Plan: Update CLAUDE.md Documentation for Multi-Task Support
 
 - **Task**: 354 - Update CLAUDE.md argument-hints and documentation
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 15 minutes
 - **Dependencies**: 351, 352, 353
 - **Research Inputs**: specs/354_update_docs_multi_task/reports/01_docs-update-scope.md
