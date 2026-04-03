@@ -68,35 +68,13 @@ fi
 
 Update task status to "implementing" BEFORE invoking subagent.
 
-**Update state.json**:
+Run the centralized status update script, which atomically updates state.json, TODO.md (task entry + Task Order), and the plan file:
+
 ```bash
-jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-   --arg status "implementing" \
-   --arg sid "$session_id" \
-  '(.active_projects[] | select(.project_number == '$task_number')) |= . + {
-    status: $status,
-    last_updated: $ts,
-    session_id: $sid,
-    started: $ts
-  }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
+bash .claude/scripts/update-task-status.sh preflight "$task_number" implement "$session_id"
 ```
 
-**Update TODO.md** (REQUIRED - do not skip): Use Edit tool to change the task's status marker in TODO.md from `[PLANNED]` to `[IMPLEMENTING]`. Update both the task entry and the Task Order line:
-
-```
-Edit TODO.md:
-  old_string: "- **Status**: [PLANNED]"  (in task {N}'s entry)
-  new_string: "- **Status**: [IMPLEMENTING]"
-
-Edit TODO.md:
-  old_string: "**{N}** [PLANNED]"  (in Task Order section)
-  new_string: "**{N}** [IMPLEMENTING]"
-```
-
-**Update plan file** (if exists): Update the Status field in plan metadata:
-```bash
-.claude/scripts/update-plan-status.sh "$task_number" "$project_name" "IMPLEMENTING"
-```
+**Note**: The script handles all three updates (state.json status/timestamps/session_id, TODO.md `[PLANNED]` -> `[IMPLEMENTING]` in both task entry and Task Order, and plan file status -> `[IMPLEMENTING]`) in a single call. No additional Edit or jq operations are needed.
 
 ---
 
@@ -245,25 +223,22 @@ fi
 
 **If status is "implemented"**:
 
-Update state.json to "completed" and add completion_data fields:
+**Step 1**: Run the centralized status update script to update state.json (status -> "completed", timestamps), TODO.md (`[IMPLEMENTING]` -> `[COMPLETED]` in task entry + Task Order), and plan file (status -> `[COMPLETED]`):
 ```bash
-# Step 1: Update status and timestamps
-jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-   --arg status "completed" \
-  '(.active_projects[] | select(.project_number == '$task_number')) |= . + {
-    status: $status,
-    last_updated: $ts,
-    completed: $ts
-  }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
+bash .claude/scripts/update-task-status.sh postflight "$task_number" implement "$session_id"
+```
 
-# Step 2: Add completion_summary (always required for completed tasks)
+**Step 2**: Add completion_summary to state.json (implementer-specific, not covered by centralized script):
+```bash
 if [ -n "$completion_summary" ]; then
     jq --arg summary "$completion_summary" \
       '(.active_projects[] | select(.project_number == '$task_number')).completion_summary = $summary' \
       specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 fi
+```
 
-# Step 3: Add language-specific completion fields
+**Step 3**: Add language-specific completion fields (implementer-specific):
+```bash
 # For meta tasks: add claudemd_suggestions
 if [ "$language" = "meta" ] && [ -n "$claudemd_suggestions" ]; then
     jq --arg suggestions "$claudemd_suggestions" \
@@ -279,28 +254,8 @@ if [ "$language" != "meta" ] && [ "$roadmap_items" != "[]" ] && [ -n "$roadmap_i
 fi
 ```
 
-**Update TODO.md** (REQUIRED - do not skip): Use Edit tool to change the task's status marker in TODO.md from `[IMPLEMENTING]` to `[COMPLETED]`. Both the `- **Status**: [IMPLEMENTING]` line in the task entry AND the Task Order line must be updated:
-
-```
-Edit TODO.md:
-  old_string: "- **Status**: [IMPLEMENTING]"  (in task {N}'s entry)
-  new_string: "- **Status**: [COMPLETED]"
-
-Edit TODO.md:
-  old_string: "**{N}** [IMPLEMENTING]"  (in Task Order section)
-  new_string: "**{N}** [COMPLETED]"
-```
-
-**Verify**: Read TODO.md after editing to confirm both updates succeeded before proceeding.
-
-**Update plan file** (if exists): Update the Status field to `[COMPLETED]`:
+**Step 4**: Remove from Recommended Order section (non-blocking, not covered by centralized script):
 ```bash
-.claude/scripts/update-plan-status.sh "$task_number" "$project_name" "COMPLETED"
-```
-
-**Remove from Recommended Order section** (non-blocking):
-```bash
-# Remove completed task from Recommended Order section (non-blocking)
 if source "$PROJECT_ROOT/.claude/scripts/update-recommended-order.sh" 2>/dev/null; then
     remove_from_recommended_order "$task_number" || echo "Note: Failed to update Recommended Order"
 fi
@@ -308,7 +263,8 @@ fi
 
 **If status is "partial"**:
 
-Keep status as "implementing" but update resume point:
+Keep status as "implementing" but update resume point. This path remains inline because the centralized `update-task-status.sh` maps `postflight:implement` to "completed" only -- it has no "partial" mapping.
+
 ```bash
 jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
    --argjson phase "$phases_completed" \

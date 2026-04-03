@@ -1,7 +1,7 @@
 # Implementation Plan: Task #365
 
 - **Task**: 365 - Refactor skill-implementer for centralized status updates
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2 hours
 - **Dependencies**: Task 362 (update-task-status.sh)
 - **Research Inputs**: None
@@ -49,7 +49,7 @@ No formal research report exists. Analysis is based on direct comparison of the 
 | 2 | 2 | 1 |
 | 3 | 3 | 2 |
 
-### Phase 1: Replace Stage 2 (Preflight) with Script Call [NOT STARTED]
+### Phase 1: Replace Stage 2 (Preflight) with Script Call [COMPLETED]
 
 **Goal**: Replace all inline preflight status update code in Stage 2 with a single script invocation.
 
@@ -75,7 +75,7 @@ No formal research report exists. Analysis is based on direct comparison of the 
 
 ---
 
-### Phase 2: Replace Stage 7 (Postflight) Status Code with Script Call [NOT STARTED]
+### Phase 2: Replace Stage 7 (Postflight) Status Code with Script Call [COMPLETED]
 
 **Goal**: Replace inline postflight status update code in Stage 7 with script calls, while keeping completion-specific field updates inline.
 
@@ -108,7 +108,7 @@ No formal research report exists. Analysis is based on direct comparison of the 
 
 ---
 
-### Phase 3: Review and Verify Changes [NOT STARTED]
+### Phase 3: Review and Verify Changes [COMPLETED]
 
 **Goal**: Ensure the refactored SKILL.md is correct, consistent, and complete.
 
