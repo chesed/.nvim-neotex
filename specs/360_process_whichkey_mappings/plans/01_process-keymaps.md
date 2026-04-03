@@ -54,7 +54,7 @@ Key findings from the research report:
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Add process management mappings to which-key.lua [NOT STARTED]
+### Phase 1: Add process management mappings to which-key.lua [COMPLETED]
 
 **Goal**: Add the four process management keymappings with a dispatch function for filetype-aware launch.
 

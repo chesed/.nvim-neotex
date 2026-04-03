@@ -12,7 +12,7 @@ next_project_number: 358
 
 - **358** [COMPLETED] -- Create process manager core module (lua/neotex/util/process.lua)
 - **359** [COMPLETED] -- Create telescope process picker (depends: 358)
-- **360** [PLANNED] -- Add which-key mappings under leader-x for process management (depends: 358, 359)
+- **360** [COMPLETED] -- Add which-key mappings under leader-x for process management (depends: 358, 359)
 - **361** [PLANNED] -- Integrate typst preview with process manager (depends: 358, 360)
 - **356** [COMPLETED] -- Add phase dependency analysis to plan format and planner agent
 - **357** [COMPLETED] -- Update skill-team-implement to consume plan dependency analysis (depends: 356)
@@ -62,13 +62,15 @@ next_project_number: 358
 
 ### 360. Add which-key mappings under leader-x for process management
 - **Effort**: 45 minutes
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Research Completed**: 2026-04-03
 - **Planning Completed**: 2026-04-03
+- **Implementation Completed**: 2026-04-03
 - **Language**: neovim
 - **Dependencies**: 358, 359
 - **Research**: [01_process-keymaps.md](specs/360_process_whichkey_mappings/reports/01_process-keymaps.md)
 - **Plan**: [01_process-keymaps.md](specs/360_process_whichkey_mappings/plans/01_process-keymaps.md)
+- **Summary**: [01_process-keymaps-summary.md](specs/360_process_whichkey_mappings/summaries/01_process-keymaps-summary.md)
 
 **Description**: Add process management mappings to the existing `<leader>x` group in `lua/neotex/plugins/editor/which-key.lua`. Mappings: `<leader>xl` launch current file (filetype-aware: slidev for .md in slidev dirs, typst-preview for .typ), `<leader>xp` open telescope process picker, `<leader>xk` kill all background processes, `<leader>xo` open current file's port in browser. Must coexist with existing `<leader>x` text manipulation mappings (xa, xA, xd, xs, xw).
 

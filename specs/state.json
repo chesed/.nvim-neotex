@@ -120,10 +120,13 @@
     {
       "project_number": 360,
       "project_name": "process_whichkey_mappings",
-      "status": "planned",
+      "status": "completed",
       "language": "neovim",
       "created": "2026-04-03T17:00:00Z",
-      "last_updated": "2026-04-03T17:15:00Z",
+      "last_updated": "2026-04-03T18:30:00Z",
+      "started": "2026-04-03T18:15:00Z",
+      "completed": "2026-04-03T18:30:00Z",
+      "completion_summary": "Added 4 process management keymappings (xl/xp/xk/xo) to which-key.lua: launch dispatches via process.launch() with registered filetype launchers, process picker uses telescope picker.show(), kill all via process.stop_all(), open in browser finds current file's running process port. All mappings use pcall wrappers for graceful degradation.",
       "dependencies": [
         358,
         359
