@@ -46,7 +46,7 @@ From report 01_team-implement-deps.md: Stage 5 already expects explicit dependen
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Update Stage 5 and Stage 6 [NOT STARTED]
+### Phase 1: Update Stage 5 and Stage 6 [COMPLETED]
 
 **Goal**: Replace heuristic-first approach with explicit-first approach for dependency parsing and wave calculation.
 

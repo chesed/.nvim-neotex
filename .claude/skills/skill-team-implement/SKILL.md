@@ -181,32 +181,44 @@ run_padded=$(printf "%02d" "$artifact_number")
 
 ### Stage 5: Analyze Phase Dependencies
 
-Parse implementation plan to identify parallelization opportunities:
+Parse implementation plan to identify parallelization opportunities. Prefer explicit dependency data from the plan; fall back to heuristic inference for older plans.
+
+**Primary: Explicit dependencies** (plans with `**Depends on**:` fields per phase):
 
 ```bash
-# Extract phases and their dependencies
-# Phases with no unfinished dependencies can run in parallel
-
-# Phase structure analysis:
-# - Phase status: [NOT STARTED], [IN PROGRESS], [COMPLETED], [PARTIAL]
-# - Dependencies: Listed in phase or inferred from file modifications
-
-# Build dependency graph
+# Parse explicit "**Depends on**:" fields from each phase
 dependency_graph = {}
-for phase in phases:
-  dependency_graph[phase.number] = {
-    "status": phase.status,
-    "depends_on": phase.dependencies,
-    "files": phase.files_modified
-  }
+has_explicit_deps = false
 
-# Find parallelizable phases (no unfinished dependencies)
-parallel_phases = [p for p in phases
-                   if all(dep_status == "completed" for dep in p.dependencies)]
+for phase in phases:
+  depends_on_field = parse_field(phase, "Depends on")
+  if depends_on_field is not None:
+    has_explicit_deps = true
+    if depends_on_field == "none":
+      deps = []
+    else:
+      deps = [int(x.strip()) for x in depends_on_field.split(",")]
+    dependency_graph[phase.number] = {
+      "status": phase.status,
+      "depends_on": deps
+    }
 ```
 
-**Dependency Analysis**:
-- Explicit dependencies from plan metadata
+**Fallback: Heuristic inference** (plans without explicit dependency fields):
+
+```bash
+if not has_explicit_deps:
+  # Build dependency graph from file overlap analysis
+  dependency_graph = {}
+  for phase in phases:
+    dependency_graph[phase.number] = {
+      "status": phase.status,
+      "depends_on": infer_from_file_overlap(phase, phases),
+      "files": phase.files_modified
+    }
+```
+
+**Heuristic signals** (fallback only):
 - Implicit dependencies from file modifications (phases modifying same files are dependent)
 - Cross-phase imports or references
 
@@ -214,20 +226,36 @@ parallel_phases = [p for p in phases
 
 ### Stage 6: Calculate Implementation Waves
 
-Group phases into waves based on dependencies:
+**Primary: Read wave table from plan** (plans with `**Dependency Analysis**` table):
 
 ```
-Wave 1: Phases with no unfinished dependencies
-Wave 2: Phases depending on Wave 1
-Wave 3: Phases depending on Wave 2
-...
+# Parse the Dependency Analysis table from the plan
+# Format: | Wave | Phases | Blocked by |
+waves = parse_dependency_analysis_table(plan)
 
-Example:
-  Plan has phases 1, 2, 3, 4, 5, 6
-  Phase 1, 2, 3: No dependencies -> Wave 1 (parallel)
-  Phase 4: Depends on 1, 2 -> Wave 2
-  Phase 5: Depends on 3 -> Wave 2
-  Phase 6: Depends on 4, 5 -> Wave 3 (sequential after Wave 2)
+if waves is not empty:
+  # Use pre-computed wave groupings directly
+  # Example parsed result:
+  #   Wave 1: [1]        (blocked by: --)
+  #   Wave 2: [2, 3]     (blocked by: 1)
+  #   Wave 3: [4]        (blocked by: 2, 3)
+```
+
+**Fallback: Compute from dependency graph** (plans without wave table):
+
+```
+if waves is empty:
+  # Topological grouping from dependency_graph (Stage 5 output)
+  Wave 1: Phases with no unfinished dependencies
+  Wave 2: Phases depending on Wave 1
+  Wave 3: Phases depending on Wave 2
+  ...
+
+  Example:
+    Phase 1, 2, 3: No dependencies -> Wave 1 (parallel)
+    Phase 4: Depends on 1, 2 -> Wave 2
+    Phase 5: Depends on 3 -> Wave 2
+    Phase 6: Depends on 4, 5 -> Wave 3
 ```
 
 ---
