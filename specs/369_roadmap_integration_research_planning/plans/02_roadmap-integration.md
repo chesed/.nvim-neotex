@@ -1,7 +1,7 @@
 # Implementation Plan: Task #369
 
 - **Task**: 369 - Integrate ROAD_MAP.md consultation into research and planning agents
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 1.5 hours
 - **Dependencies**: None
 - **Research Inputs**:
@@ -83,7 +83,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Add roadmap consultation stage to general-research-agent.md [NOT STARTED]
+### Phase 2: Add roadmap consultation stage to general-research-agent.md [COMPLETED]
 
 **Goal**: Research agent reads ROAD_MAP.md for strategic context before executing searches.
 
@@ -108,7 +108,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Add roadmap alignment stage to planner-agent.md [NOT STARTED]
+### Phase 3: Add roadmap alignment stage to planner-agent.md [COMPLETED]
 
 **Goal**: Planner agent reads ROAD_MAP.md to align plan phases with roadmap priorities and suggest roadmap_items.
 
@@ -135,7 +135,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Restructure team research teammate roles [NOT STARTED]
+### Phase 4: Restructure team research teammate roles [COMPLETED]
 
 **Goal**: Replace conditional C/D teammates with mandatory Critic and Horizons roles so `--team` research always includes gap analysis and long-term roadmap alignment.
 

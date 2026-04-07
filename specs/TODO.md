@@ -10,7 +10,7 @@ next_project_number: 370
 
 ### Pending
 
-- **369** [PLANNED] -- Integrate ROAD_MAP.md consultation into research/planning agents
+- **369** [COMPLETED] -- Integrate ROAD_MAP.md consultation into research/planning agents
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
@@ -18,7 +18,7 @@ next_project_number: 370
 
 ### 369. Integrate ROAD_MAP.md consultation into research and planning agents
 - **Effort**: 1-2 hours
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Research Completed**: 2026-04-07
 - **Language**: meta
 - **Dependencies**: None

@@ -16,6 +16,7 @@ Research agent for general programming, meta (system), markdown, and LaTeX tasks
 - `@.claude/context/formats/report-format.md` - Research report structure (when creating report)
 - `@.claude/context/repo/project-overview.md` - Project structure (for codebase research)
 - `@.claude/context/patterns/context-discovery.md` - Use with agent=`general-research-agent`, command=`/research`
+- `@.claude/context/formats/roadmap-format.md` - Roadmap structure (when roadmap_path provided)
 
 ## Research Strategy Decision Tree
 
@@ -57,6 +58,19 @@ Extract standard delegation fields (see `return-metadata-file.md` for schema). A
 - `teammate_letter` - Optional letter for team mode
 - Report path: single-agent `{NN}_{slug}.md`, team mode `{NN}_teammate-{letter}-findings.md` (using `artifact_number` for `{NN}`)
 
+### Stage 1.5: Load Roadmap Context
+
+If `roadmap_path` is provided in the delegation context and the file exists:
+
+1. Use `Read` to load the roadmap file (typically `specs/ROAD_MAP.md`)
+2. Extract the current phase priorities and incomplete items
+3. Identify roadmap items relevant to the task being researched
+4. Store as `roadmap_context` for use in Stage 2
+
+If the file does not exist, skip this stage gracefully and proceed without roadmap context.
+
+**MUST NOT**: Modify, write to, or create ROAD_MAP.md. This is a read-only consultation.
+
 ### Stage 2: Analyze Task and Determine Search Strategy
 
 Based on task language and description:
@@ -73,6 +87,7 @@ Based on task language and description:
 2. What external documentation is relevant?
 3. What dependencies or considerations apply?
 4. What are the success criteria?
+5. How does this task align with the project roadmap priorities?
 
 ### Stage 3: Execute Primary Searches
 

@@ -10,12 +10,12 @@ Team orchestration uses a wave-based model where agents work in parallel within 
 
 ```
 Wave 1:
-+----------------+  +----------------+  +----------------+
-| Teammate A     |  | Teammate B     |  | Teammate C     |
-| Primary Angle  |  | Alternatives   |  | Risk Analysis  |
-+-------+--------+  +-------+--------+  +-------+--------+
-        |                   |                   |
-        +-------------------+-------------------+
++----------------+  +----------------+  +----------------+  +----------------+
+| Teammate A     |  | Teammate B     |  | Teammate C     |  | Teammate D     |
+| Primary Angle  |  | Alternatives   |  | Critic         |  | Horizons       |
++-------+--------+  +-------+--------+  +-------+--------+  +-------+--------+
+        |                   |                   |                   |
+        +-------------------+-------------------+-------------------+
                            |
                     +------+------+
                     |   Lead      |

@@ -17,6 +17,7 @@ Planning agent for creating phased implementation plans from task descriptions a
 - `@.claude/context/workflows/task-breakdown.md` - Task decomposition guidelines (when creating plan)
 - `@.claude/CLAUDE.md` - Project configuration and conventions
 - `@.claude/context/patterns/context-discovery.md` - Use with agent=`planner-agent`, command=`/plan`
+- `@.claude/context/formats/roadmap-format.md` - Roadmap structure (when roadmap_path provided)
 
 ## Execution Flow
 
@@ -41,6 +42,19 @@ If `research_path` is provided:
 If no research exists:
 - Proceed with task description only
 - Note in plan that no research was available
+
+### Stage 2.5: Load Roadmap Context
+
+If `roadmap_path` is provided in the delegation context and the file exists:
+
+1. Use `Read` to load the roadmap file (typically `specs/ROAD_MAP.md`)
+2. Identify which roadmap items this task advances
+3. Note the current phase priorities and where this task fits
+4. Store relevant items for use in phase decomposition and plan metadata
+
+If the file does not exist, skip this stage gracefully and proceed without roadmap context.
+
+**MUST NOT**: Modify, write to, or create ROAD_MAP.md. This is a read-only consultation.
 
 ### Stage 3: Analyze Task Scope and Complexity
 
@@ -95,6 +109,11 @@ Apply task-breakdown.md guidelines:
    - Group phases into waves; phases in the same wave can run in parallel
    - Use wave assignments to generate the Dependency Analysis table
 
+7. **Roadmap Alignment**
+   - If roadmap context was loaded, note which roadmap items each phase advances
+   - Consider roadmap ordering when sequencing phases
+   - Identify opportunities to advance adjacent roadmap items
+
 ### Stage 5: Create Plan File
 
 Create directory if needed:
@@ -129,6 +148,10 @@ Write plan file following plan-format.md structure:
 ### Research Integration
 
 {If research exists: key findings integrated into plan}
+
+### Roadmap Alignment
+
+{If roadmap was loaded: list roadmap items this plan advances. If no roadmap: "No ROAD_MAP.md found."}
 
 ## Goals & Non-Goals
 

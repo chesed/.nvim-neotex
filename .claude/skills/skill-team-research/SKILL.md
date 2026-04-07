@@ -67,10 +67,8 @@ status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
 
-# Validate team_size
-team_size=${team_size:-2}
-[ "$team_size" -lt 2 ] && team_size=2
-[ "$team_size" -gt 4 ] && team_size=4
+# Team research always uses 4 teammates (Primary, Alternatives, Critic, Horizons)
+team_size=4
 ```
 
 ---
@@ -252,7 +250,7 @@ specs/{NNN}_{SLUG}/reports/{run_padded}_teammate-b-findings.md
 Format: Same as Teammate A
 ```
 
-**Teammate C - Risk Analysis (if team_size >= 3)**:
+**Teammate C - Critic (always present)**:
 ```
 Research task {task_number}: {description}
 
@@ -261,9 +259,15 @@ Research task {task_number}: {description}
 Artifact number: {run_padded}
 Teammate letter: c
 
-Focus on risks, blockers, and edge cases.
-Identify what could go wrong with proposed approaches.
-Consider integration challenges and dependencies.
+You are the Critic. Your job is to identify gaps, shortcomings, and blind spots in the research.
+Focus on:
+- What assumptions haven't been validated?
+- What could the other researchers be missing or getting wrong?
+- Are there known limitations in the proposed approaches?
+- Is the task scope complete, or are there important aspects being overlooked?
+- What questions should be asked but aren't being asked?
+
+Do NOT duplicate risk analysis (implementation risks). Focus on research quality and completeness.
 
 Output your findings to:
 specs/{NNN}_{SLUG}/reports/{run_padded}_teammate-c-findings.md
@@ -271,7 +275,7 @@ specs/{NNN}_{SLUG}/reports/{run_padded}_teammate-c-findings.md
 Format: Same as Teammate A
 ```
 
-**Teammate D - Devil's Advocate (if team_size >= 4)**:
+**Teammate D - Horizons (always present)**:
 ```
 Research task {task_number}: {description}
 
@@ -280,11 +284,19 @@ Research task {task_number}: {description}
 Artifact number: {run_padded}
 Teammate letter: d
 
-Challenge findings from other teammates once available.
-Look for gaps, inconsistencies, and missed alternatives.
-Question assumptions and identify blind spots.
+You are the Horizons researcher. Your job is to think about long-term alignment and strategic direction.
 
-Wait for other teammates to complete, then analyze their outputs.
+Read the project roadmap at {roadmap_path} (from delegation context) if it exists.
+If the roadmap file does not exist, contribute general strategic thinking about project direction.
+
+Focus on:
+- Does the proposed approach align with the project's long-term goals and priorities?
+- Are there opportunities to advance adjacent roadmap items simultaneously?
+- Could the task be scoped differently to better serve the project trajectory?
+- What creative or unconventional approaches might better serve the long-term vision?
+- What strategic challenges remain that this task could help address?
+
+Think outside the box. Challenge conventional approaches where a better path exists.
 
 Output your findings to:
 specs/{NNN}_{SLUG}/reports/{run_padded}_teammate-d-findings.md
@@ -387,10 +399,10 @@ Write synthesized report:
 ### Alternative Approaches (from Teammate B)
 {Findings}
 
-### Risks and Blockers (from Teammate C, if present)
+### Gaps and Shortcomings (from Critic)
 {Findings}
 
-### Critical Analysis (from Teammate D, if present)
+### Strategic Horizons (from Horizons)
 {Findings}
 
 ## Synthesis
@@ -410,6 +422,8 @@ Write synthesized report:
 |----------|-------|--------|------------|
 | A | Primary | completed | high |
 | B | Alternatives | completed | medium |
+| C | Critic | completed | high |
+| D | Horizons | completed | medium |
 
 ## References
 
