@@ -160,6 +160,18 @@ Prepare delegation context for the subagent:
 
 ---
 
+### Stage 4b: Read and Inject Format Specification
+
+Read the summary format file and prepare it for injection into the subagent prompt. This ensures the subagent always has the full format specification in its context, regardless of whether it reads the file itself.
+
+```bash
+format_content=$(cat .claude/context/formats/summary-format.md)
+```
+
+The format content will be included as a delimited section in the Stage 5 prompt (see below).
+
+---
+
 ### Stage 5: Invoke Subagent
 
 **CRITICAL**: You MUST use the **Task** tool to spawn the subagent.
@@ -169,9 +181,25 @@ Prepare delegation context for the subagent:
 Tool: Task (NOT Skill)
 Parameters:
   - subagent_type: "general-implementation-agent"
-  - prompt: [Include task_context, delegation_context, plan_path, metadata_file_path]
+  - prompt: [Include task_context, delegation_context, plan_path, metadata_file_path,
+             AND the format specification from Stage 4b as shown below]
   - description: "Execute implementation for task {N}"
 ```
+
+**Format Injection**: Include the format specification from Stage 4b in the prompt as a clearly-delimited section:
+
+```
+<artifact-format-specification>
+## CRITICAL: Summary Format Requirements
+
+You MUST follow this format specification exactly when writing the implementation summary.
+Non-compliance will be caught by postflight validation.
+
+{format_content from Stage 4b}
+</artifact-format-specification>
+```
+
+Place this section AFTER the delegation context JSON and BEFORE any other instructions.
 
 **DO NOT** use `Skill(general-implementation-agent)` - this will FAIL.
 
