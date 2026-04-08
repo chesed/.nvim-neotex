@@ -13,7 +13,7 @@ next_project_number: 382
 - **381** [NOT STARTED] -- Update manifest.json, index-entries.json, routing (depends: 378-380)
 - **380** [NOT STARTED] -- Create skill-meeting + meeting.md command (depends: 379)
 - **379** [NOT STARTED] -- Create meeting-agent (depends: 378)
-- **378** [PLANNED] -- Create meeting format context files
+- **378** [COMPLETED] -- Create meeting format context files
 - **368** [COMPLETED] -- Create context documentation for Slidev custom formalism rendering
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
@@ -46,7 +46,7 @@ next_project_number: 382
 
 ### 378. Create meeting format context files
 - **Effort**: 1 hour
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: None
 - **Research**: [01_meeting-format-research.md](378_meeting_format_context_files/reports/01_meeting-format-research.md)
