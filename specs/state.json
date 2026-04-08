@@ -5,22 +5,22 @@
     {
       "project_number": 368,
       "project_name": "context_docs_slidev_custom_formalism",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-04-05T23:31:55Z",
-      "last_updated": "2026-04-08T04:19:16Z",
-      "session_id": "sess_1775621556_a5f203",
+      "last_updated": "2026-04-08T04:32:20Z",
+      "session_id": "sess_1775622519_dde759",
       "next_artifact_number": 3,
       "artifacts": [
-        {
-          "path": "specs/368_context_docs_slidev_custom_formalism/plans/01_slidev-custom-formalism.md",
-          "type": "plan",
-          "summary": "Implementation plan for custom formalism rendering documentation across slidev-deck-template.md and deck/README.md"
-        },
         {
           "path": "specs/368_context_docs_slidev_custom_formalism/reports/02_team-research.md",
           "type": "research",
           "summary": "Team research (4 teammates): confirmed LogosOp.vue for compound operators, dead KaTeX infrastructure, recommended Unicode literals + shared CSS class"
+        },
+        {
+          "path": "specs/368_context_docs_slidev_custom_formalism/plans/02_slidev-custom-formalism.md",
+          "type": "plan",
+          "summary": "Revised 2-phase plan incorporating team research: dead-code annotations, decision tree, follow-on recommendations"
         }
       ]
     },
