@@ -5,10 +5,20 @@
     {
       "project_number": 377,
       "project_name": "ctrl_keymap_dictation_neovim_claude_sidebar",
-      "status": "not_started",
+      "status": "researched",
       "language": "neovim",
       "created": "2026-04-08T18:40:55Z",
-      "last_updated": "2026-04-08T18:40:55Z"
+      "last_updated": "2026-04-08T18:51:42Z",
+      "session_id": "sess_1775673856_a83655",
+      "researched": "2026-04-08T18:51:42Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/377_ctrl_keymap_dictation_neovim_claude_sidebar/reports/01_team-research.md",
+          "type": "research",
+          "summary": "Team research with 4 teammates"
+        }
+      ]
     },
     {
       "project_number": 376,
