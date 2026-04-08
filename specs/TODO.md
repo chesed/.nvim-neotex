@@ -1,20 +1,56 @@
 ---
-next_project_number: 378
+next_project_number: 382
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-04-07. 3 active tasks remaining.*
+*Updated 2026-04-08. 7 active tasks remaining.*
 
 ### Pending
 
+- **381** [NOT STARTED] -- Update manifest.json, index-entries.json, routing (depends: 378-380)
+- **380** [NOT STARTED] -- Create skill-meeting + meeting.md command (depends: 379)
+- **379** [NOT STARTED] -- Create meeting-agent (depends: 378)
+- **378** [NOT STARTED] -- Create meeting format context files
 - **368** [COMPLETED] -- Create context documentation for Slidev custom formalism rendering
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 381. Update manifest.json, index-entries.json, and routing for /meeting command
+- **Effort**: 30 minutes
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: 378, 379, 380
+
+**Description**: Register all /meeting components in the founder extension. Add meeting-agent.md to provides.agents, skill-meeting to provides.skills, meeting.md to provides.commands. Add founder:meeting routing entries for research/plan/implement phases. Add context entries to index-entries.json for meeting-format.md and csv-tracker.md with appropriate load_when conditions.
+
+### 380. Create skill-meeting and meeting.md command
+- **Effort**: 1 hour
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: 379
+
+**Description**: Create skill-meeting/SKILL.md as thin wrapper routing to meeting-agent (following skill-legal pattern). Create commands/meeting.md with two modes: (1) `/meeting /path/to/notes.md` -- process raw meeting notes into structured investor meeting file + CSV update, (2) `/meeting --update /path/to/file.md` -- re-read existing meeting file and update CSV entry. Support task number input for resume. Follow the /legal command's Stage 0-2 pattern adapted for meeting processing (no forcing questions needed -- the notes file IS the input).
+
+### 379. Create meeting-agent for investor meeting note processing
+- **Effort**: 2 hours
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: 378
+
+**Description**: Create .claude/extensions/founder/agents/meeting-agent.md following legal-council-agent pattern. The agent: (1) reads raw meeting notes markdown, (2) web-searches investor/company for profile data (fund size, team, thesis, portfolio), (3) generates structured meeting file with full YAML frontmatter (investor_name, website, fund_size, stage, geography, focus, check_size_min/max, team, pipeline_stage, meetings array, fit_score, strengths, gaps, action items) + markdown body (Investor Profile, Relationship Status, Fit Assessment, Meeting Log with feedback themes, Action Items, Strategic Notes, Raw Notes preservation), (4) locates CSV file in same directory, (5) adds/updates CSV entry from frontmatter metadata. Support --update mode for CSV-only updates from existing meeting files. Reference context: meeting-format.md template, csv-tracker.md format.
+
+### 378. Create meeting format context files
+- **Effort**: 1 hour
+- **Status**: [NOT STARTED]
+- **Language**: meta
+- **Dependencies**: None
+
+**Description**: Create two context files in .claude/extensions/founder/context/project/founder/: (1) templates/meeting-format.md -- meeting file template documenting the YAML frontmatter schema (all metadata fields from Halcyon/Celero examples) and markdown body structure (Investor Profile table, Relationship Status, Fit Assessment, Meeting Log with feedback themes, Action Items table, Strategic Notes, Raw Notes preservation section), (2) patterns/csv-tracker.md -- CSV format reference documenting column order, value formats, and update logic for the investor tracking spreadsheet. Based on exemplar files: /home/benjamin/Projects/Logos/Vision/investors/VC/2026-04-07_halcyon.md, 2026-04-08_celero.md, and VC-spreadsheet.csv.
 
 ### 377. Add ctrl-based keymap for triggering dictation in Neovim with Claude Code sidebar voice recording support
 - **Effort**: 2 hours
