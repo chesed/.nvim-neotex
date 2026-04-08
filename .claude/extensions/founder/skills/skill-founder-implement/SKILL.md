@@ -187,12 +187,26 @@ jq --argjson num "$task_number" \
      last_updated: $ts
    }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 
-# Link artifacts in state.json (report and summary)
+# Read typst metadata fields to determine which artifacts exist
+typst_source=$(echo "$metadata" | jq -r '.metadata.typst_source_generated // false')
+pdf_compiled=$(echo "$metadata" | jq -r '.metadata.pdf_compiled // false')
+
+# Link artifacts in state.json with typst-primary ordering:
+#   1. .typ source file (primary, always generated)
+#   2. .pdf compiled output (conditional on pdf_compiled)
+#   3. .md markdown report (fallback, always generated)
+#   4. summary artifact (always generated)
 artifacts=$(echo "$metadata" | jq '.artifacts')
 for i in $(seq 0 $(($(echo "$artifacts" | jq 'length') - 1))); do
   artifact_type=$(echo "$artifacts" | jq -r ".[$i].type")
   artifact_path=$(echo "$artifacts" | jq -r ".[$i].path")
   artifact_summary=$(echo "$artifacts" | jq -r ".[$i].summary")
+
+  # Skip PDF artifact if pdf_compiled is false
+  if [ "$pdf_compiled" = "false" ] && echo "$artifact_path" | grep -q '\.pdf$'; then
+    continue
+  fi
+
   jq --argjson num "$task_number" \
      --arg type "$artifact_type" \
      --arg path "$artifact_path" \

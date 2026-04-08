@@ -1,7 +1,7 @@
 # Implementation Plan: Task #374
 
 - **Task**: 374 - Update skill-founder-implement typst artifact reporting
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 0.75 hours
 - **Dependencies**: 373 (completed)
 - **Research Inputs**: reports/01_typst-artifact-reporting.md
@@ -52,7 +52,7 @@ No ROAD_MAP.md found.
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Rewrite Postflight Artifact Linking [NOT STARTED]
+### Phase 1: Rewrite Postflight Artifact Linking [COMPLETED]
 
 **Goal**: Make Section 7 postflight typst-aware by reading agent metadata fields and linking artifacts in priority order.
 
