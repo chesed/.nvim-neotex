@@ -1,7 +1,7 @@
 # Implementation Plan: Task #374
 
 - **Task**: 374 - Update skill-founder-implement typst artifact reporting
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 0.75 hours
 - **Dependencies**: 373 (completed)
 - **Research Inputs**: reports/01_typst-artifact-reporting.md

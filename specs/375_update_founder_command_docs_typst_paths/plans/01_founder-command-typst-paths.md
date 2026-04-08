@@ -1,7 +1,7 @@
 # Implementation Plan: Update Founder Command Docs Typst Paths
 
 - **Task**: 375 - Update founder command docs typst paths
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 0.5 hours
 - **Dependencies**: Task 373 (typst primary output)
 - **Research Inputs**: reports/01_founder-command-typst-paths.md

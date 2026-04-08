@@ -1,7 +1,7 @@
 # Implementation Plan: Task #373
 
 - **Task**: 373 - Make typst primary output in founder-implement-agent
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 0.5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/373_typst_primary_output_founder_implement/reports/01_typst-primary-output.md

@@ -88,14 +88,14 @@
     {
       "project_number": 374,
       "project_name": "update_skill_founder_implement_typst_artifacts",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-04-07T00:00:00Z",
-      "last_updated": "2026-04-08T02:04:50Z",
+      "last_updated": "2026-04-08T02:10:53Z",
       "dependencies": [
         373
       ],
-      "session_id": "sess_1775613699_6bb952_t374",
+      "session_id": "sess_1775613968_6a6083_t374",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -107,6 +107,11 @@
           "path": "specs/374_update_skill_founder_implement_typst_artifacts/plans/01_typst-artifact-reporting.md",
           "type": "plan",
           "summary": "2-phase plan: rewrite postflight artifact linking + update return format and field references (0.75h)"
+        },
+        {
+          "path": "specs/374_update_skill_founder_implement_typst_artifacts/summaries/01_typst-artifact-reporting-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for task 374"
         }
       ],
       "plan_metadata": {
@@ -130,19 +135,21 @@
             "integrated_date": "2026-04-07"
           }
         ]
-      }
+      },
+      "completion_summary": "Updated skill-founder-implement SKILL.md postflight to read typst_source_generated/pdf_compiled metadata, report .typ as primary artifact, and fix field name and path template mismatches.",
+      "claudemd_suggestions": "Updated .claude/extensions/founder/skills/skill-founder-implement/SKILL.md: postflight typst-aware artifact linking, return format templates with typst-primary ordering, corrected metadata field references"
     },
     {
       "project_number": 375,
       "project_name": "update_founder_command_docs_typst_paths",
-      "status": "planned",
+      "status": "completed",
       "language": "meta",
       "created": "2026-04-07T00:00:00Z",
-      "last_updated": "2026-04-08T02:04:12Z",
+      "last_updated": "2026-04-08T02:13:03Z",
       "dependencies": [
         373
       ],
-      "session_id": "sess_1775613699_6bb952_t375",
+      "session_id": "sess_1775613968_6a6083_t375",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -154,6 +161,11 @@
           "path": "specs/375_update_founder_command_docs_typst_paths/plans/01_founder-command-typst-paths.md",
           "type": "plan",
           "summary": "2-phase plan: update 5 standard command files + sheet.md special case for typst paths (0.5h)"
+        },
+        {
+          "path": "specs/375_update_founder_command_docs_typst_paths/summaries/01_founder-command-typst-paths-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for task 375"
         }
       ],
       "plan_metadata": {
@@ -175,7 +187,8 @@
             "integrated_date": "2026-04-07"
           }
         ]
-      }
+      },
+      "completion_summary": "Updated output path references in 6 founder command files (market, analyze, strategy, legal, finance, sheet) from .md/.pdf to .typ with .md fallback notation."
     },
     {
       "project_number": 370,
