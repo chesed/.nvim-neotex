@@ -261,13 +261,13 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
 
 5. Mark phase `[COMPLETED]`
 
-#### Phase 4: Report and Typst Generation
+#### Phase 4: Typst Report Generation
 
-**For all report types**, generate self-contained Typst documents as primary output and markdown reports as fallback.
+**For all report types**, generate self-contained Typst documents as the primary artifact and markdown reports as an optional fallback.
 
 1. Mark phase `[IN PROGRESS]`
 
-2. **Generate self-contained typst content**:
+2. **Load primary typst template** from the Stage 4 table (Primary Template column) and generate self-contained typst content:
 
    The generated .typ file must be **self-contained** with all template functions inlined.
    This avoids import path resolution issues when compiling from the founder/ directory.
@@ -275,7 +275,7 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
    **DO NOT** use: `#import "strategy-template.typ": *` (fails from founder/ directory)
    **DO** inline all required template functions directly in the generated file.
 
-3. **Write typst file** to founder directory:
+3. **Write typst file** (primary output) to founder directory:
    ```bash
    mkdir -p "founder"
    typst_file="founder/${report_type}-${slug}.typ"
@@ -285,7 +285,7 @@ Execute each phase starting from resume point. Use context from BOTH plan and re
    [ -s "$typst_file" ] || return error "Failed to write typst file"
    ```
 
-4. **Generate markdown fallback report** using template structure:
+4. **Generate markdown fallback report** using the fallback template from the Stage 4 table (Fallback Template column):
    ```bash
    # Default location, or use output_dir if provided
    output_path="${output_dir:-strategy/}${report_type}-${slug}.md"
@@ -1096,9 +1096,9 @@ For competitive-analysis reports, use these phases:
 - Competitive advantages
 - Battle cards (from research: ### Strategic Observations)
 
-### Phase 4: Report and Typst Generation
-- Generate self-contained typst document using competitive-analysis.typ template at founder/{report-type}-{slug}.typ
-- Generate competitive-analysis markdown report at strategy/{report-type}-{slug}.md (fallback)
+### Phase 4: Typst Report Generation
+- Generate self-contained typst document (primary) using competitive-analysis.typ template at founder/{report-type}-{slug}.typ
+- Generate competitive-analysis markdown report (fallback) at strategy/{report-type}-{slug}.md
 - Positioning map visualization (using axes from research: ### Positioning Dimensions)
 - Battle card summaries
 
@@ -1127,9 +1127,9 @@ For gtm-strategy reports, use these phases:
 - Positioning statement (from research: ### Draft Positioning Statement)
 - Messaging framework
 
-### Phase 4: Report and Typst Generation
-- Generate self-contained typst document using gtm-strategy.typ template at founder/{report-type}-{slug}.typ
-- Generate GTM strategy markdown report at strategy/{report-type}-{slug}.md (fallback)
+### Phase 4: Typst Report Generation
+- Generate self-contained typst document (primary) using gtm-strategy.typ template at founder/{report-type}-{slug}.typ
+- Generate GTM strategy markdown report (fallback) at strategy/{report-type}-{slug}.md
 - 90-day action plan and metrics dashboard in typst
 - Metrics and milestones (using North Star from research: ### Metrics Framework)
 
@@ -1205,9 +1205,9 @@ For contract-review reports, use these phases. The legal-council-agent produces 
    - Value items to request in exchange
 6. Set escalation triggers based on financial exposure (from research: ### Financial and Exit)
 
-### Phase 4: Report and Typst Generation
+### Phase 4: Typst Report Generation
 
-**Input**: Phases 1-3 output + contract-analysis.md template + contract-analysis.typ template reference
+**Input**: Phases 1-3 output + contract-analysis.typ template (primary) + contract-analysis.md template (fallback)
 
 1. Generate **self-contained** typst file (inline all functions, no imports):
    - **DO NOT** use: `#import "strategy-template.typ": *`

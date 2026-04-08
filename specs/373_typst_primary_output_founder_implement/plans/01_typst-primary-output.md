@@ -78,7 +78,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Clarify Phase 4 Generation Order and Verify Output Paths [NOT STARTED]
+### Phase 2: Clarify Phase 4 Generation Order and Verify Output Paths [COMPLETED]
 
 **Goal**: Ensure Phase 4 heading and step descriptions explicitly mark typst as primary and markdown as fallback, and verify output path documentation is consistent.
 
