@@ -14832,6 +14832,268 @@
       "completed": "2026-04-01T22:30:00Z",
       "completion_summary": "Updated .claude/ agent system documentation across 8 files: fixed factual errors (layer count, extension names), added missing commands/skills/agents to tables, updated founder extension README with 3 new commands, converted ASCII box-drawing to Unicode in 3 architecture diagrams.",
       "claudemd_suggestions": "Updated CLAUDE.md (added /merge, skill-orchestrator, skill-git-workflow, fixed layer count and /fix-it tags), updated README.md (fixed extension names, added 7 extensions), updated system-overview.md (added 5 commands, replaced extension skills with core skills)"
+    },
+    {
+      "project_number": 369,
+      "project_name": "roadmap_integration_research_planning",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-07T00:00:00Z",
+      "last_updated": "2026-04-07T20:48:44Z",
+      "next_artifact_number": 3,
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/369_roadmap_integration_research_planning/reports/01_roadmap-integration-gaps.md",
+          "summary": "Analysis of ROAD_MAP.md integration gaps in research/planning agents with 4 recommendations"
+        },
+        {
+          "path": "specs/369_roadmap_integration_research_planning/reports/02_team-research-roles.md",
+          "type": "research",
+          "summary": "Team research role redesign: mandatory Critic and Horizons teammates with ROAD_MAP.md consultation"
+        },
+        {
+          "type": "plan",
+          "path": "specs/369_roadmap_integration_research_planning/plans/02_roadmap-integration.md",
+          "summary": "Revised 4-phase plan: context index, research agent, planner agent, team research roles (Critic + Horizons)"
+        }
+      ],
+      "session_id": "sess_1744070400_369impl",
+      "completion_summary": "Integrated ROAD_MAP.md consultation into research and planning agents. Added roadmap stages to general-research-agent and planner-agent. Restructured team research with mandatory Critic and Horizons teammates."
+    },
+    {
+      "project_number": 370,
+      "project_name": "inject_format_specs_delegation_prompts",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-07T00:00:00Z",
+      "last_updated": "2026-04-07T23:53:15Z",
+      "session_id": "sess_1744070400_370impl",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/370_inject_format_specs_delegation_prompts/reports/01_format-injection-research.md",
+          "summary": "Analysis of delegation prompt construction across 3 skills; recommends Stage 4b format injection pattern"
+        },
+        {
+          "type": "plan",
+          "path": "specs/370_inject_format_specs_delegation_prompts/plans/01_format-injection-plan.md",
+          "summary": "3-phase parallel plan: inject format specs via Stage 4b into skill-planner, skill-researcher, skill-implementer"
+        }
+      ],
+      "next_artifact_number": 2,
+      "completion_summary": "Added Stage 4b format injection to skill-planner (plan-format.md), skill-researcher (report-format.md), and skill-implementer (summary-format.md). Each skill now reads its format file and injects it as an XML-delimited section in the subagent prompt."
+    },
+    {
+      "project_number": 371,
+      "project_name": "artifact_content_validation_postflight",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-07T00:00:00Z",
+      "last_updated": "2026-04-07T23:53:15Z",
+      "session_id": "sess_1744070400_371impl",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/371_artifact_content_validation_postflight/reports/01_postflight-validation-research.md",
+          "summary": "Format requirements matrix for 3 artifact types; recommends reusable validate-artifact.sh with non-blocking warnings"
+        },
+        {
+          "type": "plan",
+          "path": "specs/371_artifact_content_validation_postflight/plans/01_postflight-validation-plan.md",
+          "summary": "3-phase sequential plan: create validate-artifact.sh, integrate into postflight, test against real artifacts"
+        }
+      ],
+      "next_artifact_number": 2,
+      "completion_summary": "Created validate-artifact.sh script supporting report/plan/summary types with --fix auto-repair. Integrated as Stage 6a (non-blocking) in skill-planner, skill-researcher, and skill-implementer postflight flows."
+    },
+    {
+      "project_number": 372,
+      "project_name": "create_financial_analysis_typst_template",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-07T00:00:00Z",
+      "last_updated": "2026-04-08T01:17:22Z",
+      "session_id": "sess_1775610606_54bb22",
+      "next_artifact_number": 3,
+      "artifacts": [
+        {
+          "path": "specs/372_create_financial_analysis_typst_template/reports/02_financial-spreadsheet-integration.md",
+          "type": "research",
+          "summary": "Spreadsheet integration design for financial analysis research pipeline"
+        },
+        {
+          "path": "specs/372_create_financial_analysis_typst_template/plans/02_financial-spreadsheet-integration.md",
+          "type": "plan",
+          "summary": "4-phase plan: Typst template, forcing questions, example JSON, routing integration (6 hours)"
+        },
+        {
+          "path": "specs/372_create_financial_analysis_typst_template/summaries/02_financial-spreadsheet-integration-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for financial analysis pipeline"
+        }
+      ],
+      "description": "Create financial-analysis.typ template at .claude/extensions/founder/context/project/founder/templates/typst/financial-analysis.typ following cost-breakdown.typ pattern. Template must load financial-metrics.json at compile time via json() import for all numerical data (revenue, expenses, cash position, ratios, scenarios). Also create: (1) financial-metrics.json schema covering revenue (ARR, MRR, growth), expenses (by category), cash position (balance, burn, runway), ratios (gross margin, LTV:CAC, burn multiple), and scenarios (upside/base/downside); (2) financial-analysis forcing questions pattern for the spreadsheet agent to gather real numbers via AskUserQuestion; (3) founder:financial-analysis routing key in manifest.json pointing to a skill that produces XLSX + JSON metrics during /research. Use strategy-template.typ components (metric-callout, highlight-box, warning-box, strategy-table). Model sections after templates/financial-analysis.md but all numerical values must come from JSON data, not hardcoded.",
+      "completion_summary": "Created financial analysis pipeline: financial-analysis.typ template (15 components, JSON-driven), forcing questions pattern, example JSON, financial-analysis-agent, skill-financial-analysis, and founder:financial-analysis routing in manifest.json.",
+      "claudemd_suggestions": "Add founder:financial-analysis to the Language-Based Routing table in .claude/CLAUDE.md"
+    },
+    {
+      "project_number": 373,
+      "project_name": "typst_primary_output_founder_implement",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-07T00:00:00Z",
+      "last_updated": "2026-04-08T01:40:23Z",
+      "dependencies": [
+        372
+      ],
+      "session_id": "sess_1775612138_270bed",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/373_typst_primary_output_founder_implement/reports/01_typst-primary-output.md",
+          "type": "research",
+          "summary": "Research report mapping current markdown-primary references to typst-primary structure with specific line-by-line change recommendations"
+        },
+        {
+          "path": "specs/373_typst_primary_output_founder_implement/plans/01_typst-primary-output.md",
+          "type": "plan",
+          "summary": "2-phase plan to make typst the primary output format in founder-implement-agent"
+        },
+        {
+          "path": "specs/373_typst_primary_output_founder_implement/summaries/01_typst-primary-output-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 2,
+        "total_effort_hours": 0.5,
+        "complexity": "simple",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_typst-primary-output.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-07"
+          }
+        ]
+      },
+      "completion_summary": "Rewrote founder-implement-agent.md to make typst the primary output format: promoted typst templates to Always Load, created Markdown Fallback section, rewrote Stage 4 table with primary/fallback columns, renamed all Phase 4 headings to Typst Report Generation."
+    },
+    {
+      "project_number": 374,
+      "project_name": "update_skill_founder_implement_typst_artifacts",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-07T00:00:00Z",
+      "last_updated": "2026-04-08T02:10:53Z",
+      "dependencies": [
+        373
+      ],
+      "session_id": "sess_1775613968_6a6083_t374",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/374_update_skill_founder_implement_typst_artifacts/reports/01_typst-artifact-reporting.md",
+          "type": "research",
+          "summary": "Analysis of skill-founder-implement postflight for typst/PDF artifact reporting with specific change recommendations"
+        },
+        {
+          "path": "specs/374_update_skill_founder_implement_typst_artifacts/plans/01_typst-artifact-reporting.md",
+          "type": "plan",
+          "summary": "2-phase plan: rewrite postflight artifact linking + update return format and field references (0.75h)"
+        },
+        {
+          "path": "specs/374_update_skill_founder_implement_typst_artifacts/summaries/01_typst-artifact-reporting-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for task 374"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 2,
+        "total_effort_hours": 0.75,
+        "complexity": "simple",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_typst-artifact-reporting.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-07"
+          }
+        ]
+      },
+      "completion_summary": "Updated skill-founder-implement SKILL.md postflight to read typst_source_generated/pdf_compiled metadata, report .typ as primary artifact, and fix field name and path template mismatches.",
+      "claudemd_suggestions": "Updated .claude/extensions/founder/skills/skill-founder-implement/SKILL.md: postflight typst-aware artifact linking, return format templates with typst-primary ordering, corrected metadata field references"
+    },
+    {
+      "project_number": 375,
+      "project_name": "update_founder_command_docs_typst_paths",
+      "status": "completed",
+      "language": "meta",
+      "created": "2026-04-07T00:00:00Z",
+      "last_updated": "2026-04-08T02:13:03Z",
+      "dependencies": [
+        373
+      ],
+      "session_id": "sess_1775613968_6a6083_t375",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/375_update_founder_command_docs_typst_paths/reports/01_founder-command-typst-paths.md",
+          "type": "research",
+          "summary": "Analysis of 6 founder command files identifying 18 markdown output path references to update to typst primary with markdown fallback"
+        },
+        {
+          "path": "specs/375_update_founder_command_docs_typst_paths/plans/01_founder-command-typst-paths.md",
+          "type": "plan",
+          "summary": "2-phase plan: update 5 standard command files + sheet.md special case for typst paths (0.5h)"
+        },
+        {
+          "path": "specs/375_update_founder_command_docs_typst_paths/summaries/01_founder-command-typst-paths-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for task 375"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 2,
+        "total_effort_hours": 0.5,
+        "complexity": "simple",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1,
+            2
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_founder-command-typst-paths.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-07"
+          }
+        ]
+      },
+      "completion_summary": "Updated output path references in 6 founder command files (market, analyze, strategy, legal, finance, sheet) from .md/.pdf to .typ with .md fallback notation."
     }
   ],
   "abandoned_projects": []

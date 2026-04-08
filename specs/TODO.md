@@ -6,116 +6,15 @@ next_project_number: 376
 
 ## Task Order
 
-*Updated 2026-04-07. 9 active tasks remaining.*
+*Updated 2026-04-07. 3 active tasks remaining.*
 
 ### Pending
 
-- **372** [COMPLETED] -- Create financial-analysis.typ template
-- **373** [COMPLETED] -- Make typst primary output in founder-implement-agent (depends: 372)
-- **374** [COMPLETED] -- Update skill-founder-implement artifact reporting for typst (depends: 373)
-- **375** [COMPLETED] -- Update founder command docs to reference typst output paths (depends: 373)
-- **370** [COMPLETED] -- Inject artifact format specifications into skill delegation prompts
-- **371** [COMPLETED] -- Add artifact content validation to skill postflight stages
-- **369** [COMPLETED] -- Integrate ROAD_MAP.md consultation into research/planning agents
+- **368** [NOT STARTED] -- Create context documentation for Slidev custom formalism rendering
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
-
-### 372. Create financial-analysis.typ template
-- **Effort**: 30 minutes
-- **Status**: [COMPLETED]
-- **Language**: meta
-- **Dependencies**: None
-- **Research**:
-  - [01_financial-analysis-template.md](specs/372_create_financial_analysis_typst_template/reports/01_financial-analysis-template.md)
-  - [02_financial-spreadsheet-integration.md](specs/372_create_financial_analysis_typst_template/reports/02_financial-spreadsheet-integration.md)
-- **Plan**:
-  - [01_financial-analysis-template.md](specs/372_create_financial_analysis_typst_template/plans/01_financial-analysis-template.md)
-  - [02_financial-spreadsheet-integration.md](specs/372_create_financial_analysis_typst_template/plans/02_financial-spreadsheet-integration.md)
-- **Summary**: [02_financial-spreadsheet-integration-summary.md](specs/372_create_financial_analysis_typst_template/summaries/02_financial-spreadsheet-integration-summary.md)
-
-**Description**: Create financial-analysis.typ template at `.claude/extensions/founder/context/project/founder/templates/typst/financial-analysis.typ` following cost-breakdown.typ pattern. Template must load `financial-metrics.json` at compile time via `json()` import for all numerical data (revenue, expenses, cash position, ratios, scenarios). Also create: (1) `financial-metrics.json` schema covering revenue (ARR, MRR, growth), expenses (by category), cash position (balance, burn, runway), ratios (gross margin, LTV:CAC, burn multiple), and scenarios (upside/base/downside); (2) financial-analysis forcing questions pattern for the spreadsheet agent to gather real numbers via AskUserQuestion; (3) `founder:financial-analysis` routing key in manifest.json pointing to a skill that produces XLSX + JSON metrics during /research. Use strategy-template.typ components (metric-callout, highlight-box, warning-box, strategy-table). Model sections after `templates/financial-analysis.md` but all numerical values must come from JSON data, not hardcoded.
-
----
-
-### 373. Make typst primary output in founder-implement-agent
-- **Effort**: 1-2 hours
-- **Status**: [COMPLETED]
-- **Language**: meta
-- **Dependencies**: 372
-- **Research**: [01_typst-primary-output.md](specs/373_typst_primary_output_founder_implement/reports/01_typst-primary-output.md)
-- **Plan**: [01_typst-primary-output.md](specs/373_typst_primary_output_founder_implement/plans/01_typst-primary-output.md)
-- **Summary**: [01_typst-primary-output-summary.md](specs/373_typst_primary_output_founder_implement/summaries/01_typst-primary-output-summary.md)
-
-**Description**: Rewrite `founder-implement-agent.md` to make typst the primary output format. Changes: (1) Stage 4 "Load Report Template" table -- map all report types to `.typ` templates instead of `.md` templates; (2) Context References "Always Load" section -- replace markdown template references with typst template references, move markdown templates to a "Load for Markdown Fallback" section; (3) Phase 4 -- restructure to generate typst first as primary artifact, markdown as optional fallback; (4) Output paths -- primary output to `founder/{type}-{slug}.typ` (already done), ensure markdown fallback path is clearly secondary. The `/deck` pipeline (deck-builder-agent) is unaffected. Files: `.claude/extensions/founder/agents/founder-implement-agent.md`.
-
----
-
-### 374. Update skill-founder-implement artifact reporting for typst
-- **Effort**: 30 minutes
-- **Status**: [COMPLETED]
-- **Language**: meta
-- **Dependencies**: 373
-- **Research**: [01_typst-artifact-reporting.md](specs/374_update_skill_founder_implement_typst_artifacts/reports/01_typst-artifact-reporting.md)
-- **Plan**: [01_typst-artifact-reporting.md](specs/374_update_skill_founder_implement_typst_artifacts/plans/01_typst-artifact-reporting.md)
-- **Summary**: [01_typst-artifact-reporting-summary.md](specs/374_update_skill_founder_implement_typst_artifacts/summaries/01_typst-artifact-reporting-summary.md)
-
-**Description**: Update `skill-founder-implement/SKILL.md` postflight to report typst/PDF artifacts as primary and markdown as fallback. Changes: (1) Postflight artifact linking -- check for `.typ` and `.pdf` files in `founder/` directory first, report those as primary artifacts in state.json; (2) Success message -- display typst file path prominently, PDF path if generated, markdown fallback path as secondary; (3) Expected artifacts section -- update artifact path examples from `strategy/{slug}.md` to `founder/{type}-{slug}.typ` with PDF companion. Files: `.claude/extensions/founder/skills/skill-founder-implement/SKILL.md`.
-
----
-
-### 375. Update founder command docs to reference typst output paths
-- **Effort**: 30 minutes
-- **Status**: [COMPLETED]
-- **Language**: meta
-- **Dependencies**: 373
-- **Research**: [01_founder-command-typst-paths.md](specs/375_update_founder_command_docs_typst_paths/reports/01_founder-command-typst-paths.md)
-- **Plan**: [01_founder-command-typst-paths.md](specs/375_update_founder_command_docs_typst_paths/plans/01_founder-command-typst-paths.md)
-- **Summary**: [01_founder-command-typst-paths-summary.md](specs/375_update_founder_command_docs_typst_paths/summaries/01_founder-command-typst-paths-summary.md)
-
-**Description**: Update output path references in 6 founder command files (market.md, analyze.md, strategy.md, legal.md, finance.md, sheet.md) from markdown to typst. Each command has notes like "Full report (strategy/market-sizing-*.md) is generated by /implement" and workflow diagrams showing `.md` output -- update all to reference `.typ` primary output with `.md` fallback noted. The `/deck` command is excluded (uses Slidev). Files: `.claude/extensions/founder/commands/market.md`, `analyze.md`, `strategy.md`, `legal.md`, `finance.md`, `sheet.md`.
-
----
-
-### 370. Inject artifact format specifications into skill delegation prompts
-- **Effort**: 1-2 hours
-- **Status**: [COMPLETED]
-- **Language**: meta
-- **Dependencies**: None
-- **Research**: [01_format-injection-research.md](370_inject_format_specs_delegation_prompts/reports/01_format-injection-research.md)
-- **Plan**: [01_format-injection-plan.md](370_inject_format_specs_delegation_prompts/plans/01_format-injection-plan.md)
-
-**Description**: Artifact-producing skills (skill-planner, skill-researcher, skill-implementer) rely on advisory `@` references in agent definitions to communicate format requirements. These references are not automatically resolved -- the spawned subagent must actively Read the file, which it may skip when focused on complex domain content. Fix by updating each skill's delegation stage to explicitly Read the relevant format file (plan-format.md, report-format.md, summary-format.md) and inject its content into the delegation prompt passed to the subagent. This ensures format specifications are unavoidable in the agent's context. Files: `.claude/skills/skill-planner/SKILL.md`, `.claude/skills/skill-researcher/SKILL.md`, `.claude/skills/skill-implementer/SKILL.md`.
-
----
-
-### 371. Add artifact content validation to skill postflight stages
-- **Effort**: 1-2 hours
-- **Status**: [COMPLETED]
-- **Language**: meta
-- **Dependencies**: None
-- **Research**: [01_postflight-validation-research.md](371_artifact_content_validation_postflight/reports/01_postflight-validation-research.md)
-- **Plan**: [01_postflight-validation-plan.md](371_artifact_content_validation_postflight/plans/01_postflight-validation-plan.md)
-
-**Description**: Skill postflight stages currently validate only the `.return-meta.json` metadata file, not the actual artifact content. A structurally non-compliant plan/report/summary passes postflight as long as the metadata JSON is valid. Fix by: (1) creating a reusable validation script (`.claude/scripts/validate-artifact-format.sh`) that checks artifacts against format requirements (required metadata fields, required sections, phase heading format); (2) integrating validation into skill-planner, skill-researcher, and skill-implementer postflight between metadata parsing and git commit; (3) on validation failure, attempt auto-fix for missing metadata block or surface the issue to the user. Files: `.claude/scripts/validate-artifact-format.sh` (new), `.claude/skills/skill-planner/SKILL.md`, `.claude/skills/skill-researcher/SKILL.md`, `.claude/skills/skill-implementer/SKILL.md`.
-
----
-
-### 369. Integrate ROAD_MAP.md consultation into research and planning agents
-- **Effort**: 1-2 hours
-- **Status**: [COMPLETED]
-- **Research Completed**: 2026-04-07
-- **Language**: meta
-- **Dependencies**: None
-- **Research**:
-  - [01_roadmap-integration-gaps.md](369_roadmap_integration_research_planning/reports/01_roadmap-integration-gaps.md)
-  - [02_team-research-roles.md](369_roadmap_integration_research_planning/reports/02_team-research-roles.md)
-- **Plan**: [02_roadmap-integration.md](369_roadmap_integration_research_planning/plans/02_roadmap-integration.md)
-
-**Description**: Research and planning agents (`general-research-agent`, `planner-agent`) are completely blind to `specs/ROAD_MAP.md`, causing repeated misalignment with project priorities. Fix by: (1) adding a roadmap consultation stage to `general-research-agent.md` (read-only, for strategic context); (2) adding a roadmap alignment stage to `planner-agent.md` (read roadmap, align plan phases, pre-populate `roadmap_items`); (3) updating `context/index.json` `load_when` entries for `formats/roadmap-format.md` and `patterns/roadmap-update.md` to include research/planning agents and commands; (4) adding `roadmap_path` to delegation contexts in `skill-researcher/SKILL.md` and `skill-planner/SKILL.md`. Files: 5 files across agents/, skills/, and context/.
-
----
 
 ### 368. Create context documentation for Slidev custom formalism rendering
 - **Effort**: 1-2 hours
