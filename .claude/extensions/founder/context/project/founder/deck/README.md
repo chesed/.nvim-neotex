@@ -46,8 +46,10 @@ deck/
 │   └── textures/                          Background texture overlays (2 files)
 │       ├── grid-overlay.css               Subtle grid for technical feel
 │       └── noise-grain.css                Film grain SVG overlay for premium feel
-├── components/                            Reusable Vue components (4 files)
+├── components/                            Reusable Vue components (6 files)
 │   ├── ComparisonCol.vue                  Side-by-side comparison column
+│   ├── KaTex.vue                          KaTeX math wrapper with SVG injection (inactive)
+│   ├── LogosOp.vue                        Custom compound operator SVG rendering
 │   ├── MetricCard.vue                     Single KPI metric with animated entrance
 │   ├── TeamMember.vue                     Team member card with photo and bio
 │   └── TimelineItem.vue                   Milestone on a timeline with status
@@ -173,10 +175,12 @@ Vue single-file components for use inside Slidev slides. Each accepts props and 
 
 | Component | Props | Usage |
 |-----------|-------|-------|
+| `ComparisonCol.vue` | title, points, color, highlight | Side-by-side comparison column |
+| `KaTex.vue` | expr, display | KaTeX math wrapper with SVG placeholder injection (inactive -- not used in current deck) |
+| `LogosOp.vue` | op | Custom compound operator SVG rendering (boxright, diamondright, circleright, dotcircleright) |
 | `MetricCard.vue` | value, label, delay, color | KPI display with v-motion entrance |
 | `TeamMember.vue` | name, role, bio, photo, delay | Team member card with photo |
 | `TimelineItem.vue` | date, label, description, status | Milestone on a timeline |
-| `ComparisonCol.vue` | title, points, color, highlight | Side-by-side comparison column |
 
 ### Contents
 
