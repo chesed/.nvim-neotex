@@ -286,6 +286,88 @@ Copy from `.context/deck/components/` to the deck's `components/` directory:
 <TimelineItem date="Q1 2026" label="Launch" status="done" />
 ```
 
+### Custom Formalism Rendering
+
+The Logos deck renders formal logic operators using three distinct mechanisms. Only one (LogosOp.vue) is actively used for custom rendering; the others are either raw HTML entities or dead infrastructure.
+
+#### Architecture Overview
+
+| Mechanism | Status | Instances | Description |
+|-----------|--------|-----------|-------------|
+| `LogosOp.vue` | **Active** | 8 (4 operators, 2 slides) | Inline SVG for compound operators |
+| HTML entities | **Active (inconsistent)** | ~70+ | Unicode hex entities with mixed font wrappers |
+| `KaTex.vue` + `setup/katex.ts` | **Inactive (dead code)** | 0 | KaTeX wrapper with SVG placeholder injection -- never wired into slides.md |
+
+#### LogosOp.vue -- Active Custom Rendering
+
+The only custom rendering component in use. Produces inline SVG for four compound operators that have no Unicode codepoint or KaTeX equivalent.
+
+**Source**: `components/LogosOp.vue`
+
+**Operator registry**:
+
+| Prop value | Glyph | Description |
+|------------|-------|-------------|
+| `boxright` | box-then-arrow | Strict conditional |
+| `diamondright` | diamond-then-arrow | Possible conditional |
+| `circleright` | circle-then-arrow | Obligatory conditional |
+| `dotcircleright` | dotted-circle-then-arrow | Permitted conditional |
+
+**SVG properties**: viewBox `0 0 28 16`, sizing `1.4em x 1em`, vertical-align `-0.1em`, `currentColor` inheritance for theme compatibility.
+
+**Usage**:
+```html
+<LogosOp op="boxright" />   <!-- renders compound strict conditional glyph -->
+```
+
+#### KaTex.vue and setup/katex.ts -- Inactive Infrastructure
+
+These files were built but never integrated into `slides.md`. Zero `$...$` math blocks exist in the current deck.
+
+**Source**: `components/KaTex.vue`, `setup/katex.ts`
+
+**How it works (for reference)**: `setup/katex.ts` defines KaTeX macros using `\htmlStyle` overlap kerning to approximate compound glyphs. `KaTex.vue` wraps KaTeX rendering and injects SVG placeholders via `\text{##SVG0##}` substitution after render. The `\htmlStyle` kerning hack produces visually inferior, font-dependent output compared to LogosOp.vue's coordinated SVG viewBox.
+
+**Not currently used**: No slides reference these components. Retain for potential future use with inline mathematical prose ($..$ syntax), but do not treat as an active rendering path.
+
+#### HTML Entity Pattern -- Inconsistent Wrappers
+
+Standard logic operators are expressed as hex HTML entities (`&#x25A1;`, `&#x2227;`, etc.) with inconsistent surrounding markup:
+
+| Wrapper style | Example | Approximate count |
+|--------------|---------|-------------------|
+| `<span style="font-family:serif">` | `<span style="font-family:serif">&#x25A1;</span>` | ~40 |
+| `<code>` tags | `<code>&#x2227;</code>` | ~15 |
+| Bare (no wrapper) | `&#x2192;` | ~15 |
+
+Representative operators: `&#x25A1;` (box/necessity), `&#x25C7;` (diamond/possibility), `&#x2227;` (conjunction), `&#x2228;` (disjunction), `&#x00AC;` (negation), `&#x2200;` (universal), `&#x2203;` (existential).
+
+#### Rendering Decision Tree
+
+When adding formalism to a Slidev slide, follow this decision tree:
+
+1. **Compound operator** (one of the 4 custom glyphs: boxright, diamondright, circleright, dotcircleright)?
+   - Use `<LogosOp op="..." />`
+
+2. **Standard operator in HTML context** (inline with slide text)?
+   - **Recommended**: Unicode literal with shared class -- `<span class="logos-symbol">&#x25A1;</span>`
+   - **Current (legacy)**: Raw HTML entity with ad-hoc font wrapper
+
+3. **Mathematical prose** (equations, formal definitions)?
+   - Use native KaTeX `$...$` syntax -- Slidev has built-in KaTeX support with no custom configuration needed
+
+#### Maintenance Notes
+
+**SVG geometry duplication**: LogosOp.vue and KaTex.vue define identical SVG paths for the same 4 operators. KaTex.vue uses `vertical-align: -0.15em` while LogosOp.vue uses `-0.1em`. If either file is modified, check the other for consistency.
+
+**Trigger for separate context file**: If the operator count doubles (8+ compound operators) or a second formalism-heavy deck is created, extract this section into a dedicated `custom-formalism-patterns.md` context file and add it to `index.json`.
+
+**Follow-on recommendations**:
+- **Unified geometry module**: Create `setup/logos-operators.ts` exporting a shared SVG registry consumed by both Vue components, eliminating duplication and the vertical-align discrepancy
+- **Dead code cleanup**: Remove or archive `KaTex.vue` and the `\htmlStyle` macros in `setup/katex.ts` if inline math prose is not planned
+- **Entity-to-Unicode migration**: Replace `&#xNNNN;` entities with Unicode literals and consolidate font wrappers to a single `.logos-symbol` CSS class
+- **Accessibility**: Add `aria-label` and `role="img"` to LogosOp.vue SVG output
+
 ## Library Integration Patterns
 
 ### Reading Content from Library

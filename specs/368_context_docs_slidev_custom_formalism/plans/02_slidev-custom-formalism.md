@@ -1,7 +1,7 @@
 # Implementation Plan: Custom Formalism Rendering Documentation (Revised)
 
 - **Task**: 368 - context_docs_slidev_custom_formalism
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1.5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/368_context_docs_slidev_custom_formalism/reports/01_slidev-custom-formalism.md, specs/368_context_docs_slidev_custom_formalism/reports/02_team-research.md
@@ -66,7 +66,7 @@ No ROAD_MAP.md found (file does not exist at specs/ROAD_MAP.md).
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Add Custom Formalism Section to slidev-deck-template.md [NOT STARTED]
+### Phase 1: Add Custom Formalism Section to slidev-deck-template.md [COMPLETED]
 
 **Goal**: Insert a "Custom Formalism Rendering" section into the Slidev deck template documentation that accurately reflects the current state: active LogosOp.vue, dead KaTeX infrastructure, and inconsistent HTML entities.
 
@@ -97,7 +97,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Update deck/README.md Component Documentation [NOT STARTED]
+### Phase 2: Update deck/README.md Component Documentation [IN PROGRESS]
 
 **Goal**: Add LogosOp.vue and KaTex.vue entries to the deck library README component table with accurate status annotations reflecting active vs inactive usage.
 
