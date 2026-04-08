@@ -1,7 +1,7 @@
 # Implementation Plan: Unified Ctrl-' Dictation Keymap
 
 - **Task**: 377 - ctrl_keymap_dictation_neovim_claude_sidebar
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2 hours
 - **Dependencies**: None (Kitty keyboard protocol already enabled in WezTerm)
 - **Research Inputs**: specs/377_ctrl_keymap_dictation_neovim_claude_sidebar/reports/02_unified-keymap-research.md
@@ -64,7 +64,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Claude Code Keybindings and Context-Aware Routing Helper [NOT STARTED]
+### Phase 1: Claude Code Keybindings and Context-Aware Routing Helper [COMPLETED]
 
 **Goal**: Create the Claude Code keybindings file and add a helper function in stt/init.lua that detects whether the current buffer is a Claude Code terminal and routes accordingly.
 
@@ -91,7 +91,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Unified Keymaps and Terminal Insertion Fix [NOT STARTED]
+### Phase 2: Unified Keymaps and Terminal Insertion Fix [COMPLETED]
 
 **Goal**: Replace all existing STT keymaps with context-aware `<C-'>` mappings across three modes (normal, insert, terminal), fix the terminal insertion bug in `transcribe_and_insert()`, and expose recording state via `vim.g.stt_recording`.
 
@@ -128,7 +128,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Documentation and Header Update [NOT STARTED]
+### Phase 3: Documentation and Header Update [COMPLETED]
 
 **Goal**: Update the stt/init.lua module header documentation to reflect the new unified keymap, and verify all changes work end-to-end.
 
