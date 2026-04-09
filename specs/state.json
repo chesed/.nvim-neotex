@@ -5,11 +5,11 @@
     {
       "project_number": 385,
       "project_name": "research_zed_ide_installation",
-      "status": "researched",
+      "status": "planned",
       "language": "general",
       "created": "2026-04-09T16:35:52Z",
-      "last_updated": "2026-04-09T17:45:00Z",
-      "session_id": "sess_1775754995_cd08d8",
+      "last_updated": "2026-04-09T17:38:48Z",
+      "session_id": "sess_1775756131_0f4693",
       "researched": "2026-04-09T17:45:00Z",
       "next_artifact_number": 3,
       "artifacts": [
@@ -22,8 +22,44 @@
           "path": "specs/385_research_zed_ide_installation/reports/02_superdoc-workflows.md",
           "type": "research",
           "summary": "SuperDoc MCP workflow research: installation, tool inventory, ACP/MCP config, 5 workflows, SharePoint mitigation, filetypes integration"
+        },
+        {
+          "path": "specs/385_research_zed_ide_installation/plans/01_zed-installation-guide.md",
+          "type": "plan",
+          "summary": "4-phase plan to create a partner-facing Zed + Claude Code + Office guide for macOS"
         }
-      ]
+      ],
+      "plan_metadata": {
+        "phases": 4,
+        "total_effort_hours": 3,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_team-research.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-09"
+          },
+          {
+            "path": "reports/02_superdoc-workflows.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-09"
+          }
+        ]
+      }
     },
     {
       "project_number": 384,
