@@ -30,7 +30,7 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 ## Trigger Conditions
 
 This skill activates when:
-- Task status allows planning (not_started, researched)
+- Task status is any non-terminal state (not completed, not abandoned)
 - /plan command is invoked
 - Implementation approach needs to be formalized
 
@@ -61,9 +61,9 @@ status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
 
-# Validate status
-if [ "$status" = "completed" ]; then
-  return error "Task already completed"
+# Validate status (only block terminal states)
+if [ "$status" = "completed" ] || [ "$status" = "abandoned" ]; then
+  return error "Task is in terminal state [$status]"
 fi
 ```
 
@@ -109,37 +109,31 @@ EOF
 
 ### Stage 3a: Calculate Artifact Number
 
-Read `next_artifact_number` from state.json and use (current-1) since plan stays in the same round as research:
+Count existing plan files to determine the next artifact number. This handles re-planning naturally since each new plan gets a unique number.
 
 ```bash
-# Read next_artifact_number from state.json
-next_num=$(jq -r --argjson num "$task_number" \
-  '.active_projects[] | select(.project_number == $num) | .next_artifact_number // 1' \
-  specs/state.json)
-
-# Plan uses (current - 1) to stay in the same round as research
-# If next_artifact_number is 1 (no research yet), use 1
-if [ "$next_num" -le 1 ]; then
-  artifact_number=1
-else
-  artifact_number=$((next_num - 1))
-fi
-
-# Fallback for legacy tasks: count existing plan artifacts
-if [ "$next_num" = "null" ] || [ -z "$next_num" ]; then
-  padded_num=$(printf "%03d" "$task_number")
-  count=$(ls "specs/${padded_num}_${project_name}/plans/"*[0-9][0-9]*.md 2>/dev/null | wc -l)
-  artifact_number=$((count + 1))
-fi
+# Count existing plan artifacts to determine next number
+padded_num=$(printf "%03d" "$task_number")
+plan_count=$(ls "specs/${padded_num}_${project_name}/plans/"*.md 2>/dev/null | wc -l)
+artifact_number=$((plan_count + 1))
 
 artifact_padded=$(printf "%02d" "$artifact_number")
 ```
 
-**Note**: Plan does NOT increment `next_artifact_number`. Only research advances the sequence.
+**Note**: Plan does NOT increment `next_artifact_number` in state.json. Only research advances the sequence. Plan numbering is independent via file counting.
 
 ---
 
 ### Stage 4: Prepare Delegation Context
+
+**Prior plan discovery**: Find the latest existing plan file (if any) to pass as reference context.
+
+```bash
+# Discover prior plan (if any)
+padded_num=$(printf "%03d" "$task_number")
+prior_plan_path=$(ls -1 "specs/${padded_num}_${project_name}/plans/"*.md 2>/dev/null | sort -V | tail -1)
+# prior_plan_path will be empty if no prior plans exist
+```
 
 Prepare delegation context for the subagent:
 
@@ -157,12 +151,13 @@ Prepare delegation context for the subagent:
   },
   "artifact_number": "{artifact_number from Stage 3a}",
   "research_path": "{path to research report if exists}",
+  "prior_plan_path": "{path to latest prior plan if exists}",
   "roadmap_path": "specs/ROAD_MAP.md",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json"
 }
 ```
 
-**Note**: The `artifact_number` field tells the agent which sequence number to use for artifact naming (e.g., `01`, `02`). Plan uses the same round number as the research that preceded it.
+**Note**: The `artifact_number` field tells the agent which sequence number to use for artifact naming (e.g., `01`, `02`). Plan numbering is based on file counting, independent of `next_artifact_number`.
 
 ---
 

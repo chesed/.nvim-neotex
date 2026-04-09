@@ -85,7 +85,7 @@ No ROAD_MAP.md found.
 
 ---
 
-### Phase 2: Update skill-planner SKILL.md [NOT STARTED]
+### Phase 2: Update skill-planner SKILL.md [COMPLETED]
 
 **Goal**: Remove status gates, add prior plan discovery, change artifact numbering, and pass `prior_plan_path` in delegation context.
 
