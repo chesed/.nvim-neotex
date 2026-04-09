@@ -1,7 +1,7 @@
 # Implementation Plan: Zed + Claude Code + Office Guide
 
 - **Task**: 385 - Research Zed IDE installation
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 3 hours
 - **Dependencies**: None
 - **Research Inputs**: reports/01_team-research.md, reports/02_superdoc-workflows.md
@@ -68,7 +68,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Guide Structure and Installation Section [NOT STARTED]
+### Phase 1: Guide Structure and Installation Section [COMPLETED]
 
 **Goal**: Create the guide document with front matter, table of contents, and the complete installation section -- the most critical part that must be minimal and clear.
 
@@ -101,7 +101,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Functionality Overview Sections [NOT STARTED]
+### Phase 2: Functionality Overview Sections [COMPLETED]
 
 **Goal**: Write the "What Can It Do?" sections that explain each tool's capabilities in plain language, so the partner understands what's available before diving into workflows.
 
@@ -126,7 +126,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Workflow Patterns Section [NOT STARTED]
+### Phase 3: Workflow Patterns Section [COMPLETED]
 
 **Goal**: Write practical, copy-paste-ready workflow examples the partner can follow for their most common Office tasks.
 
@@ -153,7 +153,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Quick Reference, Polish, and Final Review [NOT STARTED]
+### Phase 4: Quick Reference, Polish, and Final Review [COMPLETED]
 
 **Goal**: Add a quick-reference cheat sheet, review the entire guide for tone and length, and ensure it reads as a cohesive document.
 
