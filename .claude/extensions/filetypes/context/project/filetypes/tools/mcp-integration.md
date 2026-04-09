@@ -70,6 +70,37 @@ Wraps pandoc for universal format conversion.
 - LaTeX -> PDF, HTML
 - Markdown -> Beamer slides
 
+### superdoc-mcp
+
+**Repository**: `@superdoc-dev/mcp`
+
+Read-write MCP server for DOCX documents. Unlike markitdown (read-only), SuperDoc supports in-place editing, tracked changes, and document creation.
+
+**Capabilities**:
+- Open, read, edit, and save DOCX documents
+- Search and replace with tracked changes (author attribution)
+- Add paragraphs, headings, and tables
+- Create new DOCX documents from scratch
+
+**Configuration**:
+```json
+{
+  "mcpServers": {
+    "superdoc": {
+      "command": "npx",
+      "args": ["-y", "@superdoc-dev/mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+**Tools**: `open_document`, `close_document`, `save_document`, `get_document_text`, `search_and_replace`, `search_and_replace_with_tracked_changes`, `add_paragraph`, `add_heading`, `add_table`, `create_document`
+
+**Used By**: `/edit` command, `docx-edit-agent`
+
+See `superdoc-integration.md` for the complete tool inventory and usage patterns.
+
 ### md-converter
 
 **Functionality**: Markdown to Office format conversion

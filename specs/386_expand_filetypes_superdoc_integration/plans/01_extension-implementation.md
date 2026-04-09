@@ -1,7 +1,7 @@
 # Implementation Plan: Filetypes SuperDoc Extension
 
 - **Task**: 386 - expand_filetypes_superdoc_integration
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: Task 385 (Zed + Claude Code guide)
 - **Research Inputs**: reports/03_optimal-extension-design.md, reports/01_team-research.md, reports/02_word-reload-workflow.md
@@ -70,7 +70,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Manifest and MCP Server Declarations [NOT STARTED]
+### Phase 1: Manifest and MCP Server Declarations [COMPLETED]
 
 **Goal**: Update manifest.json with MCP servers and new component registrations, establishing the extension structure.
 
@@ -96,7 +96,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Context Files [NOT STARTED]
+### Phase 2: Context Files [COMPLETED]
 
 **Goal**: Create the two new context documents that the agent will reference: SuperDoc tool inventory and Office editing workflow patterns.
 
@@ -137,7 +137,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Command and Skill [NOT STARTED]
+### Phase 3: Command and Skill [COMPLETED]
 
 **Goal**: Create the `/edit` command file and `skill-docx-edit` skill that route user requests to the docx-edit-agent.
 
@@ -177,7 +177,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Agent Implementation [NOT STARTED]
+### Phase 4: Agent Implementation [COMPLETED]
 
 **Goal**: Create the docx-edit-agent with the full 6-stage execution flow including SuperDoc MCP integration and AppleScript Word automation.
 
@@ -222,7 +222,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 5: Extension Documentation and Existing File Updates [NOT STARTED]
+### Phase 5: Extension Documentation and Existing File Updates [COMPLETED]
 
 **Goal**: Update EXTENSION.md, and existing context files (mcp-integration.md, conversion-tables.md, tool-detection.md) to integrate the new editing capability.
 

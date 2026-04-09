@@ -56,6 +56,30 @@ pandoc_version=$(pandoc --version 2>/dev/null | head -n1 | cut -d' ' -f2 || echo
 typst_version=$(typst --version 2>/dev/null | cut -d' ' -f2 || echo "unknown")
 ```
 
+## MCP Server Detection
+
+### SuperDoc MCP
+
+SuperDoc is an MCP server for DOCX editing. Detection differs from CLI tools because MCP tools are accessed through the MCP protocol rather than the filesystem.
+
+```bash
+# Check if python-docx is available as fallback
+has_python_docx=$(python3 -c "import docx" 2>/dev/null && echo "yes" || echo "no")
+```
+
+**MCP availability check**: Attempt to call `open_document` with a test path. If the MCP tool responds (even with an error about the file), SuperDoc is available. If the tool is not found, fall back to python-docx.
+
+```python
+# Conceptual detection logic
+def detect_docx_editor():
+    if mcp_available("superdoc"):  # open_document tool responds
+        return "superdoc"
+    elif python_import("docx"):     # python-docx installed
+        return "python-docx"
+    else:
+        return None
+```
+
 ## Tool Fallback Chains
 
 ### Document Conversion (to Markdown)
@@ -76,6 +100,11 @@ typst_version=$(typst --version 2>/dev/null | cut -d' ' -f2 || echo "unknown")
 ### Presentation Extraction
 1. **Primary**: python-pptx (full slide/notes/image access)
 2. **Fallback**: markitdown (text extraction only)
+3. **Basic**: N/A - require at least one tool
+
+### DOCX Editing (in-place)
+1. **Primary**: SuperDoc MCP (full read-write, tracked changes, document creation)
+2. **Fallback**: python-docx (basic read-write, no tracked changes)
 3. **Basic**: N/A - require at least one tool
 
 ## Error Messages with Installation Guidance
@@ -125,6 +154,8 @@ echo "  pip install $PIP_PACKAGE"
 | openpyxl | python3Packages.openpyxl | python3-openpyxl | - | openpyxl |
 | python-pptx | python3Packages.python-pptx | - | - | python-pptx |
 | xlsx2csv | python3Packages.xlsx2csv | - | - | xlsx2csv |
+| superdoc | - | - | - | @superdoc-dev/mcp (npx) |
+| python-docx | python3Packages.python-docx | python3-python-docx | - | python-docx |
 
 ## Aggregated Detection Function
 

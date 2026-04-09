@@ -38,6 +38,19 @@
 
 Supported annotation types: highlight, note, underline, strikeout, freetext, stamp, ink
 
+## Edit Operations (via /edit)
+
+Edit operations modify documents in-place, unlike format conversion which creates new files.
+
+| Operation | File Type | Primary Tool | Fallback | Notes |
+|-----------|----------|--------------|----------|-------|
+| Edit DOCX | .docx | SuperDoc MCP | python-docx | Tracked changes supported (SuperDoc only) |
+| Batch edit DOCX | directory | SuperDoc MCP | python-docx | Iterates all .docx files |
+| Create DOCX | .docx (new) | SuperDoc MCP | python-docx | Headings, paragraphs, tables |
+| Edit XLSX | .xlsx | openpyxl MCP | - | Planned, not yet available |
+
+**Key distinction**: `/convert` creates a new file in a different format. `/edit` modifies the original file in-place. Both use different tool chains and agents.
+
 ## Command Usage Examples
 
 ```bash
@@ -61,6 +74,11 @@ Supported annotation types: highlight, note, underline, strikeout, freetext, sta
 /scrape paper.pdf notes.md                     # -> notes.md
 /scrape paper.pdf --format json                # -> paper_annotations.md (JSON)
 /scrape paper.pdf --types highlight,note       # -> only highlights and notes
+
+# In-place document editing
+/edit contract.docx "Replace ACME Corp with NewCo Inc."
+/edit ~/Documents/Contracts/ "Replace old name with new name in all files"
+/edit --new memo.docx "Create Q2 budget review with summary table"
 ```
 
 ## Prerequisites
@@ -115,3 +133,5 @@ home.packages = with pkgs; [
 | pypdf     | PDF annotation extraction     | /scrape (fallback)   |
 | pdfannots | PDF annotation CLI extraction | /scrape (fallback)   |
 | pikepdf   | Decrypt encrypted PDFs        | /scrape (preprocess) |
+| superdoc  | DOCX read-write editing       | /edit (primary)      |
+| python-docx | DOCX read-write (no tracking) | /edit (fallback)   |

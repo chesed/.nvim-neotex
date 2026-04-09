@@ -10,13 +10,15 @@
           "document-agent",
           "spreadsheet-agent",
           "presentation-agent",
-          "scrape-agent"
+          "scrape-agent",
+          "docx-edit-agent"
         ],
         "languages": [],
         "commands": [
           "/convert",
           "/table",
-          "/slides"
+          "/slides",
+          "/edit"
         ]
       },
       "domain": "project",
@@ -33,13 +35,15 @@
           "document-agent",
           "spreadsheet-agent",
           "presentation-agent",
-          "scrape-agent"
+          "scrape-agent",
+          "docx-edit-agent"
         ],
         "languages": [],
         "commands": [
           "/convert",
           "/table",
-          "/slides"
+          "/slides",
+          "/edit"
         ]
       },
       "domain": "project",
@@ -180,6 +184,40 @@
       "domain": "project",
       "subdomain": "filetypes",
       "summary": "Filetypes extension overview and navigation"
+    },
+    {
+      "path": "project/filetypes/tools/superdoc-integration.md",
+      "description": "SuperDoc MCP server configuration and tool inventory for DOCX editing",
+      "line_count": 120,
+      "load_when": {
+        "agents": [
+          "docx-edit-agent"
+        ],
+        "languages": [],
+        "commands": [
+          "/edit"
+        ]
+      },
+      "domain": "project",
+      "subdomain": "filetypes",
+      "summary": "SuperDoc MCP server configuration and tool inventory for DOCX editing"
+    },
+    {
+      "path": "project/filetypes/patterns/office-edit-patterns.md",
+      "description": "Office document editing patterns: Word AppleScript integration, tracked changes, batch editing",
+      "line_count": 150,
+      "load_when": {
+        "agents": [
+          "docx-edit-agent"
+        ],
+        "languages": [],
+        "commands": [
+          "/edit"
+        ]
+      },
+      "domain": "project",
+      "subdomain": "filetypes",
+      "summary": "Office document editing patterns: Word AppleScript integration, tracked changes, batch editing"
     }
   ]
 }

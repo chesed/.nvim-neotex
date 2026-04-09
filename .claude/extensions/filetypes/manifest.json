@@ -1,7 +1,7 @@
 {
   "name": "filetypes",
-  "version": "2.1.0",
-  "description": "File format conversion and manipulation for documents, spreadsheets, and presentations",
+  "version": "2.2.0",
+  "description": "File format conversion, manipulation, and in-place editing for documents, spreadsheets, and presentations",
   "language": null,
   "dependencies": [],
   "provides": {
@@ -10,19 +10,22 @@
       "document-agent.md",
       "spreadsheet-agent.md",
       "presentation-agent.md",
-      "scrape-agent.md"
+      "scrape-agent.md",
+      "docx-edit-agent.md"
     ],
     "skills": [
       "skill-filetypes",
       "skill-spreadsheet",
       "skill-presentation",
-      "skill-scrape"
+      "skill-scrape",
+      "skill-docx-edit"
     ],
     "commands": [
       "convert.md",
       "table.md",
       "slides.md",
-      "scrape.md"
+      "scrape.md",
+      "edit.md"
     ],
     "rules": [],
     "context": [
@@ -46,5 +49,16 @@
       "target": "opencode.json"
     }
   },
-  "mcp_servers": {}
+  "mcp_servers": {
+    "superdoc": {
+      "command": "npx",
+      "args": ["-y", "@superdoc-dev/mcp"],
+      "env": {}
+    },
+    "openpyxl": {
+      "command": "npx",
+      "args": ["-y", "@jonemo/openpyxl-mcp"],
+      "env": {}
+    }
+  }
 }
