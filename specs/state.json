@@ -99,16 +99,24 @@
     {
       "project_number": 380,
       "project_name": "meeting_skill_command",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "task_type": "meeting",
       "created": "2026-04-08T22:15:32Z",
-      "last_updated": "2026-04-08T22:15:32Z",
+      "last_updated": "2026-04-09T00:44:31Z",
       "dependencies": [
         379
       ],
-      "artifacts": [],
-      "next_artifact_number": 1
+      "artifacts": [
+        {
+          "path": "specs/380_meeting_skill_command/reports/01_skill-command-research.md",
+          "type": "research",
+          "summary": "Skill-meeting and meeting.md command design: no forcing questions, 3 input types, direct delegation"
+        }
+      ],
+      "next_artifact_number": 2,
+      "session_id": "sess_1775695291_d2241f",
+      "researched": "2026-04-09T00:44:31Z"
     },
     {
       "project_number": 381,
