@@ -22,7 +22,7 @@ next_project_number: 382
 
 ### 381. Update manifest.json, index-entries.json, and routing for /meeting command
 - **Effort**: 30 minutes
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: 378, 379, 380
 
@@ -30,7 +30,7 @@ next_project_number: 382
 
 ### 380. Create skill-meeting and meeting.md command
 - **Effort**: 1 hour
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: 379
 
