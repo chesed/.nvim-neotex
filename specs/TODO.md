@@ -1,21 +1,31 @@
 ---
-next_project_number: 384
+next_project_number: 385
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-04-08. 4 active tasks remaining.*
+*Updated 2026-04-09. 5 active tasks remaining.*
 
 ### Pending
 
+- **384** [NOT STARTED] -- Improve /convert command-skill-agent pipeline in filetypes extension
 - **382** [COMPLETED] -- Simplify /revise command with command + skill + agent architecture
 - **383** [COMPLETED] -- Simplify /plan command, remove status gates, reference prior plan
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 384. Improve /convert command-skill-agent pipeline in filetypes extension
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Language**: meta
+
+**Description**: Improve the /convert command-skill-agent according to best practices while conforming to current .claude/ patterns. The markitdown pipeline is currently broken (bad Python interpreter); pymupdf text extraction works and is the recommended extraction tool. Refactor the filetypes/ extension's convert pipeline to use pymupdf as the primary extraction backend, fix or replace the broken markitdown integration, and ensure the command-skill-agent architecture follows established .claude/ conventions.
+
+---
 
 ### 382. Simplify /revise command with command + skill + agent architecture
 - **Effort**: TBD

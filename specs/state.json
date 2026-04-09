@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 384,
+  "next_project_number": 385,
   "active_projects": [
+    {
+      "project_number": 384,
+      "project_name": "improve_convert_command_skill_agent",
+      "status": "not_started",
+      "language": "meta",
+      "created": "2026-04-09T16:15:53Z",
+      "last_updated": "2026-04-09T16:15:53Z"
+    },
     {
       "project_number": 87,
       "project_name": "investigate_wezterm_terminal_directory_change",
