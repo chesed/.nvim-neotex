@@ -43,13 +43,21 @@
     {
       "project_number": 389,
       "project_name": "create_funds_command_present",
-      "status": "researching",
+      "status": "researched",
       "language": "meta",
       "description": "Create /funds command for present extension: funding landscape analysis with funder portfolio mapping, cost-effectiveness analysis, budget justification verification, funding gap analysis. Adapts founder /finance command audit/model/forecast modes for research funding.",
       "created": "2026-04-09T19:39:14Z",
-      "last_updated": "2026-04-09T19:42:19Z",
+      "last_updated": "2026-04-09T19:46:22Z",
       "dependencies": [],
-      "session_id": "sess_1775763708_45d501"
+      "session_id": "sess_1775763708_45d501",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/389_create_funds_command_present/reports/01_funds-command-research.md",
+          "type": "research",
+          "summary": "Research report: /funds command design, modes, forcing questions, deliverables"
+        }
+      ]
     },
     {
       "project_number": 390,
@@ -61,7 +69,14 @@
       "last_updated": "2026-04-09T19:46:07Z",
       "dependencies": [],
       "session_id": "sess_1775763708_45d501",
-      "next_artifact_number": 2
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/390_create_talk_command_present/reports/01_talk-command-research.md",
+          "type": "research",
+          "summary": "Research report covering /talk command architecture, talk modes, slide structures, content templates, components, themes, and integration with present extension"
+        }
+      ]
     },
     {
       "project_number": 391,

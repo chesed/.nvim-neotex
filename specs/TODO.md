@@ -12,7 +12,7 @@ next_project_number: 392
 
 - **387** [RESEARCHED] -- Create /budget command for present extension
 - **388** [RESEARCHED] -- Create /timeline command for present extension
-- **389** [RESEARCHING] -- Create /funds command for present extension
+- **389** [RESEARCHED] -- Create /funds command for present extension
 - **390** [RESEARCHED] -- Create /talk command for present extension
 - **391** [NOT STARTED] -- Integrate new commands into present extension manifest (depends: 387-390)
 - **384** [RESEARCHED] -- Improve /convert command-skill-agent pipeline in filetypes extension
@@ -40,8 +40,9 @@ next_project_number: 392
 
 ### 389. Create /funds command for present extension
 - **Effort**: 3-5 hours
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Language**: meta
+- **Research**: [01_funds-command-research.md](389_create_funds_command_present/reports/01_funds-command-research.md)
 
 **Description**: Create /funds command for funding landscape analysis: funder portfolio mapping, cost-effectiveness analysis, budget justification verification, funding gap analysis. Adapts founder /finance command audit/model/forecast modes for research funding. Deliverables: command, skill (skill-funds), agent (funds-agent), context files (domain, patterns, templates for funding analysis).
 
@@ -49,6 +50,7 @@ next_project_number: 392
 - **Effort**: 3-5 hours
 - **Status**: [RESEARCHED]
 - **Language**: meta
+- **Research**: [01_timeline-command-research.md](388_create_timeline_command_present/reports/01_timeline-command-research.md)
 
 **Description**: Create /timeline command for research project timelines: specific aims schedules, regulatory milestones (IRB, IACUC), reporting periods, no-cost extensions. Adapts founder /project command WBS/PERT/Gantt for medical research. Deliverables: command, skill (skill-timeline), agent (timeline-agent), context files (domain, patterns, templates for research timelines).
 
