@@ -1,7 +1,7 @@
 # Implementation Plan: Create /timeline Command for Present Extension
 
 - **Task**: 388 - Create /timeline command for present extension
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: None (sibling tasks 387, 389, 390 are independent; task 391 handles manifest integration separately)
 - **Research Inputs**: specs/388_create_timeline_command_present/reports/01_timeline-command-research.md

@@ -1,7 +1,7 @@
 # Implementation Plan: Create /funds Command for Present Extension
 
 - **Task**: 389 - Create /funds command for present extension
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: None (sibling tasks 387, 388, 390 are parallel; 391 integrates all)
 - **Research Inputs**: specs/389_create_funds_command_present/reports/01_funds-command-research.md
@@ -53,7 +53,7 @@ This plan creates the `/funds` command for the present extension, adapting the f
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Create /funds Command Definition [NOT STARTED]
+### Phase 1: Create /funds Command Definition [COMPLETED]
 
 - **Goal:** Create the command file that defines `/funds` syntax, mode detection, STAGE 0 forcing questions, and task creation flow.
 - **Tasks:**
@@ -68,7 +68,7 @@ Phases within the same wave can execute in parallel.
 - **Timing:** 1 hour
 - **Depends on:** none
 
-### Phase 2: Create skill-funds Thin Wrapper [NOT STARTED]
+### Phase 2: Create skill-funds Thin Wrapper [IN PROGRESS]
 
 - **Goal:** Create the skill file that routes /funds requests to funds-agent via Task tool, with internal postflight.
 - **Tasks:**

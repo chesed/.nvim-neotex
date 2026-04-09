@@ -10,10 +10,10 @@ next_project_number: 392
 
 ### Pending
 
-- **387** [PLANNED] -- Create /budget command for present extension
-- **388** [PLANNED] -- Create /timeline command for present extension
-- **389** [PLANNED] -- Create /funds command for present extension
-- **390** [PLANNED] -- Create /talk command for present extension
+- **387** [IMPLEMENTING] -- Create /budget command for present extension
+- **388** [IMPLEMENTING] -- Create /timeline command for present extension
+- **389** [IMPLEMENTING] -- Create /funds command for present extension
+- **390** [IMPLEMENTING] -- Create /talk command for present extension
 - **391** [NOT STARTED] -- Integrate new commands into present extension manifest (depends: 387-390)
 - **384** [RESEARCHED] -- Improve /convert command-skill-agent pipeline in filetypes extension
 - **382** [COMPLETED] -- Simplify /revise command with command + skill + agent architecture
@@ -33,7 +33,7 @@ next_project_number: 392
 
 ### 390. Create /talk command for present extension
 - **Effort**: 3-5 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Research**: [01_talk-command-research.md](390_create_talk_command_present/reports/01_talk-command-research.md)
 - **Plan**: [01_talk-command-plan.md](390_create_talk_command_present/plans/01_talk-command-plan.md)
@@ -42,7 +42,7 @@ next_project_number: 392
 
 ### 389. Create /funds command for present extension
 - **Effort**: 3-5 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Research**: [01_funds-command-research.md](389_create_funds_command_present/reports/01_funds-command-research.md)
 - **Plan**: [01_funds-command-plan.md](389_create_funds_command_present/plans/01_funds-command-plan.md)
@@ -51,7 +51,7 @@ next_project_number: 392
 
 ### 388. Create /timeline command for present extension
 - **Effort**: 3-5 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Research**: [01_timeline-command-research.md](388_create_timeline_command_present/reports/01_timeline-command-research.md)
 - **Plan**: [01_timeline-command-plan.md](388_create_timeline_command_present/plans/01_timeline-command-plan.md)
@@ -60,7 +60,7 @@ next_project_number: 392
 
 ### 387. Create /budget command for present extension
 - **Effort**: 3-5 hours
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Language**: meta
 - **Research**: [01_budget-command-research.md](387_create_budget_command_present/reports/01_budget-command-research.md)
 - **Plan**: [01_budget-command-plan.md](387_create_budget_command_present/plans/01_budget-command-plan.md)

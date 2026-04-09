@@ -5,13 +5,13 @@
     {
       "project_number": 387,
       "project_name": "create_budget_command_present",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "description": "Create /budget command for present extension: grant budget spreadsheets with NIH modular/detailed, NSF, F&A rates, cost-sharing, sub-awards. Adapts founder /sheet command with forcing questions and XLSX generation for medical research grant budgets.",
       "created": "2026-04-09T19:39:14Z",
-      "last_updated": "2026-04-09T19:52:21Z",
+      "last_updated": "2026-04-09T19:56:03Z",
       "dependencies": [],
-      "session_id": "sess_1775764151_429db2",
+      "session_id": "sess_1775764546_dffa92",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -58,13 +58,13 @@
     {
       "project_number": 388,
       "project_name": "create_timeline_command_present",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "description": "Create /timeline command for present extension: research project timelines with specific aims schedules, regulatory milestones (IRB, IACUC), reporting periods, no-cost extensions. Adapts founder /project command WBS/PERT/Gantt capabilities for medical research.",
       "created": "2026-04-09T19:39:14Z",
-      "last_updated": "2026-04-09T19:52:21Z",
+      "last_updated": "2026-04-09T19:56:07Z",
       "dependencies": [],
-      "session_id": "sess_1775764151_429db2",
+      "session_id": "sess_1775764546_dffa92",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -110,13 +110,13 @@
     {
       "project_number": 389,
       "project_name": "create_funds_command_present",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "description": "Create /funds command for present extension: funding landscape analysis with funder portfolio mapping, cost-effectiveness analysis, budget justification verification, funding gap analysis. Adapts founder /finance command audit/model/forecast modes for research funding.",
       "created": "2026-04-09T19:39:14Z",
-      "last_updated": "2026-04-09T19:52:33Z",
+      "last_updated": "2026-04-09T19:56:12Z",
       "dependencies": [],
-      "session_id": "sess_1775764151_429db2",
+      "session_id": "sess_1775764546_dffa92",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -163,13 +163,13 @@
     {
       "project_number": 390,
       "project_name": "create_talk_command_present",
-      "status": "planned",
+      "status": "implementing",
       "language": "meta",
       "description": "Create /talk command for present extension: research presentations via Slidev with conference talks, poster sessions, grant defense, research seminars, journal clubs. Adapts founder /deck command material synthesis and slide library for medical research presentations.",
       "created": "2026-04-09T19:39:14Z",
-      "last_updated": "2026-04-09T19:53:08Z",
+      "last_updated": "2026-04-09T19:56:15Z",
       "dependencies": [],
-      "session_id": "sess_1775764151_429db2",
+      "session_id": "sess_1775764546_dffa92",
       "next_artifact_number": 2,
       "artifacts": [
         {

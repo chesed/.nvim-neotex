@@ -1,7 +1,7 @@
 # Implementation Plan: Create /budget Command for Present Extension
 
 - **Task**: 387 - Create /budget command for present extension
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: None (task 391 depends on this for manifest integration)
 - **Research Inputs**: specs/387_create_budget_command_present/reports/01_budget-command-research.md
