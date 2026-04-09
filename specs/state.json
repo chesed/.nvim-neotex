@@ -8,15 +8,20 @@
       "status": "researched",
       "language": "general",
       "created": "2026-04-09T16:35:52Z",
-      "last_updated": "2026-04-09T17:03:25Z",
-      "session_id": "sess_1775753646_d9c37c",
-      "researched": "2026-04-09T17:03:25Z",
-      "next_artifact_number": 2,
+      "last_updated": "2026-04-09T17:45:00Z",
+      "session_id": "sess_1775754995_cd08d8",
+      "researched": "2026-04-09T17:45:00Z",
+      "next_artifact_number": 3,
       "artifacts": [
         {
           "path": "specs/385_research_zed_ide_installation/reports/01_team-research.md",
           "type": "research",
           "summary": "Team research with 4 teammates: Zed IDE, Office workflows, claude-office-skills, SuperDoc MCP"
+        },
+        {
+          "path": "specs/385_research_zed_ide_installation/reports/02_superdoc-workflows.md",
+          "type": "research",
+          "summary": "SuperDoc MCP workflow research: installation, tool inventory, ACP/MCP config, 5 workflows, SharePoint mitigation, filetypes integration"
         }
       ]
     },
