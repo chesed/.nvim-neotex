@@ -99,11 +99,11 @@
     {
       "project_number": 380,
       "project_name": "meeting_skill_command",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "task_type": "meeting",
       "created": "2026-04-08T22:15:32Z",
-      "last_updated": "2026-04-09T00:44:31Z",
+      "last_updated": "2026-04-09T00:47:13Z",
       "dependencies": [
         379
       ],
@@ -112,11 +112,30 @@
           "path": "specs/380_meeting_skill_command/reports/01_skill-command-research.md",
           "type": "research",
           "summary": "Skill-meeting and meeting.md command design: no forcing questions, 3 input types, direct delegation"
+        },
+        {
+          "path": "specs/380_meeting_skill_command/plans/01_skill-command-plan.md",
+          "type": "plan",
+          "summary": "2-phase plan: skill-meeting SKILL.md + meeting.md command"
         }
       ],
       "next_artifact_number": 2,
       "session_id": "sess_1775695291_d2241f",
-      "researched": "2026-04-09T00:44:31Z"
+      "researched": "2026-04-09T00:44:31Z",
+      "planned": "2026-04-09T00:47:13Z",
+      "plan_metadata": {
+        "phases": 2,
+        "total_effort_hours": 1.5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1,
+            2
+          ]
+        ]
+      }
     },
     {
       "project_number": 381,
