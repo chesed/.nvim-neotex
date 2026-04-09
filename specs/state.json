@@ -5,10 +5,18 @@
     {
       "project_number": 384,
       "project_name": "improve_convert_command_skill_agent",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "created": "2026-04-09T16:15:53Z",
-      "last_updated": "2026-04-09T16:15:53Z"
+      "last_updated": "2026-04-09T16:30:00Z",
+      "session_id": "sess_1775751408_a98f4b",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/384_improve_convert_command_skill_agent/reports/01_convert-pipeline-analysis.md",
+          "summary": "Analysis of /convert pipeline: markitdown broken, pymupdf as replacement, 6-priority refactoring plan"
+        }
+      ]
     },
     {
       "project_number": 87,
