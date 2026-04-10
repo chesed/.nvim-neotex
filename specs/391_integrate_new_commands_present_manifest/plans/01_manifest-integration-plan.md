@@ -1,7 +1,7 @@
 # Implementation Plan: Task #391
 
 - **Task**: 391 - Integrate new commands into present extension manifest
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 1.5 hours
 - **Dependencies**: 387, 388, 389, 390 (all completed)
 - **Research Inputs**: specs/391_integrate_new_commands_present_manifest/reports/01_manifest-integration.md
@@ -60,7 +60,7 @@ No ROAD_MAP.md found.
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Update manifest.json [NOT STARTED]
+### Phase 1: Update manifest.json [COMPLETED]
 
 **Goal**: Register all new agents, skills, commands in provides and add routing entries
 
@@ -87,7 +87,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Update index-entries.json [NOT STARTED]
+### Phase 2: Update index-entries.json [COMPLETED]
 
 **Goal**: Add index entries for all 9 new context files with command-specific load_when
 
@@ -118,7 +118,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Update EXTENSION.md, README.md, and opencode-agents.json [NOT STARTED]
+### Phase 3: Update EXTENSION.md, README.md, and opencode-agents.json [COMPLETED]
 
 **Goal**: Update all documentation and OpenCode agent registration
 
@@ -151,7 +151,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Cross-File Validation [NOT STARTED]
+### Phase 4: Cross-File Validation [COMPLETED]
 
 **Goal**: Verify consistency across all modified files
 

@@ -7,6 +7,9 @@ Structured proposal development (grants) and research presentation creation (tal
 | Skill | Agent | Model | Purpose |
 |-------|-------|-------|---------|
 | skill-grant | grant-agent | opus | Grant proposal research and drafting |
+| skill-budget | budget-agent | opus | Grant budget spreadsheet generation (XLSX) |
+| skill-timeline | timeline-agent | opus | Research project timeline planning |
+| skill-funds | funds-agent | opus | Research funding landscape analysis |
 | skill-talk | talk-agent | opus | Research talk material synthesis and presentation assembly |
 
 ### Commands
@@ -17,6 +20,12 @@ Structured proposal development (grants) and research presentation creation (tal
 | `/grant` | `/grant N --draft ["focus"]` | Draft narrative sections (exploratory) |
 | `/grant` | `/grant N --budget ["guidance"]` | Develop budget with justification |
 | `/grant` | `/grant --revise N "description"` | Create revision task for existing grant |
+| `/budget` | `/budget "Description"` | Create grant budget task with forcing questions |
+| `/budget` | `/budget N` | Resume budget generation for existing task |
+| `/timeline` | `/timeline "Description"` | Create research timeline task |
+| `/timeline` | `/timeline N` | Resume timeline planning for existing task |
+| `/funds` | `/funds "Description"` | Create funding analysis task with forcing questions |
+| `/funds` | `/funds N` | Resume funding analysis for existing task |
 | `/talk` | `/talk "Description"` | Create research talk task with forcing questions |
 | `/talk` | `/talk N` | Resume research on existing talk task |
 | `/talk` | `/talk /path/to/file` | Use file as primary source material for talk |
@@ -26,6 +35,9 @@ Structured proposal development (grants) and research presentation creation (tal
 | Language | Task Type | Research Skill | Implementation Skill | Tools |
 |----------|-----------|----------------|---------------------|-------|
 | `grant` | - | `skill-grant` | `skill-grant` | WebSearch, WebFetch, Read, Write, Edit |
+| `present` | `budget` | `skill-budget` | `skill-budget` | WebSearch, WebFetch, Read, Write, Edit, Bash |
+| `present` | `timeline` | `skill-timeline` | `skill-timeline` | WebSearch, WebFetch, Read, Write, Edit |
+| `present` | `funds` | `skill-funds` | `skill-funds` | WebSearch, WebFetch, Read, Write, Edit, Bash |
 | `present` | `talk` | `skill-talk` | `skill-talk` | WebSearch, WebFetch, Read, Write, Edit |
 
 ### Talk Modes

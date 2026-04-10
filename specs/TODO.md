@@ -14,7 +14,7 @@ next_project_number: 392
 - **388** [COMPLETED] -- Create /timeline command for present extension
 - **389** [COMPLETED] -- Create /funds command for present extension
 - **390** [COMPLETED] -- Create /talk command for present extension
-- **391** [IMPLEMENTING] -- Integrate new commands into present extension manifest (depends: 387-390)
+- **391** [COMPLETED] -- Integrate new commands into present extension manifest (depends: 387-390)
 - **384** [RESEARCHED] -- Improve /convert command-skill-agent pipeline in filetypes extension
 - **382** [COMPLETED] -- Simplify /revise command with command + skill + agent architecture
 - **383** [COMPLETED] -- Simplify /plan command, remove status gates, reference prior plan
@@ -25,7 +25,7 @@ next_project_number: 392
 
 ### 392. Refactor present extension commands (/grant, /budget, /funds, /timeline, /talk)
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Language**: meta
 
 **Description**: Make systematic changes to all present extension commands: /grant, /budget, /funds, /timeline, /talk. Research what each command currently does, identify what needs to change, then plan and implement a systematic refactor across all five commands.
@@ -34,7 +34,7 @@ next_project_number: 392
 
 ### 391. Integrate new commands into present extension manifest
 - **Effort**: 1-2 hours
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Dependencies**: Tasks 387, 388, 389, 390
 

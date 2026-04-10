@@ -5,10 +5,11 @@
     {
       "project_number": 392,
       "project_name": "refactor_present_extension_commands",
-      "status": "not_started",
+      "status": "researching",
       "language": "meta",
       "created": "2026-04-10T05:57:38Z",
-      "last_updated": "2026-04-10T05:57:38Z"
+      "last_updated": "2026-04-10T05:58:42Z",
+      "session_id": "sess_1775800711_ff88b3"
     },
     {
       "project_number": 387,
@@ -240,11 +241,11 @@
     {
       "project_number": 391,
       "project_name": "integrate_new_commands_present_manifest",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "description": "Integrate /budget, /timeline, /funds, /talk into present extension: update manifest.json routing, index-entries.json context entries, EXTENSION.md skill-agent table, README.md documentation.",
       "created": "2026-04-09T19:39:14Z",
-      "last_updated": "2026-04-10T05:56:24Z",
+      "last_updated": "2026-04-10T06:00:34Z",
       "dependencies": [
         387,
         388,
@@ -264,7 +265,8 @@
           "type": "plan",
           "summary": "4-phase plan to integrate /budget, /timeline, /funds, /talk into present extension manifest, index, and documentation."
         }
-      ]
+      ],
+      "completion_summary": "Integrated /budget, /timeline, /funds, /talk into present extension: updated manifest.json (5 agents, 5 skills, 5 commands, routing for research/plan/implement), added 9 context entries to index-entries.json (26 total), expanded EXTENSION.md tables, rewrote README.md, added 4 agents to opencode-agents.json."
     },
     {
       "project_number": 386,

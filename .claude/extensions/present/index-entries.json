@@ -237,6 +237,132 @@
         "agents": ["grant-agent"],
         "commands": ["/grant"]
       }
+    },
+    {
+      "path": "project/present/domain/grant-budget-frameworks.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["budget", "frameworks", "f-and-a", "salary-cap", "mtdc"],
+      "keywords": ["budget", "framework", "indirect", "f-and-a", "salary-cap", "modular", "detailed"],
+      "summary": "Grant budget cost structures, F&A calculation, salary caps, multi-year conventions",
+      "line_count": 215,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["budget-agent"],
+        "commands": ["/budget"]
+      }
+    },
+    {
+      "path": "project/present/patterns/budget-forcing-questions.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["budget", "forcing-questions", "push-back", "validation"],
+      "keywords": ["forcing", "questions", "budget", "push-back", "validation", "grant"],
+      "summary": "Grant-adapted forcing question framework with push-back patterns for budgets",
+      "line_count": 260,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["budget-agent"],
+        "commands": ["/budget"]
+      }
+    },
+    {
+      "path": "project/present/domain/research-timelines.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["timeline", "specific-aims", "regulatory", "milestones", "pert"],
+      "keywords": ["timeline", "gantt", "pert", "specific-aims", "irb", "iacuc", "dsmb", "reporting"],
+      "summary": "Research timeline domain: specific aims WBS, regulatory milestones, reporting schedules",
+      "line_count": 266,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["timeline-agent"],
+        "commands": ["/timeline"]
+      }
+    },
+    {
+      "path": "project/present/patterns/timeline-patterns.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["timeline", "validation", "pert", "effort", "milestones"],
+      "keywords": ["timeline", "validation", "pert", "effort", "milestone", "lead-time"],
+      "summary": "Timeline validation rules, PERT formulas, effort conversion, milestone estimates",
+      "line_count": 151,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["timeline-agent"],
+        "commands": ["/timeline"]
+      }
+    },
+    {
+      "path": "project/present/templates/timeline-template.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["timeline", "template", "report", "typst"],
+      "keywords": ["timeline", "template", "report", "json", "typst", "gantt"],
+      "summary": "Structured timeline report template with JSON data block for Typst rendering",
+      "line_count": 197,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["timeline-agent"],
+        "commands": ["/timeline"]
+      }
+    },
+    {
+      "path": "project/present/domain/funding-analysis.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["funding", "landscape", "portfolio", "federal", "foundation"],
+      "keywords": ["funding", "nih", "nsf", "foundation", "f-and-a", "effort", "subaward"],
+      "summary": "Research funding lifecycle, federal mechanisms, F&A rates, effort reporting",
+      "line_count": 275,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["funds-agent"],
+        "commands": ["/funds"]
+      }
+    },
+    {
+      "path": "project/present/patterns/funding-forcing-questions.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["funding", "forcing-questions", "landscape", "portfolio", "justify", "gap"],
+      "keywords": ["forcing", "questions", "funding", "landscape", "portfolio", "justify", "gap"],
+      "summary": "Mode-specific funding analysis questions with push-back patterns and output schemas",
+      "line_count": 337,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["funds-agent"],
+        "commands": ["/funds"]
+      }
+    },
+    {
+      "path": "project/present/domain/presentation-types.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["talk", "presentation", "conference", "seminar", "defense"],
+      "keywords": ["talk", "presentation", "conference", "seminar", "defense", "poster", "journal-club"],
+      "summary": "Academic presentation types: conference, seminar, defense, poster, journal club",
+      "line_count": 113,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["talk-agent"],
+        "commands": ["/talk"]
+      }
+    },
+    {
+      "path": "project/present/patterns/talk-structure.md",
+      "domain": "project",
+      "subdomain": "present",
+      "topics": ["talk", "structure", "slides", "content", "flow"],
+      "keywords": ["talk", "structure", "slides", "conference", "seminar", "content"],
+      "summary": "Talk structure guidelines and cross-mode slide organization patterns",
+      "line_count": 106,
+      "load_when": {
+        "languages": ["present"],
+        "agents": ["talk-agent"],
+        "commands": ["/talk"]
+      }
     }
   ]
 }

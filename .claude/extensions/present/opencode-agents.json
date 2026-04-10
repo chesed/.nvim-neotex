@@ -14,6 +14,66 @@
         "webfetch": true,
         "websearch": true
       }
+    },
+    "budget": {
+      "description": "Generate grant budget spreadsheets with Excel formulas",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/budget-agent.md}",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "glob": true,
+        "grep": true,
+        "bash": true,
+        "webfetch": true,
+        "websearch": true
+      }
+    },
+    "timeline": {
+      "description": "Plan research project timelines with WBS and PERT scheduling",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/timeline-agent.md}",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "glob": true,
+        "grep": true,
+        "bash": true,
+        "webfetch": true,
+        "websearch": true
+      }
+    },
+    "funds": {
+      "description": "Analyze research funding landscape and portfolio",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/funds-agent.md}",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "glob": true,
+        "grep": true,
+        "bash": true,
+        "webfetch": true,
+        "websearch": true
+      }
+    },
+    "talk": {
+      "description": "Synthesize research materials into academic presentations",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/subagents/talk-agent.md}",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "glob": true,
+        "grep": true,
+        "bash": true,
+        "webfetch": true,
+        "websearch": true
+      }
     }
   }
 }

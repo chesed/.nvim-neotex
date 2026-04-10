@@ -1,21 +1,43 @@
 {
   "name": "present",
   "version": "1.0.0",
-  "description": "Grant writing support with structured proposal development, budget planning, and funder-specific guidance",
+  "description": "Research presentation support: grant writing, budget planning, timeline management, funding analysis, and academic talks",
   "language": "present",
   "dependencies": [],
   "provides": {
-    "agents": ["grant-agent.md"],
-    "skills": ["skill-grant"],
-    "commands": ["grant.md"],
+    "agents": ["grant-agent.md", "budget-agent.md", "timeline-agent.md", "funds-agent.md", "talk-agent.md"],
+    "skills": ["skill-grant", "skill-budget", "skill-timeline", "skill-funds", "skill-talk"],
+    "commands": ["grant.md", "budget.md", "timeline.md", "funds.md", "talk.md"],
     "rules": [],
     "context": ["project/present"],
     "scripts": [],
     "hooks": []
   },
   "routing": {
+    "research": {
+      "present": "skill-grant",
+      "present:grant": "skill-grant",
+      "present:budget": "skill-budget",
+      "present:timeline": "skill-timeline",
+      "present:funds": "skill-funds",
+      "present:talk": "skill-talk"
+    },
+    "plan": {
+      "present": "skill-planner",
+      "present:grant": "skill-planner",
+      "present:budget": "skill-planner",
+      "present:timeline": "skill-planner",
+      "present:funds": "skill-planner",
+      "present:talk": "skill-planner"
+    },
     "implement": {
-      "grant": "skill-grant:assemble"
+      "grant": "skill-grant:assemble",
+      "present": "skill-grant",
+      "present:grant": "skill-grant:assemble",
+      "present:budget": "skill-budget",
+      "present:timeline": "skill-timeline",
+      "present:funds": "skill-funds",
+      "present:talk": "skill-talk"
     }
   },
   "merge_targets": {
