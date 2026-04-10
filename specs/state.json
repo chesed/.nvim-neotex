@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 396,
+  "next_project_number": 397,
   "active_projects": [
+    {
+      "project_number": 396,
+      "project_name": "review_claude_architecture_docs",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-10T18:39:40Z",
+      "last_updated": "2026-04-10T18:39:40Z"
+    },
     {
       "project_number": 394,
       "project_name": "remove_language_to_task_type_compat_shim",
