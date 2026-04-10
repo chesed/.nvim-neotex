@@ -25,8 +25,9 @@ next_project_number: 396
 
 ### 395. Rename ROAD_MAP.md to ROADMAP.md and ensure auto-creation on reference
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: meta
+- **Research**: [01_rename-roadmap-research.md](specs/395_rename_road_map_to_roadmap/reports/01_rename-roadmap-research.md)
 
 **Description**: Rename specs/ROAD_MAP.md to specs/ROADMAP.md, and ensure it is created if it does not exist whenever a command like /research, /plan, /todo, or /review references that file.
 
