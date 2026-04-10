@@ -1,5 +1,5 @@
 ---
-next_project_number: 397
+next_project_number: 398
 ---
 
 # TODO
@@ -16,10 +16,20 @@ next_project_number: 397
 
 ## Tasks
 
+### 397. Fix team-mode skills missing TODO.md artifact linking
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+
+**Description**: The three team-mode skills (`skill-team-research`, `skill-team-plan`, `skill-team-implement`) lack the TODO.md artifact-linking step that their single-agent counterparts (`skill-researcher`, `skill-planner`, `skill-implementer`) perform in their postflight. After a `--team` run, `state.json` correctly contains the artifact entry under `active_projects[].artifacts[]`, but TODO.md does not receive the inline `- **Research/Plan/Summary**: [file](path)` entry specified by `.claude/rules/artifact-formats.md` and `.claude/rules/state-management.md`. This causes silent TODO.md drift for every team-mode invocation. First observed on task 396 after `/research --team 396`. Fix by adding a TODO.md artifact-linking stage to all three team skills (mirroring `skill-researcher` line 292, `skill-planner`, `skill-implementer`), ensuring the count-aware format is used (inline for 1 artifact, multi-line list for 2+). Additionally, investigate whether this should be extracted into a shared postflight helper (e.g., `skill-status-sync` or a utility) so future skills cannot drift from the standard. Verify the fix by re-running `/research --team` on a test task and confirming both state.json and TODO.md are updated.
+
+---
+
 ### 396. Review .claude/ architecture and update all relevant documentation
 - **Effort**: TBD
 - **Status**: [RESEARCHED]
 - **Task Type**: meta
+- **Research**: [01_team-research.md](396_review_claude_architecture_docs/reports/01_team-research.md)
 
 **Description**: Systematically review the current architecture for the .claude/ agent system, including the core agent system and the extensions loaded by the <leader>ac picker, in order to update all relevant documentation. Use /home/benjamin/.config/nvim/.claude/extensions/present/README.md as a reference model. Create /home/benjamin/.config/nvim/.claude/extensions/filetypes/README.md (which does not exist), and update any other places where documentation is missing or out of date.
 
