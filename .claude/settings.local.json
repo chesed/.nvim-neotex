@@ -19,7 +19,8 @@
       "Bash(mv .claude/context/project/neovim/standards/lua-assertion-patterns.md .claude/extensions/nvim/context/project/neovim/standards/)",
       "Bash(mv .claude/context/project/hooks/wezterm-integration.md .claude/extensions/nvim/context/project/neovim/hooks/)",
       "Bash(bash .claude/scripts/check-extension-docs.sh)",
-      "Bash(bash .claude/scripts/check-extension-docs.sh --quiet)"
+      "Bash(bash .claude/scripts/check-extension-docs.sh --quiet)",
+      "Bash(bash /home/benjamin/.config/nvim/.claude/scripts/check-extension-docs.sh)"
     ]
   },
   "model": "opus",

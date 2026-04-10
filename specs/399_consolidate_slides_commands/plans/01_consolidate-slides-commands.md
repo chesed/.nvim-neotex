@@ -251,7 +251,7 @@ All phases are sequential: each depends on the file-state established by the pre
 
 ---
 
-### Phase 6: Verification and doc-lint [IN PROGRESS]
+### Phase 6: Verification and doc-lint [COMPLETED]
 
 **Goal**: Run the repository's doc-lint script, perform residual-reference grep, and confirm both extensions still validate cleanly.
 
