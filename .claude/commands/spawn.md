@@ -70,7 +70,7 @@ Recover from blocked implementations by analyzing the blocker, decomposing it in
 5. **Extract Task Context**
    ```bash
    project_name=$(echo "$task_data" | jq -r '.project_name')
-   language=$(echo "$task_data" | jq -r '.language // "general"')
+   task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
    description=$(echo "$task_data" | jq -r '.description // ""')
    ```
 

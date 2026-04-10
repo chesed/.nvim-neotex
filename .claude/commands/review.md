@@ -441,7 +441,7 @@ The review command always presents task proposals after analysis. The `--create-
 
 ```
 For each Critical/High issue:
-  /task "Fix: {issue title}" --language={inferred_language} --priority={severity}
+  /task "Fix: {issue title}" --task-type={inferred_task_type} --priority={severity}
 ```
 
 Link tasks to review report.
@@ -699,14 +699,14 @@ When "Keep as grouped tasks" is selected, create one task per group:
 {
   "title": "{group_label}: {item_count} issues",
   "description": "{combined issue descriptions with file:line references}",
-  "language": "{majority_language}",
+  "task_type": "{majority_task_type}",
   "priority": "{max_priority_in_group}"
 }
 ```
 
-**Language inference by majority file type in group:**
-| File pattern | Language |
-|--------------|----------|
+**Task type inference by majority file type in group:**
+| File pattern | Task Type |
+|--------------|-----------|
 | `nvim/**/*.lua` | neovim |
 | `*.md`, `*.json`, `.claude/**` | meta |
 | `*.tex` | latex |
@@ -736,7 +736,7 @@ When "Expand into individual tasks" or manual selection is chosen:
 {
   "title": "{issue_description, truncated to 60 chars}",
   "description": "{full issue details}",
-  "language": "{language_from_file}",
+  "task_type": "{task_type_from_file}",
   "priority": "{priority_from_severity}"
 }
 ```
@@ -776,12 +776,12 @@ slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/_/g' | cut 
 **3. Add task to state.json:**
 ```bash
 jq --arg num "$next_num" --arg slug "$slug" --arg title "$title" \
-   --arg desc "$description" --arg lang "$language" --arg prio "$priority" \
+   --arg desc "$description" --arg tt "$task_type" --arg prio "$priority" \
    '.active_projects += [{
      "project_number": ($num | tonumber),
      "project_name": $slug,
      "status": "not_started",
-     "language": $lang,
+     "task_type": $tt,
      "priority": $prio,
      "description": $title,
      "created": (now | strftime("%Y-%m-%dT%H:%M:%SZ"))

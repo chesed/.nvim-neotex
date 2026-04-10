@@ -135,17 +135,17 @@ For each archivable task, collect:
 
 Use structured extraction from completion_summary fields, falling back to exact `(Task {N})` matching.
 
-**IMPORTANT**: Meta tasks (language: "meta") are excluded from ROAD_MAP.md matching. They use `claudemd_suggestions` instead (see Step 3.6).
+**IMPORTANT**: Meta tasks (task_type: "meta") are excluded from ROAD_MAP.md matching. They use `claudemd_suggestions` instead (see Step 3.6).
 
 **Step 3.5.1: Separate meta and non-meta tasks**:
 ```bash
-# Separate archivable tasks by language
+# Separate archivable tasks by task_type
 meta_tasks=()
 non_meta_tasks=()
 
 for task in "${archivable_tasks[@]}"; do
-  language=$(echo "$task" | jq -r '.language // "general"')
-  if [ "$language" = "meta" ]; then
+  task_type=$(echo "$task" | jq -r '.task_type // .language // "general"')
+  if [ "$task_type" = "meta" ]; then
     meta_tasks+=("$task")
   else
     non_meta_tasks+=("$task")
@@ -160,7 +160,7 @@ done
 cat > specs/tmp/todo_nonmeta_$$.jq << 'EOF'
 .active_projects[] |
 select(.status == "completed") |
-select(.language != "meta") |
+select((.task_type // .language) != "meta") |
 select(.completion_summary != null) |
 {
   number: .project_number,
@@ -1261,9 +1261,9 @@ If an Edit operation fails (section not found, text mismatch), the failure is lo
 
 1. **File-based filters** for `!=` operators:
    ```bash
-   # Instead of: jq 'select(.language != "meta")' file
+   # Instead of: jq 'select((.task_type // .language) != "meta")' file
    cat > specs/tmp/filter_$$.jq << 'EOF'
-   select(.language != "meta")
+   select((.task_type // .language) != "meta")
    EOF
    jq -f specs/tmp/filter_$$.jq file && rm -f specs/tmp/filter_$$.jq
    ```

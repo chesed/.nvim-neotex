@@ -98,7 +98,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Core Commands and Routing [NOT STARTED]
+### Phase 2: Core Commands and Routing [COMPLETED]
 
 **Goal**: Update all core command files (`/task`, `/research`, `/plan`, `/implement`, `/revise`, etc.) to use `task_type` instead of `language` for routing decisions, jq queries, and shell variables.
 

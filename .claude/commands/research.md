@@ -38,7 +38,7 @@ When `--team` is specified, research is delegated to `skill-team-research` which
 
 ## Execution
 
-**Note**: Delegate to skills for language-specific research.
+**Note**: Delegate to skills for task-type-specific research.
 
 ### STAGE 0: PARSE TASK NUMBERS
 
@@ -155,7 +155,7 @@ Parameters:
 ```
 
 The batch skill internally:
-1. Extracts language per task from state.json
+1. Extracts task_type per task from state.json
 2. Routes to the appropriate research skill per task (extension routing or default)
 3. Spawns one agent per task via parallel Task tool calls
 4. Each agent runs the full single-task research lifecycle independently (preflight, research, postflight)
@@ -250,9 +250,8 @@ Skipped: {count}
      '.active_projects[] | select(.project_number == ($num | tonumber))' \
      specs/state.json)
 
-   # Extract language and task_type for routing
-   language=$(echo "$task_data" | jq -r '.language // "general"')
-   task_type=$(echo "$task_data" | jq -r '.task_type // null')
+   # Extract task_type for routing (backward compat: fall back to language field)
+   task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
    ```
 
 3. **Validate**
@@ -299,23 +298,24 @@ Skipped: {count}
 **Team Mode Routing** (when `--team` flag present):
 
 If `team_mode == true`:
-- Route to `skill-team-research` regardless of language
+- Route to `skill-team-research` regardless of task_type
 - Pass `team_size` parameter
 
 **Extension Routing** (when `--team` flag NOT present):
 
-Check extension manifests for language-specific research routing:
+Check extension manifests for task-type-specific research routing:
 
 ```bash
-# Get task language (may be simple "founder" or compound "founder:deck")
-language=$(echo "$task_data" | jq -r '.language // "general"')
+# Get task_type (may be simple "founder" or compound "founder:deck")
+# Backward compat: fall back to language field for legacy tasks
+task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
 
 # Check extension routing for research (skill_name starts empty)
 skill_name=""
 for manifest in .claude/extensions/*/manifest.json; do
   if [ -f "$manifest" ]; then
-    ext_skill=$(jq -r --arg lang "$language" \
-      '.routing.research[$lang] // empty' "$manifest")
+    ext_skill=$(jq -r --arg tt "$task_type" \
+      '.routing.research[$tt] // empty' "$manifest")
     if [ -n "$ext_skill" ]; then
       skill_name="$ext_skill"
       break
@@ -323,13 +323,13 @@ for manifest in .claude/extensions/*/manifest.json; do
   fi
 done
 
-# Fallback: if compound key (contains ":"), try base language
-if [ -z "$skill_name" ] && echo "$language" | grep -q ":"; then
-  base_lang=$(echo "$language" | cut -d: -f1)
+# Fallback: if compound key (contains ":"), try base task_type
+if [ -z "$skill_name" ] && echo "$task_type" | grep -q ":"; then
+  base_type=$(echo "$task_type" | cut -d: -f1)
   for manifest in .claude/extensions/*/manifest.json; do
     if [ -f "$manifest" ]; then
-      ext_skill=$(jq -r --arg lang "$base_lang" \
-        '.routing.research[$lang] // empty' "$manifest")
+      ext_skill=$(jq -r --arg tt "$base_type" \
+        '.routing.research[$tt] // empty' "$manifest")
       if [ -n "$ext_skill" ]; then
         skill_name="$ext_skill"
         break
@@ -344,8 +344,8 @@ skill_name=${skill_name:-"skill-researcher"}
 
 **Extension-Based Routing Table**:
 
-| Language | Skill to Invoke |
-|----------|-----------------|
+| Task Type | Skill to Invoke |
+|-----------|-----------------|
 | `founder` | `skill-market` (from founder extension) |
 | `founder:deck` | `skill-deck-research` (from founder extension) |
 | `founder:analyze` | `skill-analyze` (from founder extension) |

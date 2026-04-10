@@ -32,7 +32,7 @@ When `--team` is specified, implementation is delegated to `skill-team-implement
 
 ## Execution
 
-**Note**: Delegate to skills for language-specific implementation.
+**Note**: Delegate to skills for task-type-specific implementation.
 
 ### STAGE 0: PARSE TASK NUMBERS
 
@@ -181,8 +181,8 @@ Parameters:
 ```
 
 The batch skill handles:
-- Language extraction per task (from state.json)
-- Agent routing per task (using existing language-based routing from extension manifests)
+- Task type extraction per task (from state.json)
+- Agent routing per task (using existing task-type-based routing from extension manifests)
 - Parallel Task tool spawning (one agent per task)
 - Per-task lifecycle: preflight status update, agent execution, postflight status update
 - Result collection
@@ -345,18 +345,19 @@ If `team_mode == true`:
 
 **Extension Routing** (when `--team` flag NOT present):
 
-Check extension manifests for language-specific implement routing:
+Check extension manifests for task-type-specific implement routing:
 
 ```bash
-# Get task language (may be simple "founder" or compound "founder:deck")
-language=$(echo "$task_data" | jq -r '.language // "general"')
+# Get task_type (may be simple "founder" or compound "founder:deck")
+# Backward compat: fall back to language field for legacy tasks
+task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
 
 # Check extension routing for implement (skill_name starts empty)
 skill_name=""
 for manifest in .claude/extensions/*/manifest.json; do
   if [ -f "$manifest" ]; then
-    ext_skill=$(jq -r --arg lang "$language" \
-      '.routing.implement[$lang] // empty' "$manifest")
+    ext_skill=$(jq -r --arg tt "$task_type" \
+      '.routing.implement[$tt] // empty' "$manifest")
     if [ -n "$ext_skill" ]; then
       skill_name="$ext_skill"
       break
@@ -364,13 +365,13 @@ for manifest in .claude/extensions/*/manifest.json; do
   fi
 done
 
-# Fallback: if compound key (contains ":"), try base language
-if [ -z "$skill_name" ] && echo "$language" | grep -q ":"; then
-  base_lang=$(echo "$language" | cut -d: -f1)
+# Fallback: if compound key (contains ":"), try base task_type
+if [ -z "$skill_name" ] && echo "$task_type" | grep -q ":"; then
+  base_type=$(echo "$task_type" | cut -d: -f1)
   for manifest in .claude/extensions/*/manifest.json; do
     if [ -f "$manifest" ]; then
-      ext_skill=$(jq -r --arg lang "$base_lang" \
-        '.routing.implement[$lang] // empty' "$manifest")
+      ext_skill=$(jq -r --arg tt "$base_type" \
+        '.routing.implement[$tt] // empty' "$manifest")
       if [ -n "$ext_skill" ]; then
         skill_name="$ext_skill"
         break
