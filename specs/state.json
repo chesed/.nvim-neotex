@@ -232,16 +232,25 @@
     {
       "project_number": 391,
       "project_name": "integrate_new_commands_present_manifest",
-      "status": "not_started",
+      "status": "researched",
       "language": "meta",
       "description": "Integrate /budget, /timeline, /funds, /talk into present extension: update manifest.json routing, index-entries.json context entries, EXTENSION.md skill-agent table, README.md documentation.",
       "created": "2026-04-09T19:39:14Z",
-      "last_updated": "2026-04-09T19:39:14Z",
+      "last_updated": "2026-04-10T05:26:08Z",
       "dependencies": [
         387,
         388,
         389,
         390
+      ],
+      "session_id": "sess_1775767316_573107",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/391_integrate_new_commands_present_manifest/reports/01_manifest-integration.md",
+          "type": "research",
+          "summary": "Analyzed present extension manifest, index-entries, EXTENSION.md and README.md to determine all changes needed to integrate /budget, /timeline, /funds, /talk commands."
+        }
       ]
     },
     {
