@@ -135,7 +135,7 @@ For each archivable task, collect:
 
 Use structured extraction from completion_summary fields, falling back to exact `(Task {N})` matching.
 
-**IMPORTANT**: Meta tasks (task_type: "meta") are excluded from ROAD_MAP.md matching. They use `claudemd_suggestions` instead (see Step 3.6).
+**IMPORTANT**: Meta tasks (task_type: "meta") are excluded from ROADMAP.md matching. They use `claudemd_suggestions` instead (see Step 3.6).
 
 **Step 3.5.1: Separate meta and non-meta tasks**:
 ```bash
@@ -155,7 +155,7 @@ done
 
 **Step 3.5.2: Extract non-meta completed tasks with summaries**:
 ```bash
-# Only process non-meta tasks for ROAD_MAP.md matching
+# Only process non-meta tasks for ROADMAP.md matching
 # Use file-based jq filter to avoid Issue #1132 with != operator
 cat > specs/tmp/todo_nonmeta_$$.jq << 'EOF'
 .active_projects[] |
@@ -173,7 +173,7 @@ completed_with_summaries=$(jq -rf specs/tmp/todo_nonmeta_$$.jq specs/state.json)
 rm -f specs/tmp/todo_nonmeta_$$.jq
 ```
 
-**Step 3.5.3: Match non-meta tasks against ROAD_MAP.md**:
+**Step 3.5.3: Match non-meta tasks against ROADMAP.md**:
 ```bash
 # Initialize roadmap tracking
 roadmap_matches=()
@@ -193,7 +193,7 @@ for task in "${non_meta_tasks[@]}"; do
       [ -z "$item_text" ] && continue
       # Escape special regex characters for grep
       escaped_item=$(printf '%s\n' "$item_text" | sed 's/[[\.*^$()+?{|]/\\&/g')
-      line_info=$(grep -n "^\s*- \[ \].*${escaped_item}" specs/ROAD_MAP.md 2>/dev/null | head -1 || true)
+      line_info=$(grep -n "^\s*- \[ \].*${escaped_item}" specs/ROADMAP.md 2>/dev/null | head -1 || true)
       if [ -n "$line_info" ]; then
         line_num=$(echo "$line_info" | cut -d: -f1)
         roadmap_matches+=("${project_num}:${status}:explicit:${line_num}:${item_text}")
@@ -206,7 +206,7 @@ for task in "${non_meta_tasks[@]}"; do
   fi
 
   # Priority 2: Exact (Task N) reference matching
-  matches=$(grep -n "(Task ${project_num})" specs/ROAD_MAP.md 2>/dev/null || true)
+  matches=$(grep -n "(Task ${project_num})" specs/ROADMAP.md 2>/dev/null || true)
   if [ -n "$matches" ]; then
     while IFS= read -r match_line; do
       line_num=$(echo "$match_line" | cut -d: -f1)
@@ -234,20 +234,20 @@ done
 ```
 
 Track:
-- `meta_tasks[]` - Array of meta tasks (excluded from ROAD_MAP.md matching)
-- `non_meta_tasks[]` - Array of non-meta tasks (matched against ROAD_MAP.md)
+- `meta_tasks[]` - Array of meta tasks (excluded from ROADMAP.md matching)
+- `non_meta_tasks[]` - Array of non-meta tasks (matched against ROADMAP.md)
 - `roadmap_matches[]` - Array of task:status:match_type:line_num:item_text tuples
 - `roadmap_completed_count` - Count of completed task matches
 - `roadmap_abandoned_count` - Count of abandoned task matches
 
 **Match Types**:
 - `explicit` - Matched via `roadmap_items` field (highest confidence)
-- `exact` - Matched via `(Task {N})` reference in ROAD_MAP.md
+- `exact` - Matched via `(Task {N})` reference in ROADMAP.md
 - `summary` - Matched via completion_summary content search (optional, future enhancement)
 
 ### 3.6. Scan Meta Tasks for CLAUDE.md Suggestions
 
-Meta tasks use `claudemd_suggestions` instead of ROAD_MAP.md updates. This step collects suggestions for user review.
+Meta tasks use `claudemd_suggestions` instead of ROADMAP.md updates. This step collects suggestions for user review.
 
 **Step 3.6.1: Extract claudemd_suggestions from meta tasks**:
 ```bash
@@ -632,7 +632,7 @@ Track misplaced operations for output reporting:
 
 For each archived task with roadmap matches (from Step 3.5):
 
-**1. Read current ROAD_MAP.md content**
+**1. Read current ROADMAP.md content**
 
 **2. Parse match tuple** (from Step 3.5):
 ```bash
@@ -1177,11 +1177,11 @@ Roadmap matching uses structured data from completed tasks, not keyword heuristi
 
 1. **Explicit roadmap_items** (Priority 1, highest confidence):
    - Tasks can include a `roadmap_items` array in state.json
-   - Contains exact item text to match against ROAD_MAP.md
+   - Contains exact item text to match against ROADMAP.md
    - Example: `"roadmap_items": ["Improve /todo command roadmap updates"]`
 
 2. **Exact (Task N) references** (Priority 2):
-   - Searches ROAD_MAP.md for `(Task {N})` patterns
+   - Searches ROADMAP.md for `(Task {N})` patterns
    - Works with existing roadmap items that reference task numbers
 
 3. **Summary-based search** (Future enhancement):
@@ -1190,7 +1190,7 @@ Roadmap matching uses structured data from completed tasks, not keyword heuristi
 
 **Producer/Consumer Workflow**:
 - `/implement` is the **producer**: populates `completion_summary` and optional `roadmap_items`
-- `/todo` is the **consumer**: extracts these fields via jq and matches against ROAD_MAP.md
+- `/todo` is the **consumer**: extracts these fields via jq and matches against ROADMAP.md
 
 **Annotation Formats**:
 
@@ -1234,7 +1234,7 @@ The summary should:
 ### Interactive CLAUDE.md Application
 
 **Overview**:
-Meta tasks use `claudemd_suggestions` to propose documentation changes. Unlike ROAD_MAP.md updates (which are automatic), CLAUDE.md suggestions use interactive selection.
+Meta tasks use `claudemd_suggestions` to propose documentation changes. Unlike ROADMAP.md updates (which are automatic), CLAUDE.md suggestions use interactive selection.
 
 **Workflow**:
 1. Actionable suggestions (ADD/UPDATE/REMOVE) are collected from completed meta tasks

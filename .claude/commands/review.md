@@ -66,7 +66,7 @@ fi
 
 **Context**: Load @.claude/context/formats/roadmap-format.md for parsing patterns.
 
-Parse `specs/ROAD_MAP.md` to extract:
+Parse `specs/ROADMAP.md` to extract:
 1. **Phase headers**: `## Phase {N}: {Title} ({Priority})`
 2. **Checkboxes**: `- [ ]` (incomplete) and `- [x]` (complete)
 3. **Status tables**: Pipe-delimited rows with Component/Status/Location
@@ -100,7 +100,7 @@ Build `roadmap_state` structure:
 }
 ```
 
-**Error handling**: If ROAD_MAP.md doesn't exist or fails to parse, log warning and continue review without roadmap integration.
+**Error handling**: If ROADMAP.md doesn't exist or fails to parse, log warning and continue review without roadmap integration.
 
 ### 2.5.2. Cross-Reference Roadmap with Project State
 
@@ -157,7 +157,7 @@ Build `roadmap_matches` list:
 
 ### 2.5.3. Annotate Completed Roadmap Items
 
-For high-confidence matches, update ROAD_MAP.md to mark items as complete.
+For high-confidence matches, update ROADMAP.md to mark items as complete.
 
 **Annotation format** (per roadmap-format.md):
 ```markdown
@@ -1474,8 +1474,8 @@ Commit review report, state files, task state, and any roadmap changes:
 git add specs/reviews/review-{DATE}.md specs/reviews/state.json
 
 # Add roadmap if modified
-if git diff --name-only | grep -q "specs/ROAD_MAP.md"; then
-  git add specs/ROAD_MAP.md
+if git diff --name-only | grep -q "specs/ROADMAP.md"; then
+  git add specs/ROADMAP.md
 fi
 
 # Add task state if tasks were created

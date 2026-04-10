@@ -167,7 +167,7 @@ Prepare delegation context for the subagent:
   "artifact_number": "{artifact_number from Stage 3a}",
   "research_path": "{path to research report if exists}",
   "prior_plan_path": "{path to latest prior plan if exists}",
-  "roadmap_path": "specs/ROAD_MAP.md",
+  "roadmap_path": "specs/ROADMAP.md",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json"
 }
 ```

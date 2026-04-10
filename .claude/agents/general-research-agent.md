@@ -62,14 +62,14 @@ Extract standard delegation fields (see `return-metadata-file.md` for schema). A
 
 If `roadmap_path` is provided in the delegation context and the file exists:
 
-1. Use `Read` to load the roadmap file (typically `specs/ROAD_MAP.md`)
+1. Use `Read` to load the roadmap file (typically `specs/ROADMAP.md`)
 2. Extract the current phase priorities and incomplete items
 3. Identify roadmap items relevant to the task being researched
 4. Store as `roadmap_context` for use in Stage 2
 
 If the file does not exist, skip this stage gracefully and proceed without roadmap context.
 
-**MUST NOT**: Modify, write to, or create ROAD_MAP.md. This is a read-only consultation.
+**MUST NOT**: Modify, write to, or create ROADMAP.md. This is a read-only consultation.
 
 ### Stage 2: Analyze Task and Determine Search Strategy
 

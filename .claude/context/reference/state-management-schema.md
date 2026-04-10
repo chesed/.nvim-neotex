@@ -164,7 +164,7 @@ artifact_number=$((count + 1))
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `completion_summary` | string | Yes (when completed) | 1-3 sentence summary of accomplishment |
-| `roadmap_items` | array | No | Explicit ROAD_MAP.md item texts (non-meta only) |
+| `roadmap_items` | array | No | Explicit ROADMAP.md item texts (non-meta only) |
 | `claudemd_suggestions` | string | Yes (meta only) | .claude/ changes made, or "none" |
 
 **Responsibility Split**:

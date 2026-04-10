@@ -1,7 +1,7 @@
 # Implementation Plan: Rename ROAD_MAP.md to ROADMAP.md
 
 - **Task**: 395 - Rename ROAD_MAP.md to ROADMAP.md
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2.5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/395_rename_road_map_to_roadmap/reports/01_rename-roadmap-research.md
@@ -58,7 +58,7 @@ No ROADMAP.md found (file does not exist yet -- this task will establish the cor
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Update Claude System References [NOT STARTED]
+### Phase 1: Update Claude System References [COMPLETED]
 
 **Goal**: Replace all `ROAD_MAP.md` references with `ROADMAP.md` in `.claude/` files (23 files).
 

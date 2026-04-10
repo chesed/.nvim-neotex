@@ -212,7 +212,7 @@ Prepare delegation context:
   "existing_plan_path": "{path to existing plan or null}",
   "new_research_paths": ["{path to report1}", "{path to report2}"],
   "revision_reason": "{optional user reason}",
-  "roadmap_path": "specs/ROAD_MAP.md",
+  "roadmap_path": "specs/ROADMAP.md",
   "metadata_file_path": "specs/{NNN}_{SLUG}/.return-meta.json"
 }
 ```

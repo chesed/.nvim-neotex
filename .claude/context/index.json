@@ -389,7 +389,7 @@
       "path": "formats/roadmap-format.md",
       "domain": "core",
       "subdomain": "formats",
-      "summary": "ROAD_MAP.md file format specification",
+      "summary": "ROADMAP.md file format specification",
       "line_count": 65,
       "keywords": [
         "format",

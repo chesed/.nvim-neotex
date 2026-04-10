@@ -249,7 +249,7 @@ Write to `specs/{NNN}_{SLUG}/summaries/MM_{short-slug}-summary.md`:
    - Focus on the outcome, not the process
    - Include key artifacts created or modified
 
-2. Optionally generate `roadmap_items`: Array of explicit ROAD_MAP.md item texts this task addresses
+2. Optionally generate `roadmap_items`: Array of explicit ROADMAP.md item texts this task addresses
    - Only include if the task clearly maps to specific roadmap items
 
 ### Stage 7: Write Metadata File
