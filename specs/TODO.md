@@ -25,11 +25,12 @@ next_project_number: 392
 
 ### 392. Refactor present extension commands (/grant, /budget, /funds, /timeline, /talk)
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Language**: meta
 - **Research**:
   - [01_refactor-present-commands.md](specs/392_refactor_present_extension_commands/reports/01_refactor-present-commands.md)
   - [02_team-research.md](specs/392_refactor_present_extension_commands/reports/02_team-research.md)
+- **Plan**: [02_refactor-present-commands.md](specs/392_refactor_present_extension_commands/plans/02_refactor-present-commands.md)
 
 **Description**: Make systematic changes to all present extension commands: /grant, /budget, /funds, /timeline, /talk. Research what each command currently does, identify what needs to change, then plan and implement a systematic refactor across all five commands.
 

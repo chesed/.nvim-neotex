@@ -5,19 +5,59 @@
     {
       "project_number": 392,
       "project_name": "refactor_present_extension_commands",
-      "status": "researched",
+      "status": "planned",
       "language": "meta",
       "created": "2026-04-10T05:57:38Z",
-      "last_updated": "2026-04-10T06:33:20Z",
-      "session_id": "sess_1775802274_ab907f",
+      "last_updated": "2026-04-10T06:53:38Z",
+      "session_id": "sess_1775803727_d9869b",
       "next_artifact_number": 3,
       "artifacts": [
         {
           "path": "specs/392_refactor_present_extension_commands/reports/02_team-research.md",
           "type": "research",
           "summary": "Team research (4 teammates): 16-19 files, 45-55 changes. Grant intake, talk design confirmation, language unification, skill alignment."
+        },
+        {
+          "path": "specs/392_refactor_present_extension_commands/plans/02_refactor-present-commands.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan: mechanical standardization, index/manifest fixes, grant intake, timeline restructure, talk design confirmation, validation"
         }
-      ]
+      ],
+      "plan_metadata": {
+        "phases": 6,
+        "total_effort_hours": 5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_refactor-present-commands.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-10"
+          },
+          {
+            "path": "reports/02_team-research.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-10"
+          }
+        ]
+      }
     },
     {
       "project_number": 387,
