@@ -1,7 +1,7 @@
 # Implementation Plan: Refactor Present Extension Commands
 
 - **Task**: 392 - Refactor present extension commands (/grant, /budget, /funds, /timeline, /talk)
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 4.5 hours
 - **Dependencies**: 391 (completed - manifest integration)
 - **Research Inputs**: reports/01_refactor-present-commands.md, reports/02_team-research.md

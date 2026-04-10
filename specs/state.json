@@ -5,10 +5,10 @@
     {
       "project_number": 392,
       "project_name": "refactor_present_extension_commands",
-      "status": "implementing",
+      "status": "completed",
       "language": "meta",
       "created": "2026-04-10T05:57:38Z",
-      "last_updated": "2026-04-10T07:02:45Z",
+      "last_updated": "2026-04-10T07:24:32Z",
       "session_id": "sess_1775804553_pbgi88",
       "next_artifact_number": 3,
       "artifacts": [
@@ -21,6 +21,11 @@
           "path": "specs/392_refactor_present_extension_commands/plans/02_refactor-present-commands.md",
           "type": "plan",
           "summary": "Revised plan v2: removed Co-Authored-By standardization per user request"
+        },
+        {
+          "path": "specs/392_refactor_present_extension_commands/summaries/02_refactor-present-commands-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for present extension command refactoring"
         }
       ],
       "plan_metadata": {
@@ -57,7 +62,9 @@
             "integrated_date": "2026-04-10"
           }
         ]
-      }
+      },
+      "completion_summary": "Refactored all 5 present extension commands to use unified language:'present' with task_type differentiation, standardized model to opus, updated 17 index entries, fixed manifest routing, added grant pre-task intake (4 questions), moved timeline questions to Stage 0 (6 questions), and added --design flag to /talk for post-research design confirmation.",
+      "claudemd_suggestions": "Updated 11 present extension files (5 commands, 3 skills, 3 agents) plus index-entries.json, manifest.json, and EXTENSION.md. Consider updating present extension README.md to document unified language model."
     },
     {
       "project_number": 387,

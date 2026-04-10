@@ -25,7 +25,7 @@ next_project_number: 392
 
 ### 392. Refactor present extension commands (/grant, /budget, /funds, /timeline, /talk)
 - **Effort**: TBD
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Language**: meta
 - **Research**:
   - [01_refactor-present-commands.md](specs/392_refactor_present_extension_commands/reports/01_refactor-present-commands.md)
