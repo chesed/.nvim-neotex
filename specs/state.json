@@ -5,10 +5,10 @@
     {
       "project_number": 399,
       "project_name": "consolidate_slides_commands",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "meta",
       "created": "2026-04-10T20:42:58Z",
-      "last_updated": "2026-04-10T20:58:42Z",
+      "last_updated": "2026-04-10T21:09:28Z",
       "artifacts": [
         {
           "path": "specs/399_consolidate_slides_commands/reports/01_consolidate-slides-commands.md",
@@ -19,10 +19,17 @@
           "path": "specs/399_consolidate_slides_commands/plans/01_consolidate-slides-commands.md",
           "type": "plan",
           "summary": "6 phases covering fold, delete, rename, cross-ref updates in both extensions, residual cleanup, and doc-lint verification"
+        },
+        {
+          "path": "specs/399_consolidate_slides_commands/summaries/01_consolidate-slides-commands-summary.md",
+          "type": "summary",
+          "summary": "All 6 phases completed: fold, delete, rename, filetypes cross-refs, present cross-refs, residual cross-refs, verification"
         }
       ],
       "session_id": "sess_1775855000_c3d4e5",
-      "next_artifact_number": 2
+      "next_artifact_number": 2,
+      "completion_summary": "Folded filetypes/slides.md into convert.md with --format/--theme dispatch to skill-presentation; renamed present/talk.md to slides.md via git mv; updated all cross-references across manifests, EXTENSION.md, README.md, index-entries.json, skill and agent docs in both extensions plus the extension-slim standard; check-extension-docs.sh passes with zero failures.",
+      "claudemd_suggestions": "Updated .claude/extensions/filetypes/* (convert.md, manifest.json, EXTENSION.md, README.md, index-entries.json, conversion-tables.md, filetypes/README.md, skill-presentation/SKILL.md), .claude/extensions/present/* (manifest.json, EXTENSION.md, README.md, index-entries.json, skill-talk/SKILL.md, presentation-types.md, renamed talk.md to slides.md), and .claude/docs/reference/standards/extension-slim-standard.md"
     },
     {
       "project_number": 398,
