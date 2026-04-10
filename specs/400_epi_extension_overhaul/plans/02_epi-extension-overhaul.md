@@ -167,7 +167,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Agents [NOT STARTED]
+### Phase 4: Agents [COMPLETED]
 
 **Goal**: Build full execution-flow agents for research and implementation, replacing the 30-line stubs.
 
