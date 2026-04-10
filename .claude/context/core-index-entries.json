@@ -1001,26 +1001,12 @@
       }
     },
     {
-      "path": "standards/documentation.md",
-      "domain": "core",
-      "subdomain": "standards",
-      "summary": "Documentation writing standards",
-      "line_count": 315,
-      "keywords": ["standards", "documentation"],
-      "topics": ["documentation"],
-      "load_when": {
-        "agents": ["meta-builder-agent"],
-        "task_types": ["meta", "markdown"],
-        "commands": []
-      }
-    },
-    {
       "path": "standards/documentation-standards.md",
       "domain": "core",
       "subdomain": "standards",
-      "summary": "Documentation quality standards",
-      "line_count": 241,
-      "keywords": ["standards", "documentation", "quality"],
+      "summary": "Documentation standards: formatting, naming, README requirements, prohibited content",
+      "line_count": 300,
+      "keywords": ["standards", "documentation", "formatting", "readme"],
       "topics": ["documentation"],
       "load_when": {
         "agents": ["meta-builder-agent"],

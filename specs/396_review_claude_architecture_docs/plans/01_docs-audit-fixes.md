@@ -184,7 +184,8 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 5: Tier 1 -- Stale Template and Guide Resolution [NOT STARTED]
+### Phase 5: Tier 1 -- Stale Template and Guide Resolution [COMPLETED]
+**Completed**: 2026-04-10
 
 **Goal**: Apply the Phase 1 decision on stale templates and the `creating-commands.md` guide -- either rewrite to current format or remove.
 

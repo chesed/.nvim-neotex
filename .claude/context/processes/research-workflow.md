@@ -187,7 +187,7 @@ grep -A 20 "^### ${task_number}\." specs/TODO.md | grep "Language" | sed 's/\*\*
 - Relevant documentation and references cited
 - Clear recommendations for implementation
 - Technical details and considerations documented
-- NO EMOJI (per documentation.md standards)
+- NO EMOJI (per documentation-standards.md)
 
 **Checkpoint**: Research report created
 
@@ -506,7 +506,7 @@ Error: {git_error}
 - Relevant documentation and references cited
 - Clear recommendations for implementation
 - Technical details and considerations documented
-- NO EMOJI (per documentation.md standards)
+- NO EMOJI (per documentation-standards.md)
 
 ### Status Marker Compliance
 
