@@ -18,7 +18,7 @@ next_project_number: 400
 
 ### 399. Consolidate slides.md command into convert.md or talk.md and rename talk.md to slides.md
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: meta
 - **Research**: [01_consolidate-slides-commands.md](399_consolidate_slides_commands/reports/01_consolidate-slides-commands.md)
 - **Plan**: [01_consolidate-slides-commands.md](399_consolidate_slides_commands/plans/01_consolidate-slides-commands.md)

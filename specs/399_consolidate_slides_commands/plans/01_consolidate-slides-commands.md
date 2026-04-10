@@ -2,7 +2,7 @@
 
 - **Task**: 399 - Consolidate slides commands
 - **Created**: 2026-04-10T00:00:00Z
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 3-5 hours
 - **Dependencies**: None
 - **Research**: specs/399_consolidate_slides_commands/reports/01_consolidate-slides-commands.md
@@ -75,7 +75,7 @@ All phases are sequential: each depends on the file-state established by the pre
 
 ---
 
-### Phase 1: Fold slides.md into convert.md [NOT STARTED]
+### Phase 1: Fold slides.md into convert.md [COMPLETED]
 
 **Goal**: Extend `convert.md` with slides.md's argument parsing, format/theme flags, and conditional delegation to `skill-presentation`, so `/convert` fully absorbs `/slides` functionality.
 

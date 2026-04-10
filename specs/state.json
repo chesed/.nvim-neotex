@@ -5,10 +5,10 @@
     {
       "project_number": 399,
       "project_name": "consolidate_slides_commands",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "meta",
       "created": "2026-04-10T20:42:58Z",
-      "last_updated": "2026-04-10T20:57:31Z",
+      "last_updated": "2026-04-10T20:58:42Z",
       "artifacts": [
         {
           "path": "specs/399_consolidate_slides_commands/reports/01_consolidate-slides-commands.md",
@@ -21,7 +21,7 @@
           "summary": "6 phases covering fold, delete, rename, cross-ref updates in both extensions, residual cleanup, and doc-lint verification"
         }
       ],
-      "session_id": "sess_1775854500_b2c3d4",
+      "session_id": "sess_1775855000_c3d4e5",
       "next_artifact_number": 2
     },
     {
