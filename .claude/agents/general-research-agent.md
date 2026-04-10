@@ -73,9 +73,9 @@ If the file does not exist, skip this stage gracefully and proceed without roadm
 
 ### Stage 2: Analyze Task and Determine Search Strategy
 
-Based on task language and description:
+Based on task type and description:
 
-| Language | Primary Strategy | Secondary Strategy |
+| Task Type | Primary Strategy | Secondary Strategy |
 |----------|------------------|-------------------|
 | general | Codebase patterns + WebSearch | WebFetch for APIs |
 | meta | Context files + existing skills | WebSearch for Claude docs |

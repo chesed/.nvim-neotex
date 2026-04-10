@@ -25,7 +25,7 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 ## Trigger Conditions
 
 This skill activates when:
-- Task language is "general", "meta", or "markdown"
+- Task type is "general", "meta", or "markdown"
 - /implement command is invoked
 - Plan exists and task is ready for implementation
 
@@ -51,7 +51,7 @@ if [ -z "$task_data" ]; then
 fi
 
 # Extract fields
-language=$(echo "$task_data" | jq -r '.language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
 status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
@@ -148,7 +148,7 @@ Prepare delegation context for the subagent:
     "task_number": N,
     "task_name": "{project_name}",
     "description": "{description}",
-    "language": "{language}"
+    "task_type": "{task_type}"
   },
   "artifact_number": "{artifact_number from Stage 3a}",
   "plan_path": "specs/{NNN}_{SLUG}/plans/MM_{short-slug}.md",
@@ -284,17 +284,17 @@ if [ -n "$completion_summary" ]; then
 fi
 ```
 
-**Step 3**: Add language-specific completion fields (implementer-specific):
+**Step 3**: Add task-type-specific completion fields (implementer-specific):
 ```bash
 # For meta tasks: add claudemd_suggestions
-if [ "$language" = "meta" ] && [ -n "$claudemd_suggestions" ]; then
+if [ "$task_type" = "meta" ] && [ -n "$claudemd_suggestions" ]; then
     jq --arg suggestions "$claudemd_suggestions" \
       '(.active_projects[] | select(.project_number == '$task_number')).claudemd_suggestions = $suggestions' \
       specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
 fi
 
 # For non-meta tasks: add roadmap_items (if present and non-empty)
-if [ "$language" != "meta" ] && [ "$roadmap_items" != "[]" ] && [ -n "$roadmap_items" ]; then
+if [ "$task_type" != "meta" ] && [ "$roadmap_items" != "[]" ] && [ -n "$roadmap_items" ]; then
     jq --argjson items "$roadmap_items" \
       '(.active_projects[] | select(.project_number == '$task_number')).roadmap_items = $items' \
       specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json

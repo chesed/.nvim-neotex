@@ -56,7 +56,7 @@ if [ -z "$task_data" ]; then
 fi
 
 # Extract fields
-language=$(echo "$task_data" | jq -r '.language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
 status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
@@ -162,7 +162,7 @@ Prepare delegation context for the subagent:
     "task_number": N,
     "task_name": "{project_name}",
     "description": "{description}",
-    "language": "{language}"
+    "task_type": "{task_type}"
   },
   "artifact_number": "{artifact_number from Stage 3a}",
   "research_path": "{path to research report if exists}",

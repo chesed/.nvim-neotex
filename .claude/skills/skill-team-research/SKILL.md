@@ -13,7 +13,7 @@ allowed-tools: Task, Bash, Edit, Read, Write
 
 Multi-agent research with wave-based parallelization. Spawns 2-4 teammates to investigate complementary angles, then synthesizes findings into a unified report.
 
-**Language-Aware Routing**: Teammates are spawned with language-appropriate prompts and tools. Meta tasks focus on .claude/ system patterns; general tasks use web search and codebase exploration.
+**Task-Type-Aware Routing**: Teammates are spawned with task-type-appropriate prompts and tools. Meta tasks focus on .claude/ system patterns; general tasks use web search and codebase exploration.
 
 **IMPORTANT**: This skill requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` environment variable. If team creation fails, gracefully degrades to single-agent research via skill-researcher.
 
@@ -62,7 +62,7 @@ if [ -z "$task_data" ]; then
 fi
 
 # Extract fields
-language=$(echo "$task_data" | jq -r '.language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
 status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
@@ -167,13 +167,13 @@ run_padded=$(printf "%02d" "$artifact_number")
 
 ---
 
-### Stage 5b: Language Routing Decision
+### Stage 5b: Task Type Routing Decision
 
-Determine language-specific configuration for teammate prompts:
+Determine task-type-specific configuration for teammate prompts:
 
 ```bash
-# Route by task language
-case "$language" in
+# Route by task type
+case "$task_type" in
   "meta")
     # Meta tasks - focus on .claude/ system patterns
     default_model="sonnet"

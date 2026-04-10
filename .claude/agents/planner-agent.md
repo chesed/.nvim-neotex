@@ -157,7 +157,7 @@ Write plan file following plan-format.md structure:
 - **Research Inputs**: {research report path or None}
 - **Artifacts**: plans/MM_{short-slug}.md (this file)
 - **Standards**: plan-format.md, status-markers.md, artifact-management.md, tasks.md
-- **Type**: {language}
+- **Type**: {task_type}
 - **Lean Intent**: {true if lean, false otherwise}
 
 ## Overview

@@ -60,7 +60,7 @@ if [ -z "$task_data" ]; then
 fi
 
 # Extract fields
-language=$(echo "$task_data" | jq -r '.language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
 status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
@@ -361,7 +361,7 @@ Write synthesized plan:
 **Task**: {title}
 **Version**: {run_padded}
 **Created**: {ISO_DATE}
-**Language**: {language}
+**Task Type**: {task_type}
 **Mode**: Team Planning ({team_size} teammates)
 
 ## Overview

@@ -34,7 +34,7 @@ tools:
 
 ## Usage
 
-Agents are invoked by skills, not directly by users. The orchestrator skill routes tasks to appropriate agents based on language and task type.
+Agents are invoked by skills, not directly by users. The orchestrator skill routes tasks to appropriate agents based on task type.
 
 ## Navigation
 

@@ -31,7 +31,7 @@ Blocker analysis and task decomposition agent for the /spawn workflow. Analyzes 
 ### Stage 1: Load Context
 
 Extract standard delegation fields (see `return-metadata-file.md` for schema). Agent-specific fields:
-- `task_data` - Full task object from state.json (includes status, language, description, effort)
+- `task_data` - Full task object from state.json (includes status, task_type, description, effort)
 - `blocker_prompt` - Optional user description of what is blocking
 - `plan_path` - Path to latest plan (or null)
 - Report path: `specs/{NNN}_{SLUG}/reports/{NN}_spawn-analysis.md` (using `artifact_number` for `{NN}`)
@@ -82,7 +82,7 @@ Apply the **Task Minimization Principle**:
 | `title` | Clear, actionable title (verb + noun pattern) |
 | `description` | Full description with enough detail for an implementer |
 | `effort` | Time estimate (e.g., "1-2 hours") |
-| `language` | Inherit from parent task unless clearly different |
+| `task_type` | Inherit from parent task unless clearly different |
 | `dependencies` | Array of indices of other new tasks this depends on |
 
 **Dependency reasoning**: For each dependency, explicitly state WHY task B depends on task A. The reason must be about implementation details (what choices/decisions from A affect how B is done), not just "A must be done first".
@@ -115,13 +115,13 @@ Write to `specs/{NNN}_{SLUG}/reports/{NN}_spawn-analysis.md`:
 
 ### New Task 1: {title}
 - **Effort**: {estimate}
-- **Language**: {language}
+- **Task Type**: {task_type}
 - **Rationale**: {why this task is needed to unblock the parent}
 - **Depends on**: None
 
 ### New Task 2: {title}
 - **Effort**: {estimate}
-- **Language**: {language}
+- **Task Type**: {task_type}
 - **Rationale**: {why this task is needed}
 - **Depends on**: New Task 1, because {specific reason - what implementation details from Task 1 affect how Task 2 should be done}
 
@@ -154,7 +154,7 @@ Write to `specs/{NNN}_{SLUG}/.spawn-return.json`:
       "title": "Task title (verb + noun)",
       "description": "Full description with enough detail for an implementer to act without additional context",
       "effort": "1-2 hours",
-      "language": "meta",
+      "task_type": "meta",
       "dependencies": []
     },
     {
@@ -162,7 +162,7 @@ Write to `specs/{NNN}_{SLUG}/.spawn-return.json`:
       "title": "Second task title",
       "description": "Full description referencing what it needs from task 0",
       "effort": "2-3 hours",
-      "language": "meta",
+      "task_type": "meta",
       "dependencies": [0]
     }
   ],
@@ -182,7 +182,7 @@ Write to `specs/{NNN}_{SLUG}/.spawn-return.json`:
 | `new_tasks[].title` | string | Task title (will become project_name as snake_case) |
 | `new_tasks[].description` | string | Full task description |
 | `new_tasks[].effort` | string | Time estimate like "1-2 hours" |
-| `new_tasks[].language` | string | Task language (meta, general, neovim, etc.) |
+| `new_tasks[].task_type` | string | Task type (meta, general, neovim, etc.) |
 | `new_tasks[].dependencies` | array | Indices of other new tasks this depends on |
 | `dependency_order` | array | Topologically sorted list of indices (foundational first) |
 | `parent_task_number` | integer | The blocked task number |

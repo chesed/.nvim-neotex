@@ -235,10 +235,10 @@ Let's begin!
 ### Interview Stage 2.5: DetectDomainType
 
 **Classification Logic**:
-- Keywords: "nvim", "neovim", "plugin", "lazy.nvim", "lsp", "treesitter" -> language = "neovim"
-- Keywords: "command", "skill", "agent", "meta", ".claude/" -> language = "meta"
-- Keywords: "latex", "document", "pdf", "tex" -> language = "latex"
-- Otherwise -> language = "general"
+- Keywords: "nvim", "neovim", "plugin", "lazy.nvim", "lsp", "treesitter" -> task_type = "neovim"
+- Keywords: "command", "skill", "agent", "meta", ".claude/" -> task_type = "meta"
+- Keywords: "latex", "document", "pdf", "tex" -> task_type = "latex"
+- Otherwise -> task_type = "general"
 
 ### Interview Stage 3: IdentifyUseCases
 
@@ -631,7 +631,7 @@ Write to `specs/{NNN}_{slug}/reports/01_meta-research.md`:
 **Scope**: {scope from Stage 2}
 **Affected Components**: {affected_components}
 **Domain**: {detected_domain from Stage 2.5}
-**Language**: {language}
+**Task Type**: {task_type}
 
 ## Task Requirements
 
@@ -777,7 +777,7 @@ for position, task_idx in enumerate(sorted_indices):
   "project_number": 36,
   "project_name": "task_slug",
   "status": "researched",
-  "language": "meta",
+  "task_type": "meta",
   "dependencies": [35, 34],
   "artifacts": [
     {
@@ -796,7 +796,7 @@ for position, task_idx in enumerate(sorted_indices):
 ### {N}. {Title}
 - **Effort**: {estimate}
 - **Status**: [RESEARCHED]
-- **Language**: {language}
+- **Task Type**: {task_type}
 - **Dependencies**: Task #35, Task #34  OR  None
 - **Research**: [01_meta-research.md]({NNN}_{slug}/reports/01_meta-research.md)
 
@@ -831,7 +831,7 @@ for position, task_idx in enumerate(sorted_indices):
     entry = f"""### {task_num}. {task['title']}
 - **Effort**: {task['effort']}
 - **Status**: [RESEARCHED]
-- **Language**: {task['language']}
+- **Task Type**: {task['task_type']}
 - **Dependencies**: {dep_str}
 - **Research**: [01_meta-research.md]({research_path})
 

@@ -142,7 +142,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Core Skills and Agents [NOT STARTED]
+### Phase 3: Core Skills and Agents [COMPLETED]
 
 **Goal**: Update all core skill and agent files to use `task_type` instead of `language` in delegation metadata, validation logic, and jq extraction.
 

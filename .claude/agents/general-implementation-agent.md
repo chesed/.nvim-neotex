@@ -143,7 +143,7 @@ Write to `specs/{NNN}_{SLUG}/summaries/{NN}_{short-slug}-summary.md`:
    - Include key artifacts created or modified
    - Example: "Created new-agent.md with full specification including tools, execution flow, and error handling."
 
-**For META tasks only** (language: "meta"):
+**For META tasks only** (task_type: "meta"):
 2. Track .claude/ file modifications during implementation
 3. Generate `claudemd_suggestions`:
    - If any .claude/ files were created or modified: Brief description of changes

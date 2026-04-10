@@ -55,7 +55,7 @@ fi
 
 # Extract fields
 project_name=$(echo "$task_data" | jq -r '.project_name')
-language=$(echo "$task_data" | jq -r '.language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
 status=$(echo "$task_data" | jq -r '.status')
 description=$(echo "$task_data" | jq -r '.description // ""')
 ```
@@ -139,7 +139,7 @@ Prepare delegation context for the subagent:
     "project_number": N,
     "project_name": "{slug}",
     "status": "blocked",
-    "language": "{language}",
+    "task_type": "{task_type}",
     "description": "{description}",
     "effort": "{effort}"
   },
@@ -266,7 +266,7 @@ for idx in $(echo "$dependency_order" | jq -r '.[]'); do
     task_title=$(jq -r --argjson i "$idx" '.new_tasks[$i].title' "$spawn_file")
     task_desc=$(jq -r --argjson i "$idx" '.new_tasks[$i].description' "$spawn_file")
     task_effort=$(jq -r --argjson i "$idx" '.new_tasks[$i].effort' "$spawn_file")
-    task_lang=$(jq -r --argjson i "$idx" '.new_tasks[$i].language' "$spawn_file")
+    task_lang=$(jq -r --argjson i "$idx" '.new_tasks[$i].task_type' "$spawn_file")
     internal_deps=$(jq -r --argjson i "$idx" '.new_tasks[$i].dependencies' "$spawn_file")
 
     # Convert internal deps to task numbers
@@ -293,7 +293,7 @@ for idx in $(echo "$dependency_order" | jq -r '.[]'); do
         "project_number": $num,
         "project_name": $name,
         "status": "researched",
-        "language": $lang,
+        "task_type": $lang,
         "description": $desc,
         "effort": $effort,
         "parent_task": $parent,
@@ -320,7 +320,7 @@ Insert new task entries after the Tasks header, in topological order:
 ### {NEW_TASK_NUM}. {Title}
 - **Effort**: {estimate}
 - **Status**: [RESEARCHED]
-- **Language**: {language}
+- **Task Type**: {task_type}
 - **Dependencies**: Task #{dep1}, Task #{dep2}  OR  None
 - **Parent Task**: #{parent_task_number}
 - **Started**: {timestamp}

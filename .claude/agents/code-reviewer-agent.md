@@ -74,7 +74,7 @@ Load these on-demand using @-references:
 ### Standards Compliance
 
 - [ ] Follows project patterns
-- [ ] Follows language-specific conventions
+- [ ] Follows task-type-specific conventions
 - [ ] Build passes
 - [ ] TypeScript strict mode compliant (if applicable)
 

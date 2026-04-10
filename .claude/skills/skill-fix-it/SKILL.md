@@ -277,7 +277,7 @@ has_note_dependency = (NOTE: tags exist) AND (user selected both "fix-it task" A
 {
   "title": "Update context files from NOTE: tags",
   "description": "Update {N} context files based on learnings:\n\n{grouped by target context}",
-  "language": "meta",
+  "task_type": "meta",
   "effort": "1-2 hours"
 }
 ```
@@ -294,7 +294,7 @@ Increment: `next_num = next_num + 1`
 {
   "title": "Fix issues from FIX:/NOTE: tags",
   "description": "Address {N} items from embedded tags:\n\n{list of items with file:line references}\n\n**Important**: When making changes, remove the FIX: and NOTE: tags from the source files. Leave TODO: tags untouched (they create separate tasks).",
-  "language": "{predominant language from source files}",
+  "task_type": "{predominant task_type from source files}",
   "effort": "2-4 hours",
   "dependencies": [learn_it_task_num]
 }
@@ -305,7 +305,7 @@ Increment: `next_num = next_num + 1`
 {
   "title": "Fix issues from FIX:/NOTE: tags",
   "description": "Address {N} items from embedded tags:\n\n{list of items with file:line references}\n\n**Important**: When making changes, remove the FIX: and NOTE: tags from the source files. Leave TODO: tags untouched (they create separate tasks).",
-  "language": "{predominant language from source files}",
+  "task_type": "{predominant task_type from source files}",
   "effort": "2-4 hours"
 }
 ```
@@ -326,7 +326,7 @@ else -> "general"
 {
   "title": "Update context files from NOTE: tags",
   "description": "Update {N} context files based on learnings:\n\n{grouped by target context}",
-  "language": "meta",
+  "task_type": "meta",
   "effort": "1-2 hours"
 }
 ```
@@ -345,7 +345,7 @@ For each topic group in `topic_groups`:
 {
   "title": "{topic_label}: {item_count} TODO items",
   "description": "Address TODO items related to {topic_label}:\n\n{item_list}\n\n---\n\nShared context: {shared_terms_description}",
-  "language": "{detected from majority file type in group}",
+  "task_type": "{detected from majority file type in group}",
   "effort": "{scaled_effort}"
 }
 ```
@@ -380,7 +380,7 @@ Create single task containing all selected TODO items:
 {
   "title": "Address {item_count} TODO items",
   "description": "Combined TODO items from scan:\n\n{all_items_list}\n\n---\n\nFiles: {unique_files_list}",
-  "language": "{detected from majority file type}",
+  "task_type": "{detected from majority file type}",
   "effort": "{scaled_effort}"
 }
 ```
@@ -400,7 +400,7 @@ For each selected TODO item individually:
 {
   "title": "{tag content, truncated to 60 chars}",
   "description": "{full tag content}\n\nSource: {file}:{line}",
-  "language": "{detected from file type}",
+  "task_type": "{detected from file type}",
   "effort": "1 hour"
 }
 ```
@@ -455,7 +455,7 @@ current=$(cat specs/state.json)
   "project_number": {N},
   "project_name": "{slug}",
   "status": "not_started",
-  "language": "{language}",
+  "task_type": "{task_type}",
   "dependencies": [learn_it_task_num]
 }
 ```
@@ -471,7 +471,7 @@ Prepend new task entry to `## Tasks` section (new tasks at top):
 ### {N}. {Title}
 - **Effort**: {estimate}
 - **Status**: [NOT STARTED]
-- **Language**: {language}
+- **Task Type**: {task_type}
 - **Started**: {timestamp}
 
 **Description**: {description}
@@ -484,7 +484,7 @@ Prepend new task entry to `## Tasks` section (new tasks at top):
 ### {N}. {Title}
 - **Effort**: {estimate}
 - **Status**: [NOT STARTED]
-- **Language**: {language}
+- **Task Type**: {task_type}
 - **Dependencies**: {learn_it_task_num}
 - **Started**: {timestamp}
 
