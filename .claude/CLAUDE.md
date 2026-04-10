@@ -103,6 +103,7 @@ All commands use checkpoint-based execution: GATE IN (preflight) -> DELEGATE (sk
 ### Utility Scripts
 
 - `.claude/scripts/export-to-markdown.sh` - Export .claude/ directory to consolidated markdown file
+- `.claude/scripts/check-extension-docs.sh` - Doc-lint: validate extension READMEs, manifests, and cross-references (exits non-zero on failures)
 
 ## State Synchronization
 

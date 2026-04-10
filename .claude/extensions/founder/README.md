@@ -23,6 +23,7 @@ This extension provides eight commands for strategic business analysis:
 | `/deck` | Pitch deck creation | Slidev pitch deck with material synthesis |
 | `/finance` | Financial analysis | Revenue verification, runway analysis |
 | `/sheet` | Cost breakdown spreadsheets | Budget and cost analysis spreadsheets |
+| `/meeting` | Investor meeting note processing | Structured meeting file with YAML frontmatter, CSV tracker update |
 
 ## Installation
 
@@ -191,6 +192,24 @@ Cost breakdown spreadsheet generation with forcing questions.
 ```
 
 **Modes**: BUDGET, FORECAST, COMPARISON
+
+### /meeting
+
+Process investor meeting notes into structured meeting files with YAML frontmatter and CSV tracker updates.
+
+**Syntax**:
+```bash
+# Process notes file directly
+/meeting /path/to/notes.md
+
+# Resume processing on existing task
+/meeting 382
+
+# Update CSV from existing structured meeting file
+/meeting --update /path/to/meeting-file.md
+```
+
+Unlike other founder commands that use forcing questions, `/meeting` takes a file path directly and processes autonomously using web research to enrich the investor profile.
 
 ## Architecture
 

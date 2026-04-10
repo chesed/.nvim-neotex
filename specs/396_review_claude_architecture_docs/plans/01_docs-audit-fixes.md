@@ -304,7 +304,8 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 9: Doc-Lint Script [NOT STARTED]
+### Phase 9: Doc-Lint Script [COMPLETED]
+**Completed**: 2026-04-10
 
 **Goal**: Add a script that flags missing or stale extension documentation, preventing regression.
 
