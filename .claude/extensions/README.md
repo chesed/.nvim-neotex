@@ -28,7 +28,7 @@ Extensions add domain-specific elements:
 | nix | nix | NixOS and Home Manager configuration |
 | web | web | Astro/Tailwind web development |
 | z3 | z3 | Z3 SMT solver |
-| epidemiology | epidemiology | Epidemiology research with R |
+| epidemiology | epi, epi:study | Epidemiology research with R, /epi command |
 | formal | formal, logic, math, physics | Formal verification domains |
 | filetypes | - | File format conversion |
 | founder | founder | Business strategy and startup operations |

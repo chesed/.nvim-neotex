@@ -124,7 +124,7 @@ The extension system provides task-type-specific support. Extensions are loaded 
 | nix | Nix expressions | Nix patterns |
 | web | Web development | Web standards |
 | z3 | SMT solving | Z3 patterns |
-| epidemiology | Epidemiology | R-based research patterns |
+| epidemiology | Epidemiology | /epi command, epi-research-agent, epi-implement-agent |
 | formal | Formal verification | Logic, math, physics domains |
 | filetypes | File conversion | Format conversion utilities |
 | founder | Business strategy | Market, analyze, strategy, legal, project, deck, finance, sheet |

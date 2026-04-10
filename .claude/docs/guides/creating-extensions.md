@@ -136,7 +136,7 @@ Every extension must provide a `README.md` file in its root directory. This is t
 
 Start from the canonical template: `.claude/templates/extension-readme-template.md`.
 
-The template includes a **section-applicability matrix** that distinguishes simple extensions (latex, python, typst, z3, epidemiology) from complex extensions (filetypes, lean, formal, nvim, nix, web). Simple extensions omit sections they do not need (MCP Setup, Workflow diagram, Output Artifacts) and produce README files under ~120 lines. Complex extensions use the full structure.
+The template includes a **section-applicability matrix** that distinguishes simple extensions (latex, python, typst, z3) from complex extensions (filetypes, lean, formal, nvim, nix, web, epidemiology). Simple extensions omit sections they do not need (MCP Setup, Workflow diagram, Output Artifacts) and produce README files under ~120 lines. Complex extensions use the full structure.
 
 **Required sections for all extensions**:
 - Overview (with a task type / command table)

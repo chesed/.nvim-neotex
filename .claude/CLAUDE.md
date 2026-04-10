@@ -72,7 +72,7 @@ This distinction enables identification of which system created each task.
 
 **Extension Task Types** (available when extensions are loaded via `<leader>ac`):
 
-Extensions provide additional task type support (neovim, lean4, latex, typst, python, nix, web, z3, epidemiology, formal, founder, present, etc.). See `.claude/extensions/*/manifest.json` for available extensions and their capabilities.
+Extensions provide additional task type support (neovim, lean4, latex, typst, python, nix, web, z3, epi, formal, founder, present, etc.). See `.claude/extensions/*/manifest.json` for available extensions and their capabilities.
 
 When an extension is loaded, its routing entries are merged into the command tables and context index.
 
