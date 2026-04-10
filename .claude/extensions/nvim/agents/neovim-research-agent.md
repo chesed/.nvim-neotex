@@ -64,7 +64,7 @@ jq -r '.entries[] |
 
 # Find neovim-specific context with budget info
 jq -r '.entries[] |
-  select(.load_when.languages[]? == "neovim") |
+  select(.load_when.task_types[]? == "neovim") |
   "\(.line_count)\t\(.path)"' .claude/context/index.json
 ```
 

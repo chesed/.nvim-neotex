@@ -42,7 +42,7 @@ Full command documentation: [docs/guides/user-guide.md](docs/guides/user-guide.m
     ┌─────────────────────────────────────────────────────────┐
     │                      COMMANDS                            │
     │   .claude/commands/*.md                                  │
-    │   Parse arguments, route by language, checkpoint flow    │
+    │   Parse arguments, route by task_type, checkpoint flow   │
     └─────────────────────────────────────────────────────────┘
                                 |
                                 | Delegation context
@@ -69,7 +69,7 @@ Full command documentation: [docs/guides/user-guide.md](docs/guides/user-guide.m
 1. **Delegation Safety**: Session tracking, depth limits, cycle detection, timeouts
 2. **Standardized Returns**: All agents return consistent JSON format
 3. **Atomic State Updates**: Two-phase commit for TODO.md/state.json sync
-4. **Language Routing**: Route to specialized agents based on task language
+4. **Task Type Routing**: Route to specialized agents based on task_type
 
 ---
 
@@ -109,7 +109,7 @@ User-invocable operations with checkpoint-based execution:
 
 ## Extensions
 
-The extension system provides language-specific support. Extensions are loaded via `<leader>ac` keybinding.
+The extension system provides task-type-specific support. Extensions are loaded via `<leader>ac` keybinding.
 
 **Available Extensions** (`.claude/extensions/`):
 

@@ -63,9 +63,9 @@ jq -r '.entries[] |
   select(.load_when.agents[]? == "grant-agent") |
   .path' .claude/context/index.json
 
-# Find context by present language and grant-agent
+# Find context by present task_type and grant-agent
 jq -r '.entries[] |
-  select(.load_when.languages[]? == "present" and .load_when.agents[]? == "grant-agent") |
+  select(.load_when.task_types[]? == "present" and .load_when.agents[]? == "grant-agent") |
   .path' .claude/context/index.json
 
 # Find context by topic (e.g., funders, budgets)

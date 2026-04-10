@@ -64,9 +64,9 @@ jq -r '.entries[] |
   select(.load_when.agents[]? == "funds-agent") |
   .path' .claude/context/index.json
 
-# Find context by present language
+# Find context by present task_type
 jq -r '.entries[] |
-  select(.load_when.languages[]? == "present") |
+  select(.load_when.task_types[]? == "present") |
   .path' .claude/context/index.json
 
 # Find context by topic (e.g., funding, budget)
