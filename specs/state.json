@@ -5,10 +5,20 @@
     {
       "project_number": 396,
       "project_name": "review_claude_architecture_docs",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-10T18:39:40Z",
-      "last_updated": "2026-04-10T18:39:40Z"
+      "last_updated": "2026-04-10T18:49:55Z",
+      "session_id": "sess_1775846400_a3f2b1",
+      "researched": "2026-04-10T18:49:55Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/396_review_claude_architecture_docs/reports/01_team-research.md",
+          "type": "research",
+          "summary": "Team research (4 teammates) - documentation audit with 3-tier scope plan"
+        }
+      ]
     },
     {
       "project_number": 394,

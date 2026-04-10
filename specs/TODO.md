@@ -18,7 +18,7 @@ next_project_number: 397
 
 ### 396. Review .claude/ architecture and update all relevant documentation
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: meta
 
 **Description**: Systematically review the current architecture for the .claude/ agent system, including the core agent system and the extensions loaded by the <leader>ac picker, in order to update all relevant documentation. Use /home/benjamin/.config/nvim/.claude/extensions/present/README.md as a reference model. Create /home/benjamin/.config/nvim/.claude/extensions/filetypes/README.md (which does not exist), and update any other places where documentation is missing or out of date.
