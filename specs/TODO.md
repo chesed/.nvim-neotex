@@ -1,5 +1,5 @@
 ---
-next_project_number: 398
+next_project_number: 400
 ---
 
 # TODO
@@ -15,6 +15,15 @@ next_project_number: 398
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 399. Consolidate slides.md command into convert.md or talk.md and rename talk.md to slides.md
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+
+**Description**: Fold `.claude/extensions/filetypes/commands/slides.md` into either `.claude/extensions/filetypes/commands/convert.md` or `.claude/extensions/present/commands/talk.md`, whichever is most appropriate. Then rename `.claude/extensions/present/commands/talk.md` to `.claude/extensions/present/commands/slides.md`. The research/planning phase should evaluate which target command is the better semantic fit for the folded content, update any cross-references and registrations affected by the rename, and ensure no broken links remain in docs, manifests, or other commands.
+
+---
 
 ### 398. Extract artifact-linking logic to shared helper script (consolidate six skill Stage 8 blocks)
 - **Effort**: TBD

@@ -1,7 +1,16 @@
 {
   "version": "1.0.0",
-  "next_project_number": 399,
+  "next_project_number": 400,
   "active_projects": [
+    {
+      "project_number": 399,
+      "project_name": "consolidate_slides_commands",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-10T20:42:58Z",
+      "last_updated": "2026-04-10T20:42:58Z",
+      "artifacts": []
+    },
     {
       "project_number": 398,
       "project_name": "extract_artifact_linking_helper",
