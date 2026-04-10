@@ -1,5 +1,5 @@
 ---
-next_project_number: 395
+next_project_number: 396
 ---
 
 # TODO
@@ -22,6 +22,13 @@ next_project_number: 395
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 395. Rename ROAD_MAP.md to ROADMAP.md and ensure auto-creation on reference
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+
+**Description**: Rename specs/ROAD_MAP.md to specs/ROADMAP.md, and ensure it is created if it does not exist whenever a command like /research, /plan, /todo, or /review references that file.
 
 ### 394. Remove language-to-task_type backward compatibility shim
 - **Effort**: TBD
@@ -196,4 +203,5 @@ next_project_number: 395
 ## Recommended Order
 
 1. **385** [RESEARCHED] -> plan (independent)
+2. **395** -> research (independent)
 *No pending implementation tasks.*
