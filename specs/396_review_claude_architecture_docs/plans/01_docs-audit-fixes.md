@@ -1,7 +1,7 @@
 # Implementation Plan: .claude/ Architecture Documentation Audit and Fixes
 
 - **Task**: 396 - review_claude_architecture_docs
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 11 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/396_review_claude_architecture_docs/reports/01_team-research.md
@@ -72,7 +72,8 @@ No prior plan.
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Decision Checkpoint and Baseline [NOT STARTED]
+### Phase 1: Decision Checkpoint and Baseline [COMPLETED]
+**Completed**: 2026-04-10
 
 **Goal**: Resolve research-surfaced open questions before writing docs, and capture the baseline of current file state.
 
