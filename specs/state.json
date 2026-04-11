@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 401,
+  "next_project_number": 402,
   "active_projects": [
+    {
+      "project_number": 401,
+      "project_name": "rename_talk_agent_to_slides_agent",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-11T01:57:03Z",
+      "last_updated": "2026-04-11T01:57:03Z"
+    },
     {
       "project_number": 400,
       "project_name": "epi_extension_overhaul",
