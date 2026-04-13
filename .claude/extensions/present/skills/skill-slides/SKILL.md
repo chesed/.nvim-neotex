@@ -39,8 +39,8 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 
 This skill activates when:
 - `/slides` command with task number input
-- `/research` on a present task with `task_type: "slides"`
-- `/implement` on a present task with `task_type: "slides"` (assemble workflow)
+- `/research` on a task with `task_type: "present:slides"`
+- `/implement` on a task with `task_type: "present:slides"` (assemble workflow)
 - Present extension is available
 
 ---
@@ -62,7 +62,7 @@ design_decisions -> research report "Recommended Theme" -> default `academic-cle
 ## Input Parameters
 
 ### Required Parameters
-- `task_number` - Task number (must exist in state.json with language="present", task_type="slides")
+- `task_number` - Task number (must exist in state.json with task_type="present:slides")
 - `session_id` - Session ID from orchestrator
 
 ### Optional Parameters
@@ -76,7 +76,7 @@ design_decisions -> research report "Recommended Theme" -> default `academic-cle
 
 Validate required inputs:
 - `task_number` - Must be provided and exist in state.json
-- Verify language is "present" and task_type is "slides"
+- Verify task_type is "present:slides"
 
 ```bash
 # Lookup task
@@ -90,15 +90,14 @@ if [ -z "$task_data" ]; then
 fi
 
 # Extract fields
-language=$(echo "$task_data" | jq -r '.language // "present"')
 task_type=$(echo "$task_data" | jq -r '.task_type // ""')
 status=$(echo "$task_data" | jq -r '.status')
 project_name=$(echo "$task_data" | jq -r '.project_name')
 description=$(echo "$task_data" | jq -r '.description // ""')
 
-# Validate language and task_type
-if [ "$task_type" != "present" ] || [ "$task_type" != "slides" ]; then
-  return error "Task $task_number is not a slides task (language=$task_type, task_type=$task_type)"
+# Validate task_type (supports "present:slides" or legacy "slides")
+if [ "$task_type" != "present:slides" ] && [ "$task_type" != "slides" ]; then
+  return error "Task $task_number is not a slides task (task_type=$task_type)"
 fi
 ```
 
@@ -195,8 +194,7 @@ esac
     "task_number": N,
     "task_name": "{project_name}",
     "description": "{description}",
-    "task_type": "present",
-    "task_type": "slides"
+    "task_type": "present:slides"
   },
   "workflow_type": "slides_research|assemble",
   "output_format": "slidev|pptx (extracted from forcing_data, default: slidev)",

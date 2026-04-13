@@ -101,8 +101,7 @@ Extract from input:
     "task_number": N,
     "task_name": "{project_name}",
     "description": "...",
-    "task_type": "present",
-    "task_type": "slides"
+    "task_type": "present:slides"
   },
   "workflow_type": "assemble",
   "forcing_data": {

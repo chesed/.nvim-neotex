@@ -158,7 +158,7 @@ fi
 ### Step 3: Handle Input Type
 
 **If task number**:
-Load existing task, validate language is "present" and task_type is "slides", then delegate to skill-slides for research.
+Load existing task, validate task_type is "present:slides", then delegate to skill-slides for research.
 
 **If file path**:
 Read the file as primary source material. Run Stage 0 forcing questions (Steps 0.1-0.3) with the file content as context. Then proceed to task creation.
@@ -217,8 +217,7 @@ jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
      "project_number": $next_num,
      "project_name": "slug",
      "status": "not_started",
-     "task_type": "present",
-     "task_type": "slides",
+     "task_type": "present:slides",
      "description": $desc,
      "forcing_data": $forcing,
      "created": $ts,
@@ -241,7 +240,7 @@ sed -i 's/^next_project_number: [0-9]*/next_project_number: {NEW_NUMBER}/' \
 ### {N}. {Title}
 - **Effort**: TBD
 - **Status**: [NOT STARTED]
-- **Task Type**: present
+- **Task Type**: present:slides
 
 **Description**: {enriched_description}
 
@@ -304,8 +303,7 @@ task_data=$(jq -r --argjson num "$task_number" \
   specs/state.json)
 
 # Validate exists
-# Validate language is "present"
-# Validate task_type is "slides"
+# Validate task_type is "present:slides"
 # Validate status allows research (not_started or researched for re-research)
 ```
 
@@ -334,7 +332,7 @@ Next: /plan {N} (create implementation plan with design questions)
 
 ## Core Command Integration
 
-Tasks with language="present" and task_type="slides" route through core commands:
+Tasks with task_type="present:slides" route through core commands:
 
 | Command | Routes To | Purpose |
 |---------|-----------|---------|

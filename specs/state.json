@@ -5,11 +5,19 @@
     {
       "project_number": 418,
       "project_name": "add_postflight_fallback_to_skill_wrapper",
-      "status": "researching",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-13T18:05:25Z",
-      "last_updated": "2026-04-13T18:06:56Z",
-      "session_id": "sess_1776103597_d0ae5c"
+      "last_updated": "2026-04-13T18:11:20Z",
+      "session_id": "sess_1776103597_d0ae5c",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/418_add_postflight_fallback_to_skill_wrapper/reports/01_postflight-fallback.md",
+          "type": "research",
+          "summary": "Research report analyzing postflight gap in skill wrapper pattern with three fix approaches evaluated"
+        }
+      ]
     },
     {
       "project_number": 398,
