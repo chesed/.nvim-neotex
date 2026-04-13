@@ -105,9 +105,14 @@
           "path": "specs/384_improve_convert_command_skill_agent/reports/02_convert-status-review.md",
           "type": "research",
           "summary": "Follow-up assessment: markitdown CLI self-healed but Python import still broken; pymupdf upgraded; document-agent and context files still need refactoring. Task remains valid with narrowed scope."
+        },
+        {
+          "path": "specs/384_improve_convert_command_skill_agent/reports/03_pymupdf-vs-markitdown.md",
+          "type": "research",
+          "summary": "Web research comparing PyMuPDF4LLM vs MarkItDown: pymupdf wins decisively for PDF quality; markitdown best for DOCX/PPTX/XLSX"
         }
       ],
-      "next_artifact_number": 2
+      "next_artifact_number": 3
     },
     {
       "project_number": 87,
