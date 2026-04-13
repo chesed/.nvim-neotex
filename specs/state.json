@@ -3,130 +3,6 @@
   "next_project_number": 419,
   "active_projects": [
     {
-      "project_number": 418,
-      "project_name": "add_postflight_fallback_to_skill_wrapper",
-      "status": "completed",
-      "task_type": "meta",
-      "created": "2026-04-13T18:05:25Z",
-      "last_updated": "2026-04-13T19:07:10Z",
-      "session_id": "sess_1776105775_69a5ba",
-      "next_artifact_number": 2,
-      "artifacts": [
-        {
-          "path": "specs/418_add_postflight_fallback_to_skill_wrapper/reports/01_postflight-fallback.md",
-          "type": "research",
-          "summary": "Research on postflight gap in skill wrapper pattern: identified vulnerability where inline execution skips Stages 6-10, evaluated 3 fix approaches, recommended unconditional postflight with Stage 5b fallback"
-        },
-        {
-          "path": "specs/418_add_postflight_fallback_to_skill_wrapper/plans/01_postflight-fallback.md",
-          "type": "plan",
-          "summary": "3-phase plan: (1) add Stage 5b fallback and unconditional postflight to 3 core skills, (2) update pattern docs, (3) propagate to ~25 extension skills"
-        },
-        {
-          "path": "specs/418_add_postflight_fallback_to_skill_wrapper/summaries/01_postflight-fallback-summary.md",
-          "type": "summary",
-          "summary": "Added Stage 5b self-execution fallback and unconditional postflight headers to 47 skill files, updated pattern documentation"
-        }
-      ],
-      "completion_summary": "Added Stage 5b self-execution fallback and unconditional postflight headers to 47 thin-wrapper skill files (3 core + 44 extension). Updated thin-wrapper-skill.md and postflight-control.md pattern documentation.",
-      "claudemd_suggestions": "No CLAUDE.md changes needed -- pattern is documented in context files"
-    },
-    {
-      "project_number": 398,
-      "project_name": "extract_artifact_linking_helper",
-      "status": "completed",
-      "task_type": "meta",
-      "created": "2026-04-10T20:40:00Z",
-      "last_updated": "2026-04-13T19:17:28Z",
-      "dependencies": [
-        397
-      ],
-      "artifacts": [
-        {
-          "path": "specs/398_extract_artifact_linking_helper/reports/01_artifact-linking-helper.md",
-          "type": "research",
-          "summary": "Analysis of 26 files carrying duplicated artifact-linking logic; recommends context pattern file extraction over shell script or skill delegation"
-        },
-        {
-          "path": "specs/398_extract_artifact_linking_helper/plans/01_artifact-linking-helper.md",
-          "type": "plan",
-          "summary": "4-phase plan to extract duplicated TODO.md artifact-linking logic into a shared context pattern file"
-        },
-        {
-          "path": "specs/398_extract_artifact_linking_helper/summaries/01_artifact-linking-helper-summary.md",
-          "type": "summary",
-          "summary": "Extracted artifact-linking logic from 37+ skills into shared pattern file"
-        }
-      ],
-      "session_id": "sess_1776107204_db3651_t398",
-      "next_artifact_number": 2,
-      "completion_summary": "Extracted duplicated TODO.md artifact-linking logic from 37+ skills into canonical pattern file at .claude/context/patterns/artifact-linking-todo.md, updating all core and extension skills to reference it.",
-      "claudemd_suggestions": "Created .claude/context/patterns/artifact-linking-todo.md, added index.json entry, updated state-management-schema.md cross-reference, updated 7 core skills and 30+ extension skills"
-    },
-    {
-      "project_number": 394,
-      "project_name": "remove_language_to_task_type_compat_shim",
-      "status": "completed",
-      "task_type": "meta",
-      "created": "2026-04-10T16:37:05Z",
-      "last_updated": "2026-04-13T19:14:47Z",
-      "session_id": "sess_1776107204_db3651_t394",
-      "next_artifact_number": 3,
-      "artifacts": [
-        {
-          "path": "specs/394_remove_language_to_task_type_compat_shim/reports/01_remove-compat-shim.md",
-          "type": "research",
-          "summary": "Complete inventory of 50 files requiring changes: 19 core files with .task_type // .language shim, 18 extension skills reading .language directly, 11 extension commands reading .language bare, 2 documentation files. Safe to remove -- zero active tasks use old language field."
-        },
-        {
-          "path": "specs/394_remove_language_to_task_type_compat_shim/plans/01_remove-compat-shim.md",
-          "type": "plan",
-          "summary": "4-phase plan to remove language-to-task_type backward compatibility shim from 50 files"
-        },
-        {
-          "path": "specs/394_remove_language_to_task_type_compat_shim/summaries/01_remove-compat-shim-summary.md",
-          "type": "summary",
-          "summary": "Removed language-to-task_type backward compatibility shim from 51 files"
-        }
-      ],
-      "completion_summary": "Removed all .language field references from 51 active .claude/ files, completing the task_type migration started in task 393. Updated 19 core files, 18 extension skills, 11 extension commands, and 3 documentation files.",
-      "claudemd_suggestions": "Removed backward-compat note from state-management-schema.md, updated context-discovery.md language->task_types references, fixed orchestrator.md session registry key"
-    },
-    {
-      "project_number": 384,
-      "project_name": "improve_convert_command_skill_agent",
-      "status": "completed",
-      "task_type": "meta",
-      "created": "2026-04-09T16:15:53Z",
-      "last_updated": "2026-04-13T19:48:55Z",
-      "session_id": "sess_1776109294_919e2e",
-      "artifacts": [
-        {
-          "path": "specs/384_improve_convert_command_skill_agent/reports/02_convert-status-review.md",
-          "type": "research",
-          "summary": "Follow-up assessment: markitdown CLI self-healed but Python import still broken; pymupdf upgraded; document-agent and context files still need refactoring. Task remains valid with narrowed scope."
-        },
-        {
-          "path": "specs/384_improve_convert_command_skill_agent/reports/03_pymupdf-vs-markitdown.md",
-          "type": "research",
-          "summary": "Web research comparing PyMuPDF4LLM vs MarkItDown: pymupdf wins decisively for PDF quality; markitdown best for DOCX/PPTX/XLSX"
-        },
-        {
-          "path": "specs/384_improve_convert_command_skill_agent/plans/02_convert-pipeline-refactor.md",
-          "type": "plan",
-          "summary": "4-phase plan to refactor document-agent for pymupdf-primary PDF extraction with format-aware routing"
-        },
-        {
-          "path": "specs/384_improve_convert_command_skill_agent/summaries/02_convert-pipeline-summary.md",
-          "type": "summary",
-          "summary": "Implementation summary for /convert pipeline pymupdf refactor"
-        }
-      ],
-      "next_artifact_number": 3,
-      "completion_summary": "Refactored document-agent and 3 context files to use pymupdf as primary PDF tool, with format-aware routing for different source types. Added EPUB support and NixOS fragility documentation.",
-      "claudemd_suggestions": "Updated 4 files in .claude/extensions/filetypes/: document-agent.md (format-aware tool selection), tool-detection.md (pymupdf detection), conversion-tables.md (updated tool priorities), dependency-guide.md (pymupdf install instructions)"
-    },
-    {
       "project_number": 87,
       "project_name": "investigate_wezterm_terminal_directory_change",
       "status": "researched",
@@ -169,7 +45,7 @@
   ],
   "completed_projects": [],
   "repository_health": {
-    "last_assessed": "2026-04-13T18:10:46Z",
+    "last_assessed": "2026-04-13T19:54:35Z",
     "todo_count": 44,
     "fixme_count": 2,
     "build_errors": 0,
