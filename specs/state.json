@@ -66,14 +66,22 @@
     {
       "project_number": 406,
       "project_name": "update_slides_command_format_enriched",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "meta",
       "dependencies": [
         405
       ],
       "created": "2026-04-12T12:00:00Z",
-      "last_updated": "2026-04-12T12:00:00Z",
-      "artifacts": []
+      "last_updated": "2026-04-13T06:51:27Z",
+      "artifacts": [
+        {
+          "path": "specs/406_update_slides_command_format_enriched/reports/01_slides-command-format.md",
+          "type": "research",
+          "summary": "Complete change list for /slides command: remove --design flag/Stage 3, add output format selection (Step 0.0), add enriched description (Step 2.5), update routing table and output templates"
+        }
+      ],
+      "session_id": "sess_1776062891_c7b31f",
+      "next_artifact_number": 2
     },
     {
       "project_number": 405,
