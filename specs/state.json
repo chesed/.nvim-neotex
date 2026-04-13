@@ -66,13 +66,13 @@
     {
       "project_number": 406,
       "project_name": "update_slides_command_format_enriched",
-      "status": "planned",
+      "status": "completed",
       "task_type": "meta",
       "dependencies": [
         405
       ],
       "created": "2026-04-12T12:00:00Z",
-      "last_updated": "2026-04-13T06:55:14Z",
+      "last_updated": "2026-04-13T07:01:08Z",
       "artifacts": [
         {
           "path": "specs/406_update_slides_command_format_enriched/reports/01_slides-command-format.md",
@@ -83,9 +83,14 @@
           "path": "specs/406_update_slides_command_format_enriched/plans/01_slides-command-format.md",
           "type": "plan",
           "summary": "Implementation plan for updating /slides command per DIFF.md section 2: remove --design flag, add output format selection, add enriched description, update routing table"
+        },
+        {
+          "path": "specs/406_update_slides_command_format_enriched/summaries/01_slides-command-format-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for slides command format update"
         }
       ],
-      "session_id": "sess_1776063143_259084",
+      "session_id": "sess_1776063366_74c282",
       "next_artifact_number": 2,
       "plan_metadata": {
         "phases": 3,
@@ -111,7 +116,9 @@
             "integrated_date": "2026-04-12"
           }
         ]
-      }
+      },
+      "completion_summary": "Rewrote /slides command per DIFF.md: removed --design flag and Stage 3, added output format selection (Step 0.0) and enriched description (Step 2.5), updated routing table and all output templates to use {output_format}.",
+      "claudemd_suggestions": "Modified .claude/extensions/present/commands/slides.md -- no core .claude/ config files changed"
     },
     {
       "project_number": 405,

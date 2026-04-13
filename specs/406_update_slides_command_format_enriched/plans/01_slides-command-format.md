@@ -1,7 +1,7 @@
 # Implementation Plan: Update /slides Command Format
 
 - **Task**: 406 - update_slides_command_format_enriched
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 1.5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/406_update_slides_command_format_enriched/reports/01_slides-command-format.md

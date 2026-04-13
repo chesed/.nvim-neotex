@@ -13,7 +13,7 @@ next_project_number: 409
 - **403** [COMPLETED] -- Split slides-agent into 3 specialized agents with Phase Checkpoint Protocol
 - **404** [COMPLETED] -- Add UCSF theme, PPTX patterns, and templates to present/ context
 - **405** [COMPLETED] -- Update skill-slides for multi-agent dispatch and plan workflow (depends: 403)
-- **406** [PLANNED] -- Update /slides command: output format, enriched descriptions, remove --design (depends: 405)
+- **406** [COMPLETED] -- Update /slides command: output format, enriched descriptions, remove --design (depends: 405)
 - **407** [NOT STARTED] -- Update present/ manifest.json and extension metadata (depends: 403, 405)
 - **408** [COMPLETED] -- Audit all implementation agents for Phase Checkpoint Protocol compliance
 - **384** [RESEARCHED] -- Improve /convert command-skill-agent pipeline in filetypes extension
@@ -46,11 +46,12 @@ next_project_number: 409
 
 ### 406. Update /slides command: output format, enriched descriptions, remove --design
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Task Type**: meta
 - **Dependencies**: 405
 - **Research**: [01_slides-command-format.md](specs/406_update_slides_command_format_enriched/reports/01_slides-command-format.md)
 - **Plan**: [01_slides-command-format.md](specs/406_update_slides_command_format_enriched/plans/01_slides-command-format.md)
+- **Summary**: [01_slides-command-format-summary.md](specs/406_update_slides_command_format_enriched/summaries/01_slides-command-format-summary.md)
 
 **Description**: Rewrite `/slides` command per zed DIFF.md: remove `--design` flag and entire Stage 3 (design confirmation). Add Step 0.0 for output format selection (Slidev default vs PPTX). Add Step 2.5 for enriched description construction. Update routing table so `/plan N` routes to skill-slides plan workflow. Update all output templates to use `{output_format}`. Source: `/home/benjamin/.config/zed/DIFF.md` section 2.
 
