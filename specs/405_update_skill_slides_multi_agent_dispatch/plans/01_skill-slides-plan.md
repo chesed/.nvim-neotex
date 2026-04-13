@@ -1,7 +1,7 @@
 # Implementation Plan: Update skill-slides for multi-agent dispatch and plan workflow
 
 - **Task**: 405 - Update skill-slides for multi-agent dispatch and plan workflow
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 1.5 hours
 - **Dependencies**: Task 403 (completed -- three specialized agents exist)
 - **Research Inputs**: specs/405_update_skill_slides_multi_agent_dispatch/reports/01_skill-slides-research.md
