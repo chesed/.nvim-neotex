@@ -93,7 +93,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Remove --design References and Add New Steps [IN PROGRESS]
+### Phase 2: Remove --design References and Add New Steps [COMPLETED]
 
 **Goal**: Remove all `--design` flag references from the top/middle of the file, add Step 0.0 (output format selection), add Step 2.5 (enriched description), and update forcing_data.
 
@@ -126,7 +126,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Validation and Cleanup [NOT STARTED]
+### Phase 3: Validation and Cleanup [IN PROGRESS]
 
 **Goal**: Verify the complete file is internally consistent and all 15 DIFF.md changes are applied.
 

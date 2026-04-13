@@ -11,14 +11,13 @@ Research presentation creation command with material synthesis and task system i
 
 ## Overview
 
-This command initiates research talk creation through structured material gathering. It asks essential questions BEFORE creating the task, storing gathered data in task metadata. After task creation, the user runs `/research`, `/plan`, and `/implement` to complete the workflow. The command focuses on collecting source materials and presentation context for synthesis into Slidev-based research talks.
+This command initiates research talk creation through structured material gathering. It asks essential questions BEFORE creating the task, storing gathered data in task metadata. After task creation, the user runs `/research`, `/plan`, and `/implement` to complete the workflow. The command focuses on collecting source materials and presentation context for synthesis into research talks. Output format is user-selectable: Slidev (default) or PowerPoint (PPTX).
 
 ## Syntax
 
 - `/slides "Conference talk on survival analysis methods"` - Ask questions, create task with gathered data
 - `/slides 500` - Resume research on existing task
 - `/slides /path/to/manuscript.md` - Use file as primary source material, create task
-- `/slides 500 --design` - Design confirmation after research (themes, ordering, emphasis)
 
 **Note**: This command was previously named `/talk`. For PPTX slide file conversion (not research talk creation), use `/convert --format beamer|polylux|touying` in the `filetypes` extension.
 
@@ -28,7 +27,6 @@ This command initiates research talk creation through structured material gather
 |-------|----------|
 | Description string | Ask forcing questions, create task with forcing_data, stop at [NOT STARTED] |
 | Task number | Load existing task, run research, stop at [RESEARCHED] |
-| Task number `--design` | Read research report, confirm design choices, store as design_decisions |
 | File path | Read file as primary source material, ask questions, create task |
 
 ## Modes
@@ -48,6 +46,19 @@ This command initiates research talk creation through structured material gather
 **This stage runs BEFORE task creation for new tasks (description or file path input).**
 
 **Skip this stage if**: task number input.
+
+### Step 0.0: Output Format
+
+Use AskUserQuestion to present output format options:
+
+```
+What output format for this presentation?
+
+- SLIDEV (default): Browser-based slides with Slidev markdown
+- PPTX: PowerPoint file via python-pptx
+```
+
+Store response as `forcing_data.output_format`. Default: `"slidev"`.
 
 ### Step 0.1: Talk Type
 
@@ -101,6 +112,7 @@ Store response as `forcing_data.audience_context`.
 Capture all responses in a forcing_data object:
 ```json
 {
+  "output_format": "{selected_format}",
   "talk_type": "{selected_type}",
   "source_materials": ["{material_1}", "{material_2}"],
   "audience_context": "{audience description}",
@@ -126,13 +138,8 @@ session_id="sess_$(date +%s)_$(od -An -N3 -tx1 /dev/urandom | tr -d ' ')"
 ### Step 2: Detect Input Type
 
 ```bash
-# Check for --design flag with task number
-if echo "$ARGUMENTS" | grep -qE '^[0-9]+.*--design'; then
-  input_type="design"
-  task_number=$(echo "$ARGUMENTS" | grep -oE '^[0-9]+')
-
-# Check for task number (no flags)
-elif echo "$ARGUMENTS" | grep -qE '^[0-9]+$'; then
+# Check for task number
+if echo "$ARGUMENTS" | grep -qE '^[0-9]+$'; then
   input_type="task_number"
   task_number="$ARGUMENTS"
 
@@ -153,14 +160,36 @@ fi
 **If task number**:
 Load existing task, validate language is "present" and task_type is "slides", then delegate to skill-slides for research.
 
-**If --design**:
-Load existing task, validate status is "researched" or later, then proceed to STAGE 3: DESIGN CONFIRMATION.
-
 **If file path**:
 Read the file as primary source material. Run Stage 0 forcing questions (Steps 0.1-0.3) with the file content as context. Then proceed to task creation.
 
 **If description**:
-Run Stage 0 forcing questions (Steps 0.1-0.3), then proceed to task creation.
+Run Stage 0 forcing questions (Steps 0.0-0.3), then proceed to task creation.
+
+### Step 2.5: Enrich Description
+
+Construct an enriched description from the base description and forcing data.
+
+**Duration lookup by talk_type**:
+
+| talk_type | duration |
+|-----------|----------|
+| CONFERENCE | 15-20 min |
+| SEMINAR | 45-60 min |
+| DEFENSE | 30-60 min |
+| POSTER | N/A |
+| JOURNAL_CLUB | 15-30 min |
+
+**Relativize source paths**: Convert absolute paths in `forcing_data.source_materials` to paths relative to the repository root.
+
+**Audience summary**: Extract a 1-sentence summary from `forcing_data.audience_context` (e.g., "clinicians and basic scientists" or "mixed departmental audience").
+
+**Enriched description template**:
+```
+{base_description}. {talk_type} talk ({duration}), {output_format} output. Source: {relative_paths}. Audience: {audience_summary}.
+```
+
+Store as `$enriched_description`. This replaces `$description` in all downstream steps.
 
 ---
 
@@ -184,7 +213,7 @@ next_num=$(jq -r '.next_project_number' specs/state.json)
 
 ```bash
 jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-  --arg desc "$description" \
+  --arg desc "$enriched_description" \
   --argjson forcing "$forcing_data_json" \
   '.next_project_number = ($next_num + 1) |
    .active_projects = [{
@@ -217,7 +246,7 @@ sed -i 's/^next_project_number: [0-9]*/next_project_number: {NEW_NUMBER}/' \
 - **Status**: [NOT STARTED]
 - **Task Type**: present
 
-**Description**: {description}
+**Description**: {enriched_description}
 ```
 
 ### Step 5: Git commit
@@ -238,12 +267,13 @@ Talk task #{N} created: {TITLE}
 Status: [NOT STARTED]
 Language: present
 Talk Type: {talk_type}
+Output Format: {output_format}
 Artifacts path: specs/{NNN}_{SLUG}/ (created on first artifact)
 
 Recommended workflow:
 1. /research {N} - Synthesize source materials into slide-mapped report
 2. /plan {N} - Create implementation plan
-3. /implement {N} - Generate Slidev presentation to talks/{N}_{slug}/
+3. /implement {N} - Generate {output_format} presentation to talks/{N}_{slug}/
 ```
 
 ---
