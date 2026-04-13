@@ -33,7 +33,7 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 This skill activates when:
 - Task type is "present" with task_type="funds"
 - /funds command with task number
-- Extension is loaded via `<leader>ac`
+- Present extension is available
 
 ---
 

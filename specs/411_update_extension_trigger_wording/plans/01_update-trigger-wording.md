@@ -1,7 +1,7 @@
 # Implementation Plan: Update extension trigger wording to mechanism-agnostic
 
 - **Task**: 411 - Update extension trigger wording to mechanism-agnostic
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 0.5 hours
 - **Dependencies**: None
 - **Research Inputs**: None
@@ -52,7 +52,7 @@ No ROADMAP.md found.
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Replace trigger wording in all 5 skill files [IN PROGRESS]
+### Phase 1: Replace trigger wording in all 5 skill files [COMPLETED]
 
 **Goal**: Update all trigger condition lines from Neovim-specific to mechanism-agnostic wording.
 

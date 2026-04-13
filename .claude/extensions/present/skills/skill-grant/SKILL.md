@@ -31,7 +31,7 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 This skill activates when:
 - Task type is "present" and task_type is "grant"
 - Grant workflow requested via flags (--draft, --budget) or /implement routing
-- Extension is loaded via `<leader>ac`
+- Present extension is available
 
 ---
 

@@ -31,7 +31,7 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 
 This skill activates when:
 - `/implement` on a task with `task_type: "epi"` or `task_type: "epi:study"`
-- Extension is loaded via `<leader>ac`
+- Epidemiology extension is available
 
 ---
 
