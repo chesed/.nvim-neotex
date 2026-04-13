@@ -55,7 +55,7 @@ fi
 
 # Extract fields
 project_name=$(echo "$task_data" | jq -r '.project_name')
-task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // "general"')
 status=$(echo "$task_data" | jq -r '.status')
 description=$(echo "$task_data" | jq -r '.description // ""')
 ```

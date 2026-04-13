@@ -357,8 +357,7 @@ Check extension manifests for task-type-specific implement routing:
 
 ```bash
 # Get task_type (may be simple "founder" or compound "founder:deck")
-# Backward compat: fall back to language field for legacy tasks
-task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // "general"')
 
 # Check extension routing for implement (skill_name starts empty)
 skill_name=""

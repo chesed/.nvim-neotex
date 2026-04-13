@@ -2274,6 +2274,26 @@
           "/spawn"
         ]
       }
+    },
+    {
+      "path": "patterns/artifact-linking-todo.md",
+      "domain": "core",
+      "subdomain": "patterns",
+      "summary": "Canonical four-case TODO.md artifact linking logic for skills",
+      "line_count": 115,
+      "keywords": [
+        "artifact",
+        "linking",
+        "todo",
+        "postflight"
+      ],
+      "topics": [
+        "artifact-management",
+        "postflight"
+      ],
+      "load_when": {
+        "always": true
+      }
     }
   ]
 }

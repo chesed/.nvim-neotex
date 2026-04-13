@@ -334,7 +334,7 @@ fi
 # Extract task metadata
 slug=$(echo "$task_data" | jq -r '.project_name')
 status=$(echo "$task_data" | jq -r '.status')
-task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // "general"')
 ```
 
 ### Step 2: Load Task Artifacts

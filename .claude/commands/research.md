@@ -258,8 +258,7 @@ Skipped: {count}
      '.active_projects[] | select(.project_number == ($num | tonumber))' \
      specs/state.json)
 
-   # Extract task_type for routing (backward compat: fall back to language field)
-   task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
+   task_type=$(echo "$task_data" | jq -r '.task_type // "general"')
    ```
 
 3. **Validate**
@@ -315,8 +314,7 @@ Check extension manifests for task-type-specific research routing:
 
 ```bash
 # Get task_type (may be simple "founder" or compound "founder:deck")
-# Backward compat: fall back to language field for legacy tasks
-task_type=$(echo "$task_data" | jq -r '.task_type // .language // "general"')
+task_type=$(echo "$task_data" | jq -r '.task_type // "general"')
 
 # Check extension routing for research (skill_name starts empty)
 skill_name=""

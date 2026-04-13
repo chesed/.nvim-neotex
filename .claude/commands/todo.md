@@ -173,7 +173,7 @@ done
 cat > specs/tmp/todo_nonmeta_$$.jq << 'EOF'
 .active_projects[] |
 select(.status == "completed") |
-select((.task_type // .language) != "meta") |
+select(.task_type != "meta") |
 select(.completion_summary != null) |
 {
   number: .project_number,
@@ -1274,9 +1274,9 @@ If an Edit operation fails (section not found, text mismatch), the failure is lo
 
 1. **File-based filters** for `!=` operators:
    ```bash
-   # Instead of: jq 'select((.task_type // .language) != "meta")' file
+   # Instead of: jq 'select(.task_type != "meta")' file
    cat > specs/tmp/filter_$$.jq << 'EOF'
-   select((.task_type // .language) != "meta")
+   select(.task_type != "meta")
    EOF
    jq -f specs/tmp/filter_$$.jq file && rm -f specs/tmp/filter_$$.jq
    ```
