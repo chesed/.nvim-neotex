@@ -1,7 +1,7 @@
 # Implementation Plan: Update /slides Command Format
 
 - **Task**: 406 - update_slides_command_format_enriched
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1.5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/406_update_slides_command_format_enriched/reports/01_slides-command-format.md
@@ -67,7 +67,7 @@ No direct roadmap items. This task is an extension maintenance change that keeps
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Remove Stage 3 and Update Bottom Sections [NOT STARTED]
+### Phase 1: Remove Stage 3 and Update Bottom Sections [COMPLETED]
 
 **Goal**: Delete Stage 3 entirely and update the output format templates and routing table at the bottom of the file, working from the bottom up to preserve line numbers for later phases.
 
@@ -93,7 +93,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Remove --design References and Add New Steps [NOT STARTED]
+### Phase 2: Remove --design References and Add New Steps [IN PROGRESS]
 
 **Goal**: Remove all `--design` flag references from the top/middle of the file, add Step 0.0 (output format selection), add Step 2.5 (enriched description), and update forcing_data.
 

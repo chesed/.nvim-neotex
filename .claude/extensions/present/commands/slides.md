@@ -285,139 +285,8 @@ Talk research completed for Task #{N}
 Status: [RESEARCHED]
 Report: specs/{NNN}_{SLUG}/reports/{MM}_slides-research.md
 
-Next: /slides {N} --design (optional: confirm design choices before planning)
-      /plan {N} (skip design, go directly to planning)
+Next: /plan {N} (create implementation plan with design questions)
 ```
-
----
-
-## STAGE 3: DESIGN CONFIRMATION (--design flag)
-
-**Only reached when input_type is "design".**
-
-This stage runs after research is complete. It reads the research report, presents design choices
-to the user, and stores their decisions in task metadata for the planner to use.
-
-### Step 1: Validate Task
-
-```bash
-task_data=$(jq -r --argjson num "$task_number" \
-  '.active_projects[] | select(.project_number == $num)' \
-  specs/state.json)
-
-# Validate exists, language is "present", task_type is "slides"
-# Validate status is "researched" or "planned"
-status=$(echo "$task_data" | jq -r '.status')
-if [ "$status" != "researched" ] && [ "$status" != "planned" ]; then
-  echo "Error: Task must be researched before design confirmation. Current status: [$status]"
-  echo "Run /slides $task_number first to complete research."
-  exit 1
-fi
-```
-
-### Step 2: Read Research Report
-
-```bash
-padded_num=$(printf "%03d" "$task_number")
-project_name=$(echo "$task_data" | jq -r '.project_name')
-report_path=$(ls specs/${padded_num}_${project_name}/reports/*_slides-research.md 2>/dev/null | tail -1)
-```
-
-Read the research report to extract key messages, suggested structure, and themes.
-
-### Step 3: Design Questions
-
-**D1: Visual Theme**
-
-Use AskUserQuestion:
-
-```
-Based on the research report, which visual theme fits best?
-
-A) Academic Clean - Minimal, high-contrast, serif headings (department seminars)
-B) Clinical Teal - Medical/clinical palette, clean data presentation (clinical audiences)
-C) Conference Bold - Strong colors, large type, designed for projection (conference talks)
-D) Minimal Dark - Dark background, high contrast, code-friendly (technical audiences)
-```
-
-Store response as `design_decisions.theme`.
-
-**D2: Key Message Ordering**
-
-Present the 3 key messages identified in the research report and ask:
-
-```
-The research identified these key messages. Confirm or reorder:
-
-1. {key_message_1}
-2. {key_message_2}
-3. {key_message_3}
-
-Enter the preferred order (e.g., "2, 1, 3") or "confirm" to keep as-is.
-Add any messages to emphasize or de-emphasize.
-```
-
-Store response as `design_decisions.message_order`.
-
-**D3: Section Emphasis**
-
-```
-Which sections should receive extra slides or depth?
-
-Select all that apply:
-- Methods/approach (show technical detail)
-- Results/data (more data slides)
-- Background/motivation (broader context)
-- Clinical implications (translational focus)
-- Future directions (forward-looking)
-
-Which sections to expand?
-```
-
-Store response as `design_decisions.section_emphasis`.
-
-### Step 4: Store Design Decisions
-
-Update task metadata in state.json:
-
-```bash
-jq --arg theme "$theme" \
-   --arg order "$message_order" \
-   --arg emphasis "$section_emphasis" \
-   --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-  '(.active_projects[] | select(.project_number == '$task_number')).design_decisions = {
-    "theme": $theme,
-    "message_order": $order,
-    "section_emphasis": $emphasis,
-    "confirmed_at": $ts
-  }' specs/state.json > specs/tmp/state.json && mv specs/tmp/state.json specs/state.json
-```
-
-### Step 5: Git Commit
-
-```bash
-git add specs/state.json
-git commit -m "task ${task_number}: confirm talk design
-
-Session: ${session_id}"
-```
-
-### Step 6: Output
-
-```
-Talk design confirmed for Task #{N}
-
-Design Decisions:
-- Theme: {theme}
-- Message Order: {message_order}
-- Section Emphasis: {section_emphasis}
-
-Status: [RESEARCHED] (unchanged)
-
-Next: /plan {N} - Create implementation plan (will use design_decisions)
-```
-
----
 
 ## Core Command Integration
 
@@ -426,8 +295,8 @@ Tasks with language="present" and task_type="slides" route through core commands
 | Command | Routes To | Purpose |
 |---------|-----------|---------|
 | `/research N` | skill-slides | Synthesize materials into slide-mapped report |
-| `/plan N` | skill-planner | Create implementation plan |
-| `/implement N` | skill-slides (assemble) | Generate Slidev presentation |
+| `/plan N` | skill-slides (plan workflow) | Ask design questions, then delegate to planner-agent |
+| `/implement N` | skill-slides (assemble) | Generate presentation (Slidev or PPTX per output_format) |
 
 ---
 
@@ -460,7 +329,7 @@ Talk Type: {talk_type}
 Recommended workflow:
 1. /research {N} - Synthesize source materials
 2. /plan {N} - Create implementation plan
-3. /implement {N} - Generate Slidev presentation
+3. /implement {N} - Generate {output_format} presentation
 ```
 
 ### Research Success
