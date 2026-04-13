@@ -10,7 +10,7 @@ next_project_number: 415
 
 ### Pending
 
-- **414** [NOT STARTED] -- Remove Phase Checkpoint Protocol from 10 extension agents
+- **414** [RESEARCHED] -- Remove Phase Checkpoint Protocol from 10 extension agents
 - **398** [NOT STARTED] -- Extract artifact-linking logic to shared helper script
 - **394** [NOT STARTED] -- Remove language-to-task_type backward compatibility shim
 - **384** [RESEARCHED] -- Improve /convert command-skill-agent pipeline in filetypes extension
@@ -21,8 +21,9 @@ next_project_number: 415
 
 ### 414. Remove Phase Checkpoint Protocol from 10 extension agents
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: meta
+- **Research**: [01_checkpoint-protocol-audit.md](specs/414_remove_phase_checkpoint_protocol/reports/01_checkpoint-protocol-audit.md)
 
 **Description**: Remove the "Phase Checkpoint Protocol" sections from 10 extension implementation agents that still contain them. This protocol documented per-phase `[IN PROGRESS]`/`[COMPLETED]` status tracking in plan headings, per-phase git commits, and phase-to-stage mapping tables. It was already removed from epi-implement-agent, pptx-assembly-agent, and slidev-assembly-agent as unnecessary overhead. The same removal should be applied to: latex-implementation-agent, typst-implementation-agent, python-implementation-agent, nix-implementation-agent, neovim-implementation-agent, web-implementation-agent, z3-implementation-agent, founder-implement-agent, deck-builder-agent, and grant-agent. Also remove inline references to the protocol (preamble notes, per-phase commit instructions, numbered rules at the end). Origin: PORT.md cross-reference audit.
 
