@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 418,
+  "next_project_number": 419,
   "active_projects": [
+    {
+      "project_number": 418,
+      "project_name": "add_postflight_fallback_to_skill_wrapper",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-13T18:05:25Z",
+      "last_updated": "2026-04-13T18:05:25Z"
+    },
     {
       "project_number": 417,
       "project_name": "interactive_slide_planning_workflow",

@@ -1,5 +1,5 @@
 ---
-next_project_number: 418
+next_project_number: 419
 ---
 
 # TODO
@@ -21,6 +21,15 @@ next_project_number: 418
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 418. Add postflight self-execution fallback to skill wrapper pattern
+- **Effort**: TBD
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+
+**Description**: Add postflight self-execution fallback to skill-implementer: when the skill executor does implementation work directly (without spawning a subagent via Task tool), it must still execute Stages 6-10 (read .return-meta.json, postflight status update, artifact linking, git commit, cleanup). The current pattern assumes Stage 5 always spawns a subagent, but agents frequently do the work inline, causing the entire postflight chain to break silently. Possible fixes: (1) add a Stage 5a check that detects inline execution and falls through to postflight, (2) restructure so postflight runs unconditionally after implementation regardless of delegation mode, or (3) add enforcement that prevents inline execution. This affects skill-researcher and skill-planner similarly if they have the same pattern.
+
+---
 
 ### 417. Interactive slide planning workflow with narrative arc feedback and per-slide refinement
 - **Effort**: 2-3 hours
@@ -144,3 +153,4 @@ next_project_number: 418
 4. **87** [RESEARCHED] -> plan
 5. **398** [NOT STARTED] -> research (depends: 397)
 6. **394** [NOT STARTED] -> research
+7. **418** -> research (independent)
