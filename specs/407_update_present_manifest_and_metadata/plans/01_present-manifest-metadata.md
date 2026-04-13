@@ -1,7 +1,7 @@
 # Implementation Plan: Update Present Manifest and Metadata
 
 - **Task**: 407 - update_present_manifest_and_metadata
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 0.5 hours
 - **Dependencies**: 403 (completed), 405 (completed)
 - **Research Inputs**: specs/407_update_present_manifest_and_metadata/reports/01_present-manifest-metadata.md

@@ -53,14 +53,14 @@
     {
       "project_number": 407,
       "project_name": "update_present_manifest_and_metadata",
-      "status": "planned",
+      "status": "completed",
       "task_type": "meta",
       "dependencies": [
         403,
         405
       ],
       "created": "2026-04-12T12:00:00Z",
-      "last_updated": "2026-04-13T07:12:32Z",
+      "last_updated": "2026-04-13T07:17:16Z",
       "artifacts": [
         {
           "path": "specs/407_update_present_manifest_and_metadata/reports/01_present-manifest-metadata.md",
@@ -71,10 +71,16 @@
           "path": "specs/407_update_present_manifest_and_metadata/plans/01_present-manifest-metadata.md",
           "type": "plan",
           "summary": "3-phase plan to update present extension manifest, EXTENSION.md, and index-entries.json for 3-agent slide dispatch"
+        },
+        {
+          "path": "specs/407_update_present_manifest_and_metadata/summaries/01_present-manifest-summary.md",
+          "type": "summary",
+          "summary": "Updated present extension manifest.json, EXTENSION.md, and index-entries.json for 3-agent slide dispatch"
         }
       ],
-      "session_id": "sess_1776064102_396062",
-      "next_artifact_number": 2
+      "session_id": "sess_1776064391_523a4c",
+      "next_artifact_number": 2,
+      "completion_summary": "Updated present extension manifest.json (3 new agents replacing slides-agent), EXTENSION.md (3-row skill-agent table), and index-entries.json (fixed 2 stale agent refs, added ucsf-institutional.json entry)."
     },
     {
       "project_number": 406,
