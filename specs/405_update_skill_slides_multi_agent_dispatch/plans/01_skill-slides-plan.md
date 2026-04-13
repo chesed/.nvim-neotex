@@ -1,7 +1,7 @@
 # Implementation Plan: Update skill-slides for multi-agent dispatch and plan workflow
 
 - **Task**: 405 - Update skill-slides for multi-agent dispatch and plan workflow
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1.5 hours
 - **Dependencies**: Task 403 (completed -- three specialized agents exist)
 - **Research Inputs**: specs/405_update_skill_slides_multi_agent_dispatch/reports/01_skill-slides-research.md
@@ -71,7 +71,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Frontmatter, intro, triggers, and routing table [NOT STARTED]
+### Phase 1: Frontmatter, intro, triggers, and routing table [COMPLETED]
 
 **Goal**: Apply DIFF changes 1-7 -- the lightweight metadata and structural updates that establish the 3-workflow model.
 

@@ -1,18 +1,21 @@
 ---
 name: skill-slides
-description: Research talk material synthesis and presentation assembly. Invoke for slides tasks.
+description: Research talk material synthesis, design-aware planning, and presentation assembly. Invoke for slides tasks.
 allowed-tools: Task, Bash, Edit, Read, Write, AskUserQuestion
-# Context (loaded by subagent):
-#   - .claude/extensions/present/context/project/present/talk/index.json
-#   - .claude/extensions/present/context/project/present/patterns/talk-structure.md
-#   - .claude/extensions/present/context/project/present/domain/presentation-types.md
-# Tools (used by subagent):
-#   - Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
+# Subagent dispatch (resolved at Stage 4):
+#   - slides-research-agent (workflow_type=slides_research)
+#   - planner-agent (workflow_type=plan, via design questions pre-delegation)
+#   - pptx-assembly-agent (workflow_type=assemble, output_format=pptx)
+#   - slidev-assembly-agent (workflow_type=assemble, output_format=slidev)
 ---
 
 # Slides Skill
 
-Thin wrapper that delegates slides research work to `slides-agent` subagent.
+Thin wrapper that routes slides tasks to one of three specialized subagents:
+
+- **slides-research-agent** -- material synthesis into slide-mapped reports
+- **planner-agent** -- design-aware implementation planning (with D1-D3 design questions)
+- **pptx-assembly-agent** / **slidev-assembly-agent** -- presentation assembly by output format
 
 **IMPORTANT**: This skill implements the skill-internal postflight pattern. After the subagent returns,
 this skill handles all postflight operations (status update, artifact linking, git commit) before returning.
@@ -33,6 +36,7 @@ Note: This skill is a thin wrapper with internal postflight. Context is loaded b
 This skill activates when:
 - `/slides` command with task number input
 - `/research` on a present task with `task_type: "slides"`
+- `/plan` on a present task with `task_type: "slides"` (plan workflow)
 - `/implement` on a present task with `task_type: "slides"` (assemble workflow)
 - Present extension is available
 
@@ -40,17 +44,18 @@ This skill activates when:
 
 ## Workflow Type Routing
 
-This skill routes to slides-agent with one of two workflow types:
+This skill routes to a specialized subagent based on workflow type and output format:
 
 | Workflow Type | Preflight Status | Success Status | TODO.md Markers |
 |---------------|-----------------|----------------|-----------------|
 | slides_research | researching | researched | [RESEARCHING] -> [RESEARCHED] |
+| plan | planning | planned | [PLANNING] -> [PLANNED] |
 | assemble | implementing | completed | [IMPLEMENTING] -> [COMPLETED] |
 
-**Note**: The `--design` workflow is handled entirely at the command level (`slides.md`), not by this
-skill. Design confirmation stores `design_decisions` in task metadata. When `/plan N` runs for a slides
-task, the planner should check for and use `design_decisions` (theme, message_order, section_emphasis)
-from state.json metadata.
+**Note**: The `plan` workflow asks interactive design questions (D1-D3) in Stage 3.5 before delegating
+to planner-agent. Theme fallback chain: `design_decisions.theme` -> research report "Recommended Theme"
+section -> default `academic-clean`. Design decisions are stored in state.json task metadata for use
+by assembly agents.
 
 ---
 
@@ -61,7 +66,7 @@ from state.json metadata.
 - `session_id` - Session ID from orchestrator
 
 ### Optional Parameters
-- `workflow_type` - One of: slides_research, assemble (default: slides_research)
+- `workflow_type` - One of: slides_research, plan, assemble (default: slides_research)
 
 ---
 
