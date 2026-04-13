@@ -131,7 +131,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Update Existing Theme and Content Files [IN PROGRESS]
+### Phase 3: Update Existing Theme and Content Files [COMPLETED]
 
 **Goal**: Add footer sections to existing themes, append format-specific notes to talk-structure.md and conclusions-takeaway.md, and rewrite talk/index.json.
 
