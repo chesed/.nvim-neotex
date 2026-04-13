@@ -44,7 +44,7 @@ Remove the Phase Checkpoint Protocol from 3 extension agents that carry overly c
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Clean pptx-assembly-agent.md [NOT STARTED]
+### Phase 1: Clean pptx-assembly-agent.md [IN PROGRESS]
 
 **Goal**: Remove Phase Checkpoint Protocol and all references from pptx-assembly-agent.md.
 

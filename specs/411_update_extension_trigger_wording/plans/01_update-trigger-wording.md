@@ -52,7 +52,7 @@ No ROADMAP.md found.
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Replace trigger wording in all 5 skill files [NOT STARTED]
+### Phase 1: Replace trigger wording in all 5 skill files [IN PROGRESS]
 
 **Goal**: Update all trigger condition lines from Neovim-specific to mechanism-agnostic wording.
 

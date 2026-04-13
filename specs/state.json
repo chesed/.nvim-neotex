@@ -5,22 +5,36 @@
     {
       "project_number": 413,
       "project_name": "refine_slides_skill_command",
-      "status": "researching",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T14:00:00Z",
+      "last_updated": "2026-04-13T14:15:00Z",
       "session_id": "sess_1776066575_30af58",
-      "artifacts": []
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/413_refine_slides_skill_command/reports/01_refine-slides-skill-command.md",
+          "summary": "Analysis of 8 SKILL.md edits and 3 slides.md edits to port from Zed working copy"
+        }
+      ]
     },
     {
       "project_number": 412,
       "project_name": "update_docs_python_to_rust",
-      "status": "researching",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T18:00:00Z",
+      "last_updated": "2026-04-13T18:15:00Z",
       "session_id": "sess_1776066575_30af58",
-      "artifacts": []
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/412_update_docs_python_to_rust/reports/01_update-docs-python-rust.md",
+          "summary": "Catalog of ~45 Python-to-Rust text changes across 7 documentation files"
+        }
+      ]
     },
     {
       "project_number": 411,
@@ -50,12 +64,19 @@
     {
       "project_number": 410,
       "project_name": "remove_meta_stage_5_5",
-      "status": "researching",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T18:00:00Z",
+      "last_updated": "2026-04-13T18:15:00Z",
       "session_id": "sess_1776066575_30af58",
-      "artifacts": []
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/410_remove_meta_stage_5_5/reports/01_remove-meta-stage-5-5.md",
+          "summary": "Analysis of Stage 5.5 removal across 3 files: meta-builder-agent.md, SKILL.md, multi-task-creation-standard.md"
+        }
+      ]
     },
     {
       "project_number": 409,
