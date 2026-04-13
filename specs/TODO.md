@@ -10,11 +10,11 @@ next_project_number: 414
 
 ### Pending
 
-- **413** [NOT STARTED] -- Refine slides skill and command (design questions, routing, delegation)
-- **412** [NOT STARTED] -- Update documentation examples from Python to Rust
-- **411** [NOT STARTED] -- Update extension trigger wording to mechanism-agnostic
-- **410** [NOT STARTED] -- Remove meta Stage 5.5 auto-research artifact generation
-- **409** [NOT STARTED] -- Remove Phase Checkpoint Protocol from assembly/implement agents
+- **413** [RESEARCHING] -- Refine slides skill and command (design questions, routing, delegation)
+- **412** [RESEARCHING] -- Update documentation examples from Python to Rust
+- **411** [PLANNED] -- Update extension trigger wording to mechanism-agnostic
+- **410** [RESEARCHING] -- Remove meta Stage 5.5 auto-research artifact generation
+- **409** [PLANNED] -- Remove Phase Checkpoint Protocol from assembly/implement agents
 - **398** [NOT STARTED] -- Extract artifact-linking logic to shared helper script
 - **394** [NOT STARTED] -- Remove language-to-task_type backward compatibility shim
 - **384** [RESEARCHED] -- Improve /convert command-skill-agent pipeline in filetypes extension
@@ -25,7 +25,7 @@ next_project_number: 414
 
 ### 413. Refine slides skill and command (design questions, routing, delegation)
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: meta
 
 **Description**: Port slides skill and command refinements from Zed working copy. In `.claude/extensions/present/skills/skill-slides/SKILL.md`: expand Stage 3.5 (Design Questions) with step-by-step guidance replacing bash automation code, simplify agent resolution case statement syntax, streamline delegation context section, remove duplicate agent/workflow routing table from Stage 5, remove "Plan Success" return message format. In `.claude/extensions/present/commands/slides.md`: simplify output format question wording, renumber steps (remove Step 0.0 references), expand Step 2.5 "Enrich Description" with detailed path relativization logic, remove "Plan Success" return message format. Source: `/home/benjamin/.config/zed/CHANGE.md` Theme 6.
@@ -34,7 +34,7 @@ next_project_number: 414
 
 ### 412. Update documentation examples from Python to Rust
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: meta
 
 **Description**: Replace Python with Rust as the example language in documentation guides, since Python is a real bundled extension and creates confusion when used as a hypothetical teaching example. Files to update: `.claude/docs/guides/creating-skills.md` (agent/skill names python→rust, packages→crates, asyncio→tokio, pytest→cargo test), `.claude/docs/guides/creating-agents.md` (task_context example, context file reference python/→rust/), `.claude/docs/guides/component-selection.md` (skill routing example, "Adding Python Support"→"Adding Rust Support"), `.claude/docs/guides/adding-domains.md` (domain example "python"→"rust"), `.claude/docs/guides/creating-extensions.md` (remove "python" from simple extensions list), `.claude/docs/architecture/system-overview.md` (rename example section), `.claude/context/architecture/component-checklist.md` (language examples). Source: `/home/benjamin/.config/zed/CHANGE.md` Theme 5.
@@ -42,9 +42,11 @@ next_project_number: 414
 ---
 
 ### 411. Update extension trigger wording to mechanism-agnostic
-- **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Effort**: 0.5 hours
+- **Status**: [PLANNED]
+- **Planning Completed**: 2026-04-13
 - **Task Type**: meta
+- **Plan**: [01_update-trigger-wording.md](specs/411_update_extension_trigger_wording/plans/01_update-trigger-wording.md)
 
 **Description**: Replace Neovim-specific `"Extension is loaded via \`<leader>ac\`"` trigger wording with mechanism-agnostic alternatives in 5 extension skill files. This makes skills portable across loading methods (keybinding, pre-merged, etc.). Files: `.claude/extensions/epidemiology/skills/skill-epi-implement/SKILL.md` (line 34, →"Epidemiology extension is available"), `.claude/extensions/epidemiology/skills/skill-epi-research/SKILL.md` (line 33, →"Epidemiology extension is available"), `.claude/extensions/present/skills/skill-funds/SKILL.md` (line 36, →"Present extension is available"), `.claude/extensions/present/skills/skill-grant/SKILL.md` (line 34, →"Present extension is available"), `.claude/extensions/present/skills/skill-timeline/SKILL.md` (line 35, →"Present extension is available"). Source: `/home/benjamin/.config/zed/CHANGE.md` Theme 3.
 
@@ -52,7 +54,7 @@ next_project_number: 414
 
 ### 410. Remove meta Stage 5.5 auto-research artifact generation
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: meta
 
 **Description**: Remove the "Interview Stage 5.5: GenerateResearchArtifacts" from the meta-builder-agent, which auto-generated shallow research boilerplate and set tasks to RESEARCHED status. Tasks should instead start as NOT STARTED and follow the normal `/research → /plan → /implement` lifecycle. Important: task descriptions created by meta-builder-agent must still include full file paths to key sources so that `/research` has clear starting points. Files: `.claude/agents/meta-builder-agent.md` (remove Stage 5.5 section at lines 594-691, update Stage 5→6 transition, change state.json template status to "not_started", remove artifacts array, update TODO.md template to [NOT STARTED]), `.claude/skills/skill-meta/SKILL.md` (change summary to "NOT STARTED status", remove research report objects, update next_steps to "/research"), `.claude/docs/reference/standards/multi-task-creation-standard.md` (remove "Research Generation" row and Stage 5.5 references). Source: `/home/benjamin/.config/zed/CHANGE.md` Theme 2.
@@ -60,9 +62,11 @@ next_project_number: 414
 ---
 
 ### 409. Remove Phase Checkpoint Protocol from assembly/implement agents
-- **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Effort**: 1 hour
+- **Status**: [PLANNED]
+- **Planning Completed**: 2026-04-13
 - **Task Type**: meta
+- **Plan**: [01_remove-checkpoint-protocol.md](specs/409_remove_phase_checkpoint_protocol/plans/01_remove-checkpoint-protocol.md)
 
 **Description**: Remove the overly complex Phase Checkpoint Protocol from 3 extension agents. This removes per-phase git commits, phase-to-stage mapping tables, and "before/after each phase" checklists. Phase status markers (`[NOT STARTED]`, `[IN PROGRESS]`, `[COMPLETED]`) in plan files are preserved — they are a core system feature defined in `.claude/rules/artifact-formats.md` and updated by implementation agents during execution. Files: `.claude/extensions/present/agents/pptx-assembly-agent.md` (remove lines 100-144: Phase Checkpoint Protocol section with A1-A8 mapping, per-phase git commits, requirement items 10-12), `.claude/extensions/present/agents/slidev-assembly-agent.md` (remove lines 118-162: Phase Checkpoint Protocol section with S1-S9 mapping, per-phase git commits, requirement items 10-12), `.claude/extensions/epidemiology/agents/epi-implement-agent.md` (remove lines 141-150: inline before/after phase instructions; remove lines 490-511: Phase Checkpoint Protocol section). Source: `/home/benjamin/.config/zed/CHANGE.md` Theme 1.
 
@@ -131,7 +135,7 @@ next_project_number: 414
 1. **409** [NOT STARTED] -> research/implement (independent, small)
 2. **410** [NOT STARTED] -> research/implement (independent, medium)
 3. **411** [NOT STARTED] -> implement directly (5 trivial text replacements)
-4. **412** [NOT STARTED] -> research/implement (independent, medium)
+4. **412** [RESEARCHING] -> research/implement (independent, medium)
 5. **413** [NOT STARTED] -> research (needs Zed working copy comparison)
 6. **384** [RESEARCHED] -> plan (independent)
 7. **78** [PLANNED] -> implement

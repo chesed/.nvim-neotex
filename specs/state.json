@@ -5,47 +5,82 @@
     {
       "project_number": 413,
       "project_name": "refine_slides_skill_command",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T12:00:00Z",
+      "last_updated": "2026-04-13T14:00:00Z",
+      "session_id": "sess_1776066575_30af58",
       "artifacts": []
     },
     {
       "project_number": 412,
       "project_name": "update_docs_python_to_rust",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T12:00:00Z",
+      "last_updated": "2026-04-13T18:00:00Z",
+      "session_id": "sess_1776066575_30af58",
       "artifacts": []
     },
     {
       "project_number": 411,
       "project_name": "update_extension_trigger_wording",
-      "status": "not_started",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T12:00:00Z",
-      "artifacts": []
+      "last_updated": "2026-04-13T18:00:00Z",
+      "session_id": "sess_1776066556_e77350",
+      "effort": "0.5 hours",
+      "artifacts": [
+        {
+          "type": "plan",
+          "path": "specs/411_update_extension_trigger_wording/plans/01_update-trigger-wording.md",
+          "summary": "1-phase plan for replacing trigger wording in 5 extension skill files"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 1,
+        "total_effort_hours": 0.5,
+        "complexity": "simple",
+        "research_integrated": false,
+        "plan_version": 1,
+        "dependency_waves": [[1]]
+      }
     },
     {
       "project_number": 410,
       "project_name": "remove_meta_stage_5_5",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T12:00:00Z",
+      "last_updated": "2026-04-13T18:00:00Z",
+      "session_id": "sess_1776066575_30af58",
       "artifacts": []
     },
     {
       "project_number": 409,
       "project_name": "remove_phase_checkpoint_protocol",
-      "status": "not_started",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-13T12:00:00Z",
-      "last_updated": "2026-04-13T12:00:00Z",
-      "artifacts": []
+      "last_updated": "2026-04-13T18:00:00Z",
+      "session_id": "sess_1776066556_e77350",
+      "effort": "1 hour",
+      "artifacts": [
+        {
+          "type": "plan",
+          "path": "specs/409_remove_phase_checkpoint_protocol/plans/01_remove-checkpoint-protocol.md",
+          "summary": "4-phase plan to remove Phase Checkpoint Protocol from 3 extension agents"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 4,
+        "total_effort_hours": 1,
+        "complexity": "simple",
+        "research_integrated": false,
+        "plan_version": 1,
+        "dependency_waves": [[1, 2, 3], [4]]
+      }
     },
     {
       "project_number": 398,
