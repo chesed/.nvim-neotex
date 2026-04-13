@@ -12,7 +12,7 @@ next_project_number: 409
 
 - **403** [COMPLETED] -- Split slides-agent into 3 specialized agents with Phase Checkpoint Protocol
 - **404** [COMPLETED] -- Add UCSF theme, PPTX patterns, and templates to present/ context
-- **405** [RESEARCHED] -- Update skill-slides for multi-agent dispatch and plan workflow (depends: 403)
+- **405** [PLANNED] -- Update skill-slides for multi-agent dispatch and plan workflow (depends: 403)
 - **406** [NOT STARTED] -- Update /slides command: output format, enriched descriptions, remove --design (depends: 405)
 - **407** [NOT STARTED] -- Update present/ manifest.json and extension metadata (depends: 403, 405)
 - **408** [COMPLETED] -- Audit all implementation agents for Phase Checkpoint Protocol compliance
@@ -56,10 +56,11 @@ next_project_number: 409
 
 ### 405. Update skill-slides for multi-agent dispatch and plan workflow
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: meta
 - **Dependencies**: 403
 - **Research**: [01_skill-slides-research.md](specs/405_update_skill_slides_multi_agent_dispatch/reports/01_skill-slides-research.md)
+- **Plan**: [01_skill-slides-plan.md](specs/405_update_skill_slides_multi_agent_dispatch/plans/01_skill-slides-plan.md)
 
 **Description**: Rewrite skill-slides SKILL.md: add `plan` workflow type with D1-D3 design questions (theme including "E) UCSF Institutional" option, message ordering, section emphasis). Add multi-agent dispatch table routing to slides-research-agent, planner-agent, pptx-assembly-agent, or slidev-assembly-agent based on workflow_type and output_format. Add plan postflight status mapping. Source: `/home/benjamin/.config/zed/DIFF.md` section 3.1.
 

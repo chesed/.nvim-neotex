@@ -78,22 +78,52 @@
     {
       "project_number": 405,
       "project_name": "update_skill_slides_multi_agent_dispatch",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "dependencies": [
         403
       ],
       "created": "2026-04-12T12:00:00Z",
-      "last_updated": "2026-04-13T06:36:21Z",
+      "last_updated": "2026-04-13T06:40:11Z",
       "artifacts": [
         {
           "path": "specs/405_update_skill_slides_multi_agent_dispatch/reports/01_skill-slides-research.md",
           "type": "research",
           "summary": "Research report for skill-slides multi-agent dispatch update"
+        },
+        {
+          "path": "specs/405_update_skill_slides_multi_agent_dispatch/plans/01_skill-slides-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for skill-slides multi-agent dispatch update"
         }
       ],
-      "session_id": "sess_1776061899_915559",
-      "next_artifact_number": 2
+      "session_id": "sess_1776062242_183d4d",
+      "next_artifact_number": 2,
+      "plan_metadata": {
+        "phases": 3,
+        "total_effort_hours": 1.5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_skill-slides-research.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      }
     },
     {
       "project_number": 404,
