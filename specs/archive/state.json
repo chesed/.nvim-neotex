@@ -16157,6 +16157,336 @@
       ],
       "completion_summary": "Added Custom Formalism Rendering section to slidev-deck-template.md documenting LogosOp.vue, dead KaTeX infrastructure, HTML entity patterns, and rendering decision tree. Updated deck/README.md with 2 new component entries.",
       "claudemd_suggestions": "Updated founder extension context: slidev-deck-template.md gained ~80-line formalism rendering section, deck/README.md updated from 4 to 6 components with status annotations"
+    },
+    {
+      "project_number": 402,
+      "project_name": "add_routing_blocks_to_extension_manifests",
+      "status": "completed",
+      "task_type": "meta",
+      "priority": "high",
+      "created": "2026-04-11T02:23:21Z",
+      "last_updated": "2026-04-11T02:37:02Z",
+      "session_id": "sess_1775874845_b4c86f",
+      "artifacts": [
+        {
+          "path": "specs/402_add_routing_blocks_to_extension_manifests/plans/01_add-routing-blocks.md",
+          "type": "plan",
+          "summary": "Four-phase plan adding routing blocks to 11 failing extension manifests with a final doc-lint verification pass."
+        },
+        {
+          "path": "specs/402_add_routing_blocks_to_extension_manifests/summaries/01_add-routing-blocks-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary documenting routing blocks added to 11 extension manifests."
+        }
+      ],
+      "completion_summary": "Added canonical three-bucket routing blocks (research/plan/implement) to 11 extension manifests: latex, nix, nvim, python, typst, z3, web, formal, lean, filetypes, memory. Each block was inserted between provides and merge_targets using the exact JSON from the research report, preserving sub-routing for multi-skill extensions (formal, lean, filetypes). Doc-lint script now reports PASS: all extensions OK with exit 0, unblocking the CI doc-lint enforcement roadmap item.",
+      "archived": "2026-04-13T07:22:13Z"
+    },
+    {
+      "project_number": 403,
+      "project_name": "split_slides_agent_with_phase_checkpoint",
+      "status": "completed",
+      "task_type": "meta",
+      "created": "2026-04-12T12:00:00Z",
+      "last_updated": "2026-04-12T18:30:00Z",
+      "session_id": "sess_1776182400_i403",
+      "completion_summary": "Replaced monolithic slides-agent.md with 3 specialized agents: slides-research-agent.md (verbatim copy), pptx-assembly-agent.md (with Phase Checkpoint Protocol), slidev-assembly-agent.md (with Phase Checkpoint Protocol). Old slides-agent.md deleted.",
+      "claudemd_suggestions": "none",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/403_split_slides_agent_with_phase_checkpoint/reports/01_agent-split-research.md",
+          "summary": "Gap analysis of 3 new agents vs Phase Checkpoint Protocol, with exact implementation spec for each"
+        },
+        {
+          "type": "plan",
+          "path": "specs/403_split_slides_agent_with_phase_checkpoint/plans/01_agent-split-plan.md",
+          "summary": "4-phase plan: copy research agent, augment 2 assembly agents with Phase Checkpoint Protocol, delete old agent"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 4,
+        "total_effort_hours": 1.5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_agent-split-research.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      },
+      "archived": "2026-04-13T07:22:13Z"
+    },
+    {
+      "project_number": 404,
+      "project_name": "add_ucsf_theme_pptx_patterns_templates",
+      "status": "completed",
+      "task_type": "meta",
+      "created": "2026-04-12T12:00:00Z",
+      "last_updated": "2026-04-12T23:30:00Z",
+      "session_id": "sess_1776182400_i404",
+      "completion_summary": "Ported UCSF institutional theme, PPTX generation patterns, Slidev pitfalls docs, and project templates from zed into nvim present/ extension. Created 13 new text files, copied 1 binary .pptx template (3MB), updated 5 existing files (2 themes with footer sections, talk-structure with format notes, conclusions with custom footer, talk/index.json rewritten), and added 8 new index-entries.json entries for context discovery.",
+      "claudemd_suggestions": "none",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/404_add_ucsf_theme_pptx_patterns_templates/reports/01_ucsf-pptx-context.md",
+          "summary": "Complete inventory of 13 new files, 1 binary copy, and 5 file updates for UCSF theme, PPTX patterns, and templates"
+        },
+        {
+          "type": "plan",
+          "path": "specs/404_add_ucsf_theme_pptx_patterns_templates/plans/01_ucsf-pptx-plan.md",
+          "summary": "5-phase plan: theme/patterns, templates, existing file updates, binary copy, index entries"
+        },
+        {
+          "type": "summary",
+          "path": "specs/404_add_ucsf_theme_pptx_patterns_templates/summaries/01_ucsf-pptx-summary.md",
+          "summary": "Implementation summary: 5 phases completed, 19 file operations"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 5,
+        "total_effort_hours": 2,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_ucsf-pptx-context.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      },
+      "archived": "2026-04-13T07:22:13Z"
+    },
+    {
+      "project_number": 405,
+      "project_name": "update_skill_slides_multi_agent_dispatch",
+      "status": "completed",
+      "task_type": "meta",
+      "dependencies": [
+        403
+      ],
+      "created": "2026-04-12T12:00:00Z",
+      "last_updated": "2026-04-13T06:47:14Z",
+      "artifacts": [
+        {
+          "path": "specs/405_update_skill_slides_multi_agent_dispatch/reports/01_skill-slides-research.md",
+          "type": "research",
+          "summary": "Research report for skill-slides multi-agent dispatch update"
+        },
+        {
+          "path": "specs/405_update_skill_slides_multi_agent_dispatch/plans/01_skill-slides-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for skill-slides multi-agent dispatch update"
+        },
+        {
+          "path": "specs/405_update_skill_slides_multi_agent_dispatch/summaries/01_skill-slides-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for skill-slides multi-agent dispatch update"
+        }
+      ],
+      "session_id": "sess_1776062494_bad8de",
+      "next_artifact_number": 2,
+      "plan_metadata": {
+        "phases": 3,
+        "total_effort_hours": 1.5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_skill-slides-research.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      },
+      "completion_summary": "Rewrote skill-slides SKILL.md from 2-workflow/1-agent to 3-workflow/4-agent dispatch model with plan workflow, D1-D3 design questions including UCSF Institutional theme, and multi-agent routing to slides-research-agent, planner-agent, pptx-assembly-agent, or slidev-assembly-agent.",
+      "claudemd_suggestions": "Modified extensions/present/skills/skill-slides/SKILL.md: added plan workflow type, Stage 3.5 design questions, multi-agent dispatch table, parameterized subagent invocation",
+      "archived": "2026-04-13T07:22:13Z"
+    },
+    {
+      "project_number": 406,
+      "project_name": "update_slides_command_format_enriched",
+      "status": "completed",
+      "task_type": "meta",
+      "dependencies": [
+        405
+      ],
+      "created": "2026-04-12T12:00:00Z",
+      "last_updated": "2026-04-13T07:01:08Z",
+      "artifacts": [
+        {
+          "path": "specs/406_update_slides_command_format_enriched/reports/01_slides-command-format.md",
+          "type": "research",
+          "summary": "Complete change list for /slides command: remove --design flag/Stage 3, add output format selection (Step 0.0), add enriched description (Step 2.5), update routing table and output templates"
+        },
+        {
+          "path": "specs/406_update_slides_command_format_enriched/plans/01_slides-command-format.md",
+          "type": "plan",
+          "summary": "Implementation plan for updating /slides command per DIFF.md section 2: remove --design flag, add output format selection, add enriched description, update routing table"
+        },
+        {
+          "path": "specs/406_update_slides_command_format_enriched/summaries/01_slides-command-format-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for slides command format update"
+        }
+      ],
+      "session_id": "sess_1776063366_74c282",
+      "next_artifact_number": 2,
+      "plan_metadata": {
+        "phases": 3,
+        "total_effort_hours": 1.5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_slides-command-format.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      },
+      "completion_summary": "Rewrote /slides command per DIFF.md: removed --design flag and Stage 3, added output format selection (Step 0.0) and enriched description (Step 2.5), updated routing table and all output templates to use {output_format}.",
+      "claudemd_suggestions": "Modified .claude/extensions/present/commands/slides.md -- no core .claude/ config files changed",
+      "archived": "2026-04-13T07:22:13Z"
+    },
+    {
+      "project_number": 407,
+      "project_name": "update_present_manifest_and_metadata",
+      "status": "completed",
+      "task_type": "meta",
+      "dependencies": [
+        403,
+        405
+      ],
+      "created": "2026-04-12T12:00:00Z",
+      "last_updated": "2026-04-13T07:17:16Z",
+      "artifacts": [
+        {
+          "path": "specs/407_update_present_manifest_and_metadata/reports/01_present-manifest-metadata.md",
+          "type": "research",
+          "summary": "Gap analysis of present extension metadata files: manifest.json needs agent list update, EXTENSION.md needs 3-agent table, index-entries.json needs 2 stale reference fixes and 1 new entry"
+        },
+        {
+          "path": "specs/407_update_present_manifest_and_metadata/plans/01_present-manifest-metadata.md",
+          "type": "plan",
+          "summary": "3-phase plan to update present extension manifest, EXTENSION.md, and index-entries.json for 3-agent slide dispatch"
+        },
+        {
+          "path": "specs/407_update_present_manifest_and_metadata/summaries/01_present-manifest-summary.md",
+          "type": "summary",
+          "summary": "Updated present extension manifest.json, EXTENSION.md, and index-entries.json for 3-agent slide dispatch"
+        }
+      ],
+      "session_id": "sess_1776064391_523a4c",
+      "next_artifact_number": 2,
+      "completion_summary": "Updated present extension manifest.json (3 new agents replacing slides-agent), EXTENSION.md (3-row skill-agent table), and index-entries.json (fixed 2 stale agent refs, added ucsf-institutional.json entry).",
+      "archived": "2026-04-13T07:22:13Z"
+    },
+    {
+      "project_number": 408,
+      "project_name": "audit_implementation_agents_phase_checkpoint",
+      "status": "completed",
+      "task_type": "meta",
+      "created": "2026-04-12T12:00:00Z",
+      "last_updated": "2026-04-12T14:30:00Z",
+      "session_id": "sess_1776182400_i408",
+      "completion_summary": "Added Phase Checkpoint Protocol to 5 non-compliant implementation agents: python-implementation-agent, z3-implementation-agent, founder-implement-agent (partially compliant, enhanced with explicit Edit tool instructions and per-phase git commits), epi-implement-agent, deck-builder-agent (non-compliant, added full protocol sections). All 14 implementation agents now have the protocol.",
+      "claudemd_suggestions": "none",
+      "artifacts": [
+        {
+          "type": "research",
+          "path": "specs/408_audit_implementation_agents_phase_checkpoint/reports/01_phase-checkpoint-audit.md",
+          "summary": "Phase Checkpoint Protocol compliance audit: 8 compliant, 3 partial, 2 non-compliant implementation agents"
+        },
+        {
+          "type": "plan",
+          "path": "specs/408_audit_implementation_agents_phase_checkpoint/plans/01_phase-checkpoint-plan.md",
+          "summary": "3-phase plan to add Phase Checkpoint Protocol to 5 non-compliant implementation agents"
+        }
+      ],
+      "plan_metadata": {
+        "phases": 3,
+        "total_effort_hours": 1.5,
+        "complexity": "simple",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "reports_integrated": [
+          {
+            "path": "reports/01_phase-checkpoint-audit.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      },
+      "archived": "2026-04-13T07:22:13Z"
     }
   ],
   "abandoned_projects": []
