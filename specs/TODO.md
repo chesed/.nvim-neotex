@@ -1,19 +1,30 @@
 ---
-next_project_number: 420
+next_project_number: 421
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-04-13. 2 active tasks remaining.*
+*Updated 2026-04-13. 3 active tasks remaining.*
 
 ### Pending
 
+- **420** [NOT STARTED] -- Prevent extension loader overwriting repo customizations
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 420. Prevent extension loader sync from overwriting repo-specific CLAUDE.md customizations
+ **Effort**: TBD
+ **Status**: [NOT STARTED]
+ **Task Type**: meta
+ **Dependencies**: None
+
+**Description**: Investigation and fix for a systemic issue: when the `<leader>ac` extension loader syncs .claude/ files from the nvim config into other repos (like zed), it overwrites repo-specific additions to CLAUDE.md documentation tables. This caused slide-planner-agent and skill-slide-planning (added by task 56 in zed) to be silently removed from CLAUDE.md when the next sync occurred. Root cause analysis needed: (1) Identify how the extension loader syncs CLAUDE.md content between repos, (2) Determine why repo-specific additions are not preserved during sync, (3) Investigate whether extensions.json or manifest.json should declare documentation table entries that get merged rather than overwritten, (4) Check if other repos have similar repo-specific CLAUDE.md customizations at risk. Design and implement a fix: consider merge-based documentation table updates, repo-local sections in CLAUDE.md, extension manifest declarations for table entries, and validation that warns when a sync would remove entries added by tasks in the target repo.
+
+---
 
 ### 87. Investigate terminal directory change when opening neovim in wezterm
  **Effort**: TBD

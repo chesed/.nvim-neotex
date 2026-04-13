@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 420,
+  "next_project_number": 421,
   "active_projects": [
+    {
+      "project_number": 420,
+      "project_name": "prevent_extension_loader_overwriting_repo_customizations",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-13T23:20:00Z",
+      "last_updated": "2026-04-13T23:20:00Z"
+    },
     {
       "project_number": 87,
       "project_name": "investigate_wezterm_terminal_directory_change",
