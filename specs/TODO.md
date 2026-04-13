@@ -10,9 +10,9 @@ next_project_number: 419
 
 ### Pending
 
-- **418** [RESEARCHED] -- Add postflight self-execution fallback to skill wrapper pattern
-- **398** [NOT STARTED] -- Extract artifact-linking logic to shared helper script
-- **394** [NOT STARTED] -- Remove language-to-task_type backward compatibility shim
+- **418** [PLANNED] -- Add postflight self-execution fallback to skill wrapper pattern
+- **398** [RESEARCHING] -- Extract artifact-linking logic to shared helper script
+- **394** [RESEARCHING] -- Remove language-to-task_type backward compatibility shim
 - **384** [RESEARCHED] -- Improve /convert command-skill-agent pipeline in filetypes extension
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
@@ -21,9 +21,10 @@ next_project_number: 419
 
 ### 418. Add postflight self-execution fallback to skill wrapper pattern
 - **Effort**: TBD
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: meta
 - **Research**: [01_postflight-fallback.md](specs/418_add_postflight_fallback_to_skill_wrapper/reports/01_postflight-fallback.md)
+- **Plan**: [01_postflight-fallback.md](specs/418_add_postflight_fallback_to_skill_wrapper/plans/01_postflight-fallback.md)
 
 **Description**: Add postflight self-execution fallback to skill-implementer: when the skill executor does implementation work directly (without spawning a subagent via Task tool), it must still execute Stages 6-10 (read .return-meta.json, postflight status update, artifact linking, git commit, cleanup). The current pattern assumes Stage 5 always spawns a subagent, but agents frequently do the work inline, causing the entire postflight chain to break silently. Possible fixes: (1) add a Stage 5a check that detects inline execution and falls through to postflight, (2) restructure so postflight runs unconditionally after implementation regardless of delegation mode, or (3) add enforcement that prevents inline execution. This affects skill-researcher and skill-planner similarly if they have the same pattern.
 
@@ -31,7 +32,7 @@ next_project_number: 419
 
 ### 398. Extract artifact-linking logic to shared helper script (consolidate six skill Stage 8 blocks)
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: meta
 - **Dependencies**: 397
 
@@ -41,7 +42,7 @@ next_project_number: 419
 
 ### 394. Remove language-to-task_type backward compatibility shim
 - **Effort**: TBD
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: meta
 
 **Description**: Remove the backward compatibility shim that treats old `language` field values as `task_type` when no `task_type` field is present. This shim was added during task 393 to prevent breakage of existing tasks. Remove it once all existing tasks across current projects have been completed and no legacy-format tasks remain in active state.

@@ -5,39 +5,46 @@
     {
       "project_number": 418,
       "project_name": "add_postflight_fallback_to_skill_wrapper",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-13T18:05:25Z",
-      "last_updated": "2026-04-13T18:11:20Z",
-      "session_id": "sess_1776103597_d0ae5c",
+      "last_updated": "2026-04-13T18:28:23Z",
+      "session_id": "sess_1776104691_3baeb8",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/418_add_postflight_fallback_to_skill_wrapper/reports/01_postflight-fallback.md",
           "type": "research",
           "summary": "Research on postflight gap in skill wrapper pattern: identified vulnerability where inline execution skips Stages 6-10, evaluated 3 fix approaches, recommended unconditional postflight with Stage 5b fallback"
+        },
+        {
+          "path": "specs/418_add_postflight_fallback_to_skill_wrapper/plans/01_postflight-fallback.md",
+          "type": "plan",
+          "summary": "3-phase plan: (1) add Stage 5b fallback and unconditional postflight to 3 core skills, (2) update pattern docs, (3) propagate to ~25 extension skills"
         }
       ]
     },
     {
       "project_number": 398,
       "project_name": "extract_artifact_linking_helper",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "meta",
       "created": "2026-04-10T20:40:00Z",
-      "last_updated": "2026-04-10T20:40:00Z",
+      "last_updated": "2026-04-13T18:25:53Z",
       "dependencies": [
         397
       ],
-      "artifacts": []
+      "artifacts": [],
+      "session_id": "sess_1776104740_8dc2fe_t398"
     },
     {
       "project_number": 394,
       "project_name": "remove_language_to_task_type_compat_shim",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "meta",
       "created": "2026-04-10T16:37:05Z",
-      "last_updated": "2026-04-10T16:37:05Z"
+      "last_updated": "2026-04-13T18:25:52Z",
+      "session_id": "sess_1776104740_8dc2fe_t394"
     },
     {
       "project_number": 384,
