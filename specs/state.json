@@ -5,18 +5,38 @@
     {
       "project_number": 408,
       "project_name": "audit_implementation_agents_phase_checkpoint",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-12T12:00:00Z",
-      "last_updated": "2026-04-12T12:30:00Z",
-      "session_id": "sess_1776182400_r408",
+      "last_updated": "2026-04-12T13:00:00Z",
+      "session_id": "sess_1776182400_p408",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/408_audit_implementation_agents_phase_checkpoint/reports/01_phase-checkpoint-audit.md",
           "summary": "Phase Checkpoint Protocol compliance audit: 8 compliant, 3 partial, 2 non-compliant implementation agents"
+        },
+        {
+          "type": "plan",
+          "path": "specs/408_audit_implementation_agents_phase_checkpoint/plans/01_phase-checkpoint-plan.md",
+          "summary": "3-phase plan to add Phase Checkpoint Protocol to 5 non-compliant implementation agents"
         }
-      ]
+      ],
+      "plan_metadata": {
+        "phases": 3,
+        "total_effort_hours": 1.5,
+        "complexity": "simple",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [[1], [2], [3]],
+        "reports_integrated": [
+          {
+            "path": "reports/01_phase-checkpoint-audit.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      }
     },
     {
       "project_number": 407,
@@ -51,34 +71,74 @@
     {
       "project_number": 404,
       "project_name": "add_ucsf_theme_pptx_patterns_templates",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-12T12:00:00Z",
-      "last_updated": "2026-04-12T12:30:00Z",
-      "session_id": "sess_1776182400_r404",
+      "last_updated": "2026-04-12T13:00:00Z",
+      "session_id": "sess_1776182400_p404",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/404_add_ucsf_theme_pptx_patterns_templates/reports/01_ucsf-pptx-context.md",
           "summary": "Complete inventory of 13 new files, 1 binary copy, and 5 file updates for UCSF theme, PPTX patterns, and templates"
+        },
+        {
+          "type": "plan",
+          "path": "specs/404_add_ucsf_theme_pptx_patterns_templates/plans/01_ucsf-pptx-plan.md",
+          "summary": "5-phase plan: theme/patterns, templates, existing file updates, binary copy, index entries"
         }
-      ]
+      ],
+      "plan_metadata": {
+        "phases": 5,
+        "total_effort_hours": 2,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [[1], [2, 3], [4], [5]],
+        "reports_integrated": [
+          {
+            "path": "reports/01_ucsf-pptx-context.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      }
     },
     {
       "project_number": 403,
       "project_name": "split_slides_agent_with_phase_checkpoint",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-12T12:00:00Z",
-      "last_updated": "2026-04-12T12:15:00Z",
-      "session_id": "sess_1776182400_r403",
+      "last_updated": "2026-04-12T13:00:00Z",
+      "session_id": "sess_1776182400_p403",
       "artifacts": [
         {
           "type": "research",
           "path": "specs/403_split_slides_agent_with_phase_checkpoint/reports/01_agent-split-research.md",
           "summary": "Gap analysis of 3 new agents vs Phase Checkpoint Protocol, with exact implementation spec for each"
+        },
+        {
+          "type": "plan",
+          "path": "specs/403_split_slides_agent_with_phase_checkpoint/plans/01_agent-split-plan.md",
+          "summary": "4-phase plan: copy research agent, augment 2 assembly agents with Phase Checkpoint Protocol, delete old agent"
         }
-      ]
+      ],
+      "plan_metadata": {
+        "phases": 4,
+        "total_effort_hours": 1.5,
+        "complexity": "medium",
+        "research_integrated": true,
+        "plan_version": 1,
+        "dependency_waves": [[1], [2, 3], [4]],
+        "reports_integrated": [
+          {
+            "path": "reports/01_agent-split-research.md",
+            "integrated_in_plan_version": 1,
+            "integrated_date": "2026-04-12"
+          }
+        ]
+      }
     },
     {
       "project_number": 402,
