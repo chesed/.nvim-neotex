@@ -274,6 +274,8 @@ TODO.md stays as `[IMPLEMENTING]`.
 
 Add implementation artifacts to state.json.
 
+**Update TODO.md**: Link artifact using count-aware format. Apply the four-case Edit logic from `@.claude/context/patterns/artifact-linking-todo.md` with `field_name=**Summary**`, `next_field=**Description**`.
+
 ---
 
 ### Stage 9: Git Commit

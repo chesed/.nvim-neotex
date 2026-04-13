@@ -116,7 +116,7 @@ subagent or inline (Stage 5b). Do NOT skip these stages for any reason.
 
 ### Stage 6-11: Standard Postflight
 
-Parse metadata file, update task status, link artifacts, git commit, cleanup, return brief summary.
+Parse metadata file, update task status, link artifacts (update TODO.md per `@.claude/context/patterns/artifact-linking-todo.md` with `field_name=**Research**`, `next_field=**Plan**`), git commit, cleanup, return brief summary.
 
 ---
 

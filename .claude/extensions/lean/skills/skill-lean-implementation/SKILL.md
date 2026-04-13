@@ -191,7 +191,7 @@ TODO.md stays as `[IMPLEMENTING]`.
 
 ### Stage 7: Link Artifacts
 
-Add summary artifact to state.json.
+Add summary artifact to state.json. Update TODO.md per `@.claude/context/patterns/artifact-linking-todo.md` with `field_name=**Summary**`, `next_field=**Description**`.
 
 ```bash
 if [ -n "$summary_artifact_path" ]; then

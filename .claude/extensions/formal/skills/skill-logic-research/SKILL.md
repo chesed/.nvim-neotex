@@ -145,7 +145,7 @@ If status is "researched", update state.json and TODO.md.
 
 ### Stage 8: Link Artifacts
 
-Add artifact to state.json with summary.
+Add artifact to state.json with summary. Update TODO.md per `@.claude/context/patterns/artifact-linking-todo.md` with `field_name=**Research**`, `next_field=**Plan**`.
 
 ---
 

@@ -50,7 +50,7 @@ Read the metadata file from `specs/{N}_{SLUG}/.return-meta.json`.
 Update state.json and TODO.md based on result.
 
 ### Stage 7: Link Artifacts
-Add research artifact to state.json.
+Add research artifact to state.json. Update TODO.md per `@.claude/context/patterns/artifact-linking-todo.md` with `field_name=**Research**`, `next_field=**Plan**`.
 
 ### Stage 8: Git Commit
 Commit changes with session ID.
