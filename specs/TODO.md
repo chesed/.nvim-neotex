@@ -1,5 +1,5 @@
 ---
-next_project_number: 427
+next_project_number: 428
 ---
 
 # TODO
@@ -10,7 +10,7 @@ next_project_number: 427
 
 ### Pending
 
-- **426** [RESEARCHED] -- Update slides command and manifest for --critic flag (depends: 425)
+- **426** [PLANNED] -- Update slides command and manifest for --critic flag (depends: 425)
 - **425** [COMPLETED] -- Create skill-slide-critic interactive critique skill (depends: 424)
 - **424** [COMPLETED] -- Create slide-critic-agent (depends: 423)
 - **423** [COMPLETED] -- Create critique rubric context file
@@ -24,11 +24,12 @@ next_project_number: 427
 
 ### 426. Update slides command and manifest for --critic flag
 - **Effort**: medium
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: meta
 - **Dependencies**: 425
 
 - **Research**: [01_slides-critic-flag-research.md](426_update_slides_command_manifest_critic_flag/reports/01_slides-critic-flag-research.md)
+- **Plan**: [01_slides-critic-flag-plan.md](426_update_slides_command_manifest_critic_flag/plans/01_slides-critic-flag-plan.md)
 **Description**: Add `--critic` flag parsing to the `/slides` command (`slides.md`). Accept `--critic /path/to/file`, `--critic N` (task number), or `--critic "prompt"` as input. Route to `skill-slide-critic`. Update `manifest.json` with critic routing entry. Update `index-entries.json` with context entries for the critic agent and rubric. Update EXTENSION.md documentation.
 
 ### 425. Create skill-slide-critic interactive critique skill

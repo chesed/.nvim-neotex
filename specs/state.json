@@ -1,21 +1,34 @@
 {
   "version": "1.0.0",
-  "next_project_number": 427,
+  "next_project_number": 428,
   "active_projects": [
+    {
+      "project_number": 427,
+      "project_name": "remove_coauthored_by_and_refine_readme_sync",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-14T04:14:16Z",
+      "last_updated": "2026-04-14T04:14:16Z"
+    },
     {
       "project_number": 426,
       "project_name": "update_slides_command_manifest_critic_flag",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-14T03:14:38Z",
-      "last_updated": "2026-04-14T04:12:32Z",
-      "session_id": "sess_1776139803_a2ca10",
+      "last_updated": "2026-04-14T04:14:37Z",
+      "session_id": "sess_1776139957_b25c39",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/426_update_slides_command_manifest_critic_flag/reports/01_slides-critic-flag-research.md",
           "type": "research",
           "summary": "Research on slides command, manifest, and index changes for --critic flag"
+        },
+        {
+          "path": "specs/426_update_slides_command_manifest_critic_flag/plans/01_slides-critic-flag-plan.md",
+          "type": "plan",
+          "summary": "Plan for adding --critic flag to slides command"
         }
       ]
     },
