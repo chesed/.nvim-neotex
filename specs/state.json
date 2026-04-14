@@ -5,17 +5,22 @@
     {
       "project_number": 431,
       "project_name": "fix_artifact_linking_order_todo",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-14T19:45:09Z",
-      "last_updated": "2026-04-14T20:05:00Z",
-      "session_id": "sess_1776196385_512863",
+      "last_updated": "2026-04-14T20:05:29Z",
+      "session_id": "sess_1776196976_372006",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "type": "report",
           "path": "specs/431_fix_artifact_linking_order_todo/reports/01_artifact-linking-bug.md",
           "summary": "Root cause analysis: 3 independent bugs in artifact linking - misplaced Research below Description by task creation, blank line consumed by script insertion, inconsistent specs/ prefix"
+        },
+        {
+          "path": "specs/431_fix_artifact_linking_order_todo/plans/01_artifact-linking-fix.md",
+          "type": "plan",
+          "summary": "Two-phase plan to fix blank line preservation and specs/ prefix handling in link-artifact-todo.sh"
         }
       ]
     },
