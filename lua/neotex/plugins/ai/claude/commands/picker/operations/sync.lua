@@ -346,6 +346,33 @@ local function set_to_array(set)
   return arr
 end
 
+--- Load .syncprotect file from target repository
+--- Reads {project_dir}/{base_dir}/.syncprotect and returns a set of protected relative paths.
+--- Protected files will not be overwritten during "Sync all" replace operations.
+--- @param project_dir string Project directory path
+--- @param base_dir string Base directory name (".claude" or ".opencode")
+--- @return table protected_paths Set of relative paths {[path] = true}
+local function load_syncprotect(project_dir, base_dir)
+  local protected = {}
+  local filepath = project_dir .. "/" .. base_dir .. "/.syncprotect"
+  local file = io.open(filepath, "r")
+  if not file then
+    return protected
+  end
+
+  for line in file:lines() do
+    -- Trim whitespace
+    line = line:match("^%s*(.-)%s*$")
+    -- Skip empty lines and comments
+    if line ~= "" and line:sub(1, 1) ~= "#" then
+      protected[line] = true
+    end
+  end
+  file:close()
+
+  return protected
+end
+
 --- Get extension config for the given base_dir
 --- @param base_dir string Base directory (".claude" or ".opencode")
 --- @param global_dir string Global directory path

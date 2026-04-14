@@ -111,7 +111,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Add .syncprotect file support [NOT STARTED]
+### Phase 3: Add .syncprotect file support [IN PROGRESS]
 
 **Goal**: Allow target repos to protect specific files from being overwritten during "Sync all" operations via a .syncprotect file.
 
