@@ -13,10 +13,10 @@
     {
       "project_number": 425,
       "project_name": "create_skill_slide_critic",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "meta",
       "created": "2026-04-14T03:14:38Z",
-      "last_updated": "2026-04-14T04:06:03Z",
+      "last_updated": "2026-04-14T04:09:57Z",
       "session_id": "sess_1776139563_41ec4d",
       "next_artifact_number": 2,
       "artifacts": [
@@ -29,8 +29,14 @@
           "path": "specs/425_create_skill_slide_critic/plans/01_skill-slide-critic-plan.md",
           "type": "plan",
           "summary": "Plan for skill-slide-critic interactive critique loop"
+        },
+        {
+          "path": "specs/425_create_skill_slide_critic/summaries/01_skill-slide-critic-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for skill-slide-critic"
         }
-      ]
+      ],
+      "completion_summary": "Created skill-slide-critic SKILL.md (532 lines) with frontmatter, 13 execution stages (delegation, report parsing, interactive critique loop with AskUserQuestion, filtered report generation, postflight), error handling, and manifest registration."
     },
     {
       "project_number": 424,

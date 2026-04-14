@@ -1,7 +1,7 @@
 # Implementation Plan: Task #425
 
 - **Task**: 425 - create_skill_slide_critic
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 2 hours
 - **Dependencies**: slide-critic-agent (already created)
 - **Research Inputs**: specs/425_create_skill_slide_critic/reports/01_skill-slide-critic-research.md
