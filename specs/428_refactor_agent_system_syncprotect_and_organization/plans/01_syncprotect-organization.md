@@ -158,7 +158,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Orphaned Components and Broken References [NOT STARTED]
+### Phase 4: Orphaned Components and Broken References [COMPLETED]
 
 **Goal**: Remove deprecated/phantom components, fix broken cross-references, and resolve extension naming collisions.
 
@@ -199,7 +199,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 5: Frontmatter, Schema, and Documentation Polish [NOT STARTED]
+### Phase 5: Frontmatter, Schema, and Documentation Polish [COMPLETED]
 
 **Goal**: Add missing frontmatter fields, fix schema inconsistencies, and clean up non-standard metadata.
 

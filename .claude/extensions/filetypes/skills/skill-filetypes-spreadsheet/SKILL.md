@@ -1,12 +1,12 @@
 ---
-name: skill-spreadsheet
+name: skill-filetypes-spreadsheet
 description: Spreadsheet to table conversion routing
 allowed-tools: Task
 ---
 
 # Spreadsheet Skill
 
-Thin wrapper that routes spreadsheet-to-table operations to the `spreadsheet-agent`.
+Thin wrapper that routes spreadsheet-to-table operations to the `filetypes-spreadsheet-agent`.
 
 ## Context Pointers
 
@@ -104,7 +104,7 @@ Prepare delegation context:
   "metadata": {
     "session_id": "sess_{timestamp}_{random}",
     "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "table", "skill-spreadsheet"]
+    "delegation_path": ["orchestrator", "table", "skill-filetypes-spreadsheet"]
   }
 }
 ```
@@ -117,7 +117,7 @@ Prepare delegation context:
 ```
 Tool: Task (NOT Skill)
 Parameters:
-  - subagent_type: "spreadsheet-agent"
+  - subagent_type: "filetypes-spreadsheet-agent"
   - prompt: [Include source_path, output_path, output_format, sheet_name, metadata]
   - description: "Convert {source_path} to {output_format} table"
 ```
@@ -158,7 +158,7 @@ Expected successful return:
   ],
   "metadata": {
     "session_id": "sess_...",
-    "agent_type": "spreadsheet-agent",
+    "agent_type": "filetypes-spreadsheet-agent",
     "delegation_depth": 2,
     "tool_used": "pandas+openpyxl",
     "rows": 100,

@@ -1,5 +1,5 @@
 {
-  "version": null,
+  "version": "1.0.0",
   "generated": "2026-03-26T21:28:49Z",
   "entries": [
     {
@@ -797,29 +797,6 @@
       ],
       "topics": [
         "quality"
-      ],
-      "load_when": {
-        "agents": [
-          "meta-builder-agent"
-        ],
-        "task_types": [
-          "meta"
-        ],
-        "commands": []
-      }
-    },
-    {
-      "path": "orchestration/orchestrator.md",
-      "domain": "core",
-      "subdomain": "orchestration",
-      "summary": "Orchestrator agent pattern definition",
-      "line_count": 876,
-      "keywords": [
-        "orchestration",
-        "orchestrator"
-      ],
-      "topics": [
-        "orchestration"
       ],
       "load_when": {
         "agents": [

@@ -1,19 +1,19 @@
 ---
-name: spreadsheet-agent
+name: filetypes-spreadsheet-agent
 description: Convert spreadsheets to LaTeX/Typst tables
 ---
 
-# Spreadsheet Agent
+# Filetypes Spreadsheet Agent
 
 ## Overview
 
-Spreadsheet conversion agent that transforms Excel, CSV, and ODS files into LaTeX or Typst table formats. Invoked by `filetypes-router-agent` or `skill-spreadsheet` via the forked subagent pattern. Uses pandas for DataFrame manipulation and to_latex() for LaTeX output, or generates Typst csv() function calls for Typst output.
+Spreadsheet conversion agent that transforms Excel, CSV, and ODS files into LaTeX or Typst table formats. Invoked by `filetypes-router-agent` or `skill-filetypes-spreadsheet` via the forked subagent pattern. Uses pandas for DataFrame manipulation and to_latex() for LaTeX output, or generates Typst csv() function calls for Typst output.
 
 ## Agent Metadata
 
-- **Name**: spreadsheet-agent
+- **Name**: filetypes-spreadsheet-agent
 - **Purpose**: Convert spreadsheets to LaTeX/Typst tables
-- **Invoked By**: filetypes-router-agent or skill-spreadsheet (via Task tool)
+- **Invoked By**: filetypes-router-agent or skill-filetypes-spreadsheet (via Task tool)
 - **Return Format**: JSON (see subagent-return.md)
 
 ## Allowed Tools
@@ -63,7 +63,7 @@ Extract from input:
   "metadata": {
     "session_id": "sess_...",
     "delegation_depth": 2,
-    "delegation_path": ["orchestrator", "table", "skill-spreadsheet"]
+    "delegation_path": ["orchestrator", "table", "skill-filetypes-spreadsheet"]
   }
 }
 ```
@@ -199,9 +199,9 @@ latex_table = df.to_latex(index=False, escape=True)
   "metadata": {
     "session_id": "{from delegation context}",
     "duration_seconds": 3,
-    "agent_type": "spreadsheet-agent",
+    "agent_type": "filetypes-spreadsheet-agent",
     "delegation_depth": 2,
-    "delegation_path": ["orchestrator", "table", "skill-spreadsheet", "spreadsheet-agent"],
+    "delegation_path": ["orchestrator", "table", "skill-filetypes-spreadsheet", "filetypes-spreadsheet-agent"],
     "tool_used": "pandas+openpyxl",
     "source_format": "xlsx",
     "target_format": "latex",

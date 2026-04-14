@@ -2,20 +2,20 @@
   "name": "filetypes",
   "version": "2.2.0",
   "description": "File format conversion, manipulation, and in-place editing for documents, spreadsheets, and presentations",
-  "task_type": null,
+  "task_type": "filetypes",
   "dependencies": [],
   "provides": {
     "agents": [
       "filetypes-router-agent.md",
       "document-agent.md",
-      "spreadsheet-agent.md",
+      "filetypes-spreadsheet-agent.md",
       "presentation-agent.md",
       "scrape-agent.md",
       "docx-edit-agent.md"
     ],
     "skills": [
       "skill-filetypes",
-      "skill-spreadsheet",
+      "skill-filetypes-spreadsheet",
       "skill-presentation",
       "skill-scrape",
       "skill-docx-edit"
@@ -37,7 +37,7 @@
     "research": {
       "filetypes": "skill-filetypes",
       "filetypes:document": "skill-filetypes",
-      "filetypes:spreadsheet": "skill-spreadsheet",
+      "filetypes:spreadsheet": "skill-filetypes-spreadsheet",
       "filetypes:presentation": "skill-presentation",
       "filetypes:scrape": "skill-scrape",
       "filetypes:docx": "skill-docx-edit"
@@ -53,7 +53,7 @@
     "implement": {
       "filetypes": "skill-filetypes",
       "filetypes:document": "skill-filetypes",
-      "filetypes:spreadsheet": "skill-spreadsheet",
+      "filetypes:spreadsheet": "skill-filetypes-spreadsheet",
       "filetypes:presentation": "skill-presentation",
       "filetypes:scrape": "skill-scrape",
       "filetypes:docx": "skill-docx-edit"

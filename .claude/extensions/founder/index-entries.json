@@ -448,7 +448,7 @@
       "line_count": 288,
       "load_when": {
         "agents": [
-          "spreadsheet-agent",
+          "founder-spreadsheet-agent",
           "founder-plan-agent",
           "founder-implement-agent"
         ],
@@ -471,7 +471,7 @@
       "line_count": 315,
       "load_when": {
         "agents": [
-          "spreadsheet-agent",
+          "founder-spreadsheet-agent",
           "founder-plan-agent"
         ],
         "languages": [

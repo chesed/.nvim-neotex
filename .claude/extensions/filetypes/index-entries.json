@@ -8,7 +8,7 @@
         "agents": [
           "filetypes-router-agent",
           "document-agent",
-          "spreadsheet-agent",
+          "filetypes-spreadsheet-agent",
           "presentation-agent",
           "scrape-agent",
           "docx-edit-agent"
@@ -32,7 +32,7 @@
         "agents": [
           "filetypes-router-agent",
           "document-agent",
-          "spreadsheet-agent",
+          "filetypes-spreadsheet-agent",
           "presentation-agent",
           "scrape-agent",
           "docx-edit-agent"
@@ -72,7 +72,7 @@
       "line_count": 150,
       "load_when": {
         "agents": [
-          "spreadsheet-agent"
+          "filetypes-spreadsheet-agent"
         ],
         "languages": [],
         "commands": [
@@ -154,7 +154,7 @@
         "agents": [
           "filetypes-router-agent",
           "document-agent",
-          "spreadsheet-agent",
+          "filetypes-spreadsheet-agent",
           "presentation-agent",
           "scrape-agent"
         ],

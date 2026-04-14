@@ -1,6 +1,6 @@
 # Web Extension
 
-Web development support for Astro/Tailwind CSS v4/TypeScript sites deployed to Cloudflare Pages. Provides research and implementation agents plus the `/tag` command for semantic-version deployment tagging.
+Web development support for Astro/Tailwind CSS v4/TypeScript sites deployed to Cloudflare Pages. Provides research and implementation agents for web development tasks.
 
 ## Overview
 
@@ -9,36 +9,11 @@ Web development support for Astro/Tailwind CSS v4/TypeScript sites deployed to C
 | `web` | web-research-agent | Astro/Tailwind/Cloudflare research |
 | `web` | web-implementation-agent | Web (Astro/Tailwind/TypeScript) implementation |
 
-| Command | Purpose |
-|---------|---------|
-| `/tag` | Create and push semantic version tags for CI/CD deployment (**user-only**) |
+**Note**: The `/tag` command for semantic versioning is provided by the core agent system, not this extension.
 
 ## Installation
 
-Loaded via `<leader>ac` in Neovim. Once loaded, `web` becomes a recognized task type and `/tag` becomes available.
-
-## Commands
-
-### /tag (User-Only)
-
-Create a semantic version tag and push to origin for CI/CD deployment. This command is **user-only** - it cannot be invoked by agents.
-
-**Syntax**:
-```bash
-/tag --patch               # Bump patch version (default)
-/tag --minor               # Bump minor version
-/tag --major               # Bump major version
-/tag --force               # Overwrite existing tag
-/tag --dry-run             # Preview changes without tagging
-```
-
-**Workflow**:
-1. Read the current version from `package.json` or the last git tag
-2. Bump according to the flag
-3. Create annotated git tag
-4. Push to origin (triggers CI/CD pipeline)
-
-**Why user-only**: Deployment triggers are a human-controlled operation. Agents cannot invoke `/tag` to prevent accidental production deploys.
+Loaded via `<leader>ac` in Neovim. Once loaded, `web` becomes a recognized task type.
 
 ## Architecture
 
@@ -49,13 +24,9 @@ web/
 ├── index-entries.json         # Context discovery entries
 ├── README.md                  # This file
 │
-├── commands/
-│   └── tag.md                 # /tag command (user-only)
-│
 ├── skills/
 │   ├── skill-web-research/        # Research wrapper
-│   ├── skill-web-implementation/  # Implementation wrapper
-│   └── skill-tag/                 # /tag skill (user-only, direct execution)
+│   └── skill-web-implementation/  # Implementation wrapper
 │
 ├── agents/
 │   ├── web-research-agent.md      # Astro/Tailwind/Cloudflare research
@@ -77,7 +48,6 @@ web/
 |-------|-------|---------|
 | skill-web-research | web-research-agent | Astro/Tailwind/Cloudflare research |
 | skill-web-implementation | web-implementation-agent | Web (Astro/Tailwind/TypeScript) implementation |
-| skill-tag | (direct execution, user-only) | Semantic version tagging for CI/CD |
 
 ## Language Routing
 

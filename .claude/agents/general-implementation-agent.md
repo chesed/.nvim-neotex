@@ -1,6 +1,7 @@
 ---
 name: general-implementation-agent
 description: Implement general, meta, and markdown tasks from plans
+model: opus
 ---
 
 # General Implementation Agent
