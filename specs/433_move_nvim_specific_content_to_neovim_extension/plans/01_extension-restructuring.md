@@ -109,7 +109,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Move and Replace Full Neovim-Specific Files [NOT STARTED]
+### Phase 2: Move and Replace Full Neovim-Specific Files [COMPLETED]
 
 **Goal**: Replace `repo/project-overview.md` with a generic template and ensure the neovim-specific content is available via the extension.
 

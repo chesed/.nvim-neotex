@@ -1509,8 +1509,8 @@
       "path": "repo/project-overview.md",
       "domain": "core",
       "subdomain": "repo",
-      "summary": "Project-specific repository overview",
-      "line_count": 144,
+      "summary": "Generic repository structure overview (project-specific details in extensions)",
+      "line_count": 52,
       "keywords": [
         "repo",
         "project",
