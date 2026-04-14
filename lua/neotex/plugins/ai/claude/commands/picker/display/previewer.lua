@@ -191,6 +191,10 @@ local function preview_load_all(self, config)
                         rule_replace + sys_replace + set_replace + agent_replace +
                         ctx_replace + root_replace
 
+  -- Load syncprotect to show protected files in preview
+  local sync_ops_mod = require("neotex.plugins.ai.claude.commands.picker.operations.sync")
+  local protected_paths = sync_ops_mod.load_syncprotect_for_preview(project_dir, base_dir)
+
   local lines = {
     "Load Core Agent System",
     "",
@@ -198,6 +202,20 @@ local function preview_load_all(self, config)
     "local project's " .. base_dir .. "/ directory (extensions excluded).",
     "",
   }
+
+  -- Show protected files section if any exist
+  if next(protected_paths) then
+    table.insert(lines, "**Protected Files** (.syncprotect):")
+    local sorted_paths = {}
+    for path, _ in pairs(protected_paths) do
+      table.insert(sorted_paths, path)
+    end
+    table.sort(sorted_paths)
+    for _, path in ipairs(sorted_paths) do
+      table.insert(lines, "  - " .. path .. " (skipped during sync)")
+    end
+    table.insert(lines, "")
+  end
 
   if total_copy + total_replace > 0 then
     table.insert(lines, "**Operations by Type:**")

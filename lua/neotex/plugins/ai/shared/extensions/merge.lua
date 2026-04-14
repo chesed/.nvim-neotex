@@ -88,36 +88,6 @@ local function write_json(filepath, data)
   return write_file_string(filepath, formatted)
 end
 
---- Create backup of a file
---- @param filepath string Path to file
---- @return boolean success True if backup created
-local function backup_file(filepath)
-  if vim.fn.filereadable(filepath) ~= 1 then
-    return true  -- No file to backup
-  end
-  local backup_path = filepath .. ".backup"
-  local content = read_file_string(filepath)
-  if content then
-    return write_file_string(backup_path, content)
-  end
-  return false
-end
-
---- Restore file from backup
---- @param filepath string Path to file
---- @return boolean success True if restore succeeded
-local function restore_from_backup(filepath)
-  local backup_path = filepath .. ".backup"
-  if vim.fn.filereadable(backup_path) ~= 1 then
-    return false
-  end
-  local content = read_file_string(backup_path)
-  if content then
-    return write_file_string(filepath, content)
-  end
-  return false
-end
-
 --- Generate section markers
 --- @param section_id string Section identifier
 --- @return string start_marker Start marker
@@ -149,9 +119,6 @@ function M.inject_section(target_path, section_content, section_id)
     write_file_string(target_path, seed_content)
   end
 
-  -- Backup the file
-  backup_file(target_path)
-
   local content = read_file_string(target_path) or ""
   local start_marker, end_marker = get_section_markers(section_id)
 
@@ -169,7 +136,6 @@ function M.inject_section(target_path, section_content, section_id)
 
   local success = write_file_string(target_path, content)
   if not success then
-    restore_from_backup(target_path)
     return false, nil
   end
 
@@ -185,8 +151,6 @@ function M.remove_section(target_path, section_id)
     return true  -- Nothing to remove
   end
 
-  backup_file(target_path)
-
   local content = read_file_string(target_path) or ""
   local start_marker, end_marker = get_section_markers(section_id)
 
@@ -199,7 +163,6 @@ function M.remove_section(target_path, section_id)
 
   local success = write_file_string(target_path, content)
   if not success then
-    restore_from_backup(target_path)
     return false
   end
 
@@ -270,7 +233,6 @@ function M.merge_settings(target_path, fragment)
   -- Create file if it doesn't exist
   local target = {}
   if vim.fn.filereadable(target_path) == 1 then
-    backup_file(target_path)
     target = read_json(target_path) or {}
   end
 
@@ -283,13 +245,11 @@ function M.merge_settings(target_path, fragment)
   -- Validate result is valid JSON by re-encoding
   local ok = pcall(vim.json.encode, target)
   if not ok then
-    restore_from_backup(target_path)
     return false, nil
   end
 
   local success = write_json(target_path, target)
   if not success then
-    restore_from_backup(target_path)
     return false, nil
   end
 
@@ -304,8 +264,6 @@ function M.unmerge_settings(target_path, tracked_entries)
   if vim.fn.filereadable(target_path) ~= 1 then
     return true
   end
-
-  backup_file(target_path)
 
   local target = read_json(target_path) or {}
 
@@ -347,7 +305,6 @@ function M.unmerge_settings(target_path, tracked_entries)
 
   local success = write_json(target_path, target)
   if not success then
-    restore_from_backup(target_path)
     return false
   end
 
@@ -366,7 +323,6 @@ function M.append_index_entries(target_path, entries)
   -- Create or read index
   local index = { entries = {} }
   if vim.fn.filereadable(target_path) == 1 then
-    backup_file(target_path)
     index = read_json(target_path) or { entries = {} }
     if not index.entries then
       index.entries = {}
@@ -397,7 +353,6 @@ function M.append_index_entries(target_path, entries)
 
   local success = write_json(target_path, index)
   if not success then
-    restore_from_backup(target_path)
     return false, nil
   end
 
@@ -416,8 +371,6 @@ function M.remove_index_entries_tracked(target_path, tracked)
   if not tracked or not tracked.paths then
     return true
   end
-
-  backup_file(target_path)
 
   local index = read_json(target_path) or { entries = {} }
   if not index.entries then
@@ -441,7 +394,6 @@ function M.remove_index_entries_tracked(target_path, tracked)
 
   local success = write_json(target_path, index)
   if not success then
-    restore_from_backup(target_path)
     return false
   end
 
@@ -474,8 +426,6 @@ function M.remove_index_entries_by_prefix(target_path, prefixes)
     end
   end
 
-  backup_file(target_path)
-
   -- Filter entries: keep those that do NOT match any prefix
   local new_entries = {}
   local removed_count = 0
@@ -502,7 +452,6 @@ function M.remove_index_entries_by_prefix(target_path, prefixes)
 
   local ok = write_json(target_path, index)
   if not ok then
-    restore_from_backup(target_path)
     return false, 0
   end
 
@@ -575,13 +524,10 @@ function M.remove_orphaned_index_entries(index_path, valid_prefixes, context_dir
     return true, 0
   end
 
-  backup_file(index_path)
-
   index.entries = new_entries
 
   local ok = write_json(index_path, index)
   if not ok then
-    restore_from_backup(index_path)
     return false, 0
   end
 
@@ -602,7 +548,6 @@ function M.merge_opencode_agents(target_path, fragment)
   -- Read or create target opencode.json
   local target = {}
   if vim.fn.filereadable(target_path) == 1 then
-    backup_file(target_path)
     target = read_json(target_path) or {}
   end
 
@@ -628,7 +573,6 @@ function M.merge_opencode_agents(target_path, fragment)
   -- Write updated opencode.json
   local success = write_json(target_path, target)
   if not success then
-    restore_from_backup(target_path)
     return false, nil
   end
 
@@ -649,8 +593,6 @@ function M.unmerge_opencode_agents(target_path, tracked)
     return true  -- Nothing to unmerge
   end
 
-  backup_file(target_path)
-
   local target = read_json(target_path) or {}
   if not target.agent then
     return true  -- No agent section
@@ -663,7 +605,6 @@ function M.unmerge_opencode_agents(target_path, tracked)
 
   local success = write_json(target_path, target)
   if not success then
-    restore_from_backup(target_path)
     return false
   end
 

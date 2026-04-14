@@ -377,15 +377,32 @@ local function set_to_array(set)
 end
 
 --- Load .syncprotect file from target repository
---- Reads {project_dir}/{base_dir}/.syncprotect and returns a set of protected relative paths.
---- Protected files will not be overwritten during "Sync all" replace operations.
+--- Reads from project root first ({project_dir}/.syncprotect), falling back to
+--- the legacy location ({project_dir}/{base_dir}/.syncprotect) with a deprecation warning.
+--- Protected files will not be overwritten during sync operations.
 --- @param project_dir string Project directory path
---- @param base_dir string Base directory name (".claude" or ".opencode")
+--- @param base_dir string|nil Base directory name for legacy fallback (".claude" or ".opencode")
 --- @return table protected_paths Set of relative paths {[path] = true}
 local function load_syncprotect(project_dir, base_dir)
   local protected = {}
-  local filepath = project_dir .. "/" .. base_dir .. "/.syncprotect"
+
+  -- Try project root first (new canonical location)
+  local filepath = project_dir .. "/.syncprotect"
   local file = io.open(filepath, "r")
+
+  -- Fall back to legacy location inside base_dir
+  if not file and base_dir then
+    local legacy_path = project_dir .. "/" .. base_dir .. "/.syncprotect"
+    file = io.open(legacy_path, "r")
+    if file then
+      helpers.notify(
+        ".syncprotect found at legacy location (" .. base_dir .. "/.syncprotect). "
+          .. "Please move it to the project root (.syncprotect).",
+        "WARN"
+      )
+    end
+  end
+
   if not file then
     return protected
   end
@@ -687,6 +704,44 @@ function M.update_artifact_from_global(artifact, artifact_type, silent, picker_c
     return false
   end
 
+  -- Check syncprotect: skip protected files with a warning
+  local protected_paths = load_syncprotect(project_dir, base_dir)
+  if next(protected_paths) then
+    -- Build the relative path that would be checked against syncprotect
+    -- For root_files: just the filename; for others: subdir/filename.ext
+    local rel_check
+    if artifact_type == "root_file" then
+      rel_check = artifact.name
+    else
+      local subdir_map_check = {
+        command = { dir = "commands", ext = ".md" },
+        hook = { dir = "hooks", ext = ".sh" },
+        hook_event = { dir = "hooks", ext = ".sh" },
+        lib = { dir = "lib", ext = ".sh" },
+        doc = { dir = "docs", ext = ".md" },
+        template = { dir = "templates", ext = "" },
+        script = { dir = "scripts", ext = ".sh" },
+        test = { dir = "tests", ext = ".sh" },
+        skill = { dir = "skills", ext = ".md" },
+        agent = { dir = "agents", ext = ".md" },
+        systemd = { dir = "systemd", ext = "" },
+      }
+      local tc = subdir_map_check[artifact_type]
+      if tc then
+        rel_check = tc.dir .. "/" .. artifact.name .. tc.ext
+      end
+    end
+    if rel_check and protected_paths[rel_check] then
+      if not silent then
+        helpers.notify(
+          string.format("Skipped protected file: %s (listed in .syncprotect)", rel_check),
+          "WARN"
+        )
+      end
+      return false
+    end
+  end
+
   -- Determine directory and extension based on artifact type
   local subdir_map = {
     command = { dir = "commands", ext = ".md" },
@@ -766,6 +821,14 @@ function M.update_artifact_from_global(artifact, artifact_type, silent, picker_c
   end
 
   return true
+end
+
+--- Public wrapper for load_syncprotect, used by previewer to display protected files.
+--- @param project_dir string Project directory path
+--- @param base_dir string|nil Base directory name (".claude" or ".opencode")
+--- @return table protected_paths Set of relative paths {[path] = true}
+function M.load_syncprotect_for_preview(project_dir, base_dir)
+  return load_syncprotect(project_dir, base_dir)
 end
 
 return M
