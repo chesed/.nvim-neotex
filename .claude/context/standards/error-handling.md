@@ -91,8 +91,8 @@ Warning: Operation succeeded but git commit failed
 Changes were successfully applied but could not be committed to git.
 
 Manual commit required:
-  git add lua/neotex/plugins/new-plugin.lua
-  git commit -m "feat: Add new plugin configuration"
+  git add src/modules/new-module.ext
+  git commit -m "feat: Add new module"
 
 Error: fatal: not a git repository
 ```
@@ -319,8 +319,8 @@ Recovery:
 ```
 Error: Subagent delegation failed
 
-Subagent: @subagents/neovim/proof-planner
-Task: Generate proof plan for lattice theorem
+Subagent: @subagents/domain/specialist-agent
+Task: Generate analysis for complex problem
 Reason: Subagent timeout after 120 seconds
 
 This may indicate:
@@ -503,25 +503,25 @@ Error: {git_error}
 
 **Example**:
 ```
-Error: Neovim MCP server not available
+Error: MCP server not available
 
-The Neovim proof assistant requires the MCP server to be configured.
+The requested operation requires an MCP server to be configured.
 
 Setup instructions:
 1. Verify .mcp.json exists: cat .mcp.json
 2. Check server configuration:
    {
      "mcpServers": {
-       "neovim": {
-         "command": "neovim",
+       "example-server": {
+         "command": "example-tool",
          "args": ["--server"]
        }
      }
    }
-3. Test server: neovim --version
+3. Test server: example-tool --version
 
 Verification:
-  neovim --server --help
+  example-tool --server --help
 ```
 
 ### 7. State Errors
@@ -853,7 +853,7 @@ def parseConfig (json : Json) : Except ParseError Config :=
     4. Notify user of degraded functionality
   </implementation>
   <example>
-    Primary: Use MCP Neovim server for proof checking
+    Primary: Use MCP server for domain-specific validation
     Fallback: Use basic syntax validation
     Notification: "Warning: Advanced proof checking unavailable, using basic validation"
   </example>
@@ -1046,7 +1046,7 @@ validation:
 
 **Examples**:
 - `.claude/command/research.md` - Command error handling
-- `.claude/agent/subagents/neovim/proof-planner.md` - Subagent error handling
+- `.claude/agents/` - Agent error handling examples
 
 ---
 
