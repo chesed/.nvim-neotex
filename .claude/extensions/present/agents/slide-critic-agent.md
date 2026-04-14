@@ -59,7 +59,7 @@ The agent receives a delegation context from skill-slides containing:
 {
   "session_id": "sess_{timestamp}_{random}",
   "delegation_depth": 1,
-  "delegation_path": ["orchestrator", "slides", "skill-slides", "slide-critic-agent"],
+  "delegation_path": ["orchestrator", "slides", "skill-slide-critic", "slide-critic-agent"],
   "task_context": {
     "task_number": N,
     "task_name": "{project_name}",
@@ -116,7 +116,7 @@ The agent receives a delegation context from skill-slides containing:
        "session_id": "{from delegation context}",
        "agent_type": "slide-critic-agent",
        "delegation_depth": 1,
-       "delegation_path": ["orchestrator", "slides", "skill-slides", "slide-critic-agent"]
+       "delegation_path": ["orchestrator", "slides", "skill-slide-critic", "slide-critic-agent"]
      }
    }
    ```
@@ -349,7 +349,7 @@ Write to `specs/{NNN}_{SLUG}/.return-meta.json`:
     "agent_type": "slide-critic-agent",
     "workflow_type": "slides_critique",
     "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "slides", "skill-slides", "slide-critic-agent"],
+    "delegation_path": ["orchestrator", "slides", "skill-slide-critic", "slide-critic-agent"],
     "findings_count": {
       "critical": N,
       "major": N,

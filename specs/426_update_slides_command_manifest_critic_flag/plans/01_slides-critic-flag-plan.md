@@ -86,7 +86,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Update manifest.json Routing [NOT STARTED]
+### Phase 2: Update manifest.json Routing [COMPLETED]
 
 **Goal**: Add a `critique` routing section so the system can look up `present:slides` -> `skill-slide-critic`.
 
@@ -106,7 +106,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Update index-entries.json [NOT STARTED]
+### Phase 3: Update index-entries.json [COMPLETED]
 
 **Goal**: Add `slide-critic-agent` to the agent arrays of talk context entries so the critic agent receives proper context.
 
@@ -130,7 +130,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Update EXTENSION.md and Fix Agent Delegation Path [NOT STARTED]
+### Phase 4: Update EXTENSION.md and Fix Agent Delegation Path [COMPLETED]
 
 **Goal**: Document the new `--critic` flag in EXTENSION.md and fix the delegation path in slide-critic-agent.md.
 

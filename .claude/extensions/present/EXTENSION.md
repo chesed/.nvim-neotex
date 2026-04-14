@@ -13,6 +13,8 @@ Structured proposal development (grants) and research presentation creation (tal
 | skill-slides | slides-research-agent | opus | Research talk material synthesis |
 | skill-slides | pptx-assembly-agent | opus | PowerPoint presentation assembly |
 | skill-slides | slidev-assembly-agent | opus | Slidev presentation assembly |
+| skill-slide-planning | slide-planner-agent | opus | Slide plan with design questions |
+| skill-slide-critic | slide-critic-agent | opus | Interactive slide critique with rubric evaluation |
 
 ### Commands
 
@@ -31,6 +33,7 @@ Structured proposal development (grants) and research presentation creation (tal
 | `/slides` | `/slides "Description"` | Create research talk task with forcing questions |
 | `/slides` | `/slides N` | Resume research on existing talk task |
 | `/slides` | `/slides /path/to/file` | Use file as primary source material for talk |
+| `/slides` | `/slides N --critic [path\|prompt]` | Critique slide materials with interactive feedback loop |
 
 ### Language Routing
 

@@ -38,6 +38,9 @@
       "present:timeline": "skill-timeline",
       "present:funds": "skill-funds",
       "present:slides": "skill-slides:assemble"
+    },
+    "critique": {
+      "present:slides": "skill-slide-critic"
     }
   },
   "merge_targets": {
