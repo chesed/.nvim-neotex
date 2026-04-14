@@ -475,6 +475,99 @@ local function get_extension_config(base_dir, global_dir)
   return ext_config.claude(global_dir)
 end
 
+--- Audit synced files for repo-specific content patterns
+--- Non-blocking: produces warnings only, never prevents sync
+--- @param project_dir string Project directory path
+--- @param all_artifacts table Map of artifact type -> array of files
+--- @param audit_patterns table Array of Lua pattern strings
+--- @param protected_paths table|nil Set of protected paths {[path] = true}
+--- @return table matches Array of {file_path, pattern, match_count} entries
+local function audit_synced_content(project_dir, all_artifacts, audit_patterns, protected_paths)
+  local matches = {}
+  protected_paths = protected_paths or {}
+
+  if not audit_patterns or #audit_patterns == 0 then
+    return matches
+  end
+
+  local max_file_size = 100 * 1024 -- 100KB
+
+  for category, files in pairs(all_artifacts) do
+    -- Skip internal keys (e.g., _audit_patterns)
+    if type(category) == "string" and category:sub(1, 1) == "_" then
+      goto next_category
+    end
+    if type(files) ~= "table" then
+      goto next_category
+    end
+
+    for _, file in ipairs(files) do
+      local local_path = file.local_path
+      if not local_path then
+        goto next_file
+      end
+
+      -- Skip protected files (they were not overwritten)
+      if file.rel_path and protected_paths[file.rel_path] then
+        goto next_file
+      end
+
+      -- Read file content
+      local fh = io.open(local_path, "r")
+      if not fh then
+        goto next_file
+      end
+
+      -- Skip large files
+      local size = fh:seek("end")
+      if size and size > max_file_size then
+        fh:close()
+        goto next_file
+      end
+      fh:seek("set")
+
+      local content = fh:read("*all")
+      fh:close()
+      if not content then
+        goto next_file
+      end
+
+      local content_lower = content:lower()
+      for _, pattern in ipairs(audit_patterns) do
+        local count = 0
+        local start_pos = 1
+        local pattern_lower = pattern:lower()
+        while true do
+          local found = content_lower:find(pattern_lower, start_pos)
+          if not found then
+            break
+          end
+          count = count + 1
+          start_pos = found + 1
+        end
+        if count > 0 then
+          table.insert(matches, {
+            file_path = local_path,
+            pattern = pattern,
+            match_count = count,
+          })
+        end
+      end
+
+      ::next_file::
+    end
+
+    ::next_category::
+  end
+
+  -- Sort by match count descending
+  table.sort(matches, function(a, b)
+    return a.match_count > b.match_count
+  end)
+
+  return matches
+end
+
 --- Scan all artifact types from global directory
 --- Filters extension artifacts via manifest-based blocklist to ensure only core artifacts are synced
 --- @param global_dir string Global directory path
@@ -736,6 +829,44 @@ function M.load_all_globally(config)
   end
 
   local total_synced = execute_sync(project_dir, all_artifacts, merge_only, base_dir, protected_paths)
+
+  -- Post-sync content audit: check synced files for repo-specific references
+  local audit_pats = all_artifacts._audit_patterns
+  if audit_pats and #audit_pats > 0 and total_synced > 0 then
+    local audit_matches = audit_synced_content(project_dir, all_artifacts, audit_pats, protected_paths)
+    if #audit_matches > 0 then
+      -- Deduplicate by file path for the summary count
+      local seen_files = {}
+      for _, m in ipairs(audit_matches) do
+        seen_files[m.file_path] = true
+      end
+      local file_count = 0
+      for _ in pairs(seen_files) do
+        file_count = file_count + 1
+      end
+
+      -- Build notification with top 5 entries
+      local lines = { string.format("Content audit: %d files contain repo-specific references", file_count) }
+      local shown = 0
+      for _, m in ipairs(audit_matches) do
+        if shown >= 5 then
+          break
+        end
+        -- Show relative path from project_dir for readability
+        local display_path = m.file_path
+        if display_path:sub(1, #project_dir + 1) == project_dir .. "/" then
+          display_path = display_path:sub(#project_dir + 2)
+        end
+        table.insert(lines, string.format("  %s (%dx '%s')", display_path, m.match_count, m.pattern))
+        shown = shown + 1
+      end
+      if #audit_matches > 5 then
+        table.insert(lines, string.format("  ... and %d more matches", #audit_matches - 5))
+      end
+      table.insert(lines, "Review these files or add paths to .sync-exclude")
+      helpers.notify(table.concat(lines, "\n"), "WARN")
+    end
+  end
 
   -- After a full sync (not merge-only), re-inject merge targets for all loaded
   -- extensions. This provides defense-in-depth: section preservation in sync_files()

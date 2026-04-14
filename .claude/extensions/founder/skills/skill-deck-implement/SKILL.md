@@ -264,6 +264,30 @@ Return brief text summary to caller.
 
 ---
 
+## MUST NOT (Postflight Boundary)
+
+After the agent returns -- whether with status implemented, partial, or failed -- this skill MUST proceed immediately to postflight (Stage 6). The skill MUST NOT:
+
+1. **Edit slides/deck files** - All deck generation is done by agent
+2. **Run slidev commands** - Export/build is done by agent
+3. **Use MCP tools** - Domain tools are for agent use only
+4. **Analyze or grep source** - Analysis is agent work
+5. **Write summary/reports** - Artifact creation is done by agent
+
+> **PROHIBITION**: If the subagent returned partial or failed status, the lead skill MUST NOT attempt to continue, complete, or "fill in" the subagent's work. Report the partial/failed status and let the user re-run `/implement` to resume.
+
+The postflight phase is LIMITED TO:
+- Reading agent metadata file
+- Updating state.json via jq
+- Updating TODO.md status marker via Edit
+- Linking artifacts in state.json
+- Git commit
+- Cleanup of temp/marker files
+
+Reference: @.claude/context/standards/postflight-tool-restrictions.md
+
+---
+
 ## Return Format
 
 Brief text summary (NOT JSON).

@@ -75,7 +75,7 @@ Phases within the same wave can execute in parallel.
 - **Timing:** 1.5 hours
 - **Depends on:** none
 
-### Phase 2: Auto-seed `.syncprotect` in target repos [NOT STARTED]
+### Phase 2: Auto-seed `.syncprotect` in target repos [COMPLETED]
 
 - **Goal:** When `load_all_globally()` detects no `.syncprotect` in the target repo, create one with standard defensive entries before sync proceeds.
 - **Tasks:**
@@ -91,7 +91,7 @@ Phases within the same wave can execute in parallel.
 - **Timing:** 30 minutes
 - **Depends on:** 1
 
-### Phase 3: Post-sync content audit [NOT STARTED]
+### Phase 3: Post-sync content audit [COMPLETED]
 
 - **Goal:** After `execute_sync()` completes, scan synced files for configurable warning patterns and display a non-blocking summary.
 - **Tasks:**

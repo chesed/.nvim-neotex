@@ -267,6 +267,8 @@ After the agent returns, this skill MUST NOT:
 4. **Grep for sorries** - Debt analysis is agent work
 5. **Write summary/reports** - Artifact creation is agent work
 
+> **PROHIBITION**: If the subagent returned partial or failed status, the lead skill MUST NOT attempt to continue, complete, or "fill in" the subagent's work. Report the partial/failed status and let the user re-run `/implement` to resume.
+
 The postflight phase is LIMITED TO:
 - Reading agent metadata file
 - Updating state.json via jq

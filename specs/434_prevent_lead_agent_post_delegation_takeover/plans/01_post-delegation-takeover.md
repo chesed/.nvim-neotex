@@ -64,7 +64,7 @@ Phases within the same wave can execute in parallel.
 - **Timing:** 20 minutes
 - **Depends on:** none
 
-### Phase 2: Extension Skills -- Add Missing Sections and PROHIBITION Blocks [NOT STARTED]
+### Phase 2: Extension Skills -- Add Missing Sections and PROHIBITION Blocks [COMPLETED]
 
 - **Goal:** Add MUST NOT sections to 3 extension skills missing them entirely, and add PROHIBITION blocks to 8 extension skills with existing postflight boundaries
 - **Tasks:**
