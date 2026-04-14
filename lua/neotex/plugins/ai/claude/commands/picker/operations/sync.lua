@@ -18,11 +18,14 @@ local ext_config = require("neotex.plugins.ai.shared.extensions.config")
 local state_mod = require("neotex.plugins.ai.shared.extensions.state")
 local merge_mod = require("neotex.plugins.ai.shared.extensions.merge")
 
--- Files to exclude from context sync (repository-specific files that should not be copied)
+-- Files to exclude from context sync (repository-specific and generated files that should not be copied)
 -- Note: update-project.md is intentionally NOT excluded as it is a guide/template
+-- index.json and index.json.backup are generated per-repo by the extension loader
 local CONTEXT_EXCLUDE_PATTERNS = {
   "project/repo/project-overview.md",
   "project/repo/self-healing-implementation-details.md",
+  "index.json",
+  "index.json.backup",
 }
 
 -- Config markdown filenames that may contain extension-injected sections.
@@ -437,8 +440,8 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
   -- CONTEXT_EXCLUDE_PATTERNS filters repository-specific files (project-overview.md, etc.)
   -- Blocklist context entries use prefix matching for directory-based filtering
   local ctx_md = sync_scan("context", "*.md", true, CONTEXT_EXCLUDE_PATTERNS, "context")
-  local ctx_json = sync_scan("context", "*.json", true, nil, "context")
-  local ctx_yaml = sync_scan("context", "*.yaml", true, nil, "context")
+  local ctx_json = sync_scan("context", "*.json", true, CONTEXT_EXCLUDE_PATTERNS, "context")
+  local ctx_yaml = sync_scan("context", "*.yaml", true, CONTEXT_EXCLUDE_PATTERNS, "context")
   artifacts.context = {}
   for _, files in ipairs({ ctx_md, ctx_json, ctx_yaml }) do
     for _, file in ipairs(files) do

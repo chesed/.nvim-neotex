@@ -66,7 +66,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Add built-in exclusions for generated JSON files [NOT STARTED]
+### Phase 1: Add built-in exclusions for generated JSON files [COMPLETED]
 
 **Goal**: Prevent index.json and index.json.backup from being included in context sync operations.
 
