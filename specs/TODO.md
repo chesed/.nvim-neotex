@@ -10,8 +10,8 @@ next_project_number: 432
 
 ### Pending
 
-- **431** [RESEARCHING] -- Fix artifact linking order and missing blank line in TODO.md
-- **430** [PLANNED] -- Fix /implement excessive front-loading: lead agent should read plan only, not codebase
+- **431** [RESEARCHED] -- Fix artifact linking order and missing blank line in TODO.md
+- **430** [IMPLEMENTING] -- Fix /implement excessive front-loading: lead agent should read plan only, not codebase
 - **429** [COMPLETED] -- Update .claude/docs/ to reflect task 428 changes
 - **428** [COMPLETED] -- Refactor agent system: syncprotect integration, backup elimination, and systematic organization review
 - **427** [COMPLETED] -- Remove Co-Authored-By trailers and refine README.md sync exclusion
@@ -29,14 +29,15 @@ next_project_number: 432
 
 ### 431. Fix artifact linking order and missing blank line in TODO.md
 - **Effort**: small
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Task Type**: meta
+- **Research**: [01_artifact-linking-bug.md](431_fix_artifact_linking_order_todo/reports/01_artifact-linking-bug.md)
 
 **Description**: Investigate how artifacts are being linked in task 429 where they appear out of order and there is no empty line above the description. Determine the root cause and create a targeted fix.
 
 ### 430. Fix /implement excessive front-loading: lead agent should read plan only, not codebase
 - **Effort**: small
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: meta
 - **Research**: [front-loading-fix](specs/430_fix_implement_excessive_front_loading/reports/01_front-loading-fix.md)
 

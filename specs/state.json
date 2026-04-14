@@ -5,20 +5,28 @@
     {
       "project_number": 431,
       "project_name": "fix_artifact_linking_order_todo",
-      "status": "researching",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-14T19:45:09Z",
-      "last_updated": "2026-04-14T19:53:19Z",
-      "session_id": "sess_1776196385_512863"
+      "last_updated": "2026-04-14T20:05:00Z",
+      "session_id": "sess_1776196385_512863",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "type": "report",
+          "path": "specs/431_fix_artifact_linking_order_todo/reports/01_artifact-linking-bug.md",
+          "summary": "Root cause analysis: 3 independent bugs in artifact linking - misplaced Research below Description by task creation, blank line consumed by script insertion, inconsistent specs/ prefix"
+        }
+      ]
     },
     {
       "project_number": 430,
       "project_name": "fix_implement_excessive_front_loading",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "meta",
       "created": "2026-04-14T19:41:32Z",
-      "last_updated": "2026-04-14T19:54:19Z",
-      "session_id": "sess_1744663200_430plan",
+      "last_updated": "2026-04-14T19:57:35Z",
+      "session_id": "sess_1744663200_430impl",
       "next_artifact_number": 2,
       "artifacts": [
         {
