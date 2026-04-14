@@ -5,10 +5,19 @@
     {
       "project_number": 426,
       "project_name": "update_slides_command_manifest_critic_flag",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-14T03:14:38Z",
-      "last_updated": "2026-04-14T03:14:38Z"
+      "last_updated": "2026-04-14T04:12:32Z",
+      "session_id": "sess_1776139803_a2ca10",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/426_update_slides_command_manifest_critic_flag/reports/01_slides-critic-flag-research.md",
+          "type": "research",
+          "summary": "Research on slides command, manifest, and index changes for --critic flag"
+        }
+      ]
     },
     {
       "project_number": 425,
