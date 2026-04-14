@@ -5,17 +5,22 @@
     {
       "project_number": 421,
       "project_name": "fix_status_script_grep_pattern_and_todo_linking",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-14T01:07:37Z",
-      "last_updated": "2026-04-14T01:21:49Z",
-      "session_id": "sess_1776129415_89006b",
+      "last_updated": "2026-04-14T01:43:29Z",
+      "session_id": "sess_1776130616_b40fba",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/421_fix_status_script_grep_pattern_and_todo_linking/reports/01_status-script-bugs.md",
           "type": "research",
           "summary": "Research on two bugs: grep pattern mismatch in update-task-status.sh that silently fails for space-indented TODO.md entries, and LLM-dependent artifact linking in skill postflight stages"
+        },
+        {
+          "path": "specs/421_fix_status_script_grep_pattern_and_todo_linking/plans/01_fix-status-linking.md",
+          "type": "plan",
+          "summary": "3-phase plan to fix grep pattern mismatch in update-task-status.sh, create link-artifact-todo.sh automation script, and update skill postflights"
         }
       ]
     },
