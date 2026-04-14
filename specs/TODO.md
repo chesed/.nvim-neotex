@@ -10,7 +10,7 @@ next_project_number: 422
 
 ### Pending
 
-- **421** [NOT STARTED] -- Fix status script grep pattern and TODO artifact linking
+- **421** [RESEARCHED] -- Fix status script grep pattern and TODO artifact linking
 - **420** [COMPLETED] -- Prevent extension loader overwriting repo customizations
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
@@ -19,9 +19,10 @@ next_project_number: 422
 
 ### 421. Fix update-task-status.sh grep pattern and skill-planner TODO.md artifact linking
  **Effort**: TBD
- **Status**: [NOT STARTED]
+ **Status**: [RESEARCHED]
  **Task Type**: meta
  **Dependencies**: None
+ **Research**: [01_status-script-bugs.md](421_fix_status_script_grep_pattern_and_todo_linking/reports/01_status-script-bugs.md)
 
 **Description**: Fix update-task-status.sh grep pattern that fails to match TODO.md task entry status lines: script uses `^- \*\*Status\*\*:` but actual format is ` **Status**:` (space-indented, no dash). This causes all task entry status updates to silently fail, while Task Order and state.json updates succeed. Also fix skill-planner postflight to actually perform TODO.md artifact linking (Plan field) which was specified but never executed.
 
