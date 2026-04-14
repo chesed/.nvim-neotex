@@ -1,7 +1,39 @@
 {
   "version": "1.0.0",
-  "next_project_number": 423,
+  "next_project_number": 427,
   "active_projects": [
+    {
+      "project_number": 426,
+      "project_name": "update_slides_command_manifest_critic_flag",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-14T03:14:38Z",
+      "last_updated": "2026-04-14T03:14:38Z"
+    },
+    {
+      "project_number": 425,
+      "project_name": "create_skill_slide_critic",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-14T03:14:38Z",
+      "last_updated": "2026-04-14T03:14:38Z"
+    },
+    {
+      "project_number": 424,
+      "project_name": "create_slide_critic_agent",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-14T03:14:38Z",
+      "last_updated": "2026-04-14T03:14:38Z"
+    },
+    {
+      "project_number": 423,
+      "project_name": "create_critique_rubric_context",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-14T03:14:38Z",
+      "last_updated": "2026-04-14T03:14:38Z"
+    },
     {
       "project_number": 422,
       "project_name": "fix_sync_overwriting_all_non_claudemd_files",

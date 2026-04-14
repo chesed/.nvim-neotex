@@ -1,21 +1,57 @@
 ---
-next_project_number: 423
+next_project_number: 427
 ---
 
 # TODO
 
 ## Task Order
 
-*Updated 2026-04-13. 4 active tasks remaining.*
+*Updated 2026-04-13. 8 active tasks remaining.*
 
 ### Pending
 
+- **426** [NOT STARTED] -- Update slides command and manifest for --critic flag (depends: 425)
+- **425** [NOT STARTED] -- Create skill-slide-critic interactive critique skill (depends: 424)
+- **424** [NOT STARTED] -- Create slide-critic-agent (depends: 423)
+- **423** [NOT STARTED] -- Create critique rubric context file
+- **422** [NOT STARTED] -- Fix sync.lua overwriting all non-CLAUDE.md files
 - **421** [COMPLETED] -- Fix status script grep pattern and TODO artifact linking
 - **420** [COMPLETED] -- Prevent extension loader overwriting repo customizations
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 426. Update slides command and manifest for --critic flag
+- **Effort**: medium
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+- **Dependencies**: 425
+
+**Description**: Add `--critic` flag parsing to the `/slides` command (`slides.md`). Accept `--critic /path/to/file`, `--critic N` (task number), or `--critic "prompt"` as input. Route to `skill-slide-critic`. Update `manifest.json` with critic routing entry. Update `index-entries.json` with context entries for the critic agent and rubric. Update EXTENSION.md documentation.
+
+### 425. Create skill-slide-critic interactive critique skill
+- **Effort**: large
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+- **Dependencies**: 424
+
+**Description**: Create `skill-slide-critic` in the present extension. This skill runs an interactive critique loop: (1) delegates to `slide-critic-agent` for initial material review, (2) presents identified issues to user via AskUserQuestion grouped by category, (3) for each issue the user can accept, reject, modify, or provide an alternative response, (4) loops until all issues are addressed or dismissed, (5) produces a final critique report at `specs/{NNN}_{SLUG}/reports/{MM}_slide-critique.md` that can be consumed by `/plan` to guide slide design. Implements skill-internal postflight pattern.
+
+### 424. Create slide-critic-agent
+- **Effort**: large
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+- **Dependencies**: 423
+
+**Description**: Create `slide-critic-agent` in the present extension. This agent loads the critique rubric context and reviews all provided materials (source files, research reports, plans, existing slides). It evaluates against rubric criteria: narrative flow, audience alignment, timing balance, content depth, evidence quality, visual design considerations. Produces a structured issue list with severity (critical/high/medium/low), category, description, location in materials, and suggested improvement. Writes `.return-meta.json` with critique artifacts.
+
+### 423. Create critique rubric context file
+- **Effort**: medium
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+
+**Description**: Create a critique rubric context file at `.claude/extensions/present/context/project/present/talk/critique-rubric.md`. Define review criteria and scoring patterns for slide presentations across categories: narrative flow (logical progression, story arc, transitions), audience alignment (jargon level, assumed knowledge, engagement), timing balance (slides per section, pacing), content depth (too shallow vs too detailed), evidence quality (data presentation, citations, claims), and visual design considerations (text density, figure placement). Include talk-type-specific criteria for conference, seminar, defense, poster, and journal club presentations.
 
 ### 422. Fix sync.lua overwriting all non-CLAUDE.md files in target repos
 - **Effort**: large
