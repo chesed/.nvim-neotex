@@ -10,7 +10,7 @@ next_project_number: 422
 
 ### Pending
 
-- **421** [IMPLEMENTING] -- Fix status script grep pattern and TODO artifact linking
+- **421** [COMPLETED] -- Fix status script grep pattern and TODO artifact linking
 - **420** [COMPLETED] -- Prevent extension loader overwriting repo customizations
 - **87** [RESEARCHED] -- Investigate terminal directory change in wezterm
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
@@ -19,7 +19,7 @@ next_project_number: 422
 
 ### 421. Fix update-task-status.sh grep pattern and skill-planner TODO.md artifact linking
 - **Effort**: TBD
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Task Type**: meta
 - **Dependencies**: None
 - **Research**: [01_status-script-bugs.md](421_fix_status_script_grep_pattern_and_todo_linking/reports/01_status-script-bugs.md)

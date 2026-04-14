@@ -5,11 +5,11 @@
     {
       "project_number": 421,
       "project_name": "fix_status_script_grep_pattern_and_todo_linking",
-      "status": "planned",
+      "status": "completed",
       "task_type": "meta",
       "created": "2026-04-14T01:07:37Z",
-      "last_updated": "2026-04-14T01:43:29Z",
-      "session_id": "sess_1776130616_b40fba",
+      "last_updated": "2026-04-14T02:05:49Z",
+      "session_id": "sess_1776131395_2814c9",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -21,8 +21,14 @@
           "path": "specs/421_fix_status_script_grep_pattern_and_todo_linking/plans/01_fix-status-linking.md",
           "type": "plan",
           "summary": "3-phase plan to fix grep pattern mismatch in update-task-status.sh, create link-artifact-todo.sh automation script, and update skill postflights"
+        },
+        {
+          "path": "specs/421_fix_status_script_grep_pattern_and_todo_linking/summaries/01_fix-status-linking-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for grep pattern fix and artifact linking automation"
         }
-      ]
+      ],
+      "completion_summary": "Fixed silent grep pattern failure in update-task-status.sh, created link-artifact-todo.sh to automate four-case TODO.md artifact linking, and updated 7 skill postflights to use the script instead of LLM-dependent Edit logic."
     },
     {
       "project_number": 420,

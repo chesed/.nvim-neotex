@@ -1,7 +1,7 @@
 # Implementation Plan: Task #421
 
 - **Task**: 421 - Fix update-task-status.sh grep pattern and TODO.md artifact linking
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 2 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/421_fix_status_script_grep_pattern_and_todo_linking/reports/01_status-script-bugs.md
