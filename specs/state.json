@@ -35,12 +35,18 @@
     {
       "project_number": 432,
       "project_name": "harden_sync_against_repo_specific_leakage",
-      "status": "researching",
+      "status": "researched",
       "task_type": "neovim",
       "created": "2026-04-14T20:45:00Z",
-      "last_updated": "2026-04-14T20:47:09Z",
-      "artifacts": [],
-      "next_artifact_number": 1,
+      "last_updated": "2026-04-14T20:50:10Z",
+      "artifacts": [
+        {
+          "path": "specs/432_harden_sync_against_repo_specific_leakage/reports/01_sync-leakage-hardening.md",
+          "type": "research",
+          "summary": "Research report analyzing sync engine leakage vectors and recommending 3 hardening mechanisms"
+        }
+      ],
+      "next_artifact_number": 2,
       "session_id": "sess_1776199605_f617dd"
     },
     {
