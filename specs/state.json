@@ -1,7 +1,30 @@
 {
   "version": "1.0.0",
-  "next_project_number": 432,
+  "next_project_number": 434,
   "active_projects": [
+    {
+      "project_number": 433,
+      "project_name": "move_nvim_specific_content_to_neovim_extension",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-14T20:45:00Z",
+      "last_updated": "2026-04-14T20:45:00Z",
+      "artifacts": [],
+      "next_artifact_number": 1,
+      "dependencies": [
+        432
+      ]
+    },
+    {
+      "project_number": 432,
+      "project_name": "harden_sync_against_repo_specific_leakage",
+      "status": "not_started",
+      "task_type": "neovim",
+      "created": "2026-04-14T20:45:00Z",
+      "last_updated": "2026-04-14T20:45:00Z",
+      "artifacts": [],
+      "next_artifact_number": 1
+    },
     {
       "project_number": 431,
       "project_name": "fix_artifact_linking_order_todo",

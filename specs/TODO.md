@@ -1,5 +1,5 @@
 ---
-next_project_number: 432
+next_project_number: 434
 ---
 
 # TODO
@@ -10,6 +10,8 @@ next_project_number: 432
 
 ### Pending
 
+- **433** [NOT STARTED] -- Move nvim-specific core content into neovim extension (depends: 432)
+- **432** [NOT STARTED] -- Harden sync engine against repo-specific content leakage
 - **431** [COMPLETED] -- Fix artifact linking order and missing blank line in TODO.md
 - **430** [COMPLETED] -- Fix /implement excessive front-loading: lead agent should read plan only, not codebase
 - **429** [COMPLETED] -- Update .claude/docs/ to reflect task 428 changes
@@ -26,6 +28,35 @@ next_project_number: 432
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 433. Move nvim-specific core content into neovim extension
+- **Effort**: medium
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+- **Dependencies**: Task #432
+
+**Description**: Several files in core .claude/ contain neovim-specific content that gets synced to all repos via "Load Core", causing repo-specific leakage. Move this content into the neovim extension so the existing extension blocklist excludes it during sync and it only appears in repos where the neovim extension is loaded.
+
+**Scope:**
+1. Move `docs/guides/neovim-integration.md` (336 lines) into `extensions/neovim/` (e.g., `extensions/neovim/context/` or a new `extensions/neovim/docs/` directory). Update the neovim extension manifest to declare it under `provides`.
+2. Move the `neovim` routing row from `context/routing.md` line 17 into the neovim extension as a merge target. The extension loader should inject this row when loaded, similar to how CLAUDE.md sections are injected. This may require adding a new merge target type for routing.md, or appending the row via the index merge mechanism.
+3. Templatize CLAUDE.md example references: lines 75, 120, 200, 222 use `neovim` as example text (`e.g., skill-neovim-research`, `e.g., neovim-lua.md`). Replace with generic examples (`e.g., python`, `e.g., skill-python-research`) so the core CLAUDE.md is editor-agnostic. The neovim extension's CLAUDE.md merge section can add neovim-specific examples if needed.
+4. Audit `README.md` lines 119, 188 for neovim references that should be extension-provided.
+5. Similarly audit `docs/guides/tts-stt-integration.md` -- if it's neovim-specific (uses nvim remote-expr, neotex modules), move it to the neovim extension.
+
+**Depends on 432** because the sync-exclude mechanism from 432 provides an immediate safety net, while this task does the proper structural fix.
+
+### 432. Harden sync engine against repo-specific content leakage
+- **Effort**: medium
+- **Status**: [NOT STARTED]
+- **Task Type**: neovim
+
+**Description**: The "Load Core" sync in `lua/neotex/plugins/ai/claude/commands/picker/operations/sync.lua` copies all non-extension core files to target repos, but some core files are source-repo-specific (neovim integration guides, neovim routing entries, neotex references). Add three protection mechanisms to prevent repo-specific content from leaking during sync.
+
+**Changes:**
+1. **Source-side sync exclusion file** (`sync-exclude` at project root or `.claude/sync-exclude`): A file listing paths/globs that should never be exported during "Load Core". The `scan_all_artifacts()` function (line ~440) already builds an extension blocklist -- add a source exclusion list loaded from this file, applied the same way. Populate it with known nvim-specific files: `docs/guides/neovim-integration.md`, `docs/guides/tts-stt-integration.md`. This is the source-side mirror of `.syncprotect`.
+2. **Post-sync content audit**: After `execute_sync()` completes (line ~366), scan synced files for configurable warning patterns (e.g., `neovim`, `neotex`, `lazy.nvim`, `nvim-lspconfig`). Display warnings in the sync results summary: "N files may contain source-repo-specific references". Non-blocking -- informational only. Pattern list could live in the sync-exclude file as a `# audit-patterns:` directive, or in a separate config.
+3. **Auto-seed `.syncprotect` on first sync**: When `load_all_globally()` detects no `.syncprotect` in the target repo, create one with standard entries (`context/repo/project-overview.md`). This ensures every synced repo gets baseline protection without manual setup.
 
 ### 431. Fix artifact linking order and missing blank line in TODO.md
 - **Effort**: small
@@ -236,6 +267,8 @@ The sync system needs to handle the fact that target repos (zed, other projects)
 
 ## Recommended Order
 
-1. **78** [PLANNED] -> implement
+1. **432** [NOT STARTED] -> research (unblocks 433)
+2. **433** [NOT STARTED] -> research (depends: 432)
+3. **78** [PLANNED] -> implement
 2. **87** [RESEARCHED] -> plan
 3. **422** -> research (independent)
