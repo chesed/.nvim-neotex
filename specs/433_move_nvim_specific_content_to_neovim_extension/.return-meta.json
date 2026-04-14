@@ -1,31 +1,7 @@
 {
-  "status": "planned",
-  "agent_type": "planner-agent",
-  "delegation_path": ["orchestrator", "plan", "planner-agent"],
-  "session_id": "sess_1776200126_plan433",
-  "task_number": 433,
-  "summary": "Created 4-phase implementation plan for extracting neovim-specific content from core .claude/ files into the neovim extension directory",
-  "artifacts": [
-    {
-      "path": "specs/433_move_nvim_specific_content_to_neovim_extension/plans/01_extension-restructuring.md",
-      "type": "plan",
-      "summary": "Implementation plan: corruption fixes, file moves, section extraction, example generalization"
-    }
-  ],
-  "plan_metadata": {
-    "phases": 4,
-    "total_effort_hours": 4,
-    "complexity": "medium",
-    "research_integrated": true,
-    "plan_version": 1,
-    "dependency_waves": [[1], [2, 3], [4]],
-    "reports_integrated": [
-      {
-        "path": "reports/01_extension-restructuring.md",
-        "integrated_in_plan_version": 1,
-        "integrated_date": "2026-04-14"
-      }
-    ]
-  },
-  "next_steps": "Run /implement 433 to execute the plan"
+  "status": "in_progress",
+  "agent_type": "general-implementation-agent",
+  "delegation_path": ["orchestrator", "implement", "skill-implementer", "general-implementation-agent"],
+  "session_id": "sess_1776200126_impl433",
+  "task_number": 433
 }

@@ -855,29 +855,6 @@
       }
     },
     {
-      "path": "orchestration/routing.md",
-      "domain": "core",
-      "subdomain": "orchestration",
-      "summary": "Task routing by language and type",
-      "line_count": 777,
-      "keywords": [
-        "orchestration",
-        "routing"
-      ],
-      "topics": [
-        "orchestration"
-      ],
-      "load_when": {
-        "agents": [
-          "meta-builder-agent"
-        ],
-        "task_types": [
-          "meta"
-        ],
-        "commands": []
-      }
-    },
-    {
       "path": "orchestration/sessions.md",
       "domain": "core",
       "subdomain": "orchestration",

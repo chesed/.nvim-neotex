@@ -159,7 +159,7 @@ Each error object:
 |-------|------|----------|-------------|
 | `type` | string | Yes | Error category |
 | `message` | string | Yes | Human-readable error message |
-| `recoverable` | booneovim | Yes | Whether retry may succeed |
+| `recoverable` | boolean | Yes | Whether retry may succeed |
 | `recommendation` | string | Yes | How to fix or proceed |
 
 ## Agent Instructions
@@ -205,7 +205,7 @@ if [ -f "$metadata_file" ]; then
 fi
 ```
 
-### Cneovimup
+### Cleanup
 
 After postflight, delete the metadata file:
 
@@ -325,7 +325,7 @@ rm -f "specs/${padded_num}_${task_slug}/.return-meta.json"
     }
   ],
   "completion_data": {
-    "completion_summary": "Created utility.sh script for automated cneovimup operations.",
+    "completion_summary": "Created utility.sh script for automated cleanup operations.",
     "claudemd_suggestions": "none"
   },
   "next_steps": "Test script execution",
@@ -488,7 +488,7 @@ This file-based format complements `subagent-return.md`:
 | Location | Agent's stdout | `specs/{NNN}_{SLUG}/.return-meta.json` |
 | Consumer | Skill validation logic | Skill postflight operations |
 | When | Before file-based pattern | With file-based pattern |
-| Cneovimup | N/A | Deleted after postflight |
+| Cleanup | N/A | Deleted after postflight |
 
 **Migration path**: Skills migrate from validating console JSON to reading file metadata. The schema is nearly identical for compatibility.
 

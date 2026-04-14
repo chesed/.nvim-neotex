@@ -793,7 +793,7 @@ Orchestrator maintains in-memory registry:
 }
 ```
 
-Updated in Stage 4 (PrepareContext) and Stage 7 (PostflightCneovimup).
+Updated in Stage 4 (PrepareContext) and Stage 7 (PostflightCleanup).
 
 ## JSON Return Format Enforcement
 

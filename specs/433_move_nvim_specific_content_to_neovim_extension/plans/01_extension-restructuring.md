@@ -1,7 +1,7 @@
 # Implementation Plan: Task #433
 
 - **Task**: 433 - Move nvim-specific content from core .claude/ files to neovim extension
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: Task 432 (sync hardening) - completed
 - **Research Inputs**: specs/433_move_nvim_specific_content_to_neovim_extension/reports/01_extension-restructuring.md
@@ -73,7 +73,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Fix Corruption and Delete Deprecated File [NOT STARTED]
+### Phase 1: Fix Corruption and Delete Deprecated File [COMPLETED]
 
 **Goal**: Eliminate known bugs (cneovim corruption) and remove the deprecated routing file before restructuring begins. This prevents corruption from being propagated during later moves.
 
