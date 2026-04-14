@@ -13,17 +13,22 @@
     {
       "project_number": 425,
       "project_name": "create_skill_slide_critic",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-14T03:14:38Z",
-      "last_updated": "2026-04-14T04:03:31Z",
-      "session_id": "sess_1776139248_06584d",
+      "last_updated": "2026-04-14T04:05:59Z",
+      "session_id": "sess_1776139416_a50454",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/425_create_skill_slide_critic/reports/01_skill-slide-critic-research.md",
           "type": "research",
           "summary": "Research on skill patterns for interactive critique loop"
+        },
+        {
+          "path": "specs/425_create_skill_slide_critic/plans/01_skill-slide-critic-plan.md",
+          "type": "plan",
+          "summary": "Plan for skill-slide-critic interactive critique loop"
         }
       ]
     },

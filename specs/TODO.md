@@ -11,7 +11,7 @@ next_project_number: 427
 ### Pending
 
 - **426** [NOT STARTED] -- Update slides command and manifest for --critic flag (depends: 425)
-- **425** [RESEARCHED] -- Create skill-slide-critic interactive critique skill (depends: 424)
+- **425** [PLANNED] -- Create skill-slide-critic interactive critique skill (depends: 424)
 - **424** [COMPLETED] -- Create slide-critic-agent (depends: 423)
 - **423** [COMPLETED] -- Create critique rubric context file
 - **422** [COMPLETED] -- Fix sync.lua overwriting all non-CLAUDE.md files
@@ -32,11 +32,12 @@ next_project_number: 427
 
 ### 425. Create skill-slide-critic interactive critique skill
 - **Effort**: large
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: meta
 - **Dependencies**: 424
 
 - **Research**: [01_skill-slide-critic-research.md](425_create_skill_slide_critic/reports/01_skill-slide-critic-research.md)
+- **Plan**: [01_skill-slide-critic-plan.md](425_create_skill_slide_critic/plans/01_skill-slide-critic-plan.md)
 **Description**: Create `skill-slide-critic` in the present extension. This skill runs an interactive critique loop: (1) delegates to `slide-critic-agent` for initial material review, (2) presents identified issues to user via AskUserQuestion grouped by category, (3) for each issue the user can accept, reject, modify, or provide an alternative response, (4) loops until all issues are addressed or dismissed, (5) produces a final critique report at `specs/{NNN}_{SLUG}/reports/{MM}_slide-critique.md` that can be consumed by `/plan` to guide slide design. Implements skill-internal postflight pattern.
 
 ### 424. Create slide-critic-agent
