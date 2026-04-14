@@ -10,9 +10,9 @@ next_project_number: 435
 
 ### Pending
 
-- **434** [PLANNED] -- Prevent lead agent post-delegation takeover after subagent returns
+- **434** [IMPLEMENTING] -- Prevent lead agent post-delegation takeover after subagent returns
 - **433** [NOT STARTED] -- Move nvim-specific core content into neovim extension (depends: 432)
-- **432** [PLANNED] -- Harden sync engine against repo-specific content leakage
+- **432** [IMPLEMENTING] -- Harden sync engine against repo-specific content leakage
 - **431** [COMPLETED] -- Fix artifact linking order and missing blank line in TODO.md
 - **430** [COMPLETED] -- Fix /implement excessive front-loading: lead agent should read plan only, not codebase
 - **429** [COMPLETED] -- Update .claude/docs/ to reflect task 428 changes
@@ -32,7 +32,7 @@ next_project_number: 435
 
 ### 434. Prevent lead agent post-delegation takeover after subagent returns
 - **Effort**: small
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: meta
 - **Research**: [specs/434_prevent_lead_agent_post_delegation_takeover/reports/01_post-delegation-takeover.md](specs/434_prevent_lead_agent_post_delegation_takeover/reports/01_post-delegation-takeover.md)
 - **Plan**: [434_prevent_lead_agent_post_delegation_takeover/plans/01_post-delegation-takeover.md]
@@ -72,7 +72,7 @@ After lean-implementation-agent returned from Wave 2 Phase 2, the lead agent: (1
 
 ### 432. Harden sync engine against repo-specific content leakage
 - **Effort**: medium
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: neovim
 - **Research**: [01_sync-leakage-hardening.md](432_harden_sync_against_repo_specific_leakage/reports/01_sync-leakage-hardening.md)
 - **Plan**: [432_harden_sync_against_repo_specific_leakage/plans/01_sync-leakage-hardening.md]

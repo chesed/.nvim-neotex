@@ -365,6 +365,50 @@ local function execute_sync(project_dir, all_artifacts, merge_only, base_dir, pr
   return total_synced
 end
 
+--- Load .sync-exclude file from source (global) directory
+--- Parses path exclusions and audit-pattern directives.
+--- @param global_dir string Global directory path (source repo root)
+--- @return table exclude_set Set of paths to exclude {[path] = true}
+--- @return table audit_patterns Array of Lua pattern strings for content auditing
+local function load_sync_exclude(global_dir)
+  local exclude_set = {}
+  local audit_patterns = {}
+
+  local filepath = global_dir .. "/.sync-exclude"
+  local file = io.open(filepath, "r")
+  if not file then
+    return exclude_set, audit_patterns
+  end
+
+  for line in file:lines() do
+    -- Trim whitespace
+    line = line:match("^%s*(.-)%s*$")
+    if line == "" then
+      goto continue
+    end
+
+    -- Check for audit-pattern directive
+    local pattern = line:match("^# audit%-pattern:%s*(.+)$")
+    if pattern then
+      table.insert(audit_patterns, pattern:match("^%s*(.-)%s*$"))
+      goto continue
+    end
+
+    -- Skip regular comments
+    if line:sub(1, 1) == "#" then
+      goto continue
+    end
+
+    -- Non-comment, non-empty line is a path exclusion
+    exclude_set[line] = true
+
+    ::continue::
+  end
+  file:close()
+
+  return exclude_set, audit_patterns
+end
+
 --- Convert set-based blocklist to array for exclude_patterns parameter
 --- @param set table Set table {[key] = true}
 --- @return table array Array of keys
@@ -441,6 +485,10 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
   local base_dir = (config and config.base_dir) or ".claude"
   local artifacts = {}
 
+  -- Load source-side exclusions from .sync-exclude (if present)
+  local sync_exclude_set, audit_patterns = load_sync_exclude(global_dir)
+  local sync_exclude_array = set_to_array(sync_exclude_set)
+
   -- Build blocklist from all extension manifests
   local extension_cfg = get_extension_config(base_dir, global_dir)
   local blocklist = manifest.aggregate_extension_artifacts(extension_cfg)
@@ -453,6 +501,11 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
   -- @param blocklist_category string|nil Which blocklist category to apply (e.g., "agents", "skills")
   local function sync_scan(subdir, ext, recursive, extra_exclude, blocklist_category)
     local exclude = extra_exclude and vim.deepcopy(extra_exclude) or {}
+
+    -- Merge source-side exclusions from .sync-exclude
+    for _, entry in ipairs(sync_exclude_array) do
+      table.insert(exclude, entry)
+    end
 
     -- Merge blocklist entries for this category
     if blocklist_category and blocklist[blocklist_category] then
@@ -570,6 +623,9 @@ function M.scan_all_artifacts(global_dir, project_dir, config)
   -- to non-Neovim projects. The .claude/CLAUDE.md (synced via root_file_names above)
   -- contains the agent system configuration which IS appropriate for all projects.
 
+  -- Store audit patterns for post-sync content audit (Phase 3)
+  artifacts._audit_patterns = audit_patterns
+
   return artifacts
 end
 
@@ -663,6 +719,21 @@ function M.load_all_globally(config)
 
   -- Load syncprotect list from target repo (if it exists)
   local protected_paths = load_syncprotect(project_dir, base_dir)
+
+  -- Auto-seed .syncprotect if target repo has none (defense-in-depth)
+  local syncprotect_path = project_dir .. "/.syncprotect"
+  if vim.fn.filereadable(syncprotect_path) == 0 then
+    local seed_content = "# Protected files - not overwritten during sync\n"
+      .. "# Add relative paths (one per line) to protect local customizations\n"
+      .. "# Paths are relative to the base directory (e.g., rules/my-rule.md)\n"
+      .. "\n"
+      .. "# Repository-specific context (defense-in-depth, also in CONTEXT_EXCLUDE_PATTERNS)\n"
+      .. "context/repo/project-overview.md\n"
+    helpers.write_file(syncprotect_path, seed_content)
+    helpers.notify("Created .syncprotect with default entries", "INFO")
+    -- Re-read protected paths after seeding
+    protected_paths = load_syncprotect(project_dir, base_dir)
+  end
 
   local total_synced = execute_sync(project_dir, all_artifacts, merge_only, base_dir, protected_paths)
 

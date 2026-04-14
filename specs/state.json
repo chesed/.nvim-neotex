@@ -5,10 +5,10 @@
     {
       "project_number": 434,
       "project_name": "prevent_lead_agent_post_delegation_takeover",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "meta",
       "created": "2026-04-14T21:00:00Z",
-      "last_updated": "2026-04-14T20:53:13Z",
+      "last_updated": "2026-04-14T20:55:52Z",
       "artifacts": [
         {
           "path": "specs/434_prevent_lead_agent_post_delegation_takeover/reports/01_post-delegation-takeover.md",
@@ -22,7 +22,7 @@
         }
       ],
       "next_artifact_number": 2,
-      "session_id": "sess_1776199885_b33bf7",
+      "session_id": "sess_1776200126_2edbea",
       "plan_metadata": {
         "phases": 4,
         "total_effort_hours": 1.5,
@@ -66,10 +66,10 @@
     {
       "project_number": 432,
       "project_name": "harden_sync_against_repo_specific_leakage",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "neovim",
       "created": "2026-04-14T20:45:00Z",
-      "last_updated": "2026-04-14T20:53:44Z",
+      "last_updated": "2026-04-14T20:55:50Z",
       "artifacts": [
         {
           "path": "specs/432_harden_sync_against_repo_specific_leakage/reports/01_sync-leakage-hardening.md",
@@ -83,7 +83,7 @@
         }
       ],
       "next_artifact_number": 2,
-      "session_id": "sess_1776199885_b33bf7",
+      "session_id": "sess_1776200126_2edbea",
       "plan_metadata": {
         "phases": 4,
         "total_effort_hours": 3,

@@ -1,7 +1,7 @@
 # Implementation Plan: Harden Sync Against Repo-Specific Leakage
 
 - **Task**: 432 - Harden sync engine against repo-specific content leakage
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 3 hours
 - **Dependencies**: None (task 433 depends on this)
 - **Research Inputs**: reports/01_sync-leakage-hardening.md
@@ -54,7 +54,7 @@ The sync engine in `sync.lua` copies core agent system files to target repositor
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Implement `.sync-exclude` file parser and source-side exclusion [NOT STARTED]
+### Phase 1: Implement `.sync-exclude` file parser and source-side exclusion [COMPLETED]
 
 - **Goal:** Create the `.sync-exclude` file format, implement `load_sync_exclude()`, and thread exclude paths into `scan_all_artifacts()`.
 - **Tasks:**

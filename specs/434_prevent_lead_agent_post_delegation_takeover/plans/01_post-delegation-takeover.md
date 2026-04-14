@@ -1,7 +1,7 @@
 # Implementation Plan: Prevent Lead Agent Post-Delegation Takeover
 
 - **Task**: 434 - Prevent lead agent post-delegation takeover after subagent returns
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1.5 hours
 - **Dependencies**: None (task 430 fixed pre-delegation mirror problem)
 - **Research Inputs**: specs/434_prevent_lead_agent_post_delegation_takeover/reports/01_post-delegation-takeover.md
@@ -54,7 +54,7 @@ The fix adds explicit PROHIBITION blocks to all implementation skills and update
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Core Skills and Agent -- Add PROHIBITION Blocks [NOT STARTED]
+### Phase 1: Core Skills and Agent -- Add PROHIBITION Blocks [COMPLETED]
 
 - **Goal:** Add structured PROHIBITION blocks to the two core implementation skills and add partial-is-acceptable guidance to the implementation agent
 - **Tasks:**
