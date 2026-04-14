@@ -97,6 +97,13 @@ function M.scan_directory_for_sync(global_dir, local_dir, subdir, extension, rec
       end
     end
 
+    -- Skip README.md files (consistent with scan_directory behavior)
+    -- README.md files contain repo-specific content and should not be synced
+    local filename = vim.fn.fnamemodify(global_file, ":t")
+    if filename == "README.md" then
+      goto continue
+    end
+
     -- Calculate relative path from global_path base (e.g., "core/utils.sh" from "/path/lib/core/utils.sh")
     local rel_path = global_file:sub(#global_path + 2)
 

@@ -89,7 +89,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Make scan_directory_for_sync skip README.md [NOT STARTED]
+### Phase 2: Make scan_directory_for_sync skip README.md [COMPLETED]
 
 **Goal**: Align scan_directory_for_sync with scan_directory by skipping README.md files during sync scanning.
 
