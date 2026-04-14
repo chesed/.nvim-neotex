@@ -1,7 +1,7 @@
 # Implementation Plan: Critique Rubric Context File
 
 - **Task**: 423 - Create critique rubric context file
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 1.5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/423_create_critique_rubric_context/reports/01_critique-rubric-research.md
@@ -64,7 +64,7 @@ No ROADMAP.md items directly addressed by this task. This is an extension conten
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Create Rubric File with Core Structure [NOT STARTED]
+### Phase 1: Create Rubric File with Core Structure [COMPLETED]
 
 **Goal**: Create the critique-rubric.md file with overview, severity definitions, and all 6 rubric category sections.
 
@@ -95,7 +95,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Add Talk-Type Adjustments and Cross-References [NOT STARTED]
+### Phase 2: Add Talk-Type Adjustments and Cross-References [COMPLETED]
 
 **Goal**: Add talk-type-specific priority modifiers and integrate with existing present extension files.
 
