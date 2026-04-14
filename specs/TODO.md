@@ -1,5 +1,5 @@
 ---
-next_project_number: 422
+next_project_number: 423
 ---
 
 # TODO
@@ -16,6 +16,47 @@ next_project_number: 422
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 422. Fix sync.lua overwriting all non-CLAUDE.md files in target repos
+- **Effort**: large
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+
+**Description**: Follow-up to task 420 (prevent extension loader overwriting repo customizations). Task 420 added section-aware sync for CLAUDE.md and post-sync re-injection of merge targets, but the fix is insufficient -- the zed config (`~/.config/zed/.claude/`) is still getting clobbered on every sync. This has now caused three wasted tasks in zed: task 60 (incorrectly "fixed" the diffs thinking they were stale references), task 61 (reverted task 60), and task 62 (initially misdiagnosed the same diffs again).
+
+**Root cause analysis from the zed codebase:**
+
+The `sync_files()` function in `sync.lua` (line ~246) only applies section preservation to files in `CONFIG_MARKDOWN_FILES` (CLAUDE.md and OPENCODE.md). The `execute_sync()` function (lines ~284-296) syncs ALL other .claude/ files with `action = "replace"`, which does a full overwrite. This means every file synced from nvim to zed gets its local content destroyed.
+
+**Specific files being clobbered in the zed repo (evidence from `git diff .claude/`):**
+
+1. `.claude/CLAUDE.md` -- Content NOT inside `<!-- SECTION -->` markers is lost: the Hooks section (validate-plan-write.sh), slide-planner-agent/skill-slide-planning table rows (3 tables), and `present:slides` compound task type routing. Task 420's section-marker fix does not protect content that the extension system didn't inject via markers.
+
+2. `.claude/agents/README.md` -- Full overwrite removes slide-planner-agent row and the "Extension-specific agents" note. Not in `CONFIG_MARKDOWN_FILES`, so no protection at all.
+
+3. `.claude/rules/git-workflow.md` -- Full overwrite removes the zed-specific "omit Co-Authored-By" user preference note and replaces it with nvim's Co-Authored-By trailer format. Not in `CONFIG_MARKDOWN_FILES`.
+
+4. `.claude/agents/document-agent.md` -- Full overwrite replaces zed's pymupdf-as-primary version with nvim's markitdown-as-primary version. (The pymupdf improvement was done in zed but reverted as collateral damage when reverting task 60.)
+
+5. `.claude/context/project/filetypes/` (3 files: conversion-tables.md, dependency-guide.md, tool-detection.md) -- Full overwrite replaces zed's pymupdf-aware versions with nvim's markitdown-only versions.
+
+6. 7 skill files (skill-researcher, skill-planner, skill-implementer, skill-reviser, skill-team-research, skill-team-plan, skill-team-implement) -- Full overwrite replaces each skill's artifact-linking postflight. The nvim versions reference `link-artifact-todo.sh` script; the zed committed versions use inline Edit-based four-case logic.
+
+7. `.claude/scripts/update-task-status.sh` -- Full overwrite replaces the committed version with nvim's version (which has a tolerant status regex).
+
+8. `.claude/context/index.json` and `.claude/extensions.json` -- Re-injection is idempotent but the full overwrite first replaces the file, causing key reordering churn.
+
+**Three categories of failure:**
+
+| Category | Files affected | Why task 420 doesn't help |
+|----------|---------------|---------------------------|
+| Non-CLAUDE.md files | agents/README.md, rules/git-workflow.md, all skill files, context files, scripts | `CONFIG_MARKDOWN_FILES` only contains CLAUDE.md and OPENCODE.md; all other files get full overwrite |
+| CLAUDE.md content outside section markers | Hooks section, slide-planner table rows, present:slides routing | Section preservation only protects `<!-- SECTION -->` blocks; manually-added content in CLAUDE.md is unprotected |
+| Bidirectional improvements | document-agent.md (pymupdf), skill artifact-linking (script vs inline) | Sync is unidirectional (nvim -> target); improvements made in target repos are overwritten |
+
+**Requirements for a proper fix:**
+
+The sync system needs to handle the fact that target repos (zed, other projects) may have legitimate local customizations to ANY .claude/ file, not just CLAUDE.md sections. Possible approaches include: (a) expanding section-marker protection to all synced files, (b) adding a per-repo "protected files" list that sync skips, (c) making sync diff-aware rather than full-overwrite, or (d) only syncing files whose local content matches the previous sync snapshot (detecting local modifications and skipping those files).
 
 ### 421. Fix update-task-status.sh grep pattern and skill-planner TODO.md artifact linking
 - **Effort**: TBD
@@ -75,4 +116,5 @@ next_project_number: 422
 ## Recommended Order
 
 1. **78** [PLANNED] -> implement
-3. **87** [RESEARCHED] -> plan
+2. **87** [RESEARCHED] -> plan
+3. **422** -> research (independent)

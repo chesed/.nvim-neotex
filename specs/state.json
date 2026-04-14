@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 422,
+  "next_project_number": 423,
   "active_projects": [
+    {
+      "project_number": 422,
+      "project_name": "fix_sync_overwriting_all_non_claudemd_files",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-14T03:05:36Z",
+      "last_updated": "2026-04-14T03:05:36Z"
+    },
     {
       "project_number": 421,
       "project_name": "fix_status_script_grep_pattern_and_todo_linking",
