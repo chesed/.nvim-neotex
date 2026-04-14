@@ -5,25 +5,31 @@
     {
       "project_number": 431,
       "project_name": "fix_artifact_linking_order_todo",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "meta",
       "created": "2026-04-14T19:45:09Z",
-      "last_updated": "2026-04-14T19:45:09Z"
+      "last_updated": "2026-04-14T19:53:19Z",
+      "session_id": "sess_1776196385_512863"
     },
     {
       "project_number": 430,
       "project_name": "fix_implement_excessive_front_loading",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-14T19:41:32Z",
-      "last_updated": "2026-04-14T19:48:33Z",
-      "session_id": "sess_1744663200_430res",
+      "last_updated": "2026-04-14T19:54:19Z",
+      "session_id": "sess_1744663200_430plan",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/430_fix_implement_excessive_front_loading/reports/01_front-loading-fix.md",
           "type": "report",
           "summary": "Research report identifying 6 findings and 4 changes across 3-4 files to add pre-delegation boundary constraints"
+        },
+        {
+          "path": "specs/430_fix_implement_excessive_front_loading/plans/01_front-loading-fix.md",
+          "type": "plan",
+          "summary": "3-phase plan: add pre-delegation boundary constraints to skill-team-implement, skill-implementer, and general-implementation-agent"
         }
       ]
     },
