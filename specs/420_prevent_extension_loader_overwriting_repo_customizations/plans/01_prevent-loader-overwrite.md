@@ -1,7 +1,7 @@
 # Implementation Plan: Prevent Extension Loader Overwriting Repo Customizations
 
 - **Task**: 420 - Prevent extension loader sync from overwriting repo-specific CLAUDE.md customizations
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 2.5 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/420_prevent_extension_loader_overwriting_repo_customizations/reports/01_extension-loader-sync.md
@@ -60,7 +60,7 @@ This task advances **Agent System Quality** in Phase 1 of the roadmap. While not
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Add Section Preservation to sync.lua [NOT STARTED]
+### Phase 1: Add Section Preservation to sync.lua [COMPLETED]
 
 **Goal**: Make the core sync preserve `<!-- SECTION -->` blocks when overwriting CLAUDE.md (and OPENCODE.md for the OpenCode path).
 

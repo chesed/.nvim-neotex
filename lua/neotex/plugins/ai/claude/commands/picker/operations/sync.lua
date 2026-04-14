@@ -18,6 +18,60 @@ local CONTEXT_EXCLUDE_PATTERNS = {
   "project/repo/self-healing-implementation-details.md",
 }
 
+-- Config markdown filenames that may contain extension-injected sections.
+-- When these files are synced (overwritten from global), we preserve any
+-- <!-- SECTION: {id} -->...<!-- END_SECTION: {id} --> blocks so that
+-- loaded extensions' injected content survives a full sync.
+local CONFIG_MARKDOWN_FILES = {
+  ["CLAUDE.md"] = true,
+  ["OPENCODE.md"] = true,
+}
+
+--- Extract all section blocks from content
+--- Finds all <!-- SECTION: {id} -->...<!-- END_SECTION: {id} --> blocks
+--- and returns them as an ordered array of strings (including markers).
+--- @param content string File content to extract sections from
+--- @return table sections Array of section block strings (with markers)
+local function preserve_sections(content)
+  local sections = {}
+  -- Match section blocks including their markers and content.
+  -- The markers use HTML comment syntax: <!-- SECTION: id --> ... <!-- END_SECTION: id -->
+  for block in content:gmatch("(<!%-%- SECTION: [^\n]- %-%->.-<!%-%- END_SECTION: [^\n]- %-%->)") do
+    table.insert(sections, block)
+  end
+  return sections
+end
+
+--- Restore preserved section blocks into new content
+--- Appends each section block to the end of content, separated by newlines.
+--- Skips sections whose id already exists in the new content (idempotent).
+--- @param content string New file content (from global source)
+--- @param sections table Array of section block strings from preserve_sections()
+--- @return string content Content with sections restored
+local function restore_sections(content, sections)
+  if not sections or #sections == 0 then
+    return content
+  end
+
+  for _, block in ipairs(sections) do
+    -- Extract the section id from the opening marker
+    local section_id = block:match("<!%-%- SECTION: ([^\n]-) %-%->")
+    if section_id then
+      -- Only restore if this section id is not already in the new content
+      local marker = "<!-- SECTION: " .. section_id .. " -->"
+      if not content:find(marker, 1, true) then
+        -- Ensure content ends with a newline before appending
+        if content:sub(-1) ~= "\n" then
+          content = content .. "\n"
+        end
+        content = content .. "\n" .. block .. "\n"
+      end
+    end
+  end
+
+  return content
+end
+
 --- Count files by depth (top-level vs subdirectory)
 --- @param files table Array of file sync info with is_subdir field
 --- @return number top_level_count Number of top-level files
@@ -74,6 +128,17 @@ local function sync_files(files, preserve_perms, merge_only)
     -- Read global file
     local content = helpers.read_file(file.global_path)
     if content then
+      -- For config markdown files (CLAUDE.md, OPENCODE.md), preserve any
+      -- extension-injected section blocks before overwriting with global content.
+      -- This prevents sync from destroying sections added by loaded extensions.
+      if CONFIG_MARKDOWN_FILES[file.name] and file.action == "replace" then
+        local local_content = helpers.read_file(file.local_path)
+        if local_content then
+          local sections = preserve_sections(local_content)
+          content = restore_sections(content, sections)
+        end
+      end
+
       -- Write to local
       local write_success = helpers.write_file(file.local_path, content)
       if write_success then
