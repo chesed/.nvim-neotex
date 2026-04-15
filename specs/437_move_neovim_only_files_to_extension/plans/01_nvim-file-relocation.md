@@ -1,7 +1,7 @@
 # Implementation Plan: Move Neovim-Only Files to Extension
 
 - **Task**: 437 - Move neovim-only files to extension and add to .sync-exclude
-- **Status**: [NOT STARTED]
+- **Status**: [COMPLETED]
 - **Effort**: 0.5 hours
 - **Dependencies**: None (task 433 already completed)
 - **Research Inputs**: specs/437_move_neovim_only_files_to_extension/reports/01_nvim-file-relocation.md

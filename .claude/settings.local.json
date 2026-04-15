@@ -42,7 +42,9 @@
       "Bash(do)",
       "Bash(test -s \"$BASE/$f\")",
       "Read(//home/benjamin/.config/nvim/$BASE/talk/themes/**)",
-      "Read(//home/benjamin/.config/nvim/$BASE/patterns/**)"
+      "Read(//home/benjamin/.config/nvim/$BASE/patterns/**)",
+      "Bash(bash .claude/scripts/update-task-status.sh postflight 437 implement \"sess_1776217178_5c9282\")",
+      "Read(//home/benjamin/.config/nvim/**)"
     ]
   },
   "model": "opus",
