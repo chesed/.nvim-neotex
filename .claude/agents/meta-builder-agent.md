@@ -1,7 +1,7 @@
 ---
 name: meta-builder-agent
 description: Interactive system builder for .claude/ architecture changes
-model: opus
+model: sonnet
 ---
 
 # Meta Builder Agent

@@ -1,7 +1,7 @@
 # Implementation Plan: Task #442
 
 - **Task**: 442 - optimize_token_usage_model_routing
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 3 hours
 - **Dependencies**: None
 - **Research Inputs**: specs/442_optimize_token_usage_model_routing/reports/01_model-routing-research.md
@@ -75,7 +75,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Update Core Agent Frontmatter [NOT STARTED]
+### Phase 1: Update Core Agent Frontmatter [COMPLETED]
 
 **Goal**: Change all 7 core agents from `model: opus` to `model: sonnet`.
 
