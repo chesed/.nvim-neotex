@@ -185,7 +185,7 @@ Context files are discovered via `.claude/context/index.json`:
 
 - [User Installation Guide](docs/guides/user-installation.md) - Set up Claude Code
 - [User Guide](docs/guides/user-guide.md) - Command workflows
-- [Neovim Integration](docs/guides/neovim-integration.md) - Hooks, TTS/STT
+- Neovim Integration - Moved to nvim extension: `extensions/nvim/context/project/neovim/guides/neovim-integration.md`
 
 ### Development
 

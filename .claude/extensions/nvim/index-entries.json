@@ -272,6 +272,32 @@
         "languages": ["neovim"],
         "agents": ["neovim-research-agent", "neovim-implementation-agent"]
       }
+    },
+    {
+      "path": "project/neovim/guides/neovim-integration.md",
+      "domain": "project",
+      "subdomain": "neovim",
+      "topics": ["neovim", "hooks", "sidebar", "readiness", "tts", "stt"],
+      "keywords": ["neovim", "integration", "hooks", "sidebar", "tts", "stt"],
+      "summary": "Hook-based readiness signaling, TTS notifications, and STT voice input for Neovim",
+      "line_count": 336,
+      "load_when": {
+        "languages": ["neovim"],
+        "agents": ["neovim-research-agent", "neovim-implementation-agent"]
+      }
+    },
+    {
+      "path": "project/neovim/guides/tts-stt-integration.md",
+      "domain": "project",
+      "subdomain": "neovim",
+      "topics": ["tts", "stt", "piper", "vosk", "audio"],
+      "keywords": ["tts", "stt", "piper", "vosk", "speech", "audio"],
+      "summary": "TTS/STT setup, configuration, and troubleshooting for Claude Code and Neovim",
+      "line_count": 367,
+      "load_when": {
+        "languages": ["neovim"],
+        "agents": ["neovim-research-agent", "neovim-implementation-agent"]
+      }
     }
   ]
 }

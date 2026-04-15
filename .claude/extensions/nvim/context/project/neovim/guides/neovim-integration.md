@@ -253,28 +253,28 @@ tail -20 specs/tmp/claude-tts-notify.log
 
 ```
 User opens Claude Code
-    │
-    ▼
+    |
+    v
 Neovim creates terminal buffer (state: OPENING)
-    │
-    ▼
+    |
+    v
 Claude Code starts
-    │
-    ▼
+    |
+    v
 SessionStart hook fires
-    │
-    ├─→ log-session.sh (logging)
-    │
-    └─→ claude-ready-signal.sh (Neovim signal)
-         │
-         ▼
+    |
+    +-->  log-session.sh (logging)
+    |
+    +-->  claude-ready-signal.sh (Neovim signal)
+         |
+         v
     nvim --remote-expr calls on_claude_ready()
-         │
-         ▼
+         |
+         v
     Neovim state: READY
     Flushes pending commands
-         │
-         ▼
+         |
+         v
     Sidebar responsive (no delay)
 ```
 
@@ -282,35 +282,35 @@ SessionStart hook fires
 
 ```
 Claude completes task
-    │
-    ▼
+    |
+    v
 Stop hook fires
-    │
-    ├─→ post-command.sh (cleanup/logging)
-    │
-    └─→ tts-notify.sh (audio notification)
-         │
-         ├─→ Check cooldown (10s)
-         ├─→ Get WezTerm tab number
-         ├─→ Generate message: "Tab 5"
-         └─→ Speak with Piper (background, 10s timeout)
+    |
+    +-->  post-command.sh (cleanup/logging)
+    |
+    +-->  tts-notify.sh (audio notification)
+         |
+         +-->  Check cooldown (10s)
+         +-->  Get WezTerm tab number
+         +-->  Generate message: "Tab 5"
+         +-->  Speak with Piper (background, 10s timeout)
 ```
 
 ### Notification Hook Flow
 
 ```
 Claude needs user input
-    │
-    ▼
+    |
+    v
 Notification hook fires (permission_prompt, idle_prompt, elicitation_dialog)
-    │
-    └─→ tts-notify.sh (audio notification)
-         │
-         ├─→ Read event type from stdin JSON
-         ├─→ Check cooldown (10s)
-         ├─→ Get WezTerm tab number
-         ├─→ Generate message: "Tab 5 needs permission" / "Tab 5 needs input" / "Tab 5 has a question"
-         └─→ Speak with Piper (background, 10s timeout)
+    |
+    +-->  tts-notify.sh (audio notification)
+         |
+         +-->  Read event type from stdin JSON
+         +-->  Check cooldown (10s)
+         +-->  Get WezTerm tab number
+         +-->  Generate message: "Tab 5 needs permission" / "Tab 5 needs input" / "Tab 5 has a question"
+         +-->  Speak with Piper (background, 10s timeout)
 ```
 
 ## Related Files
@@ -330,6 +330,6 @@ Notification hook fires (permission_prompt, idle_prompt, elicitation_dialog)
 ## See Also
 
 - [TTS/STT Integration Guide](tts-stt-integration.md) - Complete TTS/STT documentation with software dependencies
-- [Permission Configuration](permission-configuration.md) - Hook permissions
-- [User Guide](user-guide.md) - General Claude Code usage
+- [Permission Configuration](../../../../../../.claude/docs/guides/permission-configuration.md) - Hook permissions
+- [User Guide](../../../../../../.claude/docs/guides/user-guide.md) - General Claude Code usage
 - Neovim STT README: `~/.config/nvim/lua/neotex/plugins/tools/README.md`
