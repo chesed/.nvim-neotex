@@ -10,12 +10,12 @@
       "created": "2026-04-15T17:21:30Z",
       "last_updated": "2026-04-15T17:34:11Z",
       "session_id": "sess_1776274208_5591e4",
-      "next_artifact_number": 2,
+      "next_artifact_number": 3,
       "artifacts": [
         {
           "path": "specs/443_optimize_artifact_format_verbosity/reports/01_artifact-format-research.md",
           "type": "research",
-          "summary": "Research on optimizing artifact format verbosity"
+          "summary": "Analysis of artifact format verbosity with 7 prioritized recommendations for ~37% line reduction across format files"
         }
       ]
     },
@@ -37,7 +37,7 @@
         {
           "path": "specs/442_optimize_token_usage_model_routing/plans/01_model-routing-plan.md",
           "type": "plan",
-          "summary": "5-phase plan: switch non-Lean agents/commands to sonnet, add --fast/--hard/--opus flags to /research and /implement, update docs."
+          "summary": "5-phase plan: agent frontmatter changes, command frontmatter changes, extension changes, --fast/--hard/--opus flags, documentation updates"
         }
       ]
     },
