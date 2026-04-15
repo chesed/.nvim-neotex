@@ -160,7 +160,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Update Extension Agent Frontmatter [NOT STARTED]
+### Phase 3: Update Extension Agent Frontmatter [COMPLETED]
 
 **Goal**: Change non-Lean extension agents from `model: opus` to `model: sonnet`.
 
