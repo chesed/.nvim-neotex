@@ -2,7 +2,7 @@
 description: Interactive system builder that creates TASKS for agent architecture changes (never implements directly)
 allowed-tools: Skill
 argument-hint: [PROMPT] | --analyze
-model: opus
+model: sonnet
 ---
 
 # /meta Command

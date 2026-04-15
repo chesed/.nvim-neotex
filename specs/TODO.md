@@ -10,7 +10,7 @@ next_project_number: 444
 
 ### Pending
 
-- **443** [RESEARCHED] -- Optimize artifact format verbosity using caveman-inspired insights
+- **443** [PLANNED] -- Optimize artifact format verbosity using caveman-inspired insights
 - **440** [ABANDONED] -- Genericize documentation and examples (superseded by task 438 phase 4)
 - **439** [COMPLETED] -- Harden sync protection and clean deprecated index entries
 - **438** [COMPLETED] -- Comprehensive core genericization (depends: 437)
@@ -40,15 +40,16 @@ next_project_number: 444
 
 ### 443. Optimize artifact format verbosity using caveman-inspired insights
 - **Effort**: medium
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: meta
 - **Research**: [specs/443_optimize_artifact_format_verbosity/reports/01_artifact-format-research.md]
+- **Plan**: [443_optimize_artifact_format_verbosity/plans/02_artifact-format-plan.md]
 
 **Description**: Optimize artifact creation throughout the Claude Code agent system to be more readable and less verbose without removing anything important. Study the https://github.com/JuliusBrussee/caveman/blob/main/README.md repo for a comprehensive understanding of the strategy, then review artifact formats (reports, summaries, plans, etc.) for modest optimizations. Not "going full caveman" but drawing on the basic insight to reduce verbiage where it counts without over-complicating instructions. Look for elements that could be dropped or improved.
 
 ### 442. Optimize token usage with model routing and effort flags
 - **Effort**: Medium
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: meta
 - **Research**: [specs/442_optimize_token_usage_model_routing/reports/01_model-routing-research.md]
 - **Plan**: [specs/442_optimize_token_usage_model_routing/plans/01_model-routing-plan.md]

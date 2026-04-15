@@ -5,28 +5,33 @@
     {
       "project_number": 443,
       "project_name": "optimize_artifact_format_verbosity",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-15T17:21:30Z",
-      "last_updated": "2026-04-15T17:34:11Z",
-      "session_id": "sess_1776274208_5591e4",
+      "last_updated": "2026-04-15T17:41:03Z",
+      "session_id": "sess_1776274668_746ee4",
       "next_artifact_number": 3,
       "artifacts": [
         {
           "path": "specs/443_optimize_artifact_format_verbosity/reports/01_artifact-format-research.md",
           "type": "research",
           "summary": "Analysis of artifact format verbosity with 7 prioritized recommendations for ~37% line reduction across format files"
+        },
+        {
+          "path": "specs/443_optimize_artifact_format_verbosity/plans/02_artifact-format-plan.md",
+          "type": "plan",
+          "summary": "4-phase plan to reduce artifact format verbosity by ~37% across 7 files through deduplication, example trimming, and tighter writing guidance"
         }
       ]
     },
     {
       "project_number": 442,
       "project_name": "optimize_token_usage_model_routing",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "meta",
       "created": "2026-04-15T17:17:45Z",
-      "last_updated": "2026-04-15T17:33:15Z",
-      "session_id": "sess_1744737470_plan",
+      "last_updated": "2026-04-15T17:36:14Z",
+      "session_id": "sess_1744737480_implement",
       "next_artifact_number": 2,
       "artifacts": [
         {

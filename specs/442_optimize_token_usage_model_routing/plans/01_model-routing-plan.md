@@ -108,7 +108,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Update Command Frontmatter [NOT STARTED]
+### Phase 2: Update Command Frontmatter [IN PROGRESS]
 
 **Goal**: Change all non-tag commands from `model: opus` to `model: sonnet`, including extension commands.
 
