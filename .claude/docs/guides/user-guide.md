@@ -25,7 +25,7 @@ A comprehensive guide to using the `.claude/` task management system commands fo
 4. [Utility Commands](#utility-commands)
    - [/meta](#meta-command)
    - [/fix-it](#fix-it-command)
-   - [/convert](#convert-command)
+   - [/convert](#convert-command) (requires `filetypes` extension)
 5. [Quick Reference](#quick-reference)
 6. [Troubleshooting](#troubleshooting)
 
@@ -459,7 +459,7 @@ Scan for FIX:/NOTE:/TODO: tags and create tasks.
 
 ---
 
-### /convert Command
+### /convert Command (requires `filetypes` extension)
 
 Convert documents between formats.
 
@@ -508,7 +508,7 @@ Convert documents between formats.
 | `/meta` | `/meta [PROMPT] \| --analyze` | System builder |
 | `/fix-it` | `/fix-it [PATH...]` | Extract tags to tasks |
 | `/tag` | `/tag [--patch|--minor|--major]` | Create semantic version tag (user-only) |
-| `/convert` | `/convert SOURCE [OUTPUT]` | Convert documents |
+| `/convert` | `/convert SOURCE [OUTPUT]` | Convert documents (requires `filetypes` extension) |
 
 ### Status Transitions
 
