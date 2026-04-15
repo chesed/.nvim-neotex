@@ -1,7 +1,15 @@
 {
   "version": "1.0.0",
-  "next_project_number": 441,
+  "next_project_number": 442,
   "active_projects": [
+    {
+      "project_number": 441,
+      "project_name": "update_readme_documentation",
+      "status": "not_started",
+      "task_type": "markdown",
+      "created": "2026-04-15T16:52:16Z",
+      "last_updated": "2026-04-15T16:52:16Z"
+    },
     {
       "project_number": 440,
       "project_name": "genericize_documentation_and_examples",
