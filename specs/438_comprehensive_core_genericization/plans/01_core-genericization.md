@@ -1,7 +1,7 @@
 # Implementation Plan: Comprehensive Core Genericization
 
 - **Task**: 438 - Comprehensive core genericization
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 4 hours
 - **Dependencies**: Tasks 432-433 (prior genericization), Task 437 (neovim file moves)
 - **Research Inputs**: specs/438_comprehensive_core_genericization/reports/01_core-genericization.md

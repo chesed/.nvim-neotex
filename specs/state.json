@@ -46,10 +46,10 @@
     {
       "project_number": 438,
       "project_name": "comprehensive_core_genericization",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "meta",
       "created": "2026-04-14T23:00:00Z",
-      "last_updated": "2026-04-15T02:20:09Z",
+      "last_updated": "2026-04-15T02:31:30Z",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -61,12 +61,18 @@
           "path": "specs/438_comprehensive_core_genericization/plans/01_core-genericization.md",
           "type": "plan",
           "summary": "4-phase plan for comprehensive core genericization across ~30 files"
+        },
+        {
+          "path": "specs/438_comprehensive_core_genericization/summaries/01_core-genericization-summary.md",
+          "type": "summary",
+          "summary": "Implementation summary for comprehensive core genericization"
         }
       ],
       "dependencies": [
         437
       ],
-      "session_id": "sess_1776217178_5c9282"
+      "session_id": "sess_1776217178_5c9282",
+      "completion_summary": "Removed all neovim-specific references from ~35 core .claude/ files across 4 phases: routing/detection logic, commands/settings, context docs, and documentation guides. Core agent system is now fully project-agnostic."
     },
     {
       "project_number": 437,
