@@ -1,5 +1,5 @@
 ---
-next_project_number: 442
+next_project_number: 443
 ---
 
 # TODO
@@ -36,6 +36,13 @@ next_project_number: 442
 - **78** [PLANNED] -- Fix Himalaya SMTP authentication failure
 
 ## Tasks
+
+### 442. Optimize token usage with model routing and effort flags
+- **Effort**: Medium
+- **Status**: [NOT STARTED]
+- **Task Type**: meta
+
+**Description**: Optimize token usage throughout the Claude Code agent system. Reserve Opus (most recent model) for Lean research and implementation tasks, using Sonnet for everything else. Add --fast and --hard flags to /research and /implement commands for low effort or high effort respectively. Add --opus flag to /research and /implement to allow designating Opus when desired.
 
 ### 441. Update README.md documentation
 - **Effort**: medium
@@ -490,3 +497,4 @@ The sync system needs to handle the fact that target repos (zed, other projects)
 ### Existing backlog
 7. **78** [PLANNED] -> implement
 8. **87** [RESEARCHED] -> plan
+9. **442** -> research (independent)
