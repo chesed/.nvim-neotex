@@ -18,10 +18,10 @@
     {
       "project_number": 439,
       "project_name": "harden_sync_protection_and_clean_deprecated_index",
-      "status": "planned",
+      "status": "completed",
       "task_type": "meta",
       "created": "2026-04-14T23:00:00Z",
-      "last_updated": "2026-04-15T01:47:41Z",
+      "last_updated": "2026-04-15T01:52:55Z",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -33,9 +33,15 @@
           "path": "specs/439_harden_sync_protection_and_clean_deprecated_index/plans/01_sync-protection.md",
           "type": "plan",
           "summary": "2-phase plan for sync protection hardening and deprecated index cleanup"
+        },
+        {
+          "path": "specs/439_harden_sync_protection_and_clean_deprecated_index/summaries/01_sync-protection-summary.md",
+          "type": "summary",
+          "summary": "Fixed sync.lua auto-seed legacy migration and removed 5 deprecated index entries"
         }
       ],
-      "session_id": "sess_1776217178_5c9282"
+      "session_id": "sess_1776217178_5c9282",
+      "completion_summary": "Fixed sync.lua auto-seed to merge legacy .syncprotect entries during migration, preventing silent entry loss. Removed 5 deprecated entries from index.json, recovering 2,123 lines of context budget."
     },
     {
       "project_number": 438,
@@ -63,10 +69,10 @@
     {
       "project_number": 436,
       "project_name": "resolve_convert_command_docs_without_implementation",
-      "status": "planned",
+      "status": "completed",
       "task_type": "meta",
       "created": "2026-04-14T22:00:00Z",
-      "last_updated": "2026-04-15T01:47:12Z",
+      "last_updated": "2026-04-15T01:51:18Z",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -78,17 +84,23 @@
           "path": "specs/436_resolve_convert_command_docs_without_implementation/plans/01_convert-command.md",
           "type": "plan",
           "summary": "Implementation plan for annotating /convert as extension command in docs"
+        },
+        {
+          "path": "specs/436_resolve_convert_command_docs_without_implementation/summaries/01_convert-command-summary.md",
+          "type": "summary",
+          "summary": "Annotated /convert as extension-provided command in user-guide.md"
         }
       ],
-      "session_id": "sess_1776217178_5c9282"
+      "session_id": "sess_1776217178_5c9282",
+      "completion_summary": "Added filetypes extension annotation to /convert command in user-guide.md ToC, section heading, and command summary table."
     },
     {
       "project_number": 435,
       "project_name": "fix_claudemd_hierarchy_for_project_portability",
-      "status": "planned",
+      "status": "completed",
       "task_type": "meta",
       "created": "2026-04-14T22:00:00Z",
-      "last_updated": "2026-04-15T01:47:28Z",
+      "last_updated": "2026-04-15T01:52:31Z",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -100,9 +112,15 @@
           "path": "specs/435_fix_claudemd_hierarchy_for_project_portability/plans/01_claudemd-hierarchy.md",
           "type": "plan",
           "summary": "2-phase plan to rewrite parent CLAUDE.md files for cross-project portability"
+        },
+        {
+          "path": "specs/435_fix_claudemd_hierarchy_for_project_portability/summaries/01_claudemd-hierarchy-summary.md",
+          "type": "summary",
+          "summary": "Rewrote 2 parent CLAUDE.md files to be project-agnostic"
         }
       ],
-      "session_id": "sess_1776217178_5c9282"
+      "session_id": "sess_1776217178_5c9282",
+      "completion_summary": "Rewrote /home/benjamin/.config/CLAUDE.md and /home/benjamin/.config/.claude/CLAUDE.md to be project-agnostic, removing all nvim-specific content that was polluting sibling project sessions."
     },
     {
       "project_number": 434,

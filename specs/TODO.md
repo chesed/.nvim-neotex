@@ -11,11 +11,11 @@ next_project_number: 441
 ### Pending
 
 - **440** [NOT STARTED] -- Genericize documentation and examples (depends: 438)
-- **439** [PLANNED] -- Harden sync protection and clean deprecated index entries
+- **439** [COMPLETED] -- Harden sync protection and clean deprecated index entries
 - **438** [NOT STARTED] -- Comprehensive core genericization (depends: 437)
 - **437** [NOT STARTED] -- Move neovim-only files to extension and add to .sync-exclude
-- **436** [PLANNED] -- Resolve /convert command: documented but not implemented
-- **435** [PLANNED] -- Fix CLAUDE.md hierarchy for cross-project portability
+- **436** [COMPLETED] -- Resolve /convert command: documented but not implemented
+- **435** [COMPLETED] -- Fix CLAUDE.md hierarchy for cross-project portability
 - **434** [COMPLETED] -- Prevent lead agent post-delegation takeover after subagent returns
 - **433** [COMPLETED] -- Move nvim-specific core content into neovim extension (depends: 432)
 - **432** [COMPLETED] -- Harden sync engine against repo-specific content leakage
@@ -38,7 +38,7 @@ next_project_number: 441
 
 ### 436. Resolve /convert command: documented but not implemented
 - **Effort**: small
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Task Type**: meta
 
 **Description**: The `/convert` command is extensively documented in `docs/guides/user-guide.md` (lines 28, 462-483, 511) and `docs/reference/standards/extension-slim-standard.md` (line 114) but no `commands/convert.md` file exists. Users attempting to use this command will fail silently.
@@ -73,7 +73,7 @@ next_project_number: 441
 
 ### 439. Harden sync protection and clean deprecated index entries
 - **Effort**: small
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Task Type**: meta
 
 **Description**: Two independent improvements to the sync mechanism and index hygiene.
@@ -170,7 +170,7 @@ Replace with "extension loader" or "the loader" -- the keybinding is Neovim-spec
 
 ### 435. Fix CLAUDE.md hierarchy for cross-project portability
 - **Effort**: small
-- **Status**: [PLANNED]
+- **Status**: [COMPLETED]
 - **Task Type**: meta
 
 **Description**: The CLAUDE.md file chain that Claude Code loads (by walking up the directory tree) causes neovim-specific content to leak into non-nvim projects like zed. When Claude Code runs in `/home/benjamin/.config/zed/`, it loads:

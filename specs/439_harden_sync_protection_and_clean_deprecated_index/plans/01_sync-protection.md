@@ -1,7 +1,7 @@
 # Implementation Plan: Harden Sync Protection and Clean Deprecated Index
 
 - **Task**: 439 - Harden sync protection and clean deprecated index entries
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 0.75 hours
 - **Dependencies**: None
 - **Research Inputs**: reports/01_sync-protection.md

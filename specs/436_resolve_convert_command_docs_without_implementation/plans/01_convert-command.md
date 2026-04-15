@@ -1,7 +1,7 @@
 # Implementation Plan: Task #436
 
 - **Task**: 436 - Resolve /convert command: documented but not implemented
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Effort**: 0.25 hours
 - **Dependencies**: None
 - **Research Inputs**: reports/01_convert-command.md
