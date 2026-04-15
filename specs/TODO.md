@@ -10,7 +10,7 @@ next_project_number: 444
 
 ### Pending
 
-- **443** [RESEARCHING] -- Optimize artifact format verbosity using caveman-inspired insights
+- **443** [RESEARCHED] -- Optimize artifact format verbosity using caveman-inspired insights
 - **440** [ABANDONED] -- Genericize documentation and examples (superseded by task 438 phase 4)
 - **439** [COMPLETED] -- Harden sync protection and clean deprecated index entries
 - **438** [COMPLETED] -- Comprehensive core genericization (depends: 437)
@@ -40,8 +40,9 @@ next_project_number: 444
 
 ### 443. Optimize artifact format verbosity using caveman-inspired insights
 - **Effort**: medium
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Task Type**: meta
+- **Research**: [specs/443_optimize_artifact_format_verbosity/reports/01_artifact-format-research.md]
 
 **Description**: Optimize artifact creation throughout the Claude Code agent system to be more readable and less verbose without removing anything important. Study the https://github.com/JuliusBrussee/caveman/blob/main/README.md repo for a comprehensive understanding of the strategy, then review artifact formats (reports, summaries, plans, etc.) for modest optimizations. Not "going full caveman" but drawing on the basic insight to reduce verbiage where it counts without over-complicating instructions. Look for elements that could be dropped or improved.
 
@@ -508,4 +509,4 @@ The sync system needs to handle the fact that target repos (zed, other projects)
 7. **78** [PLANNED] -> implement
 8. **87** [RESEARCHED] -> plan
 9. **442** [PLANNED] -> implement (independent)
-10. **443** -> research (independent)
+10. **443** [RESEARCHED] -> plan (independent)
