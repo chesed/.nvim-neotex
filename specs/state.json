@@ -59,12 +59,19 @@
     {
       "project_number": 437,
       "project_name": "move_neovim_only_files_to_extension",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "meta",
       "created": "2026-04-14T23:00:00Z",
-      "last_updated": "2026-04-14T23:00:00Z",
-      "next_artifact_number": 1,
-      "artifacts": []
+      "last_updated": "2026-04-15T01:57:33Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/437_move_neovim_only_files_to_extension/reports/01_nvim-file-relocation.md",
+          "type": "research",
+          "summary": "Audit of 5 neovim-only files for relocation to extension"
+        }
+      ],
+      "session_id": "sess_1776217178_5c9282"
     },
     {
       "project_number": 436,

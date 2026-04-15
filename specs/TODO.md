@@ -13,7 +13,7 @@ next_project_number: 441
 - **440** [NOT STARTED] -- Genericize documentation and examples (depends: 438)
 - **439** [COMPLETED] -- Harden sync protection and clean deprecated index entries
 - **438** [NOT STARTED] -- Comprehensive core genericization (depends: 437)
-- **437** [NOT STARTED] -- Move neovim-only files to extension and add to .sync-exclude
+- **437** [RESEARCHED] -- Move neovim-only files to extension and add to .sync-exclude
 - **436** [COMPLETED] -- Resolve /convert command: documented but not implemented
 - **435** [COMPLETED] -- Fix CLAUDE.md hierarchy for cross-project portability
 - **434** [COMPLETED] -- Prevent lead agent post-delegation takeover after subagent returns
@@ -143,7 +143,7 @@ Replace with "extension loader" or "the loader" -- the keybinding is Neovim-spec
 
 ### 437. Move neovim-only files to extension and add to .sync-exclude
 - **Effort**: medium
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: meta
 
 **Description**: Several core `.claude/` files are 100% neovim-specific and should not be synced to any other repository. Move them to the neovim extension and add source-side exclusions.
