@@ -1,14 +1,23 @@
 {
   "version": "1.0.0",
-  "next_project_number": 443,
+  "next_project_number": 444,
   "active_projects": [
+    {
+      "project_number": 443,
+      "project_name": "optimize_artifact_format_verbosity",
+      "status": "not_started",
+      "task_type": "meta",
+      "created": "2026-04-15T17:21:30Z",
+      "last_updated": "2026-04-15T17:21:30Z"
+    },
     {
       "project_number": 442,
       "project_name": "optimize_token_usage_model_routing",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "meta",
       "created": "2026-04-15T17:17:45Z",
-      "last_updated": "2026-04-15T17:17:45Z"
+      "last_updated": "2026-04-15T17:21:46Z",
+      "session_id": "sess_1744737466_research"
     },
     {
       "project_number": 441,
