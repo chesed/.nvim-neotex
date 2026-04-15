@@ -46,16 +46,21 @@
     {
       "project_number": 438,
       "project_name": "comprehensive_core_genericization",
-      "status": "researched",
+      "status": "planned",
       "task_type": "meta",
       "created": "2026-04-14T23:00:00Z",
-      "last_updated": "2026-04-15T02:14:47Z",
+      "last_updated": "2026-04-15T02:18:13Z",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/438_comprehensive_core_genericization/reports/01_core-genericization.md",
           "type": "research",
           "summary": "Comprehensive audit of all nvim references in core .claude/ with proposed fixes"
+        },
+        {
+          "path": "specs/438_comprehensive_core_genericization/plans/01_core-genericization.md",
+          "type": "plan",
+          "summary": "4-phase plan for comprehensive core genericization across ~30 files"
         }
       ],
       "dependencies": [
